@@ -282,8 +282,8 @@ function fnInitailContents() {
     //cLi[0].getElementsByTagName("A").item(0).attributes.getNamedItem("sN").nodeValue=cLi[0].getElementsByTagName("SPAN").item(1).childNodes.item(0).nodeValue;//这样设置好象不行!!设置国语属性值等于节点值
     cLi[0].getElementsByTagName("A").item(0).setAttribute("sFId", "");//设置语言Id,默认为"",国语
     cLi[0].getElementsByTagName("A").item(0).addEventListener("click", fnRemoveDefaultEventHandler, false);//禁止自动编号的单击默认事件响应，因为其父节点是A
-    cLi[0].getElementsByTagName("SPAN").item(0).childNodes.item(0).nodeValue = "1.";
-
+   // cLi[0].getElementsByTagName("SPAN").item(0).childNodes.item(0).nodeValue = "1.";
+    cLi[0].getElementsByTagName("SPAN").item(0).childNodes.item(0).nodeValue = "0.";//修改为从0开始
 
     if (iLiLength > 1) {
         for (i = 1; i < iLiLength - 1; i++) {
@@ -396,8 +396,8 @@ function fnContentsRefreshAFromAlreadyAutoNumbered() {//准备改为fnContentsRe
     cLi[0].getElementsByTagName("SPAN").item(1).addEventListener("mouseover", fnAOnMouseOn, false);
     cLi[0].getElementsByTagName("SPAN").item(1).addEventListener("mouseout", fnAOnMouseOut, false);
     cLi[0].getElementsByTagName("A").item(0).addEventListener("click", fnRemoveDefaultEventHandler, false);
-    cLi[0].getElementsByTagName("SPAN").item(0).childNodes.item(0).nodeValue = "1.";
-
+    //cLi[0].getElementsByTagName("SPAN").item(0).childNodes.item(0).nodeValue = "1.";
+     cLi[0].getElementsByTagName("SPAN").item(0).childNodes.item(0).nodeValue = "0.";//修改为从0开始
 
     if (iLiLength > 1) {
         for (i = 1; i < iLiLength - 1; i++) {
