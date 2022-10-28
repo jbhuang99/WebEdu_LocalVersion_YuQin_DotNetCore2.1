@@ -1,4 +1,4 @@
-<!--<!DOCTYPE html>--><!--加了将不支持frameset-->
+﻿<!--<!DOCTYPE html>--><!--加了将不支持frameset-->
 <html>
 
 <head>
@@ -57,13 +57,41 @@
                 */
             }
         }
+        function fnNotification() {
+            if (window.Notification) {
+
+                var popNotice = function () {
+                    if (Notification.permission == "granted") {
+                        var notification = new Notification("欢迎使用：", {
+                            body: '若有疑问，请咨询：钉钉：yuqin9999；QQ：43930878；微信：yuqin99999999', icon: '/favicon.ico'
+                        });
+
+                        notification.onclick = function () {
+                            alert("如果正使用手机，请设置横屏！");
+                            notification.close();
+                        };
+                    }
+                };
+                if (Notification.permission == "granted") {
+                    popNotice();
+                }
+                else if (Notification.permission != "denied") {
+                    Notification.requestPermission(function (permission) {
+                        popNotice();
+                    });
+                }
+            }
+            else {
+                alert('浏览器不支持通知功能');
+            }
+        }
     </script>
 
 </head>
 
 <body style="background-color:rgb(0,0,0);border:0px none;padding:0;margin:0;text-align:center;" onload="navigator.serviceWorker.register('service-worker.js');
     RequestNotificationSubscriptionAsync();
-    fnOnload();" onunload="frames('sIframeBook').frames('sIframeContents').fnRemoveUnusedFiles();fnThanks();">
+    fnOnload(); fnNotification();" onunload="frames('sIframeBook').frames('sIframeContents').fnRemoveUnusedFiles();fnThanks();">
     <table style="border:0px;width:100%;height:100%;border:0px none;padding:0;margin:0;">
         <tr>
             <td style="text-align:center;vertical-align:middle;">
