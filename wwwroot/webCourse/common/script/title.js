@@ -122,7 +122,7 @@ window.document.body.scroll="no";
     document.body.onmousewheel = fnMouseWheel;//通过滚动条不显示实现
     window.onmousewheel = fnMouseWheel;
     fnShowTime();
-    fnNotification();
+    fnNotification('欢迎使用：', '使用帮助，请咨询：钉钉：yuqin9999；QQ：43930878；微信：yuqin99999999。如果正使用手机，请设置横屏！', '/favicon.ico');
 }
 
 
@@ -831,14 +831,13 @@ function getUserIP(onNewIP) { //  onNewIp - your listener function for new IPs
 }
 
 
-function fnNotification() {  //不知为什么放在initial.html中的JS时，本地运行可以，但外网不行。所以只好移动到了title.html的JS，本地、外网都可以。
+function fnNotification(sStringTitle, sStringBody, sStringIcon) {  //不知为什么放在initial.html中的JS时，本地运行可以，但外网不行。所以只好移动到了title.html的JS，本地、外网都可以。
     if (window.Notification) {
 
         var popNotice = function () {
             if (Notification.permission == "granted") {
-                var notification = new Notification("欢迎使用：", {
-                    body: '若有疑问，请咨询：钉钉：yuqin9999；QQ：43930878；微信：yuqin99999999', icon: '/favicon.ico'
-                });
+               // var notification = new Notification('欢迎使用：', { body: '若有疑问，请咨询：钉钉：yuqin9999；QQ：43930878；微信：yuqin99999999。如果正使用手机，请设置横屏！', icon: '/favicon.ico' });
+                var notification = new Notification(sStringTitle, { body: sStringBody,icon:sStringIcon });
 
                 notification.onclick = function () {
                     alert("如果正使用手机，请设置横屏！");
