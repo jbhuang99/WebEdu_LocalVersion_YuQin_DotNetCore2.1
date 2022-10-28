@@ -121,7 +121,8 @@ window.document.body.scroll="no";
     parent.document.getElementById("sIframeContents").src = "../" + parent.sContentsPath + "contents.htm";
     document.body.onmousewheel = fnMouseWheel;//通过滚动条不显示实现
     window.onmousewheel = fnMouseWheel;
-fnShowTime();
+    fnShowTime();
+    fnNotification();
 }
 
 
@@ -828,6 +829,37 @@ function getUserIP(onNewIP) { //  onNewIp - your listener function for new IPs
         ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
     };
 }
+
+
+function fnNotification() {  //不知为什么放在initial.html中的JS时，本地运行可以，但外网不行。所以只好移动到了title.html的JS，本地、外网都可以。
+    if (window.Notification) {
+
+        var popNotice = function () {
+            if (Notification.permission == "granted") {
+                var notification = new Notification("欢迎使用：", {
+                    body: '若有疑问，请咨询：钉钉：yuqin9999；QQ：43930878；微信：yuqin99999999', icon: '/favicon.ico'
+                });
+
+                notification.onclick = function () {
+                    alert("如果正使用手机，请设置横屏！");
+                    notification.close();
+                };
+            }
+        };
+        if (Notification.permission == "granted") {
+            popNotice();
+        }
+        else if (Notification.permission != "denied") {
+            Notification.requestPermission(function (permission) {
+                popNotice();
+            });
+        }
+    }
+    else {
+        alert('浏览器不支持通知功能');
+    }
+}
+
 // Usage
 
 /** function fnUploadBackgroundMusic(){
