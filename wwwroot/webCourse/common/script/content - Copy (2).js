@@ -971,8 +971,7 @@ function fnContentFrameworkNotification(sStringTitle, sStringBody, sStringIcon) 
 				var notification = new Notification(sStringTitle, { body: sStringBody, icon: sStringIcon });
 
 				notification.onclick = function () {
-					//alert("如果正使用手机，请设置横屏！");
-					open("https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/wwwroot/",target="_blank");
+					alert("如果正使用手机，请设置横屏！");
 					notification.close();
 				};
 			}
@@ -989,9 +988,6 @@ function fnContentFrameworkNotification(sStringTitle, sStringBody, sStringIcon) 
 	else {
 		alert('浏览器不支持通知功能');
 	}
-}
-function fnHelp() {
-	open("https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/wwwroot/", target = "_blank");
 }
 //document.getElementsByTagName("body").item(0).onload = fnOnLoad;
 document.getElementsByTagName("body").item(0).onload = fnOnLoad;
