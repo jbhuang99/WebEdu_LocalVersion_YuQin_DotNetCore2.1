@@ -23,16 +23,16 @@ function fnOnLoad() {
 			;
 		}
 		else {
-			fnContentFrameworkNotification('欢迎使用：', '使用帮助，请咨询：QQ：43930878；钉钉：yuqin9999；微信：yuqin99999999。EMail:43930878@qq.com', '/favicon.ico');
+			fnContentFrameworkNotification('欢迎使用：', '使用帮助，请咨询：QQ：43930878；电话：18279142396。EMail:43930878@qq.com', '/favicon.ico');
 		}
 	}
 	catch (e) {
-		fnContentFrameworkNotification('欢迎使用内容：', '使用帮助，请咨询：QQ：43930878；钉钉：yuqin9999；微信：yuqin99999999。EMail:43930878@qq.com', '/favicon.ico');
+		fnContentFrameworkNotification('欢迎使用内容：', '使用帮助，请咨询：QQ：43930878；电话：18279142396。EMail:43930878@qq.com', '/favicon.ico');
 
 	}
 	/**
 	finally {
-		fnContentFrameworkNotification('欢迎使用内容：', '使用帮助，请咨询：QQ：43930878；钉钉：yuqin9999；微信：yuqin99999999。EMail:43930878@qq.com', '/favicon.ico');
+		fnContentFrameworkNotification('欢迎使用内容：', '使用帮助，请咨询：QQ：43930878；电话：18279142396。EMail:43930878@qq.com', '/favicon.ico');
     }
 	**/
 	
