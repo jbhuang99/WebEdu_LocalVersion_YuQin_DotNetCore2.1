@@ -229,6 +229,8 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Include="Views\BroweringOfTextbook\Details.cshtml" />
     <None Include="Views\BroweringOfTextbook\Edit.cshtml" />
     <None Include="Views\BroweringOfTextbook\Index.cshtml" />
+    <None Include="wwwroot\webCourse\common\script\SignalR\signalr.js" />
+    <None Include="wwwroot\webCourse\common\script\SignalR\signalr.min.js" />
   </ItemGroup>
 
   <ItemGroup>

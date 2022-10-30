@@ -25,6 +25,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.Builder.Internal;
+using ChatSample.Hubs;
 
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
@@ -86,8 +88,8 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
             
             webHostBuilder.ConfigureServices(delegate (IServiceCollection serviceCollection) //替代Startup类（ConfigureServices()方法）。 // ConfigureServices()由运行时调用,所以必须遵守如下规则：此方法用来添加服务。自定义此方法。使用此方法向容器添加服务。Startup类选择包含ConfigureServices方法，  ConfigureServices主要是配置依赖注入（DI）.ConfigureServices（如果存在）在Configure之前调用。对于需要大量设置的功能，在IServiceCollection上添加Add[Service]扩展方法。将服务添加到服务容器使得它们可以通过依赖注入在应用程序中使用.ConfigureServices方法只接受一个IServiceCollection参数（但是可以从这个集合中检索任何已注册的服务，所以不需要额外的参数）。
             {
-                 
-                 serviceCollection.Configure<CookiePolicyOptions>(
+                serviceCollection.AddSignalR();
+                serviceCollection.Configure<CookiePolicyOptions>(
                   delegate (CookiePolicyOptions cookiePolicyOptions)
                   {
                       {
@@ -168,7 +170,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
         applicationBuilder.UseStaticFiles();
         applicationBuilder.UseCookiePolicy();
                     // applicationBuilder.UseAuthentication();//登录认证管道
-                     applicationBuilder.UseMvc(delegate (IRouteBuilder routeBuilder)
+        applicationBuilder.UseMvc(delegate (IRouteBuilder routeBuilder)
             {
                 {
                     //区域Areas的路由。必须在非区域Areas的路由前面定义吗？
@@ -181,15 +183,26 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
                         name: "default",
                         template: "{controller=Home}/{action=Index}/{id?}");
                 }
-            }
-            );
-        
-       // Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment = applicationBuilder.ApplicationServices.GetRequiredService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
-        Microsoft.Extensions.Configuration.IConfiguration configuration = applicationBuilder.ApplicationServices.GetRequiredService<IConfiguration>();
-                //ILogger logger = LoggerFactory.CreateLogger("TryLog");
-                //logger.LogInformation("Logged in Configure");                    
-
             });
+
+                     /**
+                     applicationBuilder.UseEndpoints(endpoints =>
+                     {
+                         endpoints.MapHub<ChatHub>("/chat");
+                     });
+                     **/
+                     applicationBuilder.UseSignalR(routes =>
+                     {
+                         routes.MapHub<ChatHub>("/chat");
+                     }) ;
+                        // Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment = applicationBuilder.ApplicationServices.GetRequiredService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
+                        Microsoft.Extensions.Configuration.IConfiguration configuration = applicationBuilder.ApplicationServices.GetRequiredService<IConfiguration>();
+                     //ILogger logger = LoggerFactory.CreateLogger("TryLog");
+                     //logger.LogInformation("Logged in Configure");                    
+
+            }
+                
+                 );
             IWebHost webHost = webHostBuilder.Build();
             webHost.Run();
             /**            
