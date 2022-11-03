@@ -68,16 +68,17 @@
     //event.srcElement.style.marginLeft = parseInt(event.srcElement.style.marginLeft) - 20 + "px";
     //event.srcElement.style.marginTop = parseInt(event.srcElement.style.marginTop) - 20 + "px";//没实现
     event.srcElement.style.fontWeight = "normal";'>
+                <label style="margin-left:0px;margin-top:0px" onclick='open("../../Identity/Account/LogIn.html","_blank","channelmode=yes,width=80%,height=50%,menubar=no,toolbar=no, status=no,scrollbars=yes")' title="如果已经注册了用户账号，单击将可登录">登录</label>
+                <label style="margin-left:0px;margin-top:0px" onclick='open("../../Identity/Account/Register.html","_blank","channelmode=yes,width=80%,height=50%,menubar=no,toolbar=no, status=no,scrollbars=yes")' title="如果尚未注册用户账号，单击将可注册">注册</label>
                 <label id="help" style="margin-left:0px;margin-top:0px" onclick='fnSystemInfo();' title="单击将查看本系统的一些信息，例如版本、运行目录、IP地址，等等">系统信息</label><!--原来http://116.62.103.103:8084/-->
                 <label id="help" style="margin-left:0px;margin-top:0px" onclick='alert("需要连接服务版！");//open("https://yuqin.chinacloudsites.cn/index.html","_blank","channelmode=yes,width=300,height=200,menubar=no,toolbar=no, status=no,scrollbars=yes")' title="单击将打开关于本系统使用的帮助文档">帮助</label><!--原来http://116.62.103.103:8084/-->
                 <label id="Options" style="margin-left:0px;margin-top:0px" onclick='alert("需要连接服务版！");//open("https://yuqin.chinacloudsites.cn/index.html","_blank","channelmode=yes,width=300,height=200,menubar=no,toolbar=no, status=no,scrollbars=yes")' title="单击将打开本系统的配置选项界面">配置</label>
                 <label style="margin-left:0px;margin-top:0px" onclick='alert("需要连接服务版！");//open("https://yuqin.chinacloudsites.cn/index.html","_blank","channelmode=yes,width=300,height=200,menubar=no,toolbar=no, status=no,scrollbars=yes")' id="sGoServer" title="单击将连接服务版。注册成为正式用户。开发完善之中！">服务版</label>
-                <label style="margin-left:0px;margin-top:0px" onclick='alert("需要连接服务版！");//open("https://yuqin.chinacloudsites.cn/index.html","_blank","channelmode=yes,width=300,height=200,menubar=no,toolbar=no, status=no,scrollbars=yes")' title="单击将连接服务版注册">注册</label>
                 <label style="margin-left:0px;margin-top:0px" onclick='alert("需要连接服务版！");//open("https://yuqin.chinacloudsites.cn/index.html","_blank","channelmode=yes,width=300,height=200,menubar=no,toolbar=no, status=no,scrollbars=yes")' id="sOnlineUpdate" title="单击将在线升级本机版。开发完善之中！">在线升级</label>
                 <label style="margin-left:0px;margin-top:0px" onclick='if (document.getElementById("sendmessageLable").style.display == "none") document.getElementById("sendmessageLable").style.display = "inline";else document.getElementById("sendmessageLable").style.display ="none";' id="sPushNotification" title="单击可切换是否显示推送。可推送通知给所有在线用户、已本地安装本应用的用户！(在此只是试验，产力环境请连接服务版使用本功能！)">推送通知</label>
                 <label id="sendmessageLable" style="display:none"> <input type="text" id="message" /> <input type="button" id="sendmessage" value="推送" /></label>
                 <label id="studyTime" style="color:green">0</label>
-        </div>
+            </div>
             <div style="color:brown;">
                 <a href="" id="sIdToggleAutoNumber" title="目录切换是否显示自动编号。本系统主界面分为目录面板、内容面板、标题面板。目录为导航。" onclick="window.event.returnValue=false;parent.document.getElementById('sIframeContents').contentWindow.fnToggleContentsAutoNumber();" unselectable="on" style="color:brown;">目录编号</a>
                 <a href="" id="sIdfnToggleScreenStepByStep" title="目录面板随单击逐渐变宽。本系统主界面分为目录面板、内容面板、标题面板。目录为导航。" onclick="window.event.returnValue=false;fnToggleScreenStepByStep();" unselectable="on" style="color:brown;">目录渐宽</a>
