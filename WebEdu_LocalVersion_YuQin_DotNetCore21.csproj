@@ -218,7 +218,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Models\Identity\" />
-    <Folder Include="DataForSQLite\" />
+    <Folder Include="DatabaseForPortable\" />
     <Folder Include="wwwroot\webCourse\lessons\content\HomeworkAndTest\" />
     <Folder Include="wwwroot\webCourse\lessons\content\TeachingEngineering\" />
     <Folder Include="wwwroot\webCourse\lessons\content\TeachingVideo\" />
