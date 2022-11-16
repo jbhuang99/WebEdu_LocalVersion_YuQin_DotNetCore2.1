@@ -27,6 +27,8 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Builder.Internal;
 using ChatSample.Hubs;
+using Microsoft.AspNetCore.Identity;
+using IdentityDemo.Services;
 
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
@@ -93,8 +95,8 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
                   delegate (CookiePolicyOptions cookiePolicyOptions)
                   {
                       {
-                        // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                        cookiePolicyOptions.CheckConsentNeeded = delegate (HttpContext context) { return true; };
+                          // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                          cookiePolicyOptions.CheckConsentNeeded = delegate (HttpContext context) { return true; };
                           cookiePolicyOptions.MinimumSameSitePolicy = SameSiteMode.None;
                       }
 
@@ -102,18 +104,59 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
                   );
                 serviceCollection.AddLogging();
                 serviceCollection.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-                 String sLocalDatabasePathDefault = "Filename=" + HostingEnvironment.WebRootPath + Configuration.GetConnectionString("PartPathOfLocalDatabaseDefault"); //根路径信息硬编码在此随运行位置而动态获取。部分路径信息在appsettings.json中软编码配置，以便修改配置。              
-                 serviceCollection.AddDbContext<BroweringOfTextbookDbContext>(delegate(DbContextOptionsBuilder dbContextOptionsBuilder) { dbContextOptionsBuilder.UseSqlite(sLocalDatabasePathDefault); });//SQLite嵌入式数据库连接
+                String sLocalDatabasePathDefault = "Filename=" + HostingEnvironment.WebRootPath + Configuration.GetConnectionString("PartPathOfLocalDatabaseDefault"); //根路径信息硬编码在此随运行位置而动态获取。部分路径信息在appsettings.json中软编码配置，以便修改配置。              
+                serviceCollection.AddDbContext<BroweringOfTextbookDbContext>(delegate (DbContextOptionsBuilder dbContextOptionsBuilder) { dbContextOptionsBuilder.UseSqlite(sLocalDatabasePathDefault); });//SQLite嵌入式数据库连接
 
-                 String sLocalDatabasePathOfAdmin = "Filename=" + HostingEnvironment.WebRootPath + Configuration.GetConnectionString("PartPathOfLocalDatabaseOfAdmin"); //根路径信息硬编码在此随运行位置而动态获取。部分路径信息在appsettings.json中软编码配置，以便修改配置。
-            serviceCollection.AddDbContext<AdminDbContext>(delegate (DbContextOptionsBuilder dbContextOptionsBuilder) { dbContextOptionsBuilder.UseSqlite(sLocalDatabasePathOfAdmin); });//试验SQLite
-                 serviceCollection.Configure<FormOptions>(x => {//配置表单上传文件支持的文件容量大小。默认较小。如果发布到IIS，可能还需要在控制C中的方法前加入如下属性声明：[HttpPost][RequestFormLimits(MultipartBodyLengthLimit = 209715200)]。一个是表单的键值对中的值的长度限制，一个是当表单enctype为multipart/form-data时文件的长度限制，还有一个是multipart头长度的限制，也就是boundary=-------------------------------Gefsgeq!34这种的限制。
-                     x.ValueLengthLimit = Int32.MaxValue;
-                     x.MultipartBodyLengthLimit = Int32.MaxValue;
-                     x.MultipartHeadersLengthLimit = int.MaxValue;
-                     x.MemoryBufferThreshold = int.MaxValue;
-                 });
+                String sLocalDatabasePathOfAdmin = "Filename=" + HostingEnvironment.WebRootPath + Configuration.GetConnectionString("PartPathOfLocalDatabaseOfAdmin"); //根路径信息硬编码在此随运行位置而动态获取。部分路径信息在appsettings.json中软编码配置，以便修改配置。
+                serviceCollection.AddDbContext<AdminDbContext>(delegate (DbContextOptionsBuilder dbContextOptionsBuilder) { dbContextOptionsBuilder.UseSqlite(sLocalDatabasePathOfAdmin); });//试验SQLite
+                serviceCollection.Configure<FormOptions>(x => {//配置表单上传文件支持的文件容量大小。默认较小。如果发布到IIS，可能还需要在控制C中的方法前加入如下属性声明：[HttpPost][RequestFormLimits(MultipartBodyLengthLimit = 209715200)]。一个是表单的键值对中的值的长度限制，一个是当表单enctype为multipart/form-data时文件的长度限制，还有一个是multipart头长度的限制，也就是boundary=-------------------------------Gefsgeq!34这种的限制。
+                    x.ValueLengthLimit = Int32.MaxValue;
+                    x.MultipartBodyLengthLimit = Int32.MaxValue;
+                    x.MultipartHeadersLengthLimit = int.MaxValue;
+                    x.MemoryBufferThreshold = int.MaxValue;
+                });
+                //Indentity所需的SQL数据库
+                serviceCollection.AddDbContext<IdentityDemo.Data.IdentityApplicationDbContext>(delegate (DbContextOptionsBuilder dbContextOptionsBuilder) { dbContextOptionsBuilder.UseSqlServer(Configuration.GetConnectionString("IdentityApplicationDbContext"));});
+                serviceCollection.AddIdentity<IdentityDemo.Models.ApplicationUser, IdentityRole>()
+               .AddEntityFrameworkStores<IdentityDemo.Data.IdentityApplicationDbContext>()
+               .AddDefaultTokenProviders();
 
+                serviceCollection.Configure<IdentityOptions>(options =>
+                {
+                    // Password settings
+                    options.Password.RequireDigit = true;
+                    options.Password.RequiredLength = 8;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequiredUniqueChars = 6;
+
+                    // Lockout settings
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                    options.Lockout.MaxFailedAccessAttempts = 10;
+                    options.Lockout.AllowedForNewUsers = true;
+
+                    // User settings
+                    options.User.RequireUniqueEmail = true;
+                });
+
+                serviceCollection.ConfigureApplicationCookie(options =>
+                {
+                    // Cookie settings
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.Expiration = TimeSpan.FromDays(150);
+                    // If the LoginPath isn't set, ASP.NET Core defaults 
+                    // the path to /Account/Login.
+                    options.LoginPath = "/Account/Login";
+                    // If the AccessDeniedPath isn't set, ASP.NET Core defaults 
+                    // the path to /Account/AccessDenied.
+                    options.AccessDeniedPath = "/Account/AccessDenied";
+                    options.SlidingExpiration = true;
+                });
+
+                // Add application services.
+                serviceCollection.AddTransient<IEmailSender, EmailSender>();
+                //
                 //*****************。一些服务可以在管道之前先调用？.AddScoped<IOperationScoped, Operation>()、.AddTransient<IOperationTransient, Operation>()、.AddSingleton<IOperationSingleton, Operation>();三种生命周期。CreateScope产生一个新的ServiceProvider范围，在这个范围下的Scope标注的实例将只会是同一个实例。换句话来说：用Scope注册的对象，在同一个ServiceProvider的 Scope下相当于单例。有一些对象在一个请求跨越多个Action或者多个Service、Repository的时候，比如最常用的DBContext它可以是一个实例。即能减少实例初始化的消耗，还能实现跨Service事务的功能。（注：在ASP.NET Core中所有用到EF的Service 都需要注册成Scoped )。而实现这种功能的方法就是在整个reqeust请求的生命周期以内共用了一个Scope。
 
                 using (IServiceScope serviceScope = serviceCollection.BuildServiceProvider().CreateScope())
@@ -169,7 +212,8 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
         applicationBuilder.UseHttpsRedirection();
         applicationBuilder.UseStaticFiles();
         applicationBuilder.UseCookiePolicy();
-                    // applicationBuilder.UseAuthentication();//登录认证管道
+                     // applicationBuilder.UseAuthentication();//登录认证管道
+        applicationBuilder.UseAuthentication();
         applicationBuilder.UseMvc(delegate (IRouteBuilder routeBuilder)
             {
                 {

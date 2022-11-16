@@ -13,11 +13,12 @@ using Microsoft.Extensions.Options;
 using IdentityDemo.Models;
 using IdentityDemo.Models.AccountViewModels;
 using IdentityDemo.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace IdentityDemo.Controllers
 {
     [Authorize]
-    [Route("[controller]/[action]")]
+    //[Route("[controller]/[action]")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -204,42 +205,84 @@ namespace IdentityDemo.Controllers
         {
             return View();
         }
-
+        /**
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
+                public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
+        **/
 
-        [HttpPost]
+
+
+        [HttpPost]       
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        //[ValidateAntiForgeryToken]//本来应该设置，但设置了就会禁止访问
+        /**
+         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+         {
+             //ViewData["ReturnUrl"] = returnUrl;
+             if (ModelState.IsValid)
+             {
+                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                 var result = await _userManager.CreateAsync(user, model.Password);
+                 if (result.Succeeded)
+                 {
+                     _logger.LogInformation("User created a new account with password.");
+
+                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+
+                     await _signInManager.SignInAsync(user, isPersistent: false);
+                     _logger.LogInformation("User created a new account with password.");
+                    // return RedirectToLocal(returnUrl);
+                     return Ok(model.Email+"注册成功");
+                 }
+                 AddErrors(result);
+             }
+
+             // If execution got this far, something failed, redisplay the form.
+             //return View(model);
+             return Ok("系统出错，请重试！");
+         }
+         **/
+        public async Task<IActionResult> Register()
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+          String eMail= Request.Form["Input.Email"];
+          String password = Request.Form["Input.Password"];
+          String confirmPassword = Request.Form["Input.ConfirmPassword"];
+          
+            if (password==confirmPassword)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
+                         ///**         
+                    var user = new ApplicationUser { UserName = eMail, Email = eMail };
+                    var result = await _userManager.CreateAsync(user, password);
+                    if (result.Succeeded)
+                    {
+                        _logger.LogInformation("User created a new account with password.");
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                        await _emailSender.SendEmailConfirmationAsync(eMail, callbackUrl);
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
-                }
-                AddErrors(result);
-            }
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        _logger.LogInformation("User created a new account with password.");
+                        // return RedirectToLocal(returnUrl);
+               
+                        
+                    }
+                     
+                    AddErrors(result); 
+               // **/
+                return Ok(eMail);
+        }
 
-            // If execution got this far, something failed, redisplay the form.
-            return View(model);
+
+            return Ok("口令与确认口令不一致！");
+             
         }
 
         [HttpPost]
