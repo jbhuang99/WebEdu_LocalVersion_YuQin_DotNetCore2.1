@@ -29,17 +29,19 @@ using Microsoft.AspNetCore.Builder.Internal;
 using ChatSample.Hubs;
 using Microsoft.AspNetCore.Identity;
 using IdentityDemo.Services;
+using Microsoft.Vbe.Interop.Forms;
 
+//在此不选择ASP.NET默认的模型绑定机制：ASP.NET有一个默认模型绑定机制，当点击表单中submit按钮或a标签时，会将相应表单的数据提交并跳转到到action内指定的网址或href属性内指定的网址，当跳转到指定网址前，首先会执行这个网址的相应 操作方法，执行操作方法时，ASP.NET 的默认模型绑定机制会进行数据绑定，当操作方法里的形参列表属性和表单元素的name属性一致时，就会动态给形参属性绑定表单元素数据（操作方法的形参列表可以是数据类型变量，可以是对象，可以是集合等等的复杂数据类型）.(1.)使用模型绑定，除了可以获取基本类型int和string类型，还可以获得double、float、long 等基本类型的数据(2.)在操作方法中的参数声明中，参数可以设定为 “int? 类型”，这种类型称为可空int类型，表示可以是int类型，也可以是null类型，当文本框输入的内容非int类型或空数据时，模型绑定器无法正确的实现int类型转换，这个时候就会默认绑定为null类型.(1.)模型绑定除了可以绑定自己定义类的类型和基本数据类型外，还可以绑定复杂数据类型的集合数据类型.四.模型绑定接收上传的文件.(1.)form标签的enctype属性必须为 “multipart / form - data” ，否则点击submit提交按钮时只会发送文件名而不是文件对象本身。
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
 {
     public class Program
     {
         public static Int32 iTry { get; set; } = 0;
-        public static IConfiguration Configuration { get; set; }         
+        public static IConfiguration Configuration { get; set; }
         public static Microsoft.AspNetCore.Hosting.IHostingEnvironment HostingEnvironment { get; set; }
         public static ILoggerFactory LoggerFactory { get; set; }
-       
+
         //public static IServiceCollection services { get; set; } = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
         // public static void Main(String[] args, IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)//不支持
         public static void Main(String[] args)
@@ -82,12 +84,12 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
             {
                 HostingEnvironment = webHostBuilderContext.HostingEnvironment;//没通过，所以后续ConfigureServices() 、Configure()都没能通过。
                 Configuration = configurationBuilder.Build();//没通过，所以后续ConfigureServices() 、Configure()都没能通过。
-                // iTry=2;
-              //  CTemp cTemp = new CTemp();
-              //  CTemp.HostingEnvironment= webHostBuilderContext.HostingEnvironment;
-               // CTemp.Configuration = configurationBuilder.Build();           
+                                                             // iTry=2;
+                                                             //  CTemp cTemp = new CTemp();
+                                                             //  CTemp.HostingEnvironment= webHostBuilderContext.HostingEnvironment;
+                                                             // CTemp.Configuration = configurationBuilder.Build();           
             });
-            
+
             webHostBuilder.ConfigureServices(delegate (IServiceCollection serviceCollection) //替代Startup类（ConfigureServices()方法）。 // ConfigureServices()由运行时调用,所以必须遵守如下规则：此方法用来添加服务。自定义此方法。使用此方法向容器添加服务。Startup类选择包含ConfigureServices方法，  ConfigureServices主要是配置依赖注入（DI）.ConfigureServices（如果存在）在Configure之前调用。对于需要大量设置的功能，在IServiceCollection上添加Add[Service]扩展方法。将服务添加到服务容器使得它们可以通过依赖注入在应用程序中使用.ConfigureServices方法只接受一个IServiceCollection参数（但是可以从这个集合中检索任何已注册的服务，所以不需要额外的参数）。
             {
                 serviceCollection.AddSignalR();
@@ -109,15 +111,16 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
 
                 String sLocalDatabasePathOfAdmin = "Filename=" + HostingEnvironment.WebRootPath + Configuration.GetConnectionString("PartPathOfLocalDatabaseOfAdmin"); //根路径信息硬编码在此随运行位置而动态获取。部分路径信息在appsettings.json中软编码配置，以便修改配置。
                 serviceCollection.AddDbContext<AdminDbContext>(delegate (DbContextOptionsBuilder dbContextOptionsBuilder) { dbContextOptionsBuilder.UseSqlite(sLocalDatabasePathOfAdmin); });//试验SQLite
-                serviceCollection.Configure<FormOptions>(x => {//配置表单上传文件支持的文件容量大小。默认较小。如果发布到IIS，可能还需要在控制C中的方法前加入如下属性声明：[HttpPost][RequestFormLimits(MultipartBodyLengthLimit = 209715200)]。一个是表单的键值对中的值的长度限制，一个是当表单enctype为multipart/form-data时文件的长度限制，还有一个是multipart头长度的限制，也就是boundary=-------------------------------Gefsgeq!34这种的限制。
+                serviceCollection.Configure<FormOptions>(x =>
+                {//配置表单上传文件支持的文件容量大小。默认较小。如果发布到IIS，可能还需要在控制C中的方法前加入如下属性声明：[HttpPost][RequestFormLimits(MultipartBodyLengthLimit = 209715200)]。一个是表单的键值对中的值的长度限制，一个是当表单enctype为multipart/form-data时文件的长度限制，还有一个是multipart头长度的限制，也就是boundary=-------------------------------Gefsgeq!34这种的限制。
                     x.ValueLengthLimit = Int32.MaxValue;
                     x.MultipartBodyLengthLimit = Int32.MaxValue;
                     x.MultipartHeadersLengthLimit = int.MaxValue;
                     x.MemoryBufferThreshold = int.MaxValue;
                 });
                 //Indentity所需的SQL数据库
-                serviceCollection.AddDbContext<IdentityDemo.Data.IdentityApplicationDbContext>(delegate (DbContextOptionsBuilder dbContextOptionsBuilder) { dbContextOptionsBuilder.UseSqlServer(Configuration.GetConnectionString("IdentityApplicationDbContext"));});
-                serviceCollection.AddIdentity<IdentityDemo.Models.ApplicationUser, IdentityRole>()
+                serviceCollection.AddDbContext<IdentityDemo.Data.IdentityApplicationDbContext>(delegate (DbContextOptionsBuilder dbContextOptionsBuilder) { dbContextOptionsBuilder.UseSqlServer(Configuration.GetConnectionString("IdentityApplicationDbContext")); });
+                serviceCollection.AddIdentity<IdentityDemo.Models.ApplicationIdentityUser, IdentityRole>()
                .AddEntityFrameworkStores<IdentityDemo.Data.IdentityApplicationDbContext>()
                .AddDefaultTokenProviders();
 
@@ -193,41 +196,41 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
 
                 //*******************
             });
-           
+
 
 
             webHostBuilder.Configure(delegate (IApplicationBuilder applicationBuilder)//替代Startup类Configure()方法. Configure()由运行时调用，所以必须遵守如下规则。此方法用来配置HTTP请求管道（HTTP request pipeline）Startup类必须包含Configure方法。  Configure方法主要是配置ASP.NET Core的中间件，相当于我们在ASP.NET中所说的管道。通过将中间件组件添加到由依赖注入提供的IApplicationBuilder实例来配置请求管道（额外的服务，如IHostingEnvironment和ILoggerFactory也可以在方法参数中指定，如果这些服务可用，也将被注入）。每个Use扩展方法将一个中间件组件添加到请求管道。 例如，UseMvc扩展方法将路由中间件添加到请求管道，并将MVC配置为默认处理程序。
                  {
-               
-                   if (HostingEnvironment.IsDevelopment())
-            {
-            applicationBuilder.UseDeveloperExceptionPage();
-            }
-            else
-            {
-            applicationBuilder.UseExceptionHandler("/Home/Error");
-            applicationBuilder.UseHsts();
-            }
 
-        applicationBuilder.UseHttpsRedirection();
-        applicationBuilder.UseStaticFiles();
-        applicationBuilder.UseCookiePolicy();
+                     if (HostingEnvironment.IsDevelopment())
+                     {
+                         applicationBuilder.UseDeveloperExceptionPage();
+                     }
+                     else
+                     {
+                         applicationBuilder.UseExceptionHandler("/Home/Error");
+                         applicationBuilder.UseHsts();
+                     }
+
+                     applicationBuilder.UseHttpsRedirection();
+                     applicationBuilder.UseStaticFiles();
+                     applicationBuilder.UseCookiePolicy();
                      // applicationBuilder.UseAuthentication();//登录认证管道
-        applicationBuilder.UseAuthentication();
-        applicationBuilder.UseMvc(delegate (IRouteBuilder routeBuilder)
-            {
-                {
-                    //区域Areas的路由。必须在非区域Areas的路由前面定义吗？
-                    routeBuilder.MapRoute(
-       name: "defaultWithArea",
-       template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                     applicationBuilder.UseAuthentication();
+                     applicationBuilder.UseMvc(delegate (IRouteBuilder routeBuilder)
+                         {
+                             {
+                                 //区域Areas的路由。必须在非区域Areas的路由前面定义吗？
+                                 routeBuilder.MapRoute(
+                    name: "defaultWithArea",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-                    //非区域Areas的路由
-                    routeBuilder.MapRoute(
-                        name: "default",
-                        template: "{controller=Home}/{action=Index}/{id?}");
-                }
-            });
+                                 //非区域Areas的路由
+                                 routeBuilder.MapRoute(
+                                     name: "default",
+                                     template: "{controller=Home}/{action=Index}/{id?}");
+                             }
+                         });
 
                      /**
                      applicationBuilder.UseEndpoints(endpoints =>
@@ -238,14 +241,14 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
                      applicationBuilder.UseSignalR(routes =>
                      {
                          routes.MapHub<ChatHub>("/chat");
-                     }) ;
-                        // Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment = applicationBuilder.ApplicationServices.GetRequiredService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
-                        Microsoft.Extensions.Configuration.IConfiguration configuration = applicationBuilder.ApplicationServices.GetRequiredService<IConfiguration>();
+                     });
+                     // Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment = applicationBuilder.ApplicationServices.GetRequiredService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
+                     Microsoft.Extensions.Configuration.IConfiguration configuration = applicationBuilder.ApplicationServices.GetRequiredService<IConfiguration>();
                      //ILogger logger = LoggerFactory.CreateLogger("TryLog");
                      //logger.LogInformation("Logged in Configure");                    
 
-            }
-                
+                 }
+
                  );
             IWebHost webHost = webHostBuilder.Build();
             webHost.Run();
@@ -266,7 +269,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
             //processTemp.StartInfo.FileName = @"C:\Program Files(x86)\Google\Chrome\Application\chrome.exe";
             //processTemp.Start();
     **/
-        }       
+        }
     }
 }
 

@@ -14,6 +14,9 @@ using IdentityDemo.Models;
 using IdentityDemo.Models.AccountViewModels;
 using IdentityDemo.Services;
 using Microsoft.AspNetCore.Http;
+using IdentityDemo.Models;
+using IdentityDemo.Models.AccountViewModels;
+using IdentityDemo.Services;
 
 namespace IdentityDemo.Controllers
 {
@@ -21,21 +24,21 @@ namespace IdentityDemo.Controllers
     //[Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IEmailSender _emailSender;
-        private readonly ILogger _logger;
+        private readonly UserManager<ApplicationIdentityUser> _ApplicationUserManager;
+        private readonly SignInManager<ApplicationIdentityUser> _ApplicationUserSignInManager;
+        private readonly IEmailSender _ApplicationIEmailSender;
+        private readonly ILogger _ApplicationILogger;
 
         public AccountController(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
-            IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            UserManager<ApplicationIdentityUser> applicationUserManager,
+            SignInManager<ApplicationIdentityUser> applicationUserSignInManager,
+            IEmailSender applicationIEmailSender,
+            ILogger<AccountController> applicationILogger)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _emailSender = emailSender;
-            _logger = logger;
+            _ApplicationUserManager = applicationUserManager;
+            _ApplicationUserSignInManager = applicationUserSignInManager;
+            _ApplicationIEmailSender = applicationIEmailSender;
+            _ApplicationILogger = applicationILogger;
         }
 
         [TempData]
@@ -63,10 +66,10 @@ namespace IdentityDemo.Controllers
                 // This does not count login failures towards account lockout
                 // To enable password failures to trigger account lockout,
                 // set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _ApplicationUserSignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _ApplicationILogger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -75,7 +78,7 @@ namespace IdentityDemo.Controllers
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _ApplicationILogger.LogWarning("User account locked out.");
                     return RedirectToAction(nameof(Lockout));
                 }
                 else
@@ -94,7 +97,7 @@ namespace IdentityDemo.Controllers
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
         {
             // Ensure that the user has gone through the username & password screen first
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            var user = await _ApplicationUserSignInManager.GetTwoFactorAuthenticationUserAsync();
 
             if (user == null)
             {
@@ -117,29 +120,29 @@ namespace IdentityDemo.Controllers
                 return View(model);
             }
 
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            var user = await _ApplicationUserSignInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Unable to load user with ID '{_ApplicationUserManager.GetUserId(User)}'.");
             }
 
             var authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
 
-            var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine);
+            var result = await _ApplicationUserSignInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine);
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
+                _ApplicationILogger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
                 return RedirectToLocal(returnUrl);
             }
             else if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                _ApplicationILogger.LogWarning("User with ID {UserId} account locked out.", user.Id);
                 return RedirectToAction(nameof(Lockout));
             }
             else
             {
-                _logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
+                _ApplicationILogger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
                 ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
                 return View();
             }
@@ -150,7 +153,7 @@ namespace IdentityDemo.Controllers
         public async Task<IActionResult> LoginWithRecoveryCode(string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            var user = await _ApplicationUserSignInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load two-factor authentication user.");
@@ -171,7 +174,7 @@ namespace IdentityDemo.Controllers
                 return View(model);
             }
 
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            var user = await _ApplicationUserSignInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load two-factor authentication user.");
@@ -179,21 +182,21 @@ namespace IdentityDemo.Controllers
 
             var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
 
-            var result = await _signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
+            var result = await _ApplicationUserSignInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID {UserId} logged in with a recovery code.", user.Id);
+                _ApplicationILogger.LogInformation("User with ID {UserId} logged in with a recovery code.", user.Id);
                 return RedirectToLocal(returnUrl);
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                _ApplicationILogger.LogWarning("User with ID {UserId} account locked out.", user.Id);
                 return RedirectToAction(nameof(Lockout));
             }
             else
             {
-                _logger.LogWarning("Invalid recovery code entered for user with ID {UserId}", user.Id);
+                _ApplicationILogger.LogWarning("Invalid recovery code entered for user with ID {UserId}", user.Id);
                 ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
                 return View();
             }
@@ -251,46 +254,61 @@ namespace IdentityDemo.Controllers
          **/
         public async Task<IActionResult> Register()
         {
+         RegisterViewModel registerViewModel = new RegisterViewModel();
+            
           String eMail= Request.Form["Input.Email"];
           String password = Request.Form["Input.Password"];
           String confirmPassword = Request.Form["Input.ConfirmPassword"];
-          
-            if (password==confirmPassword)
+            registerViewModel.Email = eMail;
+            registerViewModel.Password = password;
+            registerViewModel.ConfirmPassword = confirmPassword;
+           // return Ok("已成功注册账号:" + registerViewModel.Email + "。可关闭当前界面!");
+            if (password == confirmPassword)
             {
-                         ///**         
-                    var user = new ApplicationUser { UserName = eMail, Email = eMail };
-                    var result = await _userManager.CreateAsync(user, password);
+                //if (this.ModelState.IsValid)//IsValid属性是检查ModelState.Errors是否存在任何字段validation错误的快速方法。 如果您不确定在POST到控制器方法时导致模型无效的原因，您可以检查ModelState.Errors属性，该属性应至少产生一个表单validation错误。如果不加验证相关的特性，ModelState.IsValid会永远为true；如果加了验证相关的特性，不满足验证规则时，ModelState.IsValid为false.接收到参数属性类型与Model定义不符时，ModelState.IsValid也会为false.
+               // {
+                    ///**         
+                    ApplicationIdentityUser applicationIdentityUser = new ApplicationIdentityUser { UserName = eMail, Email = eMail };
+                    var result = await _ApplicationUserManager.CreateAsync(applicationIdentityUser, password);
                     if (result.Succeeded)
                     {
-                        _logger.LogInformation("User created a new account with password.");
+                        _ApplicationILogger.LogInformation("User created a new account with password.");
 
-                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                        await _emailSender.SendEmailConfirmationAsync(eMail, callbackUrl);
+                        var code = await _ApplicationUserManager.GenerateEmailConfirmationTokenAsync(applicationIdentityUser);
+                        var callbackUrl = Url.EmailConfirmationLink(applicationIdentityUser.Id, code, Request.Scheme);
+                        await _ApplicationIEmailSender.SendEmailConfirmationAsync(eMail, callbackUrl);
 
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation("User created a new account with password.");
+                        await _ApplicationUserSignInManager.SignInAsync(applicationIdentityUser, isPersistent: false);
+                        _ApplicationILogger.LogInformation("User created a new account with password.");
                         // return RedirectToLocal(returnUrl);
-               
-                        
+                        AddErrors(result);
+                        return Ok("已成功注册账号:" + registerViewModel.Email + "。可关闭当前界面!");
                     }
-                     
-                    AddErrors(result); 
-               // **/
-                return Ok(eMail);
-        }
+                    else
+                    {
+                        return Ok("未能成功注册账号，虽然数据库的模型验证通过，但是操作数据库出错！请重试");
+                    }
+                    
+                    // **/
+                    
+               // }
+               // else { 
+               //     return Ok("未能成功注册账号，因为数据库的模型验证出错！请重试"); 
+               // }
+            }
 
-
-            return Ok("口令与确认口令不一致！");
-             
+            else
+            {
+                return Ok("未能成功注册账号，因为口令与确认口令不一致！");
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+            await _ApplicationUserSignInManager.SignOutAsync();
+            _ApplicationILogger.LogInformation("User logged out.");
             // return RedirectToAction(nameof(HomeController.Index), "Home");
             return RedirectToAction("index.html");
         }
@@ -302,7 +320,7 @@ namespace IdentityDemo.Controllers
         {
             // Request a redirect to the external login provider.
             var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { returnUrl });
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            var properties = _ApplicationUserSignInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return Challenge(properties, provider);
         }
 
@@ -315,17 +333,17 @@ namespace IdentityDemo.Controllers
                 ErrorMessage = $"Error from external provider: {remoteError}";
                 return RedirectToAction(nameof(Login));
             }
-            var info = await _signInManager.GetExternalLoginInfoAsync();
+            var info = await _ApplicationUserSignInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
                 return RedirectToAction(nameof(Login));
             }
 
             // Sign in the user with this external login provider if the user already has a login.
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+            var result = await _ApplicationUserSignInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
+                _ApplicationILogger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
             }
             if (result.IsLockedOut)
@@ -350,20 +368,20 @@ namespace IdentityDemo.Controllers
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
-                var info = await _signInManager.GetExternalLoginInfoAsync();
+                var info = await _ApplicationUserSignInManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
                     throw new ApplicationException("Error loading external login information during confirmation.");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user);
+                var user = new ApplicationIdentityUser { UserName = model.Email, Email = model.Email };
+                var result = await _ApplicationUserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    result = await _userManager.AddLoginAsync(user, info);
+                    result = await _ApplicationUserManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                        await _ApplicationUserSignInManager.SignInAsync(user, isPersistent: false);
+                        _ApplicationILogger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -383,12 +401,12 @@ namespace IdentityDemo.Controllers
                 //return RedirectToAction(nameof(HomeController.Index), "Home");
                 return RedirectToAction("LogIn.html");
             }
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _ApplicationUserManager.FindByIdAsync(userId);
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load user with ID '{userId}'.");
             }
-            var result = await _userManager.ConfirmEmailAsync(user, code);
+            var result = await _ApplicationUserManager.ConfirmEmailAsync(user, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
@@ -406,8 +424,8 @@ namespace IdentityDemo.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                var user = await _ApplicationUserManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await _ApplicationUserManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return RedirectToAction(nameof(ForgotPasswordConfirmation));
@@ -415,9 +433,9 @@ namespace IdentityDemo.Controllers
 
                 // For more information on how to enable account confirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var code = await _ApplicationUserManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
-                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
+                await _ApplicationIEmailSender.SendEmailAsync(model.Email, "Reset Password",
                    $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
@@ -454,13 +472,13 @@ namespace IdentityDemo.Controllers
             {
                 return View(model);
             }
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _ApplicationUserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction(nameof(ResetPasswordConfirmation));
             }
-            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+            var result = await _ApplicationUserManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction(nameof(ResetPasswordConfirmation));

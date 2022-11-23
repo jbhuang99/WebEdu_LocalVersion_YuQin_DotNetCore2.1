@@ -8,7 +8,7 @@ using IdentityDemo.Models;
 
 namespace IdentityDemo.Data
 {
-    public class IdentityApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class IdentityApplicationDbContext : IdentityDbContext<ApplicationIdentityUser>
     {
         public IdentityApplicationDbContext(DbContextOptions<IdentityApplicationDbContext> options)
             : base(options)
