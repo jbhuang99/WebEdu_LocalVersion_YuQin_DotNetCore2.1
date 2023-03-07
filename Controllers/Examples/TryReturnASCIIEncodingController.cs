@@ -12,7 +12,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers.Examples
         }
         public IActionResult BinaryToChar()
         {
-           return this.Content(Convert.ToChar(Convert.ToByte("00110001", 2)).ToString());
+           return this.Content("计算机CPU的00110001映射人脑的"+Convert.ToChar(Convert.ToByte("00110001", 2)).ToString());
         }
         public IActionResult index()
         {
