@@ -13,7 +13,8 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
         public IActionResult Index()
         {
             //return View();
-             return Redirect("/index.html");
+            return Redirect("/index.html");
+           // return Redirect("/indexNew.html");
             //return Redirect("/htmlpage.html");
         }
 
