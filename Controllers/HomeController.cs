@@ -13,7 +13,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
         public IActionResult Index()
         {
             //return View();
-            return Redirect("/index.html");
+            return Redirect("/index.html");//其中/隐喻wwwroot这个文件夹
            // return Redirect("/indexNew.html");
             //return Redirect("/htmlpage.html");
         }

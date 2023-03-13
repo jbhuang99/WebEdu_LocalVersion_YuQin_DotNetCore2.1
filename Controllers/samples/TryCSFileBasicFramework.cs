@@ -15,7 +15,7 @@ namespace EDSS.Controllers
             ChangedMyNameSpace.MyClass myClass = new MyNameSpace.MyClass();
             myClass.Property1 = 1;
             myClass.Property2 = 2;
-            return this.Content(myClass.Mothod1().ToString());
+            return this.Content(myClass.Mothod1().ToString());//从左往右
         }   
     }
     public class ClassTryCSFileBasicFramework2Controller : Controller
