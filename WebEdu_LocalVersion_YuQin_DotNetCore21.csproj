@@ -203,6 +203,10 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Include="Controllers\samples\TryCSFileBasicFramework.cs" />
     <Compile Include="Controllers\samples\TryGenicType.cs" />
     <Compile Include="Controllers\samples\TryIfElse.cs" />
+    <Compile Include="Controllers\samples\TryLoop_DoWhile.cs" />
+    <Compile Include="Controllers\samples\TryLoop_For.cs" />
+    <Compile Include="Controllers\samples\TryLoop_ForEach.cs" />
+    <Compile Include="Controllers\samples\TryLoop_While.cs" />
     <Compile Include="Controllers\samples\TrySwitch.cs" />
     <Compile Include="Controllers\samples\TrySystemDotObject.cs" />
   </ItemGroup>

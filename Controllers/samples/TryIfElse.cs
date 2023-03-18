@@ -9,9 +9,11 @@ namespace EDSS.Controllers
       
         public ContentResult Index()
         {
-            Int32 int32Number = new Int32();
-            int32Number = 6;
-            if(int32Number==0) { return this.Content("星期天"); }
+
+           Int32 int32Number = new Int32();
+           int32Number = 2;
+
+            if (int32Number==0) { return this.Content("星期天"); }
             else if (int32Number==1) { return this.Content("星期一"); }
             else if (int32Number==2) { return this.Content("星期二"); }
             else if (int32Number==3) { return this.Content("星期三"); }
