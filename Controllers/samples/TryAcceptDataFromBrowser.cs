@@ -3,38 +3,20 @@ using System.Web;
 //using System.Web.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace EDSS.Controllers
 {
-    public class TryAcceptInfoFromBrowserController: Controller
+    public class TryAcceptDataFromBrowserController: Controller
     {
-         [HttpGet]
-        //注意：好像this.Request.QueryString方式（更不面向对象），比方法参数方式更稳定（更面向对象），影响稳定的因素可能是文本的编码。
-        public ContentResult TryAcceptURLNameValue_QueryString_Get1(String parameter1, String parameter2)
-
-        {
-
-            String parameter1Temp = "浏览器端发送的第一个名值对的值是:" + System.Web.HttpUtility.HtmlEncode(parameter1.ToString()+ ":" + parameter1);////.Net内置的System.Web.HttpUtility.HtmlEncode()方法可以防止用户在所发送的字符串中注入恶意的JavaScript代码。
-            String parameter2Temp = "浏览器端发送的第二个名值对的值是:" + System.Web.HttpUtility.HtmlEncode(parameter2.ToString() + ":" + parameter2);
-            return this.Content(parameter1Temp + ";" + parameter2Temp); 
-        }
-        [HttpGet]
-         public ContentResult TryAcceptURLNameValue_QueryString_Get2()
-         {
-
-             String parameter1Temp = "浏览器端发送的第一个名值对的值是:" + System.Web.HttpUtility.HtmlEncode(this.Request.QueryString.AllKeys[0]+";"+this.Request.QueryString[0]);////.Net内置的System.Web.HttpUtility.HtmlEncode()方法可以防止用户在所发送的字符串中注入恶意的JavaScript代码。
-             String parameter2Temp = "浏览器端发送的第二个名值对的值是:" + System.Web.HttpUtility.HtmlEncode(this.Request.QueryString.AllKeys[1]+";"+this.Request.QueryString[1]);
-             return this.Content(parameter1Temp + ";" + parameter2Temp);
-         }
-
-       
+           
 
         [HttpPost]
          //FormCollection方式（更面向对象）;this.Request.Form方式（更不面向对象）。
         public ContentResult TryAcceptFormNameValueFile_Post1(FormCollection formCollection)
         {
             String stringOfForm = "";
-            Int32 count = formCollection.Count;
+            Int32 count = formCollection.Keys;
             for (Int32 i = 0; i < count; i++)
             {
                 stringOfForm = stringOfForm + formCollection[i] + ":" + formCollection.AllKeys[i].ToString() + "</br>";
