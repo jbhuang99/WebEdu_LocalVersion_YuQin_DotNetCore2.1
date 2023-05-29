@@ -29,9 +29,6 @@ using Microsoft.AspNetCore.Builder.Internal;
 using ChatSample.Hubs;
 using Microsoft.AspNetCore.Identity;
 using IdentityDemo.Services;
-using Microsoft.Vbe.Interop.Forms;
-
-//在此不选择ASP.NET默认的模型绑定机制：ASP.NET有一个默认模型绑定机制，当点击表单中submit按钮或a标签时，会将相应表单的数据提交并跳转到到action内指定的网址或href属性内指定的网址，当跳转到指定网址前，首先会执行这个网址的相应 操作方法，执行操作方法时，ASP.NET 的默认模型绑定机制会进行数据绑定，当操作方法里的形参列表属性和表单元素的name属性一致时，就会动态给形参属性绑定表单元素数据（操作方法的形参列表可以是数据类型变量，可以是对象，可以是集合等等的复杂数据类型）.(1.)使用模型绑定，除了可以获取基本类型int和string类型，还可以获得double、float、long 等基本类型的数据(2.)在操作方法中的参数声明中，参数可以设定为 “int? 类型”，这种类型称为可空int类型，表示可以是int类型，也可以是null类型，当文本框输入的内容非int类型或空数据时，模型绑定器无法正确的实现int类型转换，这个时候就会默认绑定为null类型.(1.)模型绑定除了可以绑定自己定义类的类型和基本数据类型外，还可以绑定复杂数据类型的集合数据类型.四.模型绑定接收上传的文件.(1.)form标签的enctype属性必须为 “multipart / form - data” ，否则点击submit提交按钮时只会发送文件名而不是文件对象本身。
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
 {

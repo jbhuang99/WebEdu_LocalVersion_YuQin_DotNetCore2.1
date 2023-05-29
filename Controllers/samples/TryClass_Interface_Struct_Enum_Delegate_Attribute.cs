@@ -72,11 +72,11 @@ namespace EDSS.Controllers
         }
     }
 
-    public interface IPrinterName //老师定义好了interface类型，名称是IPrinterName
+    public interface IPrinterName //声明定义interface类型，名称是IPrinterName
     {
         String PrinterName();
     }
-    public class MyClassImp:IPrinterName //学生履行IPrinterName这个interface类型
+    public class MyClassImp:IPrinterName //履行IPrinterName这个interface类型
     {
       public String PrinterName()
         {

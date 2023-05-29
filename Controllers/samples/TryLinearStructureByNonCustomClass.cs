@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Web.Mvc;
+//using System.Web.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EDSS.Controllers
 {
