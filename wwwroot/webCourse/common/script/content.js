@@ -995,13 +995,23 @@ function fnHelp() {
 }
 //document.getElementsByTagName("body").item(0).onload = fnOnLoad;
 function fnNewWindowAdvertisement() {
-	var sURL = "/renshichu/lunwensongshen.htm";
-	window.open(sURL);//容易被浏览器默认被拦截
-	if (window.prompt('挖呀挖江西师范大学人事处刘涛科长?', sURL))
-	{
-		window.location.href = sURL;
+	try {
+		var tempWidth = parent.window.width;
+		var sURL = "/WebEdu_LocalVersion_YuQin_DotNetCore2.1/wwwroot/renshichu/lunwensongshen.htm";
+		window.open(sURL);//容易被浏览器默认被拦截
+		if (window.confirm('挖呀挖江西师范大学人事处刘涛科长?')) {
+			window.location.href = sURL;
+		}
+		parent.parent.window.width==1024;
 	}
+	catch (e) {
+		var sURL = "/WebEdu_LocalVersion_YuQin_DotNetCore2.1/wwwroot/renshichu/lunwensongshen.htm";
+		window.open(sURL);//容易被浏览器默认被拦截
+		if (window.confirm('挖呀挖江西师范大学人事处刘涛科长?')) {
+			window.location.href = sURL;
+		}
 	}
+}
 
 document.getElementsByTagName("body").item(0).onload = fnOnLoad;
 
