@@ -23,11 +23,11 @@ function fnOnLoad() {
 			;
 		}
 		else {
-			fnContentFrameworkNotification('欢迎使用：', '使用帮助，请咨询：QQ：43930878；电话：18279142396。EMail:43930878@qq.com', '/favicon.ico');
+			fnContentFrameworkNotification('欢迎浏览：', '单击此处可浏览整个系统。使用帮助，请咨询：QQ：43930878；电话：18279142396。EMail:43930878@qq.com', '/favicon.ico');
 		}
 	}
 	catch (e) {
-		fnContentFrameworkNotification('欢迎使用内容：', '使用帮助，请咨询：QQ：43930878；电话：18279142396。EMail:43930878@qq.com', '/favicon.ico');
+		fnContentFrameworkNotification('欢迎浏览：', '单击此处可浏览整个系统。使用帮助，请咨询：QQ：43930878；电话：18279142396。EMail:43930878@qq.com', '/favicon.ico');
 
 	}
 	/**
@@ -971,7 +971,7 @@ function fnContentFrameworkNotification(sStringTitle, sStringBody, sStringIcon) 
 				var notification = new Notification(sStringTitle, { body: sStringBody, icon: sStringIcon });
 
 				notification.onclick = function () {
-					alert("如果正使用手机，请设置横屏！");
+					open("https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/wwwroot/",target="_blank");
 					notification.close();
 				};
 			}
@@ -988,6 +988,9 @@ function fnContentFrameworkNotification(sStringTitle, sStringBody, sStringIcon) 
 	else {
 		alert('浏览器不支持通知功能');
 	}
+}
+function fnHelp() {
+	open("https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/wwwroot/", target = "_blank");
 }
 //document.getElementsByTagName("body").item(0).onload = fnOnLoad;
 document.getElementsByTagName("body").item(0).onload = fnOnLoad;
