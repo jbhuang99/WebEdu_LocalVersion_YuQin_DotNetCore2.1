@@ -3518,14 +3518,24 @@ function fnSearch() {
 function fnAdvertisement() {
     fnTooManyModelDialog();
     //EV_modeAlert();//弹出屏蔽层.好像没起什么作用！
-    var advertisement = open("../../../renshichu/lunwensongshen.htm", "advertisement");
+    if (window.document.URL.toString().toUpperCase().indexOf("://LOCALHOST") >= 0) { //本机
+        var advertisement = open("../../../renshichu/lunwensongshen.htm", "advertisement");
+    }
+    else {
+        var advertisement = open("/WebEdu_LocalVersion_YuQin_DotNetCore2.1/wwwroot/renshichu/lunwensongshen.htm");//网站
+    }
 }
 function fnMargee() {
     fnTooManyModelDialog();
     //EV_modeAlert();//弹出屏蔽层.好像没起什么作用！
    // var advertisement = open("../../../renshichu/lunwensongshen.htm", "advertisement");
     if (window.confirm('挖呀挖江西师范大学人事处刘涛科长?')) {
-        var advertisement = open("../../../renshichu/lunwensongshen.htm", "advertisement");
+        if (window.document.URL.toString().toUpperCase().indexOf("://LOCALHOST")>=0) { //本机
+            var advertisement = open("../../../renshichu/lunwensongshen.htm", "advertisement");
+        }
+        else {
+            var advertisement = open("/WebEdu_LocalVersion_YuQin_DotNetCore2.1/wwwroot/renshichu/lunwensongshen.htm");//网站
+        }
     }
     else {
     var winSearch = open('https://www.baidu.com/s?wd=%E6%95%99%E8%82%B2%E6%A1%86%E6%9E%B6%E4%B8%8E%E6%A1%88%E4%BE%8B%E2%80%94%E2%80%94%E2%80%9C%E6%95%B0%E5%AD%97%E5%8C%96%E8%AE%A1%E7%AE%97%E6%80%9D%E7%BB%B4%E2%80%9D%E2%80%9C%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E2%80%9D%E7%BB%9F%E4%B8%80%E7%9A%84%E8%A7%86%E8%A7%92&rsv_bp=0&n=2&inputT=2611', "search");
