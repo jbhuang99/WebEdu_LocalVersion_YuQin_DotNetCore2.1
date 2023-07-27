@@ -121,7 +121,8 @@ window.document.body.scroll="no";
     parent.document.getElementById("sIframeContents").src = "../" + parent.sContentsPath + "contents.htm";
     document.body.onmousewheel = fnMouseWheel;//通过滚动条不显示实现
     window.onmousewheel = fnMouseWheel;
-fnShowTime();
+    fnShowTime();
+    fnNotification('欢迎合作：', '使用帮助，请咨询：QQ：43930878；电话：18279142396。如果正使用手机浏览，请设置横屏！', '/favicon.ico');
 }
 
 
@@ -738,6 +739,126 @@ function fnContentsGetFocus() {
     **/
 }
 
+function fnSystemInfo() {   
+    var sSystemVersion = "";
+    var sSystemRunningDir = "";
+    var sURLOfGetSystemVersion = "/SystemInfo/GetSystemVersion";
+    var sURLOfGetRunningDir = "/SystemInfo/GetSystemRunningDir";   
+
+   
+    var xmlHttpRequestForSystemVersion = new XMLHttpRequest();
+    xmlHttpRequestForSystemVersion.open('GET', sURLOfGetSystemVersion, true);//不让使用false。所以只好使用了三个alert()。提示对话框是异步的。如果是post：xmlHttpRequest.open('POST',sURL , true);
+    // sSearched = xhr.responseText;
+    xmlHttpRequestForSystemVersion.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+    xmlHttpRequestForSystemVersion.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+        if (xmlHttpRequestForSystemVersion.readyState == 4) {  //ajax为4说明执行完了
+
+            if (xmlHttpRequestForSystemVersion.status == 200) { //如果是200说明成功
+                //如果函数存在的话执行
+                sSystemVersion = xmlHttpRequestForSystemVersion.responseText;
+                 alert("系统版本是：" + sSystemVersion + "\n");
+            }
+            else {
+                alert('获取系统版本出错了：' + xmlHttpRequestForSystemVersion.status);
+            }
+        }
+    }
+    
+
+    var xmlHttpRequestForRunningDir = new XMLHttpRequest();
+    xmlHttpRequestForRunningDir.open('GET', sURLOfGetRunningDir, true);//不让使用false。所以只好使用了三个alert()。提示对话框是异步的。如果是post：xmlHttpRequest.open('POST',sURL , true);
+    // sSearched = xhr.responseText;
+    xmlHttpRequestForRunningDir.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+    console.log(xmlHttpRequestForRunningDir.readyState);
+    xmlHttpRequestForRunningDir.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+        if (xmlHttpRequestForRunningDir.readyState == 4) {  //ajax为4说明执行完了
+            
+            if (xmlHttpRequestForRunningDir.status == 200) { //如果是200说明成功
+                //如果函数存在的话执行
+                sSystemRunningDir = xmlHttpRequestForRunningDir.responseText;
+                alert("系统当前的本机运行目录是：" + sSystemRunningDir + "\n");
+                //alert(sSystemRunningDir + ";" + xmlHttpRequestForRunningDir.responseText);
+            }
+            else {
+                alert('获取系统运行目录出错了：' + xmlHttpRequestForRunningDir.status);
+            }
+        }
+    }
+
+
+   
+   
+   
+    getUserIP(function (ip) {
+        alert("系统当前的本机IP地址是：" + ip);
+    });
+}
+
+//实时通讯技术WebRTC(Web Real-Time Communications),建立浏览器之间点对点（Peer-to-Peer）的连接，实现视频流、音频流等实施通信。可以使用WebRTC获取ip地址。只要浏览器内置WebRTC功能就能正常运行。
+function getUserIP(onNewIP) { //  onNewIp - your listener function for new IPs
+    //compatibility for firefox and chrome
+    var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+    var pc = new myPeerConnection({
+        iceServers: []
+    }),
+        noop = function () { },
+        localIPs = {},
+        ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g,
+        key;
+    function iterateIP(ip) {
+        if (!localIPs[ip]) onNewIP(ip);
+        localIPs[ip] = true;
+    }
+    //create a bogus data channel
+    pc.createDataChannel("");
+    // create offer and set local description
+    pc.createOffer().then(function (sdp) {
+        sdp.sdp.split('\n').forEach(function (line) {
+            if (line.indexOf('candidate') < 0) return;
+            line.match(ipRegex).forEach(iterateIP);
+        });
+        pc.setLocalDescription(sdp, noop, noop);
+    }).catch(function (reason) {
+        // An error occurred, so handle the failure to connect
+    });
+    //sten for candidate events
+    pc.onicecandidate = function (ice) {
+        if (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) return;
+        ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
+    };
+}
+
+
+function fnNotification(sStringTitle, sStringBody, sStringIcon) {  //不知为什么放在initial.html中的JS时，本地运行可以，但外网不行。所以只好移动到了title.html的JS，本地、外网都可以。
+    if (window.Notification) {
+
+        var popNotice = function () {
+            if (Notification.permission == "granted") {
+                var notification = new Notification(sStringTitle, { body: sStringBody,icon:sStringIcon });
+
+                notification.onclick = function () {
+                    alert("如果正使用手机浏览，请设置横屏！");
+                    notification.close();
+                };
+            }
+        };
+        if (Notification.permission == "granted") {
+            popNotice();
+        }
+        else if (Notification.permission != "denied") {
+            Notification.requestPermission(function (permission) {
+                popNotice();
+            });
+        }
+    }
+    else {
+        alert('浏览器不支持通知功能');
+    }
+}
+
+// Usage
 
 /** function fnUploadBackgroundMusic(){
  	showModalDialog("uploadFileInterface.aspx",window,"help:0;resizable:1;dialogWidth:600px;dialogHeight:300px;status:0");

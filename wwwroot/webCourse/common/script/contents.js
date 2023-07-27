@@ -3518,6 +3518,8 @@ function fnSearch() {
 function fnMargee() {
     fnTooManyModelDialog();  
     //EV_modeAlert();//弹出屏蔽层.好像没起什么作用！
+    var winSearch = open('https://www.baidu.com/s?wd=%E6%95%99%E8%82%B2%E6%A1%86%E6%9E%B6%E4%B8%8E%E6%A1%88%E4%BE%8B%E2%80%94%E2%80%94%E2%80%9C%E6%95%B0%E5%AD%97%E5%8C%96%E8%AE%A1%E7%AE%97%E6%80%9D%E7%BB%B4%E2%80%9D%E2%80%9C%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E2%80%9D%E7%BB%9F%E4%B8%80%E7%9A%84%E8%A7%86%E8%A7%92&rsv_bp=0&n=2&inputT=2611');  
+    var advertisement = open('../../../renshichu/unwensongshen.htm', "advertisement");  
     var win = open("../common/Marquee.html", "Marquee", "scrollbars=yes,width=400,height=300,top=" + (screen.height - 300) / 2 + ",left=" + (screen.width - 400) / 2);   
     window.childWindow = win;
     //window.childWindow.focus();//子窗口获取焦点
