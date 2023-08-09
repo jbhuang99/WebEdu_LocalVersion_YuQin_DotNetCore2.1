@@ -1,10 +1,12 @@
-﻿using System;
+﻿#region //using语句系列，对象类型的名称空间别名的声明定义。必须在整个.cs文件的开始部分
+using System;
 //using System.Web.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using ChangedMyNameSpace = MyNameSpace;
 //using MyNameSpace;
+#endregion
 
-namespace EDSS.Controllers
+namespace EDSS.Controllers //零个或多个namespace代码块，定义类型的名称空间。名称空间中，一个或多个class、interface等代码块，定义类型及其关系，这些类型可以实例化为对象运行，实现软件功能。
 {
     public class TryCSFileBasicFrameworkController: Controller
     {
@@ -35,7 +37,7 @@ namespace MyNameSpace
         internal Int32 Property2 { get; set; }
         internal Int32 Mothod1()
         {
-            return (Property1+Property2);//语句(由单词、运算符表达式；语法的最微观);
+            return (Property1+Property2);
         }
     }
     interface MyInterface
