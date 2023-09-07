@@ -1,0 +1,805 @@
+﻿<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>教育框架与案例----教育计算思维的视角</title>
+
+<style id="dynCom" type="text/css"><!-- --></style>
+<script language="JavaScript"><!--
+function msoCommentShow(anchor_id, com_id)
+{
+	if(msoBrowserCheck()) 
+		{
+		c = document.all(com_id);
+		a = document.all(anchor_id);
+		if (null != c && null == c.length && null != a && null == a.length)
+			{
+			var cw = c.offsetWidth;
+			var ch = c.offsetHeight;
+			var aw = a.offsetWidth;
+			var ah = a.offsetHeight;
+			var x  = a.offsetLeft;
+			var y  = a.offsetTop;
+			var el = a;
+			while (el.tagName != "BODY") 
+				{
+				el = el.offsetParent;
+				x = x + el.offsetLeft;
+				y = y + el.offsetTop;
+				}
+			var bw = document.body.clientWidth;
+			var bh = document.body.clientHeight;
+			var bsl = document.body.scrollLeft;
+			var bst = document.body.scrollTop;
+			if (x + cw + ah / 2 > bw + bsl && x + aw - ah / 2 - cw >= bsl ) 
+				{ c.style.left = x + aw - ah / 2 - cw; }
+			else 
+				{ c.style.left = x + ah / 2; }
+			if (y + ch + ah / 2 > bh + bst && y + ah / 2 - ch >= bst ) 
+				{ c.style.top = y + ah / 2 - ch; }
+			else 
+				{ c.style.top = y + ah / 2; }
+			c.style.visibility = "visible";
+}	}	}
+function msoCommentHide(com_id) 
+{
+	if(msoBrowserCheck())
+		{
+		c = document.all(com_id);
+		if (null != c && null == c.length)
+		{
+		c.style.visibility = "hidden";
+		c.style.left = -1000;
+		c.style.top = -1000;
+		} } 
+}
+function msoBrowserCheck()
+{
+	ms = navigator.appVersion.indexOf("MSIE");
+	vers = navigator.appVersion.substring(ms + 5, ms + 6);
+	ie4 = (ms > 0) && (parseInt(vers) >= 4);
+	return ie4;
+}
+if (msoBrowserCheck())
+{
+	document.styleSheets.dynCom.addRule(".msocomanchor","background: infobackground");
+	document.styleSheets.dynCom.addRule(".msocomoff","display: none");
+	document.styleSheets.dynCom.addRule(".msocomtxt","visibility: hidden");
+	document.styleSheets.dynCom.addRule(".msocomtxt","position: absolute");
+	document.styleSheets.dynCom.addRule(".msocomtxt","top: -1000");
+	document.styleSheets.dynCom.addRule(".msocomtxt","left: -1000");
+	document.styleSheets.dynCom.addRule(".msocomtxt","width: 33%");
+	document.styleSheets.dynCom.addRule(".msocomtxt","background: infobackground");
+	document.styleSheets.dynCom.addRule(".msocomtxt","color: infotext");
+	document.styleSheets.dynCom.addRule(".msocomtxt","border-top: 1pt solid threedlightshadow");
+	document.styleSheets.dynCom.addRule(".msocomtxt","border-right: 2pt solid threedshadow");
+	document.styleSheets.dynCom.addRule(".msocomtxt","border-bottom: 2pt solid threedshadow");
+	document.styleSheets.dynCom.addRule(".msocomtxt","border-left: 1pt solid threedlightshadow");
+	document.styleSheets.dynCom.addRule(".msocomtxt","padding: 3pt 3pt 3pt 3pt");
+	document.styleSheets.dynCom.addRule(".msocomtxt","z-index: 100");
+}
+// --></script>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Courier;
+	panose-1:2 7 4 9 2 2 5 2 4 4;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:黑体;
+	panose-1:2 1 6 9 6 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:等线;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Calibri Light";
+	panose-1:2 15 3 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:楷体_GB2312;}
+@font-face
+	{font-family:̥_GB2312;
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:DFKai-SB;}
+@font-face
+	{font-family:华文新魏;
+	panose-1:2 1 8 0 4 1 1 1 1 1;}
+@font-face
+	{font-family:方正姚体;
+	panose-1:2 1 6 1 3 1 1 1 1 1;}
+@font-face
+	{font-family:幼圆;
+	panose-1:2 1 5 9 6 1 1 1 1 1;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:微软雅黑;
+	panose-1:2 11 5 3 2 2 4 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:ˎ̥;
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Courier New 宋体";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Lucida Console";
+	panose-1:2 11 6 9 4 5 4 2 2 4;}
+@font-face
+	{font-family:"Segoe UI regular";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Seoge ui";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Myriad Pro";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Courier New ����";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:be;}
+@font-face
+	{font-family:zm;}
+@font-face
+	{font-family:"\@黑体";
+	panose-1:2 1 6 9 6 1 1 1 1 1;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@等线";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@微软雅黑";
+	panose-1:2 11 5 3 2 2 4 2 2 4;}
+@font-face
+	{font-family:"\@楷体_GB2312";}
+@font-face
+	{font-family:"\@Myriad Pro";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"\@Courier New 宋体";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"\@Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:"\@幼圆";
+	panose-1:2 1 5 9 6 1 1 1 1 1;}
+@font-face
+	{font-family:"\@方正姚体";
+	panose-1:2 1 6 1 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@华文新魏";
+	panose-1:2 1 8 0 4 1 1 1 1 1;}
+@font-face
+	{font-family:"\@DFKai-SB";}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:21.0pt;
+	font-size:10.5pt;
+	font-family:"Times New Roman",serif;
+	color:windowtext;}
+h1
+	{mso-style-name:"标题 1\,h1\,Level 1 Topic Heading\,h11\,Level 1 Topic Heading1\,实例名称";
+	mso-style-link:"标题 1 字符1\,h1 字符1\,Level 1 Topic Heading 字符1\,h11 字符1\,Level 1 Topic Heading1 字符1\,实例名称 字符1";
+	margin:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:150%;
+	page-break-after:avoid;
+	font-size:10.5pt;
+	font-family:"Times New Roman",serif;
+	color:windowtext;
+	font-weight:bold;}
+h2
+	{mso-style-name:"标题 2\,Heading 2 Hidden\,Heading 2 CCBS\,Titre3\,HD2\,H2\,h2\,Level 2 Topic Heading\,Heading 2 Hidden1\,Heading 2 CCBS1\,Titre31\,HD21\,H21\,h21\,Level 2 Topic Heading1\,节题";
+	mso-style-link:"标题 2 字符1\,Heading 2 Hidden 字符1\,Heading 2 CCBS 字符1\,Titre3 字符1\,HD2 字符1\,H2 字符1\,h2 字符1\,Level 2 Topic Heading 字符1\,Heading 2 Hidden1 字符1\,Heading 2 CCBS1 字符1\,Titre31 字符1\,HD21 字符1\,H21 字符1\,h21 字符1\,Level 2 Topic Heading1 字符1\,节题 字符1";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:1.0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-1.0cm;
+	line-height:150%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;
+	color:windowtext;
+	font-weight:bold;}
+h3
+	{mso-style-name:"标题 3\,Heading 3 - old\,sect1\.2\.3\,h3\,Level 3 Topic Heading\,Heading 3 - old1\,sect1\.2\.31\,h31\,Level 3 Topic Heading1\,\(分步\)\,\(小节\)";
+	mso-style-link:"标题 3 字符2\,Heading 3 - old 字符2\,sect1\.2\.3 字符2\,h3 字符2\,Level 3 Topic Heading 字符2\,Heading 3 - old1 字符2\,sect1\.2\.31 字符2\,h31 字符2\,Level 3 Topic Heading1 字符2\,\(分步\) 字符2\,\(小节\) 字符2";
+	margin-top:13.5pt;
+	margin-right:0cm;
+	margin-bottom:13.5pt;
+	margin-left:78.0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-35.45pt;
+	line-height:172%;
+	page-break-after:avoid;
+	font-size:10.5pt;
+	font-family:"Times New Roman",serif;
+	color:windowtext;
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{mso-style-link:"题注 字符2";
+	margin:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:21.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	color:windowtext;}
+span.2
+	{mso-style-name:"题注 字符2";
+	mso-style-link:题注;
+	font-family:"Arial",sans-serif;}
+span.21
+	{mso-style-name:"标题 2 字符1\,Heading 2 Hidden 字符1\,Heading 2 CCBS 字符1\,Titre3 字符1\,HD2 字符1\,H2 字符1\,h2 字符1\,Level 2 Topic Heading 字符1\,Heading 2 Hidden1 字符1\,Heading 2 CCBS1 字符1\,Titre31 字符1\,HD21 字符1\,H21 字符1\,h21 字符1\,Level 2 Topic Heading1 字符1\,节题 字符1";
+	mso-style-link:"标题 2\,Heading 2 Hidden\,Heading 2 CCBS\,Titre3\,HD2\,H2\,h2\,Level 2 Topic Heading\,Heading 2 Hidden1\,Heading 2 CCBS1\,Titre31\,HD21\,H21\,h21\,Level 2 Topic Heading1\,节题";
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+span.32
+	{mso-style-name:"标题 3 字符2\,Heading 3 - old 字符2\,sect1\.2\.3 字符2\,h3 字符2\,Level 3 Topic Heading 字符2\,Heading 3 - old1 字符2\,sect1\.2\.31 字符2\,h31 字符2\,Level 3 Topic Heading1 字符2\,\(分步\) 字符2\,\(小节\) 字符2";
+	mso-style-link:"标题 3\,Heading 3 - old\,sect1\.2\.3\,h3\,Level 3 Topic Heading\,Heading 3 - old1\,sect1\.2\.31\,h31\,Level 3 Topic Heading1\,\(分步\)\,\(小节\)";
+	font-weight:bold;}
+span.11
+	{mso-style-name:"标题 1 字符1\,h1 字符1\,Level 1 Topic Heading 字符1\,h11 字符1\,Level 1 Topic Heading1 字符1\,实例名称 字符1";
+	mso-style-link:"标题 1\,h1\,Level 1 Topic Heading\,h11\,Level 1 Topic Heading1\,实例名称";
+	font-weight:bold;}
+p.4142515, li.4142515, div.4142515
+	{mso-style-name:"样式 标题 4 + 段前\: 14\.25 磅 段后\: 15 磅";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:42.55pt;
+	text-indent:-42.55pt;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;
+	color:windowtext;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:21.0cm 808.0pt;
+	margin:78.0pt 2.0cm 78.0pt 2.0cm;
+	layout-grid:14.45pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=ZH-CN link=blue vlink=purple style='word-wrap:break-word;text-justify-trim:
+punctuation'>
+
+<div class=WordSection1 style='layout-grid:14.45pt'>
+
+<h1 align=left style='margin-top:7.2pt;margin-right:0cm;margin-bottom:7.2pt;
+margin-left:21.25pt;text-align:left;text-indent:-21.25pt;line-height:133%'><a
+name="_Ref83040226"></a><a name="_Toc88575266"></a><a name="_Ref141712760"></a><a
+name="_Toc144620313"><span lang=EN-US style='font-size:18.0pt;line-height:133%;
+font-family:黑体'>第5章</span><span style='font-size:18.0pt;line-height:133%;
+font-family:黑体'>教育数字思维视角的“教育软件框架与案例”</span></a></h1>
+
+<h2 style='margin-top:7.2pt;line-height:normal;layout-grid-mode:char'><a
+name="_Ref140616536"></a><a name="_Toc144620315"><span lang=EN-US
+style='font-size:14.0pt;font-family:黑体'>5.1<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:14.0pt;font-family:黑体'>教育数字思维视角的教育软件框架与案例之一【目录导航的教育软件】</span></a></h2>
+
+<h2 style='margin-top:7.2pt;line-height:normal;layout-grid-mode:char'><a
+name="_Ref141546661"></a><a name="_Toc144620316"><span lang=EN-US
+style='font-size:14.0pt;font-family:黑体'>5.2<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:14.0pt;font-family:黑体'>初创方的<span
+lang=EN-US>.Net</span>根基对象类型平台的工程四个环节（<span lang=EN-US>0/1</span>语言的<span
+lang=EN-US>.exe/.dll</span>文件）</span></a></h2>
+
+<h2 style='margin-top:7.2pt;line-height:normal;layout-grid-mode:char'><a
+name="_Toc121437399"></a><a name="_Ref140931032"></a><a name="_Ref141016399"></a><a
+name="_Ref141016402"></a><a name="_Ref141546671"></a><a name="_Ref143701665"></a><a
+name="_Toc144620317"></a><a name="_MON_1289828366"></a><a name="_MON_1289831310"></a><a
+name="_MON_1289979196"></a><a name="_MON_1290089412"></a><a
+name="_MON_1280173144"></a><a name="_MON_1280234971"></a><a
+name="_MON_1280250801"></a><a name="_MON_1282415442"></a><span lang=EN-US
+style='font-size:14.0pt;font-family:黑体'>5.3<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:14.0pt;font-family:黑体'>他创方的<span
+lang=EN-US>.Net</span>拓展对象类型平台的工程四个环节（<span lang=EN-US>0/1</span>语言的<span
+lang=EN-US>.nupkg</span>文件）</span></h2>
+
+<h2 style='margin-top:7.2pt;line-height:normal;layout-grid-mode:char'><a
+name="_Toc121437283"></a><a name="_Ref127464199"></a><a name="_Toc133146131"></a><a
+name="_Ref140931033"></a><a name="_Ref141016410"></a><a name="_Ref141016414"></a><a
+name="_Ref141181940"></a><a name="_Ref141546673"></a><a name="_Ref142492432"></a><a
+name="_Ref143761902"></a><a name="_Ref143871205"></a><a name="_Toc144620318"><span
+lang=EN-US style='font-size:14.0pt;font-family:黑体'>5.4<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:14.0pt;font-family:黑体'>自创方的<span
+lang=EN-US>.Net</span>拓展对象类型平台的工程四个环节（<span lang=EN-US>C#</span>语言的<span
+lang=EN-US>.cs</span>文件<span lang=EN-US>/.csproj</span>项目文件<span lang=EN-US>/.sln</span>解决方案文件）</span></a></h2>
+
+<h2 style='margin-top:7.2pt;line-height:normal;layout-grid-mode:char'><a
+name="_Ref141181801"></a><a name="_Toc144620324"><span lang=EN-US
+style='font-size:14.0pt;font-family:黑体'>5.5<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:14.0pt;font-family:黑体'>对象类型的结构（线性结构、树型结构、网状结构）：<span
+lang=EN-US>LINQ/SQL</span></span></a></h2>
+
+<h2 style='margin-top:7.2pt;line-height:normal;layout-grid-mode:char'><a
+name="_Ref141181800"></a><a name="_Toc144620325"><span lang=EN-US
+style='font-size:14.0pt;font-family:黑体'>5.6<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:14.0pt;font-family:黑体'>对象类型的关系</span></a><span
+lang=EN-US style='font-size:14.0pt;font-family:黑体'>/</span><span
+style='font-size:14.0pt;font-family:黑体'>模式</span></h2>
+
+<h2 style='margin-top:7.2pt;line-height:normal;layout-grid-mode:char'><a
+name="_Ref112836440"></a><a name="_Ref112836446"></a><a name="_Ref113031079"></a><a
+name="_Toc121437344"></a><a name="_Toc133146182"></a><a name="_Toc144620327"><span
+lang=EN-US style='font-size:14.0pt;font-family:黑体'>5.7<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:14.0pt;font-family:黑体'>对象类型的架构（“客户端<span
+lang=EN-US>MVC</span>架构的视图<span lang=EN-US>V</span>”）：他创方的<span lang=EN-US>Word</span>宿主的<span
+lang=EN-US>VSTO.Net</span>平台<span lang=EN-US>C#</span>语言为例</span></a><span
+style='font-size:14.0pt;font-family:黑体'> </span></h2>
+
+<h2 style='margin-top:7.2pt;line-height:normal;layout-grid-mode:char'><a
+name="_Toc144620329"></a><a name="_Ref141016464"></a><a name="_Ref141016467"></a><a
+name="_Ref113031440"></a><a name="_Ref114646979"></a><a name="_Toc121437407"><span
+lang=EN-US style='font-size:14.0pt;font-family:黑体'>5.8<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:14.0pt;font-family:黑体'>对象类型的架构（“服务端<span
+lang=EN-US>MVC</span>架构的控制<span lang=EN-US>C</span>模型<span lang=EN-US>M</span></span></a><span
+style='font-size:14.0pt;font-family:黑体'>”）：</span><span style='font-size:14.0pt;
+font-family:黑体'>他创方的<span lang=EN-US>Web</span>服务器宿主的<span lang=EN-US>ASP.Net MVC</span>平台<span
+lang=EN-US>C#</span>语言为例</span><span style='font-size:14.0pt;font-family:黑体'> </span></h2>
+
+<h3 align=left style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:78.0pt;text-align:left;line-height:normal;layout-grid-mode:char;
+word-break:break-all'><a name="_Ref145000036"></a><a name="_Toc145000754"><span
+lang=EN-US style='font-size:14.0pt;font-family:黑体'>5.8.1</span><span
+style='font-size:14.0pt;font-family:宋体'>控制</span></a><span lang=EN-US
+style='font-size:14.0pt;font-family:黑体'>C</span><span style='font-size:14.0pt;
+font-family:宋体'>：接收客户端请求</span><span lang=EN-US style='font-size:14.0pt;
+font-family:黑体'>/</span><span style='font-size:14.0pt;font-family:宋体'>实施服务端响应</span></h3>
+
+<p class=MsoNormal align=center style='margin-top:7.2pt;text-align:center;
+text-indent:0cm'><a name="_Toc121437376"></a><a name="_Toc133146206"></a><a
+name="_Toc145000798"><span style='font-family:黑体'>表 </span></a><span lang=EN-US style='font-family:黑体'>5</span><span lang=EN-US style='font-family:
+黑体'>‑</span><span
+lang=EN-US style='font-family:黑体'>12</span><span lang=EN-US style='font-family:
+黑体'> </span><span
+style='font-family:黑体'>控制<span lang=EN-US>C</span>：接收客户端请求<span lang=EN-US>/</span>实施服务端响应</span></p>
+
+<div align=center>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr style='height:7.25pt'>
+  <td width=623 valign=top style='width:467.55pt;border:solid windowtext 1.0pt;
+  background:#E7E6E6;padding:0cm 5.4pt 0cm 5.4pt;height:7.25pt'>
+  <p class=MsoNormal align=left style='margin-top:7.2pt;text-align:left;
+  text-indent:0cm'><span style='font-family:宋体;color:black'>案例</span><span
+  style='color:black'> <span lang=EN-US>5</span><span lang=EN-US>‑9</span></span><span
+  style='font-family:宋体;color:black'>是控制器</span><span lang=EN-US
+  style='color:black'>C</span><span style='font-family:宋体;color:black'>的一个代码实例</span><span
+  lang=EN-US style='font-family:宋体;color:black'>(</span><span style='font-family:
+  宋体;color:black'>该示例对应</span><span lang=EN-US style='color:black'>EDSS</span><span
+  style='font-family:宋体;color:black'>解决方案中</span><span lang=EN-US
+  style='color:black'>EDSS/Controlls/Samples/TryController.cs</span><span
+  style='font-family:宋体;color:black'>文件）。</span></p>
+  </td>
+ </tr>
+ <tr style='height:29.4pt'>
+  <td width=623 valign=top style='width:467.55pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:29.4pt'>
+  <p class=MsoNormal align=left style='margin-top:7.2pt;text-align:left'><span style='font-family:宋体'>案例</span> <span lang=EN-US>5</span><span lang=EN-US>‑9</span><span
+  style='font-family:宋体'>是控制器</span><span lang=EN-US>C</span><span
+  style='font-family:宋体'>的一个代码实例</span><span lang=EN-US style='font-family:
+  宋体'>(</span><span style='font-family:宋体'>该示例对应</span><span lang=EN-US>EDSS</span><span
+  style='font-family:宋体'>解决方案中</span><span lang=EN-US>EDSS/Controlls/Samples/TryController.cs</span><span
+  style='font-family:宋体'>文件）。</span></p>
+  <p class=MsoCaption align=center style='margin-top:6.0pt;text-align:center'><a
+  name="_Toc386143254"></a><a name="_Toc322943487"></a><a name="_Ref362964443"><span
+  style='font-family:黑体'>案例</span> </a><span lang=EN-US>5</span><span
+  lang=EN-US>‑</span><span
+  lang=EN-US>9</span><span lang=EN-US> </span><span style='font-family:黑体'>控制器</span><span
+  lang=EN-US>C</span></p>
+  <div align=center>
+  <table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+   style='border-collapse:collapse;border:none'>
+   <tr style='height:21.1pt'>
+    <td width=559 valign=top style='width:419.05pt;border-top:dashed windowtext 1.0pt;
+    border-left:none;border-bottom:dashed windowtext 1.0pt;border-right:none;
+    padding:0cm 5.4pt 0cm 5.4pt;height:21.1pt'>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>public class TryControllerController:Controller</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>{</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    public ViewResult TryView()</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    {</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        EDSS.Models.TryModel tryModel = new
+    EDSS.Models.TryModel();</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        tryModel.LearnerId = &quot;000010&quot;;</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        tryModel.Name = &quot;jbhuang99&quot;;</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        return
+    this.View(&quot;~/Views/Samples/TryController/tryView.cshtml&quot;,
+    tryModel);</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    }</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>&nbsp;</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    public ContentResult TryContent()</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    {</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        return this.Content(&quot;</span><span
+    style='font-size:9.0pt;font-family:宋体'>这是返回字符串到浏览器端的示例（而不返回视图</span><span
+    lang=EN-US style='font-size:9.0pt'>V</span><span style='font-size:9.0pt;
+    font-family:宋体'>），浏览器端将打开一个自已默认的界面呈现所返回的字符串</span><span lang=EN-US
+    style='font-size:9.0pt'>&quot;);</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    }</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    public FilePathResult TryFile()</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    {</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        return
+    this.File(@&quot;c:\NTDETECT.COM&quot;, &quot;application/com&quot;,
+    &quot;NTDETECT.COM&quot;);</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    }</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    public RedirectResult TryRedirect()</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    {</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        return this.Redirect(&quot;TryView&quot;);</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    }</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    public ContentResult TryStringFromModel()</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    {</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        EDSS.Models.TryModel tryModel=new
+    EDSS.Models.TryModel();</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        tryModel.LearnerId = &quot;000010&quot;;</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        tryModel.Name= &quot;jbhuang99&quot;;</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>         return this.Content(&quot;</span><span
+    style='font-size:9.0pt;font-family:宋体'>这是返回取值于模型</span><span lang=EN-US
+    style='font-size:9.0pt'>M</span><span style='font-size:9.0pt;font-family:
+    宋体'>的属性的字符串到浏览器端的示例</span><span lang=EN-US style='font-size:9.0pt'>:&quot;
+    + tryModel.LearnerId + &quot;;&quot; + tryModel.Name);</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    }       </span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    public ViewResult TryViewWithModel()</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    {</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        EDSS.Models.TryModel tryModel = new
+    EDSS.Models.TryModel();</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        tryModel.LearnerId = &quot;000010&quot;;</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        tryModel.Name = &quot;jbhuang99&quot;;</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        return
+    this.View(&quot;~/Views/Samples/TryController/tryViewWithModel.cshtml&quot;,
+    tryModel);</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    }</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    public ViewResult tryViewBagFromController()</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    {</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        this.ViewBag.TryProperty = &quot;</span><span
+    style='font-size:9.0pt;font-family:宋体'>控制器</span><span lang=EN-US
+    style='font-size:9.0pt'>C</span><span style='font-size:9.0pt;font-family:
+    宋体'>对象内置的</span><span lang=EN-US style='font-size:9.0pt'>ViewBag</span><span
+    style='font-size:9.0pt;font-family:宋体'>属性返回</span><span lang=EN-US
+    style='font-size:9.0pt'>ViewBag</span><span style='font-size:9.0pt;
+    font-family:宋体'>这一</span><span lang=EN-US style='font-size:9.0pt'>Dynamic</span><span
+    style='font-size:9.0pt;font-family:宋体'>对象，</span><span lang=EN-US
+    style='font-size:9.0pt'>ViewBag</span><span style='font-size:9.0pt;
+    font-family:宋体'>作为</span><span lang=EN-US style='font-size:9.0pt'>Dynamic</span><span
+    style='font-size:9.0pt;font-family:宋体'>对象，可定义</span><span lang=EN-US
+    style='font-size:9.0pt'>Expando</span><span style='font-size:9.0pt;
+    font-family:宋体'>属性，在此定义了</span><span lang=EN-US style='font-size:9.0pt'>TryProperty</span><span
+    style='font-size:9.0pt;font-family:宋体'>属性及其值。然后可根据需求进一步处理。例如，可传递给控制器所调用的视图</span><span
+    lang=EN-US style='font-size:9.0pt'>V</span><span style='font-size:9.0pt;
+    font-family:宋体'>，视图</span><span lang=EN-US style='font-size:9.0pt'>V</span><span
+    style='font-size:9.0pt;font-family:宋体'>处理后可返回给浏览器端。</span><span lang=EN-US
+    style='font-size:9.0pt'>&quot;;</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        return
+    this.View(&quot;~/Views/Samples/TryController/tryViewBagFromController.cshtml&quot;);</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    }</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    </span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    public ViewResult TryPartialView()</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    {</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        return this.View(&quot;~/Views/Samples/TryPartialView/index.cshtml&quot;);</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    }</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    public PartialViewResult PartialViewReturned()</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    {</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>        return
+    this.PartialView(&quot;~/Views/Samples/TryController/tryView.cshtml&quot;);</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>    }</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>}</span></p>
+    <p class=MsoNormal style='layout-grid-mode:char'><span lang=EN-US
+    style='font-size:9.0pt'>}</span></p>
+    </td>
+   </tr>
+  </table>
+  </div>
+  <p class=MsoNormal style='margin-top:7.2pt'><span style='font-family:宋体'>案例</span> <span lang=EN-US>5</span><span lang=EN-US>‑9</span><span
+  style='font-family:宋体'>解释如下。</span></p>
+  <p class=MsoNormal style='margin-top:7.2pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:42.0pt;margin-bottom:.0001pt;text-indent:-21.0pt'><b><span
+  lang=EN-US>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></b><b><span style='font-family:宋体'>控制器</span><span lang=EN-US>C</span></b><b><span
+  style='font-family:宋体'>的定义</span></b></p>
+  <p class=MsoNormal style='margin-top:7.2pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:21.3pt'><span
+  lang=EN-US style='font-family:Wingdings'>l</span><span lang=EN-US> </span><span
+  style='font-family:宋体'>“</span><i><span lang=EN-US>public class
+  TryControllerController:Controller</span></i><span style='font-family:宋体'>”代码部分所示，控制器</span><span
+  lang=EN-US>C</span><span style='font-family:宋体'>本质上是自定义的类，是必须</span><span
+  style='font-family:宋体'>继承扩展自</span><span lang=EN-US>.Net</span><span
+  style='font-family:宋体'>内置的</span><span lang=EN-US style='font-family:黑体'>System.Web.Mvc.Controller</span><span
+  style='font-family:宋体'>类的类</span><span style='font-family:宋体'>。控制器</span><span
+  lang=EN-US>C</span><span style='font-family:宋体'>的名称必须使用“</span><span
+  lang=EN-US>Controller</span><span style='font-family:宋体'>”作为后缀。但</span><span
+  lang=EN-US>URL</span><span style='font-family:宋体'>路由时，</span><span
+  lang=EN-US>URL</span><span style='font-family:宋体'>字符串的控制器部分将自动加上“</span><span
+  lang=EN-US>Controller</span><span style='font-family:宋体'>”后缀，而不需要事先包含。例如，</span><span
+  lang=EN-US>URL</span><span style='font-family:宋体'>字符串“</span><span
+  lang=EN-US>http://localhost:21138/TryController/TryView</span><span
+  style='font-family:宋体'>”路由后访问的是服务器端名称为</span><span lang=EN-US>TryControllerController</span><span
+  style='font-family:宋体'>（而不是</span><span lang=EN-US>TryController</span><span
+  style='font-family:宋体'>）的控制器</span><span lang=EN-US>C</span><span
+  style='font-family:宋体'>的</span><span lang=EN-US>TryView()</span><span
+  style='font-family:宋体'>方法，传递给此方法的参数为空。</span></p>
+  <p class=MsoNormal style='margin-top:7.2pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:21.3pt'><span
+  lang=EN-US style='font-family:Wingdings'>l</span><span style='font-size:10.0pt;
+  font-family:宋体'>代码</span><span style='font-size:10.0pt;font-family:宋体'>“<i><span
+  lang=EN-US>return
+  this.View(&quot;~/Views/Samples/TryController/tryView.cshtml&quot;);</span></i>”</span><span
+  style='font-size:10.0pt;font-family:宋体'>所示</span><span style='font-size:10.0pt;
+  font-family:宋体'>，</span><span style='font-family:宋体'>控制器</span><span
+  lang=EN-US>C</span><span style='font-family:宋体'>可通过内置的</span><span
+  lang=EN-US>View()</span><span style='font-family:宋体'>方法返回一个现有的视图</span><span
+  lang=EN-US>V</span><span style='font-family:宋体'>（运行</span><span lang=EN-US>EDSS</span><span
+  style='font-family:宋体'>解决方案，浏览器地址栏中键入</span><span lang=EN-US>http://localhost:21138/TryController/TryView</span><span
+  style='font-family:宋体'>，将运行该控制器方法如</span><span
+  style='font-family:黑体'>图 <span lang=EN-US>5</span><span lang=EN-US>‑25</span></span><span
+  style='font-family:宋体'>所示。在此的现有视图</span><span lang=EN-US>V</span><span
+  style='font-family:宋体'>即</span><i><span lang=EN-US style='font-size:10.0pt;
+  font-family:宋体'>&quot;~/Views/Samples/TryController/tryView.cshtml&quot;</span></i><span
+  style='font-family:宋体'>这一文件，视图</span><span lang=EN-US>V</span><span
+  style='font-family:宋体'>转换装载到浏览器端，呈现为用户界面视图</span><span lang=EN-US>V</span><span
+  style='font-family:宋体'>。</span></p>
+  <p class=MsoNormal align=center style='margin-top:7.2pt;text-align:center'><span
+  lang=EN-US style='font-family:黑体'><img width=240 height=129 id="Picture 27"
+  src="1694092823310.files/image001.jpg"></span></p>
+  <p class=MsoNormal align=center style='margin-top:7.2pt;text-align:center'><a
+  name="_Toc386143116"></a><a name="_Toc145000837"></a><a name="_Ref383942250"><span
+  style='font-family:黑体'>图 </span></a><span
+  lang=EN-US style='font-family:黑体'>5</span><span lang=EN-US style='font-family:
+  黑体'>‑</span><span
+  lang=EN-US style='font-family:黑体'>25</span><span style='font-family:宋体'>控制器</span><span
+  lang=EN-US>C</span><span style='font-family:黑体'>的运行结果示例：<span lang=EN-US>View()</span>方法返回视图<span
+  lang=EN-US>V</span></span></p>
+  <p class=MsoNormal style='margin-top:7.2pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:21.3pt'><span
+  lang=EN-US style='font-family:Wingdings'>l</span><span style='font-size:10.0pt;
+  font-family:宋体'>代码</span><span style='font-size:10.0pt;font-family:宋体'>“<i><span
+  lang=EN-US>return this.Content(&quot;</span>这是返回字符串到浏览器端的示例（而不返回视图<span
+  lang=EN-US>V</span>），浏览器端将打开一个自已默认的界面呈现所返回的字符串<span lang=EN-US>&quot;);</span></i>”</span><span
+  style='font-size:10.0pt;font-family:宋体'>所示</span><span style='font-size:10.0pt;
+  font-family:宋体'>，</span><span style='font-family:宋体'>控制器</span><span
+  lang=EN-US>C</span><span style='font-family:宋体'>可通过内置的</span><span
+  lang=EN-US>Content()</span><span style='font-family:宋体'>方法返回字符串给浏览器端（而不返回视图</span><span
+  lang=EN-US>V</span><span style='font-family:宋体'>）</span><span
+  style='font-size:10.0pt;font-family:宋体'>，</span><span style='font-family:
+  宋体'>浏览器端将打开一个自已默认的界面呈现所返回的字符串（运行</span><span lang=EN-US>EDSS</span><span
+  style='font-family:宋体'>解决方案，浏览器地址栏中键入</span><span lang=EN-US>http://localhost:21138/TryController/TryContent</span><span
+  style='font-family:宋体'>，将运行该控制器方法如</span><span
+  style='font-family:黑体'>图 <span lang=EN-US>5</span><span lang=EN-US>‑26</span></span><span
+  style='font-size:10.0pt;font-family:宋体'>所示</span><span style='font-size:10.0pt;
+  font-family:宋体'>）</span><span style='font-size:10.0pt;font-family:宋体'>。</span></p>
+  <p class=MsoNormal align=center style='margin-top:7.2pt;text-align:center'><span
+  lang=EN-US style='font-family:黑体'><img width=259 height=118 id="Picture 26"
+  src="1694092823310.files/image002.jpg"></span><span lang=EN-US
+  style='font-family:黑体'> </span></p>
+  <p class=MsoNormal align=center style='margin-top:7.2pt;text-align:center'><a
+  name="_Toc386143117"></a><a name="_Toc145000838"></a><a name="_Ref384035496"><span
+  style='font-family:黑体'>图 </span></a><span
+  lang=EN-US style='font-family:黑体'>5</span><span lang=EN-US style='font-family:
+  黑体'>‑</span><span
+  lang=EN-US style='font-family:黑体'>26</span><span style='font-family:宋体'>控制器</span><span
+  lang=EN-US>C</span><span style='font-family:黑体'>的运行结果示例：<span lang=EN-US>Content()</span>方法</span><span
+  style='font-size:9.0pt;font-family:宋体'>返回字符串</span></p>
+  <p class=MsoNormal style='margin-top:7.2pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:21.3pt'><span
+  lang=EN-US style='font-family:Wingdings'>l</span><span style='font-size:10.0pt;
+  font-family:宋体'>代码</span><span style='font-size:10.0pt;font-family:宋体'>“<i><span
+  lang=EN-US>return this.File(@&quot;c:\NTDETECT.COM&quot;,
+  &quot;application/com&quot;, &quot;NTDETECT.COM&quot;);</span></i>”</span><span
+  style='font-size:10.0pt;font-family:宋体'>所示</span><span style='font-size:10.0pt;
+  font-family:宋体'>，</span><span style='font-family:宋体'>控制器</span><span
+  lang=EN-US>C</span><span style='font-family:宋体'>可通过内置的</span><span
+  lang=EN-US>File()</span><span style='font-family:宋体'>方法返回服务器端的一个现有文件给浏览器端（而不返回视图</span><span
+  lang=EN-US>V</span><span style='font-family:宋体'>），浏览器端将打开一个自已默认的界面呈现所返回的文件（运行</span><span
+  lang=EN-US>EDSS</span><span style='font-family:宋体'>解决方案，浏览器地址栏中键入</span><span
+  lang=EN-US>http://localhost:21138/TryController/TryFile</span><span
+  style='font-family:宋体'>，将运行该控制器方法如</span><span
+  style='font-family:黑体'>图 <span lang=EN-US>5</span><span lang=EN-US>‑27</span></span><span
+  style='font-size:10.0pt;font-family:宋体'>所示</span><span style='font-size:10.0pt;
+  font-family:宋体'>）。</span></p>
+  <p class=MsoNormal align=center style='margin-top:7.2pt;text-align:center'><span
+  lang=EN-US style='font-family:黑体'><img width=359 height=153 id="Picture 20"
+  src="1694092823310.files/image003.jpg"></span><span lang=EN-US
+  style='font-family:黑体'>  </span></p>
+  <p class=MsoNormal align=center style='margin-top:7.2pt;text-align:center'><a
+  name="_Toc386143118"></a><a name="_Toc145000839"></a><a name="_Ref384036217"><span
+  style='font-family:黑体'>图 </span></a><span
+  lang=EN-US style='font-family:黑体'>5</span><span lang=EN-US style='font-family:
+  黑体'>‑</span><span
+  lang=EN-US style='font-family:黑体'>27</span><span style='font-family:宋体'>控制器</span><span
+  lang=EN-US>C</span><span style='font-family:黑体'>的运行结果示例：<span lang=EN-US>File()</span>方法</span><span
+  style='font-size:9.0pt;font-family:宋体'>返回文件</span></p>
+  <p class=MsoNormal style='margin-top:7.2pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:21.3pt'><span
+  lang=EN-US style='font-family:Wingdings'>l</span><span style='font-size:10.0pt;
+  font-family:宋体'>代码</span><span style='font-size:10.0pt;font-family:宋体'>“<i><span
+  lang=EN-US>return this.Redirect(&quot;TryView&quot;);</span></i>”</span><span
+  style='font-size:10.0pt;font-family:宋体'>所示</span><span style='font-size:10.0pt;
+  font-family:宋体'>，</span><span style='font-family:宋体'>控制器</span><span
+  lang=EN-US>C</span><span style='font-family:宋体'>可通过内置的</span><span
+  lang=EN-US>Redirect()</span><span style='font-family:宋体'>方法重定向到其它</span><span
+  lang=EN-US>URL</span><span style='font-family:宋体'>（而不返回视图</span><span
+  lang=EN-US>V</span><span style='font-family:宋体'>），所转向的</span><span
+  lang=EN-US>URL</span><span style='font-family:宋体'>将根据自身的具体情形而返回相应的结果给浏览器端（运行</span><span
+  lang=EN-US>EDSS</span><span style='font-family:宋体'>解决方案，浏览器地址栏中键入</span><span
+  lang=EN-US>http://localhost:21138/trycontroller/TryRedirect</span><span
+  style='font-family:宋体'>，将运行该控制器方法如</span><span
+  style='font-family:黑体'>图 <span lang=EN-US>5</span><span lang=EN-US>‑28</span></span><span
+  style='font-size:10.0pt;font-family:宋体'>所示</span><span style='font-size:10.0pt;
+  font-family:宋体'>，</span><span style='font-size:10.0pt;font-family:宋体'>即所转向的</span><span
+  lang=EN-US style='font-size:10.0pt;font-family:宋体'>URL</span><span
+  style='font-size:10.0pt;font-family:宋体'>“<span lang=EN-US>http://localhost:21138/trycontroller/TryView</span>”的结果，所以，</span><span style='font-family:黑体'>图 <span lang=EN-US>5</span><span lang=EN-US>‑28</span></span><span
+  style='font-size:10.0pt;font-family:宋体'>与</span><span
+  style='font-family:黑体'>图 <span lang=EN-US>5</span><span lang=EN-US>‑25</span></span><span
+  style='font-family:宋体'>是相同的</span><span style='font-size:10.0pt;font-family:
+  宋体'>）</span><span style='font-family:宋体'>。</span></p>
+  <p class=MsoNormal align=center style='margin-top:7.2pt;text-align:center'><span
+  lang=EN-US style='font-family:黑体'><img width=320 height=138 id="Picture 4"
+  src="1694092823310.files/image004.jpg"></span></p>
+  <p class=MsoNormal align=center style='margin-top:7.2pt;text-align:center'><a
+  name="_Toc386143119"></a><a name="_Toc145000840"></a><a name="_Ref384037329"><span
+  style='font-family:黑体'>图 </span></a><span
+  lang=EN-US style='font-family:黑体'>5</span><span lang=EN-US style='font-family:
+  黑体'>‑</span><span
+  lang=EN-US style='font-family:黑体'>28</span><span style='font-family:宋体'>控制器</span><span
+  lang=EN-US>C</span><span style='font-family:黑体'>的运行结果示例：</span><span
+  lang=EN-US>Redirect ()</span><span style='font-family:宋体'>方法</span><span
+  style='font-family:黑体'>重定向到其它<span lang=EN-US>URL</span></span></p>
+  <p class=MsoNormal style='margin-top:7.2pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:21.3pt'><span
+  lang=EN-US style='font-family:Wingdings'>l</span><span style='font-family:
+  宋体'>控制器</span><span lang=EN-US>C</span><span style='font-family:宋体'>还可接受浏览器端发送的数据、文件。</span></p>
+  <p class=MsoNormal style='margin-top:7.2pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:42.0pt;margin-bottom:.0001pt;text-indent:-21.0pt'><b><span
+  lang=EN-US>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></b><b><span style='font-family:宋体'>控制器</span><span lang=EN-US>C</span></b><b><span
+  style='font-family:宋体'>的对象化运行</span></b></p>
+  <p class=MsoNormal style='margin-top:7.2pt'><span style='font-family:宋体'>上述控制器</span><span
+  lang=EN-US>C</span><span style='font-family:宋体'>定义后，还需对象化运行，控制器</span><span
+  lang=EN-US>C</span><span style='font-family:宋体'>不会显式地对象化运行，而是当浏览器端发出的</span><span
+  lang=EN-US>URL</span><span style='font-family:宋体'>被路由到服务器端的控制器</span><span
+  lang=EN-US>C</span><span style='font-family:宋体'>时，该控制器</span><span
+  lang=EN-US>C</span><span style='font-family:宋体'>就被隐式地对象化运行。例如，运行</span><span
+  lang=EN-US>EDSS</span><span style='font-family:宋体'>解决方案，浏览器地址栏中键入</span><span
+  lang=EN-US>http://localhost:21138/TryController/TryView</span><span
+  style='font-family:宋体'>，将对象化</span><span lang=EN-US>TryController</span><span
+  style='font-family:宋体'>控制器</span><span lang=EN-US>C</span><span
+  style='font-family:宋体'>，并运行其</span><span lang=EN-US>TryView</span><span
+  style='font-family:宋体'>（）方法，运行结果如</span><span
+  style='font-family:宋体'>图</span> <span lang=EN-US>5‑25</span><span
+  style='font-family:宋体'>所示（</span><span
+  style='font-family:宋体'>图</span> <span lang=EN-US>5‑26</span><span
+  style='font-family:宋体'>、</span><span
+  style='font-family:宋体'>图</span> <span lang=EN-US>5‑27</span><span
+  style='font-family:宋体'>、</span><span
+  style='font-family:宋体'>图</span> <span lang=EN-US>5‑28</span><span
+  style='font-family:宋体'>是类似的）。</span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal style='text-indent:0cm'><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:0cm'><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h1><a name="_Toc120361018"></a><a name="_Toc120361065"></a><a
+name="_Toc120361434"></a><a name="_Ref126962156"></a><a name="_Ref126964033"></a><a
+name="_Ref127099642"></a><a name="_Ref130837100"></a><a name="_Ref130838004"></a><a
+name="_Ref132138058"></a><a name="_Ref133569522"></a><a name="_Ref133569540"></a><a
+name="_Toc140229558"><span style='font-size:12.0pt;line-height:150%;font-family:
+黑体;font-weight:normal'>参考文献、文中注释</span></a></h1>
+
+</div>
+
+<!--右键菜单开始 --><div id='popupDiv' onclick='fnPopupClosePopup();' oncontextmenu='fnPopupContextMenu();' style='position:fixed;z-Index:1000;margin: 2px; border: 1px;   overflow:visible;  font-size: 11px; cursor: default;display:none;'><div style='position: relative;' onmouseover='fnPopupMouseOver();' onmouseout='fnPopupMouseOut();'><div title='刷新标题面' onclick='location.reload();'>刷新</div><div title='单击将在是否可以在线编辑课文的之间切换!' onclick='if(document.body.contentEditable==true) { document.body.contentEditable = false; } else { document.body.contentEditable = true;}'>课文编辑切换</div><div title='编辑后可保存编辑结果' onclick='fnSave();'>保存</div><div title='打开帮助文档' onclick='fnHelp();'>帮助</div></div></div><!--右键菜单结束--><script id=sIdScriptAutoAddedForDynFunction1 src='../../../../common/script/content.js'></script><script id=sIdScriptAutoAddedForDynFunction2 src='../../../../common/script/Popup.js'></script><script id=sIdScriptAutoAddedForDynFunction3>document.body.onload=fnOnLoad;</script></body>
+
+</html>
