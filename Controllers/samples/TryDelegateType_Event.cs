@@ -5,7 +5,7 @@ namespace EDSS.Controllers
 {
     public class TryDelegateType_Event_Controller : Controller
     {
-        /**老板希望员工一玩游戏就将自动发出一个消息通知他，而不能由他人跳过员工而通知（现实的真实性需求）。而且如果他没空理会时，也可灵活地把消息发给自己制定的监管人。事件绑定委托的机制可实现这种互动**/
+        /**老师希望学生一玩游戏就将自动发出一个消息通知他，而不能由他人跳过学生而通知（现实的真实性需求）。而且如果他没空理会时，也可灵活地把消息发给自己制定的监管人。事件绑定委托的机制可实现这种互动**/
 
         public static String NodifiedStringForBoss { set; get; }
         public static String NodifiedStringForAdministrator { set; get; }
@@ -32,13 +32,13 @@ namespace EDSS.Controllers
             }
         }
 
-        //定义一个老板类
+        //定义一个老师类
         public class Boss
         {
             public void Notified()
             {
-                TryDelegateType_Event_Controller.NodifiedStringForBoss = "老板您好，有人在玩游戏";
-               // return "老板您好，有人在玩游戏";
+                TryDelegateType_Event_Controller.NodifiedStringForBoss = "老师您好，有人在玩游戏";
+               // return "老师您好，有人在玩游戏";
             }
         }
         public class Administrator
@@ -112,12 +112,12 @@ public class Administrator
     }
 }
 
-// 老板的通知方法也必须相应地进行修改：
+// 老师的通知方法也必须相应地进行修改：
 public class Boss
 {
     public void Notified(Object sender, CustomeEvetnArgs customeEvetnArgs)
     {
-        TryDelegateType_EventWithArgs_Controller.NodifiedStringForBoss = "老板您好，有人在玩游戏!时间是：" + customeEvetnArgs.Time + "事件发送者是" + sender.ToString();
+        TryDelegateType_EventWithArgs_Controller.NodifiedStringForBoss = "老师您好，有人在玩游戏!时间是：" + customeEvetnArgs.Time + "事件发送者是" + sender.ToString();
     }
 }
 
