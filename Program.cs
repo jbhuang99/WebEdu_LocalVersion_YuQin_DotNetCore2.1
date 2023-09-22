@@ -29,6 +29,7 @@ using Microsoft.AspNetCore.Builder.Internal;
 using ChatSample.Hubs;
 using Microsoft.AspNetCore.Identity;
 using IdentityDemo.Services;
+//using Microsoft.SemanticKernel;//他创方的人工智能AI对象类型名称空间。
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
 {
@@ -52,6 +53,13 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
             Random random = new Random();
             Int32 portNum = random.Next(5000, 6000);
             String urls = "http://localhost:" + portNum.ToString() + ";https://localhost:" + (portNum + 1).ToString() + ";http://*:" + portNum.ToString() + ";https://*:" + (portNum + 1).ToString();
+            
+            //KernelBuilder kernelBuilder = new KernelBuilder();//人工只能AI相关的服务DI。通过 KernelBuilder 中的 WithAzureTextCompletionService 来配置模型。
+           //kernelBuilder.WithAzureTextCompletionService("Azure OpenAT Deployment Name:yuqin", "https://yuqin.openai.azure.com/", "yuqin的Azure OpenAI Key");
+            //kernelBuilder.WithOpenAITextCompletionService("text-davinci-93", "...My OpenAI API Key..."); //使用OpenAI Model模型时选择。
+            // kernelBuilder.WithAzureChatCompletionService()//使用gpt3.5或gpt4对话模型时选择。
+            //kernelBuilder.WithAzureOpenAIImageGenerationService()//使用DallE图像生成模型时选择。
+            //kernelBuilder.WithAzureTectEmbeddingGenerationService()//使用向量化嵌入模型时选择。
 
             IWebHostBuilder webHostBuilder = WebHost.CreateDefaultBuilder(args);//创建一个Web主机构造器对象。                
             webHostBuilder.UseKestrel(///Web主机构造器对象使用Kestrel作为Web服务器（.Net core内置Kestrel这一Web服务器）。
