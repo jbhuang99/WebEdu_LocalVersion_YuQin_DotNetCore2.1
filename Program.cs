@@ -54,14 +54,14 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore2._1
             Int32 portNum = random.Next(5000, 6000);
             String urls = "http://localhost:" + portNum.ToString() + ";https://localhost:" + (portNum + 1).ToString() + ";http://*:" + portNum.ToString() + ";https://*:" + (portNum + 1).ToString();
             
-            //KernelBuilder kernelBuilder = new KernelBuilder();//人工只能AI相关的服务DI。通过 KernelBuilder 中的 WithAzureTextCompletionService 来配置模型。
+            //KernelBuilder kernelBuilder = new KernelBuilder();//人工智能AI相关的服务DI。通过 KernelBuilder 中的 WithAzureTextCompletionService 来配置模型。
            //kernelBuilder.WithAzureTextCompletionService("Azure OpenAT Deployment Name:yuqin", "https://yuqin.openai.azure.com/", "yuqin的Azure OpenAI Key");
             //kernelBuilder.WithOpenAITextCompletionService("text-davinci-93", "...My OpenAI API Key..."); //使用OpenAI Model模型时选择。
             // kernelBuilder.WithAzureChatCompletionService()//使用gpt3.5或gpt4对话模型时选择。
             //kernelBuilder.WithAzureOpenAIImageGenerationService()//使用DallE图像生成模型时选择。
             //kernelBuilder.WithAzureTectEmbeddingGenerationService()//使用向量化嵌入模型时选择。
 
-            IWebHostBuilder webHostBuilder = WebHost.CreateDefaultBuilder(args);//创建一个Web主机构造器对象。                
+            IWebHostBuilder webHostBuilder = WebHost.CreateDefaultBuilder(args);//平台内置的Microsoft.AspNetCore.WebHost对象类型的CreateDefaultBuilder方法,可以工厂模式创建一个预定义值的Web主机构造器对象实例（而非让我们自创方new模式创建一个默认值的Web主机构造器对象实例，这样有利于减轻我们自创方设置预定义值的代码量）。                
             webHostBuilder.UseKestrel(///Web主机构造器对象使用Kestrel作为Web服务器（.Net core内置Kestrel这一Web服务器）。
                 delegate (KestrelServerOptions kestrelServerOptions)//配置Kestrel服务器。
                 {
