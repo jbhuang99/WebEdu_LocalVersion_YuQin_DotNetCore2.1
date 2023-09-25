@@ -256,6 +256,12 @@ function fnOnLoad() {
     document.getElementById("sDiv").style.left = -30;
     document.body.scroll = "no";
     fnInitailContents();//初始化目录
+    if (window.confirm('请选择“确定”还是“取消”目录不自动编号！也可后续在标题面板中单击“目录编号”进行切换！')) {
+        fnToggleContentsAutoNumber();
+    }
+    else {
+        ;
+    }
 }
 ////////////
 /** function fnOnDBLClick(){//已暂时改写，因为获取不到siframeTitle
