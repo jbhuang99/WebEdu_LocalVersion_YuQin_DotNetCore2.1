@@ -1,0 +1,238 @@
+#X3D V3.0 utf8
+PROFILE Immersive
+
+META "filename" "engine.x3d"
+META "author" "Copyright 2004 Pinecoast Software"
+
+Transform { 
+  children [
+    Transform { 
+      rotation 0 0 1 1.57
+      translation 1 2 0
+      children 
+        Shape { 
+          appearance Appearance { 
+            material Material { 
+            }
+          }
+          geometry Cylinder { 
+          }
+        }
+    }
+    Transform { 
+      translation 1 1 0
+      children 
+        Shape { 
+          appearance Appearance { 
+            material Material { 
+            }
+          }
+          geometry Box { 
+            size 2 2 1
+          }
+        }
+    }
+  ]
+}
+
+Transform { 
+  rotation 1 0 0 1.57
+  translation 10 2 0
+  children 
+    DEF Wheel Transform { 
+      rotation 0 1 0 0
+      children [
+        Shape { 
+          appearance Appearance { 
+            material Material { 
+              diffuseColor 0 1 0
+            }
+          }
+          geometry Cylinder { 
+            height 0.2
+            radius 2
+          }
+        }
+        Shape { 
+          appearance Appearance { 
+            material Material { 
+              diffuseColor 0 0.502 0
+            }
+          }
+          geometry Cylinder { 
+            height 0.19
+            radius 2.1
+          }
+        }
+        Shape { 
+          appearance Appearance { 
+            material Material { 
+              diffuseColor 0 0.502 0
+            }
+          }
+          geometry Box { 
+            size 1 0.4 1
+          }
+        }
+      ]
+    }
+}
+
+DEF Bars Transform { 
+  rotation 0 0 1 0.3
+  translation 6 2 0
+  children [
+    Transform { 
+      translation 0 0 0.3
+      children 
+        DEF Arm1 Transform { 
+          children [
+            Transform { 
+              translation 2.5 0 0
+              children 
+                Shape { 
+                  appearance Appearance { 
+                    material Material { 
+                      diffuseColor 0 0.502 1
+                    }
+                  }
+                  geometry Box { 
+                    size 5 0.3 0.2
+                  }
+                }
+            }
+            Transform { 
+              rotation 1 0 0 1.57
+              children [
+                Shape { 
+                  appearance Appearance { 
+                    material Material { 
+                      diffuseColor 0 0.502 1
+                    }
+                  }
+                  geometry Cylinder { 
+                    height 0.2
+                    radius 0.3
+                  }
+                }
+                Shape { 
+                  appearance Appearance { 
+                    material Material { 
+                      diffuseColor 1 0 0.502
+                    }
+                  }
+                  geometry Cylinder { 
+                    height 0.6
+                    radius 0.1
+                  }
+                }
+              ]
+            }
+            Transform { 
+              rotation 1 0 0 1.57
+              translation 5 0 0
+              children [
+                Shape { 
+                  appearance Appearance { 
+                    material Material { 
+                      diffuseColor 0 0.502 1
+                    }
+                  }
+                  geometry Cylinder { 
+                    height 0.2
+                    radius 0.3
+                  }
+                }
+                Shape { 
+                  appearance Appearance { 
+                    material Material { 
+                      diffuseColor 0 1 0
+                    }
+                  }
+                  geometry Cylinder { 
+                    height 0.6
+                    radius 0.1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+    }
+    Transform { 
+      translation 0 0 -0.3
+      children 
+        Transform { 
+        }
+    }
+  ]
+}
+
+DEF Rod Transform { 
+  translation 6 2 0
+  children 
+    Transform { 
+      rotation 0 0 1 1.57
+      translation -4 0 0
+      children 
+        Shape { 
+          appearance Appearance { 
+            material Material { 
+              diffuseColor 1 0 0.502
+            }
+          }
+          geometry Cylinder { 
+            height 8
+            radius 0.2
+          }
+        }
+    }
+}
+
+Transform { 
+  translation 0 -0.1 0
+  children 
+    Shape { 
+      appearance Appearance { 
+        material Material { 
+        }
+      }
+      geometry Box { 
+        size 25 0.2 10
+      }
+    }
+}
+
+DEF theTimer TimeSensor { 
+  cycleInterval 5
+  loop TRUE
+}
+
+DEF oriInt OrientationInterpolator { 
+  key [ 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1 ]
+  keyValue [ 0 0 1 0, 0 0 1 0.26, 0 0 1 0.32, 0 0 1 0.26, 0 0 1 0, 0 0 1 -0.26, 0 0 1 -0.32, 0 0 1 -0.26, 
+      0 0 1 0 ]
+}
+
+DEF posInt PositionInterpolator { 
+  key [ 0, 0.25, 0.5, 0.75, 1 ]
+  keyValue [ 6.6 2 0, 5.263 2 0, 3.4 2 0, 5.263 2 0, 6.6 2 0 ]
+}
+
+DEF wOriInt OrientationInterpolator { 
+  key [ 0, 0.25, 0.5, 0.75, 1 ]
+  keyValue [ 0 1 0 0, 0 1 0 1.57, 0 1 0 3.1416, 0 1 0 4.71, 0 1 0 0 ]
+}
+
+Viewpoint { 
+  position 0 5 28
+}
+
+ROUTE theTimer.fraction_changed TO posInt.set_fraction
+ROUTE theTimer.fraction_changed TO oriInt.set_fraction
+ROUTE posInt.value_changed TO Rod.translation
+ROUTE posInt.value_changed TO Bars.translation
+ROUTE oriInt.value_changed TO Bars.rotation
+ROUTE theTimer.fraction_changed TO wOriInt.set_fraction
+ROUTE wOriInt.value_changed TO Wheel.rotation
+

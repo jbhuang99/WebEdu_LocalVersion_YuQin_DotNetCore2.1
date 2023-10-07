@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Canvas  
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"> 
+
+ <navigation:Frame x:Name="ContentFrame" Source="MediaElementReferenc.xaml"><!--通过<navigation:Frame>元素引用一个外部XAML文件-->
+
+</Canvas>
+

@@ -1,0 +1,17 @@
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" 
+	"http://www.web3d.org/specifications/x3d-3.0.dtd">
+
+<X3D version="3.0">
+  <Scene>
+    <Transform>
+      	<Shape>
+	   <Sphere />
+           <Material DEF="nMaterial" emissiveColor="0.4 1 0.3"/>
+        </Shape>
+     </Transform>
+	<ColorInterpolator DEF="nColorInterpolator" key="0,1" keyValue="0.4 1 0.3, 0.1 0.1 0.8" />
+	<TimeSensor DEF="nTimeSensor" cycleInterval="5" loop="true"/>
+	<ROUTE fromField="fraction_changed" fromNode="nTimeSensor" toField="set_fraction" toNode="nColorInterpolator"/> 
+	<ROUTE fromField="value_changed" fromNode="nColorInterpolator" toField="set_emissiveColor" toNode="nMaterial"/>
+  </Scene>
+</X3D>

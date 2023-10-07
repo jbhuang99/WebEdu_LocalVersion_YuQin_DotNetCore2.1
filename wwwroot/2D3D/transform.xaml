@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Canvas
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"><!--根元素<Canvas>定义了一个布局系统，该布局系统是Canvas类别的布局系统。-->
+<Canvas>
+  <Rectangle Width="100" Height="100" Fill="Blue"><!--该<Rectangle>矩形元素的二维坐标系统已作如下变换。-->
+	<Rectangle.RenderTransform>
+	<TransformGroup>
+		<RotateTransform Angle="45" /><!--旋转变换，旋转45度-->
+		<ScaleTransform ScaleX="1" ScaleY="1"/><!--放缩变换，X、Y轴放缩都是1-->
+		<TranslateTransform X="200" Y="0"/><!--平移变换，X轴平移200像素-->
+		<SkewTransform/><!--扭曲变换，未作任何扭曲变换-->
+	</TransformGroup>
+	</Rectangle.RenderTransform>
+  </Rectangle>
+</Canvas >
+<Canvas>
+  <Rectangle Width="100" Height="100" Fill="Blue" /><!--该<Rectangle>矩形元素的二维坐标系统未作任何变换。-->
+</Canvas>
+</Canvas>

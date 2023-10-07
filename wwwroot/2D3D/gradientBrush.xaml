@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?><!--该代码行声明本文档是一个XML文档，文档编码是utf-8。-->
+<Grid
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Rectangle x:Name="rect1"  Width="150" Height="100" Grid.Column="1" Grid.Row="1">
+    <Rectangle.Fill>
+<!--下面的<LinearGradientBrush>元素定义一个线性渐变，线性渐变嵌套四个<GradientStop>元素定义了四个颜色驻点，线性渐变就是这四个驻点之间插值计算而成的。<GradientStop>元素的Offset属性定义颜色驻点的位置，Color属性定义颜色驻点的颜色-->
+        <LinearGradientBrush>
+            <GradientStop Offset="0" Color="LightBlue"/>
+            <GradientStop Offset="0.4" Color="Blue"/>
+            <GradientStop Offset="0.8" Color="Purple"/>
+            <GradientStop Offset="1.0" Color="Lavender"/>
+        </LinearGradientBrush>
+    </Rectangle.Fill>
+</Rectangle>
+</Grid>
+

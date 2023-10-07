@@ -1,0 +1,27 @@
+item{
+display:block;
+border:black double 2px;
+}
+
+problem{
+display:block;
+}
+
+content{
+display:block;
+}
+
+answers option{
+display:list-item;
+list-style-type: upper-alpha;
+}
+
+
+difficulty{
+display:none;
+}
+
+key{
+display:none;
+}
+

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"> 
+  <HyperlinkButton Content="多媒体技术"
+    NavigateUri="http://www.silverlight.net" TargetName="_blank" Margin="10,60,0,0"/><!--必须编译为XAP格式才能运行，可能是安全性问题-->
+</Grid>

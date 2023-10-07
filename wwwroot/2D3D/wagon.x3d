@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" "http://www.web3d.org/specifications/x3d-3.0.dtd">
+
+<X3D profile="Immersive" version="3.0">
+  <head>
+    <meta name="filename" content="wagon.x3d"/>
+    <meta name="author" content="Copyright 2004 Pinecoast Software"/>
+    <meta name="description" content="One wagon for toy train"/>
+  </head>
+  <Scene>
+    <ProtoDeclare name="Wagon">
+      <ProtoInterface/>
+      <ProtoBody>
+        <Transform>
+          <Shape DEF="Top">
+            <Appearance>
+              <Material/>
+            </Appearance>
+            <IndexedFaceSet colorIndex="0 1 1" coordIndex="0 5 6 7 8 9 4 3 2 1 -1 0 1 2 3 4 -1 9 8 7 6 5" colorPerVertex="false" convex="false">
+              <Color color="0.8 0.8 0.8, 1 1 0"/>
+              <Coordinate point="-35 15 8, -35 17 4, -35 18 0, -35 17 -4, -35 15 -8, 35 15 8, 35 17 4, 35 18 0, 35 17 -4, 
+          35 15 -8"/>
+            </IndexedFaceSet>
+          </Shape>
+          <Shape DEF="Sides">
+            <Appearance>
+              <ImageTexture url="wagonside.png"/>
+            </Appearance>
+            <IndexedFaceSet coordIndex="0 1 3 2 -1 5 4 6 7" texCoordIndex="0 1 2 3 -1 0 1 2 3">
+              <Coordinate point="-35 0 8, 35 0 8, -35 15 8, 35 15 8, -35 0 -8, 35 0 -8, -35 15 -8, 35 15 -8"/>
+              <TextureCoordinate point="0 0, 1 0, 1 1, 0 1"/>
+            </IndexedFaceSet>
+          </Shape>
+          <Shape DEF="Ends1">
+            <Appearance>
+              <ImageTexture url="wagonend.png"/>
+            </Appearance>
+            <IndexedFaceSet coordIndex="0 2 6 4 -1 1 5 7 3" texCoordIndex="1 2 3 0 -1 0 1 2 3">
+              <Coordinate point="-35 0 8, 35 0 8, -35 15 8, 35 15 8, -35 0 -8, 35 0 -8, -35 15 -8, 35 15 -8"/>
+              <TextureCoordinate point="0 0, 1 0, 1 1, 0 1"/>
+            </IndexedFaceSet>
+          </Shape>
+        </Transform>
+      </ProtoBody>
+    </ProtoDeclare>
+    <ProtoInstance name="Wagon"/>
+    <Viewpoint position="0 0 100"/>
+  </Scene>
+</X3D>

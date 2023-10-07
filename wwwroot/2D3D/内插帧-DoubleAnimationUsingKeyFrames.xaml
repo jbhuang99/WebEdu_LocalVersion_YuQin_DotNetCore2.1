@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Rectangle    x:Name="MyAnimatedRectangle"    Width="100"    Height="100"    Fill="Blue">
+    <Rectangle.Triggers>
+       <EventTrigger RoutedEvent="Rectangle.Loaded"><!--当<Rectangle>矩形装载时，就触发为该矩形定义的故事板/动画-->
+        <BeginStoryboard>
+          <Storyboard><!--XAML动画以<Storyboard>元素定义故事板，然后触发故事板而触发动画-->
+      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedRectangle"
+       Storyboard.TargetProperty="Opacity"  Duration="0:0:10" AutoReverse="True" RepeatBehavior="Forever" >
+<!-- 使用LinearDoubleKeyFrame, rectangle的不透明度3秒种期间从默认的1平滑地变化到0-->
+	<LinearDoubleKeyFrame Value="0" KeyTime="0:0:3" />
+ <!--使用DiscreteDoubleKeyFrame, rectangle的不透明度在第4秒时突然从0跳跃到1-->
+        <DiscreteDoubleKeyFrame Value="1" KeyTime="0:0:4" />
+ <!-- 使用SplineDoubleKeyFrame, rectangle 透明度按照样条曲线变化地改变不透明度 -->
+        <SplineDoubleKeyFrame KeySpline="0.6,0.0 0.9,0.00" Value="0" KeyTime="0:0:10" />
+       </DoubleAnimationUsingKeyFrames>
+          </Storyboard>
+        </BeginStoryboard>
+      </EventTrigger>
+    </Rectangle.Triggers>
+  </Rectangle>
+</Grid>

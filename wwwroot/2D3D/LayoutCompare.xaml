@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"><!--根元素<Canvas>定义了一个布局系统，该布局系统是Grid(网格)类别的布局系统。XAML文档尺寸是随浏览者屏幕分辨率、浏览器尺寸改变而改变的动态交互式定位机制。例如，如果XAML文件的根元素或布局根元素中不包含任何width(宽度)或height(高度)属性值声明(如在此的<Canvas>元素所示)，那么意味着文档的width(宽度)或height(高度)的属性值为默认的100%，即浏览器窗口尺寸是多少，XAML文档尺寸就是多少。-->
+  <Rectangle Width="100" Height="100" Fill="Blue" /><!--直接嵌套在Grid(网格)根布局系统中的<Rectangle>元素，将生成一个矩形-->
+<Canvas><!--直接嵌套在Grid(网格)根布局系统中的Canvas(画布)布局系统，是绝对定位特点的布局系统-->
+  <Rectangle Width="100" Height="100" Fill="Blue" /><!--嵌套在Canvas(画布)布局系统中的<Rectangle>元素，将生成一个矩形，绝对定位。-->
+</Canvas >
+<Grid ShowGridLines="True"><!--直接嵌套在Grid(网格)根布局系统中的Grid(网格)布局系统，将生成一个两行两列交叉而成四个单元格用于布局-->
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Button Height="25" Width="100" Grid.Column="0" Grid.Row="0"/><!--<Button>按扭元素放置在网格的0,0单元格中。网格使用从零开始的索引，因此该按扭出现在左上单元格中。-->
+    <Rectangle Fill="Red" Width="auto" Height="100" Grid.Column="1" Grid.Row="1"/><!--<Rectangle>矩形元素放置在网格的 1,1 单元格中。网格使用从零开始的索引，因此该矩形出现在右下单元格中。<Rectangle>矩形元素的Width(宽度)属性设置为auto，所以矩形的宽度也是随浏览器窗口尺寸的变化而自动变化的-->
+</Grid>
+
+</Grid>
+

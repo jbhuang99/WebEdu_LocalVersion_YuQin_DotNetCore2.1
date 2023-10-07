@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Canvas  
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"> 
+
+  <MediaElement x:Name="meeting_like_a_song_mp3" Source="meeting_like_a_song.mp3" /><!--通过<MediaElement>元素引用一个音频文件生成音频-->
+<MediaElement x:Name="sample_wmv" Width="200" Height="150" Source="sample.wmv" /><!--通过<MediaElement>元素引用一个视频文件生成视频-->
+
+</Canvas>
+

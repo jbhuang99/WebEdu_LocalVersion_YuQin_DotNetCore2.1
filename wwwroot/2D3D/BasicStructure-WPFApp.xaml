@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?><!--该代码行声明本文档是一个XML文档，文档编码是utf-8。-->
+<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="WpfApplication1.MainWindow"
+	x:Name="Window"
+	Title="MainWindow"
+	Width="640" Height="480">
+
+	<Grid x:Name="LayoutRoot">
+		<Ellipse Stroke="Black" Margin="200,160,272,166" Fill="#FF3F9818"/>
+	</Grid>
+</Window>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" 
+	"http://www.web3d.org/specifications/x3d-3.0.dtd">
+
+<X3D version="3.0">
+  <Scene>
+   	<Viewpoint position="0 0 10" orientation="0 0 1 0" description="front" /><!--命名为"front"的视点-->
+	<Viewpoint position="0 0 20" orientation="0 0 1 3.14" description="back" /><!--命名为"back"的视点-->
+    <Transform>
+      	<Shape>
+		<Sphere /><!--生成球体-->
+		<Appearance>
+		<ImageTexture url="wwwEdu.jpg" /><!--引用同路径下的JPG图像文件贴图-->
+		</Appearance>
+            	
+        </Shape>
+     </Transform>
+  </Scene>
+</X3D>

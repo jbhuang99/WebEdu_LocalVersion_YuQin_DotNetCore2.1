@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" 
+	"http://www.web3d.org/specifications/x3d-3.0.dtd">
+
+<X3D version="3.0">
+  <Scene>
+    <Transform><!--本行代码中的Transform是文档中的第一个Transform元素，是根坐标系-->
+      	<Shape>
+ 		<Cylinder radius="0.25" height="7"/><!--生成园柱体-->
+        </Shape>
+	   <Transform rotation="0 0 1 1.575"><!--本行代码中的Transform元素在其父元素（上一个Transform元素的坐标系基础上进行变换，平移了(3,0,0), 绕（0,0,1)轴即Z-轴旋转了1.575弧度（即约90度）-->
+      	<Shape>
+ 		<Cylinder radius="0.25" height="7"/><!--生成园柱体-->
+        </Shape>
+     </Transform>
+     </Transform>
+   </Scene>
+</X3D>

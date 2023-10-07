@@ -1,0 +1,1 @@
+document.write("这是一个JScript示例！");// document是一个IE对象，write()方法在文档中写一行文本

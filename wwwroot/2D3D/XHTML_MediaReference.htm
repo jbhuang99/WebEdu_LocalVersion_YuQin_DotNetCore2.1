@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Untitled 3</title>
+<style type="text/css">
+.style1 {
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<p class="style1">
+<!--下面<object>元素引用.wmv视频-->
+<object id="media1" type="video/x-ms-wmv" style="width: 300px; height: 400px">
+	<param name="filename" value="sample.wmv" />
+</object>
+<!--下面<object>元素引用.xaml或其压缩包.xap二维动画-->
+   		<object id="silverlightControl" data="data:application/x-silverlight," type="application/x-silverlight-2" width="300px" height="400px">
+			<param name="source" value="sample.xap"/>
+			<param name="onerror" value="onSilverlightError" />
+			<param name="background" value="white" />
+			<param name="minRuntimeVersion" value="3.0.40624.0" />
+			<param name="autoUpgrade" value="true" />
+			<param name="enableHtmlAccess" value="true" />
+			<a href="http://go.microsoft.com/fwlink/?LinkID=124807" style="text-decoration: none;">
+     			<img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight" style="border-style: none"/>
+			</a>
+		</object>
+
+<!--下面<object>元素引用.swf二维动画-->
+<object id="flash1" data="sample.swf" height="400px" type="application/x-shockwave-flash" width="300px">
+	<param name="movie" value="sample.swf" />
+</object>
+<!--下面<object>元素引用.x3d三维动画--> 
+<OBJECT 
+   classid="clsid:4B6E3013-6E45-11D0-9309-0020AFE05CC8"
+   codeBase="http://www.bitmanagement.com/download/BS_Contact/cab-xpi/BS_Contact_VRML-X3D.exe#Version=7,0,3,1" 
+   width="300px"
+   height="400px"
+   type="application/x-oleobject"
+ >
+    <PARAM NAME="SRC" VALUE="sample.x3d"/> 
+
+</OBJECT>
+</p>
+
+</body>
+
+</html>

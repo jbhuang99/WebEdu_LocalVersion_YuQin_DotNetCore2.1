@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?><!--该代码行声明本文档是一个XML文档，文档编码是utf-8。-->
+<Grid
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"><!--该语句声明和引用了XAML架构。根元素<Grid>定义了一个布局系统，该布局系统是Grid类别的布局系统，还可以是Canvas、StackPanel类别的布局系统。布局系统元素可以嵌套XAML元素而获得强大的二维图形动画应用-->
+ <Border Background="Coral" Width="300" Padding="10" CornerRadius="20">
+    <TextBlock FontSize="16">Text Surrounded by a Border</TextBlock>
+</Border>
+
+</Grid>
+

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" 
+  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="200" height="150" xmlns="http://www.w3.org/2000/svg">
+ <script type="text/ecmascript"> <![CDATA[
+    function circle_click() {
+      var currentRadius=document.getElementById("clickedCircle").getAttributeNode("r").nodeValue;
+      if (currentRadius==50)
+        document.getElementById("clickedCircle").getAttributeNode("r").nodeValue=currentRadius*2;
+      else
+        document.getElementById("clickedCircle").getAttributeNode("r").nodeValue=currentRadius*0.5;
+    }
+  ]]> </script>
+   <circle id="clickedCircle" onclick="circle_click()" cx="100" cy="70" r="50" style="fill:rgb(0,255,0)"/>
+  <text x="0" y="48" style="font-size:18">
+    单击圆改变它的大小
+  </text>
+</svg>

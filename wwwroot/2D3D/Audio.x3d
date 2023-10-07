@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" 
+	"http://www.web3d.org/specifications/x3d-3.0.dtd">
+
+<X3D version="3.0">
+  <Scene>
+    <Transform>
+      	<Shape>
+            <Sphere /><!--生成球体-->
+        </Shape>
+	<Sound>
+        <AudioClip url="sample.wav"/><!--引用同路径下的wav音频文件播放立体效果的声音-->
+	</Sound>
+     </Transform>
+  </Scene>
+</X3D>
