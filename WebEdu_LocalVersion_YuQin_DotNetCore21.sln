@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel-AI-LLM-Try",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bp", "..\Bp\Bp\Bp.csproj", "{1760572D-6FCE-4670-B0F5-46989E617DE5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat2KnowL.Console", "..\chat2KnowL-main\Chat2KnowL-Server\Chat2KnowL.Console\Chat2KnowL.Console.csproj", "{252451CC-E20B-4675-B943-7AC7863EB556}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -279,6 +281,18 @@ Global
 		{1760572D-6FCE-4670-B0F5-46989E617DE5}.Release|x64.Build.0 = Release|Any CPU
 		{1760572D-6FCE-4670-B0F5-46989E617DE5}.Release|x86.ActiveCfg = Release|Any CPU
 		{1760572D-6FCE-4670-B0F5-46989E617DE5}.Release|x86.Build.0 = Release|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Debug|x64.Build.0 = Debug|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Debug|x86.Build.0 = Debug|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Release|x64.ActiveCfg = Release|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Release|x64.Build.0 = Release|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Release|x86.ActiveCfg = Release|Any CPU
+		{252451CC-E20B-4675-B943-7AC7863EB556}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
