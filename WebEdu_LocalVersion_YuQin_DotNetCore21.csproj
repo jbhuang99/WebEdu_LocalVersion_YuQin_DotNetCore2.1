@@ -200,6 +200,10 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Include="Controllers\samples\TryBooleanTypeController.cs" />
     <Compile Include="Controllers\samples\TryClassPropertyMethod.cs" />
     <Compile Include="Controllers\samples\TryClass_Interface_Struct_Enum_Delegate_Attribute.cs" />
+    <Compile Include="Controllers\samples\TryCharactor.cs" />
+    <Compile Include="Controllers\samples\TryTechnologyInformationExtractionApplication.cs" />
+    <Compile Include="Controllers\samples\TryConstantΠ.cs" />
+    <Compile Include="Controllers\samples\TryConstantE.cs" />
     <Compile Include="Controllers\samples\TryCSFileBasicFramework.cs" />
     <Compile Include="Controllers\samples\TryGenicType.cs" />
     <Compile Include="Controllers\samples\TryIfElse.cs" />

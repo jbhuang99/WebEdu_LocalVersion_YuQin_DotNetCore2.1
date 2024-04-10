@@ -8,7 +8,7 @@ using ChangedMyNameSpace = MyNameSpace;
 
 namespace EDSS.Controllers //零个或多个namespace代码块，定义类型的名称空间。名称空间中，一个或多个class、interface等代码块，定义类型及其关系，这些类型可以实例化为对象运行，实现软件功能。
 {
-    public class TryCSFileBasicFrameworkController: Controller
+        public class TryCSFileBasicFrameworkController: Controller
     {
 
         public ContentResult Index()
@@ -17,7 +17,8 @@ namespace EDSS.Controllers //零个或多个namespace代码块，定义类型的
             ChangedMyNameSpace.MyClass myClass = new MyNameSpace.MyClass();
             myClass.Property1 = 1;
             myClass.Property2 = 2;
-            return this.Content(myClass.Mothod1().ToString());//从左往右
+            Object myObject=new Object();
+            return this.Content(myClass.Mothod1().ToString()+"黄景碧"+";"+ myObject.GetHashCode().ToString());//从左往右
         }   
     }
     public class ClassTryCSFileBasicFramework2Controller : Controller
