@@ -6,7 +6,7 @@
   <Scene>
     <Transform>
       	<Shape>
-            <Box /><!--生成立体体-->
+            <Box/><!--生成立体体-->
         </Shape>
      </Transform>
   </Scene>

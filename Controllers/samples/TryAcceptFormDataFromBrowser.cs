@@ -6,6 +6,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Office.Interop.Word;
 using Newtonsoft.Json;
 
 namespace EDSS.Controllers
@@ -15,7 +16,7 @@ namespace EDSS.Controllers
         #region //Web浏览器端未推送数据Web服务器端的情形
         public ContentResult IndexForRunAsHTMLInBrowser()
         {
-            return this.Content("<HTML><HEAD><TITLE>课文</TITLE></HEAD><BODY><div style='width:100%;height:100%;text-align:center;vertical-align:middle;'><span style='line-height: 400px;'>这是Web服务端创建返回给Web浏览器的文本<a href='/TryAcceptQueryStringGetMethodFromBrowser/Index?namevalue1=hjb&namevalue2=wsy'>超链接试验</a></span></div></BODY ></HTML>", "text/html", System.Text.Encoding.UTF8);//不知为什么，必须""嵌套''，否则提示“字符文本中字符太多”错误
+            return this.Content("<HTML><HEAD><TITLE>课文</TITLE></HEAD><BODY><div style='width:100%;height:100%;text-align:center;vertical-align:middle;'><span style='line-height: 400px;'>这是Web服务端创建返回给Web浏览器的文本<a href='http://www.jxnu.edu.cn/'>超链接试验</a></span></div></BODY ></HTML>", "text/html", System.Text.Encoding.UTF8);//不知为什么，必须""嵌套''，否则提示“字符文本中字符太多”错误
         }
         public ContentResult IndexForRunAsPlainTextInBrowser()
         {
@@ -80,8 +81,34 @@ namespace EDSS.Controllers
         public ActionResult IndexForSVGInBrowser()
 
         {
-            String myString = "<svg><circle r='100'/></svg>";
-            return Content(myString, "text/svg");
+            //String myString = "<svg><circle r='100'/></svg>";
+            String myString = @"<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+                            <circle cx='50' cy='50' r='40' stroke='black' stroke-width='2' fill='green' />
+                          </svg>";
+            //  return Content(myString, "text/svg"); "image/svg+xml"
+            return Content(myString, "image/svg+xml"); 
+
+        }
+
+        public ActionResult IndexForX3DInBrowser()
+
+        {
+            String myString = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+<!DOCTYPE X3D PUBLIC ""ISO//Web3D//DTD X3D 3.0//EN"" 
+	""http://www.web3d.org/specifications/x3d-3.0.dtd"">
+
+<X3D version=""3.0"">
+  <Scene>
+    <Transform>
+      	<Shape>
+            <Box/><!--生成立体体-->
+        </Shape>
+     </Transform>
+  </Scene>
+</X3D>
+"
+                ;
+                 return Content(myString, "image/x3d+xml");
 
         }
         public ActionResult IndexForBase64InBrowser()
