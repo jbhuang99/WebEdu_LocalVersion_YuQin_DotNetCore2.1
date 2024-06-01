@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 namespace EDSS.csontrollers
 {
-public class TryControllerController:Controller
+public class TryController:Controller
 {
     public ViewResult TryView()
     {
