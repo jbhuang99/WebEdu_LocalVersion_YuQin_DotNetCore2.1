@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>教与学_本机版_YuQin_DotNetCore21</AssemblyName>
     <ApplicationIcon>渔琴.ico</ApplicationIcon>
     <Description>本软件属于B/S模式的软件（“浏览器”/“服务器”模式的软件）。不过，“浏览器”、“服务器”都位于本机之中，而不是分布于不同的机器之中（注：本软件需要本机已安装“浏览器”，但不需要本机已安装“服务器”。也就是说，“浏览器”是本机现有的，而“服务器”是本软件所提供的、无需事先安装的、可以移动运行的）。
@@ -34,7 +34,12 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\samples\**" />
+    <Compile Remove="Controllers\RESTless\Identity\**" />
+    <Compile Remove="Controllers\RESTless\samples\**" />
+    <Compile Remove="Models\DataForIdentity\**" />
+    <Compile Remove="Models\ExtensionsForIdentity\**" />
+    <Compile Remove="Models\Identity\**" />
+    <Compile Remove="Models\ServicesForIdentity\**" />
     <Compile Remove="StudyHardDayDayUp\**" />
     <Compile Remove="wwwroot\webCourse\common\File_Transfer\**" />
     <Compile Remove="wwwroot\webCourse\common\Templates\WholeCourse\**" />
@@ -66,7 +71,12 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="wwwroot\webCourse\lessons\teachingPlan_origin\**" />
     <Compile Remove="wwwroot\webCourse\lessons\teachingPlan_origin_foreign\**" />
     <Compile Remove="wwwroot\webCourse\lessons\webCourseCommon\**" />
-    <Content Remove="Controllers\samples\**" />
+    <Content Remove="Controllers\RESTless\Identity\**" />
+    <Content Remove="Controllers\RESTless\samples\**" />
+    <Content Remove="Models\DataForIdentity\**" />
+    <Content Remove="Models\ExtensionsForIdentity\**" />
+    <Content Remove="Models\Identity\**" />
+    <Content Remove="Models\ServicesForIdentity\**" />
     <Content Remove="StudyHardDayDayUp\**" />
     <Content Remove="wwwroot\webCourse\common\File_Transfer\**" />
     <Content Remove="wwwroot\webCourse\common\Templates\WholeCourse\**" />
@@ -98,7 +108,12 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="wwwroot\webCourse\lessons\teachingPlan_origin\**" />
     <Content Remove="wwwroot\webCourse\lessons\teachingPlan_origin_foreign\**" />
     <Content Remove="wwwroot\webCourse\lessons\webCourseCommon\**" />
-    <EmbeddedResource Remove="Controllers\samples\**" />
+    <EmbeddedResource Remove="Controllers\RESTless\Identity\**" />
+    <EmbeddedResource Remove="Controllers\RESTless\samples\**" />
+    <EmbeddedResource Remove="Models\DataForIdentity\**" />
+    <EmbeddedResource Remove="Models\ExtensionsForIdentity\**" />
+    <EmbeddedResource Remove="Models\Identity\**" />
+    <EmbeddedResource Remove="Models\ServicesForIdentity\**" />
     <EmbeddedResource Remove="StudyHardDayDayUp\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\common\File_Transfer\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\common\Templates\WholeCourse\**" />
@@ -130,7 +145,12 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\teachingPlan_origin\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\teachingPlan_origin_foreign\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\webCourseCommon\**" />
-    <None Remove="Controllers\samples\**" />
+    <None Remove="Controllers\RESTless\Identity\**" />
+    <None Remove="Controllers\RESTless\samples\**" />
+    <None Remove="Models\DataForIdentity\**" />
+    <None Remove="Models\ExtensionsForIdentity\**" />
+    <None Remove="Models\Identity\**" />
+    <None Remove="Models\ServicesForIdentity\**" />
     <None Remove="StudyHardDayDayUp\**" />
     <None Remove="wwwroot\webCourse\common\File_Transfer\**" />
     <None Remove="wwwroot\webCourse\common\Templates\WholeCourse\**" />
@@ -196,44 +216,45 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Controllers\samples\AbstractClassController.cs" />
-    <Compile Include="Controllers\samples\TryBooleanTypeController.cs" />
-    <Compile Include="Controllers\samples\TryClassPropertyMethod.cs" />
-    <Compile Include="Controllers\samples\TryClass_Interface_Struct_Enum_Delegate_Attribute.cs" />
-    <Compile Include="Controllers\samples\TryString.cs" />
-    <Compile Include="Controllers\samples\TryTechnologyInformationExtractionApplication.cs" />
-    <Compile Include="Controllers\samples\TryConstantΠ.cs" />
-    <Compile Include="Controllers\samples\TryConstantE.cs" />
-    <Compile Include="Controllers\samples\TryCSFileBasicFramework.cs" />
-    <Compile Include="Controllers\samples\TryGenicType.cs" />
-    <Compile Include="Controllers\samples\TryIfElse.cs" />
-    <Compile Include="Controllers\samples\TryLinearStructureByCustomClass.cs" />
-    <Compile Include="Controllers\samples\TryLinearStructureByNonCustomClass.cs" />
-    <Compile Include="Controllers\samples\TryLoop_DoWhile.cs" />
-    <Compile Include="Controllers\samples\TryLoop_For.cs" />
-    <Compile Include="Controllers\samples\TryLoop_ForEach.cs" />
-    <Compile Include="Controllers\samples\TryLoop_While.cs" />
-    <Compile Include="Controllers\samples\TryAcceptFormDataFromBrowser.cs" />
-    <Compile Include="Controllers\samples\TryNetworkStructureByCustomClass.cs" />
-    <Compile Include="Controllers\samples\TryRegExpression.cs" />
-    <Compile Include="Controllers\samples\TrySwitch.cs" />
-    <Compile Include="Controllers\samples\TrySystemDotObject.cs" />
-    <Compile Include="Controllers\samples\TryTreeStructureByCustomClass.cs" />
-    <Compile Include="Controllers\samples\TryTreeStructureByNonCustomClass.cs" />
+    <Compile Include="Controllers\RESTless\samples\AbstractClassController.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryAcceptFormDataFromBrowser.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryBooleanTypeController.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryClassPropertyMethod.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryClass_Interface_Struct_Enum_Delegate_Attribute.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryConstantE.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryConstantΠ.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryControllerController.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryCSFileBasicFramework.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryGenicType.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryIfElse.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryLinearStructureByCustomClass.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryLinearStructureByNonCustomClass.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryLoop_DoWhile.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryLoop_For.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryLoop_ForEach.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryLoop_While.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryNetworkStructureByCustomClass.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryRegExpression.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryString.cs" />
+    <Compile Include="Controllers\RESTless\samples\TrySwitch.cs" />
+    <Compile Include="Controllers\RESTless\samples\TrySystemDotObject.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryTechnologyInformationExtractionApplication.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryTreeStructureByCustomClass.cs" />
+    <Compile Include="Controllers\RESTless\samples\TryTreeStructureByNonCustomClass.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Bundle.Microsoft.Office.Interop" Version="15.0.4569" />
-    <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.6.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Models\Identity\" />
-    <Folder Include="DatabaseForPortable\" />
+    <Folder Include="Controllers\RESTful\" />
+    <Folder Include="Models\DatabaseForPortable\" />
     <Folder Include="wwwroot\webCourse\lessons\content\HomeworkAndTest\" />
     <Folder Include="wwwroot\webCourse\lessons\content\TeachingEngineering\" />
     <Folder Include="wwwroot\webCourse\lessons\content\TeachingVideo\" />
