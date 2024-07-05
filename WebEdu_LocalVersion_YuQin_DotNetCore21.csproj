@@ -34,13 +34,17 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\**" />
     <Compile Remove="Controllers\RESTless\Identity\**" />
     <Compile Remove="Controllers\RESTless\samples\**" />
+    <Compile Remove="Models\DatabaseForPortable\**" />
     <Compile Remove="Models\DataForIdentity\**" />
     <Compile Remove="Models\ExtensionsForIdentity\**" />
     <Compile Remove="Models\Identity\**" />
     <Compile Remove="Models\ServicesForIdentity\**" />
     <Compile Remove="StudyHardDayDayUp\**" />
+    <Compile Remove="Views\BroweringOfTextbook\**" />
+    <Compile Remove="wwwroot\Identity\**" />
     <Compile Remove="wwwroot\webCourse\common\File_Transfer\**" />
     <Compile Remove="wwwroot\webCourse\common\Templates\WholeCourse\**" />
     <Compile Remove="wwwroot\webCourse\lessons\book-待删除\**" />
@@ -71,13 +75,17 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="wwwroot\webCourse\lessons\teachingPlan_origin\**" />
     <Compile Remove="wwwroot\webCourse\lessons\teachingPlan_origin_foreign\**" />
     <Compile Remove="wwwroot\webCourse\lessons\webCourseCommon\**" />
+    <Content Remove="Areas\Admin\**" />
     <Content Remove="Controllers\RESTless\Identity\**" />
     <Content Remove="Controllers\RESTless\samples\**" />
+    <Content Remove="Models\DatabaseForPortable\**" />
     <Content Remove="Models\DataForIdentity\**" />
     <Content Remove="Models\ExtensionsForIdentity\**" />
     <Content Remove="Models\Identity\**" />
     <Content Remove="Models\ServicesForIdentity\**" />
     <Content Remove="StudyHardDayDayUp\**" />
+    <Content Remove="Views\BroweringOfTextbook\**" />
+    <Content Remove="wwwroot\Identity\**" />
     <Content Remove="wwwroot\webCourse\common\File_Transfer\**" />
     <Content Remove="wwwroot\webCourse\common\Templates\WholeCourse\**" />
     <Content Remove="wwwroot\webCourse\lessons\book-待删除\**" />
@@ -108,13 +116,17 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="wwwroot\webCourse\lessons\teachingPlan_origin\**" />
     <Content Remove="wwwroot\webCourse\lessons\teachingPlan_origin_foreign\**" />
     <Content Remove="wwwroot\webCourse\lessons\webCourseCommon\**" />
+    <EmbeddedResource Remove="Areas\Admin\**" />
     <EmbeddedResource Remove="Controllers\RESTless\Identity\**" />
     <EmbeddedResource Remove="Controllers\RESTless\samples\**" />
+    <EmbeddedResource Remove="Models\DatabaseForPortable\**" />
     <EmbeddedResource Remove="Models\DataForIdentity\**" />
     <EmbeddedResource Remove="Models\ExtensionsForIdentity\**" />
     <EmbeddedResource Remove="Models\Identity\**" />
     <EmbeddedResource Remove="Models\ServicesForIdentity\**" />
     <EmbeddedResource Remove="StudyHardDayDayUp\**" />
+    <EmbeddedResource Remove="Views\BroweringOfTextbook\**" />
+    <EmbeddedResource Remove="wwwroot\Identity\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\common\File_Transfer\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\common\Templates\WholeCourse\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\book-待删除\**" />
@@ -145,13 +157,17 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\teachingPlan_origin\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\teachingPlan_origin_foreign\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\webCourseCommon\**" />
+    <None Remove="Areas\Admin\**" />
     <None Remove="Controllers\RESTless\Identity\**" />
     <None Remove="Controllers\RESTless\samples\**" />
+    <None Remove="Models\DatabaseForPortable\**" />
     <None Remove="Models\DataForIdentity\**" />
     <None Remove="Models\ExtensionsForIdentity\**" />
     <None Remove="Models\Identity\**" />
     <None Remove="Models\ServicesForIdentity\**" />
     <None Remove="StudyHardDayDayUp\**" />
+    <None Remove="Views\BroweringOfTextbook\**" />
+    <None Remove="wwwroot\Identity\**" />
     <None Remove="wwwroot\webCourse\common\File_Transfer\**" />
     <None Remove="wwwroot\webCourse\common\Templates\WholeCourse\**" />
     <None Remove="wwwroot\webCourse\lessons\book-待删除\**" />
@@ -185,8 +201,12 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\BroweringOfTextbookController.cs" />
     <Compile Remove="Controllers\Interop_CSInteropCPPCOMTry.cs" />
     <Compile Remove="Controllers\Interop_CSInteropCPPDLLTry.cs" />
+    <Compile Remove="Models\BroweringOfTextbook.cs" />
+    <Compile Remove="Models\BroweringOfTextbookDbContext.cs" />
+    <Compile Remove="Models\BroweringOfTextbookSeedData.cs" />
     <Compile Remove="Models\MovieDateFixed.cs" />
     <Compile Remove="Models\MovieDateRating.cs" />
     <Compile Remove="Program  - Copy.cs" />
@@ -245,16 +265,22 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
 
   <ItemGroup>
     <PackageReference Include="Bundle.Microsoft.Office.Interop" Version="15.0.4569" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.6.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Controllers\RESTful\" />
-    <Folder Include="Models\DatabaseForPortable\" />
     <Folder Include="wwwroot\webCourse\lessons\content\HomeworkAndTest\" />
     <Folder Include="wwwroot\webCourse\lessons\content\TeachingEngineering\" />
     <Folder Include="wwwroot\webCourse\lessons\content\TeachingVideo\" />
@@ -262,51 +288,12 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\BroweringOfTextbook\Create.cshtml" />
-    <None Include="Views\BroweringOfTextbook\Delete.cshtml" />
-    <None Include="Views\BroweringOfTextbook\Details.cshtml" />
-    <None Include="Views\BroweringOfTextbook\Edit.cshtml" />
-    <None Include="Views\BroweringOfTextbook\Index.cshtml" />
-    <None Include="wwwroot\Identity\js\site.js" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-utilities.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap.min.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap.rtl.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.bundle.js" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.esm.js" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.esm.js.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.esm.min.js" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.esm.min.js.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.js" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.js.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.min.js" />
-    <None Include="wwwroot\Identity\lib\bootstrap\dist\js\bootstrap.min.js.map" />
-    <None Include="wwwroot\Identity\lib\bootstrap\LICENSE" />
-    <None Include="wwwroot\Identity\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
-    <None Include="wwwroot\Identity\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
-    <None Include="wwwroot\Identity\lib\jquery-validation\dist\additional-methods.js" />
-    <None Include="wwwroot\Identity\lib\jquery-validation\dist\additional-methods.min.js" />
-    <None Include="wwwroot\Identity\lib\jquery-validation\dist\jquery.validate.js" />
-    <None Include="wwwroot\Identity\lib\jquery-validation\dist\jquery.validate.min.js" />
-    <None Include="wwwroot\Identity\lib\jquery-validation\LICENSE.md" />
-    <None Include="wwwroot\Identity\lib\jquery\dist\jquery.js" />
-    <None Include="wwwroot\Identity\lib\jquery\dist\jquery.min.js" />
-    <None Include="wwwroot\Identity\lib\jquery\dist\jquery.min.map" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="wwwroot\webCourse\common\script\SignalR\signalr.js" />
     <None Include="wwwroot\webCourse\common\script\SignalR\signalr.min.js" />
   </ItemGroup>
