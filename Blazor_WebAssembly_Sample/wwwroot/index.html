@@ -1,0 +1,71 @@
+<!--
+wwwroot folder: The Web Root folder for the app containing the app's public static assets, including appsettings.json and environmental app settings files for configuration settings and sample weather data (sample-data/weather.json).
+-->
+<!--
+When any page of the app is initially requested, this page is rendered and returned in the response.
+The page specifies where the root App component is rendered. The component is rendered at the location of the div DOM element with an id of app (<div id="app">Loading...</div>).
+-->
+<!--
+ static files
+For the location of <head> content where static file links are placed, see ASP.NET Core Blazor project structure. Static asset links can also be supplied using <HeadContent> components in individual Razor components.
+    By default, publishing the app places the app's static assets, including Blazor framework files (_framework folder assets), at the root path (/) in published output. The <StaticWebAssetBasePath> property specified in the project file (.csproj) sets the base path to a non-root path:
+
+XML
+
+Copy
+<PropertyGroup>
+  <StaticWebAssetBasePath>{PATH}</StaticWebAssetBasePath>
+</PropertyGroup>
+In the preceding example, the {PATH} placeholder is the path.
+
+Without setting the <StaticWebAssetBasePath> property, a standalone app is published at /BlazorStandaloneSample/bin/Release/{TFM}/publish/wwwroot/.
+
+In the preceding example, the {TFM} placeholder is the Target Framework Moniker (TFM) (for example, net6.0).
+
+If the <StaticWebAssetBasePath> property in a standalone Blazor WebAssembly app sets the published static asset path to app1, the root path to the app in published output is /app1.
+
+In the standalone Blazor WebAssembly app's project file (.csproj):
+
+XML
+
+Copy
+<PropertyGroup>
+  <StaticWebAssetBasePath>app1</StaticWebAssetBasePath>
+</PropertyGroup>
+In published output, the path to the standalone Blazor WebAssembly app is /BlazorStandaloneSample/bin/Release/{TFM}/publish/wwwroot/app1/.
+
+In the preceding example, the {TFM} placeholder is the Target Framework Moniker (TFM) (for example, net6.0).
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blazor_WebAssembly_Sample</title>
+    <base href="/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="Blazor_WebAssembly_Sample.styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <!-- the Blazor script content-->
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>
