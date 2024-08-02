@@ -49,6 +49,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedCS", "SharedCS\Shared
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedRazorCS", "SharedRazorClassLibrary\SharedRazorCS.csproj", "{2C2152E7-5F24-4AB7-8A4E-E92CBB080BAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor_WebAssembly_PWA_Sample", "Blazor_WebAssembly_PWA_Sample\Blazor_WebAssembly_PWA_Sample.csproj", "{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -335,6 +337,18 @@ Global
 		{2C2152E7-5F24-4AB7-8A4E-E92CBB080BAD}.Release|x64.Build.0 = Release|Any CPU
 		{2C2152E7-5F24-4AB7-8A4E-E92CBB080BAD}.Release|x86.ActiveCfg = Release|Any CPU
 		{2C2152E7-5F24-4AB7-8A4E-E92CBB080BAD}.Release|x86.Build.0 = Release|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Debug|x64.Build.0 = Debug|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Debug|x86.Build.0 = Debug|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Release|x64.ActiveCfg = Release|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Release|x64.Build.0 = Release|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Release|x86.ActiveCfg = Release|Any CPU
+		{3462CEFB-AA48-46D4-A7D8-BAA2DD775766}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
