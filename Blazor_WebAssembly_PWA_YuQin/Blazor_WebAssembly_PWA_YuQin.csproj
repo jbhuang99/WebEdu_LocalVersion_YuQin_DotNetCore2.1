@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SharedRazor\**" />
+    <Content Remove="SharedRazor\**" />
+    <EmbeddedResource Remove="SharedRazor\**" />
+    <None Remove="SharedRazor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Pages\ModelsForPages\Student.cs" />
   </ItemGroup>
 
@@ -51,7 +58,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SharedRazor\" />
     <Folder Include="Pages\QuickGrid\DataSources\" />
   </ItemGroup>
 
