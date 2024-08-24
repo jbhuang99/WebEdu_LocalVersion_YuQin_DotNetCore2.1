@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?><!--该代码行声明本文档是一个XML文档，文档编码是utf-8。-->
+<Grid
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Ellipse x:Name="Ellipse1"  Width="120" Height="80" Grid.Column="1" Grid.Row="1" Opacity="0.3"><!--Opacity="0.3"定义不透明度为0.3，根据具体情形，也可#符号后紧跟2位十六进制的不透明度数值+6位十六进制的颜色数值来表示。如：Fill="#FF0D5C88"-->
+    <Ellipse.Fill>
+         <ImageBrush ImageSource="Eagle.jpg" Stretch="Fill" /><!--引用外部的Eagle.jpg图像文件填涂椭圆的填充部分-->
+    </Ellipse.Fill>
+</Ellipse>
+</Grid>
+

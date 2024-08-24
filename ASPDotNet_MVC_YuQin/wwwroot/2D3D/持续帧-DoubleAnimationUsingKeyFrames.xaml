@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Rectangle    x:Name="MyAnimatedRectangle"  Width="100"  Height="100"  Fill="Blue">
+    <Rectangle.Triggers>
+       <EventTrigger RoutedEvent="Rectangle.Loaded"><!--当<Rectangle>矩形装载时，就触发为该矩形定义的故事板/动画-->
+        <BeginStoryboard>
+          <Storyboard><!--XAML动画以<Storyboard>元素定义故事板，然后触发故事板而触发动画-->
+  <ObjectAnimationUsingKeyFrames
+         Storyboard.TargetName="MyAnimatedRectangle"       Storyboard.TargetProperty="Fill"
+         Duration="0:0:4" RepeatBehavior="Forever">
+                <ObjectAnimationUsingKeyFrames.KeyFrames>
+
+                    <!--使用DiscreteObjectKeyFrame (离散插值) ，此时矩形的填充是持续2秒之后突然变换(不内插值)为LinearGradientBrush的。ObjectAnimationUsingKeyFrames可用来动画赋对象值(非数值值)这些无法进行内插值的属性，本动画持续 4 秒种，使用了3 个关键帧，间隔相同地变换画笔对象 -->
+                    <DiscreteObjectKeyFrame KeyTime="0:0:2">
+                        <DiscreteObjectKeyFrame.Value>
+                            <LinearGradientBrush>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="Yellow" Offset="0.0" />
+                                    <GradientStop Color="Orange" Offset="0.5" />
+                                    <GradientStop Color="Red" Offset="1.0" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+
+                    <!-- 持续到第3秒之后，填充又突然变换为另一种 LinearGradientBrush持续到动画最后（总共4秒） -->
+                    <DiscreteObjectKeyFrame KeyTime="0:0:3">
+                        <DiscreteObjectKeyFrame.Value>
+                            <RadialGradientBrush GradientOrigin="0.75,0.25">
+                                <RadialGradientBrush.GradientStops>
+                                    <GradientStop Color="White" Offset="0.0" />
+                                    <GradientStop Color="MediumBlue" Offset="0.5" />
+                                    <GradientStop Color="Black" Offset="1.0" />
+                                </RadialGradientBrush.GradientStops>
+                            </RadialGradientBrush>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+
+                </ObjectAnimationUsingKeyFrames.KeyFrames>
+            </ObjectAnimationUsingKeyFrames>
+
+
+          </Storyboard>
+        </BeginStoryboard>
+      </EventTrigger>
+    </Rectangle.Triggers>
+  </Rectangle>
+</Grid>

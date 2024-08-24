@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" 
+	"http://www.web3d.org/specifications/x3d-3.0.dtd">
+
+<X3D version="3.0">
+  <Scene>
+    <Transform>
+      	<Shape><!--定义一个平面正方形-->
+            <IndexedLineSet coordIndex="0 1 -1,0 2 -1,0 3 -1,0 4 -1,1 2 -1,1 3 -1,1 4 -1,2 3 -1,3 4 -1, 4 2 -1" >
+		<Coordinate DEF="CH4_coord" point="0 0 0, 0 4 0,0 -1.33 -3.77,-3.26 -1.33 1.88,3.26 -1.33 1.88" />
+	    </IndexedLineSet>
+        </Shape>
+     </Transform>
+	<!--下面的代码定义时间传感器和坐标插值器，以获得平面正方形变化为正四面体的动画效果。-->
+ 	<CoordinateInterpolator DEF="coordInterp_CH4_morph" key="0, .2, .8, 1" keyValue="0 0 0,-4 4 0,4 4 0,-4 -4 0,4 -4 0,0 0 0,-4 4 0,4 4 0,-4 -4 0,4 -4 0,0 0 0, 0 4 0,0 -1.33 -3.77,-3.26 -1.33 1.88,3.26 -1.33 1.88,0 0 0, 0 4 0,0 -1.33 -3.77,-3.26 -1.33 1.88,3.26 -1.33 1.88" /><!--定义坐标插值器-->
+	<TimeSensor DEF="timeSensor_CH4_morph" cycleInterval="10" loop="true"/><!--定义时间传感器-->
+	<ROUTE fromField="fraction_changed" fromNode="timeSensor_CH4_morph" toField="set_fraction" toNode="coordInterp_CH4_morph"/>   <!--定义一个传送，将"timeSensor_CH4_morph"名称的时间传感器的时间插值传送给"coordInterp_CH4_morph"名称的插值器-->
+	<ROUTE fromField="value_changed" fromNode="coordInterp_CH4_morph" toField="set_point" toNode="CH4_coord"/><!--定义一个传送，将"coordInterp_CH4_morph"名称的插值器的插值结果传送给"CH4_coord"名称的几何体-->	
+  </Scene>
+</X3D>

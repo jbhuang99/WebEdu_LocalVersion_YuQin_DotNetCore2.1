@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"><svg>
+	<defs>
+		<radialGradient id="black-white" cx="50%" cy="50%" r="16.6667%" fx="50%" fy="50%" spreadMethod="repeat" gradientUnits="objectBoundingBox">
+			<stop offset="0%" style="stop-color:rgb(0,0,0);stop-opacity:1"/>
+			<stop offset="100%" style="stop-color:rgb(255,255,255);stop-opacity:1"/>
+		</radialGradient>
+	</defs>
+	<g>
+	<ellipse cx="97" cy="81" rx="44" ry="44"
+		 style="fill:rgb(255,0,0);stroke:rgb(0,0,128);stroke-width:1">
+	<animate attributeName="fill" attributeType="XML" from="rgb(255,0,0)"
+ to="rgb(0,0,255)"  begin="0s" dur="5s" repeatCount="indefinite"/>
+	</ellipse>
+	</g>
+<animateTransform attributeName="transform"  type="rotate" from="0 97 81" to="360 97 81" repeatCount="indefinite" begin="0s" dur="5s" fill="freeze" />
+	</g>
+</svg>

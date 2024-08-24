@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" 
+	"http://www.web3d.org/specifications/x3d-3.0.dtd">
+
+<X3D version="3.0">
+  <Scene>
+    <Transform>
+      	<Shape>
+		<Sphere /><!--生成球体-->
+		<Appearance>
+		<ImageTexture url="wwwEdu.jpg" /><!--引用同路径下的JPG图像文件贴图-->
+		<TextureTransform rotation="0.75" /><!--贴图坐标变换-->
+		</Appearance>
+            	
+        </Shape>
+     </Transform>
+  </Scene>
+</X3D>

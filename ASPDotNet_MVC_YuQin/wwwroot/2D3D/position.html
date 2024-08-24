@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="zh-cn" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>流式定位、绝对定位、相对定位比较</title>
+<style type="text/css">
+.style1 {
+	border-style: solid;
+	border-width: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<table class="style1" style="width: 100%; height: 48px">
+	<tr>
+		<td rowspan="2">该表格（表格1）中的文本是流式定位的文本,将随用户浏览器窗口尺寸的变化而自动流布 。不会与其他元素重叠。</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+<table class="style1" style="width: 800px; height: 48px; position: relative">
+	<tr>
+		<td rowspan="2">
+		该表格（表格3）中的文本是相对定位的文本，宽度(widthCSS属性值）已设置为800像素，超过800像素后的文本将自动流布，800像素以内的文本将随用户浏览器窗口尺寸的变化而裁切显示，通过滚动栏可查看到被裁切的部分。不会与其他元素重叠。</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+<table class="style1" style="width: 800px; height: 48px; position: absolute; top: 50px; left: 100px">
+	<tr>
+		<td rowspan="2">
+		该表格（表格2）中的文本是绝对定位的文本，宽度(widthCSS属性值）已设置为800像素。绝对定位后元素的位置已固定，不会随用户浏览器窗口尺寸的变化而流布，可能与其他元素重叠。</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

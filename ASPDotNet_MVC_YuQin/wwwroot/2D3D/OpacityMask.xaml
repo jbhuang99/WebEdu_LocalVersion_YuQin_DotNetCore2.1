@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Canvas  
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"> 
+
+  <Image Source="Eagle.jpg" Width="200" Height="150"><!--引用一个图像文件生成图像-->
+<!--下面的<Image.OpacityMask>特性元素创建了一个含有三个驻点的渐变色RadialGradientBrush，，用来屏蔽图像而获得透明度效果。这三个渐变驻点指定具有变化透明度的画笔，然后应用于<Image>元素引用的图像，这样，图像将使用径向梯度在椭圆边缘淡出到为零的不透明度，获得了通常方法难以获得的不透明度效果。-->
+    <Image.OpacityMask>
+      <RadialGradientBrush Center="0.5,0.5">
+        <!-- 下面渐变驻点部分透明 -->
+        <GradientStop Color="#00000000" Offset="1" />
+        <!-- 下面渐变驻点部分透明 -->
+        <GradientStop Color="#20000000" Offset="0.8" />
+        <!-- 下面渐变驻点完全不透明 -->
+        <GradientStop Color="#FF000000" Offset="0" />
+      </RadialGradientBrush>
+    </Image.OpacityMask>
+  </Image> 
+</Canvas>
+

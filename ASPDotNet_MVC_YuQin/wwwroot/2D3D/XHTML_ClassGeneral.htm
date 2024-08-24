@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+      "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>示例</title>
+<style type="text/css">
+*.size{		<!--通用类方式定义的CSS样式。*表示选择器是通配的，这时XHTML文档应用样式时，只要求XHTML文档中元素的class特性与类匹配-->
+font-size:30;
+}
+</style>
+</head>
+<body>
+<table  style="border-width:1px;border-style:solid;width:100%">
+  <tr>
+    <td style="border-width:1px;border-style:solid;width:100%">
+    <p class="size">下面可用作元素定界符的字符是：</p>		<!--只要类匹配的元素就可应用通用类方式定义的CSS样式-->
+    <ol>
+      <li>&lt;</li>
+      <li>@</li>
+      <li>$</li>
+      <li class="size">?</li>	<!--只要类匹配的元素就可应用通用类方式定义的CSS样式-->
+    </ol>
+    <p>难度系数：0.5</p>
+    <p>1</p>
+    <p>可用于元素定界符的是&lt;和&gt;。</p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

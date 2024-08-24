@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+      "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>表单元素示例</title>
+</head>
+<body>
+ <form method="post" action="quizForm.asp">		<!-- <form>是一个表单元素，一个表单中的内容作为一个整体提交给服务器端程序。method特性指定表单数据以post方法提交，post是提交大量数据的常用方法;action特性指定服务器端接受客户端表单所提交的数据的文件是quizForm.asp，该文件接受表单提交的数据后可进行处理，处理机制参看4.3 -->
+<p>1.下面可用作元素定界符的字符是：</p>
+<p>
+	<input type="radio" value="V5" name="R1">&lt;</input>
+    <input type="radio" value="V6" name="R1">@</input>
+    <input type="radio" value="V7" name="R1">$</input>
+    <input type="radio" value="V8" name="R1">?</input>	<!--<input>是表单域元素，其type属性可以分别赋值submit（提交按钮）,reset（重置按钮）,button（普通按钮）,checkbox（复选框）,radio（单选按钮）,text（文本框）,file（文件上载按钮）,password（口令框）。-->
+</p>
+<p> 2.下面可用于字符引用的字符是：</p>
+<p> <select size="1" name="D1">
+      <option>请选择</option>
+      <option>&amp;</option>
+      <option>)</option>
+      <option>!</option>
+      <option>)</option>
+      </select> </p>
+<p>欢迎你对网络测试发表观点：</p>
+<p><textarea rows="3" name="S1" cols="20">你对网络测试的观点是：</textarea></p>
+<p>
+<input type="submit" value="交卷" name="B1">	<!--提交整个表单中各表单域数据给服务器端的按钮-->
+<input type="reset" value="重做" name="B2">		<!--将整个表单中各表单域的值恢复为初始值的按钮-->
+</p>      
+</form>
+</body>
+</html>

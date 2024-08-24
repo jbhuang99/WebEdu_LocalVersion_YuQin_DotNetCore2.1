@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg>
+<ellipse cx="100.5" cy="78.5" rx="57.5" ry="36.5" style="fill:rgb(202,255,195)；stroke:rgb(0,0,128)；stroke-width:1">
+<animate  attributeName="fill" begin="0s" dur="3s" fill="freeze" 
+calcMode="linear" from="rgb(202,255,195)" to="rgb(152,44,54)" repeatCount="indefinite">
+</animate>
+</ellipse>
+</svg>

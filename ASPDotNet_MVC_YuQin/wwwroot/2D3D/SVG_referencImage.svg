@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="200" height="150">
+<image x="80" y="80" width="160" height="120"
+xlink:href="art.jpg"/>
+</svg>

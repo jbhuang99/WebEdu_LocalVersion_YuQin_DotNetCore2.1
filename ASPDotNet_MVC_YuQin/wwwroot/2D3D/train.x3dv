@@ -1,0 +1,59 @@
+#X3D V3.0 utf8
+PROFILE Immersive
+
+META "filename" "train.x3d"
+META "author" "Copyright 2004 Pinecoast Software"
+META "description" "A toy train set"
+
+EXTERNPROTO Wagon [
+  exposedField SFVec3f center
+  exposedField SFRotation rotation
+]
+"wagon.wrl"
+
+Inline { 
+  url "track.wrl" 
+}
+
+DEF Center Transform { 
+  rotation 0 1 0 0
+  children [
+    Transform { 
+      rotation 0 1 0 1.57
+      translation 95 0 0
+      children 
+        Wagon { 
+        }
+    }
+    Transform { 
+      rotation 0 1 0 0.77
+      children 
+        Transform { 
+          rotation 0 1 0 1.57
+          translation 95 0 0
+          children 
+            Wagon { 
+            }
+        }
+    }
+  ]
+}
+
+DEF Rot OrientationInterpolator { 
+  key [ 0, 0.25, 0.5, 0.75, 1 ]
+  keyValue [ 0 1 0 0, 0 1 0 1.57, 0 1 0 3.1416, 0 1 0 4.71, 0 1 0 6.283 ]
+}
+
+DEF theTimer TimeSensor { 
+  cycleInterval 10
+  loop TRUE
+}
+
+Viewpoint { 
+  orientation 0 1 0 1.2
+  position 250 40 150
+}
+
+ROUTE theTimer.fraction_changed TO Rot.set_fraction
+ROUTE Rot.value_changed TO Center.rotation
+

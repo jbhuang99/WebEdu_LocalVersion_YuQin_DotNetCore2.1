@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" 
+	"http://www.web3d.org/specifications/x3d-3.0.dtd">
+
+<X3D version="3.0">
+  <Scene>
+    <Transform>
+      	<Shape>
+            <PointSet>
+		<Coordinate point="0 0 0, 0 4 0,0 -1.33 -3.77,-3.26 -1.33 1.88,3.26 -1.33 1.88" /><!--根据四个坐标生成了四个点-->
+	    </PointSet>
+        </Shape>
+     </Transform>
+  </Scene>
+</X3D>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?><!--该代码行声明本文档是一个XML文档，文档编码是utf-8。-->
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" 
+	"http://www.web3d.org/specifications/x3d-3.0.dtd"><!--该代码行声明文档架构-->
+
+<X3D version="3.0"><!--该代码行声明该文档是一个X3D文档，X3D的版本是3.0。-->
+  <Scene><!--<Scene>元素开始是X3D文档主体-->
+    <Transform>
+      	<Shape>
+            <Text string="多媒体技术"/>
+        </Shape>
+	<Shape>
+	    <Sphere /><!--生成球体-->
+	    <Appearance>
+	    <ImageTexture url="wwwEdu.jpg" /><!--引用同路径下的JPG图像文件贴图-->
+	    </Appearance>
+        </Shape>
+     </Transform>
+  </Scene>
+</X3D>

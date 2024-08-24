@@ -1,0 +1,48 @@
+#X3D V3.0 utf8
+PROFILE Immersive
+
+META "filename" "track.wrl"
+META "author" "Copyright 2004 Pinecoast Software"
+META "description" "Track for toy train"
+
+DEF Table Shape { 
+  appearance Appearance { 
+    material Material { 
+      diffuseColor 0 1 0
+    }
+  }
+  geometry Box { 
+    size 300 2 300
+  }
+}
+
+Transform { 
+  translation 100 0.3 0
+  children 
+    Shape { 
+      appearance Appearance { 
+        texture ImageTexture { 
+          url "track.png" 
+        }
+      }
+      geometry Extrusion { 
+        crossSection [ -12 1, 12 1, 12 -1, -12 -1, -12 1 ]
+        spine [ 0 0 0, -1.9 0 -19.5, -7.6 0 -38.3, -16.85 0 -55.56, -29.3 0 -70.7, -44.4 0 -83.15, 
+            -61.7 0 -92.4, -80.5 0 -98.1, -100 0 -100, -119.5 0 -98.1, -138.3 0 -92.4, -155.6 0 -83.15, 
+            -170.7 0 -70.7, -183.15 0 -55.56, -191.4 0 -38.3, -198.1 0 -19.5, -200 0 0, -198.1 0 19.5, 
+            -191.4 0 38.3, -183.15 0 55.56, -170.7 0 70.7, -155.56 0 83.15, -138.3 0 92.4, -119.5 0 98.1, 
+            -100 0 100, -80.5 0 98.1, -61.7 0 92.4, -44.4 0 83.15, -29.3 0 70.7, -16.85 0 55.56, 
+            -7.6 0 38.3, -1.92 0 19.5, 0 0 0 ]
+        beginCap FALSE
+        convex FALSE
+        endCap FALSE
+      }
+    }
+}
+
+Viewpoint { 
+  orientation 0 1 0 1.2
+  position 250 40 150
+}
+
+

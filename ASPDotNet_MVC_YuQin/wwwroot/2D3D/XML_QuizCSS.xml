@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="gb2312"?>
+<?xml-stylesheet type="text/css" href="XML_Quiz.css"?>
+<!--这是一个选择题题库的XML文档-->
+<items  xmlns="quiz.xsd">
+    <item id="000001">
+	<problem>
+        	<content>下面可用作元素定界符的字符是：</content>
+        	<answers>
+           	 	<option>&lt;</option>
+            		<option>@</option>
+            		<option>$</option>
+            		<option>?</option>
+        	</answers>
+	</problem>
+    	<difficulty>0.5</difficulty>
+        <key>
+		<optionID>1</optionID>
+		<explanation><![CDATA[可用于元素定界符的是<和>。]]></explanation>
+	</key>
+    </item>
+    <item id="000002">
+	<problem>     
+        	<content>下面可用于字符引用的字符是：</content>
+        	<answers>
+             		<option>&amp;</option>
+             		<option>)</option>
+             		<option>!</option>
+             		<option>(</option>
+        	</answers>
+	</problem>
+	<difficulty>0.6</difficulty>
+        <key>
+		<optionID>1</optionID>
+		<explanation><![CDATA[可用于字符引用的是&。]]> </explanation>
+	</key>
+    </item>
+    <item id="000003">
+	<problem>     
+        	<content>下面可用于表示处理指令的字符是：</content>
+        	<answers>
+             		<option>&amp;</option>
+             		<option>?</option>
+             		<option>!</option>
+             		<option>p</option>
+        	</answers>
+	</problem>
+	<difficulty>0.4</difficulty>
+        <key>
+		<optionID>1</optionID>
+		<explanation><![CDATA[可用于表示处理指令的字符是?。]]> </explanation>
+	</key>
+    </item>
+</items> 

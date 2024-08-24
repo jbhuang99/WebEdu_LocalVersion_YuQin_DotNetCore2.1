@@ -1,0 +1,133 @@
+#X3D V3.0 utf8
+PROFILE Immersive
+
+META "filename" "traffic.wrl"
+META "description" "An animated traffic light"
+META "author" "Copyright 2004 Pinecoast Software"
+
+Shape { 
+  appearance Appearance { 
+    material Material { 
+      diffuseColor 0.5 0.5 0.5
+    }
+  }
+  geometry Box { 
+    size 3 7 1.2
+  }
+}
+
+Shape { 
+  appearance Appearance { 
+    material DEF YellowLight Material { 
+      diffuseColor 0.5 0.5 0
+    }
+  }
+  geometry Sphere { 
+  }
+}
+
+Transform { 
+  translation 0 2 0
+  children 
+    Shape { 
+      appearance Appearance { 
+        material DEF RedLight Material { 
+          diffuseColor 0.5 0 0
+        }
+      }
+      geometry Sphere { 
+      }
+    }
+}
+
+Transform { 
+  translation 0 -2 0
+  children 
+    Shape { 
+      appearance Appearance { 
+        material DEF GreenLight Material { 
+          diffuseColor 0 0.5 0
+        }
+      }
+      geometry Sphere { 
+      }
+    }
+}
+
+DEF Timer TimeSensor { 
+  cycleInterval 10
+  loop TRUE
+}
+
+DEF RedCI ColorInterpolator { 
+  key [ 0, 0.02, 0.4, 0.42, 0.92, 0.94, 1 ]
+  keyValue [ 0.5 0 0, 1 0 0, 1 0 0, 0.5 0 0, 0.5 0 0, 1 0 0, 1 0 0 ]
+}
+
+DEF GreenCI ColorInterpolator { 
+  key [ 0, 0.4, 0.42, 0.8, 0.82, 1 ]
+  keyValue [ 0 0.5 0, 0 0.5 0, 0 1 0, 0 1 0, 0 0.5 0, 0 0.5 0 ]
+}
+
+DEF YellowCI ColorInterpolator { 
+  key [ 0, 0.8, 0.82, 0.92, 0.94, 1 ]
+  keyValue [ 0.5 0.5 0, 0.5 0.5 0, 1 1 0, 1 1 0, 0.5 0.5 0, 0.5 0.5 0 ]
+}
+
+Transform { 
+  translation 0 -11 0
+  children 
+    Shape { 
+      appearance Appearance { 
+        material Material { 
+          diffuseColor 0.5 0.5 0.5
+        }
+      }
+      geometry Cylinder { 
+        height 15
+        radius 0.5
+      }
+    }
+}
+
+Transform { 
+  translation 0 -18.5 0
+  children 
+    Shape { 
+      appearance Appearance { 
+        material Material { 
+        }
+      }
+      geometry Cylinder { 
+        radius 2
+      }
+    }
+}
+
+Transform { 
+  translation 0 -20 0
+  children 
+    Shape { 
+      appearance Appearance { 
+        material Material { 
+          diffuseColor 0 0.502 0
+        }
+      }
+      geometry Box { 
+        size 40 1 40
+      }
+    }
+}
+
+Viewpoint { 
+  orientation 1 0 0 -0.3
+  position 0 15 60
+}
+
+ROUTE Timer.fraction_changed TO RedCI.set_fraction
+ROUTE Timer.fraction_changed TO YellowCI.set_fraction
+ROUTE Timer.fraction_changed TO GreenCI.set_fraction
+ROUTE RedCI.value_changed TO RedLight.diffuseColor
+ROUTE YellowCI.value_changed TO YellowLight.diffuseColor
+ROUTE GreenCI.value_changed TO GreenLight.diffuseColor
+
