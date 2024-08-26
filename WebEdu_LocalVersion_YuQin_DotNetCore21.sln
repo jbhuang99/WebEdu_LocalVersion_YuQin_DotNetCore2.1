@@ -31,13 +31,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Compon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter", "..\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\src\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.csproj", "{AE9210B8-181D-4218-BAA9-1A06C3486505}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About_Architecture_Engineering_DDD_CleanArchitecture_and_MultiSolution(Examples)", "About_Architecture_Engineering_DDD_CleanArchitecture_and_MultiSolution(Examples)", "{1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)", "About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)", "{1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_eShopOnWeb", "Microsoft_eShopOnWeb", "{73453F56-509E-4C13-A7ED-5F1ABDC7514C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_eShopOnDapr", "Microsoft_eShopOnDapr", "{58EAA04A-ADDC-4A23-9B12-536B5B15FFBC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_eshop-mobile-windows-linux-client", "Microsoft_eshop-mobile-windows-linux-client", "{D37BE26B-25FC-42FA-9688-5126981A9191}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_ORM_DataBase", "Microsoft_ORM_DataBase", "{C83591A4-F741-4615-B960-37C03A2ECA81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -198,6 +200,7 @@ Global
 		{73453F56-509E-4C13-A7ED-5F1ABDC7514C} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
 		{58EAA04A-ADDC-4A23-9B12-536B5B15FFBC} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
 		{D37BE26B-25FC-42FA-9688-5126981A9191} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
+		{C83591A4-F741-4615-B960-37C03A2ECA81} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3704B709-ACA0-443A-9D6F-6359321FB596}
