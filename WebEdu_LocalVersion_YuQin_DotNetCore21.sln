@@ -23,9 +23,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Binary_ASM_CPP_CS(ASM_Conso
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPDotNet_MVC_YuQin", "ASPDotNet_MVC_YuQin\ASPDotNet_MVC_YuQin.csproj", "{B385B127-75CF-4DD4-ADEB-DE9B8B0393C6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedCS(Examples)", "SharedCS(Examples)", "{5009EFB8-F4C1-4254-8988-5A3690D35714}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedCS", "SharedCS", "{5009EFB8-F4C1-4254-8988-5A3690D35714}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedRazor_SharedCSHTML(Examples)", "SharedRazor_SharedCSHTML(Examples)", "{7134BB69-848C-490D-B404-6C3ECDF31E92}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedRazor_SharedCSHTML", "SharedRazor_SharedCSHTML", "{7134BB69-848C-490D-B404-6C3ECDF31E92}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Components.QuickGrid", "..\Microsoft.AspNetCore.Components.QuickGrid\src\Microsoft.AspNetCore.Components.QuickGrid.csproj", "{65152665-D1B1-4142-8C30-5C29BD1DDC0E}"
 EndProject
@@ -33,13 +33,35 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Compon
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)", "About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)", "{1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_eShopOnWeb", "Microsoft_eShopOnWeb", "{73453F56-509E-4C13-A7ED-5F1ABDC7514C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_eShopOnWeb(Example)", "Microsoft_eShopOnWeb(Example)", "{73453F56-509E-4C13-A7ED-5F1ABDC7514C}"
+	ProjectSection(SolutionItems) = preProject
+		About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_eShopOnWeb\ReadMe.txt = About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_eShopOnWeb\ReadMe.txt
+	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_eShopOnDapr", "Microsoft_eShopOnDapr", "{58EAA04A-ADDC-4A23-9B12-536B5B15FFBC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_eShopOnDapr(Example)", "Microsoft_eShopOnDapr(Example)", "{58EAA04A-ADDC-4A23-9B12-536B5B15FFBC}"
+	ProjectSection(SolutionItems) = preProject
+		About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_eShopOnDapr\ReadMe.txt = About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_eShopOnDapr\ReadMe.txt
+	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_eshop-mobile-windows-linux-client", "Microsoft_eshop-mobile-windows-linux-client", "{D37BE26B-25FC-42FA-9688-5126981A9191}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_eshop-mobile-windows-linux-client(Example)", "Microsoft_eshop-mobile-windows-linux-client(Example)", "{D37BE26B-25FC-42FA-9688-5126981A9191}"
+	ProjectSection(SolutionItems) = preProject
+		About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_eshop-mobile-windows-linux-client\ReadMe.txt = About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_eshop-mobile-windows-linux-client\ReadMe.txt
+	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_ORM_DataBase", "Microsoft_ORM_DataBase", "{C83591A4-F741-4615-B960-37C03A2ECA81}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_ORM_DataBase-Identity(Example)", "Microsoft_ORM_DataBase-Identity(Example)", "{E6E94E6F-9DC0-4FDC-A7DE-FEAD839FA971}"
+	ProjectSection(SolutionItems) = preProject
+		About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_ORM_DataBase-Identity\ReadMe.txt = About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_ORM_DataBase-Identity\ReadMe.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter_ReadMe", "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter_ReadMe", "{B940F52C-945E-466C-A82B-5A806972C669}"
+	ProjectSection(SolutionItems) = preProject
+		Microsoft.AspNetCore.Components.QuickGrid\（目前也可卸载相应的源码项目，而在本项目Nuget安装依赖项：Microsoft.AspNetCore.Components.QuickGrid）.txt = Microsoft.AspNetCore.Components.QuickGrid\（目前也可卸载相应的源码项目，而在本项目Nuget安装依赖项：Microsoft.AspNetCore.Components.QuickGrid）.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft.AspNetCore.Components.QuickGrid_ReadMe", "Microsoft.AspNetCore.Components.QuickGrid_ReadMe", "{2D63EABE-2BB8-46DE-A0D5-F7B25560D3D7}"
+	ProjectSection(SolutionItems) = preProject
+		Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\（目前也可卸载相应的源码项目，而在本项目Nuget安装依赖项：Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter）.txt = Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\（目前也可卸载相应的源码项目，而在本项目Nuget安装依赖项：Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter）.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -200,7 +222,9 @@ Global
 		{73453F56-509E-4C13-A7ED-5F1ABDC7514C} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
 		{58EAA04A-ADDC-4A23-9B12-536B5B15FFBC} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
 		{D37BE26B-25FC-42FA-9688-5126981A9191} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
-		{C83591A4-F741-4615-B960-37C03A2ECA81} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
+		{E6E94E6F-9DC0-4FDC-A7DE-FEAD839FA971} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
+		{B940F52C-945E-466C-A82B-5A806972C669} = {7134BB69-848C-490D-B404-6C3ECDF31E92}
+		{2D63EABE-2BB8-46DE-A0D5-F7B25560D3D7} = {7134BB69-848C-490D-B404-6C3ECDF31E92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3704B709-ACA0-443A-9D6F-6359321FB596}

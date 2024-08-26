@@ -1,1 +1,1 @@
-请下载：https://github.com/dotnet-architecture/eShopOnDapr
+请下载源码了解：https://github.com/dotnet-architecture/eShopOnDapr
