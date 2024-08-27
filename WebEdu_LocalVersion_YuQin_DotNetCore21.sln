@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Compon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter", "..\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\src\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.csproj", "{AE9210B8-181D-4218-BAA9-1A06C3486505}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)", "About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)", "{1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About_Architecture_Engineering_DDD_ORM_DataBase(CleanArchitecture)(Examples)", "About_Architecture_Engineering_DDD_ORM_DataBase(CleanArchitecture)(Examples)", "{1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_eShopOnWeb(Example)", "Microsoft_eShopOnWeb(Example)", "{73453F56-509E-4C13-A7ED-5F1ABDC7514C}"
 	ProjectSection(SolutionItems) = preProject
@@ -61,6 +61,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft.AspNetCore.Components.QuickGrid_ReadMe", "Microsoft.AspNetCore.Components.QuickGrid_ReadMe", "{2D63EABE-2BB8-46DE-A0D5-F7B25560D3D7}"
 	ProjectSection(SolutionItems) = preProject
 		Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\（目前也可卸载相应的源码项目，而在本项目Nuget安装依赖项：Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter）.txt = Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\（目前也可卸载相应的源码项目，而在本项目Nuget安装依赖项：Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter）.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_Architecture_CleanArchitecture(Example)", "Microsoft_Architecture_CleanArchitecture(Example)", "{711F3F0F-B868-4DE0-A258-880DC64DEE2E}"
+	ProjectSection(SolutionItems) = preProject
+		About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_Architecture_CleanArchitecture\ReadMe.txt = About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_Architecture_CleanArchitecture\ReadMe.txt
 	EndProjectSection
 EndProject
 Global
@@ -225,6 +230,7 @@ Global
 		{E6E94E6F-9DC0-4FDC-A7DE-FEAD839FA971} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
 		{B940F52C-945E-466C-A82B-5A806972C669} = {7134BB69-848C-490D-B404-6C3ECDF31E92}
 		{2D63EABE-2BB8-46DE-A0D5-F7B25560D3D7} = {7134BB69-848C-490D-B404-6C3ECDF31E92}
+		{711F3F0F-B868-4DE0-A258-880DC64DEE2E} = {1D44C7F6-B7EB-4E7A-99CC-FCE4161D7347}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3704B709-ACA0-443A-9D6F-6359321FB596}
