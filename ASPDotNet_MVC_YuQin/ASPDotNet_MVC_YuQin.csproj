@@ -96,7 +96,9 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
 
   <ItemGroup>
     <Content Remove="web.config" />
+    <Content Remove="wwwroot\favicon.ico" />
     <Content Remove="wwwroot\webCourse\common\script\content - Copy %283%29.js" />
+    <Content Remove="wwwroot\渔琴.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -541,6 +543,8 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Include="wwwroot\webCourse\options\pause.wrl" />
     <None Include="wwwroot\webCourse\options\Thumbs.db" />
     <None Include="wwwroot\ZHDC\sxyt_files\themedata.thmx" />
+    <None Include="wwwroot\favicon.ico" />
+    <None Include="wwwroot\渔琴.ico" />
   </ItemGroup>
 
   <ItemGroup>

@@ -24,6 +24,7 @@
     <Content Remove="Pages\student\Shared\Detail.razor" />
     <Content Remove="Pages\student\Shared\Edit.razor" />
     <Content Remove="wwwroot\css\CounterPartialClass.css" />
+    <Content Remove="wwwroot\渔琴.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +40,7 @@
     <None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
     <None Include="wwwroot\css\open-iconic\ICON-LICENSE" />
     <None Include="wwwroot\css\open-iconic\README.md" />
+    <None Include="wwwroot\渔琴.ico" />
   </ItemGroup>
 
   <ItemGroup>
