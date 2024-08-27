@@ -68,7 +68,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft_Architecture_Clea
 		About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_Architecture_CleanArchitecture\ReadMe.txt = About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\Microsoft_Architecture_CleanArchitecture\ReadMe.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About_ASPDotNet_MVC_DeliveringAndRun_PublishAndRun(Example)", "About_ASPDotNet_MVC_DeliveringAndRun_PublishAndRun(Example)", "{9948C501-D6FB-48C1-87BC-FA1685922F7D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About_ASP.Net_MVC_DeliverAndRun_PublishAndRun(Example)", "About_ASP.Net_MVC_DeliverAndRun_PublishAndRun(Example)", "{9948C501-D6FB-48C1-87BC-FA1685922F7D}"
 	ProjectSection(SolutionItems) = preProject
 		About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\About_ASPDotNet_MVC_DeliveringAndRun_PublishAndRun\ReadMe.txt = About_Architecture_Engineering_DDD_ORM_DataBase-CleanArchitecture(Examples)\About_ASPDotNet_MVC_DeliveringAndRun_PublishAndRun\ReadMe.txt
 	EndProjectSection
