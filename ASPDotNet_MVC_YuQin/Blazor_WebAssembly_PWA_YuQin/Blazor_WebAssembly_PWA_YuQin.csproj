@@ -49,18 +49,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\src\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.csproj" />
-    <ProjectReference Include="..\..\Microsoft.AspNetCore.Components.QuickGrid\src\Microsoft.AspNetCore.Components.QuickGrid.csproj" />
-    <ProjectReference Include="..\SharedCS\SharedCS.csproj" />
-    <ProjectReference Include="..\SharedRazorClassLibrary\SharedRazorCS.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Pages\QuickGrid\DataSources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\src\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.csproj" />
+    <ProjectReference Include="..\..\..\Microsoft.AspNetCore.Components.QuickGrid\src\Microsoft.AspNetCore.Components.QuickGrid.csproj" />
+    <ProjectReference Include="..\SharedCS\SharedCS\SharedCS.csproj" />
+    <ProjectReference Include="..\SharedRazor_SharedCSHTML\SharedRazorClassLibrary\SharedRazorCS.csproj" />
   </ItemGroup>
 
 </Project>
