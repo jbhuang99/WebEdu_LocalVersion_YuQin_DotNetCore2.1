@@ -2,6 +2,7 @@
   https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/launchsettings.json
  */
 {
+  "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": false,

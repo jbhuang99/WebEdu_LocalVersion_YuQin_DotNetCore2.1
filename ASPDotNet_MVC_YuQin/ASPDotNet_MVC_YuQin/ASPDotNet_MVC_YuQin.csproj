@@ -23,6 +23,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Copyright>渔琴</Copyright>
     <PackageReleaseNotes>（注：后续将开发一键启动软件。即：将开发一个.exe文件，双击运行该.exe文件，将自动启动“服务器”窗口、“浏览器”窗口，“浏览器”自动获取“服务器”的URL地址，并访问“服务器”！）</PackageReleaseNotes>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <UserSecretsId>385510f7-1d5c-4d38-be01-e5800912154d</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
