@@ -88,7 +88,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedCS", "ASPDotNet_MVC_Y
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedRazorCS", "ASPDotNet_MVC_YuQin\SharedRazor_SharedCSHTML\SharedRazorClassLibrary\SharedRazorCS.csproj", "{5C884C28-2AB6-44B8-AA53-4D8F6756B82E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About-DevelopingTimeRunningThisSolution(ReadMe)", "About-DevelopingTimeRunningThisSolution(ReadMe)", "{34082CDA-1B21-447B-B2A3-EFE5301EFAF6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About-DevelopingTimeRunningThisSolution-开发时运行这个解决方案的说明(ReadMe)", "About-DevelopingTimeRunningThisSolution-开发时运行这个解决方案的说明(ReadMe)", "{34082CDA-1B21-447B-B2A3-EFE5301EFAF6}"
 	ProjectSection(SolutionItems) = preProject
 		About-DevelopingTimeRunningThisSolution.docx = About-DevelopingTimeRunningThisSolution.docx
 	EndProjectSection
