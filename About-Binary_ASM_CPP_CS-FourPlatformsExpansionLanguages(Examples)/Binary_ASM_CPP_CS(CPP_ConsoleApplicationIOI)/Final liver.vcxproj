@@ -24,7 +24,7 @@
     <ProjectGuid>{0f48df69-5cfe-477e-8a4d-79777a37917a}</ProjectGuid>
     <RootNamespace>Finalliver</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Binary_ASM_CPP_CS(CPP_ConsoleApplicationExample)(IOI_DataStructure)</ProjectName>
+    <ProjectName>Binary_ASM_CPP_CS(CPP_ConsoleApplicationIOI)</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,7 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Final liver.cpp">
+    <ClCompile Include="IOI_DataStructure.cpp">
       <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</SDLCheck>
     </ClCompile>
   </ItemGroup>
@@ -173,6 +173,8 @@
     <ClInclude Include="1 psl.h" />
     <ClInclude Include="2 zyr.h" />
     <ClInclude Include="5 cx.h" />
+    <ClInclude Include="TryReferenceHJB.h" />
+    <ClInclude Include="TryReferenceWSY.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
