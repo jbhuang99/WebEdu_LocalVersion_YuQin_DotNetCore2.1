@@ -146,5 +146,8 @@
     <ClInclude Include="TryReferenceWSY.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TryASPDotNetMVCController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

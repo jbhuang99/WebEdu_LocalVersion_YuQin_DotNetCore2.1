@@ -60,11 +60,14 @@ class CA {
 //例：你要使用例2.16的函数，但它不止一个例题里面不止一个程序，如果你要调用第一个，则输入 2161 ,如果你要调用第二个，则输入 2162 。
 //1.0版本 例题版
 
-#include <iostream>
-#include "huizong.h"
-#include "TryReferenceHJB.h"
-#include "TryReferenceWSY.h"
-
+//******C#.Net无需下述部分代码。因为VS会自动去查找，AOT编译。C++.CRT需要此部分代码，因为VS不会自动去查找，AOT编译。
+//初创方、他创方、自创方的源代码头文件，都必须include。VS的External Dependence条目已经可以查看到这些头文件，但是VS不会自动根据数据类型函数类型，去寻找数据类型函数类型接口，而是需要手工写码include。初创方、他创方、自创方的目标代码头文件的include，C++.信息学奥赛STL.CRT无需深入。
+//#include <iostream>
+#include "iostream";
+#include "huizong.h";
+#include "TryReferenceHJB.h";
+#include "TryReferenceWSY.h";
+//******C#.Net无需上述部分代码。
 
 using namespace std;
 

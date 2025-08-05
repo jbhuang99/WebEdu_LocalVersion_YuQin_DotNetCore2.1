@@ -1,4 +1,5 @@
-﻿using EDSS.Controllers;
+﻿//此案例代码中的接口只是玩玩，说明语法思想，而非产业级别的实用。
+using EDSS.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

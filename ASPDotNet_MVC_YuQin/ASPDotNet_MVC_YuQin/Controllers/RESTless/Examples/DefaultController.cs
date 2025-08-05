@@ -12,7 +12,9 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers.Examples
         // GET: Default
         public ActionResult Index()
         {
-            return Content("Hello world");
+            String myString = "public";
+            return Content(myString);
+            // return Content("Hello world");
         }
 
         // GET: Default/Details/5

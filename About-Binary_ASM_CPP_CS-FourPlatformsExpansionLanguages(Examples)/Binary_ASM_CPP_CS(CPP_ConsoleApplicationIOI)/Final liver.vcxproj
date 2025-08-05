@@ -173,6 +173,7 @@
     <ClInclude Include="1 psl.h" />
     <ClInclude Include="2 zyr.h" />
     <ClInclude Include="5 cx.h" />
+    <ClInclude Include="TryASPDotNetMVCController.h" />
     <ClInclude Include="TryReferenceHJB.h" />
     <ClInclude Include="TryReferenceWSY.h" />
   </ItemGroup>

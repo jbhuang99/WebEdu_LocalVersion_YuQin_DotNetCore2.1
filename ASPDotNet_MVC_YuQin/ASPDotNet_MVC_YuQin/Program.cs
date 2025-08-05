@@ -282,7 +282,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main(String[] args)
         {
             /**
             WebApplicationOptions webApplicationOptions = new WebApplicationOptions {
@@ -296,6 +296,8 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             WebApplicationBuilder webApplicationBuilder = WebApplication.CreateBuilder(webApplicationOptions);
             **/
             WebApplicationBuilder webApplicationBuilder = WebApplication.CreateBuilder(args);
+            //webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。
+            webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。可以设置在appsettings.json中，使用JIT编译的方式获取（在此选用）。也可以在代码中硬编码设置。也可以在命令行中指定参数。
             Console.WriteLine(webApplicationBuilder.Environment.WebRootPath);
  
               // Add services to the container.

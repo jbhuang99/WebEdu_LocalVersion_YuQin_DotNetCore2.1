@@ -74,7 +74,7 @@ namespace EDSS.Controllers
 
     public interface IPrinterName //声明定义interface类型，名称是IPrinterName
     {
-        String PrinterName();
+        public String PrinterName();
     }
     public class MyClassImp:IPrinterName //履行IPrinterName这个interface类型
     {
@@ -86,10 +86,12 @@ namespace EDSS.Controllers
     //interface IPrint
     public interface IPrinter
     {
-        String PrintPreview();
-        String Print();
+        public String PrintPreview();
+        public String Print();
     }
-    //interface IPrinter2 : IPrinter, IPrinterName        { }
+    public interface IPrinter2 : IPrinter      {
+        public String new1();
+    }
 
     public class HPPrinter : Printer, IPrinter, IPrinterName// public class HPPrinter : Printer, IPrinter//类继承在前（只能一个，即单重继承树），接口在后（可以多个，即多重继承树）//此部分可以分发给HP公司的人,履行接口中的属性方法声明进行自主定义，编写源码并编译为.dll。自己项目引用该.dll，自己的现有代码不用修改就可正确调用该.dll的功能，实现了类的契约式回调后代的扩展（在此也是开发者容变合作）(还可实现已有父类的类的功能的契约式回调后代的扩展)。父代的类接口中所有属性方法只声明不定义，子代的类中继承所有声明实施所有定义。这种方式的特点就是可以父代类接口中事先进行属性方法的声明，子代类中后发进行属性方法的定义（相对于属性方法声明定义同时进行的机制来说，属性方法的具体功能的容变性增强、属性方法进行定义的时间空间的容变性增强），子类只能继承一个父类的同时还可继承多个父类接口（相对于子类只能继承一个父类的机制来说，属性方法允许继承的父代的容变性增强）。
     {
@@ -327,4 +329,22 @@ namespace EDSS.Controllers
         }
     }
 
+    public interface IBaseInterface
+    {
+        public String BaseMethod() { return ""; }
+    }
+
+    public interface IDerivedInterface
+    {
+        public  String DerivedMethod() { return ""; }
+    }
+    public interface ICombinedInterface : IBaseInterface, IDerivedInterface
+    {
+        // 可以添加新的方法或属性，也可以不添加任何内容
+        public String NewMethod() { return ""; }
+    }
+    public class MyClass : ICombinedInterface
+    {
+
+    }
 }

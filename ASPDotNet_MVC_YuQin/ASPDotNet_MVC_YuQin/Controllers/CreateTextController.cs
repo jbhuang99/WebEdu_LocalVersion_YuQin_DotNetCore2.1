@@ -121,6 +121,8 @@ public ActionResult<string> Get(int id)
                             {
                                 ex.ToString();
                             }
+                            //删除已转化成为了.htm的.docx文件。
+                            System.IO.File.Delete(filePath);
                         }
 
 
@@ -154,7 +156,7 @@ public ActionResult<string> Get(int id)
                 // streamWriter.Write(stringFromFileProcessed,,Encoding.UTF8);//出错。
                 streamWriter.Write(stringFromFileProcessed);
                 streamWriter.Close();
-
+               
                 return Ok(new { count = files.Count, size, filePathAll, host = this.Request.Host.ToUriComponent() });
             }
             else { return Ok("这是服务器版（或者是本机版发布为了服务器版的方式运行），不允许直接上传！请在本机版制作好后（本机版无需登录）,连接服务器版（课程资源管理员的账号登录连接服务器版），上传本机版中的资源到服务器版!" + this.Request.Host.ToUriComponent()); }

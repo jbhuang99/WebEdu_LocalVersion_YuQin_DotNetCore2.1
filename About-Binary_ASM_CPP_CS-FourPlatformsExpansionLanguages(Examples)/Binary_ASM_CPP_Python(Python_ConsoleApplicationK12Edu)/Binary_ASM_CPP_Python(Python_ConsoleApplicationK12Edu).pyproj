@@ -22,8 +22,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="TryWaitForCSCalling.py" />
     <Compile Include="K12Edu.py" />
+    <Compile Include="BitOperation.py" />
+    <Compile Include="ObjectType_ObjectInstance_BuildinFunctionType_CustomFunctionType.py" />
     <Compile Include="Zero_or_One_Unify_Char_or_NotChar.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TryASPDotNetMVCController.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

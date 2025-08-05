@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "CurriculumSelection": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:6201;http://localhost:6202"
+    }
+  }
+}

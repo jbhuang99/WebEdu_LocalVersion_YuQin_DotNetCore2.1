@@ -19,9 +19,9 @@ namespace EDSS.Controllers
             Decimal TryNumber3 = 2.2222222222222222222222222222222M;
             Single TryNumber4 = 2.233333333333333333333333333333333333333f;
 
-            String TryString4 = "黄景碧";
-            return this.Content((TryNumber1>TryNumber2).ToString()+";;;;;;"+(TryNumber2>TryNumber4).ToString());
-             
-        }   
+            String TryString4 = "黄景碧2";
+            //return this.Content((TryNumber1>TryNumber2).ToString()+";;;;;;"+(TryNumber2>TryNumber4).ToString());
+            return this.Content(TryString4);
+        }
     }
 }
