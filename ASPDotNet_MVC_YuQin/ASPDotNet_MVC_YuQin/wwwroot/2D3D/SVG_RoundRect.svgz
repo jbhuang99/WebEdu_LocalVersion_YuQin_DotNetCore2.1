@@ -1,0 +1,6 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="200" height="150">
+<path  d="M130 50 C141.046 50 150 58.9544 150 70 L150 80 C150 91.0456 141.046 100 130 100 L70 100 C58.9544 100 50 91.0456 50 80 L50 70 C50 58.9544 58.9544 50 70 50 z"/>
+</svg>

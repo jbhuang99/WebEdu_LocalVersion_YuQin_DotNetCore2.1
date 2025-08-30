@@ -99,9 +99,10 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="web.config" />
     <Content Remove="wwwroot\favicon.ico" />
     <Content Remove="wwwroot\ts\try\file2.ts" />
-    <Content Remove="wwwroot\webCourse\common\script\content - Copy %282%29.js" />
+    <Content Remove="wwwroot\webCourse\common\script\content - Copy (2).js" />
     <Content Remove="wwwroot\webCourse\common\script\content - Copy.js" />
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy %282%29.js" />
+    <Content Remove="wwwroot\webCourse\common\script\contents - Copy (3).js" />
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy.js" />
     <Content Remove="wwwroot\渔琴.ico" />
   </ItemGroup>
@@ -179,7 +180,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Folder Include="Views\ModelsForViews\" />
     <Folder Include="wwwroot\webCourse\lessons\content\Teaching2D\" />
     <Folder Include="wwwroot\webCourse\lessons\content\Teaching3D\" />
-    <Folder Include="wwwroot\webCourse\lessons\content\TeachingEngineering\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -438,6 +438,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Include="wwwroot\webCourse\common\script\content.js" />
     <None Include="wwwroot\webCourse\common\script\contentExtented.js" />
     <None Include="wwwroot\webCourse\common\script\contents - Copy (2).js" />
+    <None Include="wwwroot\webCourse\common\script\contents - Copy (3).js" />
     <None Include="wwwroot\webCourse\common\script\contents - Copy.js" />
     <None Include="wwwroot\webCourse\common\script\contents - 勿删.js" />
     <None Include="wwwroot\webCourse\common\script\contents.js" />

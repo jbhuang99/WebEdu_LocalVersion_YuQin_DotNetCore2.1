@@ -1,0 +1,9 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="200" height="150">
+<a xlink:href="http://www.w3.org" xlink:title="Web联盟">	<!--SVG完全遵守XML规范，超链接属性使用xlink标准格式。-->
+<ellipse cx="93.9" cy="72.2" rx="50.1" ry="28.8"
+style="fill:rgb(192,192,255);stroke:rgb(0,0,128);stroke-width:1"/>
+</a>
+</svg>

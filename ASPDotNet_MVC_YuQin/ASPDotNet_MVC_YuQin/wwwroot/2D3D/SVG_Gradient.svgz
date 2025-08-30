@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="200" height="150">
+<defs>
+<linearGradient id="Gradient01">
+          <stop offset="20%" stop-color="rgb(0,255,0)" />
+          <stop offset="50%" stop-color="rgb(192,192,255)" />
+<stop offset="70%" stop-color="rgb(0,0,255)" />
+        </linearGradient>
+        </defs>
+        <ellipse cx="100" cy="70" rx="60" ry="40"
+          style="stroke:rgb(0,255,0);stroke-width:10;fill:url(#Gradient01)"/>
+</svg>
