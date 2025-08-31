@@ -1576,7 +1576,7 @@ function fnViewTeachingVideo() {
             var sHeadUrl = "../lessons/";
             var sTeachingPlanName = window.oSrcElement.parentNode.attributes.getNamedItem("play").nodeValue;
             //window.sTeachingPlan=sHeadUrl+"content/teachingPlan/"+sTeachingPlanName+"/"+sTeachingPlanName+".htm";				 
-            window.sTeachingPlan = sHeadUrl + "content/teachingVideo/" + sTeachingPlanName + "/" + sTeachingPlanName + ".mp4"
+            window.sTeachingPlan = sHeadUrl + "content/TeachingVideo/" + sTeachingPlanName + "/" + sTeachingPlanName + ".mp4"
             //showModelessDialog("../common/windowOrFullScreen_techingPlan.aspx", window,"help:0;resizable:1;dialogWidth:"+screen.width*0.8+"px;dialogHeight:"+screen.height*0.5+"px;status:0;");//已不支持，改写
             var win=open("../common/ViewTeachingVideo.html", "TeachingVideo", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.5 + "px;status:0;");
             window.childWindow = win;
@@ -1608,7 +1608,7 @@ function fnViewTeachingVideo() {
             var sHeadUrl = "../lessons/";
             var sTeachingPlanName = window.oSrcElement.parentNode.attributes.getNamedItem("s2d").nodeValue;
             //window.sTeachingPlan=sHeadUrl+"content/teachingPlan/"+sTeachingPlanName+"/"+sTeachingPlanName+".htm";				 
-            window.sTeachingPlan = sHeadUrl + "content/teaching2D/" + sTeachingPlanName + "/" + sTeachingPlanName + ".svgz"
+            window.sTeachingPlan = sHeadUrl + "content/Teaching2D/" + sTeachingPlanName + "/" + sTeachingPlanName + ".svgz"
             //showModelessDialog("../common/windowOrFullScreen_techingPlan.aspx", window,"help:0;resizable:1;dialogWidth:"+screen.width*0.8+"px;dialogHeight:"+screen.height*0.5+"px;status:0;");//已不支持，改写
             var win=open("../common/ViewTeaching2D.html", "Teaching2D", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.5 + "px;status:0;");
             window.childWindow = win;
@@ -1641,7 +1641,7 @@ function fnViewTeachingVideo() {
             var sHeadUrl = "../lessons/";
             var sTeachingPlanName = window.oSrcElement.parentNode.attributes.getNamedItem("s3d").nodeValue;
             //window.sTeachingPlan=sHeadUrl+"content/teachingPlan/"+sTeachingPlanName+"/"+sTeachingPlanName+".htm";				 
-            window.sTeachingPlan = sHeadUrl + "content/teaching3D/" + sTeachingPlanName + "/" + sTeachingPlanName + ".x3dv"
+            window.sTeachingPlan = sHeadUrl + "content/Teaching3D/" + sTeachingPlanName + "/" + sTeachingPlanName + ".x3dv"
             //showModelessDialog("../common/windowOrFullScreen_techingPlan.aspx", window,"help:0;resizable:1;dialogWidth:"+screen.width*0.8+"px;dialogHeight:"+screen.height*0.5+"px;status:0;");//已不支持，改写
            // var win=open(window.sTeachingPlan, "Teaching3D", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.5 + "px;status:0;");
            var win=open("../common/ViewTeaching3D.html", "Teaching3D", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.5 + "px;status:0;");
@@ -1675,8 +1675,8 @@ function fnViewTeachingPlan() {
             var sHeadUrl = "../lessons/";
             var sTeachingPlanName = window.oSrcElement.parentNode.attributes.getNamedItem("teachingPlan").nodeValue;
             //window.sTeachingPlan=sHeadUrl+"content/teachingPlan/"+sTeachingPlanName+"/"+sTeachingPlanName+".htm";				 
-            window.sTeachingPlan = sHeadUrl + "content/teachingPlan/" + sTeachingPlanName + "/" + sTeachingPlanName + ".pptx"
-            window.sVideoOfTeachingPlan = sHeadUrl + "content/teachingPlan/" + sTeachingPlanName + "/" + sTeachingPlanName + ".mp4";
+            window.sTeachingPlan = sHeadUrl + "content/TeachingPlan/" + sTeachingPlanName + "/" + sTeachingPlanName + ".pptx"
+            window.sVideoOfTeachingPlan = sHeadUrl + "content/TeachingPlan/" + sTeachingPlanName + "/" + sTeachingPlanName + ".mp4";
             //alert(window.sTeachingPlan + "；" + window.sVideoOfTeachingPlan + "；" + sHeadUrl + "；"+ sTeachingPlanName);
             var win = open("../common/ViewTeachingPPT.html", "TeachingPPT", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.6 + "px;status:0;");
             window.childWindow = win;
@@ -1743,7 +1743,7 @@ function fnViewTeachingEngineering() {
            var sHeadUrl = "../lessons/";
         //var sTeachingPlanName = window.oSrcElement.parentNode.getAttribute("homeworkAndTest");
         //window.sTeachingPlan=sHeadUrl+"content/teachingPlan/"+sTeachingPlanName+"/"+sTeachingPlanName+".htm";				 
-        window.sTeachingEngineering = sHeadUrl + "content/teachingEngineering/" + sTeachingEngineering + "/" + sTeachingEngineering + ".htm"
+        window.sTeachingEngineering = sHeadUrl + "content/TeachingEngineering/" + sTeachingEngineering + "/" + sTeachingEngineering + ".htm"
         //showModelessDialog("../common/windowOrFullScreen_techingPlan.aspx", window,"help:0;resizable:1;dialogWidth:"+screen.width*0.8+"px;dialogHeight:"+screen.height*0.5+"px;status:0;");//已不支持，改写
         var win = open(window.sTeachingEngineering, "TeachingEngineering", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.5 + "px;status:0;");
         window.childWindow = win;
