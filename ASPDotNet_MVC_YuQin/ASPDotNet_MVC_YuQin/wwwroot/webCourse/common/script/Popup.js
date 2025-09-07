@@ -5,6 +5,7 @@
     oDiv.style.border = "solid black 1px";
     oDiv.style.fontSize = 11;
     oDiv.style.cursor = "default";
+      
     var iMaxLength = 0;
     var sString = "";
 
@@ -35,6 +36,7 @@
     if (document.body.offsetHeight - oDiv.offsetHeight <=0) {
         oDiv.style.height = document.body.offsetHeight;
         oDiv.style.overflow="scroll";
+        
     }  
     oDiv.style.display = "block";
 }
@@ -61,6 +63,10 @@ function fnContentsPopup() {
         oDiv.style.border = "solid black 1px";
         oDiv.style.fontSize = 11;
         oDiv.style.cursor = "default";
+          //oDiv.style.overflow="scroll";
+         oDiv.style.maxHeight = 300+"px";
+         oDiv.style.overflowY = "auto";
+          oDiv.style.overflowX = "hidden";
         var iMaxLength = 0;
         var sString = "";
 
@@ -92,7 +98,11 @@ function fnContentsPopup() {
         //如果菜单条目超过满屏，滚动条滚动。
         if (document.body.offsetHeight - oDiv.offsetHeight <= 0) {
             oDiv.style.height = document.body.offsetHeight;
-            oDiv.style.overflow = "scroll";
+         
+        //oDiv.style.overflow="scroll";
+        oDiv.style.maxHeight = 300+"px";
+        oDiv.style.overflowY = "auto";
+        oDiv.style.overflowX = "hidden";
         }
         oDiv.style.display = "block";
         /**已不支持，只得改写

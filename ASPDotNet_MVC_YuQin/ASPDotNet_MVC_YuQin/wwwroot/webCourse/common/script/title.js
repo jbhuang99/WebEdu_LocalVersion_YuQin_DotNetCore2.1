@@ -123,7 +123,7 @@ window.document.body.scroll="no";
     document.body.onmousewheel = fnMouseWheel;//通过滚动条不显示实现
     window.onmousewheel = fnMouseWheel;
     fnShowTime();
-    fnNotification('欢迎合作：', '使用帮助，请咨询：QQ：43930878；电话：18279142396。如果正使用手机浏览，请设置横屏！', '/favicon.ico');
+    fnNotification('欢迎合作：', '使用帮助，请咨询：QQ：43930878；如果正使用手机浏览，请设置横屏！', '/favicon.ico');
 }
 
 
@@ -720,8 +720,10 @@ function fnWindowOnFocus() {
     //console.log(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("popupDiv").innerHTML);
     var sPopupMenu = parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("popupDiv").innerHTML.replace(new RegExp("<div", "g"), "<span").replace(new RegExp("</div>", "g"), "</span>");
     //console.log(sPopupMenu);
-
-    parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("idForPanelToolbar").innerHTML = '<div id="popupDiv" onmouseover="parent.document.getElementById(' + "'" + 'sIFrameTitle' + "'" + ').contentWindow.fnPopupMouseOver(); " onmouseout="parent.document.getElementById(' + "'" + 'sIFrameTitle' + "'" + ').contentWindow.fnPopupMouseOut(); " style=" font-size: 9px;font-family:Times New Roman; cursor: default ">' + '<span  style="font-weight:bold">标题面板右键菜单：</span>' + sPopupMenu + "</div>";
+    alert("");
+   parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("idForPanelToolbar").innerHTML = '<div id="popupDiv" onmouseover="parent.document.getElementById(' + "'" + 'sIFrameTitle' + "'" + ').contentWindow.fnPopupMouseOver(); " onmouseout="parent.document.getElementById(' + "'" + 'sIFrameTitle' + "'" + ').contentWindow.fnPopupMouseOut(); " style=" font-size: 9px;font-family:Times New Roman; cursor: default;overflow: auto ">' + '<span  style="font-weight:bold">标题面板右键菜单：</span>' + sPopupMenu + "</div>";
+   //  parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("idForPanelToolbar").innerHTML = '<div id="popupDiv" style="overflow: auto" onmouseover="parent.document.getElementById(' + "'" + 'sIFrameTitle' + "'" + ').contentWindow.fnPopupMouseOver(); " onmouseout="parent.document.getElementById(' + "'" + 'sIFrameTitle' + "'" + ').contentWindow.fnPopupMouseOut(); " style=" font-size: 9px;font-family:Times New Roman; cursor: default ">' + '<span  style="font-weight:bold">标题面板右键菜单：</span>' + sPopupMenu + "</div>";
+    
 }
 
 function fnContentsGetFocus() {
