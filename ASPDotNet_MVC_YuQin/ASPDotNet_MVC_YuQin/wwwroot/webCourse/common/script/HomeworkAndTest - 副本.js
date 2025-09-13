@@ -47,7 +47,9 @@ function fnAnswerAndToggoleAnswerDisplay() {
     // alert(event.srcElement.parentElement.parentElement.children[1].id);
     //  alert(document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).style.display);
     
-    var sAnswer = document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).innerHTML.replace(/\s*/g, "")
+   // var sAnswer = document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).innerHTML.replace(/\s*/g, "")
+    alert(document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).childNodes.item(0).innerHTML);//可能和Word版本有关。Word2106测试可以。有些版本可能要改为document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).innerHTML
+     var sAnswer = document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).childNodes.item(0).innerHTML.replace(/\s*/g, "")//可能和Word版本有关。Word2106测试可以。
     var sIdOfAnswer = event.srcElement.parentElement.parentElement.children[1].id;
     //var sAutoGenPartOfAnswer = sIdOfAnswer.subString("idAnswer".length-1);
     var sAutoGenPartOfIdOfAnswer = sIdOfAnswer.substring("idAnswer".length);
@@ -64,7 +66,8 @@ function fnAnswerAndToggoleAnswerDisplay() {
     if (iTarget == -1) { alert("本题目中，您可能还没有单击选择一个选项！请重新选择一个选项！");return; }
     else {
        
-    var isCorrect = "错误！";
+        var isCorrect = "错误！";
+        
         if (cInput[iTarget].parentNode.textContent.indexOf(sAnswer) > 0) {
             isCorrect = "正确！";
             alert("您选择的是：" + cInput[iTarget].parentNode.textContent + "；" + "您的选择：" + isCorrect + "；" + "正确答案是：" + sAnswer);
