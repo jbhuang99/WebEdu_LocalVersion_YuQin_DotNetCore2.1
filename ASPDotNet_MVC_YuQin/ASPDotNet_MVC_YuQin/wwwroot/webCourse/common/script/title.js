@@ -861,6 +861,47 @@ function fnNotification(sStringTitle, sStringBody, sStringIcon) {  //不知为�
     }
 }
 
+function fnTTS_Play() {
+    if(!("speechSynthesis" in window)) {
+		throw alert("对不起，您的浏览器不支持");
+		}
+       /** 
+        var sTextToSpeak = "";
+    if (parent.document.getElementById("sIframeContent").contentWindow.getSelection) {
+        sTextToSpeak = parent.document.getElementById("sIframeContent").contentWindow.getSelection().toString();
+    } else if (parent.document.getElementById("sIframeContent").contentWindow.document.selection) {
+        sTextToSpeak = parent.document.getElementById("sIframeContent").contentWindow.document.selection.createRange().text;
+    }
+    if (sTextToSpeak == "") {
+        alert("请先选定要朗读的文本！");
+        return;
+    }
+    var msg = new SpeechSynthesisUtterance();
+    msg.text = sTextToSpeak;
+    msg.lang = 'zh-CN'; //中文
+    //msg.lang = 'en-US'; //英文
+    msg.volume = 1; // 0 to 1
+    msg.rate = 1; // 0.1 to 10
+    msg.pitch = 1; //0 to 2
+    window.speechSynthesis.speak(msg);
+    **/
+   const utterance = new SpeechSynthesisUtterance(parent.document.getElementById("sIframeContent").contentWindow.document.body.textContent);
+   window.speechSynthesis.speak(utterance);
+}
+
+function fnTTS_Pause() {
+    window.speechSynthesis.pause();
+}
+
+function fnTTS_Resume() {
+    window.speechSynthesis.resume();
+}
+
+function fnTTS_Cancel() {
+    window.speechSynthesis.cancel();
+}
+
+
 // Usage
 
 /** function fnUploadBackgroundMusic(){

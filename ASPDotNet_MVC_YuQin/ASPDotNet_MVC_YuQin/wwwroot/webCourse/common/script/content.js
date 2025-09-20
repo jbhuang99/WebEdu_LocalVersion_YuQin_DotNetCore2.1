@@ -24,12 +24,12 @@ document.title = "欢迎联系QQ：43930878。教与学_本机版_渔琴(Teachin
 			;
 		}
 		else {
-			fnNewWindowAdvertisement();
+			//fnNewWindowAdvertisement();
 			fnContentFrameworkNotification('欢迎浏览：', '单击此处可浏览整个系统。使用帮助，请咨询：QQ：43930878；EMail:43930878@qq.com', '/favicon.ico');
 		}
 	}
 	catch (e) {
-		fnNewWindowAdvertisement();
+		//fnNewWindowAdvertisement();
 		fnContentFrameworkNotification('欢迎浏览：', '单击此处可浏览整个系统。使用帮助，请咨询：QQ：43930878；EMail:43930878@qq.com', '/favicon.ico');
 
 	}
@@ -78,6 +78,15 @@ document.title = "欢迎联系QQ：43930878。教与学_本机版_渔琴(Teachin
     //window.click();//不知为什么总是自动弹出右键菜单，暂时通过此使右键菜单消失。
     window.document.body.click();//不知为什么总是自动弹出右键菜单，暂时通过此使右键菜单消失。
 	fnHighLight();
+	/** 本来想获取"sIframeTitle"的TTS功能，但是暂时无法"sIframeContent"获取"sIframeTitle"，不知为什么
+	alert(opener.parent.document.body.outerHTML);
+	opener.parent.document.getElementById("sIframeTitle").contentWindow.fnTTS_Play();
+	alert();
+	parent.document.getElementById("sIframeTitle").contentWindow.document.getElementById("id_TTS_Play").click();
+	alert();
+	**/
+
+
 }
 
 function fnMouseWheel(){
@@ -994,7 +1003,7 @@ function fnContentFrameworkNotification(sStringTitle, sStringBody, sStringIcon) 
 	}
 }
 function fnHelp() {
-	open("https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/wwwroot/", target = "_blank");
+	open("https://yuqin99yuqin99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore21/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/wwwroot/", target = "_blank");
 }
 //document.getElementsByTagName("body").item(0).onload = fnOnLoad;
 function fnNewWindowAdvertisement() {
