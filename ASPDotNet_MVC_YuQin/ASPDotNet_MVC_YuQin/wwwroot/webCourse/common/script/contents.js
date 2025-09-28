@@ -511,7 +511,15 @@ function fnInitailContents() {
             alert("您URL中没有指定?text=的搜索条目！将自动定位到开始条目，即，将自动定位到整个目录的第一个条目！"+'【注：标题框架的“概览”可以查看当前条目是否具有“作业与测试”、“工程文档”、“PPT”、“图像视频”、“2D动画”、“3D动画”等等各种资源】');
             cLi[0].getElementsByTagName("SPAN").item(1).click();
             cLi[0].scrollIntoView();
-            }
+            } 
+       fnOpenRobot();
+}
+
+function fnOpenRobot(){
+    alert("默认浏览器自动打开“语音对话机器人”页面，但是浏览器默认设置拦截，请取消浏览器的拦截！或者：直接单击标题框架的“语音机器人图标”打开页面！！！"+"\n"+"\n"+"注：“语音机器人”尝试您语音指令，例如，您对着页面大声朗读指令：“渔琴”,或者：“渔樵耕读 琴棋书画”，或者：“立春立夏”，或者：“机器人”，停顿一下，尝试机器人是否开始正确与您互动！");
+    var win =open("../common/STT_TTS_LLM_AIGC_Robot.html", "STT_TTS_LLM_AIGC_Robot", "fullscreen=0,left=312,top=225,toolbar=no,location=no,directories=no,menubar=no,titlebar=no,scrollbars=no,status=no,resizable=no,copyhistory=no,width=400,height=300");
+//open("STT_TTS_LLM_AIGC_Robot.html", "STT_TTS_LLM_AIGC_Robot", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.8 + "px;status:0;");
+window.childWindow = win;
 }
 
 function fnContentsRefreshAFromAlreadyAutoNumbered() {//准备改为fnContentsRefreshAFromAlreadyAutoNumbered,因为刷新了编号,还刷新了A的事件特性。
@@ -3826,5 +3834,18 @@ function fnEduResourceTemplates() {
     var win = open("../common/EduResourceTemplates.html", "EduResourceTemplates", "width=500,height=350,top=" + (screen.height - 350) / 2 + ",left=" + (screen.width - 500) / 2);
     window.childWindow = win;
 }
+/**传入homeworkAndTest,没实现,只好改为了全局变量window.TTSToggle
+window.fnGetTTSToggle;
+window.fnGetTTSToggle=parent.document.getElementById("sIframeTitle").contentWindow.document.getElementById("id_TTS").style.display;
+    alert(window.fnGetTTSToggle);
+function fnGetTTSToggle(){
+    alert();
+    
+    alert(parent.document.getElementById("sIframeTitle").contentWindow.document.getElementById("id_TTS").style.display);
+    return parent.document.getElementById("sIframeTitle").contentWindow.document.getElementById("id_TTS").style.display;
+}
+**/
+window.TTSToggle;
+
 
 document.getElementsByTagName("body").item(0).onload = fnOnLoad;
