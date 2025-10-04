@@ -494,7 +494,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Include="wwwroot\webCourse\common\script\复件 content_forPPT.js" />
     <None Include="wwwroot\webCourse\common\script\复件 run.js" />
     <None Include="wwwroot\webCourse\common\script\复件 showActiveX.js" />
-    <None Include="wwwroot\webCourse\common\search.aspx" />
     <None Include="wwwroot\webCourse\common\search\searchPath\searchPath\temp.asp" />
     <None Include="wwwroot\webCourse\common\ShowCascadingSelect\test.js" />
     <None Include="wwwroot\webCourse\common\ShowModelDiallog\Scripts\ShowModelDiallog.js" />
