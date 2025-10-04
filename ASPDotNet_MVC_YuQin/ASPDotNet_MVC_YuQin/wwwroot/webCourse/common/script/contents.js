@@ -537,7 +537,7 @@ function fnInitailContents() {
             cLi[0].getElementsByTagName("SPAN").item(1).click();
             cLi[0].scrollIntoView();
             } 
-       alert("本系统默认自动打开“语音对话机器人”页面，但是默认可能被浏览器拦截！请设置浏览器允许当前网站的弹出窗口！"+"\r"+"\r"+'【或者：直接单击标题框架的“语音机器人图标”打开页面！】'+"\n"+"\n"+"【注：“语音机器人”尝试您语音指令，例如，您对着页面大声朗读指令：“渔琴”,或者：“渔樵耕读 琴棋书画”，或者：“立春立夏”，或者：“机器人”，停顿一下，尝试机器人是否开始正确与您互动！】"+"\n"+"\n"+"【互助咨询：QQ：43930878；EMail：43930878@qq.com】");
+       alert("本系统默认自动打开“语音对话机器人”页面，但是默认可能被浏览器拦截！请设置浏览器允许当前网站的弹出窗口！"+"\r"+"\r"+'【或者：直接单击标题框架的“语音机器人图标”打开页面！】'+"\n"+"\n"+"【注：“语音机器人”尝试您语音指令，例如，您对着页面大声朗读指令：“渔琴”,或者：“渔樵耕读 琴棋书画”，或者：“立春立夏”，或者：“机器人”，停顿一下，尝试机器人是否开始正确与您互动！】"+"\n"+"\n"+"【注：单击“标题框架”的“内容切换”可以切换显示条目课文/条目作业测验】"+"\n"+"\n"+"【互助咨询：QQ：43930878；EMail：43930878@qq.com】");
        fnOpenRobot();
 }
 
@@ -546,8 +546,8 @@ function fnHomeworkAndTestHyperlinkMultimedia() {
     }
 
 function fnOpenRobot(){
-           var win =open("../common/TTS_STT_LLM_AIGC_Robot.html", "STT_TTS_LLM_AIGC_Robot", "fullscreen=0,left=312,top=225,toolbar=no,location=no,directories=no,menubar=no,titlebar=no,scrollbars=no,status=no,resizable=no,copyhistory=no,width=800,height=600");
-//open("TTS_STT_LLM_AIGC_Robot.html", "STT_TTS_LLM_AIGC_Robot", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.8 + "px;status:0;");
+           var win =open("../common/TTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.html", "STT_TTS_LLM_AIGC_Robot", "fullscreen=0,left=312,top=225,toolbar=no,location=no,directories=no,menubar=no,titlebar=no,scrollbars=no,status=no,resizable=no,copyhistory=no,width=800,height=600");
+//open("TTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.html", "STT_TTS_LLM_AIGC_Robot", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.8 + "px;status:0;");
 window.childWindow = win;
 }
 
