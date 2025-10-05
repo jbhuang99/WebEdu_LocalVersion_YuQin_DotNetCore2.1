@@ -36,7 +36,9 @@ function fnHomeworkAndTest() {
     fnValidationHomeworkAndTest();
     var oDate = new Date();
     var sTimeStamp=oDate.getTime();
-    var cTr = document.getElementsByTagName("table").item(0).getElementsByTagName("tr");
+  //  var cTr = document.getElementsByTagName("table").item(0).getElementsByTagName("tr");//这样会包含嵌套表格的行。
+  //alert(cTr[1].getElementsByTagName("td").item(0).innerHTML);
+  var oTable = document.getElementsByTagName("table").item(0);var cTr = Array.from(oTable.rows); // 只包含主表的直接<tr>。解决上述包含嵌套表格的行。
    //alert(cTr[1].getElementsByTagName("td").item(0).innerHTML);
     var iTrLenth = cTr.length;
    var iProblemNum = iTrLenth / 8;
@@ -74,7 +76,8 @@ function fnHomeworkAndTest() {
 
 function fnValidationHomeworkAndTest() {
     try {
-        var cTr = document.getElementsByTagName("table").item(0).getElementsByTagName("tr");//最外层表格嵌套了表格（如题干有表格）的问题没有解决
+       // var cTr = document.getElementsByTagName("table").item(0).getElementsByTagName("tr");//最外层表格嵌套了表格（如题干有表格）的问题没有解决
+        var oTable = document.getElementsByTagName("table").item(0);var cTr = Array.from(oTable.rows); // 只包含主表的直接<tr>。解决上述包含嵌套表格的行。
         var iTrLenth = cTr.length;
        // alert(iTrLenth);
        // if (iTrLenth % 7 != 0) { alert("上传的作业与测试可能有问题，无法正常运行。请基于word模板文件，排版制作作业与测试，然后上传！每道题必须是7个表行。总表行必须是7的倍数。"); }

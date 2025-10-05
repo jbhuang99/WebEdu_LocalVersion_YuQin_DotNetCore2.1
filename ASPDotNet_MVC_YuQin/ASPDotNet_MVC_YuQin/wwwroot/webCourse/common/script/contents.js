@@ -3582,6 +3582,7 @@ function fnUploadTeachingEngineering() {
 
 function fnUpLoadCourseText() {
     fnTooManyModelDialog(); 
+ if(fnRunningFrom().indexOf("免费")>=0) {alert(fnRunningFrom());} 
     fnHomeworkAndTestHyperlinkMultimedia();
     window.oSrcElement.click();
     if (window.oSrcElement.parentNode.parentNode === window.oSrcElement.parentNode.parentNode.parentNode.childNodes.item(0) && window.oSrcElement.parentNode.parentNode.parentNode.parentNode.tagName.toUpperCase() === "DIV") {
@@ -3679,6 +3680,7 @@ function fnUpLoad3D() {
 function fnUploadHomeworkAndTest() {
 
     fnTooManyModelDialog(); 
+     if(fnRunningFrom().indexOf("免费")>=0) {alert(fnRunningFrom());} 
     window.oSrcElement.click();
     fnHomeworkAndTestHyperlinkMultimedia();
     if (window.oSrcElement.parentNode.parentNode === window.oSrcElement.parentNode.parentNode.parentNode.childNodes.item(0) && window.oSrcElement.parentNode.parentNode.parentNode.parentNode.tagName.toUpperCase() === "DIV") {
