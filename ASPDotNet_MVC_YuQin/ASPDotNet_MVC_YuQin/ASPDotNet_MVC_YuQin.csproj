@@ -120,6 +120,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy (3).js" />
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy.js" />
     <Content Remove="wwwroot\webCourse\common\script\Popup - Copy.js" />
+    <Content Remove="wwwroot\webCourse\common\script\title - Copy.js" />
     <Content Remove="wwwroot\渔琴.ico" />
   </ItemGroup>
 
@@ -479,7 +480,8 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Include="wwwroot\webCourse\common\script\SignalR\signalr.js" />
     <None Include="wwwroot\webCourse\common\script\SignalR\signalr.min.js" />
     <None Include="wwwroot\webCourse\common\script\title - Copy %282%29.js" />
-    <None Include="wwwroot\webCourse\common\script\title - 副本.js" />
+    <None Include="wwwroot\webCourse\common\script\title - Copy.js" />
+    <None Include="wwwroot\webCourse\common\script\iframeInitial.js" />
     <None Include="wwwroot\webCourse\common\script\title.js" />
     <None Include="wwwroot\webCourse\common\script\wordToWebcourse.js" />
     <None Include="wwwroot\webCourse\common\script\wordToWebcourseContents.js" />

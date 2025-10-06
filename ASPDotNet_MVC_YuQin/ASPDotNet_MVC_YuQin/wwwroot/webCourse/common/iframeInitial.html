@@ -7,6 +7,7 @@
     <!--<link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />-->
     <link rel="icon" href="../../favicon.png" type="image/png" />
     <script src="/pushNotifications.js"></script>
+    <script src="../common/script/iframeInitial.js"></script>
     <title>教与学_本机版_渔琴(Teaching&Learning_LocalVersion_YuQin)_iframeInitial</title>
     <script language="javascript">function getPort() {
             var sUrl = document.location.href;
@@ -43,17 +44,9 @@
             document.body.scroll = "no";
            // alert(window.location.href.indexOf("?"));
             //alert(window.location.href.substring(window.location.href.lastIndexOf("?"),window.location.href.length-window.location.href.indexOf("?")));
-            
+
             //var sQueryString=window.location.href.substring(window.location.href.lastIndexOf("?"),window.location.href.length-window.location.href.lastIndexOf("?"));
-            var sSearch =new URLSearchParams(parent.location.search);
-            if(sSearch.has("text")){
-            document.getElementById("sIframeBook").src="initial.html"+"?text="+sSearch.get("text");
-           alert(document.getElementById("sIframeBook").src);
-            }
-            else{
-                document.getElementById("sIframeBook").src="initial.html";
-           alert(document.getElementById("sIframeBook").src);
-                }
+            fnSearchQueryString();
         }
         function RequestNotificationSubscriptionAsync() {
             var subscription = blazorPushNotifications.requestSubscription;
@@ -66,20 +59,19 @@
                 await HttpClient.SendAsync(request);
                 */
             }
-        }</script>
+        }
+    </script>
 
 </head>
 <!--src="initial.html"-->
-<body style="background-color:rgb(0,0,0);border:0px none;padding:0;margin:0;text-align:center;" onload="navigator.serviceWorker.register('service-worker.js');
-    RequestNotificationSubscriptionAsync();
-    fnOnload(); " onunload="frames('sIframeBook').frames('sIframeContents').fnRemoveUnusedFiles();fnThanks();">
+<body style="background-color:rgb(0,0,0);border:0px none;padding:0;margin:0;text-align:center;" onload="navigator.serviceWorker.register('service-worker.js'); RequestNotificationSubscriptionAsync(); fnOnload(); " onunload="frames('sIframeBook').frames('sIframeContents').fnRemoveUnusedFiles();fnThanks();">
     <table style="border:0px;width:100%;height:100%;border:0px none;padding:0;margin:0;">
         <tr>
             <td style="text-align:center;vertical-align:middle;">
                 <table style="width:100%;height:100%;background-color:rgb(255,255,255);border:0px none;padding:0;margin:0;" id="sTableBook">
                     <tr id="sTrTitle">
                         <td style="width:100%;text-align:center" id="sTdTitle">
-                            <iframe name="sIframeBook" id="sIframeBook" src="" marginwidth="0" marginheight="0" height="100%" width="100%" scrolling="no" border="0" frameborder="0">
+                            <iframe name="sIframeBook" id="sIframeBook" src="initial.html" marginwidth="0" marginheight="0" height="100%" width="100%" scrolling="no" border="0" frameborder="0">
                                 浏览器不支持嵌入式框架，或被配置为不显示嵌入式框架。
                             </iframe>
                         </td>
