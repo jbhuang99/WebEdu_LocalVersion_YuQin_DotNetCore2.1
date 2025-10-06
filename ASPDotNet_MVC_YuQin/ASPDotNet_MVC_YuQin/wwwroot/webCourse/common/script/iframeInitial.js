@@ -46,13 +46,15 @@ function fnOnload() {
   
             var sSearch =new URLSearchParams(window.location.search);
             if(sSearch.has("text")){
-           document.getElementById("sIframeBook").src="initial.html"+"?text="+sSearch.get("text"); 
-           // document.getElementById("sIframeBook").contentWindow.location.href="initial.html"+"?text="+sSearch.get("text");
+                open("initial.html"+"?text="+sSearch.get("text"),"_self");
+          // document.getElementById("sIframeBook").src="initial.html"+"?text="+sSearch.get("text"); //github pages不支持？？
+           // document.getElementById("sIframeBook").contentWindow.location.href="initial.html"+"?text="+sSearch.get("text");//github pages不支持？？
             //alert(document.getElementById("sIframeBook").src);
         }
         else{
-            document.getElementById("sIframeBook").src="initial.html";
-            //document.getElementById("sIframeBook").contentWindow.location.href="initial.html";
+            open("initial.html","_self");
+           // document.getElementById("sIframeBook").src="initial.html";//github pages不支持？？
+            //document.getElementById("sIframeBook").contentWindow.location.href="initial.html";//github pages不支持？？
             //alert(document.getElementById("sIframeBook").src);
          }
 }
