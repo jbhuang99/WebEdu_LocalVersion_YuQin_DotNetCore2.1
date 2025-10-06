@@ -1,23 +1,32 @@
 <html>
 
 <head>
-<script>
-//<xml:namespace prefix="IE" /><IE:download id="downLoad" style="behavior:url(#default#download)" />
-//<script language="JScript.encode" src="../common/script/content.js">等代码必须保留，不然目录中dynOpen函数的var oNewDoc=parent.frames.item("sIframeContent").document.open("text/html","replace");将出错
-//但<body>中的onload事件函数因为要调用title.htm中的信息，可能会因为title.htm还没有完全解析而出错，只好取消fnOnLoad();
-</script>
-<xml:namespace prefix="IE" /><IE:download id="downLoad" style="behavior:url(#default#download)" />
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<script language="JScript.encode" src="../common/script/content.js"></script>
-<link rel="stylesheet" type="text/css" href="content.css"></link>
-<title>新建网页 1</title>
-<base target="_self">
-</head>
+    <title>新建网页 1</title>
+    <script>//alert(window.location.href.substring(window.location.href.lastIndexOf("?"),window.location.href.length-window.location.href.indexOf("?")));
 
+    //var sQueryString=window.location.href.substring(window.location.href.lastIndexOf("?"),window.location.href.length-window.location.href.lastIndexOf("?"));
+    //fnSearchQueryString();//难道是后续init.html加载时机的问题？(含frameset),无法调用函数？完全装载判断问题？
+    function fnOnLoad(){
+    var sSearch =new URLSearchParams(parent.location.search);
+    if(sSearch.has("text")){
+        open("../common/initial.html"+"?text="+sSearch.get("text"),"_self");
+  // document.getElementById("sIframeBook").src="initial.html"+"?text="+sSearch.get("text"); //github pages不支持？？完全装载判断问题？
+   // document.getElementById("sIframeBook").contentWindow.location.href="initial.html"+"?text="+sSearch.get("text");//github pages不支持？？完全装载判断问题？
+    //alert(document.getElementById("sIframeBook").src);
+}
+else{
+    open("../common/initial.html","_self");
+   // document.getElementById("sIframeBook").src="initial.html";//github pages不支持？？完全装载判断问题？
+    //document.getElementById("sIframeBook").contentWindow.location.href="initial.html";//github pages不支持？？完全装载判断问题？
+    //alert(document.getElementById("sIframeBook").src);
+}
+}
+    </script>
+</head>
 <body onload='document.body.scroll="no";
 	window.iNewZoom=screen.width/1024*100;
 	document.body.style.zoom=iNewZoom+"%";
-//fnOnLoad();'>
+fnOnLoad();'>
 
 <table border="0" width="100%" height="100%" id="table1">
 	<tr>

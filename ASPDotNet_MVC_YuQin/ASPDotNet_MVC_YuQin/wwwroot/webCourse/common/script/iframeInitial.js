@@ -38,24 +38,6 @@ function fnOnload() {
             }
             document.title = document.title + ":" + getPort();
             document.body.scroll = "no";
-        
-            //alert(window.location.href.substring(window.location.href.lastIndexOf("?"),window.location.href.length-window.location.href.indexOf("?")));
-
-            //var sQueryString=window.location.href.substring(window.location.href.lastIndexOf("?"),window.location.href.length-window.location.href.lastIndexOf("?"));
-            //fnSearchQueryString();//难道是后续init.html加载时机的问题？(含frameset),无法调用函数？
-  
-            var sSearch =new URLSearchParams(window.location.search);
-            if(sSearch.has("text")){
-                open("initial.html"+"?text="+sSearch.get("text"),"_self");
-          // document.getElementById("sIframeBook").src="initial.html"+"?text="+sSearch.get("text"); //github pages不支持？？
-           // document.getElementById("sIframeBook").contentWindow.location.href="initial.html"+"?text="+sSearch.get("text");//github pages不支持？？
-            //alert(document.getElementById("sIframeBook").src);
-        }
-        else{
-            open("initial.html","_self");
-           // document.getElementById("sIframeBook").src="initial.html";//github pages不支持？？
-            //document.getElementById("sIframeBook").contentWindow.location.href="initial.html";//github pages不支持？？
-            //alert(document.getElementById("sIframeBook").src);
          }
 }
 
