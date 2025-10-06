@@ -48,10 +48,11 @@
             var sSearch =new URLSearchParams(parent.location.search);
             if(sSearch.has("text")){
             document.getElementById("sIframeBook").src="initial.html"+"?text="+sSearch.get("text");
-           // alert(document.getElementById("sIframeBook").src);
+           alert(document.getElementById("sIframeBook").src);
             }
             else{
                 document.getElementById("sIframeBook").src="initial.html";
+           alert(document.getElementById("sIframeBook").src);
                 }
         }
         function RequestNotificationSubscriptionAsync() {
