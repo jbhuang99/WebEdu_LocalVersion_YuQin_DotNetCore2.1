@@ -48,6 +48,11 @@ function whatBrowser() {
     }
 }
 
+function fnOpenIndex(){ 
+var sHref=window.location.href.substring(0,window.location.href.indexOf("/webCourse/"));
+open(sHref,"_blank");    
+}
+
 /**
 
 function fnLoadJs(url, callback) {//动态添加js并即时调用.调用方式：JSfnLoadJs("test.js", function () {alert('done');});

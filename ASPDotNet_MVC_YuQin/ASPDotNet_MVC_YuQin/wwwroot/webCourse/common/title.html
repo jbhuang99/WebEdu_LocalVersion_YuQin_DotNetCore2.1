@@ -89,7 +89,8 @@
                 <label style="margin-left:0px;margin-top:0px" id="sMyFutureBlazor" title="单击可打开Blazor WebAssembly新技术的视图V，将是本案例的新技术追求"><a href="https://yuqinpublishblazorongithubpages.github.io/Blazor_WebAssembly_PWA_YuQin/" target="_blank">未来视图Blazor</a></label>
                 <label id="studyTime" style="color:green">0</label>
             </div>
-            <div style="color:brown;">
+            <div style="color: brown; font-size: 14px; font-weight: bold;" onmouseover='event.srcElement.style.color="lightcyan";event.srcElement.style.fontWeight = "bold";' onMouseOut='event.srcElement.style.color="brown";event.srcElement.style.fontWeight = "bold";'>
+                <a href="" id="sIdIndex" title="新开首页【如果觉得当前不太符合预期，建议新开首页尝试，即，新开窗口重新装载首页作为起点运行】" onclick='window.event.returnValue=false;fnOpenIndex();//注意：含有URL的JS最好放置在.js文件中。否则可能文件编码不同导致不正常' unselectable="on" style="color:brown;">首页</a>
                 <a href="" id="sIdToggleAutoNumber" title="目录切换是否显示自动编号。本系统主界面分为目录面板、内容面板、标题面板。目录为导航。" onclick="window.event.returnValue=false;parent.document.getElementById('sIframeContents').contentWindow.fnToggleContentsAutoNumber();" unselectable="on" style="color:brown;">目录编号</a>
                 <a href="" id="sIdfnToggleScreenStepByStep" title="目录面板随单击逐渐变宽。本系统主界面分为目录面板、内容面板、标题面板。目录为导航。" onclick="window.event.returnValue=false;fnToggleScreenStepByStep();" unselectable="on" style="color:brown;">目录渐宽</a>
                 <a href="" id="sIdToggleContentsScreen" title="目录面板切换是否全屏。也可双击目录框架的空白处实现切换。本系统主界面分为目录面板、内容面板、标题面板。目录为导航。" onclick="window.event.returnValue=false;fnOnDBLClick();" unselectable="on" style="color:brown;">目录全宽</a>
@@ -97,7 +98,7 @@
                 <a href="" id="sDefaultWidth" onclick="fnDefaultScreen();" title="单击将目录面板恢复到默认宽度。拖曳目录和内容之间的边界可自由调整目录和内容的宽度!（此功能浏览器兼容性问题有待解决！）" style="color:brown;">默认宽度</a>
                 <a href="" id="sToggleContentFullScreen" onclick="window.event.returnValue=false;parent.document.getElementById('sIframeContent').contentWindow.fnToggleScreen();" title="单击将切换内容是否全屏。也可双击内容框架的空白处实现切换。全屏后，双击内容框架可以恢复非全屏！" style="color:brown;">内容全屏</a>
                 <lable style="font-weight:bold">|</lable>
-                <a href="" id="sToggleContentFullScreen" onclick="window.event.returnValue=false;fnToggleScreenOfHomeworkAndTest();" title="单击将切换内容框架中的作业测验三种显示方式：（1）内容框架只显示课文（2）内容框架同时显示课文/作业测验（3）内容框架只显示作业测验。" style="color:brown;">内容切换</a>
+                <a href="" id="sToggleContentFullScreen" onclick="window.event.returnValue=false;fnToggleScreenOfHomeworkAndTest();" title="单击将切换内容框架中的作业测验三种显示方式：（1）内容框架只显示课文（2）内容框架同时显示课文/作业测验（3）内容框架只显示作业测验【注：双击内容框架的空白部分，可以切换全屏内容框架。此时，按键盘的↑或↓键，可以条目上翻下翻。今后还将实现条目自动向下阅读/朗读！】" style="color:brown;">内容切换</a>
                 <lable style="font-weight:bold">|</lable>
                 <a href="" id="sDefaultZoom" onclick="fnDefaultZoom();" title="单击将教学系统的放缩恢复为默认（请注意：本系统的放缩是基于浏览器放缩之上的放缩！）" unselectable="on" style="color:brown;">默认放缩</a>
                 <!--<lable style="font-weight:bold">|</lable>

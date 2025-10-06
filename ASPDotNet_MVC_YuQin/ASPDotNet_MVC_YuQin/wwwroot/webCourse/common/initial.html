@@ -1,21 +1,30 @@
 <html>
 <head>
-	<title>本机版</title>
-	<link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
-</head>
-<frameset rows="100,*,20"  id="sFramesetBook" name="sFramesetBook" style="border: 0px ; padding-bottom: 1px; border-collapse:collapse" framespacing="0" border="0" frameborder="0">
-    <frame src="title.html" name="sIFrameTitle" id="sIFrameTitle" scrolling="no" noresize target="sIframeContents" style="border: 0px dotted #008000; border-collapse:collapse">
-        <frameset cols="25%,*" id="sFramesetMiddle" name="sFramesetMiddle">
-            <frame src="../lessons/Tempcontents.htm" name="sIframeContents" id="sIframeContents" scrolling="yes" target="sIframeContent" style="border-right-style: dotted; border-right-width: 1px;border-right-color:#800000;">
-				<frameset rows="0%,*" id="sFramesetContentAndHomeworkAndTest" name="sFramesetContentAndHomeworkAndTest" style="border: 0px ; padding-bottom: 1px; border-collapse:collapse" framespacing="0" border="1" frameborder="0">
-					<frame src="../options/TempcontentStart.htm" name="sIframeContent" id="sIframeContent" scrolling="yes" target="_self">
-					<frame src="../options/TempHomeworkAndTestStart.htm" name="sIframeHomeworkAndTest" id="sIframeHomeworkAndTest" scrolling="yes" target="_self" style="border-top:dashed">
-				</frameset>
-        </frameset>
-        <!--<frame src="../options/bottom.aspx" name="sIframeBottom" id="sIframeBottom" scrolling="no" noresize target="_self">-->
-</frameset>
-<body>
-<script>
+    <title>教与学_本机版_渔琴(Teaching&Learning_LocalVersion_YuQin)_initial</title>
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+    <script language="javascript">function getPort() {
+            var sUrl = document.location.href;
+            var sPartUrl = sUrl.substring(sUrl.lastIndexOf(":"));
+            return sUrl.substring(sUrl.lastIndexOf(":") + 1, sUrl.lastIndexOf(":") + sPartUrl.indexOf("/"));
+        }</script>
+    <script>
+    function fnOnload() {
+
+            if (screen.height / screen.width == 0.625) {
+
+                window.iNewZoom = screen.width / 1280 * 100;
+                document.body.style.zoom = iNewZoom + "%";
+
+            }
+            else {
+
+                window.iNewZoom = screen.width / 1024 * 100;
+                document.body.style.zoom = iNewZoom + "%";
+
+            }
+            document.title = document.title + ":" + getPort();
+            document.body.scroll = "no";
+        }
  //alert(document.getElementById("sIframeContent").src);
 //function fnOnLoad(){
 	/**alert();
@@ -36,8 +45,20 @@
 //var sLessonsPath="content"+document.getElementById("sIframeContents").src.substring(document.getElementById("sIframeContents").src.lastIndexOf("contents")+8,document.getElementById("sIframeContents").src.lastIndexOf("."))+"/";//为多个分课作准备。
 //var sOptionsPath="options/";
 //var sContentsName=document.getElementById("sIframeContents").src.substring(document.getElementById("sIframeContents").src.lastIndexOf("/")+1,document.getElementById("sIframeContents").src.length);
-//var sContentStartName=document.getElementById("sIframeContent").src.substring(document.getElementById("sIframeContent").src.lastIndexOf("/")+1,document.getElementById("sIframeContent").src.length);
-</script>
+//var sContentStartName=document.getElementById("sIframeContent").src.substring(document.getElementById("sIframeContent").src.lastIndexOf("/")+1,document.getElementById("sIframeContent").src.length);</script>
+</head>
+<frameset rows="100,*,20"  id="sFramesetBook" name="sFramesetBook" style="border: 0px ; padding-bottom: 1px; border-collapse:collapse" framespacing="0" border="0" frameborder="0">
+    <frame src="title.html" name="sIFrameTitle" id="sIFrameTitle" scrolling="no" noresize target="sIframeContents" style="border: 0px dotted #008000; border-collapse:collapse">
+        <frameset cols="25%,*" id="sFramesetMiddle" name="sFramesetMiddle">
+            <frame src="../lessons/Tempcontents.htm" name="sIframeContents" id="sIframeContents" scrolling="yes" target="sIframeContent" style="border-right-style: dotted; border-right-width: 1px;border-right-color:#800000;">
+				<frameset rows="0%,*" id="sFramesetContentAndHomeworkAndTest" name="sFramesetContentAndHomeworkAndTest" style="border: 0px ; padding-bottom: 1px; border-collapse:collapse" framespacing="0" border="1" frameborder="0">
+					<frame src="../options/TempcontentStart.htm" name="sIframeContent" id="sIframeContent" scrolling="yes" target="_self">
+					<frame src="../options/TempHomeworkAndTestStart.htm" name="sIframeHomeworkAndTest" id="sIframeHomeworkAndTest" scrolling="yes" target="_self" style="border-top:dashed">
+				</frameset>
+        </frameset>
+        <!--<frame src="../options/bottom.aspx" name="sIframeBottom" id="sIframeBottom" scrolling="no" noresize target="_self">-->
+</frameset>
+<body onload="fnOnload(); //在frameset中好像无法触发？" >
 </body>
 
 </html>
