@@ -46,13 +46,13 @@ function fnOnload() {
   
             var sSearch =new URLSearchParams(window.location.search);
             if(sSearch.has("text")){
-           // document.getElementById("sIframeBook").src="initial.html"+"?text="+sSearch.get("text"); //本机可以运行，github pages不行
-            document.getElementById("sIframeBook").contentWindow.location.href="initial.html"+"?text="+sSearch.get("text");
+           document.getElementById("sIframeBook").src="initial.html"+"?text="+sSearch.get("text"); 
+           // document.getElementById("sIframeBook").contentWindow.location.href="initial.html"+"?text="+sSearch.get("text");
             //alert(document.getElementById("sIframeBook").src);
         }
         else{
-            //document.getElementById("sIframeBook").src="initial.html";//本机可以运行，github pages不行
-             document.getElementById("sIframeBook").contentWindow.location.href="initial.html";
+            document.getElementById("sIframeBook").src="initial.html";
+            //document.getElementById("sIframeBook").contentWindow.location.href="initial.html";
             //alert(document.getElementById("sIframeBook").src);
          }
 }
