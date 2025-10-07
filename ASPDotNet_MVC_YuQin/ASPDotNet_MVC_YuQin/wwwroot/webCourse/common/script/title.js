@@ -111,11 +111,11 @@ function fnOnload() {
    // if (!isChromium()) { alert("本系统目前仅在Chromium内核的浏览器进行了测试！您当前使用的浏览器不是Chromium内核，请切换为Chromium内核浏览器，以免不兼容！！！"); }
   // if (!fnIsEdgeBrowser()) {alert("重要提示：您当前的浏览器不是 Edge！本系统仅在Chromium内核的 Edge浏览器进行了测试！");} 
   if (fnIsEdgeMobile()) {
-    alert('重要提示：您当前的浏览器是“手机操作系统的Edge浏览器”！本系统仅在“非手机操作系统的Edge浏览器”进行了测试！'+'\r'+'\r'+'此外，如果手机，请横屏浏览！');//手机操作系统Edge 浏览器。
+    alert('重要提示：您当前的浏览器是“Android|iPhone|iPad|Mobile手机操作系统的Edge浏览器”！本系统仅在“非手机操作系统例如Windows的Edge浏览器”进行了测试！'+'\r'+'\r'+'此外，如果手机，请横屏浏览！');//手机操作系统Edge 浏览器。
 } else if (fnIsEdgeDesktop()) {
     ;//非手机版操作系统的Edge浏览器（本系统的需求）。
 } else {
-    alert('重要提示：您当前的浏览器不是“Edge浏览器”！本系统仅在“非手机操作系统的Edge浏览器”进行了测试！'+'\r'+'\r'+'此外，如果手机，请横屏浏览！');//不是 Edge 浏览器
+    alert('重要提示：您当前的浏览器不是“Edge浏览器”或者不是“Android|iPhone|iPad|Mobile手机操作系统的Edge浏览器”！本系统仅在“非手机操作系统例如Windows的Edge浏览器”进行了测试！'+'\r'+'\r'+'此外，如果手机，请横屏浏览！');//不是 Edge 浏览器
 }
     //window.onfocus = fnWindowOnFocus;//由于目录面板、内容面板的事件冒泡尚未取消，暂时取消标题菜单的此功能
     //window.addEventListener("focus", fnGetFocus, false); //模式窗口相关，暂时未使用。
