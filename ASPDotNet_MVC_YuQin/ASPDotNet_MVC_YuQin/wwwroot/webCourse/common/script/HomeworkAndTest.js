@@ -30,7 +30,7 @@ function fnToggleItemDisplay(i) {
     var oChildren=cTr[i].querySelectorAll('*');
     var iChildrenLength=oChildren.length;
   // alert(iChildrenLength);
-    for(m=3;m<iChildrenLength;m++)
+    for(m=5;m<iChildrenLength;m++)
     {
     if(oChildren[m].style.display == "none")
     { 
@@ -82,7 +82,7 @@ function fnHomeworkAndTest() {
    
     for (i = 0; i < iTrLenth; i++) {
         //for (j = 0; j < 6; j=i*j) {
-        if ((i + 8) % 8 === 0) { cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span style=\"color:red\">题目" + ((i + 8) / 8) + "：<input type=\"button\" value=\"切换题目显示\" onclick=\"fnToggleItemDisplay("+i+")\" /><input type=\"button\" value=\"服务端作业测验正在开发之中...\" /></span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML; }
+        if ((i + 8) % 8 === 0) { cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span style=\"color:red\">题目" + ((i + 8) / 8) + "：<input type=\"button\" value=\"单击切换本题题目显示\" onclick=\"fnToggleItemDisplay("+i+")\" /><input type=\"button\" value=\"单击登录服务端作业测验、统计分析（正在开发之中...）\" /></span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML; }
 
         if ((i + 8) % 8 === 1) {cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span><span style=\"color:red\"><input type=\"radio\" name=\"options" + sTimeStamp + Math.floor(((i + 8) / 8)) + "\" />(A)</span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML + "</span>"; }
         if ((i + 8) % 8 === 2) {cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span><span style=\"color:red\"><input type=\"radio\" name=\"options" + sTimeStamp + Math.floor(((i + 8) / 8)) + "\" />(B)</span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML + "</span>"; }
