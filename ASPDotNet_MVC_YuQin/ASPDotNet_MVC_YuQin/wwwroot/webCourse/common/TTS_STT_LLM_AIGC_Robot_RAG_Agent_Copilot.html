@@ -82,49 +82,54 @@
 
                     <button id="closeSTTSystemExternal" onclick='if(document.getElementById("sVisionAIGC_RAG_Agent").style.display=="none"){document.getElementById("sVisionAIGC_RAG_Agent").style.display="block"} else{document.getElementById("sVisionAIGC_RAG_Agent").style.display="none"}' style="width: 120px;white-space: normal;">单击切换面向视觉的屏幕键盘鼠标互动AIGC</button>
                 </div>
-                <div id="sVisionAIGC_RAG_Agent" style="display:none">
-                    <input type="text" value="计算" style="width:90%" id="idAIGCKeywords" />
+                <div id="sVisionAIGC_RAG_Agent" style="display: none; border:solid;border-color:brown">
+                    <textarea style="width:90%">这里将显示您键入的Prompt(例如:什么是教育数智思维)，然后，AIGC生成的answer...</textarea>
+                    <div><button>确认</button> <button>取消</button></div>
                     <p></p>
                     <input type="button" value="AIGC回答(视觉字符)（调用免费的他创方的AIGC服务端）（基本实现...）" onclick='if(document.getElementById("AIGCCharactor").style.display=="none"){document.getElementById("AIGCCharactor").style.display="block"} else{document.getElementById("AIGCCharactor").style.display="none"}' />
-                    <div id="AIGCCharactor" style="display: none">
-                        <div>AIGC生成字符序列：</div>
-                        <div>对比字符序列：</div>
-                        <div>准确性相似度：</div>
+                    <div id="AIGCCharactor" style="display: none; border: dashed;border-color: goldenrod; text-align: justify ">
+                        <div><textarea>这里粘贴AIGC生成的字符序列...</textarea></div>
+                        <div><textarea>这里粘贴知识库搜索匹配的对比字符序列...</textarea></div>
+                        <div><button style="color:green;font-size:12px">准确性相似度：</button>这里将显示准确性相似度</div>
                     </div>
                     <input type="button" value="AIGC回答(视觉图像)（调用免费的他创方的AIGC服务端）（.jpg文件为例）（开发之中...）" onclick='if(document.getElementById("AIGCPixelImage").style.display=="none"){document.getElementById("AIGCPixelImage").style.display="block"} else{document.getElementById("AIGCPixelImage").style.display="none"}' />
-                    <div id="AIGCPixelImage" style="display: none">
-                        <div>AIGC生成文件：</div>
-                        <div>对比文件：</div>
-                        <div>准确性相似度：</div>
+                    <div id="AIGCPixelImage" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+                        <div style="border:dashed;border-color:green"><label>上传示AIGC生成的图像文件(.jpeg或.png文件)： </label>
+                        <div><input type="file" /> <input type="submit" value="提交" id="idFileSubmit" /></div></div>
+                        <div style="border:dashed;border-color:green"><label>上传知识库搜索匹配的对比文件文件(.jpeg或.png文件)： </label>
+                        <div><input type="file" /> <input type="submit" value="提交" id="idFileSubmit" /></div></div>
+                        <div><button style="color:green;font-size:12px">准确性相似度：</button>这里将显示准确性相似度</div>
                     </div>
                     <input type="button" value="AIGC回答(视觉视频)（调用免费的他创方的AIGC服务端）（.mp4文件为例）（开发之中...）" onclick='if(document.getElementById("AIGCVideo").style.display=="none"){document.getElementById("AIGCVideo").style.display="block"} else{document.getElementById("AIGCVideo").style.display="none"}' />
-                    <div id="AIGCVideo" style="display: none">
-                        <div>AIGC生 成文件：</div>
-                        <div>对比文件：</div>
-                        <div>准确性相似度：</div>
+                    <div id="AIGCVideo" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+                        <div><button style="color:green;font-size:12px">AIGC生成的文件：</button></div>
+                        <div><button style="color:green;font-size:12px">知识库搜索匹配的对比文件：</button></div>
+                        <div><button style="color:green;font-size:12px">准确性相似度：</button></div>
                     </div>
                     <input type="button" value="AIGC回答(视觉2D)（调用免费的他创方的AIGC服务端）（.svg文件为例）（开发之中...）" onclick='if(document.getElementById("AIGC2D").style.display=="none"){document.getElementById("AIGC2D").style.display="block"} else{document.getElementById("AIGC2D").style.display="none"}' />
-                    <div id="AIGC2D" style="display: none">
-                        <div>AIGC生成文件：</div>
-                        <div>对比文件：</div>
-                        <div>准确性相似度：</div>
+                    <div id="AIGC2D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+                        <div><button style="color:green;font-size:12px">AIGC生成的文件：</button></div>
+                        <div><button style="color:green;font-size:12px">知识库搜索匹配的对比文件：</button></div>
+                        <div><button style="color:green;font-size:12px">准确性相似度：</button></div>
                     </div>
                     <input type="button" value="AIGC回答(视觉3D)（调用免费的他创方的AIGC服务端）（.vx3d文件为例）（开发之中...）" onclick='if(document.getElementById("AIGC3D").style.display=="none"){document.getElementById("AIGC3D").style.display="block"} else{document.getElementById("AIGC3D").style.display="none"}' />
-                    <div id="AIGC3D" style="display:none">
-                        <div>AIGC生成文件：</div>
-                        <div>对比文件：</div>
-                        <div>准确性相似度：</div>
+                    <div id="AIGC3D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+                        <div><button style="color:green;font-size:12px">AIGC生成文件：</button></div>
+                        <div><button style="color:green;font-size:12px">知识库搜索匹配的对比文件：</button></div>
+                        <div><button style="color:green;font-size:12px">准确性相似度：</button></div>
                     </div>
                     <input type="button" value="AIGC回答(听觉音频)（调用免费的他创方的AIGC服务端）（.mp3文件、.midi文件为例）（开发之中...）" onclick='if(document.getElementById("AIGCAudio").style.display=="none"){document.getElementById("AIGCAudio").style.display="block"} else{document.getElementById("AIGCAudio").style.display="none"}' />
-                    <div id="AIGCAudio" style="display: none">
-                        <div>AIGC生成文件：</div>
-                        <div>对比文件：</div>
-                        <div>准确性相似度：</div>
+                    <div id="AIGCAudio" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+                        <div style="border:dashed;border-color:green"><label>上传AIGC生成的音频文件(.mp3文件)： </label>
+                        <div><input type="file" /> <input type="submit" value="提交" id="idFileSubmit" /></div></div>
+                        <div style="border:dashed;border-color:green"><label>上传知识库搜索匹配的对比音频文件(.mp3文件)： </label>
+                        <div><input type="file" /> <input type="submit" value="提交" id="idFileSubmit" /></div></div>
+                        <div><button style="color:green;font-size:12px">准确性相似度：</button>这里将显示准确性相似度</div>
                     </div>
                     <div><input type="button" value="AIGC回答(触觉)（目前尚无法实现...）" /></div>
                     <div><input type="button" value="AIGC回答(嗅觉)（目前尚无法实现...）" /></div>
                     <div><input type="button" value="AIGC回答(味觉)（目前尚无法实现...）" /></div>
-                    </div>
+                </div>
 
 
                         <button id="startBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将开始打开麦克风录音，系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案....">开始录音对话</button>
