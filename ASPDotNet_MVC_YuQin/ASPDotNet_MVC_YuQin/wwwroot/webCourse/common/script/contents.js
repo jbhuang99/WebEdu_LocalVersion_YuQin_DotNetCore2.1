@@ -457,10 +457,10 @@ function fnInitailContents() {
     window.alert(searchParams);
      window.alert(parent.document.URL);
      **/
-    //window.alert(parent.location.search.lastIndexOf("?text="));
+    //window.alert(parent.location.search.lastIndexOf("&text="));
    // window.alert(parent.location.search);
    var sSearch =new URLSearchParams(parent.location.search);
-       if(sSearch.has("text")) //因为https://localhost:5001/webCourse/common/Initial.html，打开了https://localhost:5001/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738，parent返回的总是https://localhost:5001/webCourse/common/Initial.html，待后续解决返回https://localhost:5001/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738。当前暂时https://localhost:5001/webCourse/common/Initial.html?text=1676365357375之类解决下述需求。
+       if(sSearch.has("text")) //因为https://localhost:5001/webCourse/common/Initial.html，打开了https://localhost:5001/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738，parent返回的总是https://localhost:5001/webCourse/common/Initial.html，待后续解决返回https://localhost:5001/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738。当前暂时https://localhost:5001/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738&text=1676365357375之类解决下述需求。
         {
          var sText=sSearch.get("text");//获取URL中的text参数值
          var iLiLength = cLi.length;
@@ -533,12 +533,19 @@ function fnInitailContents() {
 
          else
         {
-            alert("您URL中没有指定?text=的搜索条目！将自动定位到开始条目，即，将自动定位到整个目录的第一个条目！"+"\r"+"\r"+'【注：标题框架的“内容切换”可以切换显示】'+"\r"+"\r"+'【注：标题框架的“概览”可以查看当前条目是否具有“课文”、“作业测验”等等各种文档】');
+            alert("您URL中没有指定&text=的搜索条目！将自动定位到开始条目，即，将自动定位到整个目录的第一个条目！"+"\r"+"\r"+'【注：标题框架的“内容切换”可以切换显示】'+"\r"+"\r"+'【注：标题框架的“概览”可以查看当前条目是否具有“课文”、“作业测验”等等各种文档】');
             cLi[0].getElementsByTagName("SPAN").item(1).click();
             cLi[0].scrollIntoView();
             } 
-       alert("本系统默认自动打开“语音对话机器人”页面，但是默认可能被浏览器拦截！请设置浏览器允许当前网站的弹出窗口！"+"\r"+"\r"+'【或者：直接单击标题框架的“语音机器人图标”打开页面！】'+"\n"+"\n"+"【注：“语音机器人”尝试您语音指令，例如，您对着页面大声朗读指令：“渔琴”,或者：“渔樵耕读 琴棋书画”，或者：“立春立夏”，或者：“机器人”，停顿一下，尝试机器人是否开始正确与您互动！】"+"\n"+"\n"+"【注：单击“标题框架”的“内容切换”可以切换显示条目课文/条目作业测验】"+"\n"+"\n"+"【互助咨询：QQ：43930878；EMail：43930878@qq.com】");
+       alert("手机操作系统的时候不合适用户操作多个页面，所以，本系统运行于非手机操作系统的时候，才会默认自动打开“语音对话机器人”页面，，但是默认可能被浏览器拦截！请设置浏览器允许当前网站的弹出窗口！（不过本系统难以判断出所有手机操作系统，所以万一手机操作系统还是打开了“语音对话机器人”页面，请按手机主屏的返回键一次，就可显示本系统的主界面！）"+"\r"+"\r"+'【或者：直接单击标题框架的“语音机器人图标”打开页面！】'+"\n"+"\n"+"【注：“语音机器人”尝试您语音指令，例如，您对着页面大声朗读指令：“渔琴”,或者：“渔樵耕读 琴棋书画”，或者：“立春立夏”，或者：“机器人”，停顿一下，尝试机器人是否开始正确与您互动！】"+"\n"+"\n"+"【注：单击“标题框架”的“内容切换”可以切换显示条目课文/条目作业测验】"+"\n"+"\n"+"【互助咨询：QQ：43930878；EMail：43930878@qq.com】");
+       
+       if(!parent.document.getElementById("sIFrameTitle").contentWindow.fnIsMobile())
+       {
        fnOpenRobot();
+       }
+       else{
+           ;//手机版Edge打开多个窗口不方便用户，所以不运行该函数。
+           }
 }
 
 function fnHomeworkAndTestHyperlinkMultimedia() {
@@ -3895,7 +3902,7 @@ function fnMargee() {
 */
 function fnHelp() {
     fnTooManyModelDialog();
-    var winSearch = open('https://yuqin99yuqin99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore21/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/wwwroot/webCourse/common/initial.html?text=1689408797769', "search", "width=500,height=350,top=" + (screen.height - 350) / 2 + ",left=" + (screen.width - 500)/2);
+    var winSearch = open('https://yuqin99yuqin99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore21/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/wwwroot/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738&text=1689408797769', "search", "width=500,height=350,top=" + (screen.height - 350) / 2 + ",left=" + (screen.width - 500)/2);
     window.childWindow = winSearch; 
 }
 function fnMarquee() {

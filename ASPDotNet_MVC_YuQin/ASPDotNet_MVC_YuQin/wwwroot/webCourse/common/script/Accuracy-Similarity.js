@@ -29,36 +29,37 @@
 //---------------------------------------------------------------
 
 // Compare two images by pixel similarity (returns a value between 0 and 1)
-async function fnImageSimilarity(img1Src, img2Src) {
+async function fnPixelImageSimilarity(img1Src, img2Src) {
     // Load images
+   
     const loadImage = src => new Promise(resolve => {
         const img = new Image();
         img.crossOrigin = "Anonymous";
         img.onload = () => resolve(img);
         img.src = src;
     });
-
+    
     const [img1, img2] = await Promise.all([loadImage(img1Src), loadImage(img2Src)]);
-
+     
     // Set canvas size to smallest image
     const width = Math.min(img1.width, img2.width);
     const height = Math.min(img1.height, img2.height);
-
+  
     // Draw images to canvases
     const canvas1 = document.createElement('canvas');
     const canvas2 = document.createElement('canvas');
     canvas1.width = canvas2.width = width;
     canvas1.height = canvas2.height = height;
-
+      
     const ctx1 = canvas1.getContext('2d');
     const ctx2 = canvas2.getContext('2d');
     ctx1.drawImage(img1, 0, 0, width, height);
     ctx2.drawImage(img2, 0, 0, width, height);
-
+    
     // Get pixel data
     const data1 = ctx1.getImageData(0, 0, width, height).data;
     const data2 = ctx2.getImageData(0, 0, width, height).data;
-
+    
     // Compare pixels
     let same = 0;
     for (let i = 0; i < data1.length; i += 4) {
@@ -72,8 +73,10 @@ async function fnImageSimilarity(img1Src, img2Src) {
             same++;
         }
     }
+   
     const total = data1.length / 4;
     return same / total; // Similarity ratio (0~1)
+     alert(img1Src+img2Src);
 }
 
 /** Example usage:
@@ -82,6 +85,17 @@ fnImageSimilarity('image1.png', 'image2.png').then(sim => {
 });
 **/
 //---------------------------------------------------------
+function fnViewRealImage(sId) {
+    open(document.getElementById(sId).src,"_blank");
+    }
+
+function fnShowAccuraySimilarityForImage() {
+    img1Src=document.getElementById("sShowPixelImageFromAIGC").src;
+    img2Src=document.getElementById("sShowPixelImageFromKnowledgebase").src;
+    alert(img1Src+img2Src);
+    document.getElementById("sAccuracySimilarityForPixelImage").textContent=fnPixelImageSimilarity(img1Src,img2Src)
+    }
+//-------------------------------------------------------
 
 // Compare two videos by sampling frames and averaging image similarity
 async function fnVideoSimilarity(video1Src, video2Src, frameCount = 10) {
@@ -268,3 +282,59 @@ async function fnX3DVisualSimilarity(x3d1, x3d2, width = 300, height = 300) {
 }
 /** Example usage:
  **/
+//在前端 JavaScript 中，直接比较两个 MP3 音频文件的相似性（如语音内容、旋律、音色等）是一个复杂任务。浏览器原生 API 并不直接支持音频指纹或语音识别级别的相似度对比，但可以通过音频特征提取和简单波形对比实现基础的相似性分析。更高级的对比通常需要后端服务或第三方 AI API。
+// 前端基础方案：对比波形能量（粗略）1.	读取文件并解码为 PCM 数据2.	对比波形能量或均值等简单特征
+/**hTML 示例：
+<input type="file" id="file1" accept="audio/mp3" />
+<input type="file" id="file2" accept="audio/mp3" />
+<button onclick="compareMp3Similarity()">比较相似性</button>
+<div id="result"></div>
+**/
+
+async function getPcmData(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            const arrayBuffer = e.target.result;
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            try {
+                const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+                // 只取第一个声道
+                const pcm = audioBuffer.getChannelData(0);
+                resolve(pcm);
+            } catch (err) {
+                reject(err);
+            }
+        };
+        reader.onerror = reject;
+        reader.readAsArrayBuffer(file);
+    });
+}
+
+function calcEnergy(pcm) {
+    let sum = 0;
+    for (let i = 0; i < pcm.length; i++) {
+        sum += Math.abs(pcm[i]);
+    }
+    return sum / pcm.length;
+}
+
+async function fnAudioSimilarity(audio1Src, audio2Src) {
+
+    try {
+        const [pcm1, pcm2] = await Promise.all([getPcmData(audio1Src), getPcmData(audio2Src)]);
+        // 简单能量均值对比
+        const energy1 = calcEnergy(pcm1);
+        const energy2 = calcEnergy(pcm2);
+        const similarity = 1 - Math.abs(energy1 - energy2) / Math.max(energy1, energy2);
+        document.getElementById('result').textContent = '相似度（能量均值法，0~1）：' + similarity.toFixed(3);
+    } catch (e) {
+        document.getElementById('result').textContent = '解码或比较失败: ' + e;
+    }
+}
+function fnShowAccuraySimilarityForAudio() {
+    audio1Src=document.getElementById("sShowAudioFromAIGC").src;
+    audio2Src=document.getElementById("sShowAudioFromKnowledgebase").src;
+    alert(audio1Src+audio2Src);
+    document.getElementById("sAccuracySimilarityForAudio").textContent=fnAudioSimilarity(audio1Src,audio2Src)
+    }

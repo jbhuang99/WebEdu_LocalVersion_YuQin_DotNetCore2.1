@@ -54,11 +54,14 @@ function fnIsEdgeBrowser() {
     // Legacy Edge: "Edge/"
     return ua.indexOf("Edg/") !== -1 || ua.indexOf("Edge/") !== -1;
 }
-
+function fnIsMobile() {
+     var ua = navigator.userAgent;
+    return /Android|iPhone|iPad|Mobile|HyperOS|MIUI|HWUI/i.test(ua);
+    }
 function fnIsEdgeMobile() {
     var ua = navigator.userAgent;
     // Edge 移动端通常包含 Edg/ 并且有 Android/iPhone/iPad/Mobile 等
-    return fnIsEdgeBrowser() && /Android|iPhone|iPad|Mobile/i.test(ua);
+    return fnIsEdgeBrowser() && /Android|iPhone|iPad|Mobile|HyperOS|MIUI|HWUI/i.test(ua);
 }
 
 function fnIsEdgeDesktop() {
