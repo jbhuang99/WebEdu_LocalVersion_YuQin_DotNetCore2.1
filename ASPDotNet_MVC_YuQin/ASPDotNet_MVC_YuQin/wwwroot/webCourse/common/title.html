@@ -61,7 +61,7 @@
         </div>
 
         <div style="position: static; width: 100%; height: 90px; margin-left: 0px; margin-top: 0px; color: goldenrod; font-weight: normal">
-            <div style="cursor:default;font-size:15px;margin-left:0px;margin-top: 0px;" onmouseover='
+            <div style="cursor: default; font-size: 15px; margin-left: 0px; margin-top: 0px; font-weight: bold" onmouseover='
     //event.srcElement.style.marginLeft = parseInt(event.srcElement.style.marginLeft) + 20 + "px";
     //event.srcElement.style.marginTop = parseInt(event.srcElement.style.marginTop) + 20 + "px";
     event.srcElement.style.color="lightcyan";event.srcElement.style.fontWeight = "normal";'
@@ -89,7 +89,7 @@
                 <label style="margin-left:0px;margin-top:0px" id="sMyFutureBlazor" title="单击可打开Blazor WebAssembly新技术的视图V，将是本案例的新技术追求"><a href="https://yuqinpublishblazorongithubpages.github.io/Blazor_WebAssembly_PWA_YuQin/" target="_blank">未来视图Blazor</a></label>
                 <label id="studyTime" style="color:green">0</label>
             </div>
-            <div style="color: brown; font-size: 14px; font-weight: bold;" onmouseover='event.srcElement.style.color="lightcyan";event.srcElement.style.fontWeight = "bold";' onMouseOut='event.srcElement.style.color="brown";event.srcElement.style.fontWeight = "bold";'>
+            <div style="color: brown; font-size: 14px; font-weight: bold;" onmouseover='if(!fnIsMobile()){event.srcElement.style.color="lightcyan";event.srcElement.style.fontWeight = "bold";}' onMouseOut='if(!fnIsMobile()){event.srcElement.style.color="brown";event.srcElement.style.fontWeight = "bold";}'>
                 <a href="" id="sIdIndex" title="新开首页【如果觉得当前不太符合预期，建议新开首页尝试，即，新开窗口重新装载首页作为起点运行】" onclick='window.event.returnValue=false;fnOpenIndex();//注意：含有URL的JS最好放置在.js文件中。否则可能文件编码不同导致不正常' unselectable="on" style="color:brown;">首页</a>
                 <a href="" id="sIdToggleAutoNumber" title="目录切换是否显示自动编号。本系统主界面分为目录面板、内容面板、标题面板。目录为导航。" onclick="window.event.returnValue=false;parent.document.getElementById('sIframeContents').contentWindow.fnToggleContentsAutoNumber();" unselectable="on" style="color:brown;">目录编号</a>
                 <a href="" id="sIdfnToggleScreenStepByStep" title="目录面板随单击逐渐变宽。本系统主界面分为目录面板、内容面板、标题面板。目录为导航。" onclick="window.event.returnValue=false;fnToggleScreenStepByStep();" unselectable="on" style="color:brown;">目录渐宽</a>
