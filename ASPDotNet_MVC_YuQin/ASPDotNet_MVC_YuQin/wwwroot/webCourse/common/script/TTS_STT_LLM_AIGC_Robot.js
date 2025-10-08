@@ -18,9 +18,25 @@ document.getElementById('idQwenAPIKeyConfirm').addEventListener('click',fnidQwen
 //document.getElementById('btnSystemExternal').disabled=false;
 
 //document.getElementById('startBtnSystemInternal').click(); // 页面加载后自动点击开始系统内部的录音按钮
+var sHref=window.location.href.substring(0,window.location.href.indexOf("/webCourse/"));
+document.getElementById('sPixelImageFromAIGC').value=sHref+"/webCourse/options/Accuracy-Similarity/Cone-of-Experience-FromAIGC-willTransformToFiveLayeredMVC.jpg";
+document.getElementById('sShowPixelImageFromAIGC').src=sHref+"/webCourse/options/Accuracy-Similarity/Cone-of-Experience-FromAIGC-willTransformToFiveLayeredMVC.jpg";
+document.getElementById('sPixelImageFromKnowledgebase').value=sHref+"/webCourse/options/Accuracy-Similarity/Cone-of-Experience-FromKnowledgebase-willTransformToFiveLayeredMVC.jpg";
+document.getElementById('sShowPixelImageFromKnowledgebase').src=sHref+"/webCourse/options/Accuracy-Similarity/Cone-of-Experience-FromKnowledgebase-willTransformToFiveLayeredMVC.jpg";
+
+
+document.getElementById('sAudioFromAIGC').value=sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.m4a";
+document.getElementById('sShowAudioFromAIGC').src=sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.m4a";
+document.getElementById('sAudioFromKnowledgebase').value=sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.m4a";
+document.getElementById('sShowAudioFromKnowledgebase').src=sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.m4a";
+
 }
 
-
+/**
+function fnOpenSystemExternalAIGC(){
+    open("https://chat.baidu.com/search","SystemExternalAIGC");
+}
+**/
 function fnBtnSystemInternalOnClick() {
                 window.speechSynthesis.cancel();  // 取消任何正在进行的TTS;
                 //window.recognitionSystemInternal = null; // STT的系统内部实例声明或清空；

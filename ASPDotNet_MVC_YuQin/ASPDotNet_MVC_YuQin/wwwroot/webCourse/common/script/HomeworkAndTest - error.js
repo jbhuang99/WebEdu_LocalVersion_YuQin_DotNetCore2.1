@@ -1,40 +1,28 @@
-﻿function fnToggleContentEditable(i) {
-    
-    var oTable = document.getElementsByTagName("table").item(0);
-    var cTr = Array.from(oTable.rows);
-
-    var oChildren=cTr[i].querySelectorAll('*');
-    var iChildrenLength=oChildren.length;
-  // alert(iChildrenLength);
-    for(m=5;m<iChildrenLength;m++)
-    {
-    if(oChildren[m].contentEditable == "true")
-    { 
-        oChildren[m].contentEditable =window.oArrayForTr1ContentEditable[m];
-         event.target.style.color=""; 
-    }
-    else{ 
-      window.oArrayForTr1ContentEditable[m]=oChildren[m].contentEditable;
-      oChildren[m].contentEditable = "true";
-      event.target.style.color="green"; 
-    }
+﻿
+function fnToggleEditable() {   
+		if(document.body.contentEditable=="true"){
+            document.body.contentEditable="false";
+           event.target.style.color="";
+            }			
+		else{
+			document.body.contentEditable="true";
+            event.target.style.color="green";
+			}
     }
     
-    for (j=i;j<i+7;j++){
-
-    if (cTr[j+1].contentEditable == "true") 
-    {
-        cTr[j+1].contentEditable = window.oArrayForTr2ToEndContentEditable[j+1]; 
-        event.target.style.color=""; 
-        }
-    else {
-        window.oArrayForTr2ToEndContentEditable[j+1]=cTr[j+1].contentEditable;
-        //alert(oArray[j+1]);     
-        cTr[j+1].contentEditable = "true";
-         event.target.style.color="green"; 
-        }     
-    }           
+   /**
+function fnToggleEditable(i) { 
+     var oTable = document.getElementsByTagName("table").item((i+8)/8);
+    if(oTable.contentEditable=="true"){
+            oTable.contentEditable="false";
+           event.target.style.color="";
+            }			
+		else{
+			oTable.contentEditable="true";
+            event.target.style.color="green";
+			}
     }
+    **/
 function fnToggleScreen() {
     try {
         window.event.returnValue = false;//去除双击时的默认选定文本效果
@@ -60,7 +48,7 @@ function fnToggleScreen() {
 }
 function fnToggleItemDisplay(i) {
    
-    var oTable = document.getElementsByTagName("table").item(0);
+    var oTable = document.getElementsByTagName("table").item(i);
     var cTr = Array.from(oTable.rows);
 
     var oChildren=cTr[i].querySelectorAll('*');
@@ -71,13 +59,13 @@ function fnToggleItemDisplay(i) {
     if(oChildren[m].style.display == "none")
     { 
         oChildren[m].style.display=window.oArrayForTr1Display[m];
-         event.target.style.color=""; 
+        event.target.style.color="green";        
     //oChildren[m].style.display = "block";
     }
     else{ 
       window.oArrayForTr1Display[m]=oChildren[m].style.display;
       oChildren[m].style.display = "none";
-      event.target.style.color="green"; 
+      event.target.style.color="";      
     }
     }
 
@@ -87,13 +75,13 @@ function fnToggleItemDisplay(i) {
     if (cTr[j+1].style.display == "none") 
     {
         cTr[j+1].style.display = window.oArrayForTr2ToEndDisplay[j+1]; 
-        event.target.style.color=""; 
+        event.target.style.color="";
         }
     else {
         window.oArrayForTr2ToEndDisplay[j+1]=cTr[j+1].style.display;
         //alert(oArray[j+1]);     
         cTr[j+1].style.display = "none";
-         event.target.style.color="green"; 
+        event.target.style.color="green";
         }     
     }
     }
@@ -102,8 +90,7 @@ function fnHomeworkAndTest() {
    // fnTooManyModelDialog(); 
   window.oArrayForTr1Display = [];
   window.oArrayForTr2ToEndDisplay = [];
-  window.oArrayForTr1ContentEditable = [];
-  window.oArrayForTr2ToEndContentEditable = [];
+  
  /**
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(document.body.textContent);
@@ -123,7 +110,7 @@ function fnHomeworkAndTest() {
    
     for (i = 0; i < iTrLenth; i++) {
         //for (j = 0; j < 6; j=i*j) {
-        if ((i + 8) % 8 === 0) { cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span style=\"color:red\">题目" + ((i + 8) / 8) + "：<input type=\"button\" value=\"单击切换本题显示\" title='以便聚焦显示的题目，以便排除其他题目干扰！' onclick=\"fnToggleItemDisplay("+i+")\" /><input type=\"button\" value=\"单击切换本题在线编辑\" title='当前只是临时应急排版错误，但是无法保存编辑结果，必须重新上传当前条目的作业测验的.doc/.docx文档。后续将开发保存编辑结果的功能！' onclick=\"fnToggleContentEditable("+i+")\" /><input type=\"button\" value=\"单击登录服务端作业测验、统计分析（正在开发之中...）\" /></span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML; }
+        if ((i + 8) % 8 === 0) { cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span style=\"color:red\">题目" + ((i + 8) / 8) + "：<input type=\"button\" value=\"单击切换本题题目显示\" onclick=\"fnToggleItemDisplay("+i+")\" /><input type=\"button\" value=\"单击切换在线编辑\" onclick=\"fnToggleEditable()\" /><input type=\"button\" value=\"单击登录服务端作业测验、统计分析（正在开发之中...）\" /></span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML; }
 
         if ((i + 8) % 8 === 1) {cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span><span style=\"color:red\"><input type=\"radio\" name=\"options" + sTimeStamp + Math.floor(((i + 8) / 8)) + "\" />(A)</span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML + "</span>"; }
         if ((i + 8) % 8 === 2) {cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span><span style=\"color:red\"><input type=\"radio\" name=\"options" + sTimeStamp + Math.floor(((i + 8) / 8)) + "\" />(B)</span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML + "</span>"; }

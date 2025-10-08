@@ -119,6 +119,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy %282%29.js" />
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy (3).js" />
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy.js" />
+    <Content Remove="wwwroot\webCourse\common\script\HomeworkAndTest - error.js" />
     <Content Remove="wwwroot\webCourse\common\script\Popup - Copy.js" />
     <Content Remove="wwwroot\webCourse\common\script\title - Copy.js" />
     <Content Remove="wwwroot\渔琴.ico" />
@@ -467,8 +468,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Include="wwwroot\webCourse\common\script\content_forPPT.js" />
     <None Include="wwwroot\webCourse\common\script\content_note.js" />
     <None Include="wwwroot\webCourse\common\script\ContextMenu - 副本.js" />
-    <None Include="wwwroot\webCourse\common\script\HomeworkAndTest - Copy %282%29.js" />
-    <None Include="wwwroot\webCourse\common\script\HomeworkAndTest - Copy.js" />
+    <None Include="wwwroot\webCourse\common\script\HomeworkAndTest - error.js" />
     <None Include="wwwroot\webCourse\common\script\HomeworkAndTest.js" />
     <None Include="wwwroot\webCourse\common\script\IsLocalRun.js" />
     <None Include="wwwroot\webCourse\common\script\Popup - Copy.js" />
