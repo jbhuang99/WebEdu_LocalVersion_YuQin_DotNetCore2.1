@@ -3915,7 +3915,7 @@ function fnMarquee() {
 };
   winMarquee.document.body.style.overflow = 'scroll';
  // winMarquee.document.body.innerHTML=parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_JinRiTouTiao").innerHTML;
-  winMarquee.document.write(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_JinRiTouTiao").innerHTML);
+  winMarquee.document.write(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_JinRiTouTiao").innerHTML+"<p style='text-align:center'><iframe src='../../../renshichu/lunwensongshen.htm' height='100%' width='100%' scrolling='yes' border='0' frameborder='0' /></p>");
   winMarquee.document.body.style.overflow = 'scroll';
     window.childWindow = winMarquee; 
 }

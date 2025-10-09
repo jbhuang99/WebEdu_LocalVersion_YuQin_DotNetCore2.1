@@ -130,67 +130,97 @@
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉图像)(.jpeg或.png文件为例)←对比→标准知识库检索匹配(视觉图像)(.jpeg或.png文件为例)" onclick='if(document.getElementById("AIGCPixelImage").style.display=="none"){document.getElementById("AIGCPixelImage").style.display="block"} else{document.getElementById("AIGCPixelImage").style.display="none"}' /></li>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉图像)(.jpeg或.png文件为例)←对比→标准知识库检索匹配(视觉图像)(.jpeg或.png文件为例)" onclick='fnAccuracySimilarityForPixelImage()' /></li>
                 </div>
                 <div id="AIGCPixelImage" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">                    
                         <div class="row-2col">
                             <div class="col">
                                 <label>上传AIGC生成的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)： </label><input type="text" id="sPixelImageFromAIGC" value="" />
-                                <div style="text-align:center"><img id="sShowPixelImageFromAIGC" style="width:50px;height:50px" src="" onclick='fnViewRealImage("sShowPixelImageFromAIGC");' /></div>
-                                <div><input type="file" title='例如，上传“经验之塔”Prompt钉钉AIGC生成的图像，或者，上传自己书写的字符图像可用来评判自己书写的工整性' onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());};alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom())' /> <input type="submit" value="提交" id="idFileSubmit" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());};alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom())' /></div>
+                                <div style="text-align:center"><img id="sShowPixelImageFromAIGC" style="width:100%;height:100%" src="" /></div>
+                                <div><input type="file" title='例如，上传“经验之塔”Prompt钉钉AIGC生成的图像，或者，上传自己书写的字符图像可用来评判自己书写的工整性' /> <input type="submit" value="提交" /></div>
                             </div>
                             <div class="col">
-                                <label>上传标准知识库搜索匹配的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)： </label><input type="text" id="sPixelImageFromKnowledgebase" value="" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());};alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom())' />
-                                <div style="text-align:center"><img id="sShowPixelImageFromKnowledgebase" style="width:50px;height:50px" src="" onclick='fnViewRealImage("sShowPixelImageFromKnowledgebase")' /></div>
-                                <div><input type="file" title='例如，上传“经验之塔”关键词搜索匹配本系统标准知识库检索的图像，或者，上传印刷体的字符图像可用来对比自己书写的工整性' onclick='alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());' /> <input type="submit" value="提交" id="idFileSubmit" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());};alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom())' /></div>
+                                <label>上传标准知识库搜索匹配的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)： </label><input type="text" id="sPixelImageFromKnowledgebase" value=""  />
+                                <div style="text-align:center"><img id="sShowPixelImageFromKnowledgebase" style="width: 100%; height: 100% " src="" /></div>
+                                <div><input type="file" title='例如，上传“经验之塔”关键词搜索匹配本系统标准知识库检索的图像，或者，上传印刷体的字符图像可用来对比自己书写的工整性' /><input type="submit" value="提交" /></div>
                             </div>
                         </div>        
                     <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityForImage();">准确性相似度：</button><span id="sAccuracySimilarityForPixelImage">这里将显示上述两个图像的准确性相似度</span></div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉视频)(.mp4文件为例)←对比→标准知识库检索匹配(视觉视频)(.mp4文件为例)（开发之中...）" onclick='if(document.getElementById("AIGCVideo").style.display=="none"){document.getElementById("AIGCVideo").style.display="block"} else{document.getElementById("AIGCVideo").style.display="none"}' /></li>
+                <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉视频)(.mp4文件为例)←对比→标准知识库检索匹配(视觉视频)(.mp4文件为例)（开发之中...）" onclick='fnAccuracySimilarityForVideo()' /></li>
                 </div>
                 <div id="AIGCVideo" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
-                    <div><button style="color:green;font-size:12px">AIGC生成的文件：</button></div>
-                    <div><button style="color:green;font-size:12px">标准知识库搜索匹配的对比文件：</button></div>
-                    <div><button style="color:green;font-size:12px">准确性相似度：</button></div>
+                    <div class="row-2col">
+                        <div class="col">
+                            <label>上传AIGC生成的.mp4视频文件(或者文本框中键入.mp4视频文件的URL)： </label><input type="text" id="sVideoFromAIGC" value="" />
+                            <div style="text-align:center"><video id="sShowVideoFromAIGC" style="width: 100%; height: 100% " src="" controls autoplay /></div>
+                            <div><input type="file" title='例如，上传Prompt钉钉AIGC生成的.mp4视频文件，或者，上传自己创作的.mp4视频文件' /> <input type="submit" value="提交" /></div>
+                        </div>
+                        <div class="col">
+                            <label>上传标准知识库搜索匹配的对比.mp4视频文件(或者文本框中键入.mp4视频文件的URL)： </label><input type="text" id="sVideoFromKnowledgebase" value="" />
+                            <div style="text-align:center"><video id="sShowVideoFromKnowledgebase" style="width: 100%; height: 100% " src="" controls autoplay /></div>
+                            <div><input type="file" title='例如，上传字典中的的.mp4视频文件，可用作评判自己创作的.mp4视频文件的的标准' /><input type="submit" value="提交" /></div>
+                        </div>
+                    </div>
+                    <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityForVideo();">准确性相似度：</button><span id="sAccuracySimilarityForPixelVideo">这里将显示上述两个视频的准确性相似度</span></div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉2D)(.svg文件为例)←对比→标准知识库检索匹配(视觉2D)(.svg文件为例)（开发之中...）" onclick='if(document.getElementById("AIGC2D").style.display=="none"){document.getElementById("AIGC2D").style.display="block"} else{document.getElementById("AIGC2D").style.display="none"}' /></li>
+                 <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉2D)(.svg文件为例)←对比→标准知识库检索匹配(视觉2D)(.svg文件为例)（开发之中...）" onclick='fnAccuracySimilarityFor2D()' /></li>
                 </div>
                 <div id="AIGC2D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
-                    <div><button style="color:green;font-size:12px">AIGC生成的文件：</button></div>
-                    <div><button style="color:green;font-size:12px">标准知识库搜索匹配的对比文件：</button></div>
-                    <div><button style="color:green;font-size:12px">准确性相似度：</button></div>
+                    <div class="row-2col">
+                        <div class="col">
+                            <label>上传AIGC生成的.svg二维2D文件(或者文本框中键入.svg二维2D的URL)： </label><input type="text" id="s2DFromAIGC" value="" />
+                            <div style="text-align:center"><img id="sShow2DFromAIGC" style="width: 100%; height: 100% " src="" controls /></div>
+                            <div><input type="file" title='例如，上传Prompt钉钉AIGC生成的.svg二维2D文件，或者，上传自己创作的.svg二维2D文件' /><input type="submit" value="提交" /></div>
+                        </div>
+                        <div class="col">
+                            <label>上传标准知识库搜索匹配的对比.svg二维2D文件(或者文本框中键入.svg二维2D文件的URL)： </label><input type="text" id="s2DFromKnowledgebase" value="" />
+                            <div style="text-align:center"><img id="sShow2DFromKnowledgebase" style="width: 100%; height:100% " src="" controls /></div>
+                            <div><input type="file" title='例如，上传字典中的的.svg二维2D文件，可用作评判自己创作的.svg二维2D文件的的标准' /><input type="submit" value="提交" /></div>
+                        </div>
+                    </div>
+                    <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityFor2D();">准确性相似度：</button><span id="sAccuracySimilarityFor2D">这里将显示上述两个2D的准确性相似度</span></div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                    <li>  <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉3D)(.vx3d文件为例)←对比→标准知识库检索匹配(视觉3D)(.vx3d文件为例)（开发之中...）" onclick='if(document.getElementById("AIGC3D").style.display=="none"){document.getElementById("AIGC3D").style.display="block"} else{document.getElementById("AIGC3D").style.display="none"}' /></li>
+                    <li>  <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉3D)(.vx3d文件为例)←对比→标准知识库检索匹配(视觉3D)(.vx3d文件为例)（开发之中...）" onclick='fnAccuracySimilarityFor3D()' /></li>
                 </div>
                 <div id="AIGC3D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
-                    <div><button style="color:green;font-size:12px">AIGC生成文件：</button></div>
-                    <div><button style="color:green;font-size:12px">标准知识库搜索匹配的对比文件：</button></div>
-                    <div><button style="color:green;font-size:12px">准确性相似度：</button></div>
+                    <div class="row-2col">
+                        <div class="col">
+                            <label>上传AIGC生成的.x3dv三维3D文件(或者文本框中键入.x3dv三维3D的URL)： </label><input type="text" id="s3DFromAIGC" value="" />
+                            <div style="text-align:center"><img id="sShow3DFromAIGC" style="width: 100%; height: 100%" src="" controls /></div>
+                            <div><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的.x3dv三维3D文件，或者，上传自己创作的.x3dv三维3D文件' /><input type="submit" value="提交" /></div>
+                        </div>
+                        <div class="col">
+                            <label>上传标准知识库搜索匹配的对比.x3dv三维3D文件(或者文本框中键入.x3dv三维3D文件的URL)： </label><input type="text" id="s3DFromKnowledgebase" value="" />
+                            <div style="text-align:center"><img id="sShow3DFromKnowledgebase" style="width:100%; height:100%" src="" controls /></div>
+                            <div><input type="file" title='例如，上传字典中的的.x3dv三维3D文件，可用作评判自己创作的.x3dv三维3D文件的的标准' /><input type="submit" value="提交" /></div>
+                        </div>
+                    </div>
+                    <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityFor3D();">准确性相似度：</button><span id="sAccuracySimilarityFor3D">这里将显示上述两个3D的准确性相似度</span></div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(听觉音频)(.mp3或.midi文件为例)←对比→标准知识库检索匹配(听觉音频)(.mp3或.midi文件为例)" onclick='if(document.getElementById("AIGCAudio").style.display=="none"){document.getElementById("AIGCAudio").style.display="block"} else{document.getElementById("AIGCAudio").style.display="none"}' /></li>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(听觉音频)(.mp3或.midi文件为例)←对比→标准知识库检索匹配(听觉音频)(.mp3或.midi文件为例)" onclick='fnAccuracySimilarityForAudio()' /></li>
                 </div>
                 <div id="AIGCAudio" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
                     <div class="row-2col">
                         <div class="col">
                             <label>上传AIGC生成的.mp3音频文件(或者文本框中键入.mp3音频文件的URL)： </label><input type="text" id="sAudioFromAIGC" value="" />
-                            <div style="text-align:center"><audio id="sShowAudioFromAIGC" style="width:50px;height:50px" src="" controls /></div>
-                            <div><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的音频，或者，上传自己朗读的“普通话等级”的音频' onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());};alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom())' /> <input type="submit" value="提交" id="idFileSubmit" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());};alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom())' /></div>
+                            <div style="text-align:center"><audio id="sShowAudioFromAIGC" style="width:100px; height:100px " src="" controls /></div>
+                            <div><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的音频，或者，上传自己朗读的“普通话等级”的音频' /><input type="submit" value="提交" /></div>
                             </div>
                             <div class="col">
-                                <label>上传标准知识库搜索匹配的对比.mp3音频文件(或者文本框中键入.mp3音频文件的URL)： </label><input type="text" id="sAudioFromKnowledgebase" value="" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());};alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom())' />
-                                <div style="text-align:center"><audio id="sShowAudioFromKnowledgebase" style="width:50px;height:50px" src="" controls /></div>
-                                <div><input type="file" title='例如，上传字典的“普通话等级”发音音频，可用作评判自己朗读“普通话等级”的标准' onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());};alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom())' /> <input type="submit" value="提交" id="idFileSubmit" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());};alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom())' /></div>
+                                <label>上传标准知识库搜索匹配的对比.mp3音频文件(或者文本框中键入.mp3音频文件的URL)： </label><input type="text" id="sAudioFromKnowledgebase" value="" />
+                                <div style="text-align:center"><audio id="sShowAudioFromKnowledgebase" style="width: 100px; height:100px" src="" controls /></div>
+                                <div><input type="file" title='例如，上传字典的“普通话等级”发音音频，可用作评判自己朗读“普通话等级”的标准' /><input type="submit" value="提交" /></div>
                             </div>
-                        </div>
+                     </div>
 
                     <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityForAudio();">准确性相似度：</button><span id="sAccuracySimilarityForAudio">这里将显示上述两个音频的准确性相似度</span></div>
                 </div>
