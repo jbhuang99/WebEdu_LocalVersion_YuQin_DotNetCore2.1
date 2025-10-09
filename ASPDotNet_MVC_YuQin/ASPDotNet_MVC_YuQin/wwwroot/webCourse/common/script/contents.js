@@ -3907,7 +3907,8 @@ function fnHelp() {
 }
 function fnMarquee() {
     fnTooManyModelDialog();
-    var winMarquee = open("../common/blank.html", "winMarquee", "scrollbars=,width=800,height=600,top=" + (screen.height - 600) / 2 + ",left=" + (screen.width - 800) / 2);
+   /**
+     var winMarquee = open("../common/blank.html", "winMarquee", "scrollbars=,width=800,height=600,top=" + (screen.height - 600) / 2 + ",left=" + (screen.width - 800) / 2);
     winMarquee.onload = function() {
   try {
     winMarquee.document.body.style.overflow = 'scroll';
@@ -3915,10 +3916,14 @@ function fnMarquee() {
 };
   winMarquee.document.body.style.overflow = 'scroll';
  // winMarquee.document.body.innerHTML=parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_JinRiTouTiao").innerHTML;
-  winMarquee.document.write(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_JinRiTouTiao").innerHTML+"<p style='text-align:center'><iframe src='../../../renshichu/lunwensongshen.htm' height='100%' width='100%' scrolling='yes' border='0' frameborder='0' /></p>");
+  winMarquee.document.write(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_JinRiTouTiao").innerHTML);
   winMarquee.document.body.style.overflow = 'scroll';
     window.childWindow = winMarquee; 
+    **/ 
+   var sQueryString = parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_JinRiTouTiao").innerText;
+  open('../common/MarqueeIFrame.html?Marquee='+sQueryString, "winMarquee", "scrollbars=,width=800,height=600,top=" + (screen.height - 600) / 2 + ",left=" + (screen.width - 800) / 2);
 }
+
 
 /** function fnTooManyModelDialog1() {
    // console.log(window.childWindow);
