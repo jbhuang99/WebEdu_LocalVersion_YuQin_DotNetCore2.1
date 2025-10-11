@@ -20,6 +20,19 @@ document.getElementById('idQwenAPIKeyConfirm').addEventListener('click',fnidQwen
 window.sHref=window.location.href.substring(0,window.location.href.indexOf("/webCourse/"));
 }
 
+function fnOpenLocalhostDingTalkAIGC(){
+try{
+   //window.open("dingtalk://", "_blank");
+    alert("请在您的本机操作系统中，打开运行您本机安装的免费AIGC客户端（例如，免费的钉钉AIGC助理）！如果没有安装，请Web搜索下载安装！");
+}
+catch(e){
+   // alert("请手动打开您本机安装的钉钉AIGC助理！");
+    }
+finally{
+   // alert("请手动打开您本机安装的钉钉AIGC助理！");
+}    
+}
+
 function fnToggleEventSoureElementColor(){
    // alert();
     var eventSoureElementColor=window.event.target.style.color;
