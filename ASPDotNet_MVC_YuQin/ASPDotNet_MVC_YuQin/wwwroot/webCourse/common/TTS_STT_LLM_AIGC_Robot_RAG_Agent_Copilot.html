@@ -140,7 +140,8 @@
                                 <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”Prompt钉钉AIGC生成的图像，或者，上传自己书写的字符图像可用来评判自己书写的工整性' /> <input type="submit" value="提交文件" /></div>
                             </div>
                             <div class="col">
-                                <label title="请单击打开标准知识库搜索想要的图像。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sPixelImageFromKnowledgebase" value=""  />
+                                <label title="请单击打开标准知识库搜索想要的图像。然后，请在下方上传！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sPixelImageFromKnowledgebase" value=""  />
                                 <div style="text-align:center"><img id="sShowPixelImageFromKnowledgebase" style="width: 100%; height: 100% " src="" /></div>
                                 <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”关键词搜索匹配本系统标准知识库检索的图像，或者，上传印刷体的字符图像可用来对比自己书写的工整性' /><input type="submit" value="提交文件" /></div>
                             </div>
@@ -159,7 +160,8 @@
                             <div style="text-align:justify"><input type="file" title='例如，上传Prompt钉钉AIGC生成的.mp4视频文件，或者，上传自己创作的.mp4视频文件' /> <input type="submit" value="提交文件" /></div>
                         </div>
                         <div class="col">
-                            <label title="请单击打开标准知识库搜索想要的视频。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.mp4视频文件(或者文本框中键入.mp4视频文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sVideoFromKnowledgebase" value="" />
+                            <label title="请单击打开标准知识库搜索想要的视频。然后，请在下方上传！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.mp4视频文件(或者文本框中键入.mp4视频文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sVideoFromKnowledgebase" value="" />
                             <div style="text-align:center"><video id="sShowVideoFromKnowledgebase" style="width: 100%; height: 100% " src="" controls autoplay /></div>
                             <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.mp4视频文件，可用作评判自己创作的.mp4视频文件的的标准' /><input type="submit" value="提交文件" /></div>
                         </div>
@@ -178,7 +180,8 @@
                             <div style="text-align:justify"><input type="file" title='例如，上传Prompt钉钉AIGC生成的.svg二维2D文件，或者，上传自己创作的.svg二维2D文件' /><input type="submit" value="提交文件" /></div>
                         </div>
                         <div class="col">
-                            <label title="请单击打开标准知识库搜索想要的2D。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.svg二维2D文件(或者文本框中键入.svg二维2D文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="s2DFromKnowledgebase" value="" />
+                            <label title="请单击打开标准知识库搜索想要的2D。然后，请在下方上传！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.svg二维2D文件(或者文本框中键入.svg二维2D文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="s2DFromKnowledgebase" value="" />
                             <div style="text-align:center"><img id="sShow2DFromKnowledgebase" style="width: 100%; height:100% " src="" controls /></div>
                             <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.svg二维2D文件，可用作评判自己创作的.svg二维2D文件的的标准' /><input type="submit" value="提交文件" /></div>
                         </div>
@@ -197,7 +200,8 @@
                             <div style="text-align:justify"><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的.x3dv三维3D文件，或者，上传自己创作的.x3dv三维3D文件' /><input type="submit" value="提交文件" /></div>
                         </div>
                         <div class="col">
-                            <label title="请单击打开标准知识库搜索想要的3D。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.x3dv三维3D文件(或者文本框中键入.x3dv三维3D文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="s3DFromKnowledgebase" value="" />
+                            <label title="请单击打开标准知识库搜索想要的3D。然后，请在下方上传！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.x3dv三维3D文件(或者文本框中键入.x3dv三维3D文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="s3DFromKnowledgebase" value="" />
                             <div style="text-align:center"><img id="sShow3DFromKnowledgebase" style="width:100%; height:100%" src="" controls /></div>
                             <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.x3dv三维3D文件，可用作评判自己创作的.x3dv三维3D文件的的标准' /><input type="submit" value="提交文件" /></div>
                         </div>
@@ -216,7 +220,8 @@
                             <div style="text-align:justify"><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的音频，或者，上传自己朗读的“普通话等级”的音频' /><input type="submit" value="提交文件" /></div>
                             </div>
                             <div class="col">
-                                <label title="请单击打开标准知识库搜索想要的音频。然后，请在下方上传！"  onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.mp3音频文件(或者文本框中键入.mp3音频文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sAudioFromKnowledgebase" value="" />
+                                <label title="请单击打开标准知识库搜索想要的音频。然后，请在下方上传！"  onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.mp3音频文件(或者文本框中键入.mp3音频文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sAudioFromKnowledgebase" value="" />
                                 <div style="text-align:center"><audio id="sShowAudioFromKnowledgebase" style="width: 100px; height:100px" src="" controls /></div>
                                 <div style="text-align:justify" ><input type="file" title='例如，上传字典的“普通话等级”发音音频，可用作评判自己朗读“普通话等级”的标准' /><input type="submit" value="提交文件" /></div>
                             </div>
