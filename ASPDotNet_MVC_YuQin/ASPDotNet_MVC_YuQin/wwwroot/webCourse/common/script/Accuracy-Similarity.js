@@ -29,6 +29,7 @@
 //---------------------------------------------------------------
 
 // Compare two images by pixel similarity (returns a value between 0 and 1)
+/**
 async function fnPixelImageSimilarity(img1Src, img2Src) {
     // Load images
    
@@ -78,14 +79,14 @@ async function fnPixelImageSimilarity(img1Src, img2Src) {
     return same / total; // Similarity ratio (0~1)
      alert(img1Src+img2Src);
 }
-
+**/
 /** Example usage:
 fnImageSimilarity('image1.png', 'image2.png').then(sim => {
   console.log('Similarity:', sim);
 });
 **/
-//---------------------------------------------------------
-function fnViewRealImage(sId) {
+/**
+ function fnViewRealImage(sId) {
     open(document.getElementById(sId).src,"_blank");
     }
 
@@ -95,9 +96,90 @@ function fnShowAccuraySimilarityForImage() {
     alert(img1Src+img2Src);
     document.getElementById("sAccuracySimilarityForPixelImage").textContent=fnPixelImageSimilarity(img1Src,img2Src)
     }
+ **/
+
+function loadImage(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous"; // 关键：启用跨域
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error("无法加载图片：" + url));
+    img.src = url;
+  });
+}
+
+async function getImageData(img, size = { width: 64, height: 64 }) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = size.width;
+  canvas.height = size.height;
+  ctx.drawImage(img, 0, 0, size.width, size.height);
+  return ctx.getImageData(0, 0, size.width, size.height).data;
+}
+
+function computeMSE(data1, data2) {
+  let sum = 0;
+  for (let i = 0; i < data1.length; i++) {
+    sum += Math.pow(data1[i] - data2[i], 2);
+  }
+  return sum / data1.length;
+}
+
+async function fnPixelImageSimilarity() {
+  const url1 = document.getElementById('sPixelImageFromAIGC').value;
+  const url2 = document.getElementById('sPixelImageFromKnowledgebase').value;
+  const resultDiv = document.getElementById('sAccuracySimilarityForPixelImage');
+  
+  if (!url1 || !url2) {
+    resultDiv.innerHTML = "请填写两个有效的图片链接。";
+    return;
+  }
+
+  try {
+    resultDiv.innerHTML = "正在加载并处理图片...";
+
+    const [img1, img2] = await Promise.all([loadImage(url1), loadImage(url2)]);
+
+    // 统一缩放为 64x64 灰度特征图（简化计算）
+    const size = { width: 64, height: 64 };
+
+    const imageData1 = await getImageData(img1, size);
+    const imageData2 = await getImageData(img2, size);
+
+    // 转为灰度亮度数组（Luma）
+    const gray1 = [], gray2 = [];
+    for (let i = 0; i < imageData1.length; i += 4) {
+      const r = imageData1[i], g = imageData1[i+1], b = imageData1[i+2];
+      gray1.push(0.299*r + 0.587*g + 0.114*b);
+    }
+    for (let i = 0; i < imageData2.length; i += 4) {
+      const r = imageData2[i], g = imageData2[i+1], b = imageData2[i+2];
+      gray2.push(0.299*r + 0.587*g + 0.114*b);
+    }
+
+    // 计算均方误差（MSE）
+    const mse = computeMSE(gray1, gray2);
+
+    // 归一化为相似度百分比（假设最大差异为 255^2）
+    const maxMSE = 255 * 255;
+    const similarity = Math.max(0, (1 - Math.sqrt(mse) / 255)) * 100;
+
+    resultDiv.innerHTML = `
+     <!-- <p><strong>MSE:</strong> ${mse.toFixed(2)}</p>-->
+    <!--  <span>相似度：</strong>${similarity.toFixed(2)}%</span>-->
+    <span>${similarity.toFixed(2)/100}</span>
+    `;
+  } catch (error) {
+    console.error(error);
+    resultDiv.innerHTML += `<p><strong>错误：</strong>${error.message}</p>`;
+  }
+}
+//---------------------------------------------------------
+
 //-------------------------------------------------------
 
 // Compare two videos by sampling frames and averaging image similarity
+/**
 async function fnVideoSimilarity(video1Src, video2Src, frameCount = 10) {
     // Helper to load video and seek to a specific time, then get frame as image data
     async function getFrameData(videoSrc, time) {
@@ -163,14 +245,70 @@ async function fnVideoSimilarity(video1Src, video2Src, frameCount = 10) {
     // Average similarity across frames
     return similarities.reduce((a, b) => a + b, 0) / similarities.length;
 }
-
+**/
 /** Example usage:
 fnVideoSimilarity('video1.mp4', 'video2.mp4', 10).then(sim => {
     console.log('Video similarity:', sim); // Value between 0 and 1
 });
 **/
+function getHistogram(ctx, width, height) {
+  const imageData = ctx.getImageData(0, 0, width, height);
+  const data = imageData.data;
+  const hist = new Array(256).fill(0);
+
+  for (let i = 0; i < data.length; i += 4) {
+    const gray = (data[i] + data[i+1] + data[i+2]) / 3;
+    hist[Math.round(gray)]++;
+  }
+  return hist;
+}
+
+function histogramDistance(hist1, hist2) {
+  let distance = 0;
+  for (let i = 0; i < 256; i++) {
+    distance += Math.abs(hist1[i] - hist2[i]);
+  }
+  return distance / (256 * 255); // 归一化
+}
+
+async function extractKeyFrameHistogram(videoElement, url) {
+  videoElement.src = url;
+  await new Promise((resolve) => {
+    videoElement.onloadeddata = resolve;
+  });
+
+  videoElement.currentTime = 1; // 跳到第1秒
+  await new Promise((resolve) => {
+    videoElement.ontimeupdate = () => resolve();
+  });
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+  return getHistogram(ctx, canvas.width, canvas.height);
+}
+
+async function fnCompareVideos() {
+  const url1 = document.getElementById("sVideoFromAIGC").value;
+  const url2 = document.getElementById("sVideoFromKnowledgebase").value;
+  const resultDiv = document.getElementById("sAccuracySimilarityForPixelVideo");
+
+  try {
+    const hist1 = await extractKeyFrameHistogram(document.getElementById("sShowVideoFromAIGC"), url1);
+    const hist2 = await extractKeyFrameHistogram(document.getElementById("sShowVideoFromKnowledgebase"), url2);
+
+    const distance = histogramDistance(hist1, hist2);
+    const similarity = (1 - distance) ;
+
+    resultDiv.innerHTML = `${similarity.toFixed(2)}`;
+  } catch (e) {
+    resultDiv.innerHTML = `错误: ${e.message}`;
+  }
+}
 //---------------------------------------------------------
 // Compare two SVG strings visually by rendering to canvas and comparing pixels
+/**
 async function fnSVGSimilarity(svg1, svg2, width = 200, height = 200) {
     // Helper: Render SVG string to canvas and get pixel data
     function renderSVGToCanvas(svg, width, height) {
@@ -216,7 +354,7 @@ async function fnSVGSimilarity(svg1, svg2, width = 200, height = 200) {
     const total = len / 4;
     return same / total; // Similarity ratio (0~1)
 }
-
+**/
 /** Example usage:
 const svgA = `<svg width="100" height="100"><circle cx="50" cy="50" r="40" fill="red"/></svg>`;
 const svgB = `<svg width="100" height="100"><circle cx="50" cy="50" r="40" fill="blue"/></svg>`;
@@ -224,7 +362,45 @@ fnSVGSimilarity(svgA, svgB).then(sim => {
     console.log('SVG similarity:', sim);
 });
 **/
+async function svgToCanvas(url, width = 100, height = 100) {
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext('2d');
 
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.src = url + '#svg-view(1)';
+  await new Promise(r => { img.onload = r; });
+
+  ctx.drawImage(img, 0, 0, width, height);
+  return canvas;
+}
+
+function getImageHash(ctx, w, h) {
+  const imageData = ctx.getImageData(0, 0, w, h).data;
+  let hash = 0;
+  for (let i = 0; i < w * h * 4; i += 4) {
+    const gray = (imageData[i] + imageData[i+1] + imageData[i+2]) / 3;
+    hash = ((hash << 5) - hash) + gray;
+    hash |= 0;
+  }
+  return hash;
+}
+
+async function fnShowAccuraySimilarityFor2D() {
+  var url1=document.getElementById("s2DFromAIGC").value; 
+  var url2=document.getElementById("s2DFromKnowledgebase").value;
+  const canvas1 = await svgToCanvas(url1);
+  const canvas2 = await svgToCanvas(url2);
+
+  const hash1 = getImageHash(canvas1.getContext('2d'), 100, 100);
+  const hash2 = getImageHash(canvas2.getContext('2d'), 100, 100);
+
+  const diff = Math.abs(hash1 - hash2);
+ // return 100 - Math.min(diff / 0x7fffffff * 100, 100);
+ document.getElementById("sAccuracySimilarityFor2D").textContent=((100 - Math.min(diff / 0x7fffffff * 100, 100))/100).toFixed(2);
+}
 //---------------------------------------------------------
 //Requires X3DOM or similar to render X3D in browser, then compare canvas pixels. (requires X3DOM and browser support).
 async function fnX3DVisualSimilarity(x3d1, x3d2, width = 300, height = 300) {
@@ -290,7 +466,7 @@ async function fnX3DVisualSimilarity(x3d1, x3d2, width = 300, height = 300) {
 <button onclick="compareMp3Similarity()">比较相似性</button>
 <div id="result"></div>
 **/
-
+/**
 async function getPcmData(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -338,3 +514,75 @@ function fnShowAccuraySimilarityForAudio() {
     alert(audio1Src+audio2Src);
     document.getElementById("sAccuracySimilarityForAudio").textContent=fnAudioSimilarity(audio1Src,audio2Src)
     }
+**/
+//const AudioContext = window.AudioContext || window.webkitAudioContext;
+//let audioCtx;
+
+async function fetchAndDecode(url) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx;
+  if (!audioCtx) audioCtx = new AudioContext();
+
+  const response = await fetch(url);
+  const arrayBuffer = await response.arrayBuffer();
+  const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+
+  // 取单声道并采样压缩（例如每秒取10个样本）
+  const channelData = audioBuffer.getChannelData(0); // 单声道
+  const sampleRate = audioBuffer.sampleRate;
+  const samples = [];
+
+  // 下采样：每秒取 10 个点
+  const step = Math.floor(sampleRate / 10);
+  for (let i = 0; i < channelData.length; i += step) {
+    samples.push(channelData[i]);
+  }
+
+  return samples.slice(0, 100); // 截取前100个采样点用于比较
+}
+
+function cosineSimilarity(vecA, vecB) {
+  const dot = vecA.reduce((sum, a, i) => sum + a * vecB[i], 0);
+  const magA = Math.hypot(...vecA);
+  const magB = Math.hypot(...vecB);
+  return magA &&magB ? dot / (magA * magB) : 0;
+}
+
+async function fnCompareAudio() {
+  const url1 = document.getElementById('sAudioFromAIGC').value;
+  const url2 = document.getElementById('sAudioFromKnowledgebase').value;
+  const resultDiv = document.getElementById('sAccuracySimilarityForAudio');
+
+  if (!url1 || !url2) {
+    resultDiv.innerHTML = "请填写两个有效的音频链接。";
+    return;
+  }
+
+  try {
+    resultDiv.innerHTML = "正在加载并处理音频...";
+
+    const [samples1, samples2] = await Promise.all([
+      fetchAndDecode(url1),
+      fetchAndDecode(url2)
+    ]);
+
+    // 对齐长度
+    const len = Math.min(samples1.length, samples2.length);
+    const v1 = samples1.slice(0, len);
+    const v2 = samples2.slice(0, len);
+
+    // 计算余弦相似度
+    const similarity = cosineSimilarity(v1, v2);
+    const percentage = ((similarity + 1) / 2 * 100).toFixed(2); // 映射到 0~100%
+
+    resultDiv.innerHTML = `
+      <!--<p><strong>余弦相似度：</strong>${similarity.toFixed(4)}</p>-->
+      <!--<span>余弦相似度：${similarity.toFixed(4)}</span>-->
+      <!--<p><strong>相似度评分：</strong>${percentage}%</p>-->
+       <span>${percentage/100}</span>
+    `;
+  } catch (error) {
+    console.error(error);
+    resultDiv.innerHTML += `<p><strong>错误：</strong>${error.message}</p>`;
+  }
+}

@@ -150,30 +150,30 @@
                                 <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”关键词搜索匹配本系统标准知识库检索的图像，或者，上传印刷体的字符图像可用来对比自己书写的工整性' /><input type="submit" value="提交文件" /></div>
                             </div>
                         </div>        
-                    <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityForImage();">准确性相似度：</button><span id="sAccuracySimilarityForPixelImage" style="font-size: 11px">这里将显示上述两个图像的准确性相似度</span></div>
+                    <div><button style="color:green;font-size:12px" onclick="fnPixelImageSimilarity();">准确性相似度：</button><span id="sAccuracySimilarityForPixelImage" style="font-size: 11px">这里将显示上述两个图像的准确性相似度</span></div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉视频)(.mp4文件为例)←对比→标准知识库检索匹配(视觉视频)(.mp4文件为例)（开发之中...）" onclick='fnAccuracySimilarityForVideo()' /></li>
+                <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉视频)(.mp4文件为例)←对比→标准知识库检索匹配(视觉视频)(.mp4文件为例)" onclick='fnAccuracySimilarityForVideo()' /></li>
                 </div>
                 <div id="AIGCVideo" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
                     <div class="row-2col">
                         <div class="col">
                             <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.mp4视频文件(或者文本框中键入.mp4视频文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sVideoFromAIGC" value="" />
-                            <div style="text-align:center"><video id="sShowVideoFromAIGC" style="width: 100%; height: 100% " src="" controls autoplay /></div>
+                            <div style="text-align:center"><video id="sShowVideoFromAIGC" style="width: 100%; height: 100% " src="" controls autoplay crossorigin="anonymous" /></div>
                             <div style="text-align:justify"><input type="file" title='例如，上传Prompt钉钉AIGC生成的.mp4视频文件，或者，上传自己创作的.mp4视频文件' /> <input type="submit" value="提交文件" /></div>
                         </div>
                         <div class="col">
                             <label title="请单击打开标准知识库搜索想要的视频。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.mp4视频文件(或者文本框中键入.mp4视频文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sVideoFromKnowledgebase" value="" />
-                            <div style="text-align:center"><video id="sShowVideoFromKnowledgebase" style="width: 100%; height: 100% " src="" controls autoplay /></div>
+                            <div style="text-align:center"><video id="sShowVideoFromKnowledgebase" style="width: 100%; height: 100% " src="" controls autoplay crossorigin="anonymous" /></div>
                             <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.mp4视频文件，可用作评判自己创作的.mp4视频文件的的标准' /><input type="submit" value="提交文件" /></div>
                         </div>
                     </div>
-                    <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityForVideo();">准确性相似度：</button><span id="sAccuracySimilarityForPixelVideo" style="font-size: 11px">这里将显示上述两个视频的准确性相似度</span></div>
+                    <div><button style="color:green;font-size:12px" onclick="fnCompareVideos();">准确性相似度：</button><span id="sAccuracySimilarityForPixelVideo" style="font-size: 11px">这里将显示上述两个视频的准确性相似度</span></div><canvas id="canvas" width="160" height="90" style="display:none"></canvas>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                 <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉2D)(.svg文件为例)←对比→标准知识库检索匹配(视觉2D)(.svg文件为例)（开发之中...）" onclick='fnAccuracySimilarityFor2D()' /></li>
+                 <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉2D)(.svg文件为例)←对比→标准知识库检索匹配(视觉2D)(.svg文件为例)" onclick='fnAccuracySimilarityFor2D()' /></li>
                 </div>
                 <div id="AIGC2D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
                     <div class="row-2col">
@@ -207,7 +207,7 @@
                             <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.x3dv三维3D文件，可用作评判自己创作的.x3dv三维3D文件的的标准' /><input type="submit" value="提交文件" /></div>
                         </div>
                     </div>
-                    <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityFor3D();">准确性相似度：</button><span id="sAccuracySimilarityFor3D" style="font-size: 11px">这里将显示上述两个3D的准确性相似度</span></div>
+                    <div><button style="color:green;font-size:12px" onclick="document.getElementById('sAccuracySimilarityFor3D').textContent='（开发之中...)'//fnShowAccuraySimilarityFor3D();">准确性相似度：</button><span id="sAccuracySimilarityFor3D" style="font-size: 11px">这里将显示上述两个3D的准确性相似度</span></div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
@@ -227,7 +227,7 @@
                             </div>
                      </div>
 
-                    <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityForAudio();">准确性相似度：</button><span id="sAccuracySimilarityForAudio" style="font-size: 11px">这里将显示上述两个音频的准确性相似度</span></div>
+                    <div><button style="color:green;font-size:12px" onclick="fnCompareAudio();">准确性相似度：</button><span id="sAccuracySimilarityForAudio" style="font-size: 11px">这里将显示上述两个音频的准确性相似度</span></div>
                 </div>
                    
                 <div style="text-align:justify">
