@@ -123,8 +123,12 @@
                 </div>
                 <div id="AIGCCharactor" style="display: none; border: dashed;border-color: goldenrod; text-align: justify ">
                     <div class="row-2col">
-                        <div class="col"><textarea id="sAIGCString" title="请在这里粘贴免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" style="width: 100%; resize: vertical; overflow:auto" onclick='fnOpenLocalhostDingTalkAIGC();'>这里粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）...</textarea></div>
-                        <div class="col"><textarea id="sKnowledgebaseString" title="请单击打开标准知识库搜索想要的字符序列。然后，请粘贴在这里！" style="width: 100%; resize: vertical; overflow: auto" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>这里粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）...</textarea></div>
+                        <div class="col">
+                            <label title="请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><textarea id="sAIGCString" title="请在这里粘贴免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" style="width: 100%; resize: vertical; overflow:auto" >这里粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）...</textarea>
+                        </div>
+                        <div class="col">
+                            <label title="请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）： </label><textarea id="sKnowledgebaseString" title="请单击打开标准知识库搜索想要的字符序列。然后，请粘贴在这里！" style="width: 100%; resize: vertical; overflow: auto">这里粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）...</textarea>
+                        </div>
                     </div>
                     <div style="width: 90%"><button style="color:green;font-size:11px;" onclick='document.getElementById("sAccuracySimilarityForString").textContent=fnStringSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>准确性相似度：</button><span id="sAccuracySimilarityForString" style="font-size: 11px">这里将显示上述两个字符序列的准确性相似度</span></div>
                 </div>
