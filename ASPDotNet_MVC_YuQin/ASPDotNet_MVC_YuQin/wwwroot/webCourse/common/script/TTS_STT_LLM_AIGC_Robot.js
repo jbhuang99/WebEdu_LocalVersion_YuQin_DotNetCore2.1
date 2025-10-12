@@ -46,8 +46,7 @@ function fnToggleEventSoureElementColor(){
 }
 
 function fnAccuracySimilarityForPixelImage() {
-    if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-    {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
+  //  if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)    {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
 
 fnToggleEventSoureElementColor();
 document.getElementById('sPixelImageFromAIGC').value=window.sHref+"/webCourse/options/Accuracy-Similarity/Cone-of-Experience-FromAIGC-willTransformToFiveLayeredMVC.jpg";
@@ -62,8 +61,7 @@ else{document.getElementById("AIGCPixelImage").style.display="none"}
 }
 
 function fnAccuracySimilarityForVideo() {
-if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) 
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
+//if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
 fnToggleEventSoureElementColor();
 document.getElementById('sVideoFromAIGC').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.mp4";
 document.getElementById('sShowVideoFromAIGC').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.mp4";
@@ -74,8 +72,7 @@ if(document.getElementById("AIGCVideo").style.display=="none"){document.getEleme
 }
 
 function fnAccuracySimilarityFor2D() {
-if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) 
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
+//if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
 fnToggleEventSoureElementColor();
 document.getElementById('s2DFromAIGC').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.svg";
 document.getElementById('sShow2DFromAIGC').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.svg";
@@ -86,8 +83,7 @@ if(document.getElementById("AIGC2D").style.display=="none"){document.getElementB
 }
 
 function fnAccuracySimilarityFor3D() {
-if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) 
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
+//if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
 fnToggleEventSoureElementColor();
 document.getElementById('s3DFromAIGC').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv";
 document.getElementById('sShow3DFromAIGC').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv";
@@ -98,8 +94,7 @@ if(document.getElementById("AIGC3D").style.display=="none"){document.getElementB
 }
 
 function fnAccuracySimilarityForAudio() {
-if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) 
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
+//if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
 fnToggleEventSoureElementColor();
 document.getElementById('sAudioFromAIGC').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.m4a";
 document.getElementById('sShowAudioFromAIGC').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.m4a";
