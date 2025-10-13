@@ -117,6 +117,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="wwwroot\webCourse\common\script\content - Copy (2).js" />
     <Content Remove="wwwroot\webCourse\common\script\content - Copy.js" />
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy %282%29.js" />
+    <Content Remove="wwwroot\webCourse\common\script\contents - Copy %284%29.js" />
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy (3).js" />
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy.js" />
     <Content Remove="wwwroot\webCourse\common\script\HomeworkAndTest - error.js" />
@@ -456,6 +457,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Include="wwwroot\webCourse\common\script\contentExtented.js" />
     <None Include="wwwroot\webCourse\common\script\contents - Copy (2).js" />
     <None Include="wwwroot\webCourse\common\script\contents - Copy (3).js" />
+    <None Include="wwwroot\webCourse\common\script\contents - Copy (4).js" />
     <None Include="wwwroot\webCourse\common\script\contents - Copy.js" />
     <None Include="wwwroot\webCourse\common\script\contents - 勿删.js" />
     <None Include="wwwroot\webCourse\common\script\contents.js" />

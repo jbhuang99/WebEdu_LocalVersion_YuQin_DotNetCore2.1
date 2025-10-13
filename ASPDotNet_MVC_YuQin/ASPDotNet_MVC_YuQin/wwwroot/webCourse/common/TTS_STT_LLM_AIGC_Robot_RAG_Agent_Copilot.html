@@ -102,8 +102,29 @@
                 <div>
                     <button id="closeSTTSystemInternal" onclick="window.close();">单击关闭当前语音互动本系统，切换回到面向视觉的屏幕键盘鼠标互动本系统</button>
                 </div>
-                <button id="startBtnSystemInternal" title="单击将开始打开麦克风录音，系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中...">开始录音对话</button>
-                <button id="stopBtnSystemInternal" title="单击将停止录音对话" disabled>停止录音对话</button>
+                <button id="startBtnSystemInternal" title="单击将开始系统内部的录音对话。系统将打开麦克风录音，系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中...">开始录音对话</button>
+                <button id="stopBtnSystemInternal" title="单击将停止系统内部的录音对话" disabled>停止录音对话</button>
+                <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示系统内部的录音对话的核心对话指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'>了解录音对话指令</button>
+                <div id="kernelDialogueSystemInternal" style="border: dashed; border-color: goldenrod; display: none">
+                    注：系统内部语音对话指令相对复杂严谨，主要控制我们发送语音对话的STT的字符序列给本系统，然后触发本系统运行已经编写的程序。
+                    <ol style="text-align:justify">
+                        <li>切换系统外部语音对话（实际测试优化成为“系统外部”）</li>
+                        <li>目录条目下翻（实际测试优化成为“条目向上”）</li>
+                        <li>目录条目上翻（实际测试优化成为“条目向下”）</li>
+                        <li>目录条目开始系统内部语音朗读（实际测试优化成为“开始朗读”）</li>
+                        <li>目录条目暂停系统内部语音朗读（实际测试优化成为“暂停朗读”）</li>
+                        <li>目录条目继续系统内部语音朗读（实际测试优化成为“继续朗读”）</li>
+                        <li>目录条目停止系统内部语音朗读（实际测试优化成为“停止朗读”）</li>
+                        <li>目录条目内容框架切换课文（实际测试优化成为“课文”）</li>
+                        <li>目录条目内容框架切换作业测验（实际测试优化成为“作业测验”）</li>
+                        <li>作业测验题目开始系统内部语音朗读（实际测试优化成为“题目开始朗读”）</li>
+                        <li>作业测验题目暂停系统内部语音朗读（实际测试优化成为“题暂停始朗读”）</li>
+                        <li>作业测验题目继续系统内部语音朗读（实际测试优化成为“题目继续朗读”）</li>
+                        <li>作业测验题目停止系统内部语音朗读（实际测试优化成为“题目停止朗读”）</li>
+                        <li>系统内部概览（实际测试优化成为“概览”）</li>
+                        <li>系统内部搜索（实际测试优化成为“搜索”）</li>
+                    </ol>
+                </div>
                 <div id="transcriptSystemInternal">
                     {
                     "段落": [期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中...]
@@ -117,7 +138,9 @@
                 </div>
                 <div>
                     <button id="closeSTTSystemExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("sVisionAIGC_RAG_Agent").style.display=="none"){document.getElementById("sVisionAIGC_RAG_Agent").style.display="block"} else{document.getElementById("sVisionAIGC_RAG_Agent").style.display="none"}fnToggleEventSoureElementColor();' style="white-space: normal;">单击保持当前语音系统互动系统外部AIGC，同时切换显示AIGC生成内容的准确性对比【注：面向视觉的屏幕键盘鼠标互动系统外部AIGC，例如“钉钉AIGC助理可以免费连接AIGC生成内容”，自开发反而需要付费，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂未考虑其他功能开发！】</button>
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("sVisionAIGC_RAG_Agent").style.display=="none"){document.getElementById("sVisionAIGC_RAG_Agent").style.display="block"} else{document.getElementById("sVisionAIGC_RAG_Agent").style.display="none"}fnToggleEventSoureElementColor();' style="white-space: normal;">
+                        单击保持当前语音系统互动系统外部AIGC，同时切换显示AIGC生成内容的准确性对比【注：面向视觉的屏幕键盘鼠标互动系统外部AIGC，例如“钉钉AIGC助理可以免费连接AIGC生成内容”，自开发反而需要付费，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂未考虑其他功能开发！】
+                    </button>
                 </div>
                 <div id="sVisionAIGC_RAG_Agent" style="display: none; border:solid;border-color:brown">
                     <p></p>
@@ -128,7 +151,7 @@
                 <div id="AIGCCharactor" style="display: none; border: dashed;border-color: goldenrod; text-align: justify ">
                     <div class="row-2col">
                         <div class="col">
-                            <label title="请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><textarea id="sAIGCString" title="请在这里粘贴免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" style="width: 100%; resize: vertical; overflow:auto" >这里粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）...</textarea>
+                            <label title="请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><textarea id="sAIGCString" title="请在这里粘贴免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" style="width: 100%; resize: vertical; overflow:auto">这里粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）...</textarea>
                         </div>
                         <div class="col">
                             <label title="请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）： </label><textarea id="sKnowledgebaseString" title="请单击打开标准知识库搜索想要的字符序列。然后，请粘贴在这里！" style="width: 100%; resize: vertical; overflow: auto">这里粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）...</textarea>
@@ -140,24 +163,24 @@
                 <div style="text-align:justify">
                     <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉图像)(.jpeg或.png文件为例)←对比→标准知识库检索匹配(视觉图像)(.jpeg或.png文件为例)" onclick='fnAccuracySimilarityForPixelImage()' /></li>
                 </div>
-                <div id="AIGCPixelImage" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">                    
-                        <div class="row-2col">
-                            <div class="col">
-                                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sPixelImageFromAIGC" value="" />
-                                <div style="text-align:center"><img id="sShowPixelImageFromAIGC" style="width:100%;height:100%" src="" /></div>
-                                <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”Prompt钉钉AIGC生成的图像，或者，上传自己书写的字符图像可用来评判自己书写的工整性' /> <input type="submit" value="提交文件" /></div>
-                            </div>
-                            <div class="col">
-                                <label title="请单击打开标准知识库搜索想要的图像。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sPixelImageFromKnowledgebase" value=""  />
-                                <div style="text-align:center"><img id="sShowPixelImageFromKnowledgebase" style="width: 100%; height: 100% " src="" /></div>
-                                <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”关键词搜索匹配本系统标准知识库检索的图像，或者，上传印刷体的字符图像可用来对比自己书写的工整性' /><input type="submit" value="提交文件" /></div>
-                            </div>
-                        </div>        
+                <div id="AIGCPixelImage" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+                    <div class="row-2col">
+                        <div class="col">
+                            <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sPixelImageFromAIGC" value="" />
+                            <div style="text-align:center"><img id="sShowPixelImageFromAIGC" style="width:100%;height:100%" src="" /></div>
+                            <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”Prompt钉钉AIGC生成的图像，或者，上传自己书写的字符图像可用来评判自己书写的工整性' /> <input type="submit" value="提交文件" /></div>
+                        </div>
+                        <div class="col">
+                            <label title="请单击打开标准知识库搜索想要的图像。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sPixelImageFromKnowledgebase" value="" />
+                            <div style="text-align:center"><img id="sShowPixelImageFromKnowledgebase" style="width: 100%; height: 100% " src="" /></div>
+                            <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”关键词搜索匹配本系统标准知识库检索的图像，或者，上传印刷体的字符图像可用来对比自己书写的工整性' /><input type="submit" value="提交文件" /></div>
+                        </div>
+                    </div>
                     <div><button style="color:green;font-size:12px" onclick="fnPixelImageSimilarity();">准确性相似度：</button><span id="sAccuracySimilarityForPixelImage" style="font-size: 11px">这里将显示上述两个图像的准确性相似度</span></div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉视频)(.mp4文件为例)←对比→标准知识库检索匹配(视觉视频)(.mp4文件为例)" onclick='fnAccuracySimilarityForVideo()' /></li>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉视频)(.mp4文件为例)←对比→标准知识库检索匹配(视觉视频)(.mp4文件为例)" onclick='fnAccuracySimilarityForVideo()' /></li>
                 </div>
                 <div id="AIGCVideo" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
                     <div class="row-2col">
@@ -176,7 +199,7 @@
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                 <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉2D)(.svg文件为例)←对比→标准知识库检索匹配(视觉2D)(.svg文件为例)" onclick='fnAccuracySimilarityFor2D()' /></li>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(视觉2D)(.svg文件为例)←对比→标准知识库检索匹配(视觉2D)(.svg文件为例)" onclick='fnAccuracySimilarityFor2D()' /></li>
                 </div>
                 <div id="AIGC2D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
                     <div class="row-2col">
@@ -202,52 +225,52 @@
                         <div class="col">
                             <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.x3dv三维3D文件(或者文本框中键入.x3dv三维3D的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="s3DFromAIGC" value="" />
                             <div style="text-align:center">
-                           <!-- <img id="sShow3DFromAIGC" style="width: 100%; height: 100%" src="" controls />-->
+                                <!-- <img id="sShow3DFromAIGC" style="width: 100%; height: 100%" src="" controls />-->
                                 <object type="model/x3d+xml" id="sShow3DFromAIGC" data="../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv" width="120" height="80">
-    <param name="autoStart" value="true" />
-    <!-- 备用内容（如浏览器不支持） -->
-    <p style="text-align:center">
-        <a href='../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv' target="_blank">您的浏览器不支持.x3d/.x3dv文件！请在线搜索下载安装BS Contact软件。然后，单击本链接下载本.x3d/.x3dv文件浏览。</a>浏览结果截图如下2D截图所示（但实际X3D可以虚拟现实VRML地漫游3D世界）：
-        <div><img src="../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.jpg" style="width:120px;height:80px" /></div>
-        <div style="text-align:center">
-            <p>请用鼠标拖动如下体验简易的X3D：</p>
-            <x3d width="100%" height="80px">
-                <scene>
-                    <!-- 定义旋转的锥体 -->
-                    <transform DEF="ConeTransform">
-                        <shape>
-                            <!-- 锥体几何体（高度 2，底面半径 1） -->
-                            <cone bottomRadius="3" height="6"></cone>
-                            <!-- 材质设置（绿色表面） -->
-                            <appearance>
-                                <material diffuseColor="0 0.8 0"></material>
-                            </appearance>
-                        </shape>
-                    </transform>
+                                    <param name="autoStart" value="true" />
+                                    <!-- 备用内容（如浏览器不支持） -->
+                                    <p style="text-align:center">
+                                        <a href='../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv' target="_blank">您的浏览器不支持.x3d/.x3dv文件！请在线搜索下载安装BS Contact软件。然后，单击本链接下载本.x3d/.x3dv文件浏览。</a>浏览结果截图如下2D截图所示（但实际X3D可以虚拟现实VRML地漫游3D世界）：
+                                        <div><img src="../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.jpg" style="width:120px;height:80px" /></div>
+                                        <div style="text-align:center">
+                                            <p>请用鼠标拖动如下体验简易的X3D：</p>
+                                            <x3d width="100%" height="80px">
+                                                <scene>
+                                                    <!-- 定义旋转的锥体 -->
+                                                    <transform DEF="ConeTransform">
+                                                        <shape>
+                                                            <!-- 锥体几何体（高度 2，底面半径 1） -->
+                                                            <cone bottomRadius="3" height="6"></cone>
+                                                            <!-- 材质设置（绿色表面） -->
+                                                            <appearance>
+                                                                <material diffuseColor="0 0.8 0"></material>
+                                                            </appearance>
+                                                        </shape>
+                                                    </transform>
 
-                    <!-- 使用 Script 节点控制旋转动画 -->
-                    <script DEF="RotateScript" type="JS">
-                        // 获取 Transform 节点
-                        const coneTransform = x3dom.nodeFactory.getNodeByName('ConeTransform')[0];
-                        let angle = 0;
+                                                    <!-- 使用 Script 节点控制旋转动画 -->
+                                                    <script DEF="RotateScript" type="JS">
+                                                        // 获取 Transform 节点
+                                                        const coneTransform = x3dom.nodeFactory.getNodeByName('ConeTransform')[0];
+                                                        let angle = 0;
 
-                        // 定义每帧更新的旋转角度
-                        function rotate() {
-                            angle += 0.02; // 调整速度（越大转得越快）
-                            // 设置旋转（绕 Y 轴旋转）
-                            coneTransform.rotation = [0, 1, 0, angle];
-                            x3dom.field_SFVec3f.setSFVec3f(coneTransform, 'rotation', [0, 1, 0, angle]);
-                            requestAnimationFrame(rotate); // 循环调用
-                        }
+                                                        // 定义每帧更新的旋转角度
+                                                        function rotate() {
+                                                            angle += 0.02; // 调整速度（越大转得越快）
+                                                            // 设置旋转（绕 Y 轴旋转）
+                                                            coneTransform.rotation = [0, 1, 0, angle];
+                                                            x3dom.field_SFVec3f.setSFVec3f(coneTransform, 'rotation', [0, 1, 0, angle]);
+                                                            requestAnimationFrame(rotate); // 循环调用
+                                                        }
 
-                        // 启动动画
-                        rotate();
-                    </script>
-                </scene>
-            </x3d>
-        </div>
-    </p>
-</object>
+                                                        // 启动动画
+                                                        rotate();
+                                                    </script>
+                                                </scene>
+                                            </x3d>
+                                        </div>
+                                    </p>
+                                </object>
                             </div>
                             <div style="text-align:justify"><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的.x3dv三维3D文件，或者，上传自己创作的.x3dv三维3D文件' /><input type="submit" value="提交文件" /></div>
                         </div>
@@ -256,51 +279,51 @@
                             <div style="text-align:center">
                                 <!--<img id="sShow3DFromKnowledgebase" style="width:100%; height:100%" src="" controls />-->
                                 <object type="model/x3d+xml" id="sShow3DFromKnowledgebase" data="../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.x3dv" width="120" height="80">
-    <param name="autoStart" value="true" />
-    <!-- 备用内容（如浏览器不支持） -->
-    <p style="text-align:center">
-        <a href='../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.x3dv' target="_blank">您的浏览器不支持.x3d/.x3dv文件！请在线搜索下载安装BS Contact软件。然后，单击本链接下载本.x3d/.x3dv文件浏览。</a>浏览结果截图如下2D截图所示（但实际X3D可以虚拟现实VRML地漫游3D世界）：
-        <div><img src="../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.jpg" style="width:120px;height:80px" /></div>
-        <div style="text-align:center">
-            <p>请用鼠标拖动如下体验简易的X3D：</p>
-            <x3d width="100%" height="80px">
-                <scene>
-                    <!-- 定义旋转的锥体 -->
-                    <transform DEF="ConeTransform">
-                        <shape>
-                            <!-- 锥体几何体（高度 2，底面半径 1） -->
-                            <cone bottomRadius="3" height="6"></cone>
-                            <!-- 材质设置（绿色表面） -->
-                            <appearance>
-                                <material diffuseColor="0 0.8 0"></material>
-                            </appearance>
-                        </shape>
-                    </transform>
+                                    <param name="autoStart" value="true" />
+                                    <!-- 备用内容（如浏览器不支持） -->
+                                    <p style="text-align:center">
+                                        <a href='../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.x3dv' target="_blank">您的浏览器不支持.x3d/.x3dv文件！请在线搜索下载安装BS Contact软件。然后，单击本链接下载本.x3d/.x3dv文件浏览。</a>浏览结果截图如下2D截图所示（但实际X3D可以虚拟现实VRML地漫游3D世界）：
+                                        <div><img src="../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.jpg" style="width:120px;height:80px" /></div>
+                                        <div style="text-align:center">
+                                            <p>请用鼠标拖动如下体验简易的X3D：</p>
+                                            <x3d width="100%" height="80px">
+                                                <scene>
+                                                    <!-- 定义旋转的锥体 -->
+                                                    <transform DEF="ConeTransform">
+                                                        <shape>
+                                                            <!-- 锥体几何体（高度 2，底面半径 1） -->
+                                                            <cone bottomRadius="3" height="6"></cone>
+                                                            <!-- 材质设置（绿色表面） -->
+                                                            <appearance>
+                                                                <material diffuseColor="0 0.8 0"></material>
+                                                            </appearance>
+                                                        </shape>
+                                                    </transform>
 
-                    <!-- 使用 Script 节点控制旋转动画 -->
-                    <script DEF="RotateScript" type="JS">
-                        // 获取 Transform 节点
-                        const coneTransform = x3dom.nodeFactory.getNodeByName('ConeTransform')[0];
-                        let angle = 0;
+                                                    <!-- 使用 Script 节点控制旋转动画 -->
+                                                    <script DEF="RotateScript" type="JS">
+                                                        // 获取 Transform 节点
+                                                        const coneTransform = x3dom.nodeFactory.getNodeByName('ConeTransform')[0];
+                                                        let angle = 0;
 
-                        // 定义每帧更新的旋转角度
-                        function rotate() {
-                            angle += 0.02; // 调整速度（越大转得越快）
-                            // 设置旋转（绕 Y 轴旋转）
-                            coneTransform.rotation = [0, 1, 0, angle];
-                            x3dom.field_SFVec3f.setSFVec3f(coneTransform, 'rotation', [0, 1, 0, angle]);
-                            requestAnimationFrame(rotate); // 循环调用
-                        }
+                                                        // 定义每帧更新的旋转角度
+                                                        function rotate() {
+                                                            angle += 0.02; // 调整速度（越大转得越快）
+                                                            // 设置旋转（绕 Y 轴旋转）
+                                                            coneTransform.rotation = [0, 1, 0, angle];
+                                                            x3dom.field_SFVec3f.setSFVec3f(coneTransform, 'rotation', [0, 1, 0, angle]);
+                                                            requestAnimationFrame(rotate); // 循环调用
+                                                        }
 
-                        // 启动动画
-                        rotate();
-                    </script>
-                </scene>
-            </x3d>
-        </div>
-</p>
-</object>
-                            
+                                                        // 启动动画
+                                                        rotate();
+                                                    </script>
+                                                </scene>
+                                            </x3d>
+                                        </div>
+                                    </p>
+                                </object>
+
                             </div>
                             <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.x3dv三维3D文件，可用作评判自己创作的.x3dv三维3D文件的的标准' /><input type="submit" value="提交文件" /></div>
                         </div>
@@ -317,17 +340,17 @@
                             <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.mp3音频文件(或者文本框中键入.mp3音频文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sAudioFromAIGC" value="" />
                             <div style="text-align:center"><audio id="sShowAudioFromAIGC" style="width:100px; height:100px " src="" controls /></div>
                             <div style="text-align:justify"><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的音频，或者，上传自己朗读的“普通话等级”的音频' /><input type="submit" value="提交文件" /></div>
-                            </div>
-                            <div class="col">
-                                <label title="请单击打开标准知识库搜索想要的音频。然后，请在下方上传！"  onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.mp3音频文件(或者文本框中键入.mp3音频文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sAudioFromKnowledgebase" value="" />
-                                <div style="text-align:center"><audio id="sShowAudioFromKnowledgebase" style="width: 100px; height:100px" src="" controls /></div>
-                                <div style="text-align:justify" ><input type="file" title='例如，上传字典的“普通话等级”发音音频，可用作评判自己朗读“普通话等级”的标准' /><input type="submit" value="提交文件" /></div>
-                            </div>
-                     </div>
+                        </div>
+                        <div class="col">
+                            <label title="请单击打开标准知识库搜索想要的音频。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.mp3音频文件(或者文本框中键入.mp3音频文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sAudioFromKnowledgebase" value="" />
+                            <div style="text-align:center"><audio id="sShowAudioFromKnowledgebase" style="width: 100px; height:100px" src="" controls /></div>
+                            <div style="text-align:justify"><input type="file" title='例如，上传字典的“普通话等级”发音音频，可用作评判自己朗读“普通话等级”的标准' /><input type="submit" value="提交文件" /></div>
+                        </div>
+                    </div>
 
                     <div><button style="color:green;font-size:12px" onclick="fnCompareAudio();">准确性相似度：</button><span id="sAccuracySimilarityForAudio" style="font-size: 11px">这里将显示上述两个音频的准确性相似度</span></div>
                 </div>
-                   
+
                 <div style="text-align:justify">
                     <li><div><input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：AIGC生成回答(触觉)←对比→标准知识库检索匹配(触觉)（目前尚无法实现...）" /></div></li>
                 </div>
@@ -346,6 +369,17 @@
                 </div>
                 <button id="startBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将开始打开麦克风录音，系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案....">开始录音对话</button>
                 <button id="stopBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将停止录音对话" disabled>停止录音对话</button>
+                <button id="understandKernelDialogueBtnSystemExternal" title="单击将切换显示系统外部的录音对话的核心对话指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemExternal()'>了解录音对话指令</button>
+                <div id="kernelDialogueSystemExternal" style="border: dashed; border-color: goldenrod; display: none">
+                    注：系统外部语音对话指令相对简单宽泛，主要不是控制本系统的运行，而是主要控制我们发送语音对话的STT的字符序列给本系统，本系统发送给AIGC，然后TTS朗读AIGC回答的字符序列。
+                    <ol style="text-align:justify">
+                        <li>切换系统内部语音对话（实际测试优化成为“系统内部”）</li>
+                        <li>开始系统外部语音朗读（实际测试优化成为“开始朗读”）</li>
+                        <li>暂停系统外部语音朗读（实际测试优化成为“暂停朗读”）</li>
+                        <li>继续系统外部语音朗读（实际测试优化成为“继续朗读”）</li>
+                        <li>停止系统外部语音朗读（实际测试优化成为“停止朗读”）</li>
+                    </ol>
+                </div>
                 <div id="transcriptSystemExternal">
                     {
                     "段落": [期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案....需要付费AIGC...]

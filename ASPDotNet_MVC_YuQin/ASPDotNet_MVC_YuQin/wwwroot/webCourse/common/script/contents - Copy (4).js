@@ -951,7 +951,7 @@ function fnDynOpenHomeworkAndTest() {
         try {
        //open(window.sHomeworkAndTest, "sIframeHomeworkAndTest", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.5 + "px;status:0;");
        var doc = parent.document.getElementById("sIframeHomeworkAndTest").contentDocument || parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document;
-        if (doc.body.innerText.includes("404") &&doc.body.innerText.includes("无法访问此页面")&&doc.body.innerText.includes("是否有拼写错误")  ) {
+        if (doc.body.innerText.includes("404") || doc.body.innerHTML.trim() === "") {
              parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.location.href = "../options/NotFindHomeworkAndTest.htm";
         }
        } 
@@ -1026,7 +1026,7 @@ function fnDynOpen() {
                  try {
        //open(window.sHomeworkAndTest, "sIframeHomeworkAndTest", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.5 + "px;status:0;");
                 var doc = parent.document.getElementById("sIframeContent").contentDocument || parent.document.getElementById("sIframeContent").contentWindow.document;
-                  if (doc.body.innerText.includes("404") &&doc.body.innerText.includes("无法访问此页面")&&doc.body.innerText.includes("是否有拼写错误")  ) {
+                  if (doc.body.innerText.includes("404") || doc.body.innerHTML.trim() === "") {
              parent.document.getElementById("sIframeContent").contentWindow.location.href = "../options/NotFindCourseText.htm";
         }
        } 
@@ -1044,7 +1044,7 @@ function fnDynOpen() {
                  try {
        //open(window.sHomeworkAndTest, "sIframeHomeworkAndTest", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.5 + "px;status:0;");
                 var doc = parent.document.getElementById("sIframeContent").contentDocument || parent.document.getElementById("sIframeContent").contentWindow.document;
-                  if (doc.body.innerText.includes("404") &&doc.body.innerText.includes("无法访问此页面")&&doc.body.innerText.includes("是否有拼写错误")  ) {
+                  if (doc.body.innerText.includes("404") || doc.body.innerHTML.trim() === "") {
              parent.document.getElementById("sIframeContent").contentWindow.location.href = "../options/NotFindCourseText.htm";
         }
        } 
@@ -1090,7 +1090,7 @@ function fnDynOpen() {
                  try {
        //open(window.sHomeworkAndTest, "sIframeHomeworkAndTest", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.5 + "px;status:0;");
                 var doc = parent.document.getElementById("sIframeContent").contentDocument || parent.document.getElementById("sIframeContent").contentWindow.document;
-                  if (doc.body.innerText.includes("404") &&doc.body.innerText.includes("无法访问此页面")&&doc.body.innerText.includes("是否有拼写错误")  ) {
+                  if (doc.body.innerText.includes("404") || doc.body.innerHTML.trim() === "") {
              parent.document.getElementById("sIframeContent").contentWindow.location.href = "../options/NotFindCourseText.htm";
         }
        } 

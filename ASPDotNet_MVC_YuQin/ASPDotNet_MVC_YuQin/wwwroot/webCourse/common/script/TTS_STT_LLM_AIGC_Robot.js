@@ -256,6 +256,20 @@ function fnStopBtnSystemExternalOnClick() {
 alert(`系统内部语音对话时候的语音识别错误: ${event.error}`);
  window.isRecognizingSystemInternal = false;
        }
+function fnUnderstandKernelDialogueBtnSystemInternal() {
+   fnToggleEventSoureElementColor();
+    if(document.getElementById("kernelDialogueSystemInternal").style.display=="none"){
+    document.getElementById("kernelDialogueSystemInternal").style.display="block";
+    } 
+else{document.getElementById("kernelDialogueSystemInternal").style.display="none"}
+}
+function fnUnderstandKernelDialogueBtnSystemExternal() {
+   fnToggleEventSoureElementColor();
+    if(document.getElementById("kernelDialogueSystemExternal").style.display=="none"){
+    document.getElementById("kernelDialogueSystemExternal").style.display="block";
+    } 
+else{document.getElementById("kernelDialogueSystemExternal").style.display="none"}
+}
 
 function fnSTTOnErrorSystemExternal(event) {
 alert(`系统外部语音对话时候的语音识别错误: ${event.error}`);
