@@ -90,7 +90,7 @@
                 <label id="studyTime" style="color:green">0</label>
             </div>
             <div style="color: brown; font-size: 14px; font-weight: bold;" onmouseover='if(!fnIsMobile()){event.srcElement.style.color="lightcyan";event.srcElement.style.fontWeight = "bold";}' onMouseOut='if(!fnIsMobile()){event.srcElement.style.color="brown";event.srcElement.style.fontWeight = "bold";}'>
-                <a href="" id="sIdIndex" title="新开首页【如果觉得当前不太符合预期，建议新开首页尝试，即，新开窗口重新装载首页作为起点运行】" onclick='window.event.returnValue=false;fnOpenIndex();//注意：含有URL的JS最好放置在.js文件中。否则可能文件编码不同导致不正常' unselectable="on" style="color:brown;">首页</a>
+                <a href="" id="sIdIndex" title='新开首页【如果觉得当前不太符合预期，建议新开首页，即，新开窗口重新装载首页作为起点运行】【建议继承利用Edge内置的“集锦”功能，添加本系统首页URL，那么，无论使用哪个设备的Edge（例如，笔记本、手机、平板的Edge），不同的Edge登录同一个账号，就可当前设备的Edge的“集锦”中，找到已经随时随地随设备Edge自动同步的首页URL，而无须背诵记忆首页URL，就可进入本系统！】' onclick='window.event.returnValue=false;fnOpenIndex();//注意：含有URL的JS最好放置在.js文件中。否则可能文件编码不同导致不正常' unselectable="on" style="color:brown;">首页</a>
                 <a href="" id="sIdToggleAutoNumber" title="目录切换是否显示自动编号。本系统主界面分为目录面板、内容面板、标题面板。目录为导航。" onclick="window.event.returnValue=false;parent.document.getElementById('sIframeContents').contentWindow.fnToggleContentsAutoNumber();" unselectable="on" style="color:brown;">目录编号</a>
                 <a href="" id="sIdfnToggleScreenStepByStep" title="目录面板随单击逐渐变宽。本系统主界面分为目录面板、内容面板、标题面板。目录为导航。" onclick="window.event.returnValue=false;fnToggleScreenStepByStep();" unselectable="on" style="color:brown;">目录渐宽</a>
                 <a href="" id="sIdToggleContentsScreen" title="目录面板切换是否全屏。也可双击目录框架的空白处实现切换。本系统主界面分为目录面板、内容面板、标题面板。目录为导航。" onclick="window.event.returnValue=false;fnOnDBLClick();" unselectable="on" style="color:brown;">目录全宽</a>
