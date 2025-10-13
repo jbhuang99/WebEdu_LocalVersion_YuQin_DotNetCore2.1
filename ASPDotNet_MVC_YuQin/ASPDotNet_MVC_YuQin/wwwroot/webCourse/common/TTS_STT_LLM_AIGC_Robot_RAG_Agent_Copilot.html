@@ -2,6 +2,8 @@
 <html lang="zh-CN">
 
 <head>
+    <link rel="stylesheet" type="text/css" href="https://www.x3dom.org/x3dom/release/x3dom.css">
+    <script type="text/javascript" src="https://www.x3dom.org/x3dom/release/x3dom.js"></script>
     <meta charset="UTF-8">
     <title>语音对话机器人(查找Search_人工智能AIGC_检索增强生成RAG_智能代理Agent_大思维语言模型LLM_机器人Robot_副驾Copilot)</title>
     <style>
@@ -36,13 +38,14 @@
             //max-width: 400px; /* 可选：最大宽度 */
             margin: 0 auto; /* 可选：居中 */
         }
+
         .grid-item {
             border: 1px solid #ccc;
             padding: 20px;
             text-align: center;
             background: #f9f9f9;
         }
-       /** **/
+        /** **/
         #transcriptSystemInternal {
             margin-top: 20px;
             padding: 10px;
@@ -198,12 +201,107 @@
                     <div class="row-2col">
                         <div class="col">
                             <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.x3dv三维3D文件(或者文本框中键入.x3dv三维3D的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="s3DFromAIGC" value="" />
-                            <div style="text-align:center"><img id="sShow3DFromAIGC" style="width: 100%; height: 100%" src="" controls /></div>
+                            <div style="text-align:center">
+                           <!-- <img id="sShow3DFromAIGC" style="width: 100%; height: 100%" src="" controls />-->
+                                <object type="model/x3d+xml" id="sShow3DFromAIGC" data="../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv" width="120" height="80">
+    <param name="autoStart" value="true" />
+    <!-- 备用内容（如浏览器不支持） -->
+    <p style="text-align:center">
+        <a href='../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv' target="_blank">您的浏览器不支持.x3d/.x3dv文件！请在线搜索下载安装BS Contact软件。然后，单击本链接下载本.x3d/.x3dv文件浏览。</a>浏览结果截图如下2D截图所示（但实际X3D可以虚拟现实VRML地漫游3D世界）：
+        <div><img src="../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.jpg" style="width:120px;height:80px" /></div>
+        <div style="text-align:center">
+            <p>请用鼠标拖动如下体验简易的X3D：</p>
+            <x3d width="100%" height="80px">
+                <scene>
+                    <!-- 定义旋转的锥体 -->
+                    <transform DEF="ConeTransform">
+                        <shape>
+                            <!-- 锥体几何体（高度 2，底面半径 1） -->
+                            <cone bottomRadius="3" height="6"></cone>
+                            <!-- 材质设置（绿色表面） -->
+                            <appearance>
+                                <material diffuseColor="0 0.8 0"></material>
+                            </appearance>
+                        </shape>
+                    </transform>
+
+                    <!-- 使用 Script 节点控制旋转动画 -->
+                    <script DEF="RotateScript" type="JS">
+                        // 获取 Transform 节点
+                        const coneTransform = x3dom.nodeFactory.getNodeByName('ConeTransform')[0];
+                        let angle = 0;
+
+                        // 定义每帧更新的旋转角度
+                        function rotate() {
+                            angle += 0.02; // 调整速度（越大转得越快）
+                            // 设置旋转（绕 Y 轴旋转）
+                            coneTransform.rotation = [0, 1, 0, angle];
+                            x3dom.field_SFVec3f.setSFVec3f(coneTransform, 'rotation', [0, 1, 0, angle]);
+                            requestAnimationFrame(rotate); // 循环调用
+                        }
+
+                        // 启动动画
+                        rotate();
+                    </script>
+                </scene>
+            </x3d>
+        </div>
+    </p>
+</object>
+                            </div>
                             <div style="text-align:justify"><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的.x3dv三维3D文件，或者，上传自己创作的.x3dv三维3D文件' /><input type="submit" value="提交文件" /></div>
                         </div>
                         <div class="col">
                             <label title="请单击打开标准知识库搜索想要的3D。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.x3dv三维3D文件(或者文本框中键入.x3dv三维3D文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="s3DFromKnowledgebase" value="" />
-                            <div style="text-align:center"><img id="sShow3DFromKnowledgebase" style="width:100%; height:100%" src="" controls /></div>
+                            <div style="text-align:center">
+                                <!--<img id="sShow3DFromKnowledgebase" style="width:100%; height:100%" src="" controls />-->
+                                <object type="model/x3d+xml" id="sShow3DFromKnowledgebase" data="../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.x3dv" width="120" height="80">
+    <param name="autoStart" value="true" />
+    <!-- 备用内容（如浏览器不支持） -->
+    <p style="text-align:center">
+        <a href='../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.x3dv' target="_blank">您的浏览器不支持.x3d/.x3dv文件！请在线搜索下载安装BS Contact软件。然后，单击本链接下载本.x3d/.x3dv文件浏览。</a>浏览结果截图如下2D截图所示（但实际X3D可以虚拟现实VRML地漫游3D世界）：
+        <div><img src="../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.jpg" style="width:120px;height:80px" /></div>
+        <div style="text-align:center">
+            <p>请用鼠标拖动如下体验简易的X3D：</p>
+            <x3d width="100%" height="80px">
+                <scene>
+                    <!-- 定义旋转的锥体 -->
+                    <transform DEF="ConeTransform">
+                        <shape>
+                            <!-- 锥体几何体（高度 2，底面半径 1） -->
+                            <cone bottomRadius="3" height="6"></cone>
+                            <!-- 材质设置（绿色表面） -->
+                            <appearance>
+                                <material diffuseColor="0 0.8 0"></material>
+                            </appearance>
+                        </shape>
+                    </transform>
+
+                    <!-- 使用 Script 节点控制旋转动画 -->
+                    <script DEF="RotateScript" type="JS">
+                        // 获取 Transform 节点
+                        const coneTransform = x3dom.nodeFactory.getNodeByName('ConeTransform')[0];
+                        let angle = 0;
+
+                        // 定义每帧更新的旋转角度
+                        function rotate() {
+                            angle += 0.02; // 调整速度（越大转得越快）
+                            // 设置旋转（绕 Y 轴旋转）
+                            coneTransform.rotation = [0, 1, 0, angle];
+                            x3dom.field_SFVec3f.setSFVec3f(coneTransform, 'rotation', [0, 1, 0, angle]);
+                            requestAnimationFrame(rotate); // 循环调用
+                        }
+
+                        // 启动动画
+                        rotate();
+                    </script>
+                </scene>
+            </x3d>
+        </div>
+</p>
+</object>
+                            
+                            </div>
                             <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.x3dv三维3D文件，可用作评判自己创作的.x3dv三维3D文件的的标准' /><input type="submit" value="提交文件" /></div>
                         </div>
                     </div>
