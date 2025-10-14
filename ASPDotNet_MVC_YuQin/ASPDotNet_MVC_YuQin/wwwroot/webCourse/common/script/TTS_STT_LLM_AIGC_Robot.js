@@ -138,11 +138,13 @@ function fnBtnSystemExternalOnClick() {
  }
 
  function fnTTSOnEndSystemInternal(){
+ opener.parent.document.getElementById("sIFrameContents").contentWindow.fnMargee();
  document.getElementById('stopBtnSystemInternal').click();
  document.getElementById('startBtnSystemInternal').click();
     }
 
  function fnTTSOnEndSystemExternal(){
+ opener.parent.document.getElementById("sIFrameContents").contentWindow.fnMargee();
  document.getElementById('stopBtnSystemExternal').click();
  document.getElementById('startBtnSystemExternal').click();
     }
@@ -286,9 +288,34 @@ function fnSTTOnEndSystemInternal() {
     window.speechSynthesis.cancel();
     //TTS
     const utteranceInternal = new SpeechSynthesisUtterance("您需要"+window.transcriptSystemInternal+"对吗？"); 
+     window.speechSynthesis.speak(utteranceInternal); 
+    switch (true) {
+case window.transcriptSystemInternal.indexOf("向上")>0: {
+    alert("1");
+    alert(opener.parent.name);
+    alert(opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.body.textContent);
+    opener.parent.document.getElementById("sIFrameTitle").contentWindow.fnBackword();
     utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
-    window.speechSynthesis.speak(utteranceInternal); 
-       }
+    break;
+}
+case window.transcriptSystemInternal.indexOf("向下")>0: {
+    alert("2");
+    alert(opener.parent.name);
+   alert(opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.body.textContent);
+    opener.parent.document.getElementById("sIFrameTitle").contentWindow.fnNext();
+    utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
+    break;
+    }
+default:{
+    alert("default");
+    alert(opener.parent.name);
+    //alert(opener.parent.document.getElementById("sIFrameContents").contentWindow.document.body.textContent);
+    opener.parent.document.getElementById("sIFrameContents").contentWindow.fnMargee();
+    utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
+    }
+}
+ }
+
 function fnSTTOnEndSystemExternal() {
     window.isRecognizingSystemExternal = false;
      window.speechSynthesis.cancel(); 
