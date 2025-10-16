@@ -134,7 +134,7 @@ function fnHomeworkAndTest() {
    
     for (i = 0; i < iTrLenth; i++) {
         //for (j = 0; j < 6; j=i*j) {
-        if ((i + 9) % 9 === 0) { cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span style=\"display:inline-block; padding-top: 12px;padding-bottom: 12px;color:red\">题目" + ((i + 9) / 9) + "：<input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击切换本题显示\" title='以便聚焦显示的题目，以便排除其他题目干扰！' onclick=\"fnToggleItemDisplay("+i+")\" /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击切换本题在线编辑\" title='当前只是临时应急排版错误，但是无法保存编辑结果，必须重新上传当前条目的作业测验的.doc/.docx文档（作业测验的模板建议单击“标题框架”的“关于条目资源模板”下载）。后续将开发保存编辑结果的功能！' onclick=\"fnToggleContentEditable("+i+")\" /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击登录服务端作业测验、统计分析（正在开发之中...）\" /></span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML; }
+        if ((i + 9) % 9 === 0) { cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span style=\"display:inline-block; padding-top: 12px;padding-bottom: 12px;color:red\">题目" + ((i + 9) / 9) + "：<input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击切换本题显示\" title='以便聚焦显示的题目，以便排除其他题目干扰！' onclick=\"fnToggleItemDisplay("+i+")\" /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击切换本题在线编辑\" title='当前只是临时应急排版错误，但是无法保存编辑结果，必须重新上传当前条目的作业测验的.doc/.docx文档（作业测验的模板建议单击“标题框架”的“关于条目资源模板”下载）。后续将开发保存编辑结果的功能！' onclick=\"fnToggleContentEditable("+i+")\" /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击登录服务端的作业测验的面向“五层MVC”的统计分析（正在迁移开发之中...）\" onclick=\"fnHomeworkAndTestFiveLayerMVC()\" /></span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML; }
 
         if ((i + 9) % 9 === 1) {cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span><span style=\"color:red\"><input type=\"radio\" name=\"options" + sTimeStamp + Math.floor(((i + 9) / 9)) + "\" />(A)</span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML + "</span>"; }
         if ((i + 9) % 9 === 2) {cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span><span style=\"color:red\"><input type=\"radio\" name=\"options" + sTimeStamp + Math.floor(((i + 9) / 9)) + "\" />(B)</span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML + "</span>"; }
@@ -181,6 +181,12 @@ if (iTrLenth % 9 != 0) { alert("上传的作业与测试可能有问题，无法
     }
 }
 
+function fnHomeworkAndTestFiveLayerMVC(){
+    fnToggleEventSoureElementColor();
+    //var sUrl="https://aspdotnetmvcyuqin.azurewebsites.net/HomeworkAndTestFiveLayerMVC/Index";
+    var sUrl="../../../../options/HomeworkAndTestFiveLayerMVC.htm";
+    window.open(sUrl,"winHomeworkAndTestFiveLayerMVC", "scrollbars=,width=800,height=600,top=" + (screen.height - 600) / 2 + ",left=" + (screen.width - 800) / 2);
+}
 function fnAnswerAndToggoleAnswerDisplay() {
     fnToggleEventSoureElementColor();
     document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).style.display = "none";
