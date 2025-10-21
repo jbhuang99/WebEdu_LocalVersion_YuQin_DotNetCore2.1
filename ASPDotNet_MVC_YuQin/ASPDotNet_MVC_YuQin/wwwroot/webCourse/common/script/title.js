@@ -73,6 +73,19 @@ var sHref=window.location.href.substring(0,window.location.href.indexOf("/webCou
 open(sHref,"_blank");    
 }
 
+function fnConnectServer(){
+//alert("需要连接服务端！");
+var sHref=prompt("请输入服务端的URL："
++"\r"+"（1）本机测试的服务端URL，例如：https://localhost:5091/"
++"\r"+"（2）公网的服务端URL，例如：https://www.yuqin99.com:5091/",
+"https://localhost:5091/");
+if (sHref== null||sHref=="") {
+    alert("您没有输入服务端的URL");
+} 
+else {
+    open(sHref,"winServer");
+}
+}
 /**
 
 function fnLoadJs(url, callback) {//动态添加js并即时调用.调用方式：JSfnLoadJs("test.js", function () {alert('done');});

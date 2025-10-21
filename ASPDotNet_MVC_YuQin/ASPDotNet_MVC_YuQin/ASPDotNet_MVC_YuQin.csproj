@@ -35,7 +35,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Admin\**" />
+    <Compile Remove="Areas\**" />
     <Compile Remove="Controllers\RESTless\Identity\**" />
     <Compile Remove="Controllers\RESTless\samples\**" />
     <Compile Remove="Models\DatabaseForPortable\**" />
@@ -49,7 +49,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <Compile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <Compile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
-    <Content Remove="Areas\Admin\**" />
+    <Content Remove="Areas\**" />
     <Content Remove="Controllers\RESTless\Identity\**" />
     <Content Remove="Controllers\RESTless\samples\**" />
     <Content Remove="Models\DatabaseForPortable\**" />
@@ -63,7 +63,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <Content Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <Content Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
-    <EmbeddedResource Remove="Areas\Admin\**" />
+    <EmbeddedResource Remove="Areas\**" />
     <EmbeddedResource Remove="Controllers\RESTless\Identity\**" />
     <EmbeddedResource Remove="Controllers\RESTless\samples\**" />
     <EmbeddedResource Remove="Models\DatabaseForPortable\**" />
@@ -77,7 +77,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
-    <None Remove="Areas\Admin\**" />
+    <None Remove="Areas\**" />
     <None Remove="Controllers\RESTless\Identity\**" />
     <None Remove="Controllers\RESTless\samples\**" />
     <None Remove="Models\DatabaseForPortable\**" />
@@ -91,6 +91,8 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
+    <TypeScriptCompile Remove="Areas\**" />
+    <TypeScriptCompile Remove="Controllers\RESTless\Identity\**" />
     <TypeScriptCompile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <TypeScriptCompile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <TypeScriptCompile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
@@ -196,7 +198,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\" />
     <Folder Include="Views\ModelsForViews\" />
     <Folder Include="wwwroot\webCourse\lessons\content\Teaching3D\" />
   </ItemGroup>
