@@ -46,7 +46,7 @@ function fnRunningFrom() {
             return "本系统当前是本机网站发布";
         case sRunFrom.indexOf(".github.io/") >= 0:
        //  case sRunFrom.indexOf("://localhost:") >= 0://便于本机网站发布测试免费网站发布
-            return "本系统当前是免费网站发布，可能无法正确使用本功能！请单击本系统第一个条目，该条目的内容框架中，超链接的源码下载到本机运行实现！";
+            return "本系统当前是免费网站发布，可能无法正确使用本功能！请单击本系统的目录的第一个条目，该目录条目的内容框架中，单击源码的超链接，下载源码，VS中打开源码中的解决方案.sln文件或.slnx文件/项目/项目条目运行实现！";
         default:
             return "本系统当前是付费网站发布";
     }
