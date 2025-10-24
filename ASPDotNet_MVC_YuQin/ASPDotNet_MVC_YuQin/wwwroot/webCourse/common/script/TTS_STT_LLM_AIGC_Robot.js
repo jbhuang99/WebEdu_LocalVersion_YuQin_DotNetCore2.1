@@ -517,3 +517,11 @@ async function fnFetchNunStreamDataSystemExternal(prompt){//浏览器Prompt AIGC
 }
 
 **/
+function fnServerSideCallAIGCAnswerCharactor() {
+            var sSearchedKeywords = document.getElementById("idSearchedKeywords").value;
+            alert("您的Prompt是：" + sSearchedKeywords);
+            var url = "/QWen/index?queryString=" + sSearchedKeywords;
+            // var url = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
+            open(url, "ServerSideCallAIGCAnswerCharactor");
+
+        }
