@@ -544,7 +544,12 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswer); 
                     }
                     else {
-                        alert('出错了,Err：' + xmlHttpRequest.status);
+                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.responseText;
+                        alert(sTempErr);
+                         window.speechSynthesis.cancel();
+                     //TTS
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+sTempErr); 
+                     window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }
         }
