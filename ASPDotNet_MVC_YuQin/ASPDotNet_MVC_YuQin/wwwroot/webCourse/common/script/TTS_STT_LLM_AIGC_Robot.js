@@ -517,11 +517,35 @@ async function fnFetchNunStreamDataSystemExternal(prompt){//浏览器Prompt AIGC
 }
 
 **/
-function fnServerSideCallAIGCAnswerCharactor() {
-            var sSearchedKeywords = document.getElementById("idSearchedKeywords").value;
-            alert("您的Prompt是：" + sSearchedKeywords);
-            var url = "/QWen/index?queryString=" + sSearchedKeywords;
-            // var url = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
-            open(url, "ServerSideCallAIGCAnswerCharactor");
+function fnAjaxServerSideCallAIGCAnswerCharactor() {
+            var sPrompt = document.getElementById("idPrompt").value;
+             window.speechSynthesis.cancel();
+                     //TTS
+             const utteranceInternalPrompt = new SpeechSynthesisUtterance("您的Prompt是"+sPrompt+"对吗？"); 
+             window.speechSynthesis.speak(utteranceInternalPrompt); 
+            alert("您的Prompt是：" + sPrompt);
+            var sURL = "/QWen/index?queryString=" + sPrompt;
+            // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
+           // open(sURL, "ServerSideCallAIGCAnswerCharactor");
+           var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+           xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
 
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行
+                        var sTemp = xmlHttpRequest.responseText;
+                        document.getElementById("idShowServerSidePromptAnswer").innerHTML ="语音对话机器人的回答Answer是："+sTemp;
+                        window.speechSynthesis.cancel();
+                     //TTS
+                     const utteranceInternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+sTemp); 
+                     window.speechSynthesis.speak(utteranceInternalAIGCAnswer); 
+                    }
+                    else {
+                        alert('出错了,Err：' + xmlHttpRequest.status);
+                    }
+                }
+        }
         }
