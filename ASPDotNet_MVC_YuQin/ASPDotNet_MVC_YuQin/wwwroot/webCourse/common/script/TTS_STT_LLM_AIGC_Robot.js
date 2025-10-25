@@ -34,8 +34,7 @@ finally{
 }
 
 function fnToggleEventSoureElementColor(){
-   // alert();
-    var eventSoureElementColor=window.event.target.style.color;
+   var eventSoureElementColor=window.event.target.style.color;
     
     if(eventSoureElementColor==""||eventSoureElementColor==null){
         window.event.target.style.color="brown";
@@ -437,10 +436,10 @@ document.getElementById('transcriptSystemExternal').textContent = JSON.stringify
 
 function fnidQwenAPIKeyConfirmOnClickSystemExternal(){
     window.QwenAPIKey=document.getElementById('idQwenAPIKeyInput').value;
-    document.getElementById('idQwenAPIKeyInput').value="";
+    //document.getElementById('idQwenAPIKeyInput').value="";
     document.getElementById('idQwenAPIKeyInput').placeholder="您已键入Qwen千问的API Key";
     //alert(window.QwenAPIKey);
-    alert(document.getElementById('idQwenAPIKeyInput').placeholder);
+    alert(document.getElementById('idQwenAPIKeyInput').placeholder+"："+window.QwenAPIKey);
 }
 
 
@@ -517,7 +516,10 @@ async function fnFetchNunStreamDataSystemExternal(prompt){//浏览器Prompt AIGC
 }
 
 **/
+
+
 function fnAjaxServerSideCallAIGCAnswerCharactor() {
+    fnToggleEventSoureElementColor();
             var sPrompt = document.getElementById("idPrompt").value;
              window.speechSynthesis.cancel();
                      //TTS
@@ -544,7 +546,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswer); 
                     }
                     else {
-                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.responseText;
+                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
@@ -554,3 +556,95 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
                 }
         }
         }
+
+   function fnAjaxClientBrowserSideCallAIGCAnswerCharactor() {
+     if(window.QwenAPIKey==null||window.QwenAPIKey==""){
+        alert("您可能还没输入并确认您的Qwen千问APIKey！");
+    }
+    /**
+    else{
+    fnToggleEventSoureElementColor();
+            var sPrompt = document.getElementById("idPromptForClientBrowserSide").value;
+             window.speechSynthesis.cancel();
+                     //TTS
+             const utteranceInternalPrompt = new SpeechSynthesisUtterance("您的Prompt是"+sPrompt+"对吗？"); 
+             window.speechSynthesis.speak(utteranceInternalPrompt); 
+            alert("您的Prompt是：" + sPrompt);
+            var sURL = "/QWen/index?queryString=" + sPrompt;
+            // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
+           // open(sURL, "ServerSideCallAIGCAnswerCharactor");
+           var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+           xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行
+                        var sTemp = xmlHttpRequest.responseText;
+                        document.getElementById("idShowClientBrowserSidePromptAnswer").innerHTML ="语音对话机器人的回答Answer是："+sTemp;
+                        window.speechSynthesis.cancel();
+                     //TTS
+                     const utteranceInternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+sTemp); 
+                     window.speechSynthesis.speak(utteranceInternalAIGCAnswer); 
+                    }
+                    else {
+                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
+                        alert(sTempErr);
+                         window.speechSynthesis.cancel();
+                     //TTS
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+sTempErr); 
+                     window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
+                    }
+                }
+        }        
+        }
+        **/
+         else{
+    fnToggleEventSoureElementColor();
+    var sPrompt = document.getElementById("idPromptForClientBrowserSide").value;
+     window.speechSynthesis.cancel();
+                     //TTS
+    const utteranceInternalPrompt = new SpeechSynthesisUtterance("您的Prompt是"+sPrompt+"对吗？"); 
+     window.speechSynthesis.speak(utteranceInternalPrompt); 
+     alert("您的Prompt是：" + sPrompt);
+    fnCallAIGCQwen(sPrompt);
+    }
+    }
+
+
+
+ async function fnCallAIGCQwen(sPrompt) {
+  const apiKey = window.QwenAPIKey; // 替换为你的实际 API Key
+  const url = 'https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation';
+    //alert(apiKey+sPrompt);
+    
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+       // 'Authorization': `Bearer ${apiKey}`
+         'Authorization': `Bearer ${apiKey}`      
+      },
+      body: JSON.stringify({
+        model: 'qwen-max', // 或 qwen-plus, qwen-turbo 等
+        input: {
+          prompt: sPrompt
+        },
+        parameters: {
+          result_format: 'text'
+        }
+      })
+    });
+    alert(apiKey+"?????????????"+sPrompt);
+    const data = await response.json();
+    if (data.output &&data.output.text) {
+      alert('千问回复:', data.output.text);
+      return data.output.text;
+    } 
+    else {
+      alert('API 错误:', data);
+      return '抱歉，调用失败。';
+    }
+}
