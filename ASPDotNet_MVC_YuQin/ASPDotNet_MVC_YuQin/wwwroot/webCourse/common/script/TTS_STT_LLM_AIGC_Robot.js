@@ -619,13 +619,31 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
   const apiKey = window.QwenAPIKey; // 替换为你的实际 API Key
   const url = 'https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation';
     //alert(apiKey+sPrompt);
-    
+    alert(JSON.stringify({
+        model: 'qwen-max', // 或 qwen-plus, qwen-turbo 等
+        input: {
+          prompt: sPrompt
+        },
+        parameters: {
+          result_format: 'text'
+        }
+      }));
+      alert(JSON.stringify({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}` 
+      }));
+    try {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
        // 'Authorization': `Bearer ${apiKey}`
-         'Authorization': `Bearer ${apiKey}`      
+       'Authorization': 'Bearer ${apiKey}'
+       //  'Authorization': `Bearer apiKey`
+      // 'Authorization': `Bearer sk-************`
+     // max_tokens: 100,
+   // temperature: 0.7,
+    //stream: true // 如果启用流式响应
       },
       body: JSON.stringify({
         model: 'qwen-max', // 或 qwen-plus, qwen-turbo 等
@@ -647,4 +665,131 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
       alert('API 错误:', data);
       return '抱歉，调用失败。';
     }
+    }
+    catch (error) {    
+    if (error.name === 'AbortError') {
+      alert('请求超时：'+error.name+error.message);
+      return { success: false, error: '请求超时', message: 'Request timed out' };
+    }
+
+    if (!navigator.onLine) {
+        alert(error.name+error.message);
+      return { success: false, error: '网络不可用', message: 'Network is offline' };
+    }
+
+    alert('请求失败：'+'\r'+'error.name是：'+error.name+'\r'+'error.message：'+error.message);
+    return { success: false, error: error.message };
+  }
 }
+/**
+ XMLHttpRequest 与 Fetch 的异同(Promise 在其中的作用)
+•设计年代：XMLHttpRequest（XHR）是1999年引入的旧式API，而Fetch API是2015年随着ES6标准引入的现代API⁠⁣ ⁠⁣5 。
+•异步处理机制：XHR基于事件和回调函数来处理异步请求，容易导致“回调地狱”问题；Fetch API则基于Promise，使用Promise对象来处理异步请求，使得代码更具可读性和可维护性⁠⁣ 。这使得Fetch在处理多个异步操作时更加简洁、直观，并且支持链式调用和async/await语法⁠⁣。
+•语法简洁度：相较于XHR，Fetch API的语法更加简单明了，通常只需要几行代码就能完成一个请求⁠⁣  。此外，Fetch采用模块化设计，其API分散在多个对象上如Response, Request, Headers等，相比之下，XHR的API设计并不是很好，输入、输出及状态都在同一个接口管理⁠⁣。
+•跨域请求：虽然两者都支持跨域请求，但Fetch默认不发送cookies，需要通过设置credentials: 'include'来允许携带cookie进行跨域请求；而XHR则默认会发送cookies⁠⁣。
+•其他特性：Fetch API还提供了对流的支持，可以更高效地处理大文件或实时数据流；并且它可以在Service Worker中使用，这是XHR所不具备的功能⁠⁣ ⁠ 。
+Promise 在其中的作用
+•Promise是一种用于处理异步操作的对象，它代表了一个异步操作的最终完成（或失败）及其结果值⁠⁣  。
+•Fetch API完全基于Promise实现，这意味着每次发起请求后返回的是一个Promise对象，开发者可以通过.then()方法链式调用来处理响应数据，或者使用async/await关键字以同步方式编写异步代码⁠⁣ 。
+•XMLHttpRequest本身并不直接支持Promise，但是可以通过封装将其转换为Promise形式，从而利用Promise的优势简化回调逻辑⁠⁣ 。
+综上所述，尽管XMLHttpRequest和Fetch都可以用来发起网络请求，但后者凭借其现代化的设计理念，在易用性、功能丰富度等方面展现出了明显优势。同时，Promise作为一种强大的异步编程工具，在Fetch API中得到了广泛应用，极大地提升了开发效率与代码质量。
+ */
+/** 
+ * 封装一个通用的 fetch 请求函数可以提高代码的复用性、可维护性和健壮性。以下是一个完整的通用 fetch 封装示例，包含请求拦截、响应处理、错误处理和常用配置.封装要点说明：
+ 1. 默认配置：设置通用的 headers、method 和 credentials。
+2. JSON 自动序列化：对对象类型的 body 自动调用 JSON.stringify。
+3. 超时控制：使用 AbortController 模拟 timeout 功能。
+4. 响应格式判断：根据 Content-Type 决定是 .json() 还是 .text()。
+5. 错误分类处理：区分网络错误、HTTP 错误、超时、离线等场景。
+6. 统一返回格式：便于调用方统一处理成功与失败。
+可选增强功能：
+•添加请求/响应拦截器（类似 Axios）
+•自动重试机制
+•请求缓存
+•日志记录
+•Token 自动刷新与注入
+ **/
+/**
+ // 通用 fetch 请求封装函数.你可以将此函数封装成一个独立模块，在项目中全局使用，极大提升开发效率。
+async function request(url, options = {}) {
+  // 默认配置
+  const defaultOptions = {
+    method: 'GET', // 默认请求方法
+    headers: {
+      'Content-Type': 'application/json', // 默认内容类型
+    },
+    credentials: 'include', // 允许携带 cookies（用于跨域会话）
+    timeout: 10000, // 自定义超时时间（fetch 原生不支持 timeout，需手动实现）
+  };
+
+  // 合并用户传入的 options
+  const config = { ...defaultOptions, ...options };
+
+  // 如果是 POST/PUT/PATCH 请求，自动将 body 转为 JSON 字符串
+  if (['POST', 'PUT', 'PATCH'].includes(config.method) &&typeof config.body === 'object') {
+    config.body = JSON.stringify(config.body);
+  }
+
+  // 使用 AbortController 实现超时控制
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), config.timeout);
+
+  try {
+    const response = await fetch(url, {
+      ...config,
+      signal: controller.signal, // 绑定中断信号
+    });
+
+    clearTimeout(timeoutId); // 清除超时定时器
+
+    if (!response.ok) {
+      throw new Error(`HTTP Error! status: ${response.status}`);
+    }
+
+    // 尝试解析 JSON，失败则返回文本
+    let data;
+    const contentType = response.headers.get('content-type');
+    if (contentType &&contentType.includes('application/json')) {
+      data = await response.json();
+    } else {
+      data = await response.text();
+    }
+
+    return {
+      success: true,
+      data,
+      status: response.status,
+      headers: response.headers,
+    };
+  } catch (error) {
+    clearTimeout(timeoutId);
+
+    // 区分不同类型的错误
+    if (error.name === 'AbortError') {
+      console.error('请求超时');
+      return { success: false, error: '请求超时', message: 'Request timed out' };
+    }
+
+    if (!navigator.onLine) {
+      return { success: false, error: '网络不可用', message: 'Network is offline' };
+    }
+
+    console.error('请求失败:', error.message);
+    return { success: false, error: error.message };
+  }
+}
+
+// 使用示例
+request('/api/user', {
+  method: 'POST',
+  body: { name: 'Alice', age: 25 },
+})
+  .then((res) => {
+    if (res.success) {
+      console.log('数据:', res.data);
+    } else {
+      console.error('错误:', res.error);
+    }
+  });
+
+ */
