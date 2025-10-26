@@ -538,11 +538,11 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
 
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行
-                        var sTemp = xmlHttpRequest.responseText;
-                        document.getElementById("idShowServerSidePromptAnswer").innerHTML ="语音对话机器人的回答Answer是："+sTemp;
+                        var oTemp=JSON.parse(xmlHttpRequest.responseText);
+                        document.getElementById("idShowServerSidePromptAnswer").innerHTML ="语音对话机器人的回答Answer是："+oTemp.output.text;
                         window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+sTemp); 
+                     const utteranceInternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+oTemp.output.text); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswer); 
                     }
                     else {
@@ -681,6 +681,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
     return { success: false, error: error.message };
   }
 }
+
 /**
  XMLHttpRequest 与 Fetch 的异同(Promise 在其中的作用)
 •设计年代：XMLHttpRequest（XHR）是1999年引入的旧式API，而Fetch API是2015年随着ES6标准引入的现代API⁠⁣ ⁠⁣5 。
