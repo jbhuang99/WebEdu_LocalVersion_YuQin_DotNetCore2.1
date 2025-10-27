@@ -2,22 +2,22 @@
 window.speechSynthesis.cancel();  // 取消任何正在进行的TTS;
 //try{window.recognitionSystemInternal.stop();} catch(e){;}// 停止系统内部的语音识别
 //try{window.recognitionSystemExternal.stop();} catch(e){;}// 停止系统外部的语音识别
+window.sHref=window.location.href.substring(0,window.location.href.indexOf("/webCourse/"));
 window.recognitionSystemInternal = null; // STT的系统内部实例声明或清空；
 window.recognitionSystemExternal = null; // STT的系统外部实例声明或清空；
-window.QwenAPIKey=""; // Qwen千问APIKey声明或清空；
+
 //document.getElementById('btnSystemInternal').addEventListener("click", fnBtnSystemInternalOnClick, false);
 //document.getElementById('btnSystemExternal').addEventListener("click", fnBtnSystemExternalOnClick, false);
 document.getElementById('startBtnSystemInternal').addEventListener('click',fnStartBtnSystemInternalOnClick,false);          
 document.getElementById('stopBtnSystemInternal').addEventListener('click',fnStopBtnSystemInternalOnClick, false); 
 document.getElementById('startBtnSystemExternal').addEventListener('click',fnStartBtnSystemExternalOnClick,false);
 document.getElementById('stopBtnSystemExternal').addEventListener('click',fnStopBtnSystemExternalOnClick,false);
-
-document.getElementById('idQwenAPIKeyConfirm').addEventListener('click',fnidQwenAPIKeyConfirmOnClickSystemExternal,false);
+//window.QwenAPIKey=""; // Qwen千问APIKey声明或清空；//目前无法实现相关功能。
+//document.getElementById('idQwenAPIKeyConfirm').addEventListener('click',fnidQwenAPIKeyConfirmOnClickSystemExternal,false);//目前无法实现相关功能。
 
 //document.getElementById('btnSystemInternal').disabled=true;
 //document.getElementById('btnSystemExternal').disabled=false;
 //document.getElementById('startBtnSystemInternal').click(); // 页面加载后自动点击开始系统内部的录音按钮
-window.sHref=window.location.href.substring(0,window.location.href.indexOf("/webCourse/"));
 }
 
 function fnOpenLocalhostDingTalkAIGC(){
@@ -434,14 +434,6 @@ function fnUpdateTranscriptSystemExternal() {
 document.getElementById('transcriptSystemExternal').textContent = JSON.stringify(speechContentParagraphsSystemExternal, null, 2); // 将speechContentParagraphsSystemExternal对象格式化为JSON字符串，并显示在页面上
             }
 
-function fnidQwenAPIKeyConfirmOnClickSystemExternal(){
-    window.QwenAPIKey=document.getElementById('idQwenAPIKeyInput').value;
-    //document.getElementById('idQwenAPIKeyInput').value="";
-    document.getElementById('idQwenAPIKeyInput').placeholder="您已键入Qwen千问的API Key";
-    //alert(window.QwenAPIKey);
-    alert(document.getElementById('idQwenAPIKeyInput').placeholder+"："+window.QwenAPIKey);
-}
-
 
 /**
  function fnMatchCommandSystemInternal(){
@@ -517,15 +509,15 @@ async function fnFetchNunStreamDataSystemExternal(prompt){//浏览器Prompt AIGC
 
 **/
 
-
 function fnAjaxServerSideCallAIGCAnswerCharactor() {
     fnToggleEventSoureElementColor();
             var sPrompt = document.getElementById("idPrompt").value;
              window.speechSynthesis.cancel();
                      //TTS
-             const utteranceInternalPrompt = new SpeechSynthesisUtterance("您的Prompt是"+sPrompt+"对吗？"); 
+             const utteranceInternalPrompt = new SpeechSynthesisUtterance("您的Prompt是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceInternalPrompt); 
-            alert("您的Prompt是：" + sPrompt);
+            alert("您的Prompt是：" + sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
+             document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
             var sURL = "/QWen/index?queryString=" + sPrompt;
             // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
            // open(sURL, "ServerSideCallAIGCAnswerCharactor");
@@ -539,7 +531,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行
                         var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                        document.getElementById("idShowServerSidePromptAnswer").innerHTML ="语音对话机器人的回答Answer是："+oTemp.output.text;
+                        document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer是："+oTemp.output.text;
                         window.speechSynthesis.cancel();
                      //TTS
                      const utteranceInternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+oTemp.output.text); 
@@ -557,51 +549,22 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
         }
         }
 
-   function fnAjaxClientBrowserSideCallAIGCAnswerCharactor() {
+
+/**AIGC官方声明：因为API Key容易泄露等等安全问题，所以当前不支持JS访问千问AIGC。
+ *
+ function fnidQwenAPIKeyConfirmOnClickSystemExternal(){
+    window.QwenAPIKey=document.getElementById('idQwenAPIKeyInput').value;
+    //document.getElementById('idQwenAPIKeyInput').value="";
+    document.getElementById('idQwenAPIKeyInput').placeholder="您已键入Qwen千问的API Key";
+    //alert(window.QwenAPIKey);
+    alert(document.getElementById('idQwenAPIKeyInput').placeholder+"："+window.QwenAPIKey);
+}
+
+  function fnAjaxClientBrowserSideCallAIGCAnswerCharactor() {
      if(window.QwenAPIKey==null||window.QwenAPIKey==""){
         alert("您可能还没输入并确认您的Qwen千问APIKey！");
     }
-    /**
     else{
-    fnToggleEventSoureElementColor();
-            var sPrompt = document.getElementById("idPromptForClientBrowserSide").value;
-             window.speechSynthesis.cancel();
-                     //TTS
-             const utteranceInternalPrompt = new SpeechSynthesisUtterance("您的Prompt是"+sPrompt+"对吗？"); 
-             window.speechSynthesis.speak(utteranceInternalPrompt); 
-            alert("您的Prompt是：" + sPrompt);
-            var sURL = "/QWen/index?queryString=" + sPrompt;
-            // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
-           // open(sURL, "ServerSideCallAIGCAnswerCharactor");
-           var xmlHttpRequest = new XMLHttpRequest();
-            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
-           xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
-            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
-
-                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
-
-                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
-                        //如果函数存在的话执行
-                        var sTemp = xmlHttpRequest.responseText;
-                        document.getElementById("idShowClientBrowserSidePromptAnswer").innerHTML ="语音对话机器人的回答Answer是："+sTemp;
-                        window.speechSynthesis.cancel();
-                     //TTS
-                     const utteranceInternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+sTemp); 
-                     window.speechSynthesis.speak(utteranceInternalAIGCAnswer); 
-                    }
-                    else {
-                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
-                        alert(sTempErr);
-                         window.speechSynthesis.cancel();
-                     //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+sTempErr); 
-                     window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
-                    }
-                }
-        }        
-        }
-        **/
-         else{
     fnToggleEventSoureElementColor();
     var sPrompt = document.getElementById("idPromptForClientBrowserSide").value;
      window.speechSynthesis.cancel();
@@ -612,9 +575,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
     fnCallAIGCQwen(sPrompt);
     }
     }
-
-
-
+   
  async function fnCallAIGCQwen(sPrompt) {
   const apiKey = window.QwenAPIKey; // 替换为你的实际 API Key
   const url = 'https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation';
@@ -681,7 +642,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
     return { success: false, error: error.message };
   }
 }
-
+ **/
 /**
  XMLHttpRequest 与 Fetch 的异同(Promise 在其中的作用)
 •设计年代：XMLHttpRequest（XHR）是1999年引入的旧式API，而Fetch API是2015年随着ES6标准引入的现代API⁠⁣ ⁠⁣5 。
