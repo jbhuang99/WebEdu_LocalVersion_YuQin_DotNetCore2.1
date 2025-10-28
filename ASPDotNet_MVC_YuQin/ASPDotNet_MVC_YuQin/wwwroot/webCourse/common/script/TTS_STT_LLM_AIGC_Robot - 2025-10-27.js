@@ -320,18 +320,49 @@ function fnSTTOnEndSystemExternal() {
      window.speechSynthesis.cancel(); 
        //TTS      
     const utteranceExternal = new SpeechSynthesisUtterance("您需要"+window.transcriptSystemExternal+"对吗？"); 
-    window.speechSynthesis.speak(utteranceExternal);  
-    //utteranceExternal.onend=fnOnEndSTTOnEndUtteranceExternal;// 语音朗读结束时的回调;
-     document.getElementById('idPrompt').value=window.transcriptSystemExternal;
-     document.getElementById('idButtonAjaxServerSideCallAIGCAnswerCharactor').click();//TTS/STT的时候，可以调用初创方函数，无法调用自创方函数，不知为什么。可能是需要使用onend回调。
-    // fnAjaxServerSideCallAIGCAnswerCharactor();//TTS/STT的时候，可以调用初创方函数，无法调用自创方函数，不知为什么。可能是需要使用onend回调。
-    //utteranceExternal.onend=fnTTSOnEndSystemExternal;// 语音朗读结束时的回调;     
+    /** 
+    var sKeywordsForAIGC = window.transcriptSystemExternal;
+    var url = "/QWen/index?queryString=" +sKeywordsForAIGC;
+     open(url, "AIGCAnswerCharactor");
+     **/
+    utteranceExternal.onend=fnTTSOnEndSystemExternal;// 语音朗读结束时的回调;
+     window.speechSynthesis.speak(utteranceExternal);  
+    alert(fnCallAIGCQwen(window.transcriptSystemExternal));
+    fnCallAIGCQwen(window.transcriptSystemExternal).then(answer => {
+    // Do something with the answer
+    alert(answer);
+});
+ window.speechSynthesis.cancel(); 
+ var answerFromAIGCQwen=fnCallAIGCQwen(window.transcriptSystemExternal);
+   const utteranceExternalAIGC = new SpeechSynthesisUtterance("千问AIGC的回答是："+answerFromAIGCQwen); 
+   utteranceExternalAIGC.onend=fnTTSOnEndSystemExternal;// 语音朗读结束时的回调;
+    window.speechSynthesis.speak(utteranceExternalAIGC);  
+    alert("千问AIGC的回答是："+answerFromAIGCQwen);
     }
 
-   function fnOnEndSTTOnEndUtteranceExternal() {
-      window.isRecognizingSystemExternal = ture;
-     window.speechSynthesis.cancel(); 
-       }
+async function fnCallAIGCQwen(prompt) {
+    const response = await fetch('https://qwen-api.aliyun.com/v1/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': window.QwenAPIKey // Replace with your actual key, or use a backend proxy
+        },
+        body: JSON.stringify({
+            model: 'qwen-turbo', // Use the correct model name per Qwen docs
+            prompt: prompt,
+            max_tokens: 100,
+            temperature: 0.7
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error('Qwen API call failed!');
+    }
+
+    const data = await response.json();
+    console.log(data.choices[0].text); // Output the generated text
+    return data.choices[0].text;
+}
 
 function fnSTTOnResultSystemInternal(event) {
     // 遍历所有识别结果
@@ -403,13 +434,88 @@ function fnUpdateTranscriptSystemExternal() {
 document.getElementById('transcriptSystemExternal').textContent = JSON.stringify(speechContentParagraphsSystemExternal, null, 2); // 将speechContentParagraphsSystemExternal对象格式化为JSON字符串，并显示在页面上
             }
 
+
+/**
+ function fnMatchCommandSystemInternal(){
+ var trueorfalse=prompt("主人，您是需要查看当前条目的作业与测验，对吗？"); 
+ if(trueorfalse){
+     opener.parent.document.getElementById("sIFrameContents").contentWindow..fnMargee();
+     opener.parent.document.getElementById("sIFrameContents").contentWindow.fnViewHomeworkAndTest();
+     }
+ else{
+     window.speechSynthesis.cancel();
+     const utterance = new SpeechSynthesisUtterance("好的，主人，请重新说出您的需求！");     
+     window.speechSynthesis.speak(utterance);
+     }
+ }
+
+async function fnFetchNunStreamDataSystemExternal(prompt){//浏览器Prompt AIGC后的非流式返回answer。系统外部的调用AIGC的语音对话注意事项：API 密钥安全性 不要将密钥直接暴露在前端代码中，建议通过后端代理转发请求。兼容性处理 不同大模型（例如，ChatGPT、Qwen）的 API 参数可能略有不同，请参考官方文档调整
+    const response = await fetch('https://api.openai.com/v1/completions', {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json',
+    'Authorization': window.QwenAPIKey
+    },
+    body: JSON.stringify({
+    model: 'gpt-4',
+    prompt: prompt,
+    max_tokens: 100,
+    temperature: 0.7
+    //stream: true // 如果启用流式响应
+    })
+    });
+
+    if (!response.ok) {
+    throw new Error('未能收到AIGC的答复！');
+    }
+
+    const data = await response.json();
+    console.log(data.choices[0].text); // 输出生成的文本
+    return data;
+   //案例：fnFetchNunStreamData('请翻译教育数字思维成为英文');
+ }
+
+ async function fnFetchStreamDataSystemExternal(prompt){ //浏览器Prompt AIGC后的流式返回answer  //系统外部的调用AIGC的语音对话注意事项：API 密钥安全性 不要将密钥直接暴露在前端代码中，建议通过后端代理转发请求。兼容性处理 不同大模型（例如，ChatGPT、Qwen）的 API 参数可能略有不同，请参考官方文档调整
+    const response = await fetch('https://api.openai.com/v1/completions', {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer YOUR_API_KEY`
+    },
+    body: JSON.stringify({
+    model: 'gpt-4',
+    prompt: prompt,
+    stream: true // 启用流式响应
+    })
+    });
+
+    if (!response.ok) {
+    throw new Error('未能收到AIGC的答复！');
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder('utf-8');
+    let done = false;
+
+    while (!done) {
+    const { value, done: readerDone } = await reader.read();
+    done = readerDone;
+    const chunk = decoder.decode(value, { stream: true });
+    console.log(chunk); // 实时输出每块数据
+    return chunk;
+    }
+    //案例：fnFetchStreamData("请翻译教育数字思维成为英文");
+}
+
+**/
+
 function fnAjaxServerSideCallAIGCAnswerCharactor() {
     fnToggleEventSoureElementColor();
             var sPrompt = document.getElementById("idPrompt").value;
              window.speechSynthesis.cancel();
                      //TTS
-             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
-             window.speechSynthesis.speak(utteranceExternalPrompt); 
+             const utteranceInternalPrompt = new SpeechSynthesisUtterance("您的Prompt是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
+             window.speechSynthesis.speak(utteranceInternalPrompt); 
             alert("您的Prompt是：" + sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
              document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
             var sURL = "/QWen/index?queryString=" + sPrompt;
@@ -428,9 +534,8 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
                         document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer是："+oTemp.output.text;
                         window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+oTemp.output.text); 
-                     window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
-                     utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
+                     const utteranceInternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+oTemp.output.text); 
+                     window.speechSynthesis.speak(utteranceInternalAIGCAnswer); 
                     }
                     else {
                         var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
@@ -444,19 +549,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
         }
         }
 
-        function fnTTSOnEndSystemExternalAIGCAnswer(){
-            //alert("语音对话机器人的回答Answer已经结束朗读，请您继续对话！");
-            window.speechSynthesis.cancel();
-            const utteranceTTSOnEndSystemExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer已经结束朗读，请您继续对话！"); 
-            window.speechSynthesis.speak(utteranceTTSOnEndSystemExternalAIGCAnswer); 
-            utteranceTTSOnEndSystemExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalUtteranceTTSOnEndSystemExternalAIGCAnswer;
-            //window.speechSynthesis.cancel();
-        }
-        function fnTTSOnEndSystemExternalUtteranceTTSOnEndSystemExternalAIGCAnswer(){
-            document.getElementById('stopBtnSystemExternal').click(); 
-            document.getElementById('startBtnSystemExternal').click(); 
-            //window.speechSynthesis.cancel();
-        }
+
 /**AIGC官方声明：因为API Key容易泄露等等安全问题，所以当前不支持JS访问千问AIGC。
  *
  function fnidQwenAPIKeyConfirmOnClickSystemExternal(){
