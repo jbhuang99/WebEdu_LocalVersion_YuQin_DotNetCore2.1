@@ -3,7 +3,6 @@ window.speechSynthesis.cancel();  // 取消任何正在进行的TTS;
 //try{window.recognitionSystemInternal.stop();} catch(e){;}// 停止系统内部的语音识别
 //try{window.recognitionSystemExternal.stop();} catch(e){;}// 停止系统外部的语音识别
 window.sHref=window.location.href.substring(0,window.location.href.indexOf("/webCourse/"));
-window.systemInternalRecognizingResultFlag =""; // 系统内部语音识别结果标志
 window.recognitionSystemInternal = null; // STT的系统内部实例声明或清空；
 window.recognitionSystemExternal = null; // STT的系统外部实例声明或清空；
 
@@ -138,24 +137,10 @@ function fnBtnSystemExternalOnClick() {
  }
 
  function fnTTSOnEndSystemInternal(){
-switch (true) {
-case window.systemInternalRecognizingResultFlag =="向上": {
-   opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("previous").click();    
-    break;
-}
-case window.systemInternalRecognizingResultFlag =="向下": {
-   opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("next").click();
-    break;
-    }
-default:{
-    alert("语音识别没有准确匹配的，默认打开滚动消息，以供了解最新咨询！");
-    opener.fnMarquee();
-    }
-}
+ opener.parent.document.getElementById("sIFrameContents").contentWindow.fnMargee();
  document.getElementById('stopBtnSystemInternal').click();
  document.getElementById('startBtnSystemInternal').click();
     }
-
 
  function fnTTSOnEndSystemExternal(){
  opener.parent.document.getElementById("sIFrameContents").contentWindow.fnMargee();
@@ -181,9 +166,8 @@ function fnStartBtnSystemInternalOnClick() {
 
     window.recognitionSystemInternal.onstart =fnSTTOnStartSystemInternal; // 语音识别开始时的回调            
     window.recognitionSystemInternal.onerror=fnSTTOnErrorSystemInternal; //// 语音识别出错时的回调(event)参数不知是否正确传递了。            
-    //window.recognitionSystemInternal.onend=fnSTTOnEndSystemInternal;// 语音识别结束时的回调
-    window.recognitionSystemInternal.onresult=fnSTTOnResultSystemInternal;//(event)参数不知是否正确传递了。
     window.recognitionSystemInternal.onend=fnSTTOnEndSystemInternal;// 语音识别结束时的回调
+    window.recognitionSystemInternal.onresult=fnSTTOnResultSystemInternal;//(event)参数不知是否正确传递了。
 
     document.getElementById('transcriptSystemInternal').innerText='"段落": []'; // 清空显示区域
     window.speechContentParagraphsSystemInternal = { paragraphs: [] }; // 重置识别内容
@@ -305,18 +289,27 @@ function fnSTTOnEndSystemInternal() {
     const utteranceInternal = new SpeechSynthesisUtterance("您需要"+window.transcriptSystemInternal+"对吗？"); 
      window.speechSynthesis.speak(utteranceInternal); 
     switch (true) {
-case window.transcriptSystemInternal.indexOf("向上")>=0: {
-    window.systemInternalRecognizingResultFlag ="向上"; 
+case window.transcriptSystemInternal.indexOf("向上")>0: {
+    alert("1");
+    alert(opener.parent.name);
+    alert(opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.body.textContent);
+    opener.parent.document.getElementById("sIFrameTitle").contentWindow.fnBackword();
     utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
     break;
 }
-case window.transcriptSystemInternal.indexOf("向下")>=0: {
-    window.systemInternalRecognizingResultFlag ="向下"; 
+case window.transcriptSystemInternal.indexOf("向下")>0: {
+    alert("2");
+    alert(opener.parent.name);
+   alert(opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.body.textContent);
+    opener.parent.document.getElementById("sIFrameTitle").contentWindow.fnNext();
     utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
     break;
     }
 default:{
-    window.systemInternalRecognizingResultFlag ="default"; 
+    alert("default");
+    alert(opener.parent.name);
+    //alert(opener.parent.document.getElementById("sIFrameContents").contentWindow.document.body.textContent);
+    opener.parent.document.getElementById("sIFrameContents").contentWindow.fnMargee();
     utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
     }
 }
