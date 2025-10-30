@@ -102,16 +102,16 @@
                 <div>
                     <button id="closeSTTSystemInternal" onclick="window.close();">单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部</button>
                 </div>
-                <button id="startBtnSystemInternal" title="单击将开始系统内部的录音对话。系统将打开麦克风录音，系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中...">开始录音Prompt</button>
-                <button id="stopBtnSystemInternal" title="单击将停止系统内部的录音对话" disabled>停止录音Prompt</button>
-                <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示系统内部的录音对话的核心对话指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'>了解录音Prompt指令</button>
+                <button id="startBtnSystemInternal" title="单击将开始系统内部的录音对话。系统将打开麦克风录音，系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中..." style="white-space: normal; font-size:12px">开始录音Prompt指令</button>
+                <button id="stopBtnSystemInternal" title="单击将停止系统内部的录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt指令</button>
+                <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示系统内部的录音对话的核心对话指令，以供了解" style="white-space: normal; font-size:12px" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'>了解录音Prompt指令</button>
                 <div id="kernelDialogueSystemInternal" style="border: dashed; border-color: goldenrod; display: none">
-                    注：系统内部语音对话指令相对复杂严谨，主要控制我们发送语音对话的STT的字符序列给本系统，然后触发本系统运行已经编写的程序。
+                    注：互动本系统的语音对话Prompt指令（相对严谨，控制本系统的运行）←对比→互动AIGC的Prompt提问（相对宽泛，发送给AIGC，AIGC回答Answer）。
                     <ol style="text-align:justify">
-                        <li>切换系统外部语音对话（实际测试优化成为“系统外部”）（尚未实现）</li>
+                        <li>切换系统外部语音对话（实际测试优化成为“外部”）（尚未实现）</li>
                         <li>语音识别没有准确匹配的，默认打开滚动消息，以供了解最新咨询！（已经实现）</li>
-                        <li>目录条目下翻（实际测试优化成为“向上”）（已经实现）</li>
-                        <li>目录条目上翻（实际测试优化成为“向下”）（已经实现）</li>
+                        <li>目录条目下翻（实际测试优化成为“向上”,因为是语音上下文，所以目录条目下翻时将自动朗读）（已经实现）</li>
+                        <li>目录条目上翻（实际测试优化成为“向下”,因为是语音上下文，所以目录条目上翻时将自动朗读）（已经实现）</li>
                         <li>目录条目开始系统内部语音朗读（实际测试优化成为“开始朗读”）（尚未实现）</li>
                         <li>目录条目暂停系统内部语音朗读（实际测试优化成为“暂停朗读”）（尚未实现）</li>
                         <li>目录条目继续系统内部语音朗读（实际测试优化成为“继续朗读”）（尚未实现）</li>
@@ -374,21 +374,21 @@
     </div>
         -->
                 <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的费用一般只需自己注册付费API Key的30%左右）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现。单击这里，默认需要登录本系统，然后可以试验调用AIGC生成Answer内容...）" style="text-align:justify">
-                    本系统的服务端听觉媒体方式访问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen官方申明暂不支持，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用语音机器人，而且节省70%费用）（此外，请尽量选用本系统的语音对话。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视觉媒体方式访问他创方的AIGC，以后则将取消！请键入您的Prompt：<input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" /><button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+                    本系统的服务端听觉媒体方式访问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen官方申明暂不支持，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用语音机器人，而且节省70%费用）（此外，请尽量选用本系统的语音对话。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视觉媒体方式访问他创方的AIGC，以后则将取消！请键入您的Prompt提问：<input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" /><button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor();'>确定</button>）
                     <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
                 </div>
-                <button id="startBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将开始打开麦克风录音，系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案....">开始录音Prompt</button>
-                <button id="stopBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将停止录音对话" disabled>停止录音Prompt</button>
-                    <button id="understandKernelDialogueBtnSystemExternal" title="单击将切换显示系统外部的录音对话的核心对话指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemExternal()'>了解录音Prompt指令</button>
+                <button id="startBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将开始打开麦克风录音，系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案...." style="white-space: normal; font-size:12px">开始录音Prompt提问</button>
+                <button id="stopBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将停止录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt提问</button>
+                    <button id="understandKernelDialogueBtnSystemExternal" title="单击将切换显示系统外部的录音对话的核心对话指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemExternal()' style="white-space: normal; font-size:12px">了解录音Prompt指令</button>
                     <div id="kernelDialogueSystemExternal" style="border: dashed; border-color: goldenrod; display: none">
-                        注：系统外部语音对话指令相对简单宽泛，主要不是控制本系统的运行，而是主要控制我们发送语音对话的STT的字符序列给本系统，本系统发送给AIGC，然后TTS朗读AIGC回答的字符序列。
+                        注：互动本系统的语音对话Prompt指令（相对严谨，控制本系统的运行）←对比→互动AIGC的Prompt提问（相对宽泛，发送给AIGC，相对宽泛，发送给AIGC，AIGC回答Answer）。
                         <ol style="text-align:justify">
-                            <li>切换系统内部语音对话（实际测试优化成为“系统内部”）</li>
-                            <li>开始系统外部语音朗读（实际测试优化成为“开始朗读”）</li>
-                            <li>暂停系统外部语音朗读（实际测试优化成为“暂停朗读”）</li>
-                            <li>继续系统外部语音朗读（实际测试优化成为“继续朗读”）</li>
-                            <li>停止系统外部语音朗读（实际测试优化成为“停止朗读”）</li>
+                            <li>切换系统内部语音对话（实际测试优化成为“内部”）（尚未实现）</li>
+                            <li>开始系统外部语音朗读（实际测试优化成为“开始朗读”）（尚未实现）</li>
+                            <li>暂停系统外部语音朗读（实际测试优化成为“暂停朗读”）（尚未实现）</li>
+                            <li>继续系统外部语音朗读（实际测试优化成为“继续朗读”）（尚未实现）</li>
+                            <li>停止系统外部语音朗读（实际测试优化成为“停止朗读”）（尚未实现）</li>
                         </ol>
                     </div>
                     <div id="transcriptSystemExternal" style="color:green" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...（请单击“了解录音Prompt指令”，查看录音说明...）">
