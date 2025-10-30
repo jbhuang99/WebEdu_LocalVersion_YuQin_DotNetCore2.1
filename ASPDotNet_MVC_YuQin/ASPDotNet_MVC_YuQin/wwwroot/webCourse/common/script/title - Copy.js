@@ -920,7 +920,6 @@ function fnNotification(sStringTitle, sStringBody, sStringIcon) {  //不知为�
 }
 
 function fnTTS_Play() {
-   var sTemp="当前条目朗读已结束，随后将自动朗读下一条目的内容（您可以单击“标题框架”的“内容切换”，设置朗读课文或者作业测验）！";
     if(!("speechSynthesis" in window)) {
 		throw alert("对不起，您的浏览器不支持");
 		}
@@ -947,40 +946,29 @@ function fnTTS_Play() {
     **/  
          switch (true) {              
       case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="0%,*":     
-            {
-              var sTextContent = parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.body.textContent;
-              var utterance="";
-              
-             if(sTextContent==null||sTextContent==""){
-            utterance ="您好，当前条目的作业测验，没有字符自动朗诵！"+sTemp;            
+            {const utterance = new SpeechSynthesisUtterance(parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.body.textContent);
+
+             if(utterance==null||utterance==""){
+             window.speechSynthesis.speak("您好，当前条目的作业测验，没有字符自动朗诵");
                  }
             else{
-             utterance = new SpeechSynthesisUtterance(sTextContent+sTemp);
-            }
              window.speechSynthesis.speak(utterance);
-             utterance.onend=fnTTSOnEnd;// 语音朗读结束时的回调;
-            }
+            }}
             break;
       case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="100%,*":
-            {
-                var sTextContent = parent.document.getElementById("sIframeContent").contentWindow.document.body.textContent;
-                var utterance="";
-                
-             if(sTextContent ==null||sTextContent ==""){
-             utterance ="您好，当前条目的课文，没有字符自动朗诵！"+sTemp;
-                }
+            {const utterance = new SpeechSynthesisUtterance(parent.document.getElementById("sIframeContent").contentWindow.document.body.textContent);
+
+             if(utterance==null||utterance==""){
+             window.speechSynthesis.speak("您好，当前条目的课文，没有字符自动朗诵");
+                 }
             else{
-                utterance = new SpeechSynthesisUtterance(sTextContent+sTemp);
-            }
-            window.speechSynthesis.speak(utterance);
-             utterance.onend=fnTTSOnEnd;
-            }
+             window.speechSynthesis.speak(utterance);
+            }}
             break;
       default: 
       {
-          const utterance = new SpeechSynthesisUtterance('您好，请单击“标题框架”的“内容切换”，设置作业测验或课文，占满内容框架，朗读相应的内容框架！'+sTemp);
+          const utterance = new SpeechSynthesisUtterance('您好，请单击标题框架的"显示作业测验"设置作业测验或课文，占满内容框架，朗读相应的内容框架！');
            window.speechSynthesis.speak(utterance);
-           utterance.onend=fnTTSOnEnd;
              }
     } 
     /**
@@ -1006,12 +994,7 @@ function fnTTS_Cancel() {
     window.speechSynthesis.cancel();
 }
 
-function fnTTSOnEnd(){
-window.speechSynthesis.cancel();
-//window.isRecognizingSystemInternal = false;
-//window.recognitionSystemInternal = null; 为了配合语音朗读TTS，所以fnSTTOnResultSystemInternal中的停止语音识别STT，但是因为还未能实现打断语音朗读，所以暂时放弃。
- document.getElementById("next").click(); 
-    }
+
 // Usage
 
 /** function fnUploadBackgroundMusic(){

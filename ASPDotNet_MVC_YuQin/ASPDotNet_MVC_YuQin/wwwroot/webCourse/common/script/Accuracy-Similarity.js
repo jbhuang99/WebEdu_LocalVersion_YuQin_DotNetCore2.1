@@ -586,3 +586,61 @@ async function fnCompareAudio() {
     resultDiv.innerHTML += `<p><strong>错误：</strong>${error.message}</p>`;
   }
 }
+
+function fnAccuracySimilarityForPixelImage() {
+  //  if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)    {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
+
+fnToggleEventSoureElementColor();
+document.getElementById('sPixelImageFromAIGC').value=window.sHref+"/webCourse/options/Accuracy-Similarity/Cone-of-Experience-FromAIGC-willTransformToFiveLayeredMVC.jpg";
+document.getElementById('sShowPixelImageFromAIGC').src=window.sHref+"/webCourse/options/Accuracy-Similarity/Cone-of-Experience-FromAIGC-willTransformToFiveLayeredMVC.jpg";
+document.getElementById('sPixelImageFromKnowledgebase').value=window.sHref+"/webCourse/options/Accuracy-Similarity/Cone-of-Experience-FromKnowledgebase-willTransformToFiveLayeredMVC.jpg";
+document.getElementById('sShowPixelImageFromKnowledgebase').src=window.sHref+"/webCourse/options/Accuracy-Similarity/Cone-of-Experience-FromKnowledgebase-willTransformToFiveLayeredMVC.jpg";
+
+if(document.getElementById("AIGCPixelImage").style.display=="none"){
+    document.getElementById("AIGCPixelImage").style.display="block";
+    } 
+else{document.getElementById("AIGCPixelImage").style.display="none"} 
+}
+
+function fnAccuracySimilarityForVideo() {
+//if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
+fnToggleEventSoureElementColor();
+document.getElementById('sVideoFromAIGC').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.mp4";
+document.getElementById('sShowVideoFromAIGC').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.mp4";
+document.getElementById('sVideoFromKnowledgebase').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.mp4";
+document.getElementById('sShowVideoFromKnowledgebase').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.mp4";
+
+if(document.getElementById("AIGCVideo").style.display=="none"){document.getElementById("AIGCVideo").style.display="block"} else{document.getElementById("AIGCVideo").style.display="none"}
+}
+
+function fnAccuracySimilarityFor2D() {
+//if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
+fnToggleEventSoureElementColor();
+document.getElementById('s2DFromAIGC').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.svg";
+document.getElementById('sShow2DFromAIGC').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.svg";
+document.getElementById('s2DFromKnowledgebase').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.svg";
+document.getElementById('sShow2DFromKnowledgebase').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.svg";
+
+if(document.getElementById("AIGC2D").style.display=="none"){document.getElementById("AIGC2D").style.display="block"} else{document.getElementById("AIGC2D").style.display="none"}
+}
+
+function fnAccuracySimilarityFor3D() {
+//if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
+fnToggleEventSoureElementColor();
+document.getElementById('s3DFromAIGC').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv";
+document.getElementById('sShow3DFromAIGC').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv";
+document.getElementById('s3DFromKnowledgebase').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.x3dv";
+document.getElementById('sShow3DFromKnowledgebase').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.x3dv";
+
+if(document.getElementById("AIGC3D").style.display=="none"){document.getElementById("AIGC3D").style.display="block"} else{document.getElementById("AIGC3D").style.display="none"}
+}
+
+function fnAccuracySimilarityForAudio() {
+//if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}
+fnToggleEventSoureElementColor();
+document.getElementById('sAudioFromAIGC').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.m4a";
+document.getElementById('sShowAudioFromAIGC').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.m4a";
+document.getElementById('sAudioFromKnowledgebase').value=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.m4a";
+document.getElementById('sShowAudioFromKnowledgebase').src=window.sHref+"/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.m4a";
+if(document.getElementById("AIGCAudio").style.display=="none"){document.getElementById("AIGCAudio").style.display="block"} else{document.getElementById("AIGCAudio").style.display="none"}
+}

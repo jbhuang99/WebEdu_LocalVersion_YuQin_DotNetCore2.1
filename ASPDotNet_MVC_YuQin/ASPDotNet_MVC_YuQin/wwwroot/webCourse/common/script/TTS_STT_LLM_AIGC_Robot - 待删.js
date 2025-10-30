@@ -3,7 +3,7 @@ window.speechSynthesis.cancel();  // 取消任何正在进行的TTS;
 //try{window.recognitionSystemInternal.stop();} catch(e){;}// 停止系统内部的语音识别
 //try{window.recognitionSystemExternal.stop();} catch(e){;}// 停止系统外部的语音识别
 window.sHref=window.location.href.substring(0,window.location.href.indexOf("/webCourse/"));
-window.systemInternalRecognizingFlag =""; // 系统内部语音识别状态标志
+window.systemInternalRecognizingResultFlag =""; // 系统内部语音识别结果标志
 window.recognitionSystemInternal = null; // STT的系统内部实例声明或清空；
 window.recognitionSystemExternal = null; // STT的系统外部实例声明或清空；
 
@@ -138,28 +138,24 @@ function fnBtnSystemExternalOnClick() {
  }
 
  function fnTTSOnEndSystemInternal(){
- opener.parent.document.getElementById("sIFrameContents").contentWindow.fnMargee();
-  switch (true) {
-case window.systemInternalRecognizingFlag =="向上": {
-    
-    opener.parent.document.getElementById("sIFrameTitle").contentWindow.fnBackword();
-    //utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
-    document.getElementById('stopBtnSystemInternal').click();
-    document.getElementById('startBtnSystemInternal').click();
+switch (true) {
+case window.systemInternalRecognizingResultFlag =="向上": {
+   opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("previous").click();    
     break;
 }
-case window.systemInternalRecognizingFlag =="向下": {
-    opener.parent.document.getElementById("sIFrameTitle").contentWindow.fnNext();
-    //utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
-    document.getElementById('stopBtnSystemInternal').click();
-    document.getElementById('startBtnSystemInternal').click();
+case window.systemInternalRecognizingResultFlag =="向下": {
+   opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("next").click();
     break;
     }
 default:{
-        ;
-        }
+    alert("语音识别没有准确匹配的，默认打开滚动消息，以供了解最新咨询！");
+    opener.fnMarquee();
+    }
 }
-}
+ document.getElementById('stopBtnSystemInternal').click();
+ document.getElementById('startBtnSystemInternal').click();
+    }
+
 
  function fnTTSOnEndSystemExternal(){
  opener.parent.document.getElementById("sIFrameContents").contentWindow.fnMargee();
@@ -185,8 +181,9 @@ function fnStartBtnSystemInternalOnClick() {
 
     window.recognitionSystemInternal.onstart =fnSTTOnStartSystemInternal; // 语音识别开始时的回调            
     window.recognitionSystemInternal.onerror=fnSTTOnErrorSystemInternal; //// 语音识别出错时的回调(event)参数不知是否正确传递了。            
-    window.recognitionSystemInternal.onend=fnSTTOnEndSystemInternal;// 语音识别结束时的回调
+    //window.recognitionSystemInternal.onend=fnSTTOnEndSystemInternal;// 语音识别结束时的回调
     window.recognitionSystemInternal.onresult=fnSTTOnResultSystemInternal;//(event)参数不知是否正确传递了。
+    window.recognitionSystemInternal.onend=fnSTTOnEndSystemInternal;// 语音识别结束时的回调
 
     document.getElementById('transcriptSystemInternal').innerText='"段落": []'; // 清空显示区域
     window.speechContentParagraphsSystemInternal = { paragraphs: [] }; // 重置识别内容
@@ -199,9 +196,11 @@ function fnStartBtnSystemInternalOnClick() {
 
 function fnStartBtnSystemExternalOnClick() {
     window.speechSynthesis.cancel();
-    try{window.recognitionSystemInternal.stop();}
-    catch(e){;}// 停止系统内部的语音识别
-   
+    try{window.recognitionSystemInternal.stop();}catch(e){;}// 停止系统内部的语音识别
+    if(window.QwenAPIKey==""){
+        alert("您可能还没输入并确认您的Qwen千问APIKey！");
+                }
+    else{
      document.getElementById('startBtnSystemInternal').disabled=false; 
      document.getElementById('stopBtnSystemInternal').disabled=true; 
      document.getElementById('startBtnSystemExternal').disabled=true; 
@@ -228,6 +227,7 @@ function fnStartBtnSystemExternalOnClick() {
     if (window.recognitionSystemExternal && !window.isRecognizingSystemExternal) {
            window.recognitionSystemExternal.start(); // 启动语音识别
        }            
+    }
   }
 
 function fnStopBtnSystemInternalOnClick() {
@@ -303,27 +303,24 @@ function fnSTTOnEndSystemInternal() {
     window.speechSynthesis.cancel();
     //TTS
     const utteranceInternal = new SpeechSynthesisUtterance("您需要"+window.transcriptSystemInternal+"对吗？"); 
-     
+     window.speechSynthesis.speak(utteranceInternal); 
     switch (true) {
-case window.transcriptSystemInternal.indexOf("向上")>0: {
-    window.systemInternalRecognizingFlag ="向上";
-    window.speechSynthesis.speak(utteranceInternal); 
+case window.transcriptSystemInternal.indexOf("向上")>=0: {
+    window.systemInternalRecognizingResultFlag ="向上"; 
     utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
     break;
 }
-case window.transcriptSystemInternal.indexOf("向下")>0: {
-    window.systemInternalRecognizingFlag ="向下";
-    window.speechSynthesis.speak(utteranceInternal); 
+case window.transcriptSystemInternal.indexOf("向下")>=0: {
+    window.systemInternalRecognizingResultFlag ="向下"; 
     utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
     break;
     }
 default:{
-    indow.systemInternalRecognizingFlag ="default";
-    window.speechSynthesis.speak(utteranceInternal); 
+    window.systemInternalRecognizingResultFlag ="default"; 
     utteranceInternal.onend=fnTTSOnEndSystemInternal;// 语音朗读结束时的回调;
     }
 }
-}
+ }
 
 function fnSTTOnEndSystemExternal() {
     window.isRecognizingSystemExternal = false;
