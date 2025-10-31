@@ -919,8 +919,9 @@ function fnNotification(sStringTitle, sStringBody, sStringIcon) {  //不知为�
     }
 }
 
-function fnTTS_Play() {
-   var sTemp="当前条目朗读已结束，随后将自动朗读下一条目的内容（您可以单击“标题框架”的“内容切换”，设置朗读课文或者作业测验）！";
+function fnTTS_Play(intCharBeginningNumber) {
+    document.getElementById("id_TTS_GoToText").value=intCharBeginningNumber;
+   var sTemp="当前条目朗读已结束，随后将是下一条目的内容（您可以单击“标题框架”的“内容切换”，设置朗读课文或者作业测验）！";
     if(!("speechSynthesis" in window)) {
 		throw alert("对不起，您的浏览器不支持");
 		}
@@ -949,13 +950,15 @@ function fnTTS_Play() {
       case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="0%,*":     
             {
               var sTextContent = parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.body.textContent;
+              document.getElementById("id_CharNumber").textContent=sTextContent.length;
               var utterance="";
               
              if(sTextContent==null||sTextContent==""){
             utterance ="您好，当前条目的作业测验，没有字符自动朗诵！"+sTemp;            
                  }
             else{
-             utterance = new SpeechSynthesisUtterance(sTextContent+sTemp);
+            sTextContentBeginningNumber =sTextContent.substring(intCharBeginningNumber,sTextContent.length);
+             utterance = new SpeechSynthesisUtterance(sTextContentBeginningNumber+sTemp);
             }
              window.speechSynthesis.speak(utterance);
              utterance.onend=fnTTSOnEnd;// 语音朗读结束时的回调;
@@ -964,13 +967,15 @@ function fnTTS_Play() {
       case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="100%,*":
             {
                 var sTextContent = parent.document.getElementById("sIframeContent").contentWindow.document.body.textContent;
+                document.getElementById("id_CharNumber").textContent=sTextContent.length;
                 var utterance="";
                 
              if(sTextContent ==null||sTextContent ==""){
              utterance ="您好，当前条目的课文，没有字符自动朗诵！"+sTemp;
                 }
             else{
-                utterance = new SpeechSynthesisUtterance(sTextContent+sTemp);
+                sTextContentBeginningNumber =sTextContent.substring(intCharBeginningNumber,sTextContent.length);
+                utterance = new SpeechSynthesisUtterance(sTextContentBeginningNumber+sTemp);
             }
             window.speechSynthesis.speak(utterance);
              utterance.onend=fnTTSOnEnd;
@@ -978,8 +983,11 @@ function fnTTS_Play() {
             break;
       default: 
       {
-          const utterance = new SpeechSynthesisUtterance('您好，请单击“标题框架”的“内容切换”，设置作业测验或课文，占满内容框架，朗读相应的内容框架！'+sTemp);
-           window.speechSynthesis.speak(utterance);
+          var sTextContent = '您好，请单击“标题框架”的“内容切换”，设置作业测验或课文，占满内容框架，朗读相应的内容框架！';
+          document.getElementById("id_CharNumber").textContent=sTextContent.length;
+          sTextContentBeginningNumber =sTextContent.substring(intCharBeginningNumber,sTextContent.length);
+         var utterance = new SpeechSynthesisUtterance(sTextContentBeginningNumber+sTemp);
+          window.speechSynthesis.speak(utterance);
            utterance.onend=fnTTSOnEnd;
              }
     } 
@@ -1004,6 +1012,11 @@ function fnTTS_Resume() {
 
 function fnTTS_Cancel() {
     window.speechSynthesis.cancel();
+}
+
+function fnTTS_GoTo() {
+    window.speechSynthesis.cancel();
+    fnTTS_Play(document.getElementById("id_TTS_GoToText").value);
 }
 
 function fnTTSOnEnd(){

@@ -159,6 +159,25 @@ function fnHomeworkAndTest() {
    }
    **/
   document.body.ondblclick=fnToggleScreen;
+
+      switch (true) {              
+      case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="0%,*":     
+            {
+             parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_CharNumber").textContent=document.body.textContent.length;
+    parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS_GoToText").value=0;
+            }
+            break;
+      case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="100%,*":
+            {
+               ;
+            }
+            break;
+      default: 
+      {
+          parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_CharNumber").textContent="No.";
+    parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS_GoToText").value=0;
+             }
+    } 
 }
 
 

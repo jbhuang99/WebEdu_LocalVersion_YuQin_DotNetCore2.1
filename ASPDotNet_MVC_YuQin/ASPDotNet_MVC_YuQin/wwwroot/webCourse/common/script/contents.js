@@ -967,7 +967,8 @@ function fnDynOpenHomeworkAndTest() {
 function fnDynOpen() {
     //event.returnValue = false;
     window.oSrcElement = event.srcElement;
-
+    //document.getElementById("id_CharNumber").textContent=sTextContent.length;
+    //document.getElementById("id_TTS_GoToText").value=intCharBeginningNumber;
 
     //如果是于编辑状态的离开,则判断提示是否做了修改。
     /**关于WebEditor的代码。暂时注释掉，待修改

@@ -90,10 +90,33 @@ else{
 	parent.document.getElementById("sIFrameTitle").contentWindow.fnTTS_Cancel();
 	if(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display=="none")
 	{		
-		parent.document.getElementById("sIFrameTitle").contentWindow.fnTTS_Play();
+		parent.document.getElementById("sIFrameTitle").contentWindow.fnTTS_Play(0);
 		//parent.document.getElementById("sIframeTitle").contentWindow.document.getElementById("id_TTS_Play").click();
+		
 	}
-
+	if(parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="100%,*")
+	{
+	
+	}
+	
+	  switch (true) {              
+      case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="0%,*":     
+            {
+            ;
+            }
+            break;
+      case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="100%,*":
+            {
+              parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_CharNumber").textContent=document.body.textContent.length;
+    parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS_GoToText").value=0;
+            }
+            break;
+      default: 
+      {
+          parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_CharNumber").textContent="No.";
+    parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS_GoToText").value=0;
+             }
+    } 
 }
 
 function fnMouseWheel(){
