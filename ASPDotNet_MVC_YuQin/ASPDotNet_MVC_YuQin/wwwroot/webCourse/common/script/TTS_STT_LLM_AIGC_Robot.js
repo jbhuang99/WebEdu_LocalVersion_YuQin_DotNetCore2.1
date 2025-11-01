@@ -18,6 +18,14 @@ document.getElementById('stopBtnSystemExternal').addEventListener('click',fnStop
 //window.QwenAPIKey=""; // Qwen千问APIKey声明或清空；//目前无法实现相关功能。
 //document.getElementById('idQwenAPIKeyConfirm').addEventListener('click',fnidQwenAPIKeyConfirmOnClickSystemExternal,false);//目前无法实现相关功能。
 //document.getElementById('startBtnSystemInternal').click(); // 页面加载后自动点击开始系统内部的录音按钮
+if(document.getElementById("id_RadioSystemExternal").checked == true){
+var sTextContent = document.getElementById("transcriptSystemExternal").textContent;
+document.getElementById("id_CharNumber").textContent=sTextContent.length;
+}
+else{
+var sTextContent = document.getElementById("transcriptSystemInternal").textContent;
+document.getElementById("id_CharNumber").textContent=sTextContent.length;
+}
 }
 
 function fnOpenLocalhostDingTalkAIGC(){
@@ -248,10 +256,11 @@ function fnStopBtnSystemInternalOnClick() {
     }
 
 function fnStopBtnSystemExternalOnClick() {
+     //document.getElementById("idPrompt").value="";
      document.getElementById('transcriptSystemInternal').innerText= '"段落": []'; // 清空显示区域
     window.speechSynthesis.cancel();  // 取消任何正在进行的TTS;
     window.recognitionSystemExternal.stop();
-    try{window.recognitionSystemInternal.stop();}catch(e){;}// 停止系统内部的语音识别
+    try{window.recognitionSystemExternal.stop();}catch(e){;}// 停止系统内部的语音识别
     /** 
     if (window.recognitionSystemExternal && window.isRecognizingSystemExternal) {
                     window.recognitionSystemExternal.stop(); // 停止语音识别
@@ -464,12 +473,19 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
                         //如果函数存在的话执行
                         var oTemp=JSON.parse(xmlHttpRequest.responseText);
                         document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer是："+oTemp.output.text;
+                      
                         window.speechSynthesis.cancel();
+                          /**
                      //TTS
                      const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+oTemp.output.text); 
+                     if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
-                    }
+                     **/
+                   // document.getElementById("id_TTS_Play").click();
+                   fnTTS_Play(0);
+                     }
+                    
                     else {
                         var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
                         alert(sTempErr);
@@ -480,7 +496,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
                     }
                 }
         }
-        }
+}
 
 function fnTTSOnEndSystemExternalAIGCAnswer(){
             //alert("语音对话机器人的回答Answer已经结束朗读，请您继续对话！");
@@ -495,6 +511,61 @@ function fnTTSOnEndSystemExternalUtteranceTTSOnEndSystemExternalAIGCAnswer(){
             document.getElementById('startBtnSystemExternal').click(); 
             //window.speechSynthesis.cancel();
         }
+
+function fnTTS_Play(intCharBeginningNumber) {
+    document.getElementById('stopBtnSystemExternal').click(); 
+    if(document.getElementById("id_RadioSystemExternal").checked == true) {
+        
+    document.getElementById("id_TTS_GoToText").value=intCharBeginningNumber;
+    
+   var sTemp="当前AIGC回答Answer朗读已结束，请继续Prompt提问AIGC！";
+    if(!("speechSynthesis" in window)) {
+		throw alert("对不起，您的浏览器不支持");
+		}
+        window.speechSynthesis.cancel();
+       //var sTextContent = JSON.stringify(document.getElementById("transcriptSystemExternal").textContent);
+       var sTextContent = document.getElementById("transcriptSystemExternal").textContent;
+       document.getElementById("id_CharNumber").textContent=sTextContent.length;
+       
+              var utterance="";              
+             if(sTextContent==null||sTextContent==""){
+            utterance ="您好，当前AIGC回答Answer，没有字符自动朗诵！"+sTemp;            
+                 }
+            else{
+            sTextContentBeginningNumber =sTextContent.substring(intCharBeginningNumber,sTextContent.length);
+             utterance = new SpeechSynthesisUtterance(sTextContentBeginningNumber+sTemp);
+            }
+             window.speechSynthesis.speak(utterance);
+             //utterance.onend=fnTTSOnEnd;// 语音朗读结束时的回调;
+             utterance.onend=fnTTSOnEndSystemExternalAIGCAnswer;
+            }
+     else {
+        alert("拟将系统内部主界面的标题框架的视图迁移至此，尚在开发之中....");
+    }
+}
+
+function fnTTS_Pause() {
+    window.speechSynthesis.pause();
+}
+
+function fnTTS_Resume() {
+    window.speechSynthesis.resume();
+}
+
+function fnTTS_Cancel() {
+    window.speechSynthesis.cancel();
+}
+
+function fnTTS_GoTo() {
+    window.speechSynthesis.cancel();
+    fnTTS_Play(document.getElementById("id_TTS_GoToText").value);
+}
+
+function fnTTSOnEnd(){
+window.speechSynthesis.cancel();
+//window.isRecognizingSystemInternal = false;
+//window.recognitionSystemInternal = null; 为了配合语音朗读TTS，所以fnSTTOnResultSystemInternal中的停止语音识别STT，但是因为还未能实现打断语音朗读，所以暂时放弃。
+    }
 /**AIGC官方声明：因为API Key容易泄露等等安全问题，所以当前不支持JS访问千问AIGC。
  *
  function fnidQwenAPIKeyConfirmOnClickSystemExternal(){
