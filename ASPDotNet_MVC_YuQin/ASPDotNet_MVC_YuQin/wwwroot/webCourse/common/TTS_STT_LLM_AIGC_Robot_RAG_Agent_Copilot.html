@@ -93,7 +93,7 @@
 </head>
 
 <body onload="fnOnLoad()">
-    <div style="font-size:24px;font-weight:bolder">语音对话机器人<span style="font-size:14px">（面向远程听觉的麦克风扬声器/忽略近程视觉的屏幕键盘鼠标）（面向会说不会写的幼儿用户←Prompt互动→系统内部或者系统外部AIGC，或者，面向成人用户房屋空间漫游←Prompt互动→系统内部或者系统外部AIGC）（用户最好佩戴蓝牙耳机之类，因为当前的系统朗读声音，也会混入成为用户的声音指令，导致声音指令的语音识别异常）</span></div>
+    <div style="font-size:24px;font-weight:bolder">语音对话机器人<span style="font-size:13px">（面向远程听觉的麦克风扬声器/忽略近程视觉的屏幕键盘鼠标）（面向会说不会写的幼儿用户←Prompt互动→系统内部或者系统外部AIGC，或者，面向成人用户房屋空间漫游←Prompt互动→系统内部或者系统外部AIGC）<span style="color:brown">（用户最好佩戴蓝牙耳机之类，因为当前的系统朗读声音，也会混入成为用户的声音指令，导致声音指令的语音识别异常！目前只有浏览器右击菜单“刷新”重新开始语音Prompt，寻求解决方案之中...！）</span></span></div>
     
     <table style="width:100%; border:dashed">
         <tr>
@@ -106,9 +106,9 @@
                 <button id="stopBtnSystemInternal" title="单击将停止系统内部的录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt指令</button>
                 <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示系统内部的录音对话的核心对话指令，以供了解" style="white-space: normal; font-size:12px" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'>了解录音Prompt指令</button>
                 <div id="kernelDialogueSystemInternal" style="border: dashed; border-color: goldenrod; display: none">
-                    注：互动本系统的语音对话Prompt指令（相对严谨，控制本系统的运行）←对比→互动AIGC的Prompt提问（相对宽泛，发送给AIGC，AIGC回答Answer）。
                     <ol style="text-align:justify">
                         <li>切换系统外部语音对话（实际测试优化成为“外部”）（尚未实现）</li>
+                        <li>切换系统内部语音朗读TTS！（实际测试优化成为“切换系统内部TTS”）（尚未实现）</li>
                         <li>语音识别没有准确匹配的，默认打开滚动消息，以供了解最新咨询！（已经实现）</li>
                         <li>目录条目下翻（实际测试优化成为“向上”,因为是语音上下文，所以目录条目下翻时将自动朗读）（已经实现）</li>
                         <li>目录条目上翻（实际测试优化成为“向下”,因为是语音上下文，所以目录条目上翻时将自动朗读）（已经实现）</li>
@@ -365,7 +365,7 @@
                 </div>
 
 
-                    <!--
+                <!--
     <div style="text-align:justify">
         <label title="付费API Key可以尝试客户端浏览器中密码口令方式输入，相对于保存在服务端secrets.json/appsettings.json之中更为风险。本系统唯一的付费API Key，不会用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的的费用就是自己注册付费API Key的100%）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，尚未实现（https://help.aliyun.com/zh/model-studio/first-api-call-to-qwen未见JS的具体代码案例）。例如，文本框中键入字符文本作为Prompt，然后单击这里，默认无需登录本系统，也是可以试验调用AIGC生成Answer内容...）">二、本系统的客户端浏览器访问他创方的AIGC（阿里Qwen为例)。</label><input id="idQwenAPIKeyInput" type="password" placeholder="必须在这里键入登录AIGC的API Key，然后单击确定按钮" title="必须在这里键入登录AIGC的API Key，然后单击确定按钮" /><button id="idQwenAPIKeyConfirm" title="必须在密码框中键入登录AIGC的API Key，然后单击本按钮" style="display: inline; white-space: normal; color: green; font-size: 12px">确定【Qwen千问的付费API Key】</button>后续将修改成为下方的语音识别您的Prompt，当前还请试验键入您的Prompt： <input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPromptForClientBrowserSide" /><button style="display:inline;white-space: normal" onclick='fnAjaxClientBrowserSideCallAIGCAnswerCharactor();'>
             确定（不登录本系统代理使用语音机器人。节省0%、API Key原生风险）(AIGG提供者官方声明暂不支持)
@@ -375,29 +375,42 @@
         -->
                 <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的费用一般只需自己注册付费API Key的30%左右）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现。单击这里，默认需要登录本系统，然后可以试验调用AIGC生成Answer内容...）" style="text-align:justify">
                     本系统的服务端听觉媒体方式访问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen官方申明暂不支持，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用语音机器人，而且节省70%费用）（此外，请尽量选用本系统的语音对话。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视觉媒体方式访问他创方的AIGC，以后则将取消！请键入您的Prompt提问：<input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" /><button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor();'>确定</button>）
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor();'>
+                        确定
+                    </button>）
                     <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
                 </div>
                 <button id="startBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将开始打开麦克风录音，系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案...." style="white-space: normal; font-size:12px">开始录音Prompt提问</button>
                 <button id="stopBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将停止录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt提问</button>
-                    <button id="understandKernelDialogueBtnSystemExternal" title="单击将切换显示系统外部的录音对话的核心对话指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemExternal()' style="white-space: normal; font-size:12px">了解录音Prompt指令</button>
-                    <div id="kernelDialogueSystemExternal" style="border: dashed; border-color: goldenrod; display: none">
-                        注：互动本系统的语音对话Prompt指令（相对严谨，控制本系统的运行）←对比→互动AIGC的Prompt提问（相对宽泛，发送给AIGC，相对宽泛，发送给AIGC，AIGC回答Answer）。
-                        <ol style="text-align:justify">
-                            <li>切换系统内部语音对话（实际测试优化成为“内部”）（尚未实现）</li>
-                            <li>开始系统外部语音朗读（实际测试优化成为“开始朗读”）（尚未实现）</li>
-                            <li>暂停系统外部语音朗读（实际测试优化成为“暂停朗读”）（尚未实现）</li>
-                            <li>继续系统外部语音朗读（实际测试优化成为“继续朗读”）（尚未实现）</li>
-                            <li>停止系统外部语音朗读（实际测试优化成为“停止朗读”）（尚未实现）</li>
-                        </ol>
-                    </div>
-                    <div id="transcriptSystemExternal" style="color:green" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...（请单击“了解录音Prompt指令”，查看录音说明...）">
-                        {
-                        "段落": [期待本系统语音识别您的语音Prompt提问，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案....需要付费AIGC...同时，也支持少量必备的语音识别您的语音Prompt指令，正在完善之中...]
-                        }
-                    </div>
-</td>
+                <button id="understandKernelDialogueBtnSystemExternal" title="单击将切换显示系统外部的录音对话的核心对话指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemExternal()' style="white-space: normal; font-size:12px">了解录音Prompt指令</button>
+                <div id="kernelDialogueSystemExternal" style="border: dashed; border-color: goldenrod; display: none">
+                    <ol style="text-align:justify">
+                        <li>切换系统内部语音对话（实际测试优化成为“内部”）（尚未实现）</li>
+                        <li>切换系统外部语音朗读TTS！（实际测试优化成为“切换系统外部TTS”）（尚未实现）</li>
+                        <li>开始系统外部语音朗读（实际测试优化成为“开始朗读”）（尚未实现）</li>
+                        <li>暂停系统外部语音朗读（实际测试优化成为“暂停朗读”）（尚未实现）</li>
+                        <li>继续系统外部语音朗读（实际测试优化成为“继续朗读”）（尚未实现）</li>
+                        <li>停止系统外部语音朗读（实际测试优化成为“停止朗读”）（尚未实现）</li>
+                    </ol>
+                </div>
 
+                <div id="transcriptSystemExternal" style="color:green" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...（请单击“了解录音Prompt指令”，查看录音说明...）">
+                    {
+                    "段落": [期待本系统语音识别您的语音Prompt提问，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案....需要付费AIGC...同时，也支持少量必备的语音识别您的语音Prompt指令，正在完善之中...]
+                    }
+                </div>
+                
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2">                
+                <label title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" style="color:brown">
+                    请选择朗读源头：<input type="radio" name="raio_SystemInternal_SystemExternal" value="SystemInternal"  disabled />系统内部目录条目内容框架<input type="radio" name="raio_SystemInternal_SystemExternal" value="SystemExternal" checked/>系统外部AIGC回答Answer
+                </label>
+                <label style="visibility:visible" id="id_TTS"><button id="id_TTS_Play" title="本系统的字符朗读功能只能朗读内容框架。最好选用Edge浏览器内置的可以朗读所有框架的字符朗读功能！！！Edge中本系统框架的边沿鼠标右击，Edge内置右键菜单中的“扩展”可以下载安装“Translator for Microsoft Edge”，从而可以实现中英（Prompt）互译。进一步可以右击菜单内置的朗读功能，可以实现中英（Prompt）朗读！！！（字符朗读的准确性/手机触屏便于笔画书写/键盘便于拼音码字/录音转字便于发音吐字/字转声音便于听音识字，还请参见本系统第一个条目的内容框架中的字典链接中的中英字典！）" onclick="alert('开发之中...');fnTTS_Play(0)">中英朗读</button><button id="id_TTS_Pause" onclick="alert('开发之中...');fnTTS_Pause()">暂停</button><button onclick="alert('开发之中...');fnTTS_Resume()" id="id_TTS_Resume">继续</button><button onclick="alert('开发之中...');fnTTS_Cancel()" id="id_TTS_Cancel">取消</button></label><span title="将显示当前条目内容框架的字符总数"><span>字符：</span><span id="id_CharNumber">No.</span></span>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo" onclick="alert('开发之中...');fnTTS_GoTo(0)">起点：</span><input id="id_TTS_GoToText" type="text" size="3" onblur="alert('开发之中...');fnTTS_GoTo(0)" /></span><img title="字符自动朗读功能切换。朗读声音默认干扰他人！所以默认并不自动朗读！隐藏朗读按钮的时候，目录条目打开的内容框架，将自动朗读文本。否则，将手动单击朗读按钮朗读字符【注：非字符主导的文档，不建议提供字符自动朗读功能】【注：正在朗读的字符高亮显示，正在开发之中...】" id="id_ToggleTTS" src="Sound_32.png" onclick='if(document.getElementById("id_TTS").style.visibility=="visible"){document.getElementById("id_TTS").style.visibility="hidden"} else document.getElementById("id_TTS").style.visibility="visible"; parent.document.getElementById("sIframeContents").contentWindow.TTSToggle=document.getElementById("id_TTS").style.visibility;fnTTS_Cancel(); ' />
+            </td>
+            <td></td>
         </tr>
     </table>
 

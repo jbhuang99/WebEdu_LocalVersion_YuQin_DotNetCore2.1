@@ -96,12 +96,14 @@ case window.systemExternalRecognizingResultFlag =="停止录音": {
 }
 case window.systemInternalRecognizingResultFlag =="向上": {
     //opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display="none";//为了配合语音朗读TTS，所以fnSTTOnResultSystemInternal中的停止语音识别STT，但是因为还未能实现打断语音朗读，所以暂时放弃。
+   opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display="none";  
    opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("previous").click();    
    //增加内容框架的朗读功能。
     break;
 }
 case window.systemInternalRecognizingResultFlag =="向下": {
   // opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display="none";//为了配合语音朗读TTS，所以fnSTTOnResultSystemInternal中的停止语音识别STT，但是因为还未能实现打断语音朗读，所以暂时放弃。
+   opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display="none";
    opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("next").click();
    //增加内容框架的朗读功能。
     break;
@@ -112,7 +114,7 @@ default:{
     }
 }
  document.getElementById('stopBtnSystemInternal').click();//如果包含语音朗读TTS，需要放置在onend回调中，否则会导致无法朗读AIGC回答Answer。
- document.getElementById('startBtnSystemInternal').click();//如果包含语音朗读TTS，需要放置在onend回调中，否则会导致无法朗读AIGC回答Answer。
+ //document.getElementById('startBtnSystemInternal').click();//如果包含语音朗读TTS，需要放置在onend回调中，否则会导致无法朗读AIGC回答Answer。
     }
 
 
@@ -154,7 +156,7 @@ default:{
       document.getElementById('idButtonAjaxServerSideCallAIGCAnswerCharactor').click();//TTS/STT的时候，可以调用初创方函数，无法调用自创方函数，不知为什么。可能是需要使用onend回调。
     }
 }
- //document.getElementById('stopBtnSystemExternal').click();//如果包含语音朗读TTS，需要放置在onend回调中，否则会导致无法朗读AIGC回答Answer。
+ document.getElementById('stopBtnSystemExternal').click();//如果包含语音朗读TTS，需要放置在onend回调中，否则会导致无法朗读AIGC回答Answer。
  //document.getElementById('startBtnSystemExternal').click();//如果包含语音朗读TTS，需要放置在onend回调中，否则会导致无法朗读AIGC回答Answer。
     }
 
