@@ -102,6 +102,12 @@
                 <div>
                     <button id="closeSTTSystemInternal" onclick="window.close();">单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部</button>
                 </div>
+                <div title="" style="text-align:justify">
+                    本系统的客户端浏览器的听觉媒体方式访问本系统（请尽量选用本系统的语音对话。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了语音期望转换成为的视觉媒体方式访问本系统，以后则将取消！单击“了解录音Prompt指令”按钮可以查看相关Prompt指令。请键入您的Prompt指令：<input type="text" value="向下" style="display:inline;white-space: normal" id="idPromptDirective" /><button id="idButtonClientSideBrowserSTT" style="display:inline;white-space: normal" onclick='window.systemInternalRecognizingResultFlag=document.getElementById("idPromptDirective").value;fnTTSOnEndSystemInternal();'>
+                        确定
+                    </button>）
+                    <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
+                </div>
                 <button id="startBtnSystemInternal" title="单击将开始系统内部的录音对话。系统将打开麦克风录音，系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中..." style="white-space: normal; font-size:12px">开始录音Prompt指令</button>
                 <button id="stopBtnSystemInternal" title="单击将停止系统内部的录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt指令</button>
                 <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示系统内部的录音对话的核心对话指令，以供了解" style="white-space: normal; font-size:12px" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'>了解录音Prompt指令</button>
@@ -411,7 +417,7 @@
                 <!--<form style="display:inline;font-size:12px">-->
                 <fieldset style="display: inline; border: none;font-size:10px" id="id_TTS"><button id="id_TTS_Play" title="本系统的字符朗读功能只能朗读内容框架。最好选用Edge浏览器内置的可以朗读所有框架的字符朗读功能！！！Edge中本系统框架的边沿鼠标右击，Edge内置右键菜单中的“扩展”可以下载安装“Translator for Microsoft Edge”，从而可以实现中英（Prompt）互译。进一步可以右击菜单内置的朗读功能，可以实现中英（Prompt）朗读！！！（字符朗读的准确性/手机触屏便于笔画书写/键盘便于拼音码字/录音转字便于发音吐字/字转声音便于听音识字，还请参见本系统第一个条目的内容框架中的字典链接中的中英字典！）" onclick="fnTTS_Play(0)">中英朗读</button><button id="id_TTS_Pause" onclick="fnTTS_Pause()">暂停</button><button onclick="fnTTS_Resume()" id="id_TTS_Resume">继续</button><button onclick="fnTTS_Cancel()" id="id_TTS_Cancel">取消</button><span title="将显示当前条目内容框架的字符总数"><span>当前字符总数：</span><span id="id_CharNumber">No.</span></span>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo">起点：</span><input id="id_TTS_GoToText" type="text" size="3" value="0" onblur="fnTTS_GoTo(0)" /></span></fieldset>
                 <!--</form>-->
-                <img title="字符自动朗读功能切换。朗读声音默认干扰他人！所以默认并不自动朗读！隐藏朗读按钮的时候，目录条目打开的内容框架，将自动朗读文本。否则，将手动单击朗读按钮朗读字符【注：非字符主导的文档，不建议提供字符自动朗读功能】【注：正在朗读的字符高亮显示，正在开发之中...】" id="id_ToggleTTS" src="Sound_32.png" onclick='if(document.getElementById("id_TTS").disabled==false){document.getElementById("id_TTS").disabled=true} else {document.getElementById("id_TTS").disabled=false;} fnTTS_Cancel(); ' />
+                <img title="单击切换字符朗读按钮的禁用/启用。朗读声音默认干扰他人！所以默认并不自动朗读！禁用朗读按钮的时候，目录条目打开的内容框架，将自动朗读文本。启用朗读按钮的时候，将手动单击朗读按钮朗读字符【注：非字符主导的文档，不建议提供字符自动朗读功能】【注：正在朗读的字符高亮显示，正在开发之中...】" id="id_ToggleTTS" src="Sound_32.png" onclick='if(document.getElementById("id_TTS").disabled==false){document.getElementById("id_TTS").disabled=true} else {document.getElementById("id_TTS").disabled=false;} fnTTS_Cancel(); ' />
             </td>
             <td></td>
         </tr>

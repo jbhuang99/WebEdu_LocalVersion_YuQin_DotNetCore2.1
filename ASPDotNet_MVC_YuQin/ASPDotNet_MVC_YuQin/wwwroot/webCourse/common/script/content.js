@@ -88,7 +88,8 @@ else{
 	fnHighLight();
 	
 	parent.document.getElementById("sIFrameTitle").contentWindow.fnTTS_Cancel();
-	if(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display=="none")
+	//if(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display=="none")
+	if(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").disabled==true)
 	{		
 		parent.document.getElementById("sIFrameTitle").contentWindow.fnTTS_Play(0);
 		//parent.document.getElementById("sIframeTitle").contentWindow.document.getElementById("id_TTS_Play").click();

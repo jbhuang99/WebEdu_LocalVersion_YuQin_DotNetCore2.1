@@ -104,14 +104,16 @@ case window.systemExternalRecognizingResultFlag =="停止录音": {
 }
 case window.systemInternalRecognizingResultFlag =="向上": {
     //opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display="none";//为了配合语音朗读TTS，所以fnSTTOnResultSystemInternal中的停止语音识别STT，但是因为还未能实现打断语音朗读，所以暂时放弃。
-   opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display="none";  
+   //opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display="none";  
+  opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").disabled = true;
    opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("previous").click();    
    //增加内容框架的朗读功能。
     break;
 }
 case window.systemInternalRecognizingResultFlag =="向下": {
   // opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display="none";//为了配合语音朗读TTS，所以fnSTTOnResultSystemInternal中的停止语音识别STT，但是因为还未能实现打断语音朗读，所以暂时放弃。
-   opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display="none";
+  // opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").style.display="none";
+  opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS").disabled = true;
    opener.parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("next").click();
    //增加内容框架的朗读功能。
     break;
@@ -307,6 +309,7 @@ function fnSTTOnStartSystemExternal() {
 function fnSTTOnEndSystemInternal() {
     window.isRecognizingSystemInternal = false;
     window.speechSynthesis.cancel();
+    document.getElementById("idPromptDirective").value=window.transcriptSystemInternal;
     //TTS
     const utteranceInternal = new SpeechSynthesisUtterance("您需要"+window.transcriptSystemInternal+"对吗？"); 
      window.speechSynthesis.speak(utteranceInternal); 
