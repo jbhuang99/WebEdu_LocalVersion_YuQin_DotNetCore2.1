@@ -520,7 +520,7 @@ function fnTTSOnEndSystemExternalUtteranceTTSOnEndSystemExternalAIGCAnswer(){
 
 function fnTTS_Play(intCharBeginningNumber) {
     document.getElementById('stopBtnSystemExternal').click(); 
-    if(document.getElementById("id_RadioSystemExternal").checked == true) {
+  //  if(document.getElementById("id_RadioSystemExternal").checked == true) {
         
     document.getElementById("id_TTS_GoToText").value=intCharBeginningNumber;
     
@@ -544,10 +544,8 @@ function fnTTS_Play(intCharBeginningNumber) {
              window.speechSynthesis.speak(utterance);
              //utterance.onend=fnTTSOnEnd;// 语音朗读结束时的回调;
              utterance.onend=fnTTSOnEndSystemExternalAIGCAnswer;
-            }
-     else {
-        alert("拟将系统内部主界面的标题框架的视图迁移至此，尚在开发之中....");
-    }
+           // }
+    
 }
 
 function fnTTS_Pause() {

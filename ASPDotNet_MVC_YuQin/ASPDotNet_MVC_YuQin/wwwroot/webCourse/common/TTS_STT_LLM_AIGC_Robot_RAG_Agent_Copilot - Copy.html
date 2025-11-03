@@ -410,29 +410,16 @@
 
         </tr>
         <tr>
-            <td style="border:dashed">
-                <!--
-    <label title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" style="color:brown">
-        朗读源：<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemInternal" value="SystemInternal" disabled />系统内部的目录条目内容框架<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemExternal" value="SystemExternal" checked />系统外部的AIGC回答Answer
-    </label>
-                     -->
-                <img title="单击停止当前语音朗读。此外，当前请移步系统内部（主界面标题框架中的语音朗读视图），控制语音朗读。这些系统内部的视图功能今后拟移动至此！" id="id_ToggleTTS_" src="Sound_32.png" onclick='fnTTS_Cancel(); alert("当前请移步系统内部（主界面标题框架中的语音朗读视图），控制语音朗读。这些系统内部的视图功能今后拟移动至此！")' />
-                <!--<form style="display:inline;font-size:12px">-->
-                <fieldset style="display: inline; border: none;font-size:10px" id="id_TTS_" disabled><button id="id_TTS_Play_" title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" onclick="//fnTTS_Play(0)">中英朗读</button><button id="id_TTS_Pause_" onclick="//fnTTS_Pause()">暂停</button><button onclick="//fnTTS_Resume()" id="id_TTS_Resume_">继续</button><button onclick="//fnTTS_Cancel()" id="id_TTS_Cancel_">取消</button><span title="将显示当前条目内容框架的字符总数"><span>当前字符总数：</span><span id="id_CharNumber_">No.</span></span>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo_">起点：</span><input id="id_TTS_GoToText_" type="text" size="3" value="0" onblur="//fnTTS_GoTo(0)" /></span></fieldset>
-                <!--</form>-->
-
-            </td>
-            <td style="border:dashed">
-                <!--
-    <label title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" style="color:brown">
-        朗读源：<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemInternal" value="SystemInternal" disabled />系统内部的目录条目内容框架<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemExternal" value="SystemExternal" checked />系统外部的AIGC回答Answer
-    </label>
-        -->
-                <img title="单击停止当前语音朗读。朗读声音默认干扰他人！所以默认并不自动朗读！禁用朗读按钮的时候，目录条目打开的内容框架，将自动朗读文本。启用朗读按钮的时候，将手动单击朗读按钮朗读字符【注：非字符主导的文档，不建议提供字符自动朗读功能】【注：正在朗读的字符高亮显示，正在开发之中...】" id="id_ToggleTTS" src="Sound_32.png" onclick='fnTTS_Cancel(); //if(document.getElementById("id_TTS").disabled==false){document.getElementById("id_TTS").disabled=true} else {document.getElementById("id_TTS").disabled=false;} ' />
+            <td colspan="2">
+                <label title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" style="color:brown">
+                    朗读源：<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemInternal" value="SystemInternal" disabled />系统内部的目录条目内容框架<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemExternal" value="SystemExternal" checked />系统外部的AIGC回答Answer
+                </label>
                 <!--<form style="display:inline;font-size:12px">-->
                 <fieldset style="display: inline; border: none;font-size:10px" id="id_TTS"><button id="id_TTS_Play" title="本系统的字符朗读功能只能朗读内容框架。最好选用Edge浏览器内置的可以朗读所有框架的字符朗读功能！！！Edge中本系统框架的边沿鼠标右击，Edge内置右键菜单中的“扩展”可以下载安装“Translator for Microsoft Edge”，从而可以实现中英（Prompt）互译。进一步可以右击菜单内置的朗读功能，可以实现中英（Prompt）朗读！！！（字符朗读的准确性/手机触屏便于笔画书写/键盘便于拼音码字/录音转字便于发音吐字/字转声音便于听音识字，还请参见本系统第一个条目的内容框架中的字典链接中的中英字典！）" onclick="fnTTS_Play(0)">中英朗读</button><button id="id_TTS_Pause" onclick="fnTTS_Pause()">暂停</button><button onclick="fnTTS_Resume()" id="id_TTS_Resume">继续</button><button onclick="fnTTS_Cancel()" id="id_TTS_Cancel">取消</button><span title="将显示当前条目内容框架的字符总数"><span>当前字符总数：</span><span id="id_CharNumber">No.</span></span>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo">起点：</span><input id="id_TTS_GoToText" type="text" size="3" value="0" onblur="fnTTS_GoTo(0)" /></span></fieldset>
                 <!--</form>-->
+                <img title="单击切换字符朗读按钮的禁用/启用。朗读声音默认干扰他人！所以默认并不自动朗读！禁用朗读按钮的时候，目录条目打开的内容框架，将自动朗读文本。启用朗读按钮的时候，将手动单击朗读按钮朗读字符【注：非字符主导的文档，不建议提供字符自动朗读功能】【注：正在朗读的字符高亮显示，正在开发之中...】" id="id_ToggleTTS" src="Sound_32.png" onclick='if(document.getElementById("id_TTS").disabled==false){document.getElementById("id_TTS").disabled=true} else {document.getElementById("id_TTS").disabled=false;} fnTTS_Cancel(); ' />
             </td>
+            <td></td>
         </tr>
         
     </table>
