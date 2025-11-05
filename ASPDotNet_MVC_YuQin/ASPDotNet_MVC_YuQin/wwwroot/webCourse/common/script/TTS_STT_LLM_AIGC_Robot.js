@@ -18,6 +18,7 @@ document.getElementById('stopBtnSystemExternal').addEventListener('click',fnStop
 //window.QwenAPIKey=""; // Qwen千问APIKey声明或清空；//目前无法实现相关功能。
 //document.getElementById('idQwenAPIKeyConfirm').addEventListener('click',fnidQwenAPIKeyConfirmOnClickSystemExternal,false);//目前无法实现相关功能。
 //document.getElementById('startBtnSystemInternal').click(); // 页面加载后自动点击开始系统内部的录音按钮
+
 if(document.getElementById("id_RadioSystemExternal").checked == true){
 var sTextContent = document.getElementById("transcriptSystemExternal").textContent;
 document.getElementById("id_CharNumber").textContent=sTextContent.length;
@@ -26,6 +27,7 @@ else{
 var sTextContent = document.getElementById("transcriptSystemInternal").textContent;
 document.getElementById("id_CharNumber").textContent=sTextContent.length;
 }
+
 }
 
 function fnOpenLocalhostDingTalkAIGC(){
@@ -520,6 +522,7 @@ function fnTTSOnEndSystemExternalUtteranceTTSOnEndSystemExternalAIGCAnswer(){
 
 function fnTTS_Play(intCharBeginningNumber) {
     document.getElementById('stopBtnSystemExternal').click(); 
+    document.getElementById("id_RadioSystemExternal").checked=true;
   //  if(document.getElementById("id_RadioSystemExternal").checked == true) {
         
     document.getElementById("id_TTS_GoToText").value=intCharBeginningNumber;

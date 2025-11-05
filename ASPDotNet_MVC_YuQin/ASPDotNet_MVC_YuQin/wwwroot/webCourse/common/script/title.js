@@ -920,6 +920,10 @@ function fnNotification(sStringTitle, sStringBody, sStringIcon) {  //不知为�
 }
 
 function fnTTS_Play(intCharBeginningNumber) {
+    try{
+         parent.document.getElementById("sIframeContents").contentWindow.winTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.document.getElementById("id_RadioSystemInternal").checked=true;
+        }
+    catch(e){;}
     document.getElementById("id_TTS_GoToText").value=intCharBeginningNumber;
    var sTemp="当前条目朗读已结束，随后将是下一条目的内容（您可以单击“标题框架”的“内容切换”，设置朗读课文或者作业测验）！";
     if(!("speechSynthesis" in window)) {

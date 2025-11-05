@@ -553,9 +553,19 @@ function fnHomeworkAndTestHyperlinkMultimedia() {
     }
 
 function fnOpenRobot(){
-           var win =open("../common/TTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.html", "STT_TTS_LLM_AIGC_Robot", "fullscreen=0,left=312,top=225,toolbar=no,location=no,directories=no,menubar=no,titlebar=no,scrollbars=no,status=no,resizable=no,copyhistory=no,width=800,height=600");
+window.winTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot =open("../common/TTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.html", "STT_TTS_LLM_AIGC_Robot", "fullscreen=0,left=312,top=225,toolbar=no,location=no,directories=no,menubar=no,titlebar=no,scrollbars=no,status=no,resizable=no,copyhistory=no,width=800,height=600");
 //open("TTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.html", "STT_TTS_LLM_AIGC_Robot", "help:0;resizable:1;dialogWidth:" + screen.width * 0.8 + "px;dialogHeight:" + screen.height * 0.8 + "px;status:0;");
-window.childWindow = win;
+window.childWindow = window.winTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot;
+}
+
+function fnTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot(sString1,sString2) {
+    //如下已验证可行。只是可能暂时未使用
+       try{
+         //window.winTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.document.getElementById("id_CharNumber").textContent=sString1;
+    //window.winTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.document.getElementById("id_TTS_GoToText").value=sString2;
+       // window.winTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.document.getElementById("id_RadioSystemInternal").checked=true;//已经移动到fnDynOpen()
+        }
+    catch(e){;}
 }
 
 function fnContentsRefreshAFromAlreadyAutoNumbered() {//准备改为fnContentsRefreshAFromAlreadyAutoNumbered,因为刷新了编号,还刷新了A的事件特性。
@@ -965,6 +975,10 @@ function fnDynOpenHomeworkAndTest() {
 
 
 function fnDynOpen() {
+    try{
+         window.winTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.document.getElementById("id_RadioSystemInternal").checked=true;
+        }
+    catch(e){;}
     //event.returnValue = false;
     window.oSrcElement = event.srcElement;
     //document.getElementById("id_CharNumber").textContent=sTextContent.length;

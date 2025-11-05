@@ -108,16 +108,29 @@ else{
             break;
       case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="100%,*":
             {
-              parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_CharNumber").textContent=document.body.textContent.length;
+    parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_CharNumber").textContent=document.body.textContent.length;
     parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS_GoToText").value=0;
+	parent.document.getElementById("sIframeContents").contentWindow.fnTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_CharNumber").textContent,parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS_GoToText").value);
+	//alert(parent.document.getElementById("sIframeContents").contentWindow.winSTT_TTS_LLM_AIGC_Robot.document.document.body.textContent);
+	//winSTT_TTS_LLM_AIGC_Robot.document.getElementById("id_CharNumber").textContent=document.body.textContent.length;
+	//winSTT_TTS_LLM_AIGC_Robot.document.getElementById("id_TTS_GoToText").value=0;
+	//postMessage("课文"+"|"+document.body.textContent.length+"|"+"0","../../../../common/TTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.html");//发送给TTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.html。如果要更安全，发送消息时，始终指定精确的targetOrigin，而不是使用"*"。
+	//postMessage("课文|No.|0","https://localhost:5001/webCourse/common/TTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.html");	
             }
             break;
       default: 
       {
-          parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_CharNumber").textContent="No.";
+    parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_CharNumber").textContent="No.";
     parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS_GoToText").value=0;
-             }
-    } 
+	parent.document.getElementById("sIframeContents").contentWindow.fnTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot(parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_CharNumber").textContent,parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("id_TTS_GoToText").value);
+	//alert(parent.document.getElementById("sIframeContents").contentWindow.winSTT_TTS_LLM_AIGC_Robot.document.document.body.textContent);
+	//winSTT_TTS_LLM_AIGC_Robot.document.getElementById("id_CharNumber").textContent="No.";
+	//winSTT_TTS_LLM_AIGC_Robot.document.getElementById("id_TTS_GoToText").value=0;
+	//postMessage("课文|No.|0","../../../../common/TTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.html");
+	//postMessage("课文|No.|0","https://localhost:5001/webCourse/common/TTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.html");
+}
+    }
+	
 }
 
 function fnMouseWheel(){
