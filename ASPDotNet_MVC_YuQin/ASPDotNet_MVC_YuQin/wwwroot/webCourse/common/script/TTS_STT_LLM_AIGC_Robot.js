@@ -90,7 +90,7 @@ function fnBtnSystemExternalOnClick() {
 
  function fnTTSOnEndSystemInternal(){
 window.speechSynthesis.cancel();
-const utteranceInternal ="您的Prompt指令是"+document.getElementById("idPromptDirective").value+"对吗？请关注系统内部主界面视图中的结果！"; //在此可以无需朗读。
+const utteranceInternal ="您的Prompt指令是“"+document.getElementById("idPromptDirective").value+"”对吗？请关注系统内部主界面视图中的结果！"; //在此可以无需朗读。
 document.getElementById('transcriptSystemInternal').textContent =utteranceInternal;
 //window.isRecognizingSystemInternal = false;
 //window.recognitionSystemInternal = null; 为了配合语音朗读TTS，所以fnSTTOnResultSystemInternal中的停止语音识别STT，但是因为还未能实现打断语音朗读，所以暂时放弃。
@@ -315,8 +315,8 @@ function fnSTTOnEndSystemInternal() {
     window.speechSynthesis.cancel();
     document.getElementById("idPromptDirective").value=window.transcriptSystemInternal;
     //TTS
-    const utteranceInternal = new SpeechSynthesisUtterance("您的Prompt指令是"+window.transcriptSystemInternal+"对吗？请关注系统主界面视图中的结果！"); 
-    document.getElementById('transcriptSystemInternal').textContent ="您的Prompt指令是"+window.transcriptSystemInternal+"对吗？请关注系统主界面视图中的结果！";
+    const utteranceInternal = new SpeechSynthesisUtterance("您的Prompt指令是“"+window.transcriptSystemInternal+"”对吗？请关注系统主界面视图中的结果！"); 
+    document.getElementById('transcriptSystemInternal').textContent ="您的Prompt指令是“"+window.transcriptSystemInternal+"”对吗？请关注系统主界面视图中的结果！";
      window.speechSynthesis.speak(utteranceInternal); 
     switch (true) {
 case window.transcriptSystemInternal.indexOf("外部")>=0: {
@@ -346,7 +346,7 @@ function fnSTTOnEndSystemExternal() {
      window.speechSynthesis.cancel(); 
        //TTS  
     document.getElementById("idPrompt").value=window.transcriptSystemExternal;
-    const utteranceExternal = new SpeechSynthesisUtterance("您的Prompt提问是"+window.transcriptSystemExternal+"对吗？"); 
+    const utteranceExternal = new SpeechSynthesisUtterance("您的Prompt提问是“"+window.transcriptSystemExternal+"”对吗？"); 
     window.speechSynthesis.speak(utteranceExternal);  
      switch (true) {
     case window.transcriptSystemExternal.indexOf("内部")>=0: {
@@ -463,9 +463,9 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
             var sPrompt = document.getElementById("idPrompt").value;
              window.speechSynthesis.cancel();
                      //TTS
-             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
+             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是“"+sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
-            alert("您的Prompt提问是：" + sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
+            alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
              document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
             var sURL = "/QWen/index?queryString=" + sPrompt;
             // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
@@ -521,6 +521,7 @@ function fnTTSOnEndSystemExternalUtteranceTTSOnEndSystemExternalAIGCAnswer(){
         }
 
 function fnTTS_Play(intCharBeginningNumber) {
+    document.getElementById("transcriptSystemExternal").style.color="brown";
     document.getElementById('stopBtnSystemExternal').click(); 
     document.getElementById("id_RadioSystemExternal").checked=true;
   //  if(document.getElementById("id_RadioSystemExternal").checked == true) {
