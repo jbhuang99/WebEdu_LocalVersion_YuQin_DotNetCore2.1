@@ -100,10 +100,10 @@
             <td id="tdSystemInternal" style="width: 50%; border: dashed;vertical-align:top">
                 <div style="font-size:24px;font-weight:bolder;color:goldenrod" id="btnSystemInternal">系统内部语音对话<span style="font-size: 16px; font-weight: normal">【Prompt指令←语音对话→系统内部非AIGC】【我们←（严谨准确性学科专业）语音互动（搜索匹配本系统的静态存储的数据读写、而非上下文追问AIGC的接受教育进行学习的自主生成的数据读写）→本系统内部】</span> </div>
                 <div>
-                    <button id="closeSTTSystemInternal" onclick="window.close();">单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部</button>
+                    <button id="closeSTTSystemInternal" onclick="window.close();">单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部【Prompt指令/本系统执行的字符文本Prompt指令本系统的检索匹配Transformer变换返回万物→Prompt指令/本系统执行的字寻万物→Prompt指令/本系统执行的字寻字符媒体/字寻多媒体→Prompt指令/本系统执行的字寻五媒→(1)Prompt指令/本系统执行的字寻视媒（字寻字/字寻图/字寻视频/字寻2D/字寻3D）、(2)Prompt指令/本系统执行的字寻听媒（字寻音频/字寻MIDI）、(3)Prompt指令/本系统执行的字寻触媒、(4)Prompt指令/本系统执行的字寻嗅媒、(5)Prompt指令/本系统执行的字寻味媒】</button>
                 </div>
                 <div title="" style="text-align:justify">
-                    本系统的客户端浏览器的听觉媒体方式访问本系统（请尽量选用本系统的语音对话。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了语音期望转换成为的视觉媒体方式访问本系统，以后则将取消！单击“了解录音Prompt指令”按钮可以查看相关Prompt指令。请键入您的Prompt指令：<input type="text" value="向下" style="display:inline;white-space: normal" id="idPromptDirective" /><button id="idButtonClientSideBrowserSTT" style="display:inline;white-space: normal" onclick='window.systemInternalRecognizingResultFlag=document.getElementById("idPromptDirective").value;fnTTSOnEndSystemInternal();'>
+                    本系统的客户端浏览器的听媒指令本系统（请尽量选用本系统的语音对话。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒（字符文本）指令本系统，以后则将取消！单击“了解录音Prompt指令”按钮可以查看相关Prompt指令。请键入您的Prompt指令：<input type="text" value="向下" style="display:inline;white-space: normal" id="idPromptDirective" /><button id="idButtonClientSideBrowserSTT" style="display:inline;white-space: normal" onclick='window.systemInternalRecognizingResultFlag=document.getElementById("idPromptDirective").value;fnTTSOnEndSystemInternal();'>
                         确定
                     </button>）
                     <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
@@ -146,14 +146,14 @@
                 <div>
                     <button id="closeSTTSystemExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("sVisionAIGC_RAG_Agent").style.display=="none"){document.getElementById("sVisionAIGC_RAG_Agent").style.display="block"} else{document.getElementById("sVisionAIGC_RAG_Agent").style.display="none"}fnToggleEventSoureElementColor();' style="white-space: normal;">
-                        单击保持当前语音系统互动本系统外部AIGC，同时切换显示AIGC生成内容的准确性对比【注：面向视觉的屏幕键盘鼠标互动系统外部AIGC，例如“钉钉AIGC助理可以免费连接AIGC生成内容”，自开发反而需要付费，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂未考虑其他功能开发！】【Prompt/AIGC的字符文本聚类分类推断统计生成万物→Prompt/AIGC的字生万物→Prompt/AIGC的字生字符媒体/字生多媒体→Prompt/AIGC的字生五媒→(1)Prompt/AIGC的字生视媒（字生字/字生图/字生视频/字生2D/字生3D）、(2)Prompt/AIGC的字生听媒（字生音频/字生MIDI）、(3)Prompt/AIGC的字生触媒、(4)Prompt/AIGC的字生嗅媒、(5)Prompt/AIGC的字生味媒】
+                        单击保持当前语音系统互动本系统外部AIGC，同时切换显示AIGC生成内容的准确性对比【注：面向视觉的屏幕键盘鼠标互动系统外部AIGC，例如“钉钉AIGC助理可以免费连接AIGC生成内容”，自开发反而需要付费，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂未考虑其他功能开发！】【Prompt提问/AIGC回答的字符文本Prompt提问AIGC的聚类分类推断统计Transformer变换生成回答万物→Prompt提问/AIGC回答的字生万物→Prompt提问/AIGC回答的字生字符媒体/字生多媒体→Prompt提问/AIGC回答的字生五媒→(1)Prompt提问/AIGC回答的字生视媒（字生字/字生图/字生视频/字生2D/字生3D）、(2)Prompt提问/AIGC回答的字生听媒（字生音频/字生MIDI）、(3)Prompt提问/AIGC回答的字生触媒、(4)Prompt提问/AIGC回答的字生嗅媒、(5)Prompt提问/AIGC回答的字生味媒】
                     </button>
                 </div>
                 <div id="sVisionAIGC_RAG_Agent" style="display: none; border:solid;border-color:brown">
                     <p></p>
                     <ol>
                         <div style="text-align:justify">
-                        <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt/AIGC生成回答(视觉字符)←对比→标准知识库检索匹配(视觉字符)" onclick='if(document.getElementById("AIGCCharactor").style.display=="none"){document.getElementById("AIGCCharactor").style.display="block"} else{document.getElementById("AIGCCharactor").style.display="none"};fnToggleEventSoureElementColor();' /></li>
+                        <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(视觉字符)←对比→标准知识库检索匹配(视觉字符)" onclick='if(document.getElementById("AIGCCharactor").style.display=="none"){document.getElementById("AIGCCharactor").style.display="block"} else{document.getElementById("AIGCCharactor").style.display="none"};fnToggleEventSoureElementColor();' /></li>
                 </div>
                 <div id="AIGCCharactor" style="display: none; border: dashed;border-color: goldenrod; text-align: justify ">
                     <div class="row-2col">
@@ -168,7 +168,7 @@
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt/AIGC生成回答(视觉图像)(.jpeg或.png文件为例)←对比→标准知识库检索匹配(视觉图像)(.jpeg或.png文件为例)" onclick='fnAccuracySimilarityForPixelImage()' /></li>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(视觉图像)(.jpeg或.png文件为例)←对比→标准知识库检索匹配(视觉图像)(.jpeg或.png文件为例)" onclick='fnAccuracySimilarityForPixelImage()' /></li>
                 </div>
                 <div id="AIGCPixelImage" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
                     <div class="row-2col">
@@ -187,7 +187,7 @@
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt/AIGC生成回答(视觉视频)(.mp4文件为例)←对比→标准知识库检索匹配(视觉视频)(.mp4文件为例)" onclick='fnAccuracySimilarityForVideo()' /></li>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(视觉视频)(.mp4文件为例)←对比→标准知识库检索匹配(视觉视频)(.mp4文件为例)" onclick='fnAccuracySimilarityForVideo()' /></li>
                 </div>
                 <div id="AIGCVideo" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
                     <div class="row-2col">
@@ -206,7 +206,7 @@
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt/AIGC生成回答(视觉2D)(.svg文件为例)←对比→标准知识库检索匹配(视觉2D)(.svg文件为例)" onclick='fnAccuracySimilarityFor2D()' /></li>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(视觉2D)(.svg文件为例)←对比→标准知识库检索匹配(视觉2D)(.svg文件为例)" onclick='fnAccuracySimilarityFor2D()' /></li>
                 </div>
                 <div id="AIGC2D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
                     <div class="row-2col">
@@ -225,7 +225,7 @@
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                    <li>  <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt/AIGC生成回答(视觉3D)(.vx3d文件为例)←对比→标准知识库检索匹配(视觉3D)(.vx3d文件为例)（开发之中...）" onclick='fnAccuracySimilarityFor3D()' /></li>
+                    <li>  <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(视觉3D)(.vx3d文件为例)←对比→标准知识库检索匹配(视觉3D)(.vx3d文件为例)（开发之中...）" onclick='fnAccuracySimilarityFor3D()' /></li>
                 </div>
                 <div id="AIGC3D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
                     <div class="row-2col">
@@ -339,7 +339,7 @@
                 </div>
                 <div></div>
                 <div style="text-align:justify">
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt/AIGC生成回答(听觉音频)(.mp3或.midi文件为例)←对比→标准知识库检索匹配(听觉音频)(.mp3或.midi文件为例)" onclick='fnAccuracySimilarityForAudio()' /></li>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(听觉音频)(.mp3或.midi文件为例)←对比→标准知识库检索匹配(听觉音频)(.mp3或.midi文件为例)" onclick='fnAccuracySimilarityForAudio()' /></li>
                 </div>
                 <div id="AIGCAudio" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
                     <div class="row-2col">
@@ -359,13 +359,13 @@
                 </div>
 
                 <div style="text-align:justify">
-                    <li><div><input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt/AIGC生成回答(触觉)←对比→标准知识库检索匹配(触觉)（目前尚无法实现...）" /></div></li>
+                    <li><div><input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(触觉)←对比→标准知识库检索匹配(触觉)（目前尚无法实现...）" /></div></li>
                 </div>
                 <div style="text-align:justify">
-                    <li><div><input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt/AIGC生成回答(嗅觉)←对比→标准知识库检索匹配(嗅觉)（目前尚无法实现...）" /></div></li>
+                    <li><div><input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(嗅觉)←对比→标准知识库检索匹配(嗅觉)（目前尚无法实现...）" /></div></li>
                 </div>
                 <div style="text-align:justify">
-                    <li> <div><input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt/AIGC生成回答(味觉)←对比→标准知识库检索匹配(味觉)（目前尚无法实现...）" /></div></li>
+                    <li> <div><input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(味觉)←对比→标准知识库检索匹配(味觉)（目前尚无法实现...）" /></div></li>
                 </div>
                 </ol>
                 </div>
@@ -380,7 +380,7 @@
     </div>
         -->
                 <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的费用一般只需自己注册付费API Key的30%左右）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现。单击这里，默认需要登录本系统，然后可以试验调用AIGC生成Answer内容...）" style="text-align:justify">
-                    本系统的服务端听觉媒体方式访问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen官方申明暂不支持，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用语音机器人，而且节省70%费用）（此外，请尽量选用本系统的语音对话。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视觉媒体方式访问他创方的AIGC，以后则将取消！请键入您的Prompt提问：<input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" /><button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+                    本系统的服务端听媒提问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen官方申明暂不支持，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用语音机器人，而且节省70%费用）（此外，请尽量选用本系统的语音对话。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒提问他创方的AIGC，以后则将取消！请键入您的Prompt提问：<input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" /><button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor();'>
                         确定
                     </button>）
