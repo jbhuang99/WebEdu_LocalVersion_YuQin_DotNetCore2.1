@@ -185,12 +185,6 @@
 	{font-family:"Cascadia Mono";
 	panose-1:2 11 6 9 2 0 0 2 0 4;}
 @font-face
-	{font-family:"Microsoft YaHei UI";
-	panose-1:2 11 5 3 2 2 4 2 2 4;}
-@font-face
-	{font-family:隶书;
-	panose-1:2 1 5 9 6 1 1 1 1 1;}
-@font-face
 	{font-family:MingLiU-ExtB;
 	panose-1:2 2 5 0 0 0 0 0 0 0;}
 @font-face
@@ -339,6 +333,9 @@
 	panose-1:2 11 5 2 4 2 4 2 2 3;}
 @font-face
 	{font-family:"\@微软雅黑";
+	panose-1:2 11 5 3 2 2 4 2 2 4;}
+@font-face
+	{font-family:"Microsoft YaHei UI";
 	panose-1:2 11 5 3 2 2 4 2 2 4;}
 @font-face
 	{font-family:"\@Microsoft YaHei UI";
@@ -859,6 +856,9 @@
 @font-face
 	{font-family:"Showcard Gothic";
 	panose-1:4 2 9 4 2 1 2 2 6 4;}
+@font-face
+	{font-family:隶书;
+	panose-1:2 1 5 9 6 1 1 1 1 1;}
 @font-face
 	{font-family:"\@隶书";
 	panose-1:2 1 5 9 6 1 1 1 1 1;}
@@ -37319,7 +37319,7 @@ lang=ZH-CN>语法组件</span>/IDE<span lang=ZH-CN>字典组件的迭代直至�
       char;word-break:break-all'><span style='font-size:10.0pt'>三</span><b><span
       lang=ZH-CN style='font-size:9.0pt;font-family:黑体'>、“属性类型”“方法类型”</span></b><b><span
       lang=ZH-CN style='font-size:10.0pt'>→</span></b><b><span lang=ZH-CN
-      style='font-size:9.0pt;font-family:黑体'>语句块流程、字面、令牌（词汇</span></b><b><span
+      style='font-size:9.0pt;font-family:黑体'>语句块流程、字面、词元（词汇</span></b><b><span
       style='font-size:9.0pt;font-family:黑体'>/<span lang=ZH-CN>关键词</span>/<span
       lang=ZH-CN>标识符</span>ID/<span lang=ZH-CN>名称</span>/<span lang=ZH-CN>标记</span>/<span
       lang=ZH-CN>运算符表达式</span>/<span lang=ZH-CN>标点符号）。</span></span></b><b><span
@@ -37327,7 +37327,7 @@ lang=ZH-CN>语法组件</span>/IDE<span lang=ZH-CN>字典组件的迭代直至�
       style='color:#00B050'>面向语句实例</span></span></b><b><span style='font-size:
       10.0pt;font-family:黑体;color:#00B050'>/<span lang=ZH-CN>面向语句块实例”、</span></span></b><b><span
       lang=ZH-CN style='font-size:10.0pt;font-family:黑体'>“<span
-      style='color:#00B050'>面向字面实例”</span>、“<span style='color:#00B050'>面向令牌实例”</span>、“<span
+      style='color:#00B050'>面向字面实例”</span>、“<span style='color:#00B050'>面向词元实例”</span>、“<span
       style='color:#00B050'>面向词汇实例</span></span></b><b><span style='font-size:
       10.0pt;font-family:黑体;color:#00B050'>/<span lang=ZH-CN>面向关键词实例</span>/<span
       lang=ZH-CN>面向标识符</span>ID<span lang=ZH-CN>实例</span>/<span lang=ZH-CN>面向名称实例</span>/<span
@@ -37479,13 +37479,13 @@ lang=ZH-CN>语法组件</span>/IDE<span lang=ZH-CN>字典组件的迭代直至�
         宋体'><span class=MsoEndnoteReference><span style='font-size:10.0pt;
         font-family:宋体'>[106]</span></span></span></span></a><sup><span
         style='font-size:10.0pt;font-family:宋体'>]</span></sup><span
-        style='font-size:10.0pt;font-family:宋体'>/ANTLR<span lang=ZH-CN>令牌</span><sup>[</sup></span><a
+        style='font-size:10.0pt;font-family:宋体'>/ANTLR<span lang=ZH-CN>词元</span><sup>[</sup></span><a
         href="#_edn107" name="_ednref107" title=""><span style='font-size:10.5pt;
         font-family:"Times New Roman",serif'>[107]</span></a><sup><span
         style='font-size:10.0pt;font-family:宋体'>]</span></sup><span lang=ZH-CN
         style='font-size:10.0pt;font-family:宋体'>（</span><b><span
         style='font-size:10.0pt;font-family:宋体;color:#00B050'>ANTLR</span></b><b><span
-        lang=ZH-CN style='font-size:10.0pt;font-family:宋体;color:#00B050'>令牌是</span></b><b><span
+        lang=ZH-CN style='font-size:10.0pt;font-family:宋体;color:#00B050'>词元是</span></b><b><span
         style='font-size:10.0pt;color:#00B050'>C#</span></b><b><span
         lang=ZH-CN style='font-size:10.0pt;font-family:宋体;color:#00B050'>思维语言的最小语义单元、是</span></b><b><span
         style='font-size:10.0pt;color:#00B050'>C#</span></b><b><span
@@ -37493,7 +37493,7 @@ lang=ZH-CN>语法组件</span>/IDE<span lang=ZH-CN>字典组件的迭代直至�
         style='font-size:10.0pt'>C#</span><span lang=ZH-CN style='font-size:
         10.0pt;font-family:宋体'>思维语言代码的字符序列的视角，字符</span><span lang=ZH-CN
         style='font-family:宋体'>序列</span><span style='font-size:10.0pt'>↔</span><span
-        lang=ZH-CN style='font-size:10.0pt;font-family:宋体'>令牌</span><span
+        lang=ZH-CN style='font-size:10.0pt;font-family:宋体'>词元</span><span
         style='font-size:10.0pt'>↔</span><span lang=ZH-CN style='font-size:
         10.0pt;font-family:宋体'>词汇</span><span style='font-size:10.0pt'>/</span><span
         lang=ZH-CN style='font-size:10.0pt;font-family:宋体'>关键词</span><span
@@ -37507,9 +37507,9 @@ lang=ZH-CN>语法组件</span>/IDE<span lang=ZH-CN>字典组件的迭代直至�
         10.0pt;font-family:宋体'>运算符表达式</span><span style='font-size:10.0pt'>/</span><span
         lang=ZH-CN style='font-size:10.0pt;font-family:宋体'>标点符号</span><span
         lang=ZH-CN style='font-size:10.0pt;font-family:宋体'>）（</span><span
-        style='font-size:10.0pt;font-family:宋体'>ANTLR<span lang=ZH-CN>令牌规则，基于词汇整体封装</span>/<span
-        lang=ZH-CN>拆装令牌。</span>BPE/WordPiece/SentencePiece<span lang=ZH-CN>等等令牌规则，基于词汇前缀后缀封装</span>/<span
-        lang=ZH-CN>拆装令牌）。至此，已经抵达</span>C#<span lang=ZH-CN>思维语言封装</span>/<span
+        style='font-size:10.0pt;font-family:宋体'>ANTLR<span lang=ZH-CN>词元规则，基于词汇整体封装</span>/<span
+        lang=ZH-CN>拆装词元。</span>BPE/WordPiece/SentencePiece<span lang=ZH-CN>等等词元规则，基于词汇前缀后缀封装</span>/<span
+        lang=ZH-CN>拆装词元）。至此，已经抵达</span>C#<span lang=ZH-CN>思维语言封装</span>/<span
         lang=ZH-CN>拆装的最微观层次。</span></span></p>
         <p class=MsoNormal style='margin-top:7.2pt'><span lang=ZH-CN
         style='font-size:10.0pt;font-family:黑体'>注：</span><span
@@ -37523,7 +37523,7 @@ lang=ZH-CN>语法组件</span>/IDE<span lang=ZH-CN>字典组件的迭代直至�
         lang=ZH-CN>等等</span>,<span lang=ZH-CN>多媒体</span></span><span
         lang=ZH-CN style='font-family:黑体'>序列</span><span style='font-size:10.0pt;
         font-family:"Courier New"'>↔</span><span lang=ZH-CN style='font-size:
-        10.0pt;font-family:黑体'>多媒体序列的令牌</span><span style='font-size:10.0pt;
+        10.0pt;font-family:黑体'>多媒体序列的词元</span><span style='font-size:10.0pt;
         font-family:"Courier New"'>↔</span><span lang=ZH-CN style='font-size:
         10.0pt;font-family:黑体'>多媒体序列的切片</span><span style='font-size:10.0pt;
         font-family:"Courier New"'>↔</span><span lang=ZH-CN style='font-size:
@@ -37918,14 +37918,14 @@ lang=ZH-CN>语法组件</span>/IDE<span lang=ZH-CN>字典组件的迭代直至�
         style='font-size:9.0pt'>二</span><b><span lang=ZH-CN style='font-size:
         9.0pt;font-family:黑体'>、</span></b><span lang=ZH-CN style='font-size:
         9.0pt'>“数据类型”“函数类型”</span><span lang=ZH-CN style='font-size:10.0pt'>→</span><span
-        lang=ZH-CN style='font-size:9.0pt'>语句块流程、字面、令牌（词汇</span><span
+        lang=ZH-CN style='font-size:9.0pt'>语句块流程、字面、词元（词汇</span><span
         style='font-size:9.0pt'>/<span lang=ZH-CN>关键词</span>/<span lang=ZH-CN>标识符</span>ID/<span
         lang=ZH-CN>名称</span>/<span lang=ZH-CN>标记</span>/<span lang=ZH-CN>运算符表达式</span>/<span
         lang=ZH-CN>标点符号）。</span></span><span lang=ZH-CN style='font-size:10.0pt'>此时也即“<span
         style='color:#00B050'>面向语句实例</span></span><span style='font-size:10.0pt;
         color:#00B050'>/<span lang=ZH-CN>面向语句块实例”、</span></span><span
         lang=ZH-CN style='font-size:10.0pt'>“<span style='color:#00B050'>面向字面实例”</span>、“<span
-        style='color:#00B050'>面向令牌实例”</span>、“<span style='color:#00B050'>面向词汇实例</span></span><span
+        style='color:#00B050'>面向词元实例”</span>、“<span style='color:#00B050'>面向词汇实例</span></span><span
         style='font-size:10.0pt;color:#00B050'>/<span lang=ZH-CN>面向关键词实例</span>/<span
         lang=ZH-CN>面向标识符</span>ID<span lang=ZH-CN>实例</span>/<span lang=ZH-CN>面向名称实例</span>/<span
         lang=ZH-CN>面向标记实例”<b>（本第二层次→第一层次的数字思维语言本质地迭代</b></span><b>……<span
@@ -38184,12 +38184,12 @@ lang=ZH-CN>语法组件</span>/IDE<span lang=ZH-CN>字典组件的迭代直至�
         inter-ideograph;text-indent:0cm;layout-grid-mode:char;word-break:break-all'><span
         style='font-size:9.0pt'>三</span><span lang=ZH-CN style='font-size:9.0pt'>、“属性类型”“方法类型”</span><span
         lang=ZH-CN style='font-size:10.0pt'>→</span><span lang=ZH-CN
-        style='font-size:9.0pt'>语句块流程、字面、令牌（词汇</span><span style='font-size:
+        style='font-size:9.0pt'>语句块流程、字面、词元（词汇</span><span style='font-size:
         9.0pt'>/<span lang=ZH-CN>关键词</span>/<span lang=ZH-CN>标识符</span>ID/<span
         lang=ZH-CN>名称</span>/<span lang=ZH-CN>标记</span>/<span lang=ZH-CN>运算符表达式</span>/<span
         lang=ZH-CN>标点符号</span>/<span lang=ZH-CN>宏替换）。</span></span><span
         lang=ZH-CN style='font-size:10.0pt'>此时也即“面向语句实例</span><span
-        style='font-size:10.0pt'>/<span lang=ZH-CN>面向语句块实例”、“面向字面实例”、“面向令牌实例”、“面向词汇实例</span>/<span
+        style='font-size:10.0pt'>/<span lang=ZH-CN>面向语句块实例”、“面向字面实例”、“面向词元实例”、“面向词汇实例</span>/<span
         lang=ZH-CN>面向关键词实例</span>/<span lang=ZH-CN>面向标识符</span>ID<span
         lang=ZH-CN>实例</span>/<span lang=ZH-CN>面向名称实例</span>/<span lang=ZH-CN>面向标记实例”<b>（本第二层次→第一层次的数字思维语言本质地迭代</b></span><b>……<span
         lang=ZH-CN>）</span></b><span lang=ZH-CN>。</span></span></p>
@@ -41206,7 +41206,7 @@ lang=ZH-CN>语法组件</span>/IDE<span lang=ZH-CN>字典组件的迭代直至�
       10.0pt;font-family:宋体'>。即，封装计算“<a name=万物皆可embedding向量化>实践</a></span><span
       style='font-size:10.0pt;font-family:宋体'>(<span lang=ZH-CN>数据读写封装</span>)<span
       lang=ZH-CN>的原始数据的哲学</span>(<span lang=ZH-CN>智能建构生成</span>)<span
-      lang=ZH-CN>”。即，“<b>万物皆可数据令牌化成为令牌作为最基本单元的语义特征提取的千亿神经元多层网络自动训练学习的语义特征嵌入向量化的语义特征距离匹配检索的向量数据库的</b></span><b>Transformer<span
+      lang=ZH-CN>”。即，“<b>万物皆可数据词元化成为词元作为最基本单元的语义特征提取的千亿神经元多层网络自动训练学习的语义特征嵌入向量化的语义特征距离匹配检索的向量数据库的</b></span><b>Transformer<span
       lang=ZH-CN>大概率推断统计地计算</span></b><span lang=ZH-CN>……”。即，</span></span><span
       lang=ZH-CN style='font-family:宋体'>基于</span><span
       lang=ZH-CN style='font-family:宋体'>公式</span><span lang=ZH-CN> </span>3‑12<span
@@ -46626,9 +46626,9 @@ style='font-size:9.0pt'>Trnsformers</span><span lang=ZH-CN style='font-size:
 9.0pt;font-family:宋体'>使用的三种主要分词器</span><span style='font-size:9.0pt'>BPE(Byte
 Pair Encoding)/WordPiece/SentencePiece</span><span lang=ZH-CN style='font-size:
 9.0pt;font-family:宋体'>的</span><span lang=ZH-CN style='font-size:9.0pt'> </span><span
-style='font-size:9.0pt'>“</span><span lang=ZH-CN style='font-size:9.0pt;
-font-family:宋体'>词汇字词</span><span style='font-size:9.0pt'>”</span><span
-lang=ZH-CN style='font-size:9.0pt;font-family:宋体'>令牌生成器</span><span
+style='font-size:9.0pt'>“Word Token</span><span lang=ZH-CN style='font-size:
+9.0pt;font-family:宋体'>词元</span><span style='font-size:9.0pt'>”</span><span
+lang=ZH-CN style='font-size:9.0pt;font-family:宋体'>生成器</span><span
 style='font-size:9.0pt'>Tokenizers[EB/OL].[ 2021-05-08].</span> <span
 class=MsoHyperlink><a href="https://zhuanlan.zhihu.com/p/370551834?utm_id=0">https://zhuanlan.zhihu.com/p/370551834?utm_id=0</a></span><span
 lang=ZH-CN style='font-size:9.0pt;font-family:宋体'>。若以</span><span
@@ -46645,7 +46645,9 @@ style='font-size:9.0pt'>bc</span><span lang=ZH-CN style='font-size:9.0pt;
 font-family:宋体'>”，得到：</span><span style='font-size:9.0pt'>e:3,a:2,bcd:4</span><span
 lang=ZH-CN style='font-size:9.0pt;font-family:宋体'>。最后，返回词汇</span><span
 style='font-size:9.0pt'>{e,a,bcd}</span><span lang=ZH-CN style='font-size:9.0pt;
-font-family:宋体'>，用这个词汇来代替原始词汇，可以无损压缩还原地实现“词汇分拆成为词汇子词”。</span></p>
+font-family:宋体'>，用这个词汇来代替原始词汇，可以无损压缩还原地实现“词汇分拆成为</span><span style='font-size:
+9.0pt'>Word Token</span><span lang=ZH-CN style='font-size:9.0pt;font-family:
+宋体'>词元”。</span></p>
 
 <p class=MsoNormal align=left style='margin-left:17.95pt;text-align:left;
 text-indent:-3.8pt;word-break:break-all'><span lang=ZH-CN style='font-size:
@@ -47047,7 +47049,7 @@ lang=ZH-CN style='font-size:9.0pt;font-family:宋体'>。</span></p>
 <p class=MsoNormal align=left style='margin-left:18.0pt;text-align:left;
 text-indent:-18.0pt;word-break:break-all'><a href="#_ednref121" name="_edn121"
 title=""></a><span style='font-size:9.0pt'>[<span style='font-size:9.0pt;
-font-family:"Times New Roman",serif'>[121]</span>] Microsoft. .NET + AI
+font-family:"Times New Roman",serif'>[121]</span>]Microsoft. .NET + AI
 ecosystem tools and SDKs [EB/OL].[2025-11-10].</span> <span class=MsoHyperlink><span
 style='font-size:9.0pt'><a
 href="https://learn.microsoft.com/en-us/dotnet/ai/dotnet-ai-ecosystem">https://learn.microsoft.com/en-us/dotnet/ai/dotnet-ai-ecosystem</a></span></span><span
