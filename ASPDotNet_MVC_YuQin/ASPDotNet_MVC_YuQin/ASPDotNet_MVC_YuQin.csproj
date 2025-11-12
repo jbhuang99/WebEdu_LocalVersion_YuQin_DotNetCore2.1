@@ -100,6 +100,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
 
   <ItemGroup>
     <Compile Remove="Controllers\BroweringOfTextbookController.cs" />
+    <Compile Remove="Controllers\CreateTextController - Copy.cs" />
     <Compile Remove="Controllers\Interop_CSInteropCPPCOMTry.cs" />
     <Compile Remove="Controllers\Interop_CSInteropCPPDLLTry.cs" />
     <Compile Remove="Models\Blazor_WebAssembly_PWA_YuQin_API\Student.cs" />
@@ -178,6 +179,8 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
 
   <ItemGroup>
     <PackageReference Include="Bundle.Microsoft.Office.Interop" Version="15.0.4569" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.3.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
     <PackageReference Include="IronPython" Version="3.4.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
@@ -195,6 +198,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.6.0" />
+    <PackageReference Include="OpenXmlPowerTools" Version="4.5.3.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿///** //不删除-客户端操作系统端可能可以使用Bundle.Microsoft.Office.Interop之类COM
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -14,6 +15,7 @@ using Microsoft.Office.Interop.Word;
 //using Microsoft.Office.Core;//引用不了。本来说可以设置word另存为utf8格式的.htm
 using System.Text;
 using WebEdu_LocalVersion_YuQin_DotNetCore21.Common;
+
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
 {
@@ -33,28 +35,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
             // sFileName准备用作文件读取；
             return Content("<HTML><HEAD><TITLE>课文</TITLE><BODY><div contenteditable='true' style='width:100%;height:100%;text-align:center;vertical-align:middle;'><span style='line-height: 400px;'>该条目尚没有对应的课文，这是自动创建的文本，请编辑</span></div></BODY ></HTM>", "text/html", System.Text.Encoding.UTF8);//不知为什么，必须""嵌套''，否则提示“字符文本中字符太多”错误
         }
-        // GET api/values
-        /**
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-            **/
 
-        // GET api/values/5
-        /**
-[HttpGet("{id}")]
-public ActionResult<string> Get(int id)
-{
-           return "value";
-}
-        **/
-        // POST api/values
-        [HttpPost]
-        /**public void Post([FromBody] string value)
-{
-}**/
         public async Task<IActionResult> Post()//ASP.NET MVC 操作支持使用简单的模型绑定（针对较小文件）或流式处理（针对较大文件）上传一个或多个文件。(在此选择流式处理）)
         {
             // return (Content(Request.Query["FolderAndFileName"]));
@@ -177,3 +158,284 @@ public ActionResult<string> Get(int id)
 
     }
 }
+//**/
+
+/**
+ ////不删除-更适合Web服务端,可以不使用Bundle.Microsoft.Office.Interop之类COM。但是有点小问题。
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+//using WebEdu_LocalVersion_YuQin_DotNetCore21.Models;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.FileProviders;
+//using Microsoft.Office.Core;
+//using Microsoft.Office.Interop.Word;
+//using Microsoft.Office.Core;//引用不了。本来说可以设置word另存为utf8格式的.htm
+using System.Text;
+using WebEdu_LocalVersion_YuQin_DotNetCore21.Common;
+using DocumentFormat.OpenXml.Packaging;
+using OpenXmlPowerTools;
+//using HtmlAgilityPack;
+using System.Xml.Linq;
+
+namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
+{
+    public class CreateTextController : Controller
+    {
+        public CreateTextController(IHostingEnvironment hostingEnvironment)//通过注入 IHostingEnvironment 服务对象来取得Web根目录和内容根目录的物理路径
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
+        private IHostingEnvironment _hostingEnvironment { get; }
+        //private IFileProvider _fileProvider { get; }//ASP.NET Core 2.0提供了继承自接口IFileProvider的PhysicalFileProvider类型，用于受限地访问本地文件系统，它是对System.IO.File的一个封装。只能读文件系统？
+        // GET api/value
+        // private String CreatedHTML{ get; set; }
+        [HttpGet]
+        public IActionResult Get(String sFileName)
+        {
+            // sFileName准备用作文件读取；
+            return Content("<HTML><HEAD><TITLE>课文</TITLE><BODY><div contenteditable='true' style='width:100%;height:100%;text-align:center;vertical-align:middle;'><span style='line-height: 400px;'>该条目尚没有对应的课文，这是自动创建的文本，请编辑</span></div></BODY ></HTM>", "text/html", System.Text.Encoding.UTF8);//不知为什么，必须""嵌套''，否则提示“字符文本中字符太多”错误
+        }
+
+
+        
+        // POST api/values
+        [HttpPost]
+
+        public async Task<IActionResult> Post()//ASP.NET MVC 操作支持使用简单的模型绑定（针对较小文件）或流式处理（针对较大文件）上传一个或多个文件。(在此选择流式处理）)
+        {
+            // return (Content(Request.Query["FolderAndFileName"]));
+            //判断是本机版还是服务器版，服务器不允许上传
+
+            if (new LocalVersionOrServerVersion().IsLocalVersion(this.Request.Host.ToUriComponent()))
+            {
+                IFormFileCollection files = Request.Form.Files;
+                long size = files.Sum(f => f.Length);
+                string webRootPath = _hosting_environment_safe();
+                string contentRootPath = _hostingEnvironment.ContentRootPath;
+                String filePathPartTemp = "\\webCourse\\lessons\\content\\book\\";
+                String filePathAll = "";
+                String FolderPath = webRootPath + filePathPartTemp + Request.Query["FolderAndFileName"];
+                foreach (var formFile in files)
+                {
+                    if (formFile.Length > 0)
+                    {
+                        string fileExt = formFile.FileName.Substring(formFile.FileName.IndexOf("."), formFile.FileName.Length - formFile.FileName.IndexOf(".")); //文件扩展名，含“.”
+                        long fileSize = formFile.Length; //获得文件大小，以字节为单位
+
+                        Directory.CreateDirectory(FolderPath);
+                        String filePath = FolderPath + "\\" + Request.Query["FolderAndFileName"] + fileExt;
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await formFile.CopyToAsync(stream);
+                        }
+                        filePathAll += filePath;
+
+                        // ----- Replace COM Interop conversion with Open XML + OpenXmlPowerTools conversion -----
+                        try
+                        {
+                            // Only handle .docx (if .doc, you should convert client-side or use LibreOffice/commercial tool)
+                            if (string.Equals(fileExt, ".docx", StringComparison.OrdinalIgnoreCase))
+                            {
+                                var html = ConvertDocxToHtml(filePath, Request.Query["FolderAndFileName"]);
+
+                                // append the same popup/menu/scripts used previously
+                                string popupAndScripts = "<!--右键菜单开始 --><div id='popupDiv' onclick='fnPopupClosePopup();' oncontextmenu='fnPopupContextMenu();' style='position:fixed;z-Index:1000;margin: 2px; border: 1px;   overflow:visible;  font-size: 11px; cursor: default;display:none;'><div style='position: relative;' onmouseover='fnPopupMouseOver();' onmouseout='fnPopupMouseOut();'><div title='刷新标题面' onclick='location.reload();'>刷新</div><div title='单击将在是否可以在线编辑课文的之间切换!' onclick='if(document.body.contentEditable==true) { document.body.contentEditable = false; } else { document.body.contentEditable = true;}'>课文编辑切换</div><div title='编辑后可保存编辑结果' onclick='fnSave();'>保存</div><div title='打开帮助文档' onclick='fnHelp();'>帮助</div></div></div><!--右键菜单结束-->";
+                                string scripts = "<script id='sIdScriptAutoAddedForDynFunction1' src='../../../../common/script/content.js'></script><script id='sIdScriptAutoAddedForDynFunction2' src='../../../../common/script/Popup.js'></script><script id='sIdScriptAutoAddedForDynFunction3'>document.body.onload=fnOnLoad;</script>";
+
+                                // ensure charset meta tag exists or replace existing head
+                                if (!html.Contains("<meta", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    // try to insert simple head with utf-8
+                                    html = "<!doctype html><html><head><meta charset='utf-8' /><title>" + Request.Query["FolderAndFileName"] + "</title></head><body>" + html + "</body></html>";
+                                }
+
+                                // inject popup/scripts before closing body
+                                int bodyCloseIndex = html.LastIndexOf("</body>", StringComparison.OrdinalIgnoreCase);
+                                if (bodyCloseIndex >= 0)
+                                {
+                                    html = html.Insert(bodyCloseIndex, popupAndScripts + scripts);
+                                }
+                                else
+                                {
+                                    html += popupAndScripts + scripts;
+                                }
+
+                                // write to .htm using UTF-8
+                                var outPath = Path.Combine(FolderPath, Request.Query["FolderAndFileName"] + ".htm");
+                                System.IO.File.WriteAllText(outPath, html, Encoding.UTF8);
+
+                                // optionally delete original .docx to match old behavior
+                                try
+                                {
+                                    System.IO.File.Delete(filePath);
+                                }
+                                catch
+                                {
+                                    // ignore delete errors
+                                }
+                            }
+                            else
+                            {
+                                // for .doc (old binary) you may call LibreOffice headless or return an error
+                                // For now, just keep the uploaded file and let existing flow attempt to read .htm if present
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            // bubble up meaningful error
+                            throw new Exception("DOCX -> HTML conversion failed: " + Ex.Message, Ex);
+                        }
+                        // ----- end replacement -----
+                    }
+                    else
+                    {
+                        string fileExt = formFile.FileName.Substring(formFile.FileName.IndexOf("."), formFile.FileName.Length - formFile.FileName.IndexOf(".")); //文件扩展名，含“.”
+                        long fileSize = formFile.Length; //获得文件大小，以字节为单位                    
+                                                         //String FolderPath = webRootPath + filePathPartTemp + Request.Query["FolderAndFileName"];
+                        Directory.CreateDirectory(FolderPath);
+                        String filePath = FolderPath + "\\" + Request.Query["FolderAndFileName"] + fileExt;
+                        filePathAll += filePath;
+                    }
+                }
+
+                // Previous code read the converted .htm and appended scripts; now conversion already wrote .htm with utf-8 and injected scripts.
+                return Ok(new { count = files.Count, size, filePathAll, host = this.Request.Host.ToUriComponent() });
+            }
+            else { return Ok("这是服务器版（或者是本机版发布为了服务器版的方式运行），不允许直接上传！请在本机版制作好后（本机版无需登录）,连接服务器版（课程资源管理员的账号登录连接服务器版），上传本机版中的资源到服务器版!" + this.Request.Host.ToUriComponent()); }
+
+        }
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
+
+        // ---------------------------
+        // Helper: convert docx -> HTML using OpenXmlPowerTools and embed images as base64
+        // ---------------------------
+        private static string ConvertDocxToHtml(string docxPath, string pageTitle = null)
+        {
+            byte[] byteArray = System.IO.File.ReadAllBytes(docxPath);
+            using (var mem = new MemoryStream())
+            {
+                mem.Write(byteArray, 0, byteArray.Length);
+                // IMPORTANT: rewind the MemoryStream before opening the package
+                mem.Seek(0, SeekOrigin.Begin);
+
+                using (var wordDoc = WordprocessingDocument.Open(mem, false))
+                {
+                    var settings = new HtmlConverterSettings()
+                    {
+                        PageTitle = pageTitle ?? Path.GetFileNameWithoutExtension(docxPath),
+                        FabricateCssClasses = true,
+                        CssClassPrefix = "oxp-",
+                        ImageHandler = imageInfo =>
+                        {
+                            // robust image extraction across OpenXmlPowerTools versions
+                            byte[] imgBytes = null;
+                            try
+                            {
+                                var bytesProp = imageInfo.GetType().GetProperty("ImageBytes");
+                                if (bytesProp != null)
+                                {
+                                    imgBytes = bytesProp.GetValue(imageInfo) as byte[];
+                                }
+
+                                if (imgBytes == null)
+                                {
+                                    var getStreamMethod = imageInfo.GetType().GetMethod("GetStream");
+                                    if (getStreamMethod != null)
+                                    {
+                                        using (var s = (System.IO.Stream)getStreamMethod.Invoke(imageInfo, null))
+                                        using (var ms = new System.IO.MemoryStream())
+                                        {
+                                            s.CopyTo(ms);
+                                            imgBytes = ms.ToArray();
+                                        }
+                                    }
+                                }
+
+                                if (imgBytes == null)
+                                {
+                                    var imagePartProp = imageInfo.GetType().GetProperty("ImagePart");
+                                    if (imagePartProp != null)
+                                    {
+                                        var imagePart = imagePartProp.GetValue(imageInfo);
+                                        if (imagePart != null)
+                                        {
+                                            var getStream = imagePart.GetType().GetMethod("GetStream", Array.Empty<Type>());
+                                            if (getStream != null)
+                                            {
+                                                using (var s = (System.IO.Stream)getStream.Invoke(imagePart, null))
+                                                using (var ms = new System.IO.MemoryStream())
+                                                {
+                                                    s.CopyTo(ms);
+                                                    imgBytes = ms.ToArray();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            catch
+                            {
+                                imgBytes = null;
+                            }
+
+                            if (imgBytes == null || imgBytes.Length == 0)
+                                return null;
+
+                            string base64 = Convert.ToBase64String(imgBytes);
+                            string imgSrc = $"data:{imageInfo.ContentType};base64,{base64}";
+
+                            var img = new XElement(Xhtml.img,
+                                new XAttribute("src", imgSrc),
+                                imageInfo.ImgStyleAttribute ?? null,
+                                imageInfo.AltText != null ? new XAttribute("alt", imageInfo.AltText) : null);
+
+                            return img;
+                        }
+                    };
+
+                    XElement htmlElement = HtmlConverter.ConvertToHtml(wordDoc, settings);
+
+                    var html = new StringBuilder();
+                    html.Append("<!doctype html><html><head><meta charset='utf-8' /><title>");
+                    html.Append(System.Net.WebUtility.HtmlEncode(settings.PageTitle));
+                    html.Append("</title></head><body>");
+                    html.Append(htmlElement.ToString(SaveOptions.DisableFormatting));
+                    html.Append("</body></html>");
+                    return html.ToString();
+                }
+            }
+        }
+
+        static class Xhtml
+        {
+            public static readonly XNamespace ns = "http://www.w3.org/1999/xhtml";
+            public static readonly XName img = ns + "img";
+        }
+
+        // safe getter for hosting env root
+        private string _hosting_environment_safe()
+        {
+            // protect against null
+            return _hostingEnvironment?.WebRootPath ?? Directory.GetCurrentDirectory();
+        }
+    }
+}
+**/
+
