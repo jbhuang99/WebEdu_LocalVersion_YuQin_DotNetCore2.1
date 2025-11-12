@@ -480,12 +480,12 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行
                         var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                        document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer是："+oTemp.output.text;
+                        document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.output.text;
                       
                         window.speechSynthesis.cancel();
                           /**
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+oTemp.output.text); 
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+oTemp.output.text); 
                      if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
@@ -499,7 +499,67 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer是"+sTempErr); 
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
+                     window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
+                    }
+                }
+        }
+}
+
+function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest() {
+    fnToggleEventSoureElementColor();
+    window.isRecognizingSystemExternal = false;
+     window.speechSynthesis.cancel(); 
+            var sPrompt = document.getElementById("idPrompt").value;
+             window.speechSynthesis.cancel();
+                     //TTS
+             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是“"+sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
+             window.speechSynthesis.speak(utteranceExternalPrompt); 
+            alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
+             document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+            var sURL = "/QWen/index?queryString=" + sPrompt;
+            // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
+           // open(sURL, "ServerSideCallAIGCAnswerCharactor");
+           var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+           xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行
+                        var oTemp=JSON.parse(xmlHttpRequest.responseText);
+                        document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）：";
+                      
+                        window.speechSynthesis.cancel();
+                          /**
+                     //TTS
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+oTemp.output.text); 
+                     if(document.getElementById("id_TTS").disabled==false){
+                     window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
+                     utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
+                     **/
+                   // document.getElementById("id_TTS_Play").click();
+                   fnTTS_Play(0);
+                   // open("../options/NotFindHomeworkAndTest.htm","_blank");
+    var oIframe = document.createElement('iframe');
+    oIframe.src = "../options/NotFindHomeworkAndTest.htm";
+    oIframe.frameBorder = '0';
+    oIframe.allowFullscreen = true;    
+    oIframe.style.width = '100%';
+    oIframe.style.height = '100%';
+    oIframe.style.display = 'block';
+    oIframe.style.border = '0';
+    document.getElementById("transcriptSystemExternal").appendChild(oIframe);                 
+                     }
+                    
+                    else {
+                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
+                        alert(sTempErr);
+                         window.speechSynthesis.cancel();
+                     //TTS
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }
