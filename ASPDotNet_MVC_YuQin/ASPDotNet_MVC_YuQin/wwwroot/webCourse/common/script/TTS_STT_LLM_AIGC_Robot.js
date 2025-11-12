@@ -520,6 +520,16 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest() {
             var sURL = "/QWen/index?queryString=" + sPrompt;
             // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
            // open(sURL, "ServerSideCallAIGCAnswerCharactor");
+           //以下作为测试无法实现调用外部AIGC的案例呈现而已。
+    var oIframe = document.createElement('iframe');
+    oIframe.src = "../options/NotFindHomeworkAndTest.htm";
+    oIframe.frameBorder = '0';
+    oIframe.allowFullscreen = true;    
+    oIframe.style.width = '100%';
+    oIframe.style.height = '100%';
+    oIframe.style.display = 'block';
+    oIframe.style.border = '0';
+    document.getElementById("transcriptSystemExternal").appendChild(oIframe);  
            var xmlHttpRequest = new XMLHttpRequest();
             xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
            xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
@@ -543,6 +553,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest() {
                    // document.getElementById("id_TTS_Play").click();
                    fnTTS_Play(0);
                    // open("../options/NotFindHomeworkAndTest.htm","_blank");
+                   //以下作为测试可以实现调用外部AIGC的案例呈现而已。
     var oIframe = document.createElement('iframe');
     oIframe.src = "../options/NotFindHomeworkAndTest.htm";
     oIframe.frameBorder = '0';
@@ -551,7 +562,8 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest() {
     oIframe.style.height = '100%';
     oIframe.style.display = 'block';
     oIframe.style.border = '0';
-    document.getElementById("transcriptSystemExternal").appendChild(oIframe);                 
+    document.getElementById("transcriptSystemExternal").appendChild(oIframe);  
+    
                      }
                     
                     else {
@@ -634,6 +646,33 @@ window.speechSynthesis.cancel();
 //window.isRecognizingSystemInternal = false;
 //window.recognitionSystemInternal = null; 为了配合语音朗读TTS，所以fnSTTOnResultSystemInternal中的停止语音识别STT，但是因为还未能实现打断语音朗读，所以暂时放弃。
     }
+
+ function  fnToggleInternalWidth(){
+     if(document.getElementById("tdSystemInternal").style.width=="50%"){
+      document.getElementById("tdSystemExternal").style.display="none";
+      document.getElementById("tdSystemExternal").style.width="0%";
+      document.getElementById("tdSystemInternal").style.width="100%";
+     }    
+     else{
+     document.getElementById("tdSystemInternal").style.display=null;
+     document.getElementById("tdSystemExternal").style.display=null;
+     document.getElementById("tdSystemInternal").style.width="50%";
+     document.getElementById("tdSystemExternal").style.width="50%";
+     }
+}
+ function  fnToggleExternalWidth(){
+     if(document.getElementById("tdSystemInternal").style.width=="50%"){
+      document.getElementById("tdSystemInternal").style.display="none";
+      document.getElementById("tdSystemInternal").style.width="0%";
+      document.getElementById("tdSystemExternal").style.width="100%";
+     }    
+     else{
+     document.getElementById("tdSystemInternal").style.display=null;
+     document.getElementById("tdSystemExternal").style.display=null;
+     document.getElementById("tdSystemInternal").style.width="50%";
+     document.getElementById("tdSystemExternal").style.width="50%";
+     }
+}
 /**AIGC官方声明：因为API Key容易泄露等等安全问题，所以当前不支持JS访问千问AIGC。
  *
  function fnidQwenAPIKeyConfirmOnClickSystemExternal(){
