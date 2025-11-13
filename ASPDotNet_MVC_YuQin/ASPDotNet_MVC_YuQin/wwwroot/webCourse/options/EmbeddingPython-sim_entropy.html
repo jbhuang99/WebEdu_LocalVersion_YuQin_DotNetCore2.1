@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>PyScript Similarity</title>
+    <title>EmbeddingPython-sim_entropy</title>
     <link rel="stylesheet"
           href="https://pyscript.net/releases/2025.11.1/core.css" />
     <script type="module"
@@ -91,213 +91,241 @@
             }
     </style>
 </head>
-    <body>
-        <div class="row-2col">
-            <div class="col">
-                <label title="请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><textarea id="sAIGCString" title="请在这里粘贴免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" style="width: 100%; resize: vertical; overflow:auto">ABCD01234</textarea>
-            </div>
-            <div class="col">
-                <label title="请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）： </label><textarea id="sKnowledgebaseString" title="请单击打开标准知识库搜索想要的字符序列。然后，请粘贴在这里！" style="width: 100%; resize: vertical; overflow: auto">01234ABCD</textarea>
-            </div>
+<body>
+    <div class="row-2col">
+        <div class="col">
+            <label title="请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><textarea id="sAIGCString" title="请在这里粘贴免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" style="width: 100%; resize: vertical; overflow:auto">ABCD1234</textarea>
         </div>
-        <div style="width: 90%"><button style="color:green;font-size:11px;" onclick='document.getElementById("sAccuracySimilarityForString").textContent=fnStringSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>准确性相似度：</button><span id="sAccuracySimilarityForString" style="font-size: 11px">这里将显示上述两个字符序列的准确性相似度（注：如果选用经典的字符编辑距离算法，上述两个字符序列的准确性相似度是0，客观性弱于在此的创新算法！）</span></div>
-        <!-- 使用 MicroPython 运行 -->
-        <script type="mpy" terminal>
-            import math
+        <div class="col">
+            <label title="请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）： </label><textarea id="sKnowledgebaseString" title="请单击打开标准知识库搜索想要的字符序列。然后，请粘贴在这里！" style="width: 100%; resize: vertical; overflow: auto">1234ABCD</textarea>
+        </div>
+    </div>
+    <div style="width: 90%"><button style="color:green;font-size:11px;" id="id_ButtonAccuracySimilarity">准确性相似度：</button><span id="sAccuracySimilarityForString" style="font-size: 11px">这里将显示上述两个字符序列的准确性相似度（注：如果选用经典的字符编辑距离算法，上述两个字符序列的准确性相似度是0，客观性弱于在此的创新算法！）</span></div>
+   
+    <!-- 使用Python运行(即type="py"),而非MicroPython运行（即type="mpy"） -->
+    <script type="py" terminal>
+        import math
+        ##以下必需使用Py而不能使用MicroPy运行，否则会报错
+        from js import document
+        from pyodide.ffi import create_proxy
 
-            def _all_substrings(s):
-                m = len(s)
-                return {s[i:j] for i in range(m) for j in range(i + 1, m + 1)}
+        def _all_substrings(s):
+            m = len(s)
+            return {s[i:j] for i in range(m) for j in range(i + 1, m + 1)}
 
-            def ad_maximal_common_substrings(s, t):
-                """
-                按“包含极大”的公共子串集合计算 ad（去掉所有被更长公共子串包含的短串）。
-                返回 (ad_val, maximal_list)：
-                  - ad_val: Σ l^2
-                  - maximal_list: 极大公共子串列表
-                """
-                subs_s = _all_substrings(s)
-                subs_t = _all_substrings(t)
-                common = subs_s.intersection(subs_t)
+        def ad_maximal_common_substrings(s, t):
+            """
+            按“包含极大”的公共子串集合计算 ad（去掉所有被更长公共子串包含的短串）。
+            返回 (ad_val, maximal_list)：
+              - ad_val: Σ l^2
+              - maximal_list: 极大公共子串列表
+            """
+            subs_s = _all_substrings(s)
+            subs_t = _all_substrings(t)
+            common = subs_s.intersection(subs_t)
 
-                # 按长度从大到小排序
-                commons = list(common)
-                commons.sort(key=len, reverse=True)
+            # 按长度从大到小排序
+            commons = list(common)
+            commons.sort(key=len, reverse=True)
 
-                maximal = []
-                for u in commons:
-                    # 若当前子串 u 不被已选的更长公共子串包含，则保留
-                    if not any(u in v for v in maximal):
-                        maximal.append(u)
+            maximal = []
+            for u in commons:
+                # 若当前子串 u 不被已选的更长公共子串包含，则保留
+                if not any(u in v for v in maximal):
+                    maximal.append(u)
 
-                ad_val = sum(len(x) ** 2 for x in maximal)
-                return ad_val, maximal
+            ad_val = sum(len(x) ** 2 for x in maximal)
+            return ad_val, maximal
 
-            def longest_common_substring_length(s, t):
-                m, n = len(s), len(t)
-                if m == 0 or n == 0:
-                    return 0
-                # dp[i][j] = 以 s[i-1], t[j-1] 结尾的最长公共子串长度
-                dp = [[0] * (n + 1) for _ in range(m + 1)]
-                max_len = 0
-                for i in range(1, m + 1):
-                    si = s[i - 1]
-                    for j in range(1, n + 1):
-                        if si == t[j - 1]:
-                            dp[i][j] = dp[i - 1][j - 1] + 1
-                            if dp[i][j] > max_len:
-                                max_len = dp[i][j]
-                        else:
-                            dp[i][j] = 0
-                return max_len
+        def longest_common_substring_length(s, t):
+            m, n = len(s), len(t)
+            if m == 0 or n == 0:
+                return 0
+            # dp[i][j] = 以 s[i-1], t[j-1] 结尾的最长公共子串长度
+            dp = [[0] * (n + 1) for _ in range(m + 1)]
+            max_len = 0
+            for i in range(1, m + 1):
+                si = s[i - 1]
+                for j in range(1, n + 1):
+                    if si == t[j - 1]:
+                        dp[i][j] = dp[i - 1][j - 1] + 1
+                        if dp[i][j] > max_len:
+                            max_len = dp[i][j]
+                    else:
+                        dp[i][j] = 0
+            return max_len
 
-            def longest_common_subsequence_length(s, t):
-                m, n = len(s), len(t)
-                dp = [[0] * (n + 1) for _ in range(m + 1)]
-                for i in range(1, m + 1):
-                    si = s[i - 1]
-                    for j in range(1, n + 1):
-                        if si == t[j - 1]:
-                            dp[i][j] = dp[i - 1][j - 1] + 1
-                        else:
-                            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
-                return dp[m][n]
+        def longest_common_subsequence_length(s, t):
+            m, n = len(s), len(t)
+            dp = [[0] * (n + 1) for _ in range(m + 1)]
+            for i in range(1, m + 1):
+                si = s[i - 1]
+                for j in range(1, n + 1):
+                    if si == t[j - 1]:
+                        dp[i][j] = dp[i - 1][j - 1] + 1
+                    else:
+                        dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+            return dp[m][n]
 
-            def levenshtein_distance(a, b):
-                if a == b:
-                    return 0
-                if not a:
-                    return len(b)
-                if not b:
-                    return len(a)
-                prev = list(range(len(b) + 1))
-                for i in range(1, len(a) + 1):
-                    curr = [i] + [0] * len(b)
-                    ai = a[i - 1]
-                    for j in range(1, len(b) + 1):
-                        cost = 0 if ai == b[j - 1] else 1
-                        curr[j] = min(
-                            prev[j] + 1,      # 删除
-                            curr[j - 1] + 1,  # 插入
-                            prev[j - 1] + cost  # 替换 / 不变
-                        )
-                    prev = curr
-                return prev[-1]
+        def levenshtein_distance(a, b):
+            if a == b:
+                return 0
+            if not a:
+                return len(b)
+            if not b:
+                return len(a)
+            prev = list(range(len(b) + 1))
+            for i in range(1, len(a) + 1):
+                curr = [i] + [0] * len(b)
+                ai = a[i - 1]
+                for j in range(1, len(b) + 1):
+                    cost = 0 if ai == b[j - 1] else 1
+                    curr[j] = min(
+                        prev[j] + 1,      # 删除
+                        curr[j - 1] + 1,  # 插入
+                        prev[j - 1] + cost  # 替换 / 不变
+                    )
+                prev = curr
+            return prev[-1]
 
-            def first_diff_index(s, t):
-                """
-                返回第一个不同字符的 1-based 位置：
-                  - 完全相同返回 0
-                  - 若是前缀关系，如 "abc" vs "abcdef"，返回 4
-                """
-                k = min(len(s), len(t))
-                for i in range(k):
-                    if s[i] != t[i]:
-                        return i + 1  # 1-based
-                return 0 if len(s) == len(t) else k + 1
+        def first_diff_index(s, t):
+            """
+            返回第一个不同字符的 1-based 位置：
+              - 完全相同返回 0
+              - 若是前缀关系，如 "abc" vs "abcdef"，返回 4
+            """
+            k = min(len(s), len(t))
+            for i in range(k):
+                if s[i] != t[i]:
+                    return i + 1  # 1-based
+            return 0 if len(s) == len(t) else k + 1
 
-            def sim_entropy(
-                s,
-                t,
-                lam=0.2,
-                alpha=0.4,
-                beta=0.2,
-                mode="exact",
-            ):
-                """
-                计算综合相似度。
+        def sim_entropy(
+            s,
+            t,
+            lam=0.2,
+            alpha=0.4,
+            beta=0.2,
+            mode="exact",
+        ):
+            """
+            计算综合相似度。
 
-                参数 mode:
-                  - "exact": ad = Σ l^2 over 极大公共子串; sim_ad = sqrt(ad)/n
-                  - "approx": S_sum = (LCSstr)^2; sim_ad = S_sum / ((|s|+|t|)*n)
+            参数 mode:
+              - "exact": ad = Σ l^2 over 极大公共子串; sim_ad = sqrt(ad)/n
+              - "approx": S_sum = (LCSstr)^2; sim_ad = S_sum / ((|s|+|t|)*n)
 
-                返回一个 dict:
-                  {
-                    "sim_ad": ...,
-                    "sim_final": ...,
-                    "ad": ...,
-                    "lcsstr": ...,
-                    "lcs": ...,
-                    "ld": ...,
-                    "delta": ...,
-                    "maximal_pieces": [...],
-                  }
-                """
-                # 两个都空：完全相同
-                if not s and not t:
-                    return {
-                        "sim_ad": 1.0,
-                        "sim_final": 1.0,
-                        "ad": 0,
-                        "lcsstr": 0,
-                        "lcs": 0,
-                        "ld": 0,
-                        "delta": 0,
-                        "maximal_pieces": [],
-                    }
-
-                # 其中一个为空
-                if not s or not t:
-                    Lm = max(len(s), len(t))
-                    base = 0.0
-                    return {
-                        "sim_ad": base,
-                        "sim_final": 0.0,
-                        "ad": 0,
-                        "lcsstr": 0,
-                        "lcs": 0,
-                        "ld": Lm,
-                        "delta": 1,
-                        "maximal_pieces": [],
-                    }
-
-                m, n = len(s), len(t)
-                Lm = max(m, n)
-
-                lcsstr = longest_common_substring_length(s, t)
-                if mode == "exact":
-                    ad_val, maximal = ad_maximal_common_substrings(s, t)
-                    sim_ad = (math.sqrt(ad_val) / n) if n > 0 else 0.0
-                elif mode == "approx":
-                    ad_val = lcsstr * lcsstr
-                    sim_ad = ad_val / ((m + n) * n) if n > 0 else 0.0
-                    maximal = []
-                else:
-                    raise ValueError('mode must be "exact" or "approx"')
-
-                lcs = longest_common_subsequence_length(s, t)
-                ld = levenshtein_distance(s, t)
-                delta = first_diff_index(s, t)
-
-                numerator = sim_ad * (1.0 + lam * (lcs / Lm))
-                denominator = 1.0 + alpha * (ld / Lm) + beta * ((Lm - delta) / Lm)
-                sim_final = 0.0 if denominator == 0 else numerator / denominator
-                # 限制在 [0, 1]
-                sim_final = max(0.0, min(1.0, sim_final))
-
+            返回一个 dict:
+              {
+                "sim_ad": ...,
+                "sim_final": ...,
+                "ad": ...,
+                "lcsstr": ...,
+                "lcs": ...,
+                "ld": ...,
+                "delta": ...,
+                "maximal_pieces": [...],
+              }
+            """
+            # 两个都空：完全相同
+            if not s and not t:
                 return {
-                    "sim_ad": sim_ad,
-                    "sim_final": sim_final,
-                    "ad": ad_val,
-                    "lcsstr": lcsstr,
-                    "lcs": lcs,
-                    "ld": ld,
-                    "delta": delta,
-                    "maximal_pieces": maximal,
+                    "sim_ad": 1.0,
+                    "sim_final": 1.0,
+                    "ad": 0,
+                    "lcsstr": 0,
+                    "lcs": 0,
+                    "ld": 0,
+                    "delta": 0,
+                    "maximal_pieces": [],
                 }
 
-            if __name__ == "__main__":
-                # 简单示例
-                s = "ABCD01234"
-                t = "01234ABCD"
-                r = sim_entropy(s, t, mode="exact")
+            # 其中一个为空
+            if not s or not t:
+                Lm = max(len(s), len(t))
+                base = 0.0
+                return {
+                    "sim_ad": base,
+                    "sim_final": 0.0,
+                    "ad": 0,
+                    "lcsstr": 0,
+                    "lcs": 0,
+                    "ld": Lm,
+                    "delta": 1,
+                    "maximal_pieces": [],
+                }
 
-                print("S, T =", s, ",", t)
-                print("maximal substrings:", r["maximal_pieces"])  # 期望：['01234', 'ABCD']（顺序无所谓）
-                print("ad =", r["ad"])                              # 期望：41 (= 5^2 + 4^2)
-                print("sim_ad =", r["sim_ad"])                      # 约 0.71
-                print("sim_final =", r["sim_final"])                # 综合指标
+            m, n = len(s), len(t)
+            Lm = max(m, n)
 
-        </script>
-    </body>
+            lcsstr = longest_common_substring_length(s, t)
+            if mode == "exact":
+                ad_val, maximal = ad_maximal_common_substrings(s, t)
+                sim_ad = (math.sqrt(ad_val) / n) if n > 0 else 0.0
+            elif mode == "approx":
+                ad_val = lcsstr * lcsstr
+                sim_ad = ad_val / ((m + n) * n) if n > 0 else 0.0
+                maximal = []
+            else:
+                raise ValueError('mode must be "exact" or "approx"')
+
+            lcs = longest_common_subsequence_length(s, t)
+            ld = levenshtein_distance(s, t)
+            delta = first_diff_index(s, t)
+
+            numerator = sim_ad * (1.0 + lam * (lcs / Lm))
+            denominator = 1.0 + alpha * (ld / Lm) + beta * ((Lm - delta) / Lm)
+            sim_final = 0.0 if denominator == 0 else numerator / denominator
+            # 限制在 [0, 1]
+            sim_final = max(0.0, min(1.0, sim_final))
+
+            return {
+                "sim_ad": sim_ad,
+                "sim_final": sim_final,
+                "ad": ad_val,
+                "lcsstr": lcsstr,
+                "lcs": lcs,
+                "ld": ld,
+                "delta": delta,
+                "maximal_pieces": maximal,
+            }
+
+        if __name__ == "__main__":
+            # 简单示例
+            # s = "ABCD1234"
+            s = document.getElementById("sAIGCString").value
+            # t = "1234ABCD"
+            t = document.getElementById("sKnowledgebaseString").value
+            r = sim_entropy(s, t, mode="exact")
+
+            print("S, T =", s, ",", t)
+            print("maximal substrings:", r["maximal_pieces"])  # 期望：['1234', 'ABCD']（顺序无所谓）
+            print("ad =", r["ad"])                              # 期望：41 (= 5^2 + 4^2)
+            print("sim_ad =", r["sim_ad"])                      # 约 0.71
+            print("sim_final =", r["sim_final"])                # 综合指标
+            #document.getElementById("sAccuracySimilarityForString").innerText = r["sim_final"]
+
+        def fnShowAccuracySimilarity(event):
+            # 简单示例
+            # s = "ABCD1234"
+            s = document.getElementById("sAIGCString").value
+            # t = "1234ABCD"
+            t = document.getElementById("sKnowledgebaseString").value
+            r = sim_entropy(s, t, mode="exact")
+
+            print("S, T =", s, ",", t)
+            print("maximal substrings:", r["maximal_pieces"])  # 期望：['1234', 'ABCD']（顺序无所谓）
+            print("ad =", r["ad"])                              # 期望：41 (= 5^2 + 4^2)
+            print("sim_ad =", r["sim_ad"])                      # 约 0.71
+            print("sim_final =", r["sim_final"])                # 综合指标
+            #document.getElementById("sAccuracySimilarityForString").innerText = r["sim_final"]
+            document.getElementById("sAccuracySimilarityForString").innerText = r["sim_final"]
+
+        # 使用 create_proxy 包装回调，避免 “borrowed proxy was automatically destroyed” 报错
+        fnShowAccuracySimilarity_proxy = create_proxy(fnShowAccuracySimilarity)
+        document.getElementById("id_ButtonAccuracySimilarity").addEventListener("click", fnShowAccuracySimilarity_proxy)
+    </script>
+
+
+</body>
 </html>
