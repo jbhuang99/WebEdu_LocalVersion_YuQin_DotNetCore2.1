@@ -290,20 +290,7 @@
                 "maximal_pieces": maximal,
             }
 
-        if __name__ == "__main__":
-            # 简单示例
-            # s = "ABCD1234"
-            s = document.getElementById("sAIGCString").value
-            # t = "1234ABCD"
-            t = document.getElementById("sKnowledgebaseString").value
-            r = sim_entropy(s, t, mode="exact")
 
-            print("S, T =", s, ",", t)
-            print("maximal substrings:", r["maximal_pieces"])  # 期望：['1234', 'ABCD']（顺序无所谓）
-            print("ad =", r["ad"])                              # 期望：41 (= 5^2 + 4^2)
-            print("sim_ad =", r["sim_ad"])                      # 约 0.71
-            print("sim_final =", r["sim_final"])                # 综合指标
-            #document.getElementById("sAccuracySimilarityForString").innerText = r["sim_final"]
 
         def fnShowAccuracySimilarity(event):
             # 简单示例
@@ -324,6 +311,21 @@
         # 使用 create_proxy 包装回调，避免 “borrowed proxy was automatically destroyed” 报错
         fnShowAccuracySimilarity_proxy = create_proxy(fnShowAccuracySimilarity)
         document.getElementById("id_ButtonAccuracySimilarity").addEventListener("click", fnShowAccuracySimilarity_proxy)
+
+        if __name__ == "__main__":
+            # 简单示例
+            # s = "ABCD1234"
+            s = document.getElementById("sAIGCString").value
+            # t = "1234ABCD"
+            t = document.getElementById("sKnowledgebaseString").value
+            r = sim_entropy(s, t, mode="exact")
+
+            print("S, T =", s, ",", t)
+            print("maximal substrings:", r["maximal_pieces"])  # 期望：['1234', 'ABCD']（顺序无所谓）
+            print("ad =", r["ad"])                              # 期望：41 (= 5^2 + 4^2)
+            print("sim_ad =", r["sim_ad"])                      # 约 0.71
+            print("sim_final =", r["sim_final"])                # 综合指标
+            #document.getElementById("sAccuracySimilarityForString").innerText = r["sim_final"]
     </script>
 
 
