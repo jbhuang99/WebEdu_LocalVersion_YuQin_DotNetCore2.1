@@ -380,16 +380,23 @@
     </div>
         -->
                 <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的费用一般只需自己注册付费API Key的30%左右）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现。单击这里，默认需要登录本系统，然后可以试验调用AIGC生成Answer内容...）" style="text-align:justify">
-                    本系统的服务端听媒提问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen不会允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用，而且节省70%费用）（此外，请尽量选用本系统的语音对话听媒提问他创方的AIGC。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒提问他创方的AIGC，以后则将取消！单击“了解录音Prompt指令”按钮，则可查看相关视媒Prompt指令，而非视媒Prompt提问的特例）。请键入您的视媒Prompt提问：<input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" /><button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+                    本系统的服务端听媒提问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen不会允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用，而且节省70%费用）（此外，请尽量选用本系统的语音对话听媒提问他创方的AIGC。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒提问他创方的AIGC，以后则将取消！单击“了解录音Prompt指令”按钮，则可查看相关视媒Prompt指令，而非视媒Prompt提问的特例）。请键入您的视媒Prompt提问：<input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" />
+                    <table>
+                        <tr>
+                            <td>
+                                <button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor();'>
-                        确定<br/>【<span style="color:brown;font-weight:bold">“AIGC-LLM大语言模型”</span>回答生成的字符闲聊，用作本知识库之中的教材课文的拓展（注意思辨准确性）】【视媒（字符/图像/视频/2D/3D）/听媒/触媒/嗅媒/味媒之中的字符仅含】（已经基本实现...）
-</button>
-
-                    <button id="idButtonAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+                                    确定<br />【<span style="color:brown;font-weight:bold">“数智时代融合教育数智思维的大语言模型LLM驱动的教育智能对话Edu-AIGC-Chat（案例已经基本实现...）”：</span>Prompt提问/AIGC回答自主生成的字符闲聊，用作本知识库之中的教材课文的拓展（注意思辨准确性）】【Prompt提问/Answer问答（不含）Planning隐喻人脑的规划功能（不含）Memory隐喻人脑的记忆功能（不含）Tools隐喻人脑人体继承利用工具】【视媒（字符/图像/视频/2D/3D）/听媒/触媒/嗅媒/味媒】
+                                </button>
+                            </td>
+                            <td>
+                              <button id="idButtonAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTest();'>
-                        确定<br />【<span style="color:brown;font-weight:bold">“AIGC-Agent智能体”</span>回答生成的作业测验，用作本知识库之中的作业测验的拓展（注意思辨准确性）】【视媒（字符/图像/视频/2D/3D）/听媒/触媒/嗅媒/味媒之中的字符主导】（正在完善之中...）
-                    </button>
-
+                                        确定<br />【<span style="color:brown;font-weight:bold">“数智时代融合教育数智思维的大语言模型LLM驱动的教育智能体Edu-AIGC-Agent（案例正在完善之中...）”：</span>Prompt提问/AIGC回答自主生成的作业测验，用作本知识库之中的作业测验的拓展（注意思辨准确性）】【Prompt提问/Answer问答（包含）Planning隐喻人脑的规划功能（包含）Memory隐喻人脑的记忆功能（包含）Tools隐喻人脑人体继承利用工具】【视媒（字符/图像/视频/2D/3D）/听媒/触媒/嗅媒/味媒】
+                                    </button>
+                                    </td> 
+</tr>
+</table>
                     <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
                 </div>
                 <button id="startBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将开始【Prompt提问←语音对话→系统外部AIGC】的Prompt提问的麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案...." style="white-space: normal; font-size:12px">开始录音Prompt提问</button>
