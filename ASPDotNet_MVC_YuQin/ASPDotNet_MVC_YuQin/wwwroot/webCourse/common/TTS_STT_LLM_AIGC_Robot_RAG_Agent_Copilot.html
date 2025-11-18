@@ -102,15 +102,18 @@
                 <div>
                     <button id="closeSTTSystemInternal" onclick="window.close();">单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部</button>
                 </div>
+
+                <button id="startBtnSystemInternal" title="单击将开始【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话。系统将打开麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中..." style="white-space: normal; font-size:12px">开始录音Prompt指令</button>
+                <button id="stopBtnSystemInternal" title="单击将停止【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt指令</button>
+                <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" style="white-space: normal; font-size:12px" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'>了解录音Prompt指令</button>
+
                 <div title="" style="text-align:justify">
                     本系统的客户端浏览器的听媒指令本系统（请尽量选用本系统的语音对话听媒指令本系统。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒指令本系统，以后则将取消！单击“了解录音Prompt指令”按钮，可以查看相关视媒Prompt指令）。请键入您的Prompt指令：<input type="text" value="向下" style="display:inline;white-space: normal" id="idPromptDirective" /><button id="idButtonClientSideBrowserSTT" style="display:inline;white-space: normal" onclick='window.systemInternalRecognizingResultFlag=document.getElementById("idPromptDirective").value;fnTTSOnEndSystemInternal();'>
                         确定
                     </button>
                     <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
                 </div>
-                <button id="startBtnSystemInternal" title="单击将开始【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话。系统将打开麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中..." style="white-space: normal; font-size:12px">开始录音Prompt指令</button>
-                <button id="stopBtnSystemInternal" title="单击将停止【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt指令</button>
-                <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" style="white-space: normal; font-size:12px" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'>了解录音Prompt指令</button>
+
                 <div id="kernelDialogueSystemInternal" style="border: dashed; border-color: goldenrod; display: none">
                     <ol style="text-align:justify">
                         <li>切换系统外部语音对话（实际测试优化成为“外部”）（尚未实现）</li>
@@ -379,29 +382,31 @@
         <p id="idShowClientBrowserSidePromptAnswer" style="color:green;border:dashed">这里将呈现本系统的客户端浏览器访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>
     </div>
         -->
+                <button id="startBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将开始【Prompt提问←语音对话→系统外部AIGC】的Prompt提问的麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案...." style="white-space: normal; font-size:12px">开始录音Prompt提问</button>
+                <button id="stopBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将停止【Prompt提问←语音对话→系统外部AIGC】的Prompt提问的麦克风录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt提问</button>
+                <button id="understandKernelDialogueBtnSystemExternal" title="【Prompt提问←语音对话→系统外部AIGC】作为主导的时候，也需要【Prompt指令←语音对话→系统内部非AIGC】作为辅助。单击将切换显示作为辅助的【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemExternal()' style="white-space: normal; font-size:12px">了解录音Prompt指令</button>
+
                 <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的费用一般只需自己注册付费API Key的30%左右）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现）" style="text-align:justify">
-                    本系统的服务端听媒提问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen不会允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用，而且节省70%费用）（此外，请尽量选用本系统的语音对话听媒提问他创方的AIGC。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒提问他创方的AIGC，以后则将取消！单击“了解录音Prompt指令”按钮，则可查看相关视媒Prompt指令，而非视媒Prompt提问的特例）。请键入您的视媒Prompt提问<sapn title="单击打开自创方的知识库案例，可以用来对比AIGC生成内容的相似度准确性！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击这里可以打开知识库案例，可以用来对比AIGC生成内容的相似度准确性）：</sapn><input type="text" size="60" value="教育技术定义" style="display:inline;white-space: normal" id="idPrompt" onblur='document.getElementById("idInButtonCallAIGCAnswerCharactor").textContent="："+"“"+document.getElementById("idPrompt").value+"”";document.getElementById("idInButtonCallAIGCAnswerHomeworkAndTest").textContent="："+"“"+document.getElementById("idPrompt").value+"”的一道高质量单选题，适合用于考试测验";'/>
+                    本系统的服务端听媒提问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen不会允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用，而且节省70%费用）（此外，请尽量选用本系统的语音对话听媒提问他创方的AIGC。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒提问他创方的AIGC，以后则将取消！单击“了解录音Prompt指令”按钮，则可查看相关视媒Prompt指令，而非视媒Prompt提问的特例）。请键入您的视媒Prompt提问<sapn title="单击打开自创方的知识库案例，可以用来对比AIGC生成内容的相似度准确性！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击这里可以打开知识库案例，可以用来对比AIGC生成内容的相似度准确性）：</sapn><input type="text" size="60" value="教育技术定义" style="display:inline;white-space: normal" id="idPrompt" onblur='document.getElementById("idInButtonCallAIGCAnswerCharactor").textContent="："+"“"+document.getElementById("idPrompt").value+"”";document.getElementById("idInButtonCallAIGCAnswerHomeworkAndTest").textContent="："+"“"+document.getElementById("idPrompt").value+"”的一道高质量单选题，适合用于考试测验";' />
                     <table>
                         <tr>
                             <td>
                                 <button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor();'>
-                                    确定<span id="idInButtonCallAIGCAnswerCharactor"></span><p />【<span style="color:brown;font-weight:bold">“数智时代融合教育数智思维的大语言模型LLM驱动的教育智能对话Educational-AIGC-Chat（案例已经基本实现...）”：</span>Prompt提问/Educational-AIGC-Chat回答自主生成的字符闲聊，用作本知识库之中的教材课文的拓展（注意思辨准确性）】【Prompt提问/Answer问答（不含）Planning隐喻人脑的规划功能（不含）Memory隐喻人脑的记忆功能（不含）Tools隐喻人脑人体继承利用工具】【视媒（字符/图像/视频/2D/3D）/听媒/触媒/嗅媒/味媒】
+                                    确定<span id="idInButtonCallAIGCAnswerCharactor" style="color:green"></span><p />【<span style="color:brown;font-weight:bold">“数智时代融合教育数智思维的大语言模型LLM驱动的智能对话AIGC-Chat的教育应用案例”</span><span style="color:green">（面向本知识库的一个“目录条目”的“教材课文”的拓展...）（注意思辨准确性）</span>】【Prompt提问/Answer问答（不含）Planning隐喻人脑的规划功能（不含）Memory隐喻人脑的记忆功能（不含）Tools隐喻人脑人体继承利用工具】【视媒（字符/图像/视频/2D/3D）/听媒/触媒/嗅媒/味媒】
                                 </button>
                             </td>
                             <td>
                                 <button id="idButtonAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTest();'>
-                                    确定<span id="idInButtonCallAIGCAnswerHomeworkAndTest"></span><p />【<span style="color:brown;font-weight:bold">“数智时代融合教育数智思维的大语言模型LLM驱动的教育智能体Educational-AIGC-Agent（案例正在完善之中...）”：</span>Prompt提问/Educational-AIGC-Agent回答自主生成的作业测验，用作本知识库之中的作业测验的拓展（注意思辨准确性）】【Prompt提问/Answer问答（包含）Planning隐喻人脑的规划功能（包含）Memory隐喻人脑的记忆功能（包含）Tools隐喻人脑人体继承利用工具】【视媒（字符/图像/视频/2D/3D）/听媒/触媒/嗅媒/味媒】
+                                    确定<span id="idInButtonCallAIGCAnswerHomeworkAndTest" style="color:green"></span><p />【<span style="color:brown;font-weight:bold">“数智时代融合教育数智思维的大语言模型LLM驱动的智能体AIGC-Agent的教育应用案例”</span><span style="color:green">（面向本知识库的一个“目录条目”的“作业测验”的拓展...）（注意思辨准确性）</span>】【Prompt提问/Answer问答（包含）Planning隐喻人脑的规划功能（包含）Memory隐喻人脑的记忆功能（包含）Tools隐喻人脑人体继承利用工具】【视媒（字符/图像/视频/2D/3D）/听媒/触媒/嗅媒/味媒】
                                 </button>
-                                    </td> 
-</tr>
-</table>
+                            </td>
+                        </tr>
+                    </table>
                     <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
                 </div>
-                <button id="startBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将开始【Prompt提问←语音对话→系统外部AIGC】的Prompt提问的麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案...." style="white-space: normal; font-size:12px">开始录音Prompt提问</button>
-                <button id="stopBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将停止【Prompt提问←语音对话→系统外部AIGC】的Prompt提问的麦克风录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt提问</button>
-                <button id="understandKernelDialogueBtnSystemExternal" title="【Prompt提问←语音对话→系统外部AIGC】作为主导的时候，也需要【Prompt指令←语音对话→系统内部非AIGC】作为辅助。单击将切换显示作为辅助的【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemExternal()' style="white-space: normal; font-size:12px">了解录音Prompt指令</button>
+
                 <div id="kernelDialogueSystemExternal" style="border: dashed; border-color: goldenrod; display: none">
                     <ol style="text-align:justify">
                         <li>切换系统内部语音对话（实际测试优化成为“内部”）（尚未实现）</li>
@@ -413,14 +418,14 @@
                     </ol>
                 </div>
 
-                <div id="transcriptSystemExternal" style="color:green;width:95%" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...请单击“了解录音Prompt指令”，查看录音说明...）" >
+                <div id="transcriptSystemExternal" style="color:green;width:95%" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...请单击“了解录音Prompt指令”，查看录音说明...）">
                     {
                     "段落": [期待本系统语音识别您的语音Prompt提问，然后连接本系统外部AIGC，互动追问本系统外部AIGC的回答（“字生字”支持语音朗读），思辨自己想要的答案....同时，也支持少量必备的语音识别您的语音Prompt指令，正在完善之中...]
                     }
                 </div>
                 <img title="单击停止本系统外部的AIGC的回答Answer的字符朗读声音，同时，停止任何其他字符朗读声音【注：本系统外部的AIGC的回答Answer，默认是需要付费的自动字符朗读的，所以没有刻意提供本系统内部那样的是否自动字符朗读的功能切换（无需自动字符朗读的，无需选用本系统的AIGC功能，建议选用其他系统的AIGC功能）】" id="id_ToggleTTS" src="Sound_32.png" onclick='fnTTS_Cancel(); //if(document.getElementById("id_TTS").disabled==false){document.getElementById("id_TTS").disabled=true} else {document.getElementById("id_TTS").disabled=false;} ' />
                 <!--<form style="display:inline;font-size:12px">-->
-                <fieldset style="display: inline; border: none;font-size:10px" id="id_TTS"><button id="id_TTS_Play" title="本系统外部的字符朗读功能，只能朗读AIGC的回答Answer。最好选用Edge浏览器内置的可以朗读所有框架的字符朗读功能！！！Edge中本系统框架的边沿鼠标右击，Edge内置右键菜单中的“扩展”可以下载安装“Translator for Microsoft Edge”，从而可以实现中英（Prompt）互译。进一步可以右击菜单内置的朗读功能，可以实现中英（Prompt）朗读！！！（字符朗读的准确性/手机触屏便于笔画书写/键盘便于拼音码字/录音转字便于发音吐字/字转声音便于听音识字，还请参见本系统第一个条目的内容框架中的字典链接中的中英字典！）" style="white-space: normal; font-size:12px" onclick="fnTTS_Play(0)">中英朗读</button><button id="id_TTS_Pause" style="white-space: normal; font-size:12px" onclick="fnTTS_Pause()">暂停</button><button onclick="fnTTS_Resume()" id="id_TTS_Resume" style="white-space: normal; font-size:12px">继续</button><button onclick="fnTTS_Cancel()" id="id_TTS_Cancel" style="white-space: normal; font-size:12px">取消</button><span title="将显示当前条目内容框架的字符总数"><span>字符总数：</span><span id="id_CharNumber">No.</span></span></fieldset>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo" style="font-size:10px" >字符起点：</span><input id="id_TTS_GoToText" type="text" size="3" value="0" onblur="fnTTS_GoTo(0)" style="white-space: normal; font-size:12px" /></span>
+                <fieldset style="display: inline; border: none;font-size:10px" id="id_TTS"><button id="id_TTS_Play" title="本系统外部的字符朗读功能，只能朗读AIGC的回答Answer。最好选用Edge浏览器内置的可以朗读所有框架的字符朗读功能！！！Edge中本系统框架的边沿鼠标右击，Edge内置右键菜单中的“扩展”可以下载安装“Translator for Microsoft Edge”，从而可以实现中英（Prompt）互译。进一步可以右击菜单内置的朗读功能，可以实现中英（Prompt）朗读！！！（字符朗读的准确性/手机触屏便于笔画书写/键盘便于拼音码字/录音转字便于发音吐字/字转声音便于听音识字，还请参见本系统第一个条目的内容框架中的字典链接中的中英字典！）" style="white-space: normal; font-size:12px" onclick="fnTTS_Play(0)">中英朗读</button><button id="id_TTS_Pause" style="white-space: normal; font-size:12px" onclick="fnTTS_Pause()">暂停</button><button onclick="fnTTS_Resume()" id="id_TTS_Resume" style="white-space: normal; font-size:12px">继续</button><button onclick="fnTTS_Cancel()" id="id_TTS_Cancel" style="white-space: normal; font-size:12px">取消</button><span title="将显示当前条目内容框架的字符总数"><span>字符总数：</span><span id="id_CharNumber">No.</span></span></fieldset>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo" style="font-size:10px">字符起点：</span><input id="id_TTS_GoToText" type="text" size="3" value="0" onblur="fnTTS_GoTo(0)" style="white-space: normal; font-size:12px" /></span>
                 <!--</form>-->
             </td>
 
