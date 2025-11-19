@@ -515,22 +515,37 @@ function fnToggleDisplayOfAIGCAnswerHomeworkAndTest(){
     document.getElementById("id_Answer").style.display="none";
     }
 }
-
+function fnHTMLEditorForAIGCHomeworkAndTest(){
+    var sTemp="(HTML源码编辑)";
+    if(document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest").textContent.indexOf(sTemp)>=0){
+        document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest").textContent=document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest").textContent.replace(sTemp,"");
+         document.getElementById("id_ForHTMLEditor").innerHTML=document.getElementById("id_ForHTMLEditor").textContent;
+         document.getElementById("id_ForHTMLEditor").contentEditable="false";
+    }
+    else{
+    document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest").textContent=document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest").textContent+sTemp;
+     document.getElementById("id_ForHTMLEditor").textContent=document.getElementById("id_ForHTMLEditor").innerHTML;
+     document.getElementById("id_ForHTMLEditor").contentEditable="true";
+    }  
+    }
 /**用于不Prompt/AIGC返回字符串直接生成题目的测试，以便节省付费。
 function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestOld(){
-    
+    alert();
     var sString='{"output":{"finish_reason":"stop","text":"当然，我可以帮助设计一道关于“教育技术定义”的高质量单选题。这样的题目不仅能够测试学生对于概念的理解，还能考察他们 将理论应用于实际情况的能力。这里提供一个示例：**题目：**根据AECT（美国教育传播与技术协会）1994年的定义，教育技术是指通过创建、使用和管理适当的技术过程 和资源来促进学习和提高绩效的研究与合乎道德的实践。基于这一定义，下列哪一项最能体现教育技术的核心目标？A. 提高学校的硬件设施水平B. 专注于开发新的教学 软件工具C. 通过有效利用技术和资源来支持教与学的过程D. 确保所有学生都能访问互联网**正确答案：** C**解析：**选项C直接反映了教育技术旨在通过合理地运用技术手段和资源来优化教学过程和支持学习活动的本质。而其他选项虽然也涉及到了技术或教育资源的一些方面，但它们并不完全符合AECT对教育技术核心目标的描述。 例如，选项A更多关注的是基础设施建设；选项B侧重于技术产品开发；选项D则强调了信息技术接入的问题，这些都是教育技术领域内的重要组成部分，但不是其最根本的目标。这道题目适合用于检验学生是否真正理解了教育技术的概念及其应用方向，同时也鼓励思考如何在实际情境中实施这些理念。"},"usage":{"input_tokens":24,"output_tokens":288,"prompt_tokens_details":{"cached_tokens":0},"total_tokens":312},"request_id":"cbcecae6-f07d-4a29-8b02-9d6a9114fb4d"}';
-     
+       
         var sString1=sString.replace("A.", '<p/><input type="radio" name="raio_Four"/>A.');
         var sString2=sString1.replace("B.", '<p/><input type="radio" name="raio_Four"/>B.');
         var sString3=sString2.replace("C.", '<p/><input type="radio" name="raio_Four"/>C.');
         var sString4=sString3.replace("D.", '<p/><input type="radio" name="raio_Four"/>D.');
+       // var sStringMayBe5=sString4.replace("E.", '<p/><input type="radio" name="raio_Four"/>E.');
         var sString5=sString4.substring(sString4.indexOf("**正确答案：**"), sString4.length);
-        var sString6=sString4.substring(0,sString4.indexOf("**正确答案：**"))+'<p/>'+'<button onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest()">'+'**正确答案：**'+'</button>'+'<span id="id_Answer" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>';
+        var sString6=sString4.substring(0,sString4.indexOf("**正确答案：**"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest()">'+'**正确答案：**'+'</button>'+'<span id="id_Answer" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>'
+        ;
         //var oTemp=JSON.parse(sString4);
      alert(sString6);
-     document.getElementById("transcriptSystemExternal").innerHTML =sString6;
-                      
+     document.getElementById("transcriptSystemExternal").innerHTML ='<div id="id_ForHTMLEditor" contenteditable="false" >'+sString6+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTest" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能！，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest()">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';
+       //document.getElementById("transcriptSystemExternal").style.color="green";   
+       alert(document.getElementById("transcriptSystemExternal").style.color);
                         window.speechSynthesis.cancel();
                           
                    // document.getElementById("id_TTS_Play").click();
@@ -568,11 +583,12 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest() {
         var sString2=sString1.replace("B.", '<p/><input type="radio" name="raio_Four"/>B.');
         var sString3=sString2.replace("C.", '<p/><input type="radio" name="raio_Four"/>C.');
         var sString4=sString3.replace("D.", '<p/><input type="radio" name="raio_Four"/>D.');
+        // var sStringMayBe5=sString4.replace("E.", '<p/><input type="radio" name="raio_Four"/>E.');
         var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
         var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest()">'+'**正确答案：**'+'</button>'+'<span id="id_Answer" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>';
         
-        document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+"<p/>"+sString6;//oTemp.output.text;
-                      
+        document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+"<p/>"+'<div id="id_ForHTMLEditor" contenteditable="false" >'+sString6+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTest" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest()">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
+        //document.getElementById("transcriptSystemExternal").style.color="";              
         window.speechSynthesis.cancel();
                           /**
                      //TTS
@@ -676,7 +692,7 @@ function fnTTSOnEndSystemExternalUtteranceTTSOnEndSystemExternalAIGCAnswer(){
         }
 
 function fnTTS_Play(intCharBeginningNumber) {
-    document.getElementById("transcriptSystemExternal").style.color="brown";
+    //document.getElementById("transcriptSystemExternal").style.color="green";
     document.getElementById('stopBtnSystemExternal').click(); 
     document.getElementById("id_RadioSystemExternal").checked=true;
   //  if(document.getElementById("id_RadioSystemExternal").checked == true) {
