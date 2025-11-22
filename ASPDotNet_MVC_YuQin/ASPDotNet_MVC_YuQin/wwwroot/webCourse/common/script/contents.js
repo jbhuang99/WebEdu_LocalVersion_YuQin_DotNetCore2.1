@@ -3876,7 +3876,8 @@ function fnSearch() {
    //EV_modeAlert();//弹出屏蔽层.好像没起什么作用！
    if(fnRunningFrom().indexOf("免费")>=0) {alert(fnRunningFrom());} 
     fnTooManyModelDialog();  
-    var win = open("../common/Search.html", "Search", "scrollbars=yes,width=800,height=600,top=" + (screen.height - 600) / 2 + ",left=" + (screen.width - 800) / 2);
+    //var win = open("../common/Search.html", "Search", "scrollbars=yes,width=800,height=600,top=" + (screen.height - 600) / 2 + ",left=" + (screen.width - 800) / 2);
+    var win = open("../common/SearchRAG.html", "Search", "scrollbars=yes,width=800,height=600,top=" + (screen.height - 600) / 2 + ",left=" + (screen.width - 800) / 2); //临时调试一下SearchRAG.html
        window.childWindow = win;
    //window.childWindow.focus();//子窗口获取焦点
 }

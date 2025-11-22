@@ -1,0 +1,170 @@
+﻿<HTML>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="Script/ShowModelDiallog.js"></script><!--引用遮罩层JS-->
+    <title>搜索</title>
+</head>
+<body>
+    <div style="text-align:center" >
+        <input type="text" value="教育技术" style="width:100%" id="idSearchedKeywords" />
+        <p></p>
+        <input type="button" value="系统内部搜索（知识库搜索）（必须同时发布本案例的服务端）（注：当前主要搜索“教材课文”，尚未考虑搜索“作业测验”，而是搜索“教材课文”，然后，跳转目录导航“教材课文、作业测验”！）（基本实现...）" onclick='fnAjaxForGet();' />
+    </div>
+    <div id="idSerchReturned"></div>
+    <script>window.sReturnedFromSearch1= "";//全局变量，存放搜索结果
+    window.sReturnedFromSearch2= "";//全局变量，存放搜索结果
+        function fnAjaxForGet() {
+            var sSearchedKeywords = document.getElementById("idSearchedKeywords").value;
+            alert("您将搜素的关键词是：" + sSearchedKeywords);
+            document.getElementById("idSerchReturned").innerHTML = "";
+            var sURL = "/QWenRAG/Get?SearchedKeywords=" + sSearchedKeywords;
+            // var sSearched = "";
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+            // sSearched = xhr.responseText;
+            xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行
+                        var sTemp = xmlHttpRequest.responseText;window.sReturnedFromSearch1=sTemp;
+                         alert(window.sReturnedFromSearch1);
+                        var oTemp = opener.document.getElementById("sDiv");
+                        var cLi = oTemp.getElementsByTagName("LI");
+                        var iCLiLength = cLi.length;
+                        var sSearched = "";
+
+                        for (var i = 0; i < iCLiLength; i++) {
+                            if (sTemp.indexOf(cLi[i].getElementsByTagName("A").item(0).getAttribute("text")) > 0) {
+
+                                sSearched += "<a onclick=\"fnOnclikForSearchedResult('idSearchedKeywords')\" href=\"\" TextbookRes=\"" + cLi[i].getElementsByTagName("A").item(0).getAttribute("text") + "\" >" + cLi[i].getElementsByTagName("A").item(0).textContent + "</a></br>";
+                            }
+
+                        }
+
+                        if (sSearched == "") {
+                            alert("未能搜索到您键入的\"" + sSearchedKeywords + "\"" + "的相关内容！请重新键入");
+                        }
+                        else {
+                            document.getElementById("idSerchReturned").innerHTML ="<div id='sReturnedFromSearch1'>"+sSearched+"</div>"+"<p style='text-align:center'><label>上述结果中进一步输入关键词搜索：</label><input id='idSearchedKeywords2' style='width:100%' value='定义' /><input type='button' value='系统内部进一步搜索（知识库进一步搜索）（必须同时发布本案例的服务端）（基本实现...）' onclick='fnAjaxForGet2();' /></p><div id='idSerchReturned2'></div>";
+                        }
+
+                    }
+                    else {
+                        alert('出错了,Err：' + xmlHttpRequest.status);
+                    }
+                }
+
+            }
+        }
+
+         function fnAjaxForGet2() {
+     var sSearchedKeywords2 = document.getElementById("idSearchedKeywords2").value;
+     alert("您将搜素的关键词是：" + sSearchedKeywords2);
+     document.getElementById("idSerchReturned2").innerHTML = "";
+     var sURL = "/QWenRAG/Get?SearchedKeywords=" + sSearchedKeywords2;
+     // var sSearched = "";
+     var xmlHttpRequest = new XMLHttpRequest();
+     xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+     // sSearched = xhr.responseText;
+     xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+     xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+         if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+             if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                 //如果函数存在的话执行
+                 var sTemp = xmlHttpRequest.responseText;window.sReturnedFromSearch2=sTemp;
+                 alert(window.sReturnedFromSearch2);
+                  var oTemp = opener.document.getElementById("sDiv");
+                  var cLi = oTemp.getElementsByTagName("LI");
+                  var iCLiLength = cLi.length;
+                  var sSearched = "";
+
+                 for (var i = 0; i < iCLiLength; i++) {
+                     if (sTemp.indexOf(cLi[i].getElementsByTagName("A").item(0).getAttribute("text")) > 0) {
+
+                         sSearched += "<a onclick=\"fnOnclikForSearchedResult('idSearchedKeywords2')\" href=\"\" TextbookRes=\"" + cLi[i].getElementsByTagName("A").item(0).getAttribute("text") + "\" >" + cLi[i].getElementsByTagName("A").item(0).textContent + "</a></br>";
+                     }
+
+                 }
+
+                 if (sSearched == "") {
+                     alert("未能搜索到您键入的\"" + sSearchedKeywords2 + "\"" + "的相关内容！请重新键入");
+                 }
+                 else {
+                     document.getElementById("idSerchReturned2").innerHTML ="<div id='sReturnedFromSearch1IntersectionSearch2'>"+ sSearched+"</div>"+"<p style='text-align:center'><button onclick='fnSearch1IntersectionSearch2()'>上述两次系统内部搜索结果（上述两次知识库搜索结果）的交集（必须同时发布本案例的服务端）（基本实现...）</button><label id='sResult'>这里将显示两次搜索的交集的条目链接（链接中找到响应的定义的视觉字符序列，或，视觉图像，或，视觉视频，或，视觉2D，或，视觉3D，或，音频，作为标准知识库的定义，可以对比AGGC生成的相关定义，计算两者的准确性相似度！）（目前主要缺陷：1、当前的条目课文是.doc/.docx文档机器转换而成的.htm/.html，搜素匹配完整性有待提高！2、知识库内容不够丰富！3、知识库目前无法AIGC自动提取！4、目前知识库的内容无法直接映射成为准确性相似度对比的内容）</label></p><div id='idSearch1IntersectionSearch2'></div>";
+                 }
+
+             }
+             else {
+                 alert('出错了,Err：' + xmlHttpRequest.status);
+             }
+         }
+
+     }
+ }
+
+        
+        function fnOnclikForSearchedResult(sIdSearchedKeywords) {
+            event.returnValue = false;
+            //opener.sWillHighLightedStringInContent = document.getElementById("idSearchedKeywords").value;
+            opener.sWillHighLightedStringInContent = document.getElementById(sIdSearchedKeywords).value;
+            opener.fnFindAndView('text', event.srcElement.getAttribute("TextbookRes"), '教材资源', ".htm");
+
+        }
+
+        function fnSearch1IntersectionSearch2() {
+            document.getElementById("idSearch1IntersectionSearch2").textContent = "hi";
+            var sSearch1 = window.sReturnedFromSearch1;
+            var sSearch2 = window.sReturnedFromSearch2;
+            var aSearch1 = sSearch1.split("|");
+            var aSearch2 = sSearch2.split("|");
+
+
+           // var sSearch1 = window.sReturnedFromSearch1;
+           // var sSearch2 = window.sReturnedFromSearch2;
+           // var aSearch1 = sSearch1.split("TextbookRes=");
+           // var aSearch2 = sSearch2.split("TextbookRes=");
+            var sResult = "";
+            for (var i = 0; i < aSearch1.length; i++) {
+                for (var j = 0; j < aSearch2.length; j++) {
+                    if (aSearch1[i] == aSearch2[j] && aSearch1[i]!="") {
+                        sResult += aSearch1[i]+"|";
+                    }
+                }
+            }
+            if (sResult == "") {
+                document.getElementById("sResult").innerHTML = "上述两次搜索结果无交集！";
+                document.getElementById("idSearch1IntersectionSearch2").innerHTML = "";
+            }
+            else {
+                document.getElementById("sResult").innerHTML = "";
+                var oTemp = opener.document.getElementById("sDiv");
+                var cLi = oTemp.getElementsByTagName("LI");
+                var iCLiLength = cLi.length;
+                var sSearched = "";
+                var sTemp = sResult;
+                for (var i = 0; i < iCLiLength; i++) {
+    if (sTemp.indexOf(cLi[i].getElementsByTagName("A").item(0).getAttribute("text")) > 0) {
+
+        sSearched += "<a onclick=\"fnOnclikForSearchedResult('idSearchedKeywords2')\" href=\"\" TextbookRes=\"" + cLi[i].getElementsByTagName("A").item(0).getAttribute("text") + "\" >" + cLi[i].getElementsByTagName("A").item(0).textContent + "</a></br>";
+    }
+
+}
+
+                document.getElementById("idSearch1IntersectionSearch2").innerHTML =sSearched;
+            }
+        }
+
+        function fnBeforeunload() {
+            opener.sWillHighLightedStringInContent = "";
+            // alert(opener.sWillHighLightedStringInContent);
+        }
+        window.onunload = function () { EV_closeAlert(); }//窗口关闭时去掉遮罩效果;
+        window.addEventListener("beforeunload", fnBeforeunload, false);</script>
+</body>
+
+</html>
