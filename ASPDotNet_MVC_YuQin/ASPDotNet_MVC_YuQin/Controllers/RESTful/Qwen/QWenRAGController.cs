@@ -135,7 +135,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
                 Console.WriteLine(sPromptRemoveDuplicateParagraphs);
                 //return  RedirectToAction("Index", "QWen", new { queryString = sPrompt });
                 //return this.Content("您当前输入的Prompt提问，正在等待AIGC回答！");
-                return this.Content(sPrompt);
+                return this.Content(sPromptRemoveDuplicateParagraphs);
             }
         }
         public static String StripHtmlTags(String html) //•	正则适合简单场景，但无法完美处理损坏或非常复杂的 HTML（比如嵌套不规范标签、CDATA 等）。•	生产环境建议使用 HTML 解析器（例如 HtmlAgilityPack）解析后取 InnerText，更加稳健且安全。

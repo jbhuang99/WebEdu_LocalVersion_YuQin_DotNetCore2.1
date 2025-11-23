@@ -27,8 +27,8 @@ else{
 var sTextContent = document.getElementById("transcriptSystemInternal").textContent;
 document.getElementById("id_CharNumber").textContent=sTextContent.length;
 }
-document.getElementById("idInButtonCallAIGCAnswerCharactor").textContent="："+"“"+document.getElementById("idPrompt").value+"”";
-document.getElementById("idInButtonCallAIGCAnswerHomeworkAndTest").textContent="："+"“"+document.getElementById("idPrompt").value+"”的一道高质量单选题，适合用于考试测验";
+document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
+document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道高质量单选题，适合用于考试测验。";
 }
 
 function fnOpenLocalhostDingTalkAIGC(){
@@ -461,10 +461,10 @@ function fnAjaxServerSideCallAIGCAnswerCharactor() {
     fnToggleEventSoureElementColor();
     window.isRecognizingSystemExternal = false;
      window.speechSynthesis.cancel(); 
-            var sPrompt = document.getElementById("idPrompt").value;
+            var sPrompt = document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value;
              window.speechSynthesis.cancel();
                      //TTS
-             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是“"+sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
+             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
             alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
              document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
@@ -567,10 +567,10 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest() {
     fnToggleEventSoureElementColor();
     window.isRecognizingSystemExternal = false;
      window.speechSynthesis.cancel(); 
-            var sPrompt = document.getElementById("idInButtonCallAIGCAnswerHomeworkAndTest").textContent;
+            var sPrompt = document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value;
              window.speechSynthesis.cancel();
                      //TTS
-             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是“"+sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
+             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
             alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
              document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
@@ -782,6 +782,40 @@ window.speechSynthesis.cancel();
      document.getElementById("tdSystemExternal").style.width="50%";
      }
 }
+ function  fnPromptForAIGCOnBlur(){
+     if(document.getElementById("id_SystemExternal_NonRAG").checked){
+     document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
+     document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道高质量单选题，适合用于考试测验。";
+     }
+     else{
+     //window.isRecognizingSystemExternal = false;
+     //window.speechSynthesis.cancel(); 
+            var sPrompt = document.getElementById("idPrompt").value;
+             
+            var sURL = "/QWenRAG/Get?SearchedKeywords=" + sPrompt;
+           
+           var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+           xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行
+                        
+                        document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value ="基于下述，生成数字思维视角、也称数字人工智能思维视角的、也称数智思维视角的"+document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value+"："+xmlHttpRequest.responseText;    
+                        document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value ="基于下述，生成数字思维视角、也称数字人工智能思维视角的、也称数智思维视角的的"+document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value+"      "+xmlHttpRequest.responseText; 
+                     }
+                    
+                    else {
+                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
+                        alert(sTempErr);                        
+                    }
+                }
+        }
+     }
+  }
 /**AIGC官方声明：因为API Key容易泄露等等安全问题，所以当前不支持JS访问千问AIGC。
  *
  function fnidQwenAPIKeyConfirmOnClickSystemExternal(){
