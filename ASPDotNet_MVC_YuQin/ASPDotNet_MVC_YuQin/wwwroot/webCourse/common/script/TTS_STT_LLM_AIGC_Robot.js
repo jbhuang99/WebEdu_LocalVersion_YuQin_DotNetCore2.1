@@ -28,7 +28,7 @@ var sTextContent = document.getElementById("transcriptSystemInternal").textConte
 document.getElementById("id_CharNumber").textContent=sTextContent.length;
 }
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
-document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道高质量单选题，适合用于考试测验。";
+document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
 }
 
 function fnOpenLocalhostDingTalkAIGC(){
@@ -785,7 +785,7 @@ window.speechSynthesis.cancel();
  function  fnPromptForAIGCOnBlur(){
      if(document.getElementById("id_SystemExternal_NonRAG").checked){
      document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
-     document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道高质量单选题，适合用于考试测验。";
+     document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
      }
      else{
          document.getElementById("idRadioRAGClickedForWaiting").textContent ="(正在检索知识库...)";

@@ -388,21 +388,28 @@
 
                 <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的费用一般只需自己注册付费API Key的30%左右）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现）" style="text-align:justify">
                     本系统的服务端听媒提问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen不会允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用，而且节省70%费用）（此外，请尽量选用本系统的语音对话听媒提问他创方的AIGC。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒提问他创方的AIGC，以后则将取消！单击“了解录音Prompt指令”按钮，则可查看相关视媒Prompt指令，而非视媒Prompt提问的特例）。请键入您的视媒Prompt提问<sapn title="单击打开自创方的知识库案例，可以用来对比AIGC生成内容的相似度准确性！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击这里可以打开知识库案例，可以用来对比AIGC生成内容的相似度准确性）：</sapn><input type="text" size="10" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" /> <input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()"/>非RAG<input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_RAG" value="RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击这里可以搜索查询知识库，对比RAG检索增强生成的内容的相似度准确性）：</sapn><input type="text" size="10" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" /> <select title="注：当前有效选项仅是（云端）Qwen千问">
+    <option value="Qwen">（云端）Qwen千问</option>
+    <option value="ChatGPT">（云端）ChatGPT</option>
+    <option value="LocalQwen">（本机）Qwen千问</option>
+    <option value="LocalChatGPT">（本机）ChatGPT</option>
+</select><input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />非RAG<input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_RAG" value="RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />RAG<span id="idRadioRAGClickedForWaiting" style="font-size:x-small"></span>
-                    
+
                     <table>
                         <tr>
-                            <td><div  style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerCharactor" style="width:95%;height:50px"></textarea></div>
+                            <td>
+                                <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerCharactor" style="width:95%;height:50px"></textarea></div>
                                 <button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor();'>
-                                    确定【<span style="color:brown;font-weight:bold">“智能对话AIGCChat客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的Chat案例</span><span style="color:green">（拓展系统内部“教育数智思维知识库”的某个“目录条目”的“教材课文”...）（注意思辨准确性）</span>】
+                                    确定【<span style="color:brown;font-weight:bold">“智能对话Chat客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的Chatic AIGC案例</span><span style="color:green">（拓展系统内部“教育数智思维知识库”的某个“目录条目”的“教材课文”...）（注意思辨准确性）</span>】
                                 </button>
                             </td>
-                            <td><div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 50px"></textarea></div>
+                            <td>
+                                <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 50px"></textarea></div>
                                 <button id="idButtonAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTest();'>
-                                    确定【<span style="color:brown;font-weight:bold">“智能体AIGCAgent客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的Agent案例</span><span style="color:green">（拓展系统内部“教育数智思维知识库”的某个“目录条目”的“作业测验”...）（注意思辨准确性）</span>】
+                                    确定【<span style="color:brown;font-weight:bold">“智能体Agent客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的Agentic AIGC案例</span><span style="color:green">（拓展系统内部“教育数智思维知识库”的某个“目录条目”的“作业测验”...）（注意思辨准确性）</span>】
                                 </button>
                             </td>
                         </tr>
