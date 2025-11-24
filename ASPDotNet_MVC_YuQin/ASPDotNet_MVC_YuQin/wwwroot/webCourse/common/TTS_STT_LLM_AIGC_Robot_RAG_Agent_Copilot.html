@@ -98,22 +98,14 @@
     <table style="width:100%; border:dashed">
         <tr title="双击表格的本行的单元格，可以切换本行两个单元格的全屏显示">
             <td id="tdSystemInternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleInternalWidth()">
-                <div style="font-size: 24px; font-weight: bolder; color: goldenrod; text-align: justify" id="btnSystemInternal">系统内部语音对话<span style="font-size: 18px; font-weight: bold;color:green">【数智时代融合教育数智思维的知识库KnowledgeBase】</span><span style="font-size: 16px; font-weight: normal;color:black">【Prompt指令←语音对话→系统内部非AIGC】【我们←（严谨准确性学科专业）语音互动（搜索匹配本系统的静态存储的数据读写、而非上下文追问AIGC的接受教育进行学习的自主生成的数据读写）→本系统内部】</span><span style="font-size: 12px; font-weight: normal;color: green">【Prompt指令/本系统执行，字符Prompt指令的检索匹配总计平均/确定性描述统计Transformer变换返回万物】【Prompt指令/本系统执行的字寻万物→Prompt指令/本系统执行的字寻字符媒体/字寻多媒体→Prompt指令/本系统执行的字寻五媒→(1)Prompt指令/本系统执行的字寻视媒（字寻字/字寻图/字寻视频/字寻2D/字寻3D）、(2)Prompt指令/本系统执行的字寻听媒（字寻音频/字寻MIDI）、(3)Prompt指令/本系统执行的字寻触媒、(4)Prompt指令/本系统执行的字寻嗅媒、(5)Prompt指令/本系统执行的字寻味媒】【本系统属于传统的面向方法的工具，AIGC则是隐喻人的内容方法的统一整体工具，是人类工具竞争的顶峰，为此，本系统融合AIGC发展】</span> </div>
+                <div style="font-size: 24px; font-weight: bolder; color: goldenrod; text-align: justify" id="btnSystemInternal"><span title="单击可以切换说明的显示" onclick="fnToggleSystemInternalExplainSystemExternalExplain()"><span id="idRightTriangleOfSystemInternal">▶</span>系统内部语音对话<span style="font-size: 18px; font-weight: bold;color:green">【数智时代融合教育数智思维的知识库KnowledgeBase】</span></span><span id="idSystemInternalExplain" style="display:none"><span style="font-size: 16px; font-weight: normal;color:black">【Prompt指令←语音对话→系统内部非AIGC】【我们←（严谨准确性学科专业）语音互动（搜索匹配本系统的静态存储的数据读写、而非上下文追问AIGC的接受教育进行学习的自主生成的数据读写）→本系统内部】</span><span style="font-size: 12px; font-weight: normal;color: green">【Prompt指令/本系统执行，字符Prompt指令的检索匹配总计平均/确定性描述统计Transformer变换返回万物】【Prompt指令/本系统执行的字寻万物→Prompt指令/本系统执行的字寻字符媒体/字寻多媒体→Prompt指令/本系统执行的字寻五媒→(1)Prompt指令/本系统执行的字寻视媒（字寻字/字寻图/字寻视频/字寻2D/字寻3D）、(2)Prompt指令/本系统执行的字寻听媒（字寻音频/字寻MIDI）、(3)Prompt指令/本系统执行的字寻触媒、(4)Prompt指令/本系统执行的字寻嗅媒、(5)Prompt指令/本系统执行的字寻味媒】【本系统属于传统的面向方法的工具，AIGC则是隐喻人的内容方法的统一整体工具，是人类工具竞争的顶峰，为此，本系统融合AIGC发展】</span></span></div>
                 <div>
-                    <button id="closeSTTSystemInternal" onclick="window.close();">单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部</button>
+                    <button id="closeSTTSystemInternal" onclick="window.close();">⊗单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部</button>
                 </div>
 
                 <button id="startBtnSystemInternal" title="单击将开始【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话。系统将打开麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中..." style="white-space: normal; font-size:12px">开始录音Prompt指令</button>
                 <button id="stopBtnSystemInternal" title="单击将停止【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt指令</button>
-                <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" style="white-space: normal; font-size:12px" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'>了解录音Prompt指令</button>
-
-                <div title="" style="text-align:justify">
-                    本系统的客户端浏览器的听媒指令本系统（请尽量选用本系统的语音对话听媒指令本系统。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒指令本系统，以后则将取消！单击“了解录音Prompt指令”按钮，可以查看相关视媒Prompt指令）。请键入您的Prompt指令：<input type="text" value="向下" style="display:inline;white-space: normal" id="idPromptDirective" /><button id="idButtonClientSideBrowserSTT" style="display:inline;white-space: normal" onclick='window.systemInternalRecognizingResultFlag=document.getElementById("idPromptDirective").value;fnTTSOnEndSystemInternal();'>
-                        确定
-                    </button>
-                    <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
-                </div>
-
+                <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" style="white-space: normal; font-size:12px" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'><span id="idRightTriangleOfUnderstandKernelDialogueSystemInternal">▶</span>了解录音Prompt指令</button>
                 <div id="kernelDialogueSystemInternal" style="border: dashed; border-color: goldenrod; display: none">
                     <ol style="text-align:justify">
                         <li>切换系统外部语音对话（实际测试优化成为“外部”）（尚未实现）</li>
@@ -135,6 +127,14 @@
                         <li>系统内部搜索（实际测试优化成为“搜索”）（尚未实现）</li>
                     </ol>
                 </div>
+                <div title="" style="text-align:justify">
+                    本系统的客户端浏览器的听媒指令本系统（请尽量选用本系统的语音对话听媒指令本系统。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒指令，以后则将取消！）。请键入您的Prompt指令：<input type="text" value="向下" style="display:inline;white-space: normal" id="idPromptDirective" /><button id="idButtonClientSideBrowserSTT" style="display:inline;white-space: normal" onclick='window.systemInternalRecognizingResultFlag=document.getElementById("idPromptDirective").value;fnTTSOnEndSystemInternal();'>
+                        确定
+                    </button>
+                    <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
+                </div>
+
+
                 <div id="transcriptSystemInternal" style="color: green; width:95%" title="请单击“了解录音Prompt指令”，查看录音说明...">
                     {
                     "段落": [期待本系统语音识别您的语音Prompt指令，然后连接本系统内部的非AIGC，驱动本系统内部的运行，例如，“目录条目上翻、下翻、语音朗读”，打开“滚动栏”，打开“作业测验”，进行语音识别答题、评分等等....正在完善之中...]
@@ -144,12 +144,14 @@
             <td id="tdSystemExternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleExternalWidth()">
 
                 <div style="font-size: 24px; font-weight: bolder; color: goldenrod;text-align:justify" id="btnSystemExternal">
-                    系统外部语音对话<span style="font-size: 18px; font-weight: bold;color:green">【数智时代融合教育数智思维知识库的教育大语言模型LLM】</span><span style="font-size: 16px; font-weight: normal;color:black">【Prompt提问←语音对话→系统外部AIGC】【我们←（宽泛概率性闲聊日常）语音互动（上下文追问AIGC的接受教育进行学习的自主生成的数据读写、而非搜索匹配静态存储的数据读写）→本系统外部AIGC】</span><span style="font-size: 12px; font-weight: normal;color:green">【Prompt提问/AIGC回答，字符Prompt提问的聚类分类/概率性推断统计Transformer变换生成回答万物】【Prompt提问/AIGC回答的字生万物→Prompt提问/AIGC回答的字生字符媒体/字生多媒体→Prompt提问/AIGC回答的字生五媒→(1)Prompt提问/AIGC回答的字生视媒（字生字/字生图/字生视频/字生2D/字生3D）、(2)Prompt提问/AIGC回答的字生听媒（字生音频/字生MIDI）、(3)Prompt提问/AIGC回答的字生触媒、(4)Prompt提问/AIGC回答的字生嗅媒、(5)Prompt提问/AIGC回答的字生味媒】【AIGC超越传统的面向方法的工具，是隐喻人的内容方法的统一整体工具，所以，AIGC是人类工具竞争的顶峰】</span>
+                    <span title="单击可以切换说明的显示" onclick="fnToggleSystemInternalExplainSystemExternalExplain()">
+                        <span id="idRightTriangleOfSystemExternal">▶</span>系统外部语音对话<span style="font-size: 18px; font-weight: bold;color:green">【数智时代融合教育数智思维知识库的教育大语言模型LLM】</span>
+                    </span><span id="idSystemExternalExplain" style="display:none"><span style="font-size: 16px; font-weight: normal;color:black">【Prompt提问←语音对话→系统外部AIGC】【我们←（宽泛概率性闲聊日常）语音互动（上下文追问AIGC的接受教育进行学习的自主生成的数据读写、而非搜索匹配静态存储的数据读写）→本系统外部AIGC】</span><span style="font-size: 12px; font-weight: normal;color:green">【Prompt提问/AIGC回答，字符Prompt提问的聚类分类/概率性推断统计Transformer变换生成回答万物】【Prompt提问/AIGC回答的字生万物→Prompt提问/AIGC回答的字生字符媒体/字生多媒体→Prompt提问/AIGC回答的字生五媒→(1)Prompt提问/AIGC回答的字生视媒（字生字/字生图/字生视频/字生2D/字生3D）、(2)Prompt提问/AIGC回答的字生听媒（字生音频/字生MIDI）、(3)Prompt提问/AIGC回答的字生触媒、(4)Prompt提问/AIGC回答的字生嗅媒、(5)Prompt提问/AIGC回答的字生味媒】【AIGC超越传统的面向方法的工具，是隐喻人的内容方法的统一整体工具，所以，AIGC是人类工具竞争的顶峰】</span></span>
                 </div>
                 <div>
                     <button id="closeSTTSystemExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("sVisionAIGC_RAG_Agent").style.display=="none"){document.getElementById("sVisionAIGC_RAG_Agent").style.display="block"} else{document.getElementById("sVisionAIGC_RAG_Agent").style.display="none"}fnToggleEventSoureElementColor();' style="white-space: normal;">
-                        单击保持当前语音系统互动本系统外部AIGC，同时切换显示AIGC生成内容的准确性对比<span style="font-size:11px">【注：面向视觉的屏幕键盘鼠标互动系统外部AIGC，例如“钉钉AIGC助理可以免费连接AIGC生成内容”，自开发反而需要付费，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂未考虑其他功能开发！】</span>
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("sVisionAIGC_RAG_Agent").style.display=="none"){document.getElementById("sVisionAIGC_RAG_Agent").style.display="block";document.getElementById("idRightTriangleOfCloseSTTSystemExternal").textContent="▼";} else{document.getElementById("sVisionAIGC_RAG_Agent").style.display="none";document.getElementById("idRightTriangleOfCloseSTTSystemExternal").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;">
+                        <span id="idRightTriangleOfCloseSTTSystemExternal">▶</span>单击保持当前语音系统互动本系统外部AIGC，同时切换显示AIGC生成内容的准确性对比<span style="font-size:11px">【注：面向视觉的屏幕键盘鼠标互动系统外部AIGC，例如“钉钉AIGC助理可以免费连接AIGC生成内容”，自开发反而需要付费，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂未考虑其他功能开发！】</span>
                     </button>
                 </div>
                 <div id="sVisionAIGC_RAG_Agent" style="display: none; border:solid;border-color:brown">
@@ -384,17 +386,29 @@
         -->
                 <button id="startBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将开始【Prompt提问←语音对话→系统外部AIGC】的Prompt提问的麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案...." style="white-space: normal; font-size:12px">开始录音Prompt提问</button>
                 <button id="stopBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将停止【Prompt提问←语音对话→系统外部AIGC】的Prompt提问的麦克风录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt提问</button>
-                <button id="understandKernelDialogueBtnSystemExternal" title="【Prompt提问←语音对话→系统外部AIGC】作为主导的时候，也需要【Prompt指令←语音对话→系统内部非AIGC】作为辅助。单击将切换显示作为辅助的【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemExternal()' style="white-space: normal; font-size:12px">了解录音Prompt指令</button>
-
+                <button id="understandKernelDialogueBtnSystemExternal" title="【Prompt提问←语音对话→系统外部AIGC】作为主导的时候，也需要【Prompt指令←语音对话→系统内部非AIGC】作为辅助。单击将切换显示作为辅助的【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemExternal()' style="white-space: normal; font-size:12px"><span id="idRightTriangleOfUnderstandKernelDialogueSystemExternal">▶</span>了解录音Prompt指令</button>
+                <div id="kernelDialogueSystemExternal" style="border: dashed; border-color: goldenrod; display: none">
+                    <ol style="text-align:justify">
+                        <li>切换系统内部语音对话（实际测试优化成为“内部”）（尚未实现）</li>
+                        <li>切换系统外部语音朗读TTS！（实际测试优化成为“切换系统外部TTS”）（尚未实现）</li>
+                        <li>开始系统外部语音朗读（实际测试优化成为“开始朗读”）（尚未实现）</li>
+                        <li>暂停系统外部语音朗读（实际测试优化成为“暂停朗读”）（尚未实现）</li>
+                        <li>继续系统外部语音朗读（实际测试优化成为“继续朗读”）（尚未实现）</li>
+                        <li>停止系统外部语音朗读（实际测试优化成为“停止朗读”）（尚未实现）</li>
+                    </ol>
+                </div>
                 <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的费用一般只需自己注册付费API Key的30%左右）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现）" style="text-align:justify">
-                    本系统的服务端听媒提问他创方的AIGC（阿里Qwen为例。本系统的客户端浏览器直接访问阿里Qwen不会允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理使用，而且节省70%费用）（此外，请尽量选用本系统的语音对话听媒提问他创方的AIGC。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒提问他创方的AIGC，以后则将取消！单击“了解录音Prompt指令”按钮，则可查看相关视媒Prompt指令，而非视媒Prompt提问的特例）。请键入您的视媒Prompt提问<sapn title="单击打开自创方的知识库案例，可以用来对比AIGC生成内容的相似度准确性！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+                    本系统的服务端听媒提问他创方的AIGC（请尽量选用本系统的语音对话听媒提问他创方的AIGC。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒提问）。请键入您的视媒Prompt提问<sapn title="单击打开自创方的知识库案例，可以用来对比AIGC生成内容的相似度准确性！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击这里可以搜索查询知识库，对比RAG检索增强生成的内容的相似度准确性）：</sapn><input type="text" size="10" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" /> <select title="注：当前有效选项仅是（云端）Qwen千问">
-    <option value="Qwen">（云端）Qwen千问</option>
-    <option value="ChatGPT">（云端）ChatGPT</option>
-    <option value="LocalQwen">（本机）Qwen千问</option>
-    <option value="LocalChatGPT">（本机）ChatGPT</option>
-</select><input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />非RAG<input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_RAG" value="RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />RAG<span id="idRadioRAGClickedForWaiting" style="font-size:x-small"></span>
+                        <option value="Qwen">（云端）Qwen千问</option>
+                        <option value="ChatGPT">（云端）ChatGPT</option>
+                        <option value="LocalQwen">（本机）Qwen千问</option>
+                        <option value="LocalChatGPT">（本机）ChatGPT</option>
+                    </select>
+                    <input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />非RAG
+                    <input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_RAG" value="RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />RAG
+                    <span id="idRadioRAGClickedForWaiting" style="font-size:x-small"></span>
 
                     <table>
                         <tr>
@@ -417,16 +431,7 @@
                     <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
                 </div>
 
-                <div id="kernelDialogueSystemExternal" style="border: dashed; border-color: goldenrod; display: none">
-                    <ol style="text-align:justify">
-                        <li>切换系统内部语音对话（实际测试优化成为“内部”）（尚未实现）</li>
-                        <li>切换系统外部语音朗读TTS！（实际测试优化成为“切换系统外部TTS”）（尚未实现）</li>
-                        <li>开始系统外部语音朗读（实际测试优化成为“开始朗读”）（尚未实现）</li>
-                        <li>暂停系统外部语音朗读（实际测试优化成为“暂停朗读”）（尚未实现）</li>
-                        <li>继续系统外部语音朗读（实际测试优化成为“继续朗读”）（尚未实现）</li>
-                        <li>停止系统外部语音朗读（实际测试优化成为“停止朗读”）（尚未实现）</li>
-                    </ol>
-                </div>
+
 
                 <div id="transcriptSystemExternal" style="color:green;width:95%" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...请单击“了解录音Prompt指令”，查看录音说明...）">
                     {

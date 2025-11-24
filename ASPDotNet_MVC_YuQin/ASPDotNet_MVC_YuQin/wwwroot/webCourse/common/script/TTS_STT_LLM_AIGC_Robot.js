@@ -289,15 +289,23 @@ function fnUnderstandKernelDialogueBtnSystemInternal() {
    fnToggleEventSoureElementColor();
     if(document.getElementById("kernelDialogueSystemInternal").style.display=="none"){
     document.getElementById("kernelDialogueSystemInternal").style.display="block";
+    document.getElementById("idRightTriangleOfUnderstandKernelDialogueSystemInternal").textContent="▼";
     } 
-else{document.getElementById("kernelDialogueSystemInternal").style.display="none"}
+else{
+    document.getElementById("kernelDialogueSystemInternal").style.display="none";
+    document.getElementById("idRightTriangleOfUnderstandKernelDialogueSystemInternal").textContent="▶"
+    }
 }
 function fnUnderstandKernelDialogueBtnSystemExternal() {
    fnToggleEventSoureElementColor();
     if(document.getElementById("kernelDialogueSystemExternal").style.display=="none"){
     document.getElementById("kernelDialogueSystemExternal").style.display="block";
+    document.getElementById("idRightTriangleOfUnderstandKernelDialogueSystemExternal").textContent="▼";
     } 
-else{document.getElementById("kernelDialogueSystemExternal").style.display="none"}
+else{
+    document.getElementById("kernelDialogueSystemExternal").style.display="none"
+    document.getElementById("idRightTriangleOfUnderstandKernelDialogueSystemExternal").textContent="▶"
+}
 }
 
 function fnSTTOnErrorSystemExternal(event) {
@@ -817,6 +825,20 @@ window.speechSynthesis.cancel();
                 }
         }
      }
+  }
+  function fnToggleSystemInternalExplainSystemExternalExplain(){
+      if(document.getElementById("idSystemInternalExplain").style.display=="none"){
+            document.getElementById("idSystemInternalExplain").style.display="block";
+            document.getElementById("idSystemExternalExplain").style.display="block";
+            document.getElementById("idRightTriangleOfSystemInternal").textContent="▼";
+            document.getElementById("idRightTriangleOfSystemExternal").textContent="▼";
+            }
+      else{
+            document.getElementById("idSystemInternalExplain").style.display="none";
+            document.getElementById("idSystemExternalExplain").style.display="none";
+            document.getElementById("idRightTriangleOfSystemInternal").textContent="▶";
+            document.getElementById("idRightTriangleOfSystemExternal").textContent="▶";
+          }
   }
 /**AIGC官方声明：因为API Key容易泄露等等安全问题，所以当前不支持JS访问千问AIGC。
  *
