@@ -794,9 +794,10 @@ window.speechSynthesis.cancel();
      if(document.getElementById("id_SystemExternal_NonRAG").checked){
      document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
      document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
+     document.getElementById("idRadioRAGClickedForWaiting").textContent ="";
      }
      else{
-         document.getElementById("idRadioRAGClickedForWaiting").textContent ="(正在检索知识库...)";
+         document.getElementById("idRadioRAGClickedForWaiting").textContent ="(正在字符媒体检索知识库...)";
      //window.isRecognizingSystemExternal = false;
      //window.speechSynthesis.cancel(); 
             var sPrompt = document.getElementById("idPrompt").value;
@@ -816,6 +817,12 @@ window.speechSynthesis.cancel();
                         document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value ="基于下述，生成数字思维视角、也称数字人工智能思维视角的、也称数智思维视角的"+document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value+"："+xmlHttpRequest.responseText;    
                         document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value ="基于下述，生成数字思维视角、也称数字人工智能思维视角的、也称数智思维视角的的"+document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value+"      "+xmlHttpRequest.responseText; 
                         document.getElementById("idRadioRAGClickedForWaiting").textContent ="";
+                        if(document.getElementById("id_SystemExternal_NonRAG").checked){
+     document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
+     document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
+     document.getElementById("idRadioRAGClickedForWaiting").textContent ="";
+
+                        }
                      }
                     
                     else {

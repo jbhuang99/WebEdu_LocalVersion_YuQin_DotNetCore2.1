@@ -409,7 +409,9 @@
                     </select>
                     <input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />非RAG
                     <input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_RAG" value="RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />RAG
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />字符媒体RAG
+                    <input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_MultiMediaRAG" value="MultiMediaRAG" disabled /><span onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} alert("本功能尚在开发之中...");document.getElementById("idRadioRAGClickedForWaiting").textContent ="(正在开发多媒体检索知识库...)"' >多媒体RAG</span>
                     <span id="idRadioRAGClickedForWaiting" style="font-size:x-small"></span>
 
                     <table>
