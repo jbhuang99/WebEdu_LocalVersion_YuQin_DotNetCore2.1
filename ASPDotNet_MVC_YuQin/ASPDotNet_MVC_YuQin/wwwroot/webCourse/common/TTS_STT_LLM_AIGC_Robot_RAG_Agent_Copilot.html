@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="https://www.x3dom.org/x3dom/release/x3dom.css">
     <script type="text/javascript" src="https://www.x3dom.org/x3dom/release/x3dom.js"></script>
     <meta charset="UTF-8">
-    <title>语音对话机器人AIGC(LLM、LLM-Based-BCI、LLM-Based-Agent、LLM-Based-Copilot、LLM-Based-HumanoidRobot、LLM-Based-AIGC，AIGC用作统称)(AIGC数智时代-数字人工智能时代，基于通用大语言模型LLM，融合领域知识库KnowledgeBase，然后检索增强生成RAG驱动人形机器人HumanoidRobot硬件，是人类工具范式的骤变……)</title>
+    <title>语音对话机器人AIGC(LLM、LLM-Based-BCI、LLM-Based-Agent、LLM-Based-Copilot、LLM-Based-HumanoidRobot、LLM-Based-RAG搜问、LLM-Based-AIGC，AIGC用作统称)(AIGC数智时代-数字人工智能时代，基于通用大语言模型LLM，融合领域知识库KnowledgeBase，然后检索增强生成RAG驱动人形机器人HumanoidRobot硬件，是人类工具范式的骤变……)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -401,17 +401,17 @@
                 </div>
                 <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的费用一般只需自己注册付费API Key的30%左右）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现）" style="text-align:justify">
                     本系统的服务端听媒提问他创方的AIGC（请尽量选用本系统的语音对话听媒提问他创方的AIGC。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒提问）。请键入您的视媒Prompt提问<sapn title="单击打开自创方的知识库案例，可以用来对比AIGC生成内容的相似度准确性！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击这里可以搜索查询知识库，对比RAG检索增强生成的内容的相似度准确性）：</sapn><input type="text" size="10" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" /> <select title="注：当前有效选项仅是（云端）Qwen千问">
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击这里可以搜索查询知识库，对比RAG检索增强生成/搜问的内容的相似度准确性）：</sapn><input type="text" size="10" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" /> <select title="注：当前有效选项仅是（云端）Qwen千问">
                         <option value="Qwen">（云端）Qwen千问</option>
                         <option value="ChatGPT">（云端）ChatGPT</option>
                         <option value="LocalQwen">（本机）Qwen千问</option>
                         <option value="LocalChatGPT">（本机）ChatGPT</option>
                     </select>
-                    <input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />非RAG
+                    <input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />非RAG/非搜问
                     <input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_RAG" value="RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />字符媒体RAG
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />字符媒体RAG/字符媒体搜问
                     <input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_MultiMediaRAG" value="MultiMediaRAG" disabled /><span onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} alert("本功能尚在开发之中...");document.getElementById("idRadioRAGClickedForWaiting").textContent ="(正在开发多媒体检索知识库...)"' >多媒体RAG</span>
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} alert("本功能尚在开发之中...");document.getElementById("idRadioRAGClickedForWaiting").textContent ="(正在开发多媒体检索知识库...)"'>多媒体RAG/多媒体搜问</span>
                     <span id="idRadioRAGClickedForWaiting" style="font-size:x-small"></span>
 
                     <table>
