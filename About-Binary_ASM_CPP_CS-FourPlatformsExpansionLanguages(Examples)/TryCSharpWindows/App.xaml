@@ -1,7 +1,7 @@
-﻿<Application x:Class="Binary_ASM__CPP_CSWindowsApplicationExample.App"
+﻿<Application x:Class="TryCSharpWindows.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Binary_ASM__CPP_CSWindowsApplicationExample"
+             xmlns:local="clr-namespace:TryCSharpWindows"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

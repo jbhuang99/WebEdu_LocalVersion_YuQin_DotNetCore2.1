@@ -9,9 +9,7 @@
   <Configurations>
     <Configuration>
       <Name>Development</Name>
-      <Options>
-        <DeploymentServerVersion>14.0</DeploymentServerVersion>
-      </Options>
+      <Options />
     </Configuration>
   </Configurations>
 </Project>

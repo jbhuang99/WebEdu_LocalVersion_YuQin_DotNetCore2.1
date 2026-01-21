@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Binary_ASM__CPP_CSWindowsApplicationExample
+namespace TryCSharpWindows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
@@ -47,9 +47,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.6.2">
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -64,13 +64,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\src\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.csproj" />
-    <ProjectReference Include="..\..\..\WebEdu_LocalVersion_YuQin_Referenced\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\src\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.csproj" />
-    <ProjectReference Include="..\..\..\WebEdu_LocalVersion_YuQin_Referenced\Microsoft.AspNetCore.Components.QuickGrid\src\Microsoft.AspNetCore.Components.QuickGrid.csproj" />
-    <ProjectReference Include="..\..\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\src\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.csproj" />
-    <ProjectReference Include="..\..\Microsoft.AspNetCore.Components.QuickGrid\src\Microsoft.AspNetCore.Components.QuickGrid.csproj" />
     <ProjectReference Include="..\SharedCS\SharedCS\SharedCS.csproj" />
     <ProjectReference Include="..\SharedRazor_SharedCSHTML\SharedRazorClassLibrary\SharedRazorCS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Components.QuickGrid">
+      <HintPath>..\..\..\WebEdu_LocalVersion_YuQin_Referenced\Microsoft.AspNetCore.Components.QuickGrid\src\bin\Release\net8.0\Microsoft.AspNetCore.Components.QuickGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter">
+      <HintPath>..\..\..\WebEdu_LocalVersion_YuQin_Referenced\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter\src\bin\Release\net8.0\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

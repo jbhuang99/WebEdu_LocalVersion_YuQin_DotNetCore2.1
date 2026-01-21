@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace Binary_ASM__CPP_CSWindowsApplicationExample
+namespace TryCSharpWindows
 {
     /// <summary>
     /// Interaction logic for App.xaml
