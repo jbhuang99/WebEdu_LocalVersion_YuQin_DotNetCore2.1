@@ -44,7 +44,7 @@
         <form action="/UploadHomeworkAndTest/Post?FolderAndFileName=" method="post" enctype="multipart/form-data" id="idHomeworkAndTestForm">
             <p>
                 <label>选择文件(.doc或docx文件)： </label>
-                <input type="file" name="FileUpload" id="idFileUpload" /> <input type="submit" value="提交" id="idFileSubmit" />
+                <input type="file" name="FileUpload" id="idFileUpload" /> <input type="submit" value="提交" id="idFileSubmit" /><div>【注：由于微软正在弃用本系统继承利用的bundle.microsoft.office.interop15.0.4569这一Nuget包，如果上传文件自动的完全的方式另存成为.htm文件出错，只有参见本页下方说明，手动另存！拟在后续另选Blazor.WebAssembly.WASI.Net改写本功能！】</div>
                 <div />
                 <div />
                 <!--<div>注：作业测验必须基于模板编辑制作好才能在线自测<a href="/webCourse/Templates/HomeworkAndTest.docx" target="_blank">（文件模板）</a>、<a href="/webCourse/Templates/ReadMe_HomeworkAndTest.docx" target="_blank">（文件模板说明）</a></div>-->
@@ -54,7 +54,7 @@
         </form>
 
     </div>
-    <p>------------------</p>   
+    <hr style="width:80%"/>
    
     <p>注：目录导航的作业测验，必须基于模板编辑制作好才能在线自测：<a href="https://www.alipan.com/s/g1LgXLG2n1K/" target="_blank">（作业测验文件模板HomeworkAndTest.docx）</a>、<a href="https://www.alipan.com/s/g1LgXLG2n1K/" target="_blank">（作业测验文件模板说明ReadMe_HomeworkAndTest.docx）。</a>作业测试并不建议基于长文档模板编辑制作，而是短文档制作，与长文档没有联系，以便维护。此时，本系统选择了上传.docx文件，然后完全的方式另存成为.htm文件，此时的.htm文件足以完全恢复成为.docx文件，所以可以不备份.docx文件（不能选择过滤Filtered的方式另存成为.htm文件，此时的.htm文件不足以完全恢复成为.docx文件）</p>
 

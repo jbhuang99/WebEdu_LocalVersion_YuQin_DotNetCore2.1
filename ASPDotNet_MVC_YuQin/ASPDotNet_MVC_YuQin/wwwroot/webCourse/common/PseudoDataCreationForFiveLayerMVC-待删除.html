@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>数智思维核心要素的五层MVC的伪数据创建-PseudoDataCreationForFiveLayerMVC</title>
+    <script>  
+        function fnOnSubmit() {
+               
+                 if(opener.opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+                 {alert(opener.opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());
+                 event.returnValue = false;
+                return;
+                 alert();
+            }
+            else
+            {
+                alert(opener.opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());
+                event.returnValue = true;  
+                document.getElementById("idSubmit").value="正在提交，仿制数据，请耐心等待..."
+            }
+        //document.getElementById("idTeachingEngineeringForm").submit();//事件绑定在form时不需要此代码。如果事件绑定在submit按钮就需要。
+        }
+        function fnForm() {
+           document.getElementById("id_PseudoDataCreationForFiveLayerMVC").onsubmit = fnOnSubmit;
+
+            //document.getElementById("id_PseudoDataCreationForFiveLayerMVC").action = document.getElementById("uploadCourseText").action + opener.courseTextPathPart;
+        }
+    </script>
+</head>
+<body onload="fnForm();">
+    <div style="text-align: center;">
+        请单选一种ORM/ODB机制（将自动仿制五层MVC评测所需的海量原始数据的数据库进入本机事先安装的SS服务端。然后可以打开SSMS作为客户端、结合VS作为客户端，演练实现五层MVC作为核心要素的数智思维评测）（可以打开SSMS作为客户端链接SS服务端查看创建结果）：
+        <div style="text-align: justify">
+            <div>
+                <input type="radio" name="raio_ORMSelection" id="id_Radio_ShowInheritanceTreeLeaf_TheOthersHidden" value="ShowInheritanceTreeLeaf_TheOthersHidden" checked />呈现派生继承的树叶其他隐藏（TPH）（在此数据库名称后缀约定ShowInheritanceTreeLeaf_TheOthersHidden）
+            </div>
+            <div>
+                <input type="radio" name="raio_ORMSelection" id="id_Radio_ShowInheritanceTreeBranch_ButRoot-System.Object-Hidden" value="ShowInheritanceTreeBranch_ButRoot-System.Object-Hidden" />呈现派生继承的树枝不过树根System.Object隐藏（TPT）（在此数据库名称后缀约定ShowInheritanceTreeBranch_ButRoot-System.Object-Hidden）
+            </div>
+        </div>
+        <form action="/PseudoDataCreationForFiveLayerMVC/post?TableRowNum=10000" method="post" enctype="multipart/form-data" id="id_PseudoDataCreationForFiveLayerMVC">
+            <p>
+                请设置数据表行数目：<input type="number" id="id_countNumber" name="countNumber" min="10000" max="100000" value="10000" required /><input type="submit" value="提交" id="idSubmit" />
+        </form>
+        <hr style="width:80%"/>
+        <div style="text-align: justify">
+            注【本系统当前仅提供仿制五层MVC评测所需的海量原始数据的功能。基于海量原始数据评测五层MVC参见如下】：
+            <ol>
+                <li><a href="../options/HomeworkAndTestFiveLayerMVC.htm" target="_self" title="单击可以概览数智思维核心要素五层MVC评测的效果案例">（1）“人形机器人学习者”隐喻“人类学习者”（例如，“人形机器人学习者”<span style="color: brown">←屏幕阅读学习/语音互动学习/也可联网互动→</span>“本系统内部知识库KB”，实施数智思维作业测验的数据作为海量原始数据）（2）“人形机器人教育科研者”隐喻“人类教育科研者”（例如，“人形机器人教育科研者”替代“本页所示的外部大语言模型LLM”<span style="color: brown">←无需屏幕阅读/无需语音互动/只需联网回答→</span>“人类教育科研者”的Prompt返回数智思维作业测验，以供“人类教育科研者”评判返回结果准确性的海量原始数据）。以上两种都可以实现“人机统一”的五层MVC作为核心要素的数智思维评测</a>（因为海量原始数据的工作量巨大！，自动仿制五层MVC评测所需的海量原始数据的数据库进入本机事先安装的SS服务端。然后可以打开SSMS作为客户端、结合VS作为客户端，演练实现五层MVC作为核心要素的数智思维评测）。</li>
+                <li><a href="../options/HomeworkAndTestFiveLayerMVC.htm" target="_self" title="单击可以概览数智思维核心要素五层MVC评测的效果案例">拟在后续选用Blazor.WebAssembly.WASI.Net，提供“互联网中的浏览器”←互动→“互联网中的SS服务端”，实现五层MVC评测的功能！</a><a href="https://zhuanlan.zhihu.com/p/1999448846917449122" target="_blank">（建议参见这个链接的相关说明）</a></li>
+                <li><a href="../options/HomeworkAndTestFiveLayerMVC.htm" target="_self" title="单击可以概览数智思维核心要素五层MVC评测的效果案例">暂时请继承利用“本机的SSMS作为客户端”←互动→“本机的SS服务端”，实现五层MVC评测的功能！</a><a href="https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/wwwroot/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738&text=1732766688449" target="_blank" title="单击可以概览数智思维核心要素五层MVC评测的内容方法说明">（建议参见这个链接的相关说明）</a></li>
+                <li><a href="../options/HomeworkAndTestFiveLayerMVC.htm" target="_self" title="单击可以概览硬件肢体语言评测的原理">“软件思维语言”←硬件软件统一→“硬件肢体语言”，由于自身条件限制，在此主要面向“软件思维语言”！</a> <a href="https://zhuanlan.zhihu.com/p/1987287349474894485" target="_blank">（建议参见这个链接的相关说明）</a></li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

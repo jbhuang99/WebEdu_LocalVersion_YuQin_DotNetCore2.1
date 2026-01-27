@@ -39,14 +39,14 @@
             <p>
                 <label>选择文件(.doc或docx文件)： </label>
                 <input type="file" name="FileUpload" id="idFileUpload" />
-                <input type="submit" value="提交" id="idSubmit" />
+                <input type="submit" value="提交" id="idSubmit" /><div>【注：由于微软正在弃用本系统继承利用的bundle.microsoft.office.interop15.0.4569这一Nuget包，如果上传文件自动的过滤（filtered）的方式另存成为.htm文件出错，只有参见本页下方说明，手动另存！拟在后续另选Blazor.WebAssembly.WASI.Net改写本功能！】</div>
 
             </p>
         </form>
     </div>
         <!--<div>注：课文最好基于长文档模板编辑制作好以便维护<a href="/webCourse/Templates/LongDocNavigatorWithContents_Book.doc" target="_blank">（长文档模板之一）</a>、<a href="/webCourse/Templates/LongDocNavigatorWithContents_Paper.doc" target="_blank">（长文档模板之二）</a></div>-->
         <!--上述在具有虚拟目录时href出错-->
-    <p>-----------------</p>
+    <hr style="width:80%"/>
     <div>注：教材课文如果引用了外部文件，那么需求纷繁复杂，难以强安全性Web的本系统之中实现，所以在此建议利用操作系统的文件资源管理器，拷贝到相应文件夹。文件夹的
     <script>document.write("物理路径是当前项目的wwwroot\\webCourse\\lessons\\content\\book\\"+opener.courseTextPathPart);</script>之下您需求的某个路径！！！</div>
         <div><a href="EduResourceTemplates.html" target="_blank">注：教材课文最好基于长文档模板编辑制作，以便维护。此时，因为每个条目的教材课文分拆来自长文档的某个部分，所以本系统选择了上传.docx文件，然后过滤（filtered）的方式另存成为.htm文件，此时的.htm文件不足以完全恢复成为.docx文件（不能选择完全的方式另存成为.htm文件，此时的.htm文件足以完全恢复成为.docx文件，但是可能丢失长文档之中的数据）</a></div>

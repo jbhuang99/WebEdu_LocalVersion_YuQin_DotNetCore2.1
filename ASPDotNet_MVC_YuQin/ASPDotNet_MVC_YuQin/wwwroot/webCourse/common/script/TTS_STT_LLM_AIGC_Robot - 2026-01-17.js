@@ -29,20 +29,6 @@ document.getElementById("id_CharNumber").textContent=sTextContent.length;
 }
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
-window.PseudoDataCreationForFiveLayerMVCFormAction=document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action;
-fnFormPseudoDataCreationForFiveLayerMVC();
-}
-
-function fnOnSubmitPseudoDataCreationForFiveLayerMVC() { 
-    event.returnValue = true; 
-    document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").value="正在提交，正在仿制数据，请耐心等待...";
-            }
-function fnFormPseudoDataCreationForFiveLayerMVC() {
-     document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action = window.PseudoDataCreationForFiveLayerMVCFormAction + document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVC").value; 
-    document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").onsubmit = fnOnSubmitPseudoDataCreationForFiveLayerMVC; 
-        }
-function fnOnchangecountNumberPseudoDataCreationForFiveLayerMVC(){
-   document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action = window.PseudoDataCreationForFiveLayerMVCFormAction + document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVC").value; 
 }
 
 function fnOpenLocalhostDingTalkAIGC(){

@@ -100,7 +100,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
 
   <ItemGroup>
     <Compile Remove="Controllers\BroweringOfTextbookController.cs" />
-    <Compile Remove="Controllers\CreateTextController - Copy.cs" />
     <Compile Remove="Controllers\Interop_CSInteropCPPCOMTry.cs" />
     <Compile Remove="Controllers\Interop_CSInteropCPPDLLTry.cs" />
     <Compile Remove="Models\Blazor_WebAssembly_PWA_YuQin_API\Student.cs" />
