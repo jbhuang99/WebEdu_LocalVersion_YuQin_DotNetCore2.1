@@ -30,6 +30,7 @@ document.getElementById("id_CharNumber").textContent=sTextContent.length;
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
 window.PseudoDataCreationForFiveLayerMVCFormAction=document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action;
+document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").onsubmit = fnOnSubmitPseudoDataCreationForFiveLayerMVC; 
 fnFormPseudoDataCreationForFiveLayerMVC();
 }
 
@@ -37,13 +38,27 @@ function fnOnSubmitPseudoDataCreationForFiveLayerMVC() {
     event.returnValue = true; 
     document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").value="正在提交，正在仿制数据，请耐心等待...";
             }
+            
 function fnFormPseudoDataCreationForFiveLayerMVC() {
-     document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action = window.PseudoDataCreationForFiveLayerMVCFormAction + document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVC").value; 
-    document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").onsubmit = fnOnSubmitPseudoDataCreationForFiveLayerMVC; 
+    var DBName="";
+    if(document.getElementById("id_Radio_ShowInheritanceTreeLeaf_TheOthersHidden").checked){DBName="CurriculumShowInheritanceTreeLeaf_TheOthersHidden";}
+    else{DBName="CurriculumShowInheritanceTreeBranch_ButRoot-System.Object-Hidden";}
+     document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action = window.PseudoDataCreationForFiveLayerMVCFormAction
+     +"DBName="+DBName
++"&MVCCategoryNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCCategory").value //固定MVC类别数为5
++"&CurriculumNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCCurriculum").value
++"&SelectedCurriculumNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedCurriculum").value
++"&UnitNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCUnit").value
++"&LearnerNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCLearner").value
++"&EducatorNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCEducator").value
++"&HomeworkAndTestNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCHomeworkAndTest").value
+; 
         }
+  /**暂时未提供用户改变计算器。
 function fnOnchangecountNumberPseudoDataCreationForFiveLayerMVC(){
-   document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action = window.PseudoDataCreationForFiveLayerMVCFormAction + document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVC").value; 
+   document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action = window.PseudoDataCreationForFiveLayerMVCFormAction + TableRowNum=document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVC").value; 
 }
+**/
 
 function fnOpenLocalhostDingTalkAIGC(){
 try{

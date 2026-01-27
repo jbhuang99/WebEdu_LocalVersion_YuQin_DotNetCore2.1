@@ -36,7 +36,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
             return Content("<HTML><HEAD><TITLE>课文</TITLE><BODY><div contenteditable='true' style='width:100%;height:100%;text-align:center;vertical-align:middle;'><span style='line-height: 400px;'>该条目尚没有对应的课文，这是自动创建的文本，请编辑</span></div></BODY ></HTM>", "text/html", System.Text.Encoding.UTF8);//不知为什么，必须""嵌套''，否则提示“字符文本中字符太多”错误
         }
 
-        public async Task<IActionResult> Post(Int32 TableRow)//ASP.NET MVC 操作支持使用简单的模型绑定（针对较小文件）或流式处理（针对较大文件）上传一个或多个文件。(在此选择流式处理）)
+        public async Task<IActionResult> Post()//ASP.NET MVC 操作支持使用简单的模型绑定（针对较小文件）或流式处理（针对较大文件）上传一个或多个文件。(在此选择流式处理）)
         {
             // return (Content(Request.Query["FolderAndFileName"]));
             //判断是本机版还是服务器版，服务器不允许上传
@@ -44,7 +44,14 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
             if (new LocalVersionOrServerVersion().IsLocalVersion(this.Request.Host.ToUriComponent()))
             {
                 //return Ok(new { count = files.Count, size, filePathAll, host = this.Request.Host.ToUriComponent() });
-                return Ok("已成功仿制！"+ Request.Query["TableRowNum"]);
+                return Ok("已成功仿制DBName！" + Request.Query["DBName"]
+                    + "已成功仿制MVCCategory！" + Request.Query["MVCCategoryNum"] 
+                    + "已成功仿制CurriculumNum！" + Request.Query["CurriculumNum"] 
+                    + "已成功仿制SelectedCurriculumNum！" + Request.Query["SelectedCurriculumNum"] 
+                    + "已成功仿制UnitNum！" + Request.Query["UnitNum"] 
+                    + "已成功仿制LearnerNum！" + Request.Query["LearnerNum"] 
+                    + "已成功仿制EducatorNum！" + Request.Query["EducatorNum"] 
+                    + "已成功仿制HomeworkAndTestNum！" + Request.Query["HomeworkAndTestNum"]);
             }
             else { return Ok("这是服务器版（或者是本机版发布为了服务器版的方式运行），不允许直接上传！请在本机版制作好后（本机版无需登录）,连接服务器版（课程资源管理员的账号登录连接服务器版），上传本机版中的资源到服务器版!" + this.Request.Host.ToUriComponent()); }
 
