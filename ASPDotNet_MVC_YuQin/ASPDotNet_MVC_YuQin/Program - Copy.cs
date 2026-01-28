@@ -263,24 +263,20 @@ applicationBuilder.UseSignalR(routes =>
 **/
 /////////////////////////////////////////////////////////////////
 
-using BlazorWebAssemblyExampleApi.Model;
-using CurriculumSelection.Data;
-using DocumentFormat.OpenXml.InkML;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Office.Interop.PowerPoint;
 using System;
 using System.IO;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
+using Microsoft.AspNetCore.Mvc;
+using BlazorWebAssemblyExampleApi.Model;
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore21
 {
@@ -299,27 +295,19 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             };
             WebApplicationBuilder webApplicationBuilder = WebApplication.CreateBuilder(webApplicationOptions);
             **/
-
             WebApplicationBuilder webApplicationBuilder = WebApplication.CreateBuilder(args);
-
             //webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。
             webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。可以设置在appsettings.json中，使用JIT编译的方式获取（在此选用）。也可以在代码中硬编码设置。也可以在命令行中指定参数。
             Console.WriteLine(webApplicationBuilder.Environment.WebRootPath);
-
-            // Add services to the container.
-
-            String connectionString = webApplicationBuilder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-
-
-            String connectionStringPseudoDataCreationForFiveLayerMVC_TPH = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataCreationForFiveLayerMVC_TPH") ?? throw new InvalidOperationException("Connection string 'PseudoDataCreationForFiveLayerMVC_TPH' not found.");
-            webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDbContext>(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPH));
-            //
+ 
+              // Add services to the container.
+              String connectionString = webApplicationBuilder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
             webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             webApplicationBuilder.Services.AddDefaultIdentity<IdentityUser>(options =>
-           {
-               options.SignIn.RequireConfirmedAccount = true;
+           { options.SignIn.RequireConfirmedAccount = true;
                // Password settings.
                /**
                options.Password.RequireDigit = true;
@@ -348,7 +336,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             {
                 // Cookie settings
                 //options.Cookie.HttpOnly = true;
-                // options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+               // options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
                 options.LoginPath = "/Identity/Account/Login"; //如果用户没有登录，并尝试访问被[Authorize]属性保护的资源，他们将会被重定向到你在AddCookie中指定的LoginPath
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 //options.SlidingExpiration = true;
@@ -376,14 +364,14 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
 
             webApplication.UseHttpsRedirection();
             webApplication.UseStaticFiles();
-
-            webApplication.UseCors(delegate (CorsPolicyBuilder corsPolicyBuilder)
+            
+            webApplication.UseCors(delegate(CorsPolicyBuilder corsPolicyBuilder)
             {
                 corsPolicyBuilder.AllowAnyOrigin();
                 corsPolicyBuilder.AllowAnyMethod();
                 corsPolicyBuilder.AllowAnyHeader();
             });
-
+            
             webApplication.UseRouting();
 
             webApplication.UseAuthorization();
@@ -393,31 +381,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             webApplication.MapRazorPages();
 
-            ///**新增，为了触发创建数据库，初始化数据库数据。//移动成为控制器Controller中的代码。
-           // Program.CreateDbIfNotExists(webApplication);
-            // **/
-
             webApplication.Run();
-        }
-        ////
-        private static void CreateDbIfNotExists(WebApplication webApplication)
-        {
-            using (IServiceScope iServiceScope = webApplication.Services.CreateScope())
-            {
-                IServiceProvider iServiceProvider = iServiceScope.ServiceProvider;
-                try
-                {
-                    CurriculumSelectionDbContext curriculumSelectionDbContext = iServiceProvider.GetRequiredService<CurriculumSelectionDbContext>();
-                    curriculumSelectionDbContext.Database.EnsureCreated();
-                    DbInitializer.Initialize(curriculumSelectionDbContext);
-                }
-                catch (Exception exception)
-                {
-                    ILogger iLogger = iServiceProvider.GetRequiredService<ILogger<Program>>();
-                    iLogger.LogError(exception, "An error occurred creating the DB.");
-                }
-            }
-            //////
         }
     }
 }

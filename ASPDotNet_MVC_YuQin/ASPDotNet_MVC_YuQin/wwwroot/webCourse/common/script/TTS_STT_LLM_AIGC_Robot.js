@@ -48,10 +48,11 @@ function fnFormPseudoDataCreationForFiveLayerMVC() {
 +"&MVCCategoryNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCCategory").value //固定MVC类别数为5
 +"&CurriculumNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCCurriculum").value
 +"&SelectedCurriculumNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedCurriculum").value
-+"&UnitNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCUnit").value
++"&OrganizationNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCOrganization").value
 +"&LearnerNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCLearner").value
 +"&EducatorNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCEducator").value
 +"&HomeworkAndTestNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCHomeworkAndTest").value
++"&SelectedHomeworkAndTestNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedHomeworkAndTest").value
 ; 
         }
   /**暂时未提供用户改变计算器。

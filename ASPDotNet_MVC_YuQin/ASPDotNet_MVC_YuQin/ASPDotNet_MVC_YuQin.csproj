@@ -45,6 +45,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="Models\ServicesForIdentity\**" />
     <Compile Remove="StudyHardDayDayUp\**" />
     <Compile Remove="Views\BroweringOfTextbook\**" />
+    <Compile Remove="Views\备份-待删除\**" />
     <Compile Remove="wwwroot\TryPWA\**" />
     <Compile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <Compile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
@@ -59,6 +60,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="Models\ServicesForIdentity\**" />
     <Content Remove="StudyHardDayDayUp\**" />
     <Content Remove="Views\BroweringOfTextbook\**" />
+    <Content Remove="Views\备份-待删除\**" />
     <Content Remove="wwwroot\TryPWA\**" />
     <Content Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <Content Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
@@ -73,6 +75,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <EmbeddedResource Remove="Models\ServicesForIdentity\**" />
     <EmbeddedResource Remove="StudyHardDayDayUp\**" />
     <EmbeddedResource Remove="Views\BroweringOfTextbook\**" />
+    <EmbeddedResource Remove="Views\备份-待删除\**" />
     <EmbeddedResource Remove="wwwroot\TryPWA\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
@@ -87,12 +90,14 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Remove="Models\ServicesForIdentity\**" />
     <None Remove="StudyHardDayDayUp\**" />
     <None Remove="Views\BroweringOfTextbook\**" />
+    <None Remove="Views\备份-待删除\**" />
     <None Remove="wwwroot\TryPWA\**" />
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
     <TypeScriptCompile Remove="Areas\**" />
     <TypeScriptCompile Remove="Controllers\RESTless\Identity\**" />
+    <TypeScriptCompile Remove="Views\备份-待删除\**" />
     <TypeScriptCompile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <TypeScriptCompile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <TypeScriptCompile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
@@ -102,6 +107,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="Controllers\BroweringOfTextbookController.cs" />
     <Compile Remove="Controllers\Interop_CSInteropCPPCOMTry.cs" />
     <Compile Remove="Controllers\Interop_CSInteropCPPDLLTry.cs" />
+    <Compile Remove="Controllers\PseudoDataCreationForFiveLayerMVC - Copy.cs" />
     <Compile Remove="Models\Blazor_WebAssembly_PWA_YuQin_API\Student.cs" />
     <Compile Remove="Models\BroweringOfTextbook.cs" />
     <Compile Remove="Models\BroweringOfTextbookDbContext.cs" />
@@ -109,6 +115,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="Models\MovieDateFixed.cs" />
     <Compile Remove="Models\MovieDateRating.cs" />
     <Compile Remove="Program  - Copy.cs" />
+    <Compile Remove="Program - Copy.cs" />
     <Compile Remove="Startup.cs" />
   </ItemGroup>
 
