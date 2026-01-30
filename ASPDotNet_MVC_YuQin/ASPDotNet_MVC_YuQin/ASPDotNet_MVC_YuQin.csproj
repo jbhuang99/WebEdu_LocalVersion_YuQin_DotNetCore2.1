@@ -109,6 +109,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="Controllers\Interop_CSInteropCPPDLLTry.cs" />
     <Compile Remove="Controllers\PseudoDataCreationForFiveLayerMVC - Copy.cs" />
     <Compile Remove="Data-ODM-ORM-DbData\DbInitializer - Copy-暂时不删除.cs" />
+    <Compile Remove="Data-ODM-ORM-DbData\DbInitializer - Copy.cs" />
     <Compile Remove="Models\Blazor_WebAssembly_PWA_YuQin_API\Student.cs" />
     <Compile Remove="Models\BroweringOfTextbook.cs" />
     <Compile Remove="Models\BroweringOfTextbookDbContext.cs" />

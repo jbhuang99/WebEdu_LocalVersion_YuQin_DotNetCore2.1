@@ -4,6 +4,7 @@ namespace CurriculumSelection.Models
     public class ScoreOfSelectedCurriculumByLearner : Object
     {
         public Int32 ScoreOfSelectedCurriculumByLearnerID { get; set; }
+        public String ScoreOfSelectedCurriculumByLearnerNote { get; set; }
         public Single Score { get; set; }
         public Int32 CurriculumID { get; set; }
         public Int32 LearnerID { get; set; }
