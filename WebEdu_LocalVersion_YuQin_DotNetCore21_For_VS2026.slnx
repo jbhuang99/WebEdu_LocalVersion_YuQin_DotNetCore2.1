@@ -45,25 +45,6 @@
   <Folder Name="/About-Binary_ASM_CPP_CS(SelectedHere)-FourPlatformsLanguages(Examples)/">
     <File Path="About-Binary_ASM_CPP_CS-FourPlatformsExpansionLanguages(Examples)/ReadMe.txt" />
   </Folder>
-  <Folder Name="/About-ObjectTypeBatchBirthObjectInstance/">
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/Bogus-master/Source/Bogus.Tests/Bogus.Tests.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/Bogus-master/Source/Bogus/Bogus.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-  </Folder>
-  <Folder Name="/About-ObjectTypeBatchBirthObjectInstance/ExamplesWithNuget/">
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/Bogus-master/Examples/EFCoreSeedDb/EFCoreSeedDb.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/Bogus-master/Examples/ExtendingBogus/ExtendingBogus.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/Bogus-master/Examples/GettingStarted/GettingStarted.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-  </Folder>
   <Folder Name="/ASPDotNet_MVC_YuQin/">
     <Project Path="ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin.csproj">
       <BuildType Solution="Development|*" Project="Release" />
@@ -100,48 +81,33 @@
   <Folder Name="/ASPDotNet_MVC_YuQin/SharedRazor_SharedCSHTML/Microsoft.AspNetCore.Components.QuickGrid_ReadMe/">
     <File Path="ASPDotNet_MVC_YuQin/SharedRazor_SharedCSHTML/Microsoft.AspNetCore.Components.QuickGrid/（目前也可卸载相应的源码项目，而在本项目Nuget安装依赖项：Microsoft.AspNetCore.Components.QuickGrid）.txt" />
   </Folder>
-  <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/" />
-  <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/Layer1_SSDE-Database_SSDE-Datawarehouse_SSIS/">
-    <Project Path="About_VS_SSDT_SS/Layer1_SSDE_Database_SSDE_Datawarehouse_SSIS-For-Slnx/TryDatabase/TryDatabase/TryDatabase.sqlproj" Id="2f58895d-d6c4-4f7e-b063-7ba5f4732ede">
+  <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/">
+    <File Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SS/About_VS_SSDT_SS.txt" />
+  </Folder>
+  <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/Layer1_SSDE_Database_DatawareHouse_SSIS/">
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SS/Layer1/TryDatabase/TryDatabase/TryDatabase.sqlproj" Id="4a6bf7b9-f1bd-4fa6-89a3-bc0fed54aa46">
       <BuildType Solution="Development|*" Project="Release" />
       <Build />
       <Deploy />
     </Project>
-    <Project Path="About_VS_SSDT_SS/Layer1_SSDE_Database_SSDE_Datawarehouse_SSIS-For-Slnx/TryDatawarehouse/TryDH/TryDH.sqlproj" Id="c9f655a2-8932-40c4-8c69-bc3ae389c1e4">
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SS/Layer1/TryDatawarehouse/DatawareHouse/DatawareHouse.sqlproj" Id="0444f2a2-642b-437a-ab33-c3e253cada1d">
       <BuildType Solution="Development|*" Project="Release" />
       <Build />
       <Deploy />
     </Project>
-    <Project Path="About_VS_SSDT_SS/Layer1_SSDE_Database_SSDE_Datawarehouse_SSIS/TrySSIS/TrySSIS/TrySSIS.dtproj" Type="c9674dcb-5085-4a16-b785-4c70dd1589bd">
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SS/Layer1/TrySSIS/TrySSIS/TrySSIS.dtproj" Type="c9674dcb-5085-4a16-b785-4c70dd1589bd">
       <BuildType Project="Development" />
       <Platform Project="?" />
     </Project>
   </Folder>
-  <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/Layer2_SSAS_MDA/">
-    <Project Path="About_VS_SSDT_SS/Layer2_SSAS_MDA-For_Slnx/TrySSAS-MDA/TrySSAS-MDA.dwproj" Type="d2abab84-bf74-430a-b69e-9dc6d40dda17">
-      <BuildType Project="Development" />
-      <Platform Project="?" />
-      <Deploy />
-    </Project>
-  </Folder>
-  <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/Layer3_SSAS-DMA/">
-    <Project Path="TrySSAS-DMA/TrySSAS-DMA.dwproj" Type="d2abab84-bf74-430a-b69e-9dc6d40dda17">
-      <BuildType Project="Development" />
-      <Platform Project="?" />
-      <Deploy />
-    </Project>
-  </Folder>
-  <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/Layer4_SSAS-DMAC/">
-    <Project Path="About_VS_SSDT_SS/Layer4_SSAS_DMAC/TrySSAS-DMAC/TrySSAS-DMAC.dwproj" Type="d2abab84-bf74-430a-b69e-9dc6d40dda17">
+  <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/Layer2_Layer3_Layer4_SSAS_MDA_DMA_DMAC/">
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SS/Layer2_Layer3_Layer4/TrySSAS_MDX_DMX_DMXA/TrySSAS_MDX_DMX_DMXA.dwproj" Type="d2abab84-bf74-430a-b69e-9dc6d40dda17">
       <BuildType Project="Development" />
       <Platform Project="?" />
       <Deploy />
     </Project>
   </Folder>
   <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/Layer5_SSAIGC/" />
-  <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/ReadMe-DevelopingTimeRunningThisProject-开发时运行这个项目的说明-请用Word读写该HTML文件/">
-    <File Path="About_VS_SSDT_SS/ReadMe-DevelopingTimeRunningThisProject.htm" />
-  </Folder>
   <Folder Name="/ReadMe-DevelopingTimeRunningThisSolution-开发时运行这个解决方案的说明-请用Word读写该HTML文件/">
     <File Path="ReadMe-DevelopingTimeRunningThisSolution.htm" />
   </Folder>

@@ -1,0 +1,2 @@
+About-vs-sql-server-project-for-CICD：
+https://learn.microsoft.com/en-us/sql/tools/sql-database-projects/get-started?view=sql-server-ver17&pivots=sq1-visual-studio
