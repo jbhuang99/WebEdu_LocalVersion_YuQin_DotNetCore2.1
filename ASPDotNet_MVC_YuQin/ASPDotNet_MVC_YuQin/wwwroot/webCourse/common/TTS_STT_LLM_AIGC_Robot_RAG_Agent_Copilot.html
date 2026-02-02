@@ -91,6 +91,7 @@
     <script src="script/TTS_STT_LLM_AIGC_Robot.js"></script>
     <script src="script/Accuracy-Similarity.js"></script>
     <script>
+        
 (function(){
   const form = document.getElementById('id_PseudoDataCreationForFiveLayerMVCForm');
   if (!form) return;
@@ -117,15 +118,16 @@
     //btn.value =btn.title
   });
 })();
+
 </script>
 </head>
 
 <body onload="fnOnLoad()">
-    <div style="font-size:24px;font-weight:bolder"><img src="Human_32.png" title="语音对话的人（戴着耳机麦克风）"/><!--<a href="PseudoDataCreationForFiveLayerMVC.html" target="_self" title="单击可以仿制数智思维核心要素五层MVC评测所需的海量原始数据的数据库进入本机事先安装的SS服务端"></a>-->“人”←语音对话→“人形机器人”<img src="Robot_32.png" title="语音对话的人形机器人（隐式耳机麦克风）"/>
+    <div style="font-size:24px;font-weight:bolder"><img src="Human_32.png" title="语音对话的人（戴着耳机麦克风）"/>“人”←语音对话→“人形机器人”<img src="Robot_32.png" title="语音对话的人形机器人（隐式耳机麦克风）"/>
         <div style="font-size:12px" title="单击可以切换显示界面：仿制数智思维核心要素五层MVC评测所需的海量原始数据的数据库进入本机事先安装的SS服务端(互动评测五层MVC作为核心的数智思维)"  onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display=="none"){document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display="block";document.getElementById("id_PseudoDataCreationForFiveLayerMVCArrow").textContent="▼";} else{document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display="none";document.getElementById("id_PseudoDataCreationForFiveLayerMVCArrow").textContent="▶"; }fnToggleEventSoureElementColor();' ><span id="id_PseudoDataCreationForFiveLayerMVCArrow">▶</span><!--（面向远程听觉的麦克风扬声器/忽略近程视觉的屏幕键盘鼠标）-->(单击可以切换显示“数智思维的五层MVC”相关界面)（面向会说不会写的幼儿用户←Prompt互动→系统内部或者系统外部AIGC）或者（面向成人用户房屋空间漫游←Prompt互动→系统内部或者系统外部AIGC）<span style="color:brown">（注：用户最好佩戴蓝牙耳机之类，因为当前的系统朗读声音，也会混入成为用户的声音指令，导致声音指令的语音识别异常！目前只有浏览器右击菜单“刷新”重新开始语音Prompt，寻求解决方案之中...！）</span>
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display=="none"){document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display="block";document.getElementById("id_PseudoDataCreationForFiveLayerMVCArrow").textContent="▼";} else{document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display="none";document.getElementById("id_PseudoDataCreationForFiveLayerMVCArrow").textContent="▶"; }fnToggleEventSoureElementColor();' ><span id="id_PseudoDataCreationForFiveLayerMVCArrow">▶</span>(单击可以切换显示“数智思维的五层MVC”相关界面)（面向会说不会写的幼儿用户←Prompt互动→系统内部或者系统外部AIGC）或者（面向成人用户房屋空间漫游←Prompt互动→系统内部或者系统外部AIGC）<span style="color:brown">（注：用户最好佩戴蓝牙耳机之类，因为当前的系统朗读声音，也会混入成为用户的声音指令，导致声音指令的语音识别异常！目前只有浏览器右击菜单“刷新”重新开始语音Prompt，寻求解决方案之中...！）</span>
     </div></div>
-        <div id="id_PseudoDataCreationForFiveLayerMVC" style="display:none;border: dashed;border-color: goldenrod; ">
+    <div id="id_PseudoDataCreationForFiveLayerMVC" style="display:none;border: dashed;border-color: goldenrod; ">
            <div style="text-align: center;">
     请单选一种ORM/ODB机制（将自动仿制五层MVC评测所需的海量原始数据的数据库进入本机事先安装的SS服务端。然后可以打开SSMS作为客户端、结合VS作为客户端，演练实现五层MVC作为核心要素的数智思维评测）（可以打开SSMS作为客户端链接SS服务端查看创建结果）：
     <div style="text-align: justify">
@@ -138,9 +140,11 @@
     </div>
     <form action="/PseudoDataCreationForFiveLayerMVC/post?" method="post" enctype="multipart/form-data" id="id_PseudoDataCreationForFiveLayerMVCForm">
         <p>
-            （数智思维核心要素的五层MVC的类别的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCCategory" min="5" max="5" value="5" disabled required /><!--id_CountNumberPseudoDataCreationForFiveLayerMVCCategory必须固定为5--><br />（课程的）数据表行数目（在此假设五层MVC类别*160=800）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCCurriculum" min="800" max="800" value="800" disabled required /><br />（人类学习者←隐喻→人形机器人学习者）（所选课程成绩的）数据表行数目（在此假设五层MVC类别*学习者总数*16=64000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedCurriculum" min="64000" max="64000" value="64000" disabled required /><br />（人类学校品牌←隐喻→人形机器人训练厂商品牌的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCOrganization" min="160" max="160" value="160" disabled required /><br />（人类学习者←隐喻→人形机器人学习者的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCLearner" min="800" max="800" value="800" disabled required /><br />（人类教育科研者←隐喻→人形机器人教育科研者的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCEducator" min="200" max="200" value="200" disabled required /><br />（作业测验题库单选题的）数据表行数目（在此假设五层MVC类别*1600=8000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCHomeworkAndTest" name="countNumber" min="8000" max="8000" value="8000" disabled required /><br />（人类学习者←隐喻→人形机器人学习者）（所选作业测验题库单选题答题结果的）数据表行数目（在此假设五层MVC类别*16000=80000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedHomeworkAndTest" min="80000" max="80000" value="80000" disabled required onchange="fnOnchangecountNumberPseudoDataCreationForFiveLayerMVC();"/>
+            （数智思维核心要素的五层MVC的类别的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCCategory" min="5" max="5" value="5" disabled required title="本数据表行必须固定为5！！！"/><br />（课程的）数据表行数目（在此假设五层MVC类别*160=800）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCCurriculum" min="800" max="800" value="800" disabled required /><br />（人类学习者←隐喻→人形机器人学习者）（所选课程成绩的）数据表行数目（在此假设五层MVC类别*学习者总数*16=64000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedCurriculum" min="64000" max="64000" value="64000" disabled required /><br />（人类学校品牌←隐喻→人形机器人训练厂商品牌的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCOrganization" min="160" max="160" value="160" disabled required /><br />（人类学习者←隐喻→人形机器人学习者的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCLearner" min="800" max="800" value="800" disabled required /><br />（人类教育科研者←隐喻→人形机器人教育科研者的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCEducator" min="200" max="200" value="200" disabled required /><br />（作业测验题库单选题的）数据表行数目（在此假设五层MVC类别*1600=8000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCHomeworkAndTest" name="countNumber" min="8000" max="8000" value="8000" disabled required /><br />（人类学习者←隐喻→人形机器人学习者）（所选作业测验题库单选题答题结果的）数据表行数目（在此假设五层MVC类别*16000=80000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedHomeworkAndTest" min="80000" max="80000" value="80000" disabled required />
             <br/>
-           修改上述数据表行倍数<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCModifyTableRow" name="countNumber" min="1" max="10" value="1" disabled required title="正在开发之中（注：“数智思维五层MVC要素的类别的数据表行数目”是稳定不变的）..." /><input type="submit" value="提交" id="id_SubmitPseudoDataCreationForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始仿制海量原始数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看。如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化过后的数据..." onclick="document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm').value=document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm').title;" />
+           修改上述数据表行倍数<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCModifyTableRow" name="countNumber" min="1" max="10" value="1" disabled required title="正在开发之中（注：“数智思维五层MVC要素的类别的数据表行数目”是稳定不变的）..." />
+            <input type="submit" value="提交生成数据库" id="id_SubmitPseudoDataCreationForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始仿制海量原始数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看。如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化过后的数据..." onclick="document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm').value=document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm').title;" />
+            <input type="submit" value="本来应该基于数据库构建数据仓库，在此临时提交直接生成数据仓库" id="id_SubmitPseudoDataWareHouseCreationForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始仿制海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看。如果曾经仿制过的数据仓库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化过后的数据..." onclick="document.getElementById('id_SubmitPseudoDataWareHouseCreationForFiveLayerMVCForm').value=document.getElementById('id_SubmitPseudoDataWareHouseCreationForFiveLayerMVCForm').title;" disabled/>
     </form>
     <hr style="width:80%"/>
     <div style="text-align: justify">
@@ -153,8 +157,7 @@
         </ol>
     </div>
 </div>
-        </div>        
-    
+</div>        
     <table style="width:100%; border:dashed">
         <tr title="双击表格的本行的单元格，可以切换本行两个单元格的全屏显示">
             <td id="tdSystemInternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleInternalWidth()">

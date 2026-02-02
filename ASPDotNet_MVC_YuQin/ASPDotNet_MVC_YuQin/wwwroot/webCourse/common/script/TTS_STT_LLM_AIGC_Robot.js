@@ -37,7 +37,7 @@ fnFormPseudoDataCreationForFiveLayerMVC();
 function fnOnSubmitPseudoDataCreationForFiveLayerMVC() { 
     event.returnValue = true; 
     document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").value=document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").title;
-    document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").disabled=true。 //已经离开本网页了，没有意义了?未起作用，防止二次提交时，按钮文字变为“正在提交中...”之类 。
+   // document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").disabled=true。 //已经离开本网页了，没有意义了?未起作用，防止二次提交时，按钮文字变为“正在提交中...”之类 。
             }
             
 function fnFormPseudoDataCreationForFiveLayerMVC() {
@@ -55,13 +55,15 @@ function fnFormPseudoDataCreationForFiveLayerMVC() {
 +"&HomeworkAndTestNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCHomeworkAndTest").value
 +"&SelectedHomeworkAndTestNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedHomeworkAndTest").value
 ; 
-document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").value=document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").title;document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").disabled=true;//已经离开本网页了，没有意义了?防止二次提交时，按钮文字变为“正在提交中...”之类 。     
+//document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").value=document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").title;document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").disabled=true;//已经离开本网页了，没有意义了?防止二次提交时，按钮文字变为“正在提交中...”之类 。     
         }
-  /**暂时未提供用户改变计算器。
+  
+/**暂时未提供用户改变计算器。
 function fnOnchangecountNumberPseudoDataCreationForFiveLayerMVC(){
    document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action = window.PseudoDataCreationForFiveLayerMVCFormAction + TableRowNum=document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVC").value; 
 }
 **/
+
 
 function fnOpenLocalhostDingTalkAIGC(){
 try{
@@ -797,7 +799,7 @@ window.speechSynthesis.cancel();
     }
 
  function  fnToggleInternalWidth(){
-     if(document.getElementById("tdSystemInternal").style.width=="50%"){
+    if(document.getElementById("tdSystemInternal").style.width=="50%"){
       document.getElementById("tdSystemExternal").style.display="none";
       document.getElementById("tdSystemExternal").style.width="0%";
       document.getElementById("tdSystemInternal").style.width="100%";
@@ -810,7 +812,7 @@ window.speechSynthesis.cancel();
      }
 }
  function  fnToggleExternalWidth(){
-     if(document.getElementById("tdSystemInternal").style.width=="50%"){
+    if(document.getElementById("tdSystemInternal").style.width=="50%"){
       document.getElementById("tdSystemInternal").style.display="none";
       document.getElementById("tdSystemInternal").style.width="0%";
       document.getElementById("tdSystemExternal").style.width="100%";
