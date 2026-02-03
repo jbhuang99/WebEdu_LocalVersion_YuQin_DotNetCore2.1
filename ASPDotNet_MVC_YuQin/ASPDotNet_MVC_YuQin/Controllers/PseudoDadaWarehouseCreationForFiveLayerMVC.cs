@@ -22,9 +22,9 @@ using Microsoft.Extensions.Logging;
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
 {
-    public class PseudoDataCreationForFiveLayerMVCController : Controller
+    public class PseudoDadaWarehouseCreationForFiveLayerMVCController : Controller
     {
-        public PseudoDataCreationForFiveLayerMVCController(
+        public PseudoDadaWarehouseCreationForFiveLayerMVCController(
              IHostingEnvironment hostingEnvironment,
              CurriculumSelectionDbContext curriculumSelectionDbContext,
              ILogger<PseudoDataCreationForFiveLayerMVCController> logger) // inject logger for diagnostics

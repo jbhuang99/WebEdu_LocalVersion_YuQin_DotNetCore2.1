@@ -314,6 +314,9 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
 
             String connectionStringPseudoDataCreationForFiveLayerMVC_TPH = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataCreationForFiveLayerMVC_TPH") ?? throw new InvalidOperationException("Connection string 'PseudoDataCreationForFiveLayerMVC_TPH' not found.");
             webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDbContext>(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPH));
+
+            String connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataWarehouseCreationForFiveLayerMVC_TPH") ?? throw new InvalidOperationException("Connection string 'PseudoDataWarehouseCreationForFiveLayerMVC_TPH' not found.");
+            webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDWContext>(options => options.UseSqlServer(connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH));
             //
             webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

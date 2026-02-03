@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CurriculumSelection.Data
 {
-    public class CurriculumSelectionDbContext : DbContext
+    public class CurriculumSelectionDWContext : DbContext
     {
-        public CurriculumSelectionDbContext(DbContextOptions<CurriculumSelectionDbContext> dbContextOptions) : base(dbContextOptions)
+        public CurriculumSelectionDWContext(DbContextOptions<CurriculumSelectionDWContext> dbContextOptions) : base(dbContextOptions)
         {
         }
 

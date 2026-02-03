@@ -38,8 +38,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="Areas\**" />
     <Compile Remove="Controllers\RESTless\Identity\**" />
     <Compile Remove="Controllers\RESTless\samples\**" />
-    <Compile Remove="Data-ODM-ORM-DWContext\**" />
-    <Compile Remove="Data-ODM-ORM-DWData\**" />
     <Compile Remove="DataWarehouse-ODM-ORM-DbData\**" />
     <Compile Remove="Models\DatabaseForPortable\**" />
     <Compile Remove="Models\DataForIdentity\**" />
@@ -56,8 +54,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="Areas\**" />
     <Content Remove="Controllers\RESTless\Identity\**" />
     <Content Remove="Controllers\RESTless\samples\**" />
-    <Content Remove="Data-ODM-ORM-DWContext\**" />
-    <Content Remove="Data-ODM-ORM-DWData\**" />
     <Content Remove="DataWarehouse-ODM-ORM-DbData\**" />
     <Content Remove="Models\DatabaseForPortable\**" />
     <Content Remove="Models\DataForIdentity\**" />
@@ -74,8 +70,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <EmbeddedResource Remove="Areas\**" />
     <EmbeddedResource Remove="Controllers\RESTless\Identity\**" />
     <EmbeddedResource Remove="Controllers\RESTless\samples\**" />
-    <EmbeddedResource Remove="Data-ODM-ORM-DWContext\**" />
-    <EmbeddedResource Remove="Data-ODM-ORM-DWData\**" />
     <EmbeddedResource Remove="DataWarehouse-ODM-ORM-DbData\**" />
     <EmbeddedResource Remove="Models\DatabaseForPortable\**" />
     <EmbeddedResource Remove="Models\DataForIdentity\**" />
@@ -92,8 +86,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Remove="Areas\**" />
     <None Remove="Controllers\RESTless\Identity\**" />
     <None Remove="Controllers\RESTless\samples\**" />
-    <None Remove="Data-ODM-ORM-DWContext\**" />
-    <None Remove="Data-ODM-ORM-DWData\**" />
     <None Remove="DataWarehouse-ODM-ORM-DbData\**" />
     <None Remove="Models\DatabaseForPortable\**" />
     <None Remove="Models\DataForIdentity\**" />
@@ -109,8 +101,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
     <TypeScriptCompile Remove="Areas\**" />
     <TypeScriptCompile Remove="Controllers\RESTless\Identity\**" />
-    <TypeScriptCompile Remove="Data-ODM-ORM-DWContext\**" />
-    <TypeScriptCompile Remove="Data-ODM-ORM-DWData\**" />
     <TypeScriptCompile Remove="DataWarehouse-ODM-ORM-DbData\**" />
     <TypeScriptCompile Remove="Views\备份-待删除\**" />
     <TypeScriptCompile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
@@ -122,7 +112,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="Controllers\BroweringOfTextbookController.cs" />
     <Compile Remove="Controllers\Interop_CSInteropCPPCOMTry.cs" />
     <Compile Remove="Controllers\Interop_CSInteropCPPDLLTry.cs" />
-    <Compile Remove="Controllers\PseudoDadaWarehouseCreationForFiveLayerMVC.cs" />
     <Compile Remove="Data-ODM-ORM-DbData\DbInitializer - Copy-暂时不删除.cs" />
     <Compile Remove="Data-ODM-ORM-DbData\DbInitializer - Copy.cs" />
     <Compile Remove="Models\Blazor_WebAssembly_PWA_YuQin_API\Student.cs" />
