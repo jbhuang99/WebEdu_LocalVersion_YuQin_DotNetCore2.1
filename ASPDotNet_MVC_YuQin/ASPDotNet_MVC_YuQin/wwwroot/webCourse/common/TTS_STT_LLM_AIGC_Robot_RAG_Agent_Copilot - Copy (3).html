@@ -124,22 +124,105 @@
 
 <body onload="fnOnLoad()">
     <div style="font-size:24px;font-weight:bolder"><img src="Human_32.png" title="语音对话的人（戴着耳机麦克风）"/>“人”←屏幕阅读/语音互动/联网互动→“人形机器人”<img src="Robot_32.png" title="语音对话的人形机器人（隐式耳机麦克风）"/>
-        <div style="font-size:12px">（面向会说不会写的幼儿用户←Prompt互动→系统内部或者系统外部AIGC）或者（面向成人用户房屋空间漫游←Prompt互动→系统内部或者系统外部AIGC）<span style="color:brown">（注：用户最好佩戴蓝牙耳机之类，因为当前的系统朗读声音，也会混入成为用户的声音指令，导致声音指令的语音识别异常！目前只有浏览器右击菜单“刷新”重新开始语音Prompt，寻求解决方案之中...！）【注：面向视觉的屏幕键盘鼠标互动系统外部AIGC，例如“钉钉AIGC助理可以免费连接AIGC生成内容”，自开发反而需要付费，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂未考虑其他功能开发】</span>
+        <div style="font-size:14px" title="单击可以切换显示界面：仿制数智思维核心要素五层MVC评测所需的海量原始数据的数据库进入本机事先安装的SS服务端(互动评测五层MVC作为核心的数智思维)"  onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display=="none"){document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display="block";document.getElementById("id_PseudoDataCreationForFiveLayerMVCArrow").textContent="▼";} else{document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display="none";document.getElementById("id_PseudoDataCreationForFiveLayerMVCArrow").textContent="▶"; }fnToggleEventSoureElementColor();' ><span id="id_PseudoDataCreationForFiveLayerMVCArrow">▶</span>(单击可以切换显示“数智思维的五层MVC”相关界面)（面向会说不会写的幼儿用户←Prompt互动→系统内部或者系统外部AIGC）或者（面向成人用户房屋空间漫游←Prompt互动→系统内部或者系统外部AIGC）<span style="color:brown">（注：用户最好佩戴蓝牙耳机之类，因为当前的系统朗读声音，也会混入成为用户的声音指令，导致声音指令的语音识别异常！目前只有浏览器右击菜单“刷新”重新开始语音Prompt，寻求解决方案之中...！）</span>
     </div></div>
-    
+    <div id="id_PseudoDataCreationForFiveLayerMVC" style="display:none;border: dashed;border-color: goldenrod; ">
+           <div style="text-align:justify;">
+    请单选一种ORM/ODB机制（将自动仿制五层MVC评测所需的海量原始数据的数据库进入本机事先安装的SS服务端。<a href="../options/HomeworkAndTestFiveLayerMVC.htm" target="_self" title="单击可以概览数智思维核心要素五层MVC评测的效果案例">然后可以打开SSMS作为客户端、结合VS作为客户端，演练实现五层MVC作为核心要素的数智思维评测</a>）（<a href="../options/HomeworkAndTestFiveLayerMVC.htm" target="_self" title="单击可以概览数智思维核心要素五层MVC评测的效果案例"></a><a href="https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/wwwroot/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738&text=1732766688449" target="_blank" title="单击可以概览数智思维核心要素五层MVC评测的内容方法说明">可以打开SSMS作为客户端链接SS服务端查看创建结果</a>）<a href="https://zhuanlan.zhihu.com/p/1987287349474894485" target="_blank"> （“软件思维语言”←硬件软件统一→“硬件肢体语言”，由于自身条件限制，在此主要面向“软件思维语言”！）</a>：
+</div>
+    <hr style="width:80%"/>
+    <div style="text-align: justify">
+        <div>
+            <input type="radio" name="raio_ORMSelection" id="id_Radio_ShowInheritanceTreeLeaf_TheOthersHidden" value="ShowInheritanceTreeLeaf_TheOthersHidden" checked />呈现派生继承的树叶其他隐藏（TPH）（在此数据库名称后缀约定ShowInheritanceTreeLeaf_TheOthersHidden）
+        </div>
+        <div>
+            <input type="radio" name="raio_ORMSelection" id="id_Radio_ShowInheritanceTreeBranch_ButRoot-System.Object-Hidden" value="ShowInheritanceTreeBranch_ButRoot-System.Object-Hidden" disabled title="正在开发之中..." />呈现派生继承的树枝不过树根System.Object隐藏（TPT）（在此数据库名称后缀约定ShowInheritanceTreeBranch_ButRoot-System.Object-Hidden）
+        </div>
+    </div>
+    <hr style="width:80%"/>
+    <form action="/PseudoDataCreationForFiveLayerMVC/post?" method="post" enctype="multipart/form-data" id="id_PseudoDataCreationForFiveLayerMVCForm" style="text-align:justify">
+        （数智思维核心要素的五层MVC的类别的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCCategory" min="5" max="5" value="5" disabled required title="本数据表行必须固定为5！！！"/><br />（课程的）数据表行数目（在此假设五层MVC类别*160=800）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCCurriculum" min="800" max="800" value="800" disabled required /><br />（人类学习者←隐喻→人形机器人学习者）（所选课程成绩的）数据表行数目（在此假设五层MVC类别*学习者总数*16=64000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedCurriculum" min="64000" max="64000" value="64000" disabled required /><br />（人类学校品牌←隐喻→人形机器人训练厂商品牌的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCOrganization" min="160" max="160" value="160" disabled required /><br />（人类学习者←隐喻→人形机器人学习者的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCLearner" min="800" max="800" value="800" disabled required /><br />（人类教育科研者←隐喻→人形机器人教育科研者的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCEducator" min="200" max="200" value="200" disabled required /><br />（作业测验题库单选题的）数据表行数目（在此假设五层MVC类别*1600=8000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCHomeworkAndTest" name="countNumber" min="8000" max="8000" value="8000" disabled required /><br />（人类学习者←隐喻→人形机器人学习者）（所选作业测验题库单选题答题结果的）数据表行数目（在此假设五层MVC类别*16000=80000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedHomeworkAndTest" min="80000" max="80000" value="80000" disabled required />
+           <hr style="width:80%"/>
+         <div style="text-align:center">
+           修改上述数据表行倍数<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCModifyTableRow" name="countNumber" min="1" max="10" value="1" disabled required title="正在开发之中（注：“数智思维五层MVC要素的类别的数据表行数目”是稳定不变的）..." />
+           <hr style="width:80%"/>       
+           <input type="submit" value="(底层第1层MVC) 实践(数据读写封装)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】：提交生成数据库案例" id="id_SubmitPseudoDataCreationForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始仿制海量原始数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看。如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化后的数据..." onclick="document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm').value=document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm').title;" />
+            <br /><input type="submit" value="(底层第1层MVC) 实践(数据读写封装)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】：本来应该基于数据库→构建数据仓库。不过在此也可提交直接生成数据仓库案例" id="id_SubmitPseudoDataWareHouseCreationForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始仿制海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看。如果曾经仿制过的数据仓库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经集成后的数据..." onclick="document.getElementById('id_SubmitPseudoDataWareHouseCreationForFiveLayerMVCForm').value=document.getElementById('id_SubmitPseudoDataWareHouseCreationForFiveLayerMVCForm').title;" disabled/>
+              <br /><input type="submit" value="(底层第1层MVC) 实践(数据读写封装)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】：面向数据读写封装的数据库原始数据→可以基于SSIS等等服务→面向数据只读统计的数据仓库数据" id="id_SubmitPseudoDataIntegarationForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始集成各种数据源成为海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看..." disabled/>
+             <hr style="width:80%"/>
+             <input type="submit" value="(中层第2层MVC) 技术(信息提取运用)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】：数据描述统计案例（当前还需在VS/SSMS/SS中实现，拟在后续选用Blazor.WebAssembly.WASI.Net，提供“互联网中的浏览器”←互动→“互联网中的SS服务端”，实现本功能！）" id="id_SubmitPseudoDataDescriptionAnalysisForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始描述统计海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看..." disabled/>
+             <hr style="width:80%"/>
+            <input type="submit" value="(中层第3层MVC) 科学(规律预测探究)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】：数据推断统计分析案例（（当前还需在VS/SSMS/SS中实现，拟在后续选用Blazor.WebAssembly.WASI.Net，提供“互联网中的浏览器”←互动→“互联网中的SS服务端”，实现本功能！））" id="id_SubmitPseudoDataMiningAnalysisForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始推断统计海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看..." disabled/>
+             <hr style="width:80%"/>
+              <input type="submit" value="(中层第4层MVC) 人文(情感交流共鸣)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】 ：数据人文推断统计分析案例（当前还需在VS/SSMS/SS中实现，拟在后续选用Blazor.WebAssembly.WASI.Net，提供“互联网中的浏览器”←互动→“互联网中的SS服务端”，实现本功能！）" id="id_SubmitPseudoDataMiningAnalysisHumanityForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始推断统计海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看..." disabled/>
+             <hr style="width:80%"/>
+               <input type="submit" value="(顶层第5层MVC) 哲学（智能建构生成）【理解标量的媒体字面顺序匹配，默认向量/矩阵/张量的媒体Token语义距离】：数据的人工智能AIGC的Transformer推断统计分析案例（当前还需在VS/SSMS/SS中实现，拟在后续选用Blazor.WebAssembly.WASI.Net，提供“互联网中的浏览器”←互动→“互联网中的SS服务端”，实现本功能！）" id="id_SubmitPseudoDataAIGCForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始推断统计海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看..." disabled/>
+            </div>
+    </form>    
+</div>    
     <table style="width:100%; border:dashed">
         <tr title="双击表格的本行的单元格，可以切换本行两个单元格的全屏显示">
             <td id="tdSystemInternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleInternalWidth()">
-                <div style="font-size: 24px; font-weight: bolder; color: goldenrod; text-align: justify" id="btnSystemInternal"><span title="单击可以切换说明的显示" onclick="fnToggleSystemInternalExplainSystemExternalExplain()"><span id="idRightTriangleOfSystemInternal">▶</span>系统内部语音对话<span style="font-size: 18px; font-weight: bold;color:green">【语音对话“数智时代融合教育数智思维的知识库KB”】</span></span><span id="idSystemInternalExplain" style="display:none"><span style="font-size: 16px; font-weight: normal;color:black">【Prompt指令←语音对话→系统内部非AIGC】【我们←（严谨准确性学科专业）语音互动（搜索匹配本系统的静态存储的数据读写、而非上下文追问AIGC的接受教育进行学习的自主生成的数据读写）→本系统内部】</span><span style="font-size: 12px; font-weight: normal;color: green">【视媒(字符/图像/视频/2D/3D)/听媒/触媒/嗅媒/味媒】【Prompt指令/本系统执行，字符Prompt指令的检索匹配总计平均/确定性描述统计Transformer变换返回万物】【Prompt指令/本系统执行的字寻万物→Prompt指令/本系统执行的字寻字符媒体/字寻多媒体→Prompt指令/本系统执行的字寻五媒→(1)Prompt指令/本系统执行的字寻视媒（字寻字/字寻图/字寻视频/字寻2D/字寻3D）、(2)Prompt指令/本系统执行的字寻听媒（字寻音频/字寻MIDI）、(3)Prompt指令/本系统执行的字寻触媒、(4)Prompt指令/本系统执行的字寻嗅媒、(5)Prompt指令/本系统执行的字寻味媒】【本系统属于传统的面向方法的工具，AIGC则是隐喻人的内容方法的统一整体工具，是人类工具竞争的顶峰，为此，本系统融合AIGC发展】
+                <div style="font-size: 24px; font-weight: bolder; color: goldenrod; text-align: justify" id="btnSystemInternal"><span title="单击可以切换说明的显示" onclick="fnToggleSystemInternalExplainSystemExternalExplain()"><span id="idRightTriangleOfSystemInternal">▶</span>系统内部语音对话<span style="font-size: 18px; font-weight: bold;color:green">【“数智时代融合教育数智思维的知识库KB”语音对话】</span></span><span id="idSystemInternalExplain" style="display:none"><span style="font-size: 16px; font-weight: normal;color:black">【Prompt指令←语音对话→系统内部非AIGC】【我们←（严谨准确性学科专业）语音互动（搜索匹配本系统的静态存储的数据读写、而非上下文追问AIGC的接受教育进行学习的自主生成的数据读写）→本系统内部】</span><span style="font-size: 12px; font-weight: normal;color: green">【视媒(字符/图像/视频/2D/3D)/听媒/触媒/嗅媒/味媒】【Prompt指令/本系统执行，字符Prompt指令的检索匹配总计平均/确定性描述统计Transformer变换返回万物】【Prompt指令/本系统执行的字寻万物→Prompt指令/本系统执行的字寻字符媒体/字寻多媒体→Prompt指令/本系统执行的字寻五媒→(1)Prompt指令/本系统执行的字寻视媒（字寻字/字寻图/字寻视频/字寻2D/字寻3D）、(2)Prompt指令/本系统执行的字寻听媒（字寻音频/字寻MIDI）、(3)Prompt指令/本系统执行的字寻触媒、(4)Prompt指令/本系统执行的字寻嗅媒、(5)Prompt指令/本系统执行的字寻味媒】【本系统属于传统的面向方法的工具，AIGC则是隐喻人的内容方法的统一整体工具，是人类工具竞争的顶峰，为此，本系统融合AIGC发展】
 </span></span></div>
-                                    <div>
+                <div>
+                    <button id="closeSTTSystemInternal" title="单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部" onclick="window.close();">⊗单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部</button>
+                </div>
+
+                <button id="startBtnSystemInternal" title="单击将开始【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话。系统将打开麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中..." style="white-space: normal; font-size:12px">开始录音Prompt指令</button>
+                <button id="stopBtnSystemInternal" title="单击将停止【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt指令</button>
+                <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" style="white-space: normal; font-size:12px" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'><span id="idRightTriangleOfUnderstandKernelDialogueSystemInternal">▶</span>了解录音Prompt指令</button>
+                <div id="kernelDialogueSystemInternal" style="border: dashed; border-color: goldenrod; display: none">
+                    <ol style="text-align:justify">
+                        <li>切换系统外部语音对话（实际测试优化成为“外部”）（尚未实现）</li>
+                        <li>切换系统内部语音朗读TTS！（实际测试优化成为“切换系统内部TTS”）（尚未实现）</li>
+                        <li>语音识别没有准确匹配的，默认打开滚动消息，以供了解最新咨询！（已经实现）</li>
+                        <li>目录条目下翻（实际测试优化成为“向上”,因为是语音上下文，所以目录条目下翻时将自动朗读）（已经实现）</li>
+                        <li>目录条目上翻（实际测试优化成为“向下”,因为是语音上下文，所以目录条目上翻时将自动朗读）（已经实现）</li>
+                        <li>目录条目开始系统内部语音朗读（实际测试优化成为“开始朗读”）（尚未实现）</li>
+                        <li>目录条目暂停系统内部语音朗读（实际测试优化成为“暂停朗读”）（尚未实现）</li>
+                        <li>目录条目继续系统内部语音朗读（实际测试优化成为“继续朗读”）（尚未实现）</li>
+                        <li>目录条目停止系统内部语音朗读（实际测试优化成为“停止朗读”）（尚未实现）</li>
+                        <li>目录条目内容框架切换课文（实际测试优化成为“课文”）（尚未实现）</li>
+                        <li>目录条目内容框架切换作业测验（实际测试优化成为“作业测验”）（尚未实现）</li>
+                        <li>作业测验题目开始系统内部语音朗读（实际测试优化成为“题目开始朗读”）（尚未实现）</li>
+                        <li>作业测验题目暂停系统内部语音朗读（实际测试优化成为“题暂停始朗读”）（尚未实现）</li>
+                        <li>作业测验题目继续系统内部语音朗读（实际测试优化成为“题目继续朗读”）（尚未实现）</li>
+                        <li>作业测验题目停止系统内部语音朗读（实际测试优化成为“题目停止朗读”）（尚未实现）</li>
+                        <li>系统内部概览（实际测试优化成为“概览”）（尚未实现）</li>
+                        <li>系统内部搜索（实际测试优化成为“搜索”）（尚未实现）</li>
+                    </ol>
+                </div>
+                <div title="" style="text-align:justify">
+                    本系统的客户端浏览器的听媒指令本系统（请尽量选用本系统的语音对话听媒指令本系统。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒指令，以后则将取消！）。请键入您的Prompt指令：<input type="text" value="向下" style="display:inline;white-space: normal" id="idPromptDirective" /><button id="idButtonClientSideBrowserSTT" style="display:inline;white-space: normal" onclick='window.systemInternalRecognizingResultFlag=document.getElementById("idPromptDirective").value;fnTTSOnEndSystemInternal();'>
+                        确定
+                    </button>
+                    <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
+                </div>
+
+
+                <div id="transcriptSystemInternal" style="color: green; width:95%" title="请单击“了解录音Prompt指令”，查看录音说明...">
+                    {
+                    "段落": [期待本系统语音识别您的语音Prompt指令，然后连接本系统内部的非AIGC，驱动本系统内部的运行，例如，“目录条目上翻、下翻、语音朗读”，打开“滚动栏”，打开“作业测验”，进行语音识别答题、评分等等....正在完善之中...]
+                    }
+                </div>
+            </td>
+            <td id="tdSystemExternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleExternalWidth()">
+
+                <div style="font-size: 24px; font-weight: bolder; color: goldenrod;text-align:justify" id="btnSystemExternal">
+                    <span title="单击可以切换说明的显示" onclick="fnToggleSystemInternalExplainSystemExternalExplain()">
+                        <span id="idRightTriangleOfSystemExternal">▶</span>系统外部语音对话<span style="font-size: 18px; font-weight: bold;color:green">【“数智时代融合教育数智思维知识库的教育大语言模型LLM（或，教师机器人Robot）”语音对话】</span>
+                    </span><span id="idSystemExternalExplain" style="display:none"><span style="font-size: 16px; font-weight: normal;color:black">【Prompt提问←语音对话→系统外部AIGC】【我们←（宽泛概率性闲聊日常）语音互动（上下文追问AIGC的接受教育进行学习的自主生成的数据读写、而非搜索匹配静态存储的数据读写）→本系统外部AIGC】</span><span style="font-size: 12px; font-weight: normal;color:green">【视媒(字符/图像/视频/2D/3D)/听媒/触媒/嗅媒/味媒】【Prompt提问/AIGC回答，字符Prompt提问的聚类分类/概率性推断统计Transformer变换生成回答万物】【Prompt提问/AIGC回答的字生万物→Prompt提问/AIGC回答的字生字符媒体/字生多媒体→Prompt提问/AIGC回答的字生五媒→(1)Prompt提问/AIGC回答的字生视媒（字生字/字生图/字生视频/字生2D/字生3D）、(2)Prompt提问/AIGC回答的字生听媒（字生音频/字生MIDI）、(3)Prompt提问/AIGC回答的字生触媒、(4)Prompt提问/AIGC回答的字生嗅媒、(5)Prompt提问/AIGC回答的字生味媒】【AIGC超越传统的面向方法的工具，是隐喻人的内容方法的统一整体工具，所以，AIGC是人类工具竞争的顶峰】
+</span></span>
+                </div>
+                <div>
                     <button id="closeSTTSystemExternal" title="本系统的客户端浏览器直接访问大语言模型LLM不被允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理访问大语言模型LLM，而且节省70%费用！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("sVisionAIGC_RAG_Agent").style.display=="none"){document.getElementById("sVisionAIGC_RAG_Agent").style.display="block";document.getElementById("idRightTriangleOfCloseSTTSystemExternal").textContent="▼";} else{document.getElementById("sVisionAIGC_RAG_Agent").style.display="none";document.getElementById("idRightTriangleOfCloseSTTSystemExternal").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;">
-                        <span id="idRightTriangleOfCloseSTTSystemExternal">▶</span>单击可以切换显示“媒体内容的准确性对比”
+                        <span id="idRightTriangleOfCloseSTTSystemExternal">▶</span>单击保持当前语音系统互动本系统外部AIGC，同时切换显示AIGC生成内容的准确性对比<span style="font-size:11px">【注：面向视觉的屏幕键盘鼠标互动系统外部AIGC，例如“钉钉AIGC助理可以免费连接AIGC生成内容”，自开发反而需要付费，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂未考虑其他功能开发】</span>
                     </button>
                 </div>
-                 <div id="sVisionAIGC_RAG_Agent" style="display: none; border:solid;border-color:brown">
-
+                <div id="sVisionAIGC_RAG_Agent" style="display: none; border:solid;border-color:brown">
                     <p></p>
                     <ol>
                         <div style="text-align:justify">
@@ -359,97 +442,7 @@
                 </div>
                 </ol>
                 </div>
-                <!--
-                <div>
-                    <button id="closeSTTSystemInternal" title="单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部" onclick="window.close();"><span style="font-weight:bolder">⊗</span>单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部</button>
-                </div>
-                -->
 
-                <button id="startBtnSystemInternal" title="单击将开始【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话。系统将打开麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中..." style="white-space: normal; font-size:12px">开始录音Prompt指令</button>
-                <button id="stopBtnSystemInternal" title="单击将停止【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt指令</button>
-                <button id="understandKernelDialogueBtnSystemInternal" title="单击将切换显示【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" style="white-space: normal; font-size:12px" onclick='fnUnderstandKernelDialogueBtnSystemInternal()'><span id="idRightTriangleOfUnderstandKernelDialogueSystemInternal">▶</span>了解录音Prompt指令</button>
-                <div id="kernelDialogueSystemInternal" style="border: dashed; border-color: goldenrod; display: none">
-                    <ol style="text-align:justify">
-                        <li>切换系统外部语音对话（实际测试优化成为“外部”）（尚未实现）</li>
-                        <li>切换系统内部语音朗读TTS！（实际测试优化成为“切换系统内部TTS”）（尚未实现）</li>
-                        <li>语音识别没有准确匹配的，默认打开滚动消息，以供了解最新咨询！（已经实现）</li>
-                        <li>目录条目下翻（实际测试优化成为“向上”,因为是语音上下文，所以目录条目下翻时将自动朗读）（已经实现）</li>
-                        <li>目录条目上翻（实际测试优化成为“向下”,因为是语音上下文，所以目录条目上翻时将自动朗读）（已经实现）</li>
-                        <li>目录条目开始系统内部语音朗读（实际测试优化成为“开始朗读”）（尚未实现）</li>
-                        <li>目录条目暂停系统内部语音朗读（实际测试优化成为“暂停朗读”）（尚未实现）</li>
-                        <li>目录条目继续系统内部语音朗读（实际测试优化成为“继续朗读”）（尚未实现）</li>
-                        <li>目录条目停止系统内部语音朗读（实际测试优化成为“停止朗读”）（尚未实现）</li>
-                        <li>目录条目内容框架切换课文（实际测试优化成为“课文”）（尚未实现）</li>
-                        <li>目录条目内容框架切换作业测验（实际测试优化成为“作业测验”）（尚未实现）</li>
-                        <li>作业测验题目开始系统内部语音朗读（实际测试优化成为“题目开始朗读”）（尚未实现）</li>
-                        <li>作业测验题目暂停系统内部语音朗读（实际测试优化成为“题暂停始朗读”）（尚未实现）</li>
-                        <li>作业测验题目继续系统内部语音朗读（实际测试优化成为“题目继续朗读”）（尚未实现）</li>
-                        <li>作业测验题目停止系统内部语音朗读（实际测试优化成为“题目停止朗读”）（尚未实现）</li>
-                        <li>系统内部概览（实际测试优化成为“概览”）（尚未实现）</li>
-                        <li>系统内部搜索（实际测试优化成为“搜索”）（尚未实现）</li>
-                    </ol>
-                </div>
-                <div title="" style="text-align:justify">
-                    本系统的客户端浏览器的听媒指令本系统（请尽量选用本系统的语音对话听媒指令本系统。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒指令，以后则将取消！）。请键入您的Prompt指令：<input type="text" value="向下" style="display:inline;white-space: normal" id="idPromptDirective" /><button id="idButtonClientSideBrowserSTT" style="display:inline;white-space: normal" onclick='window.systemInternalRecognizingResultFlag=document.getElementById("idPromptDirective").value;fnTTSOnEndSystemInternal();'>
-                        确定
-                    </button>
-                    <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
-                </div>
-
-
-                <div id="transcriptSystemInternal" style="color: green; width:95%" title="请单击“了解录音Prompt指令”，查看录音说明...">
-                    {
-                    "段落": [期待本系统语音识别您的语音Prompt指令，然后连接本系统内部的非AIGC，驱动本系统内部的运行，例如，“目录条目上翻、下翻、语音朗读”，打开“滚动栏”，打开“作业测验”，进行语音识别答题、评分等等....正在完善之中...]
-                    }
-                </div>
-            </td>
-            <td id="tdSystemExternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleExternalWidth()">
-                <div style="font-size: 24px; font-weight: bolder; color: goldenrod;text-align:justify" id="btnSystemExternal">
-                    <span title="单击可以切换说明的显示" onclick="fnToggleSystemInternalExplainSystemExternalExplain()">
-                        <span id="idRightTriangleOfSystemExternal">▶</span>系统外部语音对话<span style="font-size: 18px; font-weight: bold;color:green">【语音对话“数智时代融合教育数智思维知识库的教育大语言模型LLM（或，教师机器人Robot）”】</span>
-                    </span><span id="idSystemExternalExplain" style="display:none"><span style="font-size: 16px; font-weight: normal;color:black">【Prompt提问←语音对话→系统外部AIGC】【我们←（宽泛概率性闲聊日常）语音互动（上下文追问AIGC的接受教育进行学习的自主生成的数据读写、而非搜索匹配静态存储的数据读写）→本系统外部AIGC】</span><span style="font-size: 12px; font-weight: normal;color:green">【视媒(字符/图像/视频/2D/3D)/听媒/触媒/嗅媒/味媒】【Prompt提问/AIGC回答，字符Prompt提问的聚类分类/概率性推断统计Transformer变换生成回答万物】【Prompt提问/AIGC回答的字生万物→Prompt提问/AIGC回答的字生字符媒体/字生多媒体→Prompt提问/AIGC回答的字生五媒→(1)Prompt提问/AIGC回答的字生视媒（字生字/字生图/字生视频/字生2D/字生3D）、(2)Prompt提问/AIGC回答的字生听媒（字生音频/字生MIDI）、(3)Prompt提问/AIGC回答的字生触媒、(4)Prompt提问/AIGC回答的字生嗅媒、(5)Prompt提问/AIGC回答的字生味媒】【AIGC超越传统的面向方法的工具，是隐喻人的内容方法的统一整体工具，所以，AIGC是人类工具竞争的顶峰】
-</span></span>
-                </div>
-                         <button style="white-space: normal;font-size:16px" title="单击可以切换显示界面：仿制数智思维核心要素五层MVC评测所需的海量原始数据的数据库进入本机事先安装的SS服务端(互动评测五层MVC作为核心的数智思维)"  onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display=="none"){document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display="block";document.getElementById("id_PseudoDataCreationForFiveLayerMVCArrow").textContent="▼";} else{document.getElementById("id_PseudoDataCreationForFiveLayerMVC").style.display="none";document.getElementById("id_PseudoDataCreationForFiveLayerMVCArrow").textContent="▶"; }fnToggleEventSoureElementColor();' ><span id="id_PseudoDataCreationForFiveLayerMVCArrow">▶</span>单击可以切换显示“数智思维的核心要素的五层MVC”
-    </button>
-                <br />
-
-                        <div id="id_PseudoDataCreationForFiveLayerMVC" style="display:none;border: dashed;border-color: goldenrod; ">
-           <div style="text-align:justify;">
-    请单选一种ORM/ODB机制（将自动仿制五层MVC评测所需的海量原始数据的数据库进入本机事先安装的SS服务端。<a href="../options/HomeworkAndTestFiveLayerMVC.htm" target="_self" title="单击可以概览数智思维核心要素五层MVC评测的效果案例">然后可以打开SSMS作为客户端、结合VS作为客户端，演练实现五层MVC作为核心要素的数智思维评测</a>）（<a href="https://zhuanlan.zhihu.com/p/1987287349474894485" target="_blank"> “软件思维语言”←硬件软件统一→“硬件肢体语言”，由于自身条件限制，在此主要面向“软件思维语言”！</a>）：
-</div>
-    <hr style="width:80%"/>
-    <div style="text-align: justify">
-        <div>
-            <input type="radio" name="raio_ORMSelection" id="id_Radio_ShowInheritanceTreeLeaf_TheOthersHidden" value="ShowInheritanceTreeLeaf_TheOthersHidden" checked />呈现派生继承的树叶其他隐藏（TPH）（在此数据库名称后缀约定ShowInheritanceTreeLeaf_TheOthersHidden）
-        </div>
-        <div>
-            <input type="radio" name="raio_ORMSelection" id="id_Radio_ShowInheritanceTreeBranch_ButRoot-System.Object-Hidden" value="ShowInheritanceTreeBranch_ButRoot-System.Object-Hidden" disabled title="正在开发之中..." />呈现派生继承的树枝不过树根System.Object隐藏（TPT）（在此数据库名称后缀约定ShowInheritanceTreeBranch_ButRoot-System.Object-Hidden）
-        </div>
-    </div>
-    <hr style="width:80%"/>
-    <form action="/PseudoDataCreationForFiveLayerMVC/post?" method="post" enctype="multipart/form-data" id="id_PseudoDataCreationForFiveLayerMVCForm" style="text-align:justify">
-        （数智思维核心要素的五层MVC的类别的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCCategory" min="5" max="5" value="5" disabled required title="本数据表行必须固定为5！！！"/><br />（课程的）数据表行数目（在此假设五层MVC类别*160=800）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCCurriculum" min="800" max="800" value="800" disabled required /><br />（人类学习者←隐喻→人形机器人学习者）（所选课程成绩的）数据表行数目（在此假设五层MVC类别*学习者总数*16=64000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedCurriculum" min="64000" max="64000" value="64000" disabled required /><br />（人类学校品牌←隐喻→人形机器人训练厂商品牌的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCOrganization" min="160" max="160" value="160" disabled required /><br />（人类学习者←隐喻→人形机器人学习者的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCLearner" min="800" max="800" value="800" disabled required /><br />（人类教育科研者←隐喻→人形机器人教育科研者的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCEducator" min="200" max="200" value="200" disabled required /><br />（作业测验题库单选题的）数据表行数目（在此假设五层MVC类别*1600=8000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCHomeworkAndTest" name="countNumber" min="8000" max="8000" value="8000" disabled required /><br />（人类学习者←隐喻→人形机器人学习者）（所选作业测验题库单选题答题结果的）数据表行数目（在此假设五层MVC类别*16000=80000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedHomeworkAndTest" min="80000" max="80000" value="80000" disabled required />
-           <hr style="width:80%"/>
-         <div style="text-align:center">
-           修改上述数据表行倍数<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCModifyTableRow" name="countNumber" min="1" max="10" value="1" disabled required title="正在开发之中（注：“数智思维五层MVC要素的类别的数据表行数目”是稳定不变的）..." />
-           <hr style="width:80%"/>       
-           <input type="submit" value="(底层第1层MVC) 实践(数据读写封装)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】：提交生成数据库案例" id="id_SubmitPseudoDataCreationForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始仿制海量原始数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看。如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化后的数据..." onclick="document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm').value=document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm').title;" />
-            <br /><input type="submit" value="(底层第1层MVC) 实践(数据读写封装)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】：本来应该基于数据库→构建数据仓库。不过在此也可提交直接生成数据仓库案例" id="id_SubmitPseudoDataWareHouseCreationForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始仿制海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看。如果曾经仿制过的数据仓库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经集成后的数据..." onclick="document.getElementById('id_SubmitPseudoDataWareHouseCreationForFiveLayerMVCForm').value=document.getElementById('id_SubmitPseudoDataWareHouseCreationForFiveLayerMVCForm').title;" disabled/>
-              <br /><input type="submit" value="(底层第1层MVC) 实践(数据读写封装)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】：面向数据读写封装的数据库原始数据→可以基于SSIS等等服务→面向数据只读统计的数据仓库数据" id="id_SubmitPseudoDataIntegarationForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始集成各种数据源成为海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看..." disabled/>
-             <hr style="width:80%"/>
-             <input type="submit" value="(中层第2层MVC) 技术(信息提取运用)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】：数据描述统计案例（当前还需在VS/SSMS/SS中实现，拟在后续选用Blazor.WebAssembly.WASI.Net，提供“互联网中的浏览器”←互动→“互联网中的SS服务端”，实现本功能！）" id="id_SubmitPseudoDataDescriptionAnalysisForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始描述统计海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看..." disabled/>
-             <hr style="width:80%"/>
-            <input type="submit" value="(中层第3层MVC) 科学(规律预测探究)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】：数据推断统计分析案例（（当前还需在VS/SSMS/SS中实现，拟在后续选用Blazor.WebAssembly.WASI.Net，提供“互联网中的浏览器”←互动→“互联网中的SS服务端”，实现本功能！））" id="id_SubmitPseudoDataMiningAnalysisForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始推断统计海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看..." disabled/>
-             <hr style="width:80%"/>
-              <input type="submit" value="(中层第4层MVC) 人文(情感交流共鸣)【默认标量的媒体字面顺序匹配，理解向量/矩阵/张量的媒体Token语义距离】 ：数据人文推断统计分析案例（当前还需在VS/SSMS/SS中实现，拟在后续选用Blazor.WebAssembly.WASI.Net，提供“互联网中的浏览器”←互动→“互联网中的SS服务端”，实现本功能！）" id="id_SubmitPseudoDataMiningAnalysisHumanityForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始推断统计海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看..." disabled/>
-             <hr style="width:80%"/>
-               <input type="submit" value="(顶层第5层MVC) 哲学（智能建构生成）【理解标量的媒体字面顺序匹配，默认向量/矩阵/张量的媒体Token语义距离】：数据的人工智能AIGC的Transformer推断统计分析案例（当前还需在VS/SSMS/SS中实现，拟在后续选用Blazor.WebAssembly.WASI.Net，提供“互联网中的浏览器”←互动→“互联网中的SS服务端”，实现本功能！）" id="id_SubmitPseudoDataAIGCForFiveLayerMVCForm" style="white-space: normal" title="单击将提交，开始推断统计海量数据仓库数据！请耐心等候,禁止再次单击（返回的消息并不代表仿制数据已经全部完成）！仿制进度可以本机本系统服务端的Console界面中查看..." disabled/>
-            </div>
-    </form>    
-</div>    
-                    
 
                 <!--
     <div style="text-align:justify">
