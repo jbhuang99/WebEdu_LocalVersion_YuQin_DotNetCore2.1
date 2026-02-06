@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CurriculumSelection.Models
+namespace CurriculumSelectionDW.Models
 {
     public class MeasureScoreOfSelectedCurriculumHomeworkAndTestByLearner : Object
     {
@@ -8,12 +8,15 @@ namespace CurriculumSelection.Models
 
         public Int32 Score { get; set; } //单选题只需0/1分。
         //public Int32 CurriculumHomeworkAndTestID { get; set; }
+        public Int32 CurriculumHomeworkAndTestID { get; set; }
         public Int32 LearnerID { get; set; }
        
-        public DateTime? CurriculumHomeworkAndTestSelectedTime { get; set; }
+        public Int32 CurriculumHomeworkAndTestSelectedTimeID { get; set; }
         //public Grade? Grade { get; set; }
-        public CurriculumHomeworkAndTest CurriculumHomeworkAndTest { get; set; }
-        public Learner Learner { get; set; }
-       
+        public DimCurriculumHomeworkAndTest DimCurriculumHomeworkAndTest { get; set; }
+        public DimLearner DimLearner { get; set; }
+        public DimCurriculumHomeworkAndTestSelectedTime DimCurriculumHomeworkAndTestSelectedTime { get; set; }
+
+
     }
 }

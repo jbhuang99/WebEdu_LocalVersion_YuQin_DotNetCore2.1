@@ -265,7 +265,9 @@ applicationBuilder.UseSignalR(routes =>
 
 using BlazorWebAssemblyExampleApi.Model;
 using CurriculumSelection.Data;
+using CurriculumSelectionDW.Data;
 using DocumentFormat.OpenXml.InkML;
+using IronPython.Runtime;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -281,6 +283,7 @@ using Microsoft.Office.Interop.PowerPoint;
 using System;
 using System.IO;
 using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
+using static IronPython.Modules._ast;
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore21
 {
@@ -315,8 +318,8 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             String connectionStringPseudoDataCreationForFiveLayerMVC_TPH = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataCreationForFiveLayerMVC_TPH") ?? throw new InvalidOperationException("Connection string 'PseudoDataCreationForFiveLayerMVC_TPH' not found.");
             webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDbContext>(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPH));
 
-            String connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataWarehouseCreationForFiveLayerMVC_TPH") ?? throw new InvalidOperationException("Connection string 'PseudoDataWarehouseCreationForFiveLayerMVC_TPH' not found.");
-            webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDWContext>(options => options.UseSqlServer(connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH));
+            String connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper") ?? throw new InvalidOperationException("Connection string 'PseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper' not found.");
+            webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDWContext>(options => options.UseSqlServer(connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper));
             //
             webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

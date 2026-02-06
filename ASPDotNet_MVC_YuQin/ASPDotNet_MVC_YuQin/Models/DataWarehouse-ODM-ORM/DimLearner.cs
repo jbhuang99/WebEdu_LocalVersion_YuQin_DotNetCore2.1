@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CurriculumSelection.Models
+namespace CurriculumSelectionDW.Models
 {
     public class DimLearner : Object
     {
@@ -14,10 +14,11 @@ namespace CurriculumSelection.Models
         public String? Email { get; set; }
         public String Name { get; set; }
         public Boolean? Gender { get; set; } //true代表男，false代表女。
-        public String? SorcePlace { get; set; }
-        public ICollection<MeasureScoreOfSelectedCurriculumByLearner> ScoreOfSelectedCurriculumByLearnerICollection { get; set; } //Relationships(one-to-many) between two object models Based-on EF. these properties are called "navigations".
+        public Int32? LearnerSourcePlaceID { get; set; }
+        public ICollection<MeasureScoreOfSelectedCurriculumByLearner> MeasureScoreOfSelectedCurriculumByLearnerICollection { get; set; } //Relationships(one-to-many) between two object models Based-on EF. these properties are called "navigations".
         public String? Fav { get; set; }
         public Int32 OrganizationID { get; set; }
-        public Organization Organization { get; set; }
+        public DimOrganization DimOrganization { get; set; }
+        public DimLearnerSourcePlace DimLearnerSourcePlace { get; set; }
     }
 }

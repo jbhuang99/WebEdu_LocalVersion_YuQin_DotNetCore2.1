@@ -1,19 +1,11 @@
 ﻿using System;
-namespace CurriculumSelection.Models
+namespace CurriculumSelectionDW.Models
 {
     public class DimCurriculumHomeworkAndTestSelectedTime : Object
     {
-        public Int32 ScoreOfSelectedCurriculumHomeworkAndTestByLearnerID { get; set; }
-        public String ScoreOfSelectedCurriculumHomeworkAndTestByLearnerNote { get; set; }
+        public Int32 CurriculumHomeworkAndTestSelectedTimeID { get; set; }
+        public Int32? CalendarYear { get; set; } //例如2023、2024、2025等
+        public Int32? CalendarSemester { get; set; }  //例如1表示上学期，2表示下学期    
 
-        public Int32 Score { get; set; } //单选题只需0/1分。
-        //public Int32 CurriculumHomeworkAndTestID { get; set; }
-        public Int32 LearnerID { get; set; }
-       
-        public DateTime? CurriculumHomeworkAndTestSelectedTime { get; set; }
-        //public Grade? Grade { get; set; }
-        public CurriculumHomeworkAndTest CurriculumHomeworkAndTest { get; set; }
-        public Learner Learner { get; set; }
-       
     }
 }

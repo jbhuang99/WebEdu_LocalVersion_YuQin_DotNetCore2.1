@@ -1,18 +1,10 @@
 ﻿using System;
-namespace CurriculumSelection.Models
+namespace CurriculumSelectionDW.Models
 {
     public class DimCurriculumSelectedTime : Object
     {
-        public Int32 ScoreOfSelectedCurriculumByLearnerID { get; set; }
-        public String ScoreOfSelectedCurriculumByLearnerNote { get; set; }
-        public Single Score { get; set; }
-        public Int32 CurriculumID { get; set; }
-        public Int32 LearnerID { get; set; }
-       
-        public DateTime? CurriculumSelectedTime { get; set; }
-        //public Grade? Grade { get; set; }
-        public Curriculum Curriculum { get; set; }
-        public Learner Learner { get; set; }
-       
+        public Int32 CurriculumSelectedTimeID { get; set; }
+        public Int32? CalendarYear { get; set; } //例如2023、2024、2025等
+        public Int32? CalendarSemester { get; set; }  //例如1表示上学期，2表示下学期    
     }
 }

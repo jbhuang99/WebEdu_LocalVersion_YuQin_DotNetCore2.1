@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CurriculumSelection.Models
+namespace CurriculumSelectionDW.Models
 {
     public class DimEducator : Object
     {
@@ -14,8 +14,8 @@ namespace CurriculumSelection.Models
         public String? Email { get; set; }
         public String Name { get; set; }
         public Int32 CurriculumID { get; set; }
-        public Curriculum Curriculum { get; set; }
+        public DimCurriculum Curriculum { get; set; }
         public Int32 OrganizationID { get; set; }
-        public Organization Organization { get; set; }
+        public DimOrganization Organization { get; set; }
     }
 }

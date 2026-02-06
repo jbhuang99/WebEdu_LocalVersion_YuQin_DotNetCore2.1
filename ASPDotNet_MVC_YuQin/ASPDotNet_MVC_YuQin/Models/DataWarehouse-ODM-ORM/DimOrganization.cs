@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CurriculumSelection.Models
+namespace CurriculumSelectionDW.Models
 {
     public class DimOrganization : Object
     {

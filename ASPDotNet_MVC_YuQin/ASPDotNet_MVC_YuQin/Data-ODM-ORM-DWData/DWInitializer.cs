@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace CurriculumSelection.Data
+namespace CurriculumSelectionDW.Data
 {
     public static class DWInitializer
     {
@@ -31,27 +31,27 @@ namespace CurriculumSelection.Data
             return result;
         }
 
-        public static void Initialize(CurriculumSelectionDbContext curriculumSelectionDbContext)
+        public static void Initialize(CurriculumSelectionDWContext curriculumSelectionDWContext)
         {
-            curriculumSelectionDbContext.Database.EnsureCreated();
+            curriculumSelectionDWContext.Database.EnsureCreated();
 
             // Look for any students.
-            if (curriculumSelectionDbContext.LearnerDbSet.Any())
+            if (curriculumSelectionDWContext.DimLearnerDbSet.Any())
             {
                 return;   // DB has been seeded
             }
 
-            curriculumSelectionDbContext.Database.ExecuteSqlRaw(
-                       $"INSERT INTO dbo.FiveLayerMVCCategory(FiveLayerMVCCategoryID,FiveLayerMVCCategoryName)  VALUES(1,'（数智思维核心要素的五层MVC的）实践（数据读写封装）') ");
-            curriculumSelectionDbContext.Database.ExecuteSqlRaw(
-                       $"INSERT INTO dbo.FiveLayerMVCCategory(FiveLayerMVCCategoryID,FiveLayerMVCCategoryName)  VALUES(2,'（数智思维核心要素的五层MVC的）技术（信息提取运用）') ");
-            curriculumSelectionDbContext.Database.ExecuteSqlRaw(
-                       $"INSERT INTO dbo.FiveLayerMVCCategory(FiveLayerMVCCategoryID,FiveLayerMVCCategoryName)  VALUES(3,'（数智思维核心要素的五层MVC的）科学（规律预测探究）') ");
-            curriculumSelectionDbContext.Database.ExecuteSqlRaw(
-                       $"INSERT INTO dbo.FiveLayerMVCCategory(FiveLayerMVCCategoryID,FiveLayerMVCCategoryName)  VALUES(4,'（数智思维核心要素的五层MVC的）人文（情感交流共鸣）') ");
-            curriculumSelectionDbContext.Database.ExecuteSqlRaw(
-                       $"INSERT INTO dbo.FiveLayerMVCCategory(FiveLayerMVCCategoryID,FiveLayerMVCCategoryName)  VALUES(5,'（数智思维核心要素的五层MVC的）哲学（智能建构生成）') ");
-            curriculumSelectionDbContext.SaveChanges();
+            curriculumSelectionDWContext.Database.ExecuteSqlRaw(
+                       $"INSERT INTO dbo.DimFiveLayerMVCCategory(FiveLayerMVCCategoryID,FiveLayerMVCCategoryName)  VALUES(1,'（数智思维核心要素的五层MVC的）实践（数据读写封装）') ");
+            curriculumSelectionDWContext.Database.ExecuteSqlRaw(
+                       $"INSERT INTO dbo.DimFiveLayerMVCCategory(FiveLayerMVCCategoryID,FiveLayerMVCCategoryName)  VALUES(2,'（数智思维核心要素的五层MVC的）技术（信息提取运用）') ");
+            curriculumSelectionDWContext.Database.ExecuteSqlRaw(
+                       $"INSERT INTO dbo.DimFiveLayerMVCCategory(FiveLayerMVCCategoryID,FiveLayerMVCCategoryName)  VALUES(3,'（数智思维核心要素的五层MVC的）科学（规律预测探究）') ");
+            curriculumSelectionDWContext.Database.ExecuteSqlRaw(
+                       $"INSERT INTO dbo.DimFiveLayerMVCCategory(FiveLayerMVCCategoryID,FiveLayerMVCCategoryName)  VALUES(4,'（数智思维核心要素的五层MVC的）人文（情感交流共鸣）') ");
+            curriculumSelectionDWContext.Database.ExecuteSqlRaw(
+                       $"INSERT INTO dbo.DimFiveLayerMVCCategory(FiveLayerMVCCategoryID,FiveLayerMVCCategoryName)  VALUES(5,'（数智思维核心要素的五层MVC的）哲学（智能建构生成）') ");
+            curriculumSelectionDWContext.SaveChanges();
 
             // Reuse single RNG instance
             Random rng = new Random();
@@ -64,10 +64,10 @@ namespace CurriculumSelection.Data
                 int curriculumID = curriculumIds[i];
                 string curriculumName = "课程名称" + i.ToString() + "（待修改更真实仿制）";
                 int fiveLayerMVCCategoryID = rng.Next(1, 6);
-                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
-                    $"INSERT INTO dbo.Curriculum(CurriculumID,CurriculumName,FiveLayerMVCCategoryID) VALUES({curriculumID}, {curriculumName}, {fiveLayerMVCCategoryID})");
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.DimCurriculum(CurriculumID,CurriculumName,FiveLayerMVCCategoryID) VALUES({curriculumID}, {curriculumName}, {fiveLayerMVCCategoryID})");
             }
-            curriculumSelectionDbContext.SaveChanges();
+            curriculumSelectionDWContext.SaveChanges();
 
             // CurriculumHomeworkAndTest: generate 8000 unique IDs in [1,8000]
             int chtCount = 8000;
@@ -77,11 +77,11 @@ namespace CurriculumSelection.Data
                 int id = chtIds[i];
                 string name = "课程作业测验名称" + i.ToString() + "（待修改更真实仿制）";
                 int cat = rng.Next(1, 6);
-                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
-                    $"INSERT INTO dbo.CurriculumHomeworkAndTest(CurriculumHomeworkAndTestID,CurriculumHomeworkAndTestName,FiveLayerMVCCategoryID) VALUES({id}, {name}, {cat})");
-                if (i % 200 == 0) curriculumSelectionDbContext.SaveChanges(); // batch to avoid huge transaction
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.DimCurriculumHomeworkAndTest(CurriculumHomeworkAndTestID,CurriculumHomeworkAndTestName,FiveLayerMVCCategoryID) VALUES({id}, {name}, {cat})");
+                if (i % 200 == 0) curriculumSelectionDWContext.SaveChanges(); // batch to avoid huge transaction
             }
-            curriculumSelectionDbContext.SaveChanges();
+            curriculumSelectionDWContext.SaveChanges();
 
             // Organization: generate 160 unique IDs in [1,160]
             int orgCount = 160;
@@ -91,10 +91,10 @@ namespace CurriculumSelection.Data
                 int id = orgIds[i];
                 string name = "（人类学校←隐喻→人形机器人训练厂商）品牌名称" + i.ToString() + "（待修改更真实仿制）";
                 string addr = "地址" + i.ToString() + "（待修改更真实仿制）";
-                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
-                    $"INSERT INTO dbo.Organization(OrganizationID,OrganizationName,OrganizationAddress) VALUES({id}, {name}, {addr})");
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.DimOrganization(OrganizationID,OrganizationName,OrganizationAddress) VALUES({id}, {name}, {addr})");
             }
-            curriculumSelectionDbContext.SaveChanges();
+            curriculumSelectionDWContext.SaveChanges();
 
             // Learner: generate 800 unique IDs in [1,800]
             int learnerCount = 800;
@@ -104,10 +104,10 @@ namespace CurriculumSelection.Data
                 int id = learnerIds[i];
                 string name = "（人类学习者←隐喻→人形机器人学习者）名称" + i.ToString() + "（待修改更真实仿制）";
                 int organizationID = rng.Next(1, Math.Min(160, orgCount) + 1);
-                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
-                    $"INSERT INTO dbo.Learner(LearnerID,Name,OrganizationID) VALUES({id}, {name}, {organizationID})");
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.DimLearner(LearnerID,Name,OrganizationID) VALUES({id}, {name}, {organizationID})");
             }
-            curriculumSelectionDbContext.SaveChanges();
+            curriculumSelectionDWContext.SaveChanges();
 
             // Educator: generate 200 unique IDs in [1,200]
             int educatorCount = 200;
@@ -118,10 +118,10 @@ namespace CurriculumSelection.Data
                 string name = "（人类教育科研者←隐喻→人形机器人教育科研者）名称" + i.ToString() + "（待修改更真实仿制）";
                 int curriculumID = rng.Next(1, curriculumCount + 1);
                 int organizationID = rng.Next(1, Math.Min(160, orgCount) + 1);
-                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
-                    $"INSERT INTO dbo.Educator(EducatorID,Name,OrganizationID,CurriculumID) VALUES({id}, {name}, {organizationID}, {curriculumID})");
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.DimEducator(EducatorID,Name,OrganizationID,CurriculumID) VALUES({id}, {name}, {organizationID}, {curriculumID})");
             }
-            curriculumSelectionDbContext.SaveChanges();
+            curriculumSelectionDWContext.SaveChanges();
 
             // ScoreOfSelectedCurriculumByLearner: generate 6400 unique IDs in [1,6400]
             int scoreCount = 64000;
@@ -138,11 +138,11 @@ namespace CurriculumSelection.Data
                     $"INSERT INTO dbo.ScoreOfSelectedCurriculumByLearner(ScoreOfSelectedCurriculumByLearnerID,ScoreOfSelectedCurriculumByLearnerNote,CurriculumID,LearnerID,Score) VALUES({id}, {note}, {curriculumID}, {learnerID}, {score})");
                 **/
                 // Replace the failing INSERT that included the ID with one that omits it:
-                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
-                    $"INSERT INTO dbo.ScoreOfSelectedCurriculumByLearner(ScoreOfSelectedCurriculumByLearnerNote, CurriculumID, LearnerID, Score) VALUES({note}, {curriculumID}, {learnerID}, {score})");
-                if (i % 500 == 0) curriculumSelectionDbContext.SaveChanges();
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.MeasureScoreOfSelectedCurriculumByLearner(ScoreOfSelectedCurriculumByLearnerNote, CurriculumID, LearnerID, Score) VALUES({note}, {curriculumID}, {learnerID}, {score})");
+                if (i % 500 == 0) curriculumSelectionDWContext.SaveChanges();
             }
-            curriculumSelectionDbContext.SaveChanges();
+            curriculumSelectionDWContext.SaveChanges();
             //
 
             //
@@ -163,11 +163,11 @@ namespace CurriculumSelection.Data
                    $"INSERT INTO dbo.ScoreOfSelectedCurriculumHomeworkAndTestByLearner(ScoreOfSelectedCurriculumHomeworkAndTestByLearnerID,ScoreOfSelectedCurriculumHomeworkAndTestByLearnerNote,LearnerID,Score) VALUES({id}, {note}, {learnerID}, {score})");
                 **/
                 // Replace the failing INSERT that included the ID with one that omits it:
-                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
-                    $"INSERT INTO dbo.ScoreOfSelectedCurriculumHomeworkAndTestByLearner(ScoreOfSelectedCurriculumHomeworkAndTestByLearnerNote,CurriculumHomeworkAndTestID,LearnerID,Score) VALUES({note}, {curriculumHomeworkAndTestID}, {learnerID}, {score})");
-                if (i % 500 == 0) curriculumSelectionDbContext.SaveChanges();
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.MeasureScoreOfSelectedCurriculumHomeworkAndTestByLearner(ScoreOfSelectedCurriculumHomeworkAndTestByLearnerNote,CurriculumHomeworkAndTestID,LearnerID,Score) VALUES({note}, {curriculumHomeworkAndTestID}, {learnerID}, {score})");
+                if (i % 500 == 0) curriculumSelectionDWContext.SaveChanges();
             }
-            curriculumSelectionDbContext.SaveChanges();
+            curriculumSelectionDWContext.SaveChanges();
         }
     }
 }
