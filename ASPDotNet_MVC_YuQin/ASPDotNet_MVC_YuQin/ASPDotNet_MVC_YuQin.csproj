@@ -114,6 +114,8 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="Controllers\Interop_CSInteropCPPDLLTry.cs" />
     <Compile Remove="Data-ODM-ORM-DbData\DbInitializer - Copy-暂时不删除.cs" />
     <Compile Remove="Data-ODM-ORM-DbData\DbInitializer - Copy.cs" />
+    <Compile Remove="Data-ODM-ORM-DbInitializer\DbInitializer - Copy-暂时不删除.cs" />
+    <Compile Remove="Data-ODM-ORM-DbInitializer\DbInitializer - Copy.cs" />
     <Compile Remove="Models\Blazor_WebAssembly_PWA_YuQin_API\Student.cs" />
     <Compile Remove="Models\BroweringOfTextbook.cs" />
     <Compile Remove="Models\BroweringOfTextbookDbContext.cs" />
@@ -215,6 +217,8 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data-ODM-ORM-DataBaseInitializer\" />
+    <Folder Include="Data-ODM-ORM-DataBaseContext\" />
     <Folder Include="Views\ModelsForViews\" />
     <Folder Include="wwwroot\webCourse\lessons\content\Teaching3D\" />
   </ItemGroup>

@@ -29,7 +29,47 @@ document.getElementById("id_CharNumber").textContent=sTextContent.length;
 }
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
+window.PseudoDataCreationForFiveLayerMVCFormAction=document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action;
+document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").onsubmit = fnOnSubmitPseudoDataCreationForFiveLayerMVC; 
+fnFormPseudoDataCreationForFiveLayerMVC();
 }
+
+function fnOnSubmitPseudoDataCreationForFiveLayerMVC() { 
+    event.returnValue = true; 
+    document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").value=document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").title;
+   // document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").disabled=true。 //已经离开本网页了，没有意义了?未起作用，防止二次提交时，按钮文字变为“正在提交中...”之类 。
+            }
+            
+function fnFormPseudoDataCreationForFiveLayerMVC() {
+    var DBName="";
+    if(document.getElementById("InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden").checked){
+        DBName="CurriculumSelection_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden";
+        // DBName="CurriculumSelection_"+document.getElementById("InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden").Id;
+        }
+    else{
+        DBName="CurriculumSelection_InheritanceTree_LeafShownCreatedByOurselves_BranchShownCreatedByOurselves_RootHidden";
+        //DBName="CurriculumSelection_"+document.getElementById("InheritanceTree_LeafShownCreatedByOurselves_BranchShownCreatedByOurselves_RootHidden").Id;
+    }
+     document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action = window.PseudoDataCreationForFiveLayerMVCFormAction
+     +"DBName="+DBName
++"&MVCCategoryNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCCategory").value //固定MVC类别数为5
++"&CurriculumNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCCurriculum").value
++"&SelectedCurriculumNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedCurriculum").value
++"&OrganizationNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCOrganization").value
++"&LearnerNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCLearner").value
++"&EducatorNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCEducator").value
++"&HomeworkAndTestNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCHomeworkAndTest").value
++"&SelectedHomeworkAndTestNum="+document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedHomeworkAndTest").value
+; 
+//document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").value=document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").title;document.getElementById("id_SubmitPseudoDataCreationForFiveLayerMVCForm").disabled=true;//已经离开本网页了，没有意义了?防止二次提交时，按钮文字变为“正在提交中...”之类 。     
+        }
+  
+/**暂时未提供用户改变计算器。
+function fnOnchangecountNumberPseudoDataCreationForFiveLayerMVC(){
+   document.getElementById("id_PseudoDataCreationForFiveLayerMVCForm").action = window.PseudoDataCreationForFiveLayerMVCFormAction + TableRowNum=document.getElementById("id_CountNumberPseudoDataCreationForFiveLayerMVC").value; 
+}
+**/
+
 
 function fnOpenLocalhostDingTalkAIGC(){
 try{

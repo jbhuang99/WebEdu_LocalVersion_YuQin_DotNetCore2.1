@@ -16,18 +16,18 @@ using Microsoft.Office.Interop.Word;
 using System.Text;
 using WebEdu_LocalVersion_YuQin_DotNetCore21.Common;
 using Microsoft.EntityFrameworkCore;
-using CurriculumSelection.Data;
+using CurriculumSelection.DB.Data;
 using Microsoft.Extensions.Logging;
 
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
 {
-    public class PseudoDataCreationForFiveLayerMVCController : Controller
+    public class PseudoDataBaseCreationForFiveLayerMVCController : Controller
     {
-        public PseudoDataCreationForFiveLayerMVCController(
+        public PseudoDataBaseCreationForFiveLayerMVCController(
              IHostingEnvironment hostingEnvironment,
              CurriculumSelectionDbContext curriculumSelectionDbContext,
-             ILogger<PseudoDataCreationForFiveLayerMVCController> logger) // inject logger for diagnostics
+             ILogger<PseudoDataBaseCreationForFiveLayerMVCController> logger) // inject logger for diagnostics
         {
             _hostingEnvironment = hostingEnvironment;
             _curriculumDbContext = curriculumSelectionDbContext;
@@ -36,7 +36,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
 
         private IHostingEnvironment _hostingEnvironment { get; }
         private readonly CurriculumSelectionDbContext _curriculumDbContext;
-        private readonly ILogger<PseudoDataCreationForFiveLayerMVCController> _logger;
+        private readonly ILogger<PseudoDataBaseCreationForFiveLayerMVCController> _logger;
 
         //private IFileProvider _fileProvider { get; }//ASP.NET Core 2.0提供了继承自接口IFileProvider的PhysicalFileProvider类型，用于受限地访问本地文件系统，它是对System.IO.File的一个封装。只能读文件系统？
         // GET api/value
@@ -47,6 +47,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers
             // sFileName准备用作文件读取；
             return Content("<HTML><HEAD><TITLE>课文</TITLE><BODY><div contenteditable='true' style='width:100%;height:100%;text-align:center;vertical-align:middle;'><span style='line-height: 400px;'>该条目尚没有对应的课文，这是自动创建的文本，请编辑</span></div></BODY ></HTM>", "text/html", System.Text.Encoding.UTF8);//不知为什么，必须""嵌套''，否则提示“字符文本中字符太多”错误
         }
+
         [HttpGet]
         public async Task<IActionResult> Get()//ASP.NET MVC 操作支持使用简单的模型绑定（针对较小文件）或流式处理（针对较大文件）上传一个或多个文件。(在此选择流式处理）)
         {

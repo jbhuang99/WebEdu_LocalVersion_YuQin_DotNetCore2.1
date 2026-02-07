@@ -90,6 +90,36 @@
     </style>
     <script src="script/TTS_STT_LLM_AIGC_Robot.js"></script>
     <script src="script/Accuracy-Similarity.js"></script>
+    <script>
+        
+(function(){
+  const form = document.getElementById('id_PseudoDataCreationForFiveLayerMVCForm');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    // Let browser show validation UI if invalid — don't disable button.
+    document.getElementById
+    if (!form.checkValidity()) return;
+
+    const btn = document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm');
+    
+    if (!btn) return;
+
+    // Prevent double submit
+    if (btn.disabled) {
+      e.preventDefault();
+      return;
+    }
+
+    // Disable and give user feedback
+    btn.disabled = true;
+    //btn.dataset._orig = btn.value;
+    //btn.value = '正在提交，请稍候...';
+    //btn.value =btn.title
+  });
+})();
+
+</script>
 </head>
 
 <body onload="fnOnLoad()">
@@ -390,19 +420,27 @@
     请单选一种ORM/ODB机制（将自动仿制五层MVC评测所需的海量原始数据的数据库进入本机事先安装的SS服务端。<a href="../options/HomeworkAndTestFiveLayerMVC.htm" target="_self" title="单击可以概览数智思维核心要素五层MVC评测的效果案例">然后可以打开SSMS作为客户端、结合VS作为客户端，演练实现五层MVC作为核心要素的数智思维评测</a>）（<a href="https://zhuanlan.zhihu.com/p/1987287349474894485" target="_blank"> “软件思维语言”←硬件软件统一→“硬件肢体语言”，由于自身条件限制，在此主要面向“软件思维语言”！</a>）：
 </div>
     <hr style="width:80%"/>
-    <div id="id_PseudoDataCreationForFiveLayerMVCForm" style="text-align:justify">
+    <div style="text-align: justify">
+        <div>
+            <input type="radio" name="raio_ORMSelection" id="InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden" checked /><span title="（本选项的数据库名称后缀约定DB_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）（本选项的数据库集成成为的数据仓库名称后缀都是约定DW_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）">派生继承树体_呈现自创方的树叶_隐藏所有的树枝_隐藏System.Object树根（TPH）</span>
+        </div>
+        <div>
+            <input type="radio" name="raio_ORMSelection" id="InheritanceTree_LeafShownCreatedByOurselves_BranchShownCreatedByOurselves_RootHidden" disabled /><span title="正在开发之中...（本选项的数据库名称后缀约定DB_InheritanceTree_LeafShownCreatedByOurselves_BranchShownCreatedByOurselves_RootHidden）（本选项的数据库集成成为的数据仓库名称后缀都是约定DW_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）">派生继承树体_呈现自创方的树叶_呈现自创方的树枝_隐藏System.Object树根（TPT）</span>
+        </div>
+    </div>
+    <hr style="width:80%"/>
+    <form action="/PseudoDataCreationForFiveLayerMVC/post?" method="post" enctype="multipart/form-data" id="id_PseudoDataCreationForFiveLayerMVCForm" style="text-align:justify">
         （数智思维核心要素的五层MVC的类别的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCCategory" min="5" max="5" value="5" disabled required title="本数据表行必须固定为5！！！"/><br />（课程的）数据表行数目（在此假设五层MVC类别*160=800）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCCurriculum" min="800" max="800" value="800" disabled required /><br />（人类学习者←隐喻→人形机器人学习者）（所选课程成绩的）数据表行数目（在此假设五层MVC类别*学习者总数*16=64000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedCurriculum" min="64000" max="64000" value="64000" disabled required /><br />（人类学校品牌←隐喻→人形机器人训练厂商品牌的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCOrganization" min="160" max="160" value="160" disabled required /><br />（人类学习者←隐喻→人形机器人学习者的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCLearner" min="800" max="800" value="800" disabled required /><br />（人类教育科研者←隐喻→人形机器人教育科研者的）数据表行数目：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCEducator" min="200" max="200" value="200" disabled required /><br />（作业测验题库单选题的）数据表行数目（在此假设五层MVC类别*1600=8000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCHomeworkAndTest" name="countNumber" min="8000" max="8000" value="8000" disabled required /><br />（人类学习者←隐喻→人形机器人学习者）（所选作业测验题库单选题答题结果的）数据表行数目（在此假设五层MVC类别*16000=80000）：<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCSelectedHomeworkAndTest" min="80000" max="80000" value="80000" disabled required />
            <hr style="width:80%"/>
          <div style="text-align:center">
            修改上述数据表行倍数<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCModifyTableRow" name="countNumber" min="1" max="10" value="1" disabled required title="正在开发之中（注：“数智思维五层MVC要素的类别的数据表行数目”是稳定不变的）..." />
            <hr style="width:80%"/>       
-    </div> 
-    </div>                                       
-        <button value="button元素的value好像无效？" id="id_SubmitPseudoDataCreationForFiveLayerMVCOption1" style="white-space: normal;font-size:15px;text-align:justify" title="单击将提交，开始仿制海量原始数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick="window.event.target.value=window.event.target.title" ><span title="（本选项的数据库名称后缀约定DB_InheritanceTree_LeafShownCreatedByOurselves_BranchShownCreatedByOurselves_RootHidden）（本选项的数据库集成成为的数据仓库名称后缀都是约定DW_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）"><a href="/PseudoDataBaseCreationForFiveLayerMVC/Get?DBName=CurriculumSelection_DB_ShowInheritanceTreeLeaf_TheOthersHidden&MVCCategoryNum=5&CurriculumNum=800&SelectedCurriculumNum=64000&OrganizationNum=160&LearnerNum=800&EducatorNum=200&HomeworkAndTestNum=8000&SelectedHomeworkAndTestNum=80000", "_blank">(第1层底层本质的MVC的细分三层之一的选项1) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据库的案例（TPT）（派生继承树体_呈现自创方的树叶_呈现自创方的树枝_隐藏System.Object树根）（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据库、调用数据库）</a></span></button>
-         <button value="button元素的value好像无效？" id="id_SubmitPseudoDataCreationForFiveLayerMVCOption2" style="white-space: normal;font-size:15px;text-align:justify" title="单击将提交，开始仿制海量原始数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick="window.event.target.value=window.event.target.title" ><span title="（本选项的数据库名称后缀约定DB_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）（本选项的数据库集成成为的数据仓库名称后缀都是约定DW_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）"><a href="/PseudoDataCreationForFiveLayerMVC/Get?DBName=CurriculumSelection_DB_ShowInheritanceTreeLeaf_TheOthersHidden&MVCCategoryNum=5&CurriculumNum=800&SelectedCurriculumNum=64000&OrganizationNum=160&LearnerNum=800&EducatorNum=200&HomeworkAndTestNum=8000&SelectedHomeworkAndTestNum=80000", "_blank">(第1层底层本质的MVC的细分三层之一的选项2) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据库的案例（TPH）（派生继承树体_呈现自创方的树叶_隐藏所有的树枝_隐藏System.Object树根）（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据库、调用数据库） </a></span></button>                               
-
-          <button id="id_ButtonPseudoDataWareHouseCreationForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始仿制海量数据仓库数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据仓库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经集成后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataWareHouseCreationForFiveLayerMVC")'><a href="/PseudoDadaWarehouseCreationForFiveLayerMVC/Get?DWName=CurriculumSelection_DW_ShowInheritanceTreeLeaf_TheOthersHidden&MVCCategoryNum=5&CurriculumNum=800&SelectedCurriculumNum=64000&OrganizationNum=160&LearnerNum=800&EducatorNum=200&HomeworkAndTestNum=8000&SelectedHomeworkAndTestNum=80000", "_blank">(第1层底层本质的MVC的细分三层之二) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据仓库的案例（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据仓库、调用数据仓库）</a></button>
-           <button value="button元素的value好像无效？" id="id_ButtonPseudoDataIntegarationForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始集成各种数据源成为海量数据仓库数据！请耐心等候...集成进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表仿制数据的集成已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataIntegarationForFiveLayerMVC")'><a href="/PseudoDataIntegarationForFiveLayerMVC/Get", "_blank">(第1层底层本质的MVC的细分三层之三) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据集成包的案例（面向数据读写封装的数据库等等众多源头的原始数据→基于SS的SSIS等等服务的数据集成包→面向数据只读统计的数据仓库数据）（也可VS/SSMS客户←互动→SS2014的SSIS服务，更加直接灵活创建数据集成包、调用数据集成包）</a></button>
+           <input type="submit" value="(第1层底层本质的MVC的细分三层之一) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据库的案例（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据库、调用数据库）" id="id_SubmitPseudoDataCreationForFiveLayerMVCForm" style="white-space: normal;font-size:15px;text-align:justify" title="单击将提交，开始仿制海量原始数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick="document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm').value=document.getElementById('id_SubmitPseudoDataCreationForFiveLayerMVCForm').title;" />
+            </div>
+    </form> 
+          
+          <br /><button value="button元素的value好像无效？" id="id_ButtonPseudoDataWareHouseCreationForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始仿制海量数据仓库数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据仓库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经集成后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataWareHouseCreationForFiveLayerMVC")'><a href="/PseudoDadaWarehouseCreationForFiveLayerMVC/Get?DWName=CurriculumSelection_DW_ShowInheritanceTreeLeaf_TheOthersHidden&MVCCategoryNum=5&CurriculumNum=800&SelectedCurriculumNum=64000&OrganizationNum=160&LearnerNum=800&EducatorNum=200&HomeworkAndTestNum=8000&SelectedHomeworkAndTestNum=80000", "_blank">(第1层底层本质的MVC的细分三层之二) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据仓库的案例（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据仓库、调用数据仓库）</a></button>
+              <br /><button value="button元素的value好像无效？" id="id_ButtonPseudoDataIntegarationForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始集成各种数据源成为海量数据仓库数据！请耐心等候...集成进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表仿制数据的集成已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataIntegarationForFiveLayerMVC")'><a href="/PseudoDataIntegarationForFiveLayerMVC/Get", "_blank">(第1层底层本质的MVC的细分三层之三) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据集成包的案例（面向数据读写封装的数据库等等众多源头的原始数据→基于SS的SSIS等等服务的数据集成包→面向数据只读统计的数据仓库数据）（也可VS/SSMS客户←互动→SS2014的SSIS服务，更加直接灵活创建数据集成包、调用数据集成包）</a></button>
              <hr style="width:80%"/>
              <button value="button元素的value好像无效？" id="id_ButtonPseudoDataDescriptionAnalysisForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始描述统计海量数据仓库数据！请耐心等候...描述统计进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表数据描述统计已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataDescriptionAnalysisForFiveLayerMVC")'><a href="/PseudoDataAIGCForFiveLayerMVC/Get", "_blank">(第2层中层衔接的MVC) 技术(信息提取运用)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：数据描述统计的案例（也可VS/SSMS客户←互动→SS2014的SSAS服务，更加直接灵活创建数据描述统计的多维分析数据集、调用数据描述统计的多维分析数据集）</a></button>
              <hr style="width:80%"/>
