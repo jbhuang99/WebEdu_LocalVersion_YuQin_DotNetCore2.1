@@ -124,7 +124,10 @@
                             <label title="请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）： </label><textarea id="sKnowledgebaseString" title="请单击打开标准知识库搜索想要的字符序列。然后，请粘贴在这里！" style="width: 100%; resize: vertical; overflow: auto">这里粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）...</textarea>
                         </div>
                     </div>
-                    <div style="width: 90%"><button style="color:green;font-size:11px;" onclick='document.getElementById("sAccuracySimilarityForString").textContent=fnStringSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>准确性相似度：</button><span id="sAccuracySimilarityForString" style="font-size: 11px">这里将显示上述两个字符序列的准确性相似度</span><button><a href="../options/EmbeddingPython-sim_entropy.html" target="_blank">关于准确性相似度算法创新（而且尝试了多种平台语言的融合）（专利申请之中...）</a></button></div>
+                    <div style="width: 90%"><button style="color:green;font-size:11px;" onclick='document.getElementById("sAccuracySimilarityForString").textContent=fnStringSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityForString" style="font-size: 11px">这里将显示上述两个字符序列的准确性相似度</span>
+                        <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span  style="font-size: 11px">正在开发之中...</span>
+                        <br /><button><a href="../options/EmbeddingPython-sim_entropy.html" target="_blank">关于准确性相似度算法创新（而且尝试了多种平台语言的融合）（专利申请之中...）</a></button>
+                    </div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
@@ -143,7 +146,9 @@
                             <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”关键词搜索匹配本系统标准知识库检索的图像，或者，上传印刷体的字符图像可用来对比自己书写的工整性' /><input type="submit" value="提交文件" /></div>
                         </div>
                     </div>
-                    <div><button style="color:green;font-size:12px" onclick="fnPixelImageSimilarity();">准确性相似度：</button><span id="sAccuracySimilarityForPixelImage" style="font-size: 11px">这里将显示上述两个图像的准确性相似度</span></div>
+                    <div><button style="color:green;font-size:12px" onclick="fnPixelImageSimilarity();">（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityForPixelImage" style="font-size: 11px">这里将显示上述两个图像的准确性相似度</span>
+                      <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span  style="font-size: 11px">正在开发之中...</span>
+                    </div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
@@ -162,7 +167,8 @@
                             <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.mp4视频文件，可用作评判自己创作的.mp4视频文件的的标准' /><input type="submit" value="提交文件" /></div>
                         </div>
                     </div>
-                    <div><button style="color:green;font-size:12px" onclick="fnCompareVideos();">准确性相似度：</button><span id="sAccuracySimilarityForPixelVideo" style="font-size: 11px">这里将显示上述两个视频的准确性相似度</span></div><canvas id="canvas" width="160" height="90" style="display:none"></canvas>
+                    <div><button style="color:green;font-size:12px" onclick="fnCompareVideos();">（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityForPixelVideo" style="font-size: 11px">这里将显示上述两个视频的准确性相似度</span></div><canvas id="canvas" width="160" height="90" style="display:none"></canvas>
+                    <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span  style="font-size: 11px">正在开发之中...</span>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
@@ -181,7 +187,9 @@
                             <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.svg二维2D文件，可用作评判自己创作的.svg二维2D文件的的标准' /><input type="submit" value="提交文件" /></div>
                         </div>
                     </div>
-                    <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityFor2D();">准确性相似度：</button><span id="sAccuracySimilarityFor2D" style="font-size: 11px">这里将显示上述两个2D的准确性相似度</span></div>
+                    <div><button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityFor2D();">（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityFor2D" style="font-size: 11px">这里将显示上述两个2D的准确性相似度</span>
+                      <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span  style="font-size: 11px">正在开发之中...</span>
+                    </div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
@@ -295,7 +303,9 @@
                             <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.x3dv三维3D文件，可用作评判自己创作的.x3dv三维3D文件的的标准' /><input type="submit" value="提交文件" /></div>
                         </div>
                     </div>
-                    <div><button style="color:green;font-size:12px" onclick="document.getElementById('sAccuracySimilarityFor3D').textContent='（开发之中...)'//fnShowAccuraySimilarityFor3D();">准确性相似度：</button><span id="sAccuracySimilarityFor3D" style="font-size: 11px">这里将显示上述两个3D的准确性相似度</span></div>
+                    <div><button style="color:green;font-size:12px" onclick="document.getElementById('sAccuracySimilarityFor3D').textContent='（开发之中...)'//fnShowAccuraySimilarityFor3D();">（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityFor3D" style="font-size: 11px">这里将显示上述两个3D的准确性相似度</span>
+                    <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span  style="font-size: 11px">正在开发之中...</span>
+                    </div>
                 </div>
                 <div></div>
                 <div style="text-align:justify">
@@ -315,7 +325,10 @@
                         </div>
                     </div>
 
-                    <div><button style="color:green;font-size:12px" onclick="fnCompareAudio();">准确性相似度：</button><span id="sAccuracySimilarityForAudio" style="font-size: 11px">这里将显示上述两个音频的准确性相似度</span></div>
+                    <div><button style="color:green;font-size:12px" onclick="fnCompareAudio();">（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityForAudio" style="font-size: 11px">这里将显示上述两个音频的准确性相似度</span>
+                        <br />
+                        <button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span style="font-size: 11px">正在开发之中...</span>
+                    </div>
                 </div>
 
                 <div style="text-align:justify">
@@ -397,20 +410,27 @@
            修改上述数据表行倍数<input type="number" id="id_CountNumberPseudoDataCreationForFiveLayerMVCModifyTableRow" name="countNumber" min="1" max="10" value="1" disabled required title="正在开发之中（注：“数智思维五层MVC要素的类别的数据表行数目”是稳定不变的）..." />
            <hr style="width:80%"/>       
     </div> 
-    </div>                                       
-        <button value="button元素的value好像无效？" id="id_SubmitPseudoDataCreationForFiveLayerMVCOption1" style="white-space: normal;font-size:15px;text-align:justify" title="单击将提交，开始仿制海量原始数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick="window.event.target.value=window.event.target.title" ><span title="（本选项的数据库名称后缀约定DB_InheritanceTree_LeafShownCreatedByOurselves_BranchShownCreatedByOurselves_RootHidden）（本选项的数据库集成成为的数据仓库名称后缀都是约定DW_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）"><a href="/PseudoDataBaseCreationForFiveLayerMVC/Get?DBName=CurriculumSelection_DB_ShowInheritanceTreeLeaf_TheOthersHidden&MVCCategoryNum=5&CurriculumNum=800&SelectedCurriculumNum=64000&OrganizationNum=160&LearnerNum=800&EducatorNum=200&HomeworkAndTestNum=8000&SelectedHomeworkAndTestNum=80000", "_blank">(第1层底层本质的MVC的细分三层之一的选项1) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据库的案例（TPT）（派生继承树体_呈现自创方的树叶_呈现自创方的树枝_隐藏System.Object树根）（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据库、调用数据库）</a></span></button>
-         <button value="button元素的value好像无效？" id="id_SubmitPseudoDataCreationForFiveLayerMVCOption2" style="white-space: normal;font-size:15px;text-align:justify" title="单击将提交，开始仿制海量原始数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick="window.event.target.value=window.event.target.title" ><span title="（本选项的数据库名称后缀约定DB_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）（本选项的数据库集成成为的数据仓库名称后缀都是约定DW_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）"><a href="/PseudoDataCreationForFiveLayerMVC/Get?DBName=CurriculumSelection_DB_ShowInheritanceTreeLeaf_TheOthersHidden&MVCCategoryNum=5&CurriculumNum=800&SelectedCurriculumNum=64000&OrganizationNum=160&LearnerNum=800&EducatorNum=200&HomeworkAndTestNum=8000&SelectedHomeworkAndTestNum=80000", "_blank">(第1层底层本质的MVC的细分三层之一的选项2) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据库的案例（TPH）（派生继承树体_呈现自创方的树叶_隐藏所有的树枝_隐藏System.Object树根）（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据库、调用数据库） </a></span></button>                               
-
-          <button id="id_ButtonPseudoDataWareHouseCreationForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始仿制海量数据仓库数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据仓库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经集成后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataWareHouseCreationForFiveLayerMVC")'><a href="/PseudoDadaWarehouseCreationForFiveLayerMVC/Get?DWName=CurriculumSelection_DW_ShowInheritanceTreeLeaf_TheOthersHidden&MVCCategoryNum=5&CurriculumNum=800&SelectedCurriculumNum=64000&OrganizationNum=160&LearnerNum=800&EducatorNum=200&HomeworkAndTestNum=8000&SelectedHomeworkAndTestNum=80000", "_blank">(第1层底层本质的MVC的细分三层之二) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据仓库的案例（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据仓库、调用数据仓库）</a></button>
-           <button value="button元素的value好像无效？" id="id_ButtonPseudoDataIntegarationForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始集成各种数据源成为海量数据仓库数据！请耐心等候...集成进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表仿制数据的集成已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataIntegarationForFiveLayerMVC")'><a href="/PseudoDataIntegarationForFiveLayerMVC/Get", "_blank">(第1层底层本质的MVC的细分三层之三) 实践(数据读写封装)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：创建数据集成包的案例（面向数据读写封装的数据库等等众多源头的原始数据→基于SS的SSIS等等服务的数据集成包→面向数据只读统计的数据仓库数据）（也可VS/SSMS客户←互动→SS2014的SSIS服务，更加直接灵活创建数据集成包、调用数据集成包）</a></button>
-             <hr style="width:80%"/>
-             <button value="button元素的value好像无效？" id="id_ButtonPseudoDataDescriptionAnalysisForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始描述统计海量数据仓库数据！请耐心等候...描述统计进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表数据描述统计已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataDescriptionAnalysisForFiveLayerMVC")'><a href="/PseudoDataAIGCForFiveLayerMVC/Get", "_blank">(第2层中层衔接的MVC) 技术(信息提取运用)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：数据描述统计的案例（也可VS/SSMS客户←互动→SS2014的SSAS服务，更加直接灵活创建数据描述统计的多维分析数据集、调用数据描述统计的多维分析数据集）</a></button>
-             <hr style="width:80%"/>
-            <button value="button元素的value好像无效？" id="id_ButtonPseudoDataMiningAnalysisForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始推断统计海量数据仓库数据！请耐心等候...推断统计进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表数据推断统计已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataMiningAnalysisForFiveLayerMVC")'><a href="/PseudoDataAIGCForFiveLayerMVC/Get", "_blank">(第3层中层衔接的MVC) 科学(规律预测探究)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：数据推断统计的案例（也可VS/SSMS客户←互动→SS2014的SSAS服务，更加直接灵活创建数据推断统计的数据挖掘结构、调用数据推断统计的数据挖掘结构）</a></button>
-             <hr style="width:80%"/>
-            <button value="button元素的value好像无效？" id="id_ButtonPseudoDataMiningAnalysisHumanityForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始人文推断统计海量数据仓库数据！请耐心等候...数据人文推断统计进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表数据人文推断统计已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataMiningAnalysisHumanityForFiveLayerMVC")'><a href="/PseudoDataMiningAnalysisHumanityForFiveLayerMVC/Get", "_blank">(第4层中层衔接的MVC) 人文(情感交流共鸣)【默认标量的媒体Literal字面顺序匹配，理解向量/矩阵/张量的媒体Token词元语义距离】：数据人文推断统计的案例（也可VS/SSMS客户←互动→SS2014的SSAS服务，更加直接灵活创建数据人文推断统计的数据挖掘结构、调用数据人文推断统计的数据挖掘结构）</a></button>
-             <hr style="width:80%"/>
-            <button value="button元素的value好像无效？" id="id_ButtonPseudoDataAIGCForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始Transformer推断统计海量向量数据库数据！请耐心等候...Transformer推断统计海量向量数据进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表Transformer推断统计海量向量数据已经全部完成）..." onclick='window.event.target.value=window.event.target.title);//没能实现只好暂时改为超链接open("/PseudoDataAIGCForFiveLayerMVC/Get")'><a href="/PseudoDataAIGCForFiveLayerMVC/Get", "_blank">(第5层顶层表象的MVC) 哲学（智能建构生成）【理解标量的媒体Literal字面顺序匹配，默认向量/矩阵/张量的媒体Token词元语义距离】：数据的自主学习的Transformer推断统计案例（也可SSMS客户←互动→SS2025向量数据库服务，更加直接灵活创建向量数据库、调用向量数据库，模拟大语言模型LLM-AIGC的Transformer推断统计功能。不过，本系统实际是付费调用他创方成熟的QWen/ChatGPT等等大语言模型LLM-AIGC的Transformer推断统计功能，实现AIGC需求！）</a></button>
+    </div> 
+    <table style="width:100%">
+    <tr>
+    <td>
+      <button value="button元素的value好像无效？" id="id_SubmitPseudoDataCreationForFiveLayerMVCOption1" style="white-space: normal;font-size:15px;text-align:justify;height:100%" title="单击将提交，开始仿制海量原始数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick="window.event.target.value=window.event.target.title" ><span title="（本选项的数据库名称后缀约定DB_InheritanceTree_LeafShownCreatedByOurselves_BranchShownCreatedByOurselves_RootHidden）（本选项的数据库集成成为的数据仓库名称后缀都是约定DW_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）"><a href="/PseudoDataBaseCreationForFiveLayerMVC/Get?DBName=CurriculumSelection_DB_ShowInheritanceTreeLeaf_TheOthersHidden&MVCCategoryNum=5&CurriculumNum=800&SelectedCurriculumNum=64000&OrganizationNum=160&LearnerNum=800&EducatorNum=200&HomeworkAndTestNum=8000&SelectedHomeworkAndTestNum=80000", "_blank">(第1层底层本质的MVC的细分三层之一的选项1) 实践(数据读写封装)【媒体的标量的Literal字面顺序匹配→无需嵌入成为→媒体的向量/矩阵/张量的Token词元语义距离】：<span style="color:brown;font-weight:bold">创建数据库的案例（TPT）</span>（派生继承树体_呈现自创方的树叶_呈现自创方的树枝_隐藏System.Object树根）（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据库、调用数据库）</a></span></button>
+    </td>
+    <td>
+       <button value="button元素的value好像无效？" id="id_SubmitPseudoDataCreationForFiveLayerMVCOption2" style="white-space: normal;font-size:15px;text-align:justify;height:100%" title="单击将提交，开始仿制海量原始数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经优化后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick="window.event.target.value=window.event.target.title" ><span title="（本选项的数据库名称后缀约定DB_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）（本选项的数据库集成成为的数据仓库名称后缀都是约定DW_InheritanceTree_LeafShownCreatedByOurselves_BranchHiddenAll_RootHidden）"><a href="/PseudoDataCreationForFiveLayerMVC/Get?DBName=CurriculumSelection_DB_ShowInheritanceTreeLeaf_TheOthersHidden&MVCCategoryNum=5&CurriculumNum=800&SelectedCurriculumNum=64000&OrganizationNum=160&LearnerNum=800&EducatorNum=200&HomeworkAndTestNum=8000&SelectedHomeworkAndTestNum=80000", "_blank">(第1层底层本质的MVC的细分三层之一的选项2) 实践(数据读写封装)【媒体的标量的Literal字面顺序匹配→无需嵌入成为→媒体的向量/矩阵/张量的Token词元语义距离】：<span style="color:brown;font-weight:bold">创建数据库的案例（TPH）</span>（派生继承树体_呈现自创方的树叶_隐藏所有的树枝_隐藏System.Object树根）（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据库、调用数据库） </a></span></button>       
+    </td>
+    <td>
+         <button id="id_ButtonPseudoDataWareHouseCreationForFiveLayerMVCForm" style="white-space: normal;text-align:justify;height:100%" title="单击将提交，开始仿制海量数据仓库数据！请耐心等候...仿制进度可以本机本系统服务端的Console界面中查看...如果曾经仿制过的数据仓库仍然存在，需要打开SS手工删除才能重新仿制（文件后缀名参见本页前述），删除时注意备份以免误删您已经集成后的数据...若要再次单击请刷新本页面（返回的消息并不代表仿制数据已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataWareHouseCreationForFiveLayerMVC")'><a href="/PseudoDadaWarehouseCreationForFiveLayerMVC/Get?DWName=CurriculumSelection_DW_ShowInheritanceTreeLeaf_TheOthersHidden&MVCCategoryNum=5&CurriculumNum=800&SelectedCurriculumNum=64000&OrganizationNum=160&LearnerNum=800&EducatorNum=200&HomeworkAndTestNum=8000&SelectedHomeworkAndTestNum=80000", "_blank">(第1层底层本质的MVC的细分三层之二) 实践(数据读写封装)的众多源头的数据库等等原始数据→基于SS的SSIS等等服务的数据集成包→数据只读统计的数据仓库等等统计源数据【媒体的标量的Literal字面顺序匹配→无需嵌入成为→媒体的向量/矩阵/张量的Token词元语义距离】：<span style="color:brown;font-weight:bold">创建数据仓库的案例</span>（也可SSMS客户←互动→SS2014等等SSDE数据服务，更加直接灵活创建数据仓库、调用数据仓库）</a></button>
+    </td>
+    <td> 
+        <button value="button元素的value好像无效？" id="id_ButtonPseudoDataIntegarationForFiveLayerMVCForm" style="white-space: normal;text-align:justify;height:100%" title="单击将提交，开始集成各种数据源成为海量数据仓库数据！请耐心等候...集成进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表仿制数据的集成已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataIntegarationForFiveLayerMVC")'><a href="/PseudoDataIntegarationForFiveLayerMVC/Get", "_blank">(第1层底层本质的MVC的细分三层之三) 实践(数据读写封装)的众多源头的数据库等等原始数据→基于SS的SSIS等等服务的数据集成包→数据只读统计的数据仓库等等统计源数据【媒体的标量的Literal字面顺序匹配→无需嵌入成为→媒体的向量/矩阵/张量的Token词元语义距离】：<span style="color:brown;font-weight:bold">创建数据集成包的案例</span>（也可VS/SSMS客户←互动→SS2014的SSIS服务，更加直接灵活创建数据集成包、调用数据集成包）</a></button>
+    </td>
+    </tr>
+    </table>    
+             <button value="button元素的value好像无效？" id="id_ButtonPseudoDataDescriptionAnalysisForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始描述统计海量数据仓库数据！请耐心等候...描述统计进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表数据描述统计已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataDescriptionAnalysisForFiveLayerMVC")'><a href="/PseudoDataAIGCForFiveLayerMVC/Get", "_blank">(第2层中层衔接的MVC) 技术(信息提取运用)【媒体的标量的Literal字面顺序匹配→无需嵌入成为→媒体的向量/矩阵/张量的Token词元语义距离】：<span style="color:brown;font-weight:bold">数据描述统计的案例</span>（也可VS/SSMS客户←互动→SS2014的SSAS服务，更加直接灵活创建数据描述统计的多维分析数据集、调用数据描述统计的多维分析数据集）</a></button>
+            <button value="button元素的value好像无效？" id="id_ButtonPseudoDataMiningAnalysisForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始推断统计海量数据仓库数据！请耐心等候...推断统计进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表数据推断统计已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataMiningAnalysisForFiveLayerMVC")'><a href="/PseudoDataAIGCForFiveLayerMVC/Get", "_blank">(第3层中层衔接的MVC) 科学(规律预测探究)【媒体的标量的Literal字面顺序匹配→无需嵌入成为→媒体的向量/矩阵/张量的Token词元语义距离】：<span style="color:brown;font-weight:bold">数据推断统计的案例</span>（也可VS/SSMS客户←互动→SS2014的SSAS服务，更加直接灵活创建数据推断统计的数据挖掘结构、调用数据推断统计的数据挖掘结构）</a></button>
+            <button value="button元素的value好像无效？" id="id_ButtonPseudoDataMiningAnalysisHumanityForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始人文推断统计海量数据仓库数据！请耐心等候...数据人文推断统计进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表数据人文推断统计已经全部完成）..." onclick='window.event.target.value=window.event.target.title;//没能实现只好暂时改为超链接open("/PseudoDataMiningAnalysisHumanityForFiveLayerMVC")'><a href="/PseudoDataMiningAnalysisHumanityForFiveLayerMVC/Get", "_blank">(第4层中层衔接的MVC) 人文(情感交流共鸣)【媒体的标量的Literal字面顺序匹配→无需嵌入成为→媒体的向量/矩阵/张量的Token词元语义距离】：<span style="color:brown;font-weight:bold">数据人文推断统计的案例</span>（也可VS/SSMS客户←互动→SS2014的SSAS服务，更加直接灵活创建数据人文推断统计的数据挖掘结构、调用数据人文推断统计的数据挖掘结构）</a></button>
+            <button value="button元素的value好像无效？" id="id_ButtonPseudoDataAIGCForFiveLayerMVCForm" style="white-space: normal;text-align:justify" title="单击将提交，开始Transformer推断统计海量向量数据库数据！请耐心等候...Transformer推断统计海量向量数据进度可以本机本系统服务端的Console界面中查看...若要再次单击请刷新本页面（返回的消息并不代表Transformer推断统计海量向量数据已经全部完成）..." onclick='window.event.target.value=window.event.target.title);//没能实现只好暂时改为超链接open("/PseudoDataAIGCForFiveLayerMVC/Get")'><a href="/PseudoDataAIGCForFiveLayerMVC/Get", "_blank">(第5层顶层表象的MVC) 哲学（智能建构生成）【媒体的标量的Literal字面顺序匹配→必须嵌入成为→媒体的向量/矩阵/张量的Token词元语义距离】：<span style="color:brown;font-weight:bold">数据的自主学习自主适应自我进化的Transformer推断统计案例</span>（也可SSMS客户←互动→SS2025向量数据库服务，更加直接灵活创建向量数据库、调用向量数据库，模拟大语言模型LLM-AIGC的Transformer推断统计功能。不过，本系统实际是付费调用他创方成熟的QWen/ChatGPT等等大语言模型LLM-AIGC的Transformer推断统计功能，实现AIGC需求！）</a></button>
 </div>    
                     
 

@@ -109,6 +109,19 @@ namespace CurriculumSelectionDW.Data
             }
             curriculumSelectionDWContext.SaveChanges();
 
+            // DimLearnerSourcePlace: generate 800 unique IDs in [1,800]
+            int dimLearnerSourcePlaceCount = 800;
+            int[] dimLearnerSourcePlaceIds = GenerateUniqueIds(dimLearnerSourcePlaceCount, 1, 800, rng);
+            for (int i = 0; i < dimLearnerSourcePlaceCount; i++)
+            {
+                int id = dimLearnerSourcePlaceIds[i];
+                string provice = "省份名称" + i.ToString() + "（待修改更真实仿制）";
+                string city = "城市名称" + i.ToString() + "（待修改更真实仿制）"; ;
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.DimLearnerSourcePlace(LearnerSourcePlaceID,Province,City) VALUES({id}, {provice}, {city})");
+            }
+            curriculumSelectionDWContext.SaveChanges();
+
             // Educator: generate 200 unique IDs in [1,200]
             int educatorCount = 200;
             int[] educatorIds = GenerateUniqueIds(educatorCount, 1, 200, rng);
@@ -123,15 +136,50 @@ namespace CurriculumSelectionDW.Data
             }
             curriculumSelectionDWContext.SaveChanges();
 
-            // ScoreOfSelectedCurriculumByLearner: generate 6400 unique IDs in [1,6400]
+            // DimCurriculumSelectedTime: generate 64000 unique IDs in [1,64000]
+            int dimCurriculumSelectedTimeCount = 64000;
+            int[] dimCurriculumSelectedTimeIds = GenerateUniqueIds(dimCurriculumSelectedTimeCount, 1, 64000, rng);
+            // curriculumSelectionDWContext.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.DimCurriculumSelectedTime ON;");//没起作用，只好放弃ID列的插入了，改为让数据库自动生成ID，也能保证1-64000？
+            for (int i = 0; i < dimCurriculumSelectedTimeCount; i++)
+            {
+                int id = dimCurriculumSelectedTimeIds[i];
+                int calendarYear = rng.Next(2010, 2025);
+                int calendarSemester = rng.Next(1, 3);
+                /**
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.DimCurriculumSelectedTime(CurriculumSelectedTimeID,CalendarYear,CalendarSemester) VALUES({id}, {calendarYear}, {calendarSemester})");
+                **/
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.DimCurriculumSelectedTime(CalendarYear,CalendarSemester) VALUES({calendarYear}, {calendarSemester})");
+                if (i % 500 == 0) curriculumSelectionDWContext.SaveChanges();
+            }
+            //curriculumSelectionDWContext.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.DimCurriculumSelectedTime OFF;");
+            curriculumSelectionDWContext.SaveChanges();
+
+            // DimCurriculumHomeworkAndTestSelectedTime: generate 80000 unique IDs in [1,80000]
+            int dimCurriculumHomeworkAndTestSelectedTimeCount = 80000;
+            int[] dimCurriculumHomeworkAndTestSelectedTimeIds = GenerateUniqueIds(dimCurriculumHomeworkAndTestSelectedTimeCount, 1, 80000, rng);
+            for (int i = 0; i < dimCurriculumHomeworkAndTestSelectedTimeCount; i++)
+            {
+                int id = dimCurriculumHomeworkAndTestSelectedTimeIds[i];
+                int calendarYear = rng.Next(2010, 2025);
+                int calendarSemester = rng.Next(1, 3);
+                curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.DimCurriculumHomeworkAndTestSelectedTime(CalendarYear,CalendarSemester) VALUES({calendarYear}, {calendarSemester})");
+                if (i % 500 == 0) curriculumSelectionDWContext.SaveChanges();
+            }
+            curriculumSelectionDWContext.SaveChanges();
+
+            // ScoreOfSelectedCurriculumByLearner: generate 64000 unique IDs in [1,64000]
             int scoreCount = 64000;
             int[] scoreIds = GenerateUniqueIds(scoreCount, 1, 64000, rng);
             for (int i = 0; i < scoreCount; i++)
             {
                 int id = scoreIds[i];
-                string note = "（“人类学习者所选课程成绩”←隐喻→“人形机器人学习者所选课程成绩”）的备注" + i.ToString() + "（待修改更真实仿制）";
+               // string note = "（“人类学习者所选课程成绩”←隐喻→“人形机器人学习者所选课程成绩”）的备注" + i.ToString() + "（待修改更真实仿制）";
                 int curriculumID = rng.Next(1, curriculumCount + 1);
                 int learnerID = rng.Next(1, learnerCount + 1);
+                Int32 curriculumSelectedTimeID = rng.Next(1, dimCurriculumSelectedTimeCount + 1);
                 double score = Math.Round(rng.NextDouble() * 100.0, 2);
                 /**Original failing INSERT that included the ID:
                 curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
@@ -139,7 +187,7 @@ namespace CurriculumSelectionDW.Data
                 **/
                 // Replace the failing INSERT that included the ID with one that omits it:
                 curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
-                    $"INSERT INTO dbo.MeasureScoreOfSelectedCurriculumByLearner(ScoreOfSelectedCurriculumByLearnerNote, CurriculumID, LearnerID, Score) VALUES({note}, {curriculumID}, {learnerID}, {score})");
+                    $"INSERT INTO dbo.MeasureScoreOfSelectedCurriculumByLearner(CurriculumID, LearnerID,CurriculumSelectedTimeID,Score) VALUES({curriculumID}, {learnerID}, {curriculumSelectedTimeID}, {score})");
                 if (i % 500 == 0) curriculumSelectionDWContext.SaveChanges();
             }
             curriculumSelectionDWContext.SaveChanges();
@@ -147,15 +195,16 @@ namespace CurriculumSelectionDW.Data
 
             //
 
-            // ScoreOfSelectedCurriculumHomeworkAndTestByLearner: generate 8000 unique IDs in [1,8000]
+            // ScoreOfSelectedCurriculumHomeworkAndTestByLearner: generate 80000 unique IDs in [1,80000]
             int scoreChtCount = 80000;
             int[] scoreChtIds = GenerateUniqueIds(scoreChtCount, 1, 80000, rng);
             for (int i = 0; i < scoreChtCount; i++)
             {
                 int id = scoreChtIds[i];
-                string note = "（“人类学习者所选作业测验单选题答题成绩”←隐喻→“人形机器人学习者所选作业测验单选题答题成绩”）的备注" + i.ToString() + "（待修改更真实仿制）";
+               // string note = "（“人类学习者所选作业测验单选题答题成绩”←隐喻→“人形机器人学习者所选作业测验单选题答题成绩”）的备注" + i.ToString() + "（待修改更真实仿制）";
                 int curriculumHomeworkAndTestID = rng.Next(1, chtCount + 1);
                 int learnerID = rng.Next(1, learnerCount + 1);
+                Int32 curriculumHomeworkAndTestSelectedTimeID = rng.Next(1, dimCurriculumHomeworkAndTestSelectedTimeCount + 1);
                 //double score = Math.Round(rng.NextDouble() * 100.0, 2);
                 int score= rng.Next(0,2);
                 /**Original failing INSERT that included the ID:
@@ -164,7 +213,7 @@ namespace CurriculumSelectionDW.Data
                 **/
                 // Replace the failing INSERT that included the ID with one that omits it:
                 curriculumSelectionDWContext.Database.ExecuteSqlInterpolated(
-                    $"INSERT INTO dbo.MeasureScoreOfSelectedCurriculumHomeworkAndTestByLearner(ScoreOfSelectedCurriculumHomeworkAndTestByLearnerNote,CurriculumHomeworkAndTestID,LearnerID,Score) VALUES({note}, {curriculumHomeworkAndTestID}, {learnerID}, {score})");
+                    $"INSERT INTO dbo.MeasureScoreOfSelectedCurriculumHomeworkAndTestByLearner(CurriculumHomeworkAndTestID,LearnerID,CurriculumHomeworkAndTestSelectedTimeID,Score) VALUES({curriculumHomeworkAndTestID}, {learnerID}, {curriculumHomeworkAndTestSelectedTimeID}, {score})");
                 if (i % 500 == 0) curriculumSelectionDWContext.SaveChanges();
             }
             curriculumSelectionDWContext.SaveChanges();

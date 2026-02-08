@@ -266,7 +266,7 @@ namespace CurriculumSelection.Data
             }
             curriculumSelectionDbContext.SaveChanges();
 
-            // ScoreOfSelectedCurriculumByLearner: generate 6400 unique IDs in [1,6400]
+            // ScoreOfSelectedCurriculumByLearner: generate 64000 unique IDs in [1,64000]
             int scoreCount = 64000;
             int[] scoreIds = GenerateUniqueIds(scoreCount, 1, 64000, rng);
             for (int i = 0; i < scoreCount; i++)
@@ -290,7 +290,7 @@ namespace CurriculumSelection.Data
 
             //
 
-            // ScoreOfSelectedCurriculumHomeworkAndTestByLearner: generate 8000 unique IDs in [1,8000]
+            // ScoreOfSelectedCurriculumHomeworkAndTestByLearner: generate 80000 unique IDs in [1,80000]
             int scoreChtCount = 80000;
             int[] scoreChtIds = GenerateUniqueIds(scoreChtCount, 1, 80000, rng);
             for (int i = 0; i < scoreChtCount; i++)
