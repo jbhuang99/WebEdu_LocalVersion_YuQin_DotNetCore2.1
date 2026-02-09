@@ -199,6 +199,70 @@ namespace CurriculumSelection.Data
             // Reuse single RNG instance
             Random rng = new Random();
 
+            // Years: generate 25 unique IDs in [1,15]
+            Int32 yearCount = 15;
+            Int32[] yearIds = GenerateUniqueIds(yearCount, 1, 15, rng);
+            for (Int32 i = 0; i < yearCount; i++)
+            {
+                Int32 yearId = yearIds[i];//Int32 yearID = yearIds[i];竟然出错
+                Int32 yearName = rng.Next(2010, 2025);
+                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.Year(YearID,YearName) VALUES({yearId},{yearName})");
+            }
+            curriculumSelectionDbContext.SaveChanges();
+
+            // YearFirstHierarchyMonths: generate 12 unique IDs in [1,12]
+            Int32 yearFirstHierarchyMonthCount = 12;
+            Int32[] yearFirstHierarchyMonthIds = GenerateUniqueIds(yearFirstHierarchyMonthCount, 1, 12, rng);
+            Int32 yearID = rng.Next(1, 13);
+            for (Int32 i = 0; i < yearFirstHierarchyMonthCount; i++)
+            {
+                Int32 yearFirstHierarchyMonthId = yearFirstHierarchyMonthIds[i];
+                Int32 yearFirstHierarchyMonthName = rng.Next(1, 13);
+                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.YearFirstHierarchyMonth(YearFirstHierarchyMonthID,YearFirstHierarchyMonthName,YearID) VALUES({yearFirstHierarchyMonthId},{yearFirstHierarchyMonthName},{yearID})");
+            }
+            curriculumSelectionDbContext.SaveChanges();
+
+            // Countrys: generate 197 unique IDs in [1,197]
+            Int32 countryCount = 197;
+            Int32[] countryIds = GenerateUniqueIds(countryCount, 1, 197, rng);
+            for (Int32 i = 0; i < countryCount; i++)
+            {
+                Int32 countryId = countryIds[i];
+                String countryName = "国家名称" + i.ToString() + "（待修改更真实仿制）" ;
+                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.Country(CountryID,CountryName) VALUES({countryId},{countryName})");
+            }
+            curriculumSelectionDbContext.SaveChanges();
+
+            // CountryFirstHierarchy: generate 100 unique IDs in [1,100]
+            Int32 countryFirstHierarchyCount = 100;
+            Int32 countryID = rng.Next(1, 198);
+            Int32[] countryFirstHierarchyIds = GenerateUniqueIds(countryFirstHierarchyCount, 1, 100, rng);
+            for (Int32 i = 0; i < countryFirstHierarchyCount; i++)
+            {
+                Int32 countryFirstHierarchyId = countryFirstHierarchyIds[i];
+                String countryFirstHierarchyName = "国家下属第一层次名称" + i.ToString() + "（待修改更真实仿制）";
+                Int32 yearFirstHierarchyMonthName = rng.Next(1, 13);
+                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.CountryFirstHierarchy(CountryFirstHierarchyID,CountryFirstHierarchyName,CountryID) VALUES({countryFirstHierarchyId},{countryFirstHierarchyName},{countryID})");
+            }
+            curriculumSelectionDbContext.SaveChanges();
+
+            // CountrySecondHierarchy: generate 150 unique IDs in [1,150]
+            Int32 countrySecondHierarchyCount = 150;
+            Int32 countryFirstHierarchyID = rng.Next(1, 101);
+            Int32[] countrySecondHierarchyIds = GenerateUniqueIds(countrySecondHierarchyCount, 1, 150, rng);
+            for (Int32 i = 0; i < countrySecondHierarchyCount; i++)
+            {
+                Int32 countrySecondHierarchyId = countrySecondHierarchyIds[i];
+                String countrySecondHierarchyName = "国家下属第二层次名称" + i.ToString() + "（待修改更真实仿制）"; ;
+                curriculumSelectionDbContext.Database.ExecuteSqlInterpolated(
+                    $"INSERT INTO dbo.CountrySecondHierarchy(CountrySecondHierarchyID,CountrySecondHierarchyName,CountryFirstHierarchyID) VALUES({countrySecondHierarchyId},{countrySecondHierarchyName},{countryFirstHierarchyID})");
+            }
+            curriculumSelectionDbContext.SaveChanges();
+
             // Curricula: generate 800 unique IDs in [1,800]
             int curriculumCount = 800;
             int[] curriculumIds = GenerateUniqueIds(curriculumCount, 1, 800, rng);

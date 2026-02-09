@@ -10,7 +10,11 @@ namespace CurriculumSelection.Data
         public CurriculumSelectionDbContext(DbContextOptions<CurriculumSelectionDbContext> dbContextOptions) : base(dbContextOptions)
         {
         }
-
+        public DbSet<Year> YearDbSet { get; set; }
+        public DbSet<YearFirstHierarchyMonth> YearFirstHierarchyMonthDbSet { get; set; }
+        public DbSet<Country> CountryDbSet { get; set; }
+        public DbSet<CountryFirstHierarchy> CountryFirstHierarchyDbSet { get; set; }
+        public DbSet<CountrySecondHierarchy> CountrySecondHierarchyDbSet { get; set; }
         public DbSet<Curriculum> CurriculumDbSet { get; set; }
         public DbSet<ScoreOfSelectedCurriculumByLearner> ScoreOfSelectedCurriculumByLearnerDbSet { get; set; }
         public DbSet<Learner> LearnerDbSet { get; set; }
@@ -21,6 +25,11 @@ namespace CurriculumSelection.Data
         public DbSet<ScoreOfSelectedCurriculumHomeworkAndTestByLearner> ScoreOfSelectedCurriculumHomeworkAndTestByLearnerDbSet { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Year>().ToTable("Year"); //无法自动类型/线性二维数据表映射的，需要手动声明映射（又称为FluteAPI。FluteAPI将覆盖默认、数据注释特性,即，优先权最高）。
+            modelBuilder.Entity<YearFirstHierarchyMonth>().ToTable("YearFirstHierarchyMonth");
+            modelBuilder.Entity<Country>().ToTable("Country");
+            modelBuilder.Entity<CountryFirstHierarchy>().ToTable("CountryFirstHierarchy");
+            modelBuilder.Entity<CountrySecondHierarchy>().ToTable("CountrySecondHierarchy");
             modelBuilder.Entity<Curriculum>().ToTable("Curriculum"); //无法自动类型/线性二维数据表映射的，需要手动声明映射（又称为FluteAPI。FluteAPI将覆盖默认、数据注释特性,即，优先权最高）。
             modelBuilder.Entity<ScoreOfSelectedCurriculumByLearner>().ToTable("ScoreOfSelectedCurriculumByLearner");
            // modelBuilder.Entity<ScoreOfSelectedCurriculumByLearner>().Property(delegate(ScoreOfSelectedCurriculumByLearnerID scoreOfSelectedCurriculumByLearnerID) {return scoreOfSelectedCurriculumByLearnerID; }).ScoreOfSelectedCurriculumByLearnerID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);//ASP.NET 5.0已经移除？
