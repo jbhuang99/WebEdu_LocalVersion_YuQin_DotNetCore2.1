@@ -264,7 +264,6 @@ applicationBuilder.UseSignalR(routes =>
 /////////////////////////////////////////////////////////////////
 
 using BlazorWebAssemblyExampleApi.Model;
-using CurriculumSelection.Data;
 using CurriculumSelectionDW.Data;
 using DocumentFormat.OpenXml.InkML;
 using IronPython.Runtime;
@@ -310,13 +309,22 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             Console.WriteLine(webApplicationBuilder.Environment.WebRootPath);
 
             // Add services to the container.
-
             String connectionString = webApplicationBuilder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+            webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+            webApplicationBuilder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            // String connectionString = webApplicationBuilder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            // webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
 
             String connectionStringPseudoDataCreationForFiveLayerMVC_TPH = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataCreationForFiveLayerMVC_TPH") ?? throw new InvalidOperationException("Connection string 'PseudoDataCreationForFiveLayerMVC_TPH' not found.");
-            webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDbContext>(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPH));
+            webApplicationBuilder.Services.AddDbContext< CurriculumSelection.Data.CurriculumSelectionDbContext >(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPH));
+
+            String connectionStringPseudoDataCreationForFiveLayerMVC_TPT = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataCreationForFiveLayerMVC_TPT") ?? throw new InvalidOperationException("Connection string 'PseudoDataCreationForFiveLayerMVC_TPT' not found.");
+            webApplicationBuilder.Services.AddDbContext< CurriculumSelection.DB.Data.CurriculumSelectionDbContext >(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPT));
 
             String connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper") ?? throw new InvalidOperationException("Connection string 'PseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper' not found.");
             webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDWContext>(options => options.UseSqlServer(connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper));
@@ -413,9 +421,9 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 IServiceProvider iServiceProvider = iServiceScope.ServiceProvider;
                 try
                 {
-                    CurriculumSelectionDbContext curriculumSelectionDbContext = iServiceProvider.GetRequiredService<CurriculumSelectionDbContext>();
+                    CurriculumSelection.Data.CurriculumSelectionDbContext curriculumSelectionDbContext = iServiceProvider.GetRequiredService<CurriculumSelection.Data.CurriculumSelectionDbContext>();
                     curriculumSelectionDbContext.Database.EnsureCreated();
-                    DbInitializer.Initialize(curriculumSelectionDbContext);
+                    CurriculumSelection.Data.DbInitializer.Initialize(curriculumSelectionDbContext);
                 }
                 catch (Exception exception)
                 {

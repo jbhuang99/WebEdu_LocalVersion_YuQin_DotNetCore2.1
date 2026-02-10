@@ -281,8 +281,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Office.Interop.PowerPoint;
 using System;
 using System.IO;
-using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
+//using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
 using static IronPython.Modules._ast;
+using Identity_YuQin.Data;
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore21
 {
@@ -309,10 +310,16 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             Console.WriteLine(webApplicationBuilder.Environment.WebRootPath);
 
             // Add services to the container.
-
+            //for Identity所需的SQL数据库
             String connectionString = webApplicationBuilder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+            webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            webApplicationBuilder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //for CurriculumSelection所需的SQL数据库
 
             String connectionStringPseudoDataCreationForFiveLayerMVC_TPH = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataCreationForFiveLayerMVC_TPH") ?? throw new InvalidOperationException("Connection string 'PseudoDataCreationForFiveLayerMVC_TPH' not found.");
             webApplicationBuilder.Services.AddDbContext< CurriculumSelection.Data.CurriculumSelectionDbContext >(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPH));
@@ -323,34 +330,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             String connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper") ?? throw new InvalidOperationException("Connection string 'PseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper' not found.");
             webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDWContext>(options => options.UseSqlServer(connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper));
             //
-            webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-            webApplicationBuilder.Services.AddDefaultIdentity<IdentityUser>(options =>
-           {
-               options.SignIn.RequireConfirmedAccount = true;
-               // Password settings.
-               /**
-               options.Password.RequireDigit = true;
-               options.Password.RequireLowercase = true;
-               options.Password.RequireNonAlphanumeric = true;
-               options.Password.RequireUppercase = true;
-               options.Password.RequiredLength = 6;
-               options.Password.RequiredUniqueChars = 1;
-               **/
-               // Lockout settings.
-               /**
-               options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-               options.Lockout.MaxFailedAccessAttempts = 5;
-               options.Lockout.AllowedForNewUsers = true;
-               **/
-               // User settings.
-               /**
-               options.User.AllowedUserNameCharacters =
-               "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-               options.User.RequireUniqueEmail = false;
-               **/
-           }
-            ).AddEntityFrameworkStores<ApplicationDbContext>();
+            webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();          
 
             webApplicationBuilder.Services.ConfigureApplicationCookie(options =>
             {

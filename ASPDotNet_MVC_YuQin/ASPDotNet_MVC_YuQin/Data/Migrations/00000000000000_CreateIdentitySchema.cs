@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
-namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Data.Migrations
+namespace Identity_YuQin.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
