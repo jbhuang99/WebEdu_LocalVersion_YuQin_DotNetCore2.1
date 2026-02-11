@@ -337,7 +337,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 // Cookie settings
                 //options.Cookie.HttpOnly = true;
                 // options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-                options.LoginPath = "/Identity/Account/Login"; //如果用户没有登录，并尝试访问被[Authorize]属性保护的资源，他们将会被重定向到你在AddCookie中指定的LoginPath
+                options.LoginPath = "/HomeIdentity_YuQin"; //如果用户没有登录，并尝试访问被[Authorize]属性保护的资源，他们将会被重定向到你在AddCookie中指定的LoginPath
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 //options.SlidingExpiration = true;
             });

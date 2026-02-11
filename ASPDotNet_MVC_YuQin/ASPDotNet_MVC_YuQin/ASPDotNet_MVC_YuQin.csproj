@@ -239,6 +239,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\" />
     <Folder Include="Data-ODM-ORM-DataBaseInitializer\" />
     <Folder Include="Data-ODM-ORM-DataBaseContext\" />
     <Folder Include="wwwroot\webCourse\lessons\content\Teaching3D\" />
