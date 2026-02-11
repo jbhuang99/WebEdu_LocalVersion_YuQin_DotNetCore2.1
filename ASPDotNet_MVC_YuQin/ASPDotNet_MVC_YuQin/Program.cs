@@ -312,8 +312,9 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             // Add services to the container.
             //for Identity所需的SQL数据库
             String connectionString = webApplicationBuilder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+           //webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options =>             options.UseSqlServer(connectionString)).AddSingleton<ApplicationDbContext>();//不允许使用AddSingleton<ApplicationDbContext>()，因为DbContext是一个轻量级的对象，设计为每个请求创建一个实例，并且不应该在多个线程之间共享。使用AddSingleton会导致线程安全问题和数据不一致的问题。正确的做法是使用AddScoped<ApplicationDbContext>()，这样每个请求都会获得一个新的DbContext实例，并且在请求结束时会自动释放资源。
+            webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+
             webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             webApplicationBuilder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -349,6 +350,36 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             webApplicationBuilder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
             WebApplication webApplication = webApplicationBuilder.Build();
+
+            // 因为.cshtml文件中迁移时出错，不得已在此迁移。Apply pending EF Core migrations at startup (including CreateIdentitySchema).
+            // This attempts to resolve either Identity_YuQin.Data.ApplicationDbContext or
+            // WebEdu_LocalVersion_YuQin_DotNetCore21.Data.ApplicationDbContext if registered,
+            // and calls Database.Migrate().
+            using (IServiceScope scope = webApplication.Services.CreateScope())
+            {
+                IServiceProvider services = scope.ServiceProvider;
+                try
+                {
+                    // attempt to migrate Identity DbContext (namespace Identity_YuQin.Data)
+                    var identityContext = services.GetService(typeof(Identity_YuQin.Data.ApplicationDbContext)) as DbContext;
+                    if (identityContext != null)
+                    {
+                        identityContext.Database.Migrate();
+                    }
+
+                    // attempt to migrate alternate named ApplicationDbContext (if present)
+                    var webEduContext = services.GetService(typeof(ApplicationDbContext)) as DbContext;
+                    if (webEduContext != null)
+                    {
+                        webEduContext.Database.Migrate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while applying migrations at startup.");
+                }
+            }
 
             // Configure the HTTP request pipeline.
             if (webApplication.Environment.IsDevelopment())
@@ -404,9 +435,9 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                     ILogger iLogger = iServiceProvider.GetRequiredService<ILogger<Program>>();
                     iLogger.LogError(exception, "An error occurred creating the DB.");
                 }
-            }
-            //////
+            }     
         }
+        //////
     }
 }
 

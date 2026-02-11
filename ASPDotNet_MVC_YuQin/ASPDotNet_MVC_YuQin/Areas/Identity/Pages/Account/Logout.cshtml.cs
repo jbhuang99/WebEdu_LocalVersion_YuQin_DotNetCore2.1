@@ -22,7 +22,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
         }
-
+        /**
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
@@ -36,8 +36,24 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                 // This needs to be a redirect so that the browser performs a new
                 // request and the identity for the user gets updated.
                 // return RedirectToPage();
-                return RedirectToPage("/Identity/Account/Logout");
+                // return RedirectToPage("/Identity/Account/Logout");
+                return Redirect("/HomeIdentity_YuQin");
             }
+        }
+        **/
+        public async Task<IActionResult> OnPost(string returnUrl = null)
+        {
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
+            /**
+            if (!string.IsNullOrEmpty(returnUrl))
+            {
+                // preserve existing behavior when a returnUrl is explicitly provided
+                return LocalRedirect(returnUrl);
+            }
+            **/
+            // redirect to the requested URL after logout
+            return Redirect("/HomeIdentity_YuQin");
         }
     }
 }

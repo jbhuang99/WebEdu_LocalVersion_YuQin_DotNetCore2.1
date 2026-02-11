@@ -465,7 +465,7 @@ function fnUpdateTranscriptSystemExternal() {
 document.getElementById('transcriptSystemExternal').textContent = JSON.stringify(speechContentParagraphsSystemExternal, null, 2); // 将speechContentParagraphsSystemExternal对象格式化为JSON字符串，并显示在页面上
             }
 
-function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
+function fnAjaxServerSideCallAIGCAnswerCharactor() {
     fnToggleEventSoureElementColor();
     window.isRecognizingSystemExternal = false;
      window.speechSynthesis.cancel(); 
@@ -476,17 +476,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
              window.speechSynthesis.speak(utteranceExternalPrompt); 
             alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
              document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
-            var sURL ="";           
-            if(isProxy=="Proxy"){
-            const utteranceExternalPrompt2 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
-             window.speechSynthesis.speak(utteranceExternalPrompt2); 
-           open("/ProxyQWen/index?queryString=" + sPrompt,"LogInProxy");
-           sURL = "/ProxyQWen/index?queryString=" + sPrompt;
-            }
-            else{
-            sURL = "/QWen/index?queryString=" + sPrompt;
-}
- 
+            var sURL = "/QWen/index?queryString=" + sPrompt;
             // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
            // open(sURL, "ServerSideCallAIGCAnswerCharactor");
            var xmlHttpRequest = new XMLHttpRequest();
@@ -581,7 +571,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestOld(){
 }
 **/
 
-function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
+function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest() {
     fnToggleEventSoureElementColor();
     window.isRecognizingSystemExternal = false;
      window.speechSynthesis.cancel(); 
@@ -592,17 +582,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
              window.speechSynthesis.speak(utteranceExternalPrompt); 
             alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
              document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
-           // var sURL = "/QWen/index?queryString=" + sPrompt;
-           var sURL ="";           
-            if(isProxy=="Proxy"){
-            const utteranceExternalPrompt11 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
-             window.speechSynthesis.speak(utteranceExternalPrompt11); 
-           open("/ProxyQWen/index?queryString=" + sPrompt,"LogInProxy");
-           sURL = "/ProxyQWen/index?queryString=" + sPrompt;
-            }
-            else{
-            sURL = "/QWen/index?queryString=" + sPrompt;
-}
+            var sURL = "/QWen/index?queryString=" + sPrompt;
             // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
            // open(sURL, "ServerSideCallAIGCAnswerCharactor");
            var xmlHttpRequest = new XMLHttpRequest();
