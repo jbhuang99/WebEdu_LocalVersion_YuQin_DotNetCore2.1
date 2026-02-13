@@ -4,48 +4,34 @@
     <BuildType Name="Development" />
     <BuildType Name="Release" />
   </Configurations>
-  <Folder Name="/About-Architecture_Engineering_DDD_ORM_DataBase(CleanArchitecture-MVCArchitecture)_Microsoft_eShopOnWeb(Examples)/">
-    <File Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/README.md" />
-    <File Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/ReadMe.txt" />
-  </Folder>
-  <Folder Name="/About-Architecture_Engineering_DDD_ORM_DataBase(CleanArchitecture-MVCArchitecture)_Microsoft_eShopOnWeb(Examples)/src/">
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/src/ApplicationCore/ApplicationCore.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/src/BlazorAdmin/BlazorAdmin.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/src/BlazorShared/BlazorShared.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/src/Infrastructure/Infrastructure.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/src/PublicApi/PublicApi.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/src/YuQin.ShopOnWeb.Web/YuQin.ShopOnWeb.Web.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-  </Folder>
-  <Folder Name="/About-Architecture_Engineering_DDD_ORM_DataBase(CleanArchitecture-MVCArchitecture)_Microsoft_eShopOnWeb(Examples)/tests/">
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/tests/FunctionalTests/FunctionalTests.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/tests/IntegrationTests/IntegrationTests.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/tests/PublicApiIntegrationTests/PublicApiIntegrationTests.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb-main/tests/UnitTests/UnitTests.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
+  <Folder Name="/About-Architecture_DDD_Tests_(CleanArchitecture-MVCArchitecture)_Microsoft_eShopOnWeb(Examples)/">
+    <File Path="About-Architecture_DDD_Tests(CleanArchitecture-MVCArchitecture)_Microsoft_eShopOnWeb(Examples)/ReadMe.txt" />
   </Folder>
   <Folder Name="/About-Binary_ASM_CPP_CS(SelectedHere)-FourPlatformsLanguages(Examples)/">
     <File Path="About-Binary_ASM_CPP_CS-FourPlatformsExpansionLanguages(Examples)/ReadMe.txt" />
   </Folder>
   <Folder Name="/ASPDotNet_MVC_YuQin/">
+    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb/src/ApplicationCore/ApplicationCore.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb/src/BlazorAdmin/BlazorAdmin.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb/src/BlazorShared/BlazorShared.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb/src/eShopWeb.AppHost/eShopWeb.AppHost.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb/src/eShopWeb.AspireServiceDefaults/eShopWeb.AspireServiceDefaults.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb/src/Infrastructure/Infrastructure.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="../WebEdu_LocalVersion_YuQin_Referenced/eShopOnWeb/src/PublicApi/PublicApi.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
     <Project Path="ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin.csproj">
       <BuildType Solution="Development|*" Project="Release" />
     </Project>

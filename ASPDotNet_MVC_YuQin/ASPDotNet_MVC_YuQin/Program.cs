@@ -264,8 +264,10 @@ applicationBuilder.UseSignalR(routes =>
 /////////////////////////////////////////////////////////////////
 
 using BlazorWebAssemblyExampleApi.Model;
+using CatalogDb_YuQin.DB.Data;
 using CurriculumSelectionDW.Data;
 using DocumentFormat.OpenXml.InkML;
+using Identity_YuQin.Data;
 using IronPython.Runtime;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -283,7 +285,21 @@ using System;
 using System.IO;
 //using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
 using static IronPython.Modules._ast;
-using Identity_YuQin.Data;
+/**
+using Ardalis.ListStartupServices;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.eShopWeb.ApplicationCore.Interfaces;
+using Microsoft.eShopWeb.Infrastructure.Identity;
+using Microsoft.eShopWeb.Web;
+//using Microsoft.eShopWeb.Web.Areas.Identity.Helpers;
+using Microsoft.eShopWeb.Web.Configuration;
+using Microsoft.eShopWeb.Web.Extensions;
+using NimblePros.Metronome;
+using Microsoft.eShopWeb.Infrastructure.Data;
+using Microsoft.eShopWeb.Web.Services;
+using Microsoft.eShopWeb.ApplicationCore.Services;
+**/
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore21
 {
@@ -309,9 +325,12 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。可以设置在appsettings.json中，使用JIT编译的方式获取（在此选用）。也可以在代码中硬编码设置。也可以在命令行中指定参数。
             Console.WriteLine(webApplicationBuilder.Environment.WebRootPath);
 
+            /** 
+            webApplicationBuilder.Services.AddDatabaseContexts(webApplicationBuilder.Environment, webApplicationBuilder.Configuration); //错误，只好暂时注释了： Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1] An unhandled exception has occurred while executing the request. System.InvalidOperationException: Unable to resolve service for type 'Microsoft.eShopWeb.Web.Services.ICatalogViewModelService' while attempting to activate 'Microsoft.eShopWeb.Web.Pages.IndexModel'.
+           **/
             // Add services to the container.
             //for Identity所需的SQL数据库
-            String connectionString = webApplicationBuilder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            String connectionString = webApplicationBuilder.Configuration.GetConnectionString("IdentityConnection") ?? throw new InvalidOperationException("Connection string 'IdentityConnection' not found.");
            //webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options =>             options.UseSqlServer(connectionString)).AddSingleton<ApplicationDbContext>();//不允许使用AddSingleton<ApplicationDbContext>()，因为DbContext是一个轻量级的对象，设计为每个请求创建一个实例，并且不应该在多个线程之间共享。使用AddSingleton会导致线程安全问题和数据不一致的问题。正确的做法是使用AddScoped<ApplicationDbContext>()，这样每个请求都会获得一个新的DbContext实例，并且在请求结束时会自动释放资源。
             webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
@@ -320,6 +339,9 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             webApplicationBuilder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            //for Catalog_YuQin所需的SQL数据库
+            String connectionStringCatalog = webApplicationBuilder.Configuration.GetConnectionString("CatalogConnection") ?? throw new InvalidOperationException("Connection string 'CatalogConnection' not found.");
+            webApplicationBuilder.Services.AddDbContext<CatalogDb_YuQin.DB.Data.CatalogDb_YuQinDbContext>(options => options.UseSqlServer(connectionStringCatalog));
             //for CurriculumSelection所需的SQL数据库
 
             String connectionStringPseudoDataCreationForFiveLayerMVC_TPH = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataCreationForFiveLayerMVC_TPH") ?? throw new InvalidOperationException("Connection string 'PseudoDataCreationForFiveLayerMVC_TPH' not found.");
@@ -412,8 +434,8 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             webApplication.MapRazorPages();
 
-            ///**新增，为了触发创建数据库，初始化数据库数据。//移动成为控制器Controller中的代码。
-           // Program.CreateDbIfNotExists(webApplication);
+            ///**新增，为了触发创建数据库，初始化数据库数据。//也可移动成为控制器Controller中的代码。
+           Program.CreateDbIfNotExists(webApplication);
             // **/
 
             webApplication.Run();
@@ -426,14 +448,14 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 IServiceProvider iServiceProvider = iServiceScope.ServiceProvider;
                 try
                 {
-                    CurriculumSelection.Data.CurriculumSelectionDbContext curriculumSelectionDbContext = iServiceProvider.GetRequiredService<CurriculumSelection.Data.CurriculumSelectionDbContext>();
-                    curriculumSelectionDbContext.Database.EnsureCreated();
-                    CurriculumSelection.Data.DbInitializer.Initialize(curriculumSelectionDbContext);
+                    CatalogDb_YuQin.DB.Data.CatalogDb_YuQinDbContext catalogDb_YuQinDbContext = iServiceProvider.GetRequiredService<CatalogDb_YuQin.DB.Data.CatalogDb_YuQinDbContext>();
+                    catalogDb_YuQinDbContext.Database.EnsureCreated();
+                   // CurriculumSelection.Data.DbInitializer.Initialize(curriculumSelectionDbContext);
                 }
                 catch (Exception exception)
                 {
                     ILogger iLogger = iServiceProvider.GetRequiredService<ILogger<Program>>();
-                    iLogger.LogError(exception, "An error occurred creating the DB.");
+                    iLogger.LogError(exception, "An error occurred creating the CatalogDb_YuQin.");
                 }
             }     
         }

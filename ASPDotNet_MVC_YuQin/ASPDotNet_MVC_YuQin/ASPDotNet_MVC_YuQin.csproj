@@ -36,16 +36,25 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
 
   <ItemGroup>
     <Compile Remove="AreasOld\**" />
+    <Compile Remove="Configuration\**" />
     <Compile Remove="Controllers\RESTless\Identity\**" />
     <Compile Remove="Controllers\RESTless\samples\**" />
     <Compile Remove="DataWarehouse-ODM-ORM-DbData\**" />
+    <Compile Remove="Extensions\**" />
+    <Compile Remove="Features\**" />
+    <Compile Remove="HealthChecks\**" />
+    <Compile Remove="Interfaces\**" />
     <Compile Remove="Models\DatabaseForPortable\**" />
     <Compile Remove="Models\DataForIdentity\**" />
     <Compile Remove="Models\Data\**" />
     <Compile Remove="Models\ExtensionsForIdentity\**" />
     <Compile Remove="Models\Identity\**" />
     <Compile Remove="Models\ServicesForIdentity\**" />
+    <Compile Remove="Pages\**" />
+    <Compile Remove="Services\**" />
     <Compile Remove="StudyHardDayDayUp\**" />
+    <Compile Remove="Try-Architecture_DDD_Tests_CleanArchitecture-MVCArchitecture\**" />
+    <Compile Remove="ViewModels\**" />
     <Compile Remove="Views\BroweringOfTextbook\**" />
     <Compile Remove="Views\Home\**" />
     <Compile Remove="Views\ModelsForViews\**" />
@@ -56,16 +65,25 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <Compile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
     <Content Remove="AreasOld\**" />
+    <Content Remove="Configuration\**" />
     <Content Remove="Controllers\RESTless\Identity\**" />
     <Content Remove="Controllers\RESTless\samples\**" />
     <Content Remove="DataWarehouse-ODM-ORM-DbData\**" />
+    <Content Remove="Extensions\**" />
+    <Content Remove="Features\**" />
+    <Content Remove="HealthChecks\**" />
+    <Content Remove="Interfaces\**" />
     <Content Remove="Models\DatabaseForPortable\**" />
     <Content Remove="Models\DataForIdentity\**" />
     <Content Remove="Models\Data\**" />
     <Content Remove="Models\ExtensionsForIdentity\**" />
     <Content Remove="Models\Identity\**" />
     <Content Remove="Models\ServicesForIdentity\**" />
+    <Content Remove="Pages\**" />
+    <Content Remove="Services\**" />
     <Content Remove="StudyHardDayDayUp\**" />
+    <Content Remove="Try-Architecture_DDD_Tests_CleanArchitecture-MVCArchitecture\**" />
+    <Content Remove="ViewModels\**" />
     <Content Remove="Views\BroweringOfTextbook\**" />
     <Content Remove="Views\Home\**" />
     <Content Remove="Views\ModelsForViews\**" />
@@ -76,16 +94,25 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <Content Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
     <EmbeddedResource Remove="AreasOld\**" />
+    <EmbeddedResource Remove="Configuration\**" />
     <EmbeddedResource Remove="Controllers\RESTless\Identity\**" />
     <EmbeddedResource Remove="Controllers\RESTless\samples\**" />
     <EmbeddedResource Remove="DataWarehouse-ODM-ORM-DbData\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <EmbeddedResource Remove="Features\**" />
+    <EmbeddedResource Remove="HealthChecks\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
     <EmbeddedResource Remove="Models\DatabaseForPortable\**" />
     <EmbeddedResource Remove="Models\DataForIdentity\**" />
     <EmbeddedResource Remove="Models\Data\**" />
     <EmbeddedResource Remove="Models\ExtensionsForIdentity\**" />
     <EmbeddedResource Remove="Models\Identity\**" />
     <EmbeddedResource Remove="Models\ServicesForIdentity\**" />
+    <EmbeddedResource Remove="Pages\**" />
+    <EmbeddedResource Remove="Services\**" />
     <EmbeddedResource Remove="StudyHardDayDayUp\**" />
+    <EmbeddedResource Remove="Try-Architecture_DDD_Tests_CleanArchitecture-MVCArchitecture\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
     <EmbeddedResource Remove="Views\BroweringOfTextbook\**" />
     <EmbeddedResource Remove="Views\Home\**" />
     <EmbeddedResource Remove="Views\ModelsForViews\**" />
@@ -96,16 +123,25 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
     <None Remove="AreasOld\**" />
+    <None Remove="Configuration\**" />
     <None Remove="Controllers\RESTless\Identity\**" />
     <None Remove="Controllers\RESTless\samples\**" />
     <None Remove="DataWarehouse-ODM-ORM-DbData\**" />
+    <None Remove="Extensions\**" />
+    <None Remove="Features\**" />
+    <None Remove="HealthChecks\**" />
+    <None Remove="Interfaces\**" />
     <None Remove="Models\DatabaseForPortable\**" />
     <None Remove="Models\DataForIdentity\**" />
     <None Remove="Models\Data\**" />
     <None Remove="Models\ExtensionsForIdentity\**" />
     <None Remove="Models\Identity\**" />
     <None Remove="Models\ServicesForIdentity\**" />
+    <None Remove="Pages\**" />
+    <None Remove="Services\**" />
     <None Remove="StudyHardDayDayUp\**" />
+    <None Remove="Try-Architecture_DDD_Tests_CleanArchitecture-MVCArchitecture\**" />
+    <None Remove="ViewModels\**" />
     <None Remove="Views\BroweringOfTextbook\**" />
     <None Remove="Views\Home\**" />
     <None Remove="Views\ModelsForViews\**" />
@@ -116,9 +152,18 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
     <TypeScriptCompile Remove="AreasOld\**" />
+    <TypeScriptCompile Remove="Configuration\**" />
     <TypeScriptCompile Remove="Controllers\RESTless\Identity\**" />
     <TypeScriptCompile Remove="DataWarehouse-ODM-ORM-DbData\**" />
+    <TypeScriptCompile Remove="Extensions\**" />
+    <TypeScriptCompile Remove="Features\**" />
+    <TypeScriptCompile Remove="HealthChecks\**" />
+    <TypeScriptCompile Remove="Interfaces\**" />
     <TypeScriptCompile Remove="Models\Data\**" />
+    <TypeScriptCompile Remove="Pages\**" />
+    <TypeScriptCompile Remove="Services\**" />
+    <TypeScriptCompile Remove="Try-Architecture_DDD_Tests_CleanArchitecture-MVCArchitecture\**" />
+    <TypeScriptCompile Remove="ViewModels\**" />
     <TypeScriptCompile Remove="Views\Home\**" />
     <TypeScriptCompile Remove="Views\Shared-old\**" />
     <TypeScriptCompile Remove="Views\备份-待删除\**" />
@@ -213,10 +258,14 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.ListStartupServices" Version="1.1.4" />
+    <PackageReference Include="Ardalis.Specification" Version="9.3.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Bundle.Microsoft.Office.Interop" Version="15.0.4569" />
     <PackageReference Include="DocumentFormat.OpenXml" Version="3.4.1" />
     <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
     <PackageReference Include="IronPython" Version="3.4.2" />
+    <PackageReference Include="MediatR" Version="14.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.2" />
@@ -227,6 +276,9 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.3" />
     <PackageReference Include="Microsoft.SemanticKernel.Connectors.SqliteVec" Version="1.70.0-preview" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
       <PrivateAssets>all</PrivateAssets>
