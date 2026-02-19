@@ -51,7 +51,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="Models\Identity\**" />
     <Compile Remove="Models\ServicesForIdentity\**" />
     <Compile Remove="Pages\**" />
-    <Compile Remove="Services\**" />
     <Compile Remove="StudyHardDayDayUp\**" />
     <Compile Remove="Try-Architecture_DDD_Tests_CleanArchitecture-MVCArchitecture\**" />
     <Compile Remove="ViewModels\**" />
@@ -80,7 +79,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="Models\Identity\**" />
     <Content Remove="Models\ServicesForIdentity\**" />
     <Content Remove="Pages\**" />
-    <Content Remove="Services\**" />
     <Content Remove="StudyHardDayDayUp\**" />
     <Content Remove="Try-Architecture_DDD_Tests_CleanArchitecture-MVCArchitecture\**" />
     <Content Remove="ViewModels\**" />
@@ -109,7 +107,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <EmbeddedResource Remove="Models\Identity\**" />
     <EmbeddedResource Remove="Models\ServicesForIdentity\**" />
     <EmbeddedResource Remove="Pages\**" />
-    <EmbeddedResource Remove="Services\**" />
     <EmbeddedResource Remove="StudyHardDayDayUp\**" />
     <EmbeddedResource Remove="Try-Architecture_DDD_Tests_CleanArchitecture-MVCArchitecture\**" />
     <EmbeddedResource Remove="ViewModels\**" />
@@ -138,7 +135,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Remove="Models\Identity\**" />
     <None Remove="Models\ServicesForIdentity\**" />
     <None Remove="Pages\**" />
-    <None Remove="Services\**" />
     <None Remove="StudyHardDayDayUp\**" />
     <None Remove="Try-Architecture_DDD_Tests_CleanArchitecture-MVCArchitecture\**" />
     <None Remove="ViewModels\**" />
@@ -161,7 +157,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <TypeScriptCompile Remove="Interfaces\**" />
     <TypeScriptCompile Remove="Models\Data\**" />
     <TypeScriptCompile Remove="Pages\**" />
-    <TypeScriptCompile Remove="Services\**" />
     <TypeScriptCompile Remove="Try-Architecture_DDD_Tests_CleanArchitecture-MVCArchitecture\**" />
     <TypeScriptCompile Remove="ViewModels\**" />
     <TypeScriptCompile Remove="Views\Home\**" />
@@ -187,7 +182,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="Models\MovieDateFixed.cs" />
     <Compile Remove="Models\MovieDateRating.cs" />
     <Compile Remove="Program  - Copy.cs" />
-    <Compile Remove="Program - Copy.cs" />
+    <Compile Remove="Program - 2026-2-17.cs" />
     <Compile Remove="Program-new.cs" />
     <Compile Remove="Startup.cs" />
   </ItemGroup>
@@ -258,11 +253,19 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AlipaySDKNet.Standard" Version="4.9.971" />
     <PackageReference Include="Ardalis.ListStartupServices" Version="1.1.4" />
     <PackageReference Include="Ardalis.Specification" Version="9.3.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Bundle.Microsoft.Office.Interop" Version="15.0.4569" />
     <PackageReference Include="DocumentFormat.OpenXml" Version="3.4.1" />
+    <PackageReference Include="Essensoft.Paylinks.Alipay.Client" Version="5.0.4" />
+    <PackageReference Include="Essensoft.Paylinks.Alipay.Mvc" Version="5.0.4" />
+    <PackageReference Include="Essensoft.Paylinks.Alipay.Payments" Version="5.0.4" />
+    <PackageReference Include="Essensoft.Paylinks.WeChatPay.Certificates" Version="5.0.4" />
+    <PackageReference Include="Essensoft.Paylinks.WeChatPay.Client" Version="5.0.4" />
+    <PackageReference Include="Essensoft.Paylinks.WeChatPay.Mvc" Version="5.0.4" />
+    <PackageReference Include="Essensoft.Paylinks.WeChatPay.Payments" Version="5.0.4" />
     <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
     <PackageReference Include="IronPython" Version="3.4.2" />
     <PackageReference Include="MediatR" Version="14.0.0" />
@@ -276,9 +279,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.3" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.3" />
     <PackageReference Include="Microsoft.SemanticKernel.Connectors.SqliteVec" Version="1.70.0-preview" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
       <PrivateAssets>all</PrivateAssets>
@@ -287,6 +287,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
     <PackageReference Include="OpenXmlPowerTools" Version="4.5.3.2" />
+    <PackageReference Include="QRCoder" Version="1.7.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.2" />
   </ItemGroup>
 

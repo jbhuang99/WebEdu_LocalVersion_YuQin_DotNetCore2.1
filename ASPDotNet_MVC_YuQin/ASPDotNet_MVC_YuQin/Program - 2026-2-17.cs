@@ -262,29 +262,11 @@ applicationBuilder.UseSignalR(routes =>
 }
 **/
 /////////////////////////////////////////////////////////////////
-/**
-using Alipay.EasySDK.Factory;
-using Alipay.EasySDK.Kernel;
-using Alipay.EasySDK.Payment.Common;
-using Alipay.EasySDK.Payment.Common.Models;
-using Alipay.EasySDK.Payment.FaceToFace;
-using Alipay.EasySDK.Payment.Page;
-using Alipay.EasySDK.Payment.Wap;
-**/
-using Aop.Api;
-using Aop.Api.Request;
-using Aop.Api.Response;
-//using AlipayDemo.Models;
-using AlipayIntegrationDemo.Options;
+
 using BlazorWebAssemblyExampleApi.Model;
 using CatalogDb_YuQin.DB.Data;
 using CurriculumSelectionDW.Data;
 using DocumentFormat.OpenXml.InkML;
-using Essensoft.Paylinks.Alipay.Client;
-using Essensoft.Paylinks.Alipay.Client.Extensions;
-using Essensoft.Paylinks.Razor.Pages.Samples.Web;
-using Essensoft.Paylinks.Razor.Pages.Samples.Web.Services;
-using Essensoft.Paylinks.WeChatPay.Client.Extensions;
 using Identity_YuQin.Data;
 using IronPython.Runtime;
 using Microsoft.AspNetCore;
@@ -298,11 +280,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.Office.Interop.PowerPoint;
 using System;
 using System.IO;
-using System.Text.RegularExpressions;
 //using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
 using static IronPython.Modules._ast;
 /**
@@ -344,36 +324,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             //webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。
             webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。可以设置在appsettings.json中，使用JIT编译的方式获取（在此选用）。也可以在代码中硬编码设置。也可以在命令行中指定参数。
             Console.WriteLine(webApplicationBuilder.Environment.WebRootPath);
-          // /**
-            // ✅ 加载 Alipay 配置（自动解密/环境变量支持）
-            
-            if (webApplicationBuilder.Environment.IsDevelopment())
-            {
-                webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")); //从开发时的本项目的“Secret Manager”的secrets.json文件获取Alipay。
-                // Console.Write(webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")));
-            }
-            else
-            {
-                webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")); //从交付时的软件的appsettings.json文件获取ApiKey。
-               //  Console.Write(webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")));
-            }
 
-            // ✅ 注册 Alipay 客户端（单例，线程安全）
-            webApplicationBuilder.Services.AddSingleton<IAopClient>(sp =>
-            {
-                var options = sp.GetRequiredService<IOptions<AlipayOptions>>().Value;
-                return new DefaultAopClient(
-                    options.GatewayUrl,
-                    options.AppId,
-                    options.PrivateKey,
-                    options.Format,
-                    options.Version,                    
-                    options.SignType,
-                    options.AlipayPublicKey,
-                    options.Charset);
-            });
-            //**/
-          
             /** 
             webApplicationBuilder.Services.AddDatabaseContexts(webApplicationBuilder.Environment, webApplicationBuilder.Configuration); //错误，只好暂时注释了： Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1] An unhandled exception has occurred while executing the request. System.InvalidOperationException: Unable to resolve service for type 'Microsoft.eShopWeb.Web.Services.ICatalogViewModelService' while attempting to activate 'Microsoft.eShopWeb.Web.Pages.IndexModel'.
            **/

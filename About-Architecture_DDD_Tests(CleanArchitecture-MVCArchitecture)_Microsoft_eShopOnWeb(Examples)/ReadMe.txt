@@ -1,5 +1,5 @@
 请了解原理：https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles、https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures
-请下载源码了解Microsoft_eShopOnWeb(Example)：Microsoft Supported(ASP.NET Core 8.0)：https://github.com/dotnet-architecture/eShopOnWeb、Community Supported(ASP.NET Core 9.0): https://github.com/NimblePros/eShopOnWeb、Community Supported(ASP.NET Core 10.0):https://github.com/NimblePros/eShopOnWeb
+请下载源码了解Microsoft_eShopOnWeb(Example)：Microsoft Supported(ASP.NET Core 8.0)：https://github.com/dotnet-architecture/eShopOnWeb、Community Supported(ASP.NET Core 9.0): https://github.com/NimblePros/eShopOnWeb、Community Supported(ASP.NET Core 10.0):https://github.com/NimblePros/eShopOnWeb、Microsoft Supported(ASP.NET Core 10.0)：https://github.com/dotnet/eShop
 请下载源码了解Microsoft_eshop-mobile-windows-linux-client(Example)：https://github.com/dotnet-architecture/eshop-mobile-client
 请下载源码了解Microsoft_eShopOnDapr(Example)：https://github.com/dotnet-architecture/eShopOnDapr
 

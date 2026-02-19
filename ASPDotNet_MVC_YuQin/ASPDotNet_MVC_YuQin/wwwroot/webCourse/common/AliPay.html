@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+  <h3>支付宝支付演示</h3>
+  <button onclick="payPage()">浏览器之中的.html网页支付，支付返回.html网页（以便浏览器呈现）</button>
+  <button onclick="payApp()">浏览器之中的.html网页支付，支付返回.json字符（可以模拟App呈现）</button>
+
+  <pre id="result">这里将呈现“浏览器之中的.html网页支付，支付返回.json字符（可以模拟App呈现）”【“浏览器之中的.html网页支付，支付返回.html网页（以便浏览器呈现）”则将占满本网页】</pre>
+</div>
+
+<script>
+  async function payPage() {
+    const res = await fetch('/Alipay/PagePay', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        outTradeNo: 'ORD_' + Date.now(),
+        subject: '测试商品',
+        totalAmount: '0.01',
+        body: 'ASP.NET Core 10 支付宝集成'
+      })
+    });
+    const html = await res.text();
+    document.body.innerHTML = html; 
+  }
+
+  async function payApp() {
+    const res = await fetch('/Alipay/AppPay', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        outTradeNo: 'ORD_' + Date.now(),
+        subject: 'APP测试',
+        totalAmount: '0.01'
+      })
+    });
+    const json = await res.json();
+    document.getElementById('result').textContent = 
+      'APP支付字符串已生成：\n' + json.orderString;
+  }
+</script>
+</body>
+</html>
