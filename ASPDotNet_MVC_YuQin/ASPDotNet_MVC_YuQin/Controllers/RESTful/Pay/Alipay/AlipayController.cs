@@ -1,18 +1,4 @@
-﻿///**
-using Azure;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using System;
-using System.Configuration;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AlipayIntegrationDemo.Options;
 //using QRCoder;
 /**
 using Alipay.EasySDK.Payment.Common;
@@ -24,10 +10,27 @@ using Alipay.EasySDK.Payment.Wap;
 using Aop.Api;
 using Aop.Api.Request;
 using Aop.Api.Response;
-using AlipayIntegrationDemo.Options;
+///**
+using Azure;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 //using AlipayDemo.Models;
 //using global::AlipayDemo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using System;
+using System.Configuration;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+
 /**
 四、核心 Controller（含 APP/Web/扫码三合一）
 💡 设计亮点：
@@ -39,6 +42,7 @@ using Microsoft.AspNetCore.Mvc;
 **/
 namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.Alipay
 {
+    [Authorize()]
     public class AlipayController : Controller
     {
         private readonly IAopClient _client;
@@ -101,6 +105,7 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.Alipay
 
         // 📱 APP 支付（返回 orderString 供客户端唤起）
         ///**
+        [Authorize()]
         [HttpPost]
         public async Task<IActionResult> AppPay([FromBody] PayRequest req)
         {
@@ -182,6 +187,20 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.Alipay
             public string Subject { get; set; } = null!;
             public string TotalAmount { get; set; } = null!;
             public string Body { get; set; }
+        }
+
+        // 返回当前登录用户的 email（前端页面通过 fetch 调用）
+        [HttpGet]
+        public IActionResult CurrentUserEmail()
+        {
+            if (User?.Identity == null || !User.Identity.IsAuthenticated)
+            {
+                return Unauthorized();
+            }
+
+            // 尝试读取 ClaimTypes.Email，否则回退到 Identity.Name
+            var email = User.FindFirst(ClaimTypes.Email)?.Value ?? User.Identity.Name;
+            return Json(new { email });
         }
     }
 }

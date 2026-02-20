@@ -2,16 +2,25 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>支付（支付宝/微信）</title>
 </head>
 <body>
     <div>
-  <h3>支付宝支付演示</h3>
+  <h3 style="text-align:center">支付演示【已登录用户：<strong id="userEmail">（加载中）</strong>】</h3>
+  <div style="text-align:center">
   <button onclick="payPage()">浏览器之中的.html网页支付，支付返回.html网页（以便浏览器呈现）</button>
   <button onclick="payApp()">浏览器之中的.html网页支付，支付返回.json字符（可以模拟App呈现）</button>
-
-  <pre id="result">这里将呈现“浏览器之中的.html网页支付，支付返回.json字符（可以模拟App呈现）”【“浏览器之中的.html网页支付，支付返回.html网页（以便浏览器呈现）”则将占满本网页】</pre>
+  </div>
+  <pre id="result">这里将呈现：【“浏览器之中的.html网页支付，支付服务端返回面向浏览器呈现的.html网页的HTML字符串”】，或，【“浏览器之中的.html网页支付，支付服务端返回模拟App呈现的.json文件的JSON字符串”】</pre>
+         <!--
+<iframe id="id_Pay" srcdoc="<form id='alipaySubmit' name='alipaySubmit' action='https://openapi.alipay.com/gateway.do/gateway.do?charset=UTF-8' method='POST' style='display:none;'><input  name='alipay_root_cert_sn' value='2DFAE9F7F7E8A7E6D5C4B3A2F1E0D9C8B7A6F5E4'/><input  name='app_cert_sn' value='1234567890ABCDEF1234567890ABCDEF12345678'/><input  name='app_id' value='2018082261114232'/><input  name='biz_content' value=''/><input  name='charset' value='UTF-8'/><input  name='format' value='json'/><input  name='method' value='alipay.trade.page.pay'/><input  name='notify_url' value='https://www.domain.com/Alipay/Payments/Notify/TradeResult'/><input  name='return_url' value='https://www.domain.com/Alipay/Payments/Notify/TradeResult'/><input  name='sign' value='MHX0WqUyvqtAywwrx0tpNC0qp8jtDySm2W/gd5SQg5i1gaxLY5x7sVggWfe09Omgc1aq/GROXaiiPXlUY2aQrFiAot8tfX9ERGfA6rhVQZuimHzhc8Bk21067YeE+7hKbnkDkIKMePQi35xi4X/qGyCHZZjjvxUq32k4hlIZGeBDo2aAKU5IsNnY4Y9yQgHD5nE4Q9alO8bRkTaz5x8FQnTHhhGu6ppJH26VA4behKkgbZDz6C40LTVt+t0jbvzT2faxTgtI1LAf/QNRhVvE3Qy/p3a3nsoMryEMO76n6/0wRx2VWWCqw4UCsHty180cw4m6+RmgGmav4TwuaNKOFQ=='/><input  name='sign_type' value='RSA2'/><input  name='timestamp' value='2026-02-21 01:14:49'/><input  name='version' value='1.0'/><input type='submit' value='POST' style='display:none;'></form><script>document.forms['alipaySubmit'].submit();</script>" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="yes" width="100%" height="600" style="text-align:center">
+</iframe>
+              -->
+ 
+<iframe id="id_Pay" srcdoc='<div style="text-align:center">这里将呈现：支付服务端返回面向浏览器呈现的.html网页的HTML字符串</div>' frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="yes" width="100%" height="600" style="text-align:center">
+</iframe>
 </div>
+
 
 <script>
   async function payPage() {
@@ -22,11 +31,13 @@
         outTradeNo: 'ORD_' + Date.now(),
         subject: '测试商品',
         totalAmount: '0.01',
-        body: 'ASP.NET Core 10 支付宝集成'
+        //body: 'ASP.NET Core 10 支付宝集成'
       })
     });
     const html = await res.text();
-    document.body.innerHTML = html; 
+    //document.body.innerHTML = html; 
+    document.getElementById('result').innerHTML =html;
+    document.getElementById('id_Pay').srcdoc = html;
   }
 
   async function payApp() {
@@ -40,9 +51,26 @@
       })
     });
     const json = await res.json();
-    document.getElementById('result').textContent = 
-      'APP支付字符串已生成：\n' + json.orderString;
+    //document.getElementById('result').textContent = 'APP支付字符串已生成：\n' + json.orderString;
+    document.getElementById('result').textContent = json.orderString;
+    document.getElementById('id_Pay').srcdoc = json.orderString;
   }
+
+  // 尝试获取当前登录用户的 email 并显示
+  window.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const r = await fetch('/Alipay/CurrentUserEmail', { credentials: 'include' });
+      if (r.status === 200) {
+        const j = await r.json();
+        //document.getElementById('userEmail').innerHTML = j.email || '<a href="/HomeIdentity_YuQin" target="LogInProxy">(未提供。请单击登录，登录后重载刷新本网页)【注：Github免费发布无法调用服务端时无法使用！请Github下载开源代码本机允许试验！】</a>';
+        document.getElementById('userEmail').innerHTML = '<a title="单击回到登录界面" href="/HomeIdentity_YuQin" target="LogInProxy">'+j.email+'</a>';
+      } else if (r.status === 401) {
+        document.getElementById('userEmail').innerHTML = '<a href="/HomeIdentity_YuQin" target="LogInProxy">(未登录。请单击登录，登录后重载刷新本网页)【注：Github免费发布无法调用服务端时无法使用！请Github下载开源代码本机允许试验！】</a>';
+      }
+    } catch (e) {
+      document.getElementById('userEmail').innerHTML = '<a href="/HomeIdentity_YuQin" target="LogInProxy">(加载失败。请单击登录，登录后重载刷新本网页)【注：Github免费发布无法调用服务端时无法使用！请Github下载开源代码本机允许试验！】</a>';
+    }
+  });
 </script>
 </body>
 </html>
