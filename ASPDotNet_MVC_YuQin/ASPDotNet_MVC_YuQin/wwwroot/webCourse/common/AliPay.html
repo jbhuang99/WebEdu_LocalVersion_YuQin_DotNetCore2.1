@@ -6,10 +6,10 @@
 </head>
 <body>
     <div>
-  <h3 style="text-align:center">支付演示【已登录用户：<strong id="userEmail">（加载中）</strong>】</h3>
+  <h3 style="text-align:center">支付演示【支付0.01元作为案例！】【已登录用户：<strong id="userEmail">（加载中）</strong>】</h3>
   <div style="text-align:center">
-  <button onclick="payPage()">浏览器之中的.html网页支付，支付返回.html网页（以便浏览器呈现）</button>
-  <button onclick="payApp()">浏览器之中的.html网页支付，支付返回.json字符（可以模拟App呈现）</button>
+  <button onclick="payPage()">浏览器之中的.html网页支付，支付返回.html网页（此时，可以实现浏览器支付结果界面，不可模拟App支付结果界面）</button>
+  <button onclick="payApp()">浏览器之中的.html网页支付，支付返回.json字符（此时，可以实现浏览器支付结果界面，也可模拟App支付结果界面）</button>
   </div>
   <pre id="result">这里将呈现：【“浏览器之中的.html网页支付，支付服务端返回面向浏览器呈现的.html网页的HTML字符串”】，或，【“浏览器之中的.html网页支付，支付服务端返回模拟App呈现的.json文件的JSON字符串”】</pre>
          <!--
