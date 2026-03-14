@@ -422,10 +422,10 @@
 
 
                 <!--
-                <div>
-                    <button id="closeSTTSystemInternal" title="单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部" onclick="window.close();"><span style="font-weight:bolder">⊗</span>单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部</button>
-                </div>
-                -->
+    <div>
+        <button id="closeSTTSystemInternal" title="单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部" onclick="window.close();"><span style="font-weight:bolder">⊗</span>单击关闭当前语音互动本系统内部，切换回到面向视觉的屏幕键盘鼠标互动本系统内部</button>
+    </div>
+    -->
 
                 <button id="startBtnSystemInternal" title="单击将开始【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话。系统将打开麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后打开“作业测验”，进行语音识别答题、评分等等....正在完善之中..." style="white-space: normal; font-size:12px">开始录音Prompt指令</button>
                 <button id="stopBtnSystemInternal" title="单击将停止【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令的麦克风录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt指令</button>
@@ -478,7 +478,7 @@
                                 确定【<span style="color:brown;font-weight:bold">“智能对话Chat客户←互动→数智时代融合教育数智思维知识库的教育小语言模型SLM服务”的Chatic AIGC案例</span>】<br /><span style="color:green">（注意思辨准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“教材课文”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，显式调用内部SLM的矢量数据库）</span>
                             </button>
                             <!-- <br /><button onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-                            {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}alert("正在开发之中...")'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种小语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
+                {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}alert("正在开发之中...")'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种小语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
                         </td>
                         <td>
                             <!--<div style="text-align: center"><textarea id="" style="width: 95%; height: 50px"></textarea></div>-->
@@ -488,7 +488,7 @@
                                 确定【<span style="color:brown;font-weight:bold">“智能体Agent客户←互动→数智时代融合教育数智思维知识库的教育小语言模型SLM服务”的Agentic AIGC案例</span>】<br /><span style="color:green">（注意思辨准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“作业测验”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，显式调用内部SLM的矢量数据库）</span>
                             </button>
                             <!-- <br /><button onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-                            {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}alert("正在开发之中...");'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种小语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
+                {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}alert("正在开发之中...");'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种小语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
                         </td>
                     </tr>
                 </table>
@@ -497,6 +497,15 @@
                     {
                     "段落": [期待本系统语音识别您的语音Prompt指令，然后连接本系统内部的非AIGC，驱动本系统内部的运行，例如，“目录条目上翻、下翻、语音朗读”，打开“滚动栏”，打开“作业测验”，进行语音识别答题、评分等等....正在完善之中...]
                     }
+                </div>
+                <button id="InternalWebEduClaw" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("InternalFormWebEduClaw").style.display=="none"){document.getElementById("InternalFormWebEduClaw").style.display="block";document.getElementById("TriAngleOfInternalWebEduClaw").textContent="▼";} else{document.getElementById("InternalFormWebEduClaw").style.display="none";document.getElementById("TriAngleOfInternalWebEduClaw").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;font-size:14px;text-align:justify">
+                    <span id="TriAngleOfInternalWebEduClaw">▶</span><span style="font-weight:bold">单击切换显示：不会影响本机安全的“InternalWebEduClaw/本系统内部的网络教育龙虾智能体”</span>
+                </button>
+                <div id="InternalFormWebEduClaw" style="display:none; border:dashed;border-color: goldenrod;text-align:justify">
+                    主界面的当前目录条目的URL（并可附加说明文案），一键分享到如下平台：
+                    <input type="checkbox" name="ShareURLCheckbox" />知乎<input type="checkbox" name="ShareURLCheckbox" />钉钉动态<input type="checkbox" name="ShareURLCheckbox" />钉钉视频号<input type="checkbox" name="ShareURLCheckbox" />微信朋友圈<input type="checkbox" name="ShareURLCheckbox" />微信视频号<input type="checkbox" name="ShareURLCheckbox" />微信公众号<input type="checkbox" name="ShareURLCheckbox" />QQ空间<input type="checkbox" name="ShareURLCheckbox" />微博<input type="checkbox" name="ShareURLCheckbox" />豆瓣<input type="checkbox" name="ShareURLCheckbox" />小红书<input type="checkbox" name="ShareURLCheckbox" />B站<input type="checkbox" name="ShareURLCheckbox" />抖音<input type="checkbox" name="ShareURLCheckbox" disabled />LinkedIn<input type="checkbox" name="ShareURLCheckbox" disabled />YouTube<input type="checkbox" name="ShareURLCheckbox" disabled />Twitter/X<input type="checkbox" name="ShareURLCheckbox" disabled />Teams
+                    <br /><div style="text-align:center"><button type="submit" value="提交" id="idSubmitInternalFormWebEduClaw" style="font-size:16px;margin:0;padding:0;" onclick="alert('正在开发之中...')">提交</button>&emsp;&emsp;<button type="reset" value="取消" style="font-size:16px;margin:0;padding:0;">取消</button></div>
                 </div>
             </td>
             <td id="tdSystemExternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleExternalWidth()">
@@ -520,13 +529,13 @@
 
 
                 <!--
-                <div style="text-align:justify">
-                    <label title="付费API Key可以尝试客户端浏览器中密码口令方式输入，相对于保存在服务端secrets.json/appsettings.json之中更为风险。本系统唯一的付费API Key，不会用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的的费用就是自己注册付费API Key的100%）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，尚未实现（https://help.aliyun.com/zh/model-studio/first-api-call-to-qwen未见JS的具体代码案例）。例如，文本框中键入字符文本作为Prompt，然后单击这里，默认无需登录本系统，也是可以试验调用AIGC生成Answer内容...）">二、本系统的客户端浏览器访问他创方的AIGC（阿里Qwen为例)。</label><input id="idQwenAPIKeyInput" type="password" placeholder="必须在这里键入登录AIGC的API Key，然后单击确定按钮" title="必须在这里键入登录AIGC的API Key，然后单击确定按钮" /><button id="idQwenAPIKeyConfirm" title="必须在密码框中键入登录AIGC的API Key，然后单击本按钮" style="display: inline; white-space: normal; color: green; font-size: 12px">确定【Qwen千问的付费API Key】</button>后续将修改成为下方的语音识别您的Prompt，当前还请试验键入您的Prompt： <input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPromptForClientBrowserSide" /><button style="display:inline;white-space: normal" onclick='fnAjaxClientBrowserSideCallAIGCAnswerCharactor();'>
-                        确定（不登录本系统代理使用语音机器人。节省0%、API Key原生风险）(AIGG提供者官方声明暂不支持)
-                    </button>
-                    <p id="idShowClientBrowserSidePromptAnswer" style="color:green;border:dashed">这里将呈现本系统的客户端浏览器访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>
-                </div>
-                    -->
+    <div style="text-align:justify">
+        <label title="付费API Key可以尝试客户端浏览器中密码口令方式输入，相对于保存在服务端secrets.json/appsettings.json之中更为风险。本系统唯一的付费API Key，不会用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的的费用就是自己注册付费API Key的100%）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，尚未实现（https://help.aliyun.com/zh/model-studio/first-api-call-to-qwen未见JS的具体代码案例）。例如，文本框中键入字符文本作为Prompt，然后单击这里，默认无需登录本系统，也是可以试验调用AIGC生成Answer内容...）">二、本系统的客户端浏览器访问他创方的AIGC（阿里Qwen为例)。</label><input id="idQwenAPIKeyInput" type="password" placeholder="必须在这里键入登录AIGC的API Key，然后单击确定按钮" title="必须在这里键入登录AIGC的API Key，然后单击确定按钮" /><button id="idQwenAPIKeyConfirm" title="必须在密码框中键入登录AIGC的API Key，然后单击本按钮" style="display: inline; white-space: normal; color: green; font-size: 12px">确定【Qwen千问的付费API Key】</button>后续将修改成为下方的语音识别您的Prompt，当前还请试验键入您的Prompt： <input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPromptForClientBrowserSide" /><button style="display:inline;white-space: normal" onclick='fnAjaxClientBrowserSideCallAIGCAnswerCharactor();'>
+            确定（不登录本系统代理使用语音机器人。节省0%、API Key原生风险）(AIGG提供者官方声明暂不支持)
+        </button>
+        <p id="idShowClientBrowserSidePromptAnswer" style="color:green;border:dashed">这里将呈现本系统的客户端浏览器访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>
+    </div>
+        -->
                 <button id="startBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将开始【Prompt提问←语音对话→系统外部AIGC】的Prompt提问的麦克风录音对话。系统将自动根据您录音的停顿状态，识别语音，返回对话。非流式语音对话、流式语音对话。期待本系统语音识别您的语音指令，然后连接AIGC，进行语音识别互动追问AIGC的回答，思辨自己想要的答案...." style="white-space: normal; font-size:12px">开始录音Prompt提问</button>
                 <button id="stopBtnSystemExternal" title="需要连接AIGC服务，需要付费AIGC...！单击将停止【Prompt提问←语音对话→系统外部AIGC】的Prompt提问的麦克风录音对话" disabled style="white-space: normal; font-size:12px">停止录音Prompt提问</button>
                 <button id="understandKernelDialogueBtnSystemExternal" title="【Prompt提问←语音对话→系统外部AIGC】作为主导的时候，也需要【Prompt指令←语音对话→系统内部非AIGC】作为辅助。单击将切换显示作为辅助的【Prompt指令←语音对话→系统内部非AIGC】的Prompt指令，以供了解" onclick='fnUnderstandKernelDialogueBtnSystemExternal()' style="white-space: normal; font-size:12px"><span id="idRightTriangleOfUnderstandKernelDialogueSystemExternal">▶</span>了解录音Prompt指令</button>
@@ -545,7 +554,7 @@
                     <hr />
                     二、本系统的服务端Prompt“他创方的系统外部AIGC”（请尽量选用本系统的语音对话听媒Prompt。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒Prompt）。请键入您的视媒Prompt
                     <!--<sapn title="单击打开自创方的知识库案例，可以用来对比AIGC生成内容的相似度准确性！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-                    {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击可以标量字面搜索结果→对比→RAG矢量语义搜问结果）：</sapn>-->
+        {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击可以标量字面搜索结果→对比→RAG矢量语义搜问结果）：</sapn>-->
                     <input type="text" size="10" value="教育技术" style="display:inline;white-space: normal" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" />
                     <span title="非RAG搜问，不会事先检索本机知识库。“树体目录”即“（线性为本-树体主导-网状辅助）目录”"><input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />隐式“面向对象的封装继承多态的树体目录”的“非RAG”搜问“系统外部AIGC”</span>
                     <span title="RAG搜问，事先检索本机知识库，检索结果融入Prompt。“树体目录”即“（线性为本-树体主导-网状辅助）目录”【注：字符媒体RAG搜问已经基本实现，多媒体RAG搜问正在完善之中..】.">
@@ -553,7 +562,7 @@
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />隐式“面向对象的封装继承多态的树体目录”的“RAG”搜问“系统外部AIGC”
                     </span>
                     <!--<input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_MultiMediaRAG" value="MultiMediaRAG" disabled /><span onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-                    {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} alert("本功能尚在开发之中...");document.getElementById("idRadioRAGClickedForWaiting").textContent ="(正在开发多媒体检索知识库...)"'>隐式派生继承的多媒体RAG搜问</span>-->
+        {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} alert("本功能尚在开发之中...");document.getElementById("idRadioRAGClickedForWaiting").textContent ="(正在开发多媒体检索知识库...)"'>隐式派生继承的多媒体RAG搜问</span>-->
                     <span id="idRadioRAGClickedForWaiting" style="font-size:x-small"></span>
 
                     <table>
@@ -565,7 +574,7 @@
                                     确定【<span style="color:brown;font-weight:bold">“智能对话Chat客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的Chatic AIGC案例</span>】<br /><span style="color:green">（注意思辨准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“教材课文”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，隐式调用外部LLM的矢量数据库）</span>
                                 </button>
                                 <!-- <br /><button onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-                                {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor("");'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种大语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
+                    {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor("");'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种大语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
                             </td>
                             <td>
                                 <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 50px"></textarea></div>
@@ -574,7 +583,7 @@
                                     确定【<span style="color:brown;font-weight:bold">“智能体Agent客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的Agentic AIGC案例</span>】<br /><span style="color:green">（注意思辨准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“作业测验”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，隐式调用外部LLM的矢量数据库）</span>
                                 </button>
                                 <!-- <br /><button onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-                                {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTest("");'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种大语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
+                    {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTest("");'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种大语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
                             </td>
                         </tr>
                     </table>
@@ -588,17 +597,26 @@
                     "段落": [期待本系统语音识别您的语音Prompt提问，然后连接本系统外部AIGC，互动追问本系统外部AIGC的回答（“字生字”支持语音朗读），思辨自己想要的答案....同时，也支持少量必备的语音识别您的语音Prompt指令，正在完善之中...]
                     }
                 </div>
-
+                <button id="ExternalWebClaw" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("FormExternalWebClaw").style.display=="none"){document.getElementById("FormExternalWebClaw").style.display="block";document.getElementById("TriAngleOfExternalWebClaw").textContent="▼";} else{document.getElementById("FormExternalWebClaw").style.display="none";document.getElementById("TriAngleOfExternalWebClaw").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;font-size:14px;text-align:justify">
+                    <span id="TriAngleOfExternalWebClaw">▶</span><span style="font-weight:bold">单击切换显示：不会影响本机安全的“ExternalWebClaw/本系统外部的网络龙虾智能体”</span>
+                </button>
+                <div id="FormExternalWebClaw" style="display:none; border:dashed;border-color: goldenrod;text-align:center">
+                    <a href="https://jvs.wuying.aliyun.com/" target="_blank">
+                        阿里云端JVS Claw【开箱即用的下一代AI助理平台，基于OpenClaw框架打造
+                        云端&本地均可一键部署，免除繁琐配置，多端访问（钉钉/微信），即刻启动。对话即触发，执行全透明；手机、网页、电脑三端互通，实时同步】
+                    </a>
+                </div>
             </td>
 
         </tr>
         <tr>
             <td colspan="2" style="border:dashed">
                 <!--
-                <label title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" style="color:brown">
-                    朗读源：<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemInternal" value="SystemInternal" disabled />系统内部的目录条目内容框架<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemExternal" value="SystemExternal" checked />系统外部的AIGC回答Answer
-                </label>
-                    -->
+    <label title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" style="color:brown">
+        朗读源：<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemInternal" value="SystemInternal" disabled />系统内部的目录条目内容框架<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemExternal" value="SystemExternal" checked />系统外部的AIGC回答Answer
+    </label>
+        -->
                 <div>
                     <img title="单击停止本系统外部的AIGC的回答Answer的字符朗读声音，同时，停止任何其他字符朗读声音【注：本系统外部的AIGC的回答Answer，默认是需要付费的自动字符朗读的，所以没有刻意提供本系统内部那样的是否自动字符朗读的功能切换（无需自动字符朗读的，无需选用本系统的AIGC功能，建议选用其他系统的AIGC功能）】" id="id_ToggleTTS" src="Sound_32.png" onclick='fnTTS_Cancel(); //if(document.getElementById("id_TTS").disabled==false){document.getElementById("id_TTS").disabled=true} else {document.getElementById("id_TTS").disabled=false;} ' />
                     <!--<form style="display:inline;font-size:12px">-->
@@ -611,31 +629,24 @@
 
             </td>
             <td>
+
                 <!--
-                <label title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" style="color:brown">
-                    朗读源：<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemInternal" value="SystemInternal" disabled />系统内部的目录条目内容框架<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemExternal" value="SystemExternal" checked />系统外部的AIGC回答Answer
-                </label>
-                                 -->
+    <label title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" style="color:brown">
+        朗读源：<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemInternal" value="SystemInternal" disabled />系统内部的目录条目内容框架<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemExternal" value="SystemExternal" checked />系统外部的AIGC回答Answer
+    </label>
+                     -->
                 <!--
-                <img title="单击停止当前语音朗读。此外，当前请移步系统内部（主界面标题框架中的语音朗读视图），控制语音朗读。这些系统内部的视图功能今后拟移动至此！" id="id_ToggleTTS_" src="Sound_32.png" onclick='fnTTS_Cancel(); alert("当前请移步系统内部（主界面标题框架中的语音朗读视图），控制语音朗读。这些系统内部的视图功能今后拟移动至此！")' />
-                <!--<form style="display:inline;font-size:12px">-->
+    <img title="单击停止当前语音朗读。此外，当前请移步系统内部（主界面标题框架中的语音朗读视图），控制语音朗读。这些系统内部的视图功能今后拟移动至此！" id="id_ToggleTTS_" src="Sound_32.png" onclick='fnTTS_Cancel(); alert("当前请移步系统内部（主界面标题框架中的语音朗读视图），控制语音朗读。这些系统内部的视图功能今后拟移动至此！")' />
+    <!--<form style="display:inline;font-size:12px">-->
                 <!--
-                   <fieldset style="display: inline; border: none;font-size:10px" id="id_TTS_" disabled><button id="id_TTS_Play_" title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" onclick="//fnTTS_Play(0)">中英朗读</button><button id="id_TTS_Pause_" onclick="//fnTTS_Pause()">暂停</button><button onclick="//fnTTS_Resume()" id="id_TTS_Resume_">继续</button><button onclick="//fnTTS_Cancel()" id="id_TTS_Cancel_">取消</button><span title="将显示当前条目内容框架的字符总数"><span>当前字符总数：</span><span id="id_CharNumber_">No.</span></span>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo_">起点：</span><input id="id_TTS_GoToText_" type="text" size="3" value="0" onblur="//fnTTS_GoTo(0)" /></span></fieldset>
-                -->
+       <fieldset style="display: inline; border: none;font-size:10px" id="id_TTS_" disabled><button id="id_TTS_Play_" title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" onclick="//fnTTS_Play(0)">中英朗读</button><button id="id_TTS_Pause_" onclick="//fnTTS_Pause()">暂停</button><button onclick="//fnTTS_Resume()" id="id_TTS_Resume_">继续</button><button onclick="//fnTTS_Cancel()" id="id_TTS_Cancel_">取消</button><span title="将显示当前条目内容框架的字符总数"><span>当前字符总数：</span><span id="id_CharNumber_">No.</span></span>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo_">起点：</span><input id="id_TTS_GoToText_" type="text" size="3" value="0" onblur="//fnTTS_GoTo(0)" /></span></fieldset>
+    -->
                 <!--</form>-->
 
             </td>
         </tr>
     </table>
-    <button id="WebEduClaw" title="单击可以切换显示界面： 网络教育助手智能体/WebEduClaw/网络教育龙虾" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("FormWebEduClaw").style.display=="none"){document.getElementById("FormWebEduClaw").style.display="block";document.getElementById("TriAngleOfWebEduClaw").textContent="▼";} else{document.getElementById("FormWebEduClaw").style.display="none";document.getElementById("TriAngleOfWebEduClaw").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;font-size:14px;text-align:justify">
-        <span id="TriAngleOfWebEduClaw">▶</span><span style="font-weight:bold">单击可以切换显示：“网络教育助手智能体/WebEduClaw/网络教育龙虾”</span>
-    </button>
-    <div id="FormWebEduClaw" style="display:none; border:dashed;border-color: goldenrod;text-align:justify">
-        主界面的当前目录条目的URL（并可附加说明文案），一键分享到如下平台：
-        <input type="checkbox" name="WebEduClawShareURLCheckbox" />知乎<input type="checkbox" name="WebEduClawShareURLCheckbox" />钉钉动态<input type="checkbox" name="WebEduClawShareURLCheckbox" />钉钉视频号<input type="checkbox" name="WebEduClawShareURLCheckbox" />微信朋友圈<input type="checkbox" name="WebEduClawShareURLCheckbox" />微信视频号<input type="checkbox" name="WebEduClawShareURLCheckbox" />微信公众号<input type="checkbox" name="WebEduClawShareURLCheckbox" />QQ空间<input type="checkbox" name="WebEduClawShareURLCheckbox" />微博<input type="checkbox" name="WebEduClawShareURLCheckbox" />豆瓣<input type="checkbox" name="WebEduClawShareURLCheckbox" />小红书<input type="checkbox" name="WebEduClawShareURLCheckbox" />B站<input type="checkbox" name="WebEduClawShareURLCheckbox" />抖音<input type="checkbox" name="WebEduClawShareURLCheckbox" disabled />LinkedIn<input type="checkbox" name="WebEduClawShareURLCheckbox" disabled />YouTube<input type="checkbox" name="WebEduClawShareURLCheckbox" disabled />Twitter/X<input type="checkbox" name="WebEduClawShareURLCheckbox" disabled />Teams
-        <br /><div style="text-align:center"><button type="submit" value="提交" id="idSubmitFormWebEduClaw" style="font-size:16px;margin:0;padding:0;" onclick="alert('正在开发之中...')">提交</button>&emsp;&emsp;<button type="reset" value="取消" style="font-size:16px;margin:0;padding:0;">取消</button></div>
-    </div>
+  
     <!--系统外部的调用AIGC的语音对话注意事项：API 密钥安全性 不要将密钥直接暴露在前端代码中，建议通过后端代理转发请求。兼容性处理 不同大模型（例如，ChatGPT、Qwen）的 API 参数可能略有不同，请参考官方文档调整。
 
         <script>
