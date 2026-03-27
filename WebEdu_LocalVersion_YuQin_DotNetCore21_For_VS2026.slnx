@@ -95,6 +95,7 @@
   </Folder>
   <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/Layer5_SSAIGC/" />
   <Folder Name="/ReadMe-DevelopingTimeRunningThisSolution-开发时运行这个解决方案的说明-请用Word读写该HTML文件/">
+    <File Path="OpenClaw-Skills-文档.md" />
     <File Path="ReadMe-DevelopingTimeRunningThisSolution.htm" />
     <File Path="ReadMe-DevelopingTimeRunningThisSolution.md" />
   </Folder>
