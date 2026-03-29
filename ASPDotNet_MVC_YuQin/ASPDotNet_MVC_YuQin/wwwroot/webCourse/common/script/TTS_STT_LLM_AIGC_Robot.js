@@ -867,6 +867,13 @@ window.speechSynthesis.cancel();
             document.getElementById("idRightTriangleOfSystemExternal").textContent="▶";
           }
   }
+
+  function fnAjaxServerSideCallAIGCLearningCommunity(isProxy) {
+    fnToggleEventSoureElementColor();
+    if(isProxy=="Proxy"){           
+           open("/QWenSkillsLearningCommunity/index?queryString=sChecedName");
+            }
+}
 /**AIGC官方声明：因为API Key容易泄露等等安全问题，所以当前不支持JS访问千问AIGC。
  *
  function fnidQwenAPIKeyConfirmOnClickSystemExternal(){
