@@ -99,5 +99,5 @@
     <File Path="ReadMe-DevelopingTimeRunningThisSolution.htm" />
     <File Path="ReadMe-DevelopingTimeRunningThisSolution.md" />
   </Folder>
-  <Folder Name="/Skills/" />
+  <Folder Name="/Skills-由于内置嵌套CS项目所以放置于项目之下编译出错/" />
 </Solution>
