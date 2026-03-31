@@ -18,83 +18,11 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers.Examples
             String myString = "public";
             ID = 321;
             ID2 = 1;
-            return Content(myString+(ID+ID2).ToString());
+            return this.Content(myString+(ID+ID2).ToString());
             // return Content("Hello world");
         }
 
         // GET: Default/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
-        // GET: Default/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Default/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Default/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Default/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Default/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Default/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
