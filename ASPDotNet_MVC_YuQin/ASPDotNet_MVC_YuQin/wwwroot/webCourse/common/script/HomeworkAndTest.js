@@ -217,8 +217,11 @@ function fnAnswerAndToggoleAnswerDisplay() {
     //  alert(document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).style.display);
     
    // var sAnswer = document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).innerHTML.replace(/\s*/g, "")
-    alert(document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).childNodes.item(0).innerHTML);//可能和Word版本有关。Word2106测试可以。有些版本可能要改为document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).innerHTML
-     var sAnswer = document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).childNodes.item(0).innerHTML.replace(/\s*/g, "")//可能和Word版本有关。Word2106测试可以。
+    //alert(document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).childNodes.item(0).innerHTML);//可能和Word版本有关。Word2106测试可以。有些版本可能要改为document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).innerHTML;
+    //alert(document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).innerHTML);
+    // var sAnswer = document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).childNodes.item(0).innerHTML.replace(/\s*/g, "")//可能和Word版本有关。Word2106测试可以。有些版本可能要改为var sAnswer = document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).childNodes.item(1).innerHTML.replace(/\s*/g, "");
+    var sAnswer = document.getElementById(event.srcElement.parentElement.parentElement.children[1].id).childNodes.item(1).innerHTML.replace(/\s*/g, "");
+    
     var sIdOfAnswer = event.srcElement.parentElement.parentElement.children[1].id;
     //var sAutoGenPartOfAnswer = sIdOfAnswer.subString("idAnswer".length-1);
     var sAutoGenPartOfIdOfAnswer = sIdOfAnswer.substring("idAnswer".length);
