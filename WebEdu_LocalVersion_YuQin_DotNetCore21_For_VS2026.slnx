@@ -99,5 +99,5 @@
     <File Path="ReadMe-DevelopingTimeRunningThisSolution.htm" />
     <File Path="ReadMe-DevelopingTimeRunningThisSolution.md" />
   </Folder>
-  <Folder Name="/Skills-其中的MD文件必须是UTF8编码不能是Ansi编码否则GitHub网站部署会出错-虽然内置嵌套CS项目但是好像也能放置于wwwroot文件夹之下/" />
+  <Folder Name="/Workspace-Skills-其中的MD文件必须是UTF8编码不能是Ansi编码否则GitHub网站部署会出错-虽然内置嵌套CS项目但是好像也能放置于wwwroot文件夹之下/" />
 </Solution>
