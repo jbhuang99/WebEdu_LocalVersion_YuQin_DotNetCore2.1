@@ -1,0 +1,9 @@
+<!--通过 llms.txt/llms-full.txt引导AIGC高效使用网站内容-->
+
+# YuQin教育网站
+
+> 这是我的教育网站，用来追求数智时代的教育内容与方法。
+
+## 可选
+
+- [GitHub 源码](https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1): 网站源代码

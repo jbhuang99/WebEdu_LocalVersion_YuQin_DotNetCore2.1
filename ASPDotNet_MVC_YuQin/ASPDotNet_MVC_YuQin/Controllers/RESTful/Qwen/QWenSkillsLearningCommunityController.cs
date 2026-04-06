@@ -73,9 +73,9 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.QWenSkillsLearningCommunity
                     new ApiKeyCredential(new OpenAIProvider().ApiKey),
                     new OpenAIClientOptions { Endpoint = new Uri(openAIProvider.Endpoint) })
                 .GetChatClient(openAIProvider.ModelId);
-            
+
             // Step1 创建 SkillsProvider — 从文件夹加载 Skills
-#pragma warning disable MAAI001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+#pragma warning disable MAAI001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.//FileAgentSkillsProvider，MSA 1.0.0-rc4时无错，MSA 1.0.0时出错。
             FileAgentSkillsProvider skillsProvider = new FileAgentSkillsProvider(
     skillPath: Path.Combine(Directory.GetCurrentDirectory(), "skills")
 );
