@@ -203,9 +203,10 @@ if (iTrLenth % 9 != 0) { alert("上传的作业与测试可能有问题，无法
 function fnHomeworkAndTestFiveLayerMVC(){
     fnToggleEventSoureElementColor();
     //var sUrl="https://aspdotnetmvcyuqin.azurewebsites.net/HomeworkAndTestFiveLayerMVC/Index";   
-    //var sUrl="../../../../common/PseudoDataCreationForFiveLayerMVC.html";
-    var sUrl="../../../../options/HomeworkAndTestFiveLayerMVC.htm";
-    window.open(sUrl,"winHomeworkAndTestFiveLayerMVC", "scrollbars=,width=800,height=600,top=" + (screen.height - 600) / 2 + ",left=" + (screen.width - 800) / 2);
+    //var sUrl="../../../../options/HomeworkAndTestFiveLayerMVC.htm";    
+var sUrl=window.location.href.substring(0,window.location.href.indexOf("/webCourse/"));
+//open(sHref,"_blank");  
+    window.open(sUrl+"/webCourse/options/HomeworkAndTestFiveLayerMVC.htm","winHomeworkAndTestFiveLayerMVC", "scrollbars=,width=800,height=600,top=" + (screen.height - 600) / 2 + ",left=" + (screen.width - 800) / 2);
 }
 function fnAnswerAndToggoleAnswerDisplay() {
     fnToggleEventSoureElementColor();

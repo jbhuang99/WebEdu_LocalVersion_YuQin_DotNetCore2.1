@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using DocumentFormat.OpenXml.Math;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers.Examples
@@ -14,13 +15,10 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers.Examples
     {
         public ActionResult Index()
         {
-            Char myChar = 'A';
-            String myString = "public";
-            this.ID = 321;
-            this.ID2 = new string("计算机124");
-
-            ;
-            return this.Content(myString + (ID + ID2).ToString());
+            //int b = (int)'人'; // 显式转为字节（安全，因 'A' ∈ 0–127）
+           // string binary = Convert.ToString(b, 2).PadLeft(8, '0'); // → "01000001"
+            return Content("我上课的班级"); // 返回字符串 "01000001"
+            //return this.Content('A'.ToString());
             // return Content("Hello world");
         }
 
