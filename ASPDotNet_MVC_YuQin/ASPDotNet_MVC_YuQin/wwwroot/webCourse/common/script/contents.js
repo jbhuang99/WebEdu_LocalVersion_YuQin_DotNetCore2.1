@@ -4005,6 +4005,16 @@ function fnLocalSLM(){
     var win = open("../common/LocalSLM.html", "LocalSLM", "width=500,height=350,top=" + (screen.height - 350) / 2 + ",left=" + (screen.width - 500) / 2);
     window.childWindow = win;
 }
+function fnCopyItemURL(){
+    window.oSrcElement.click();
+    if(window.oSrcElement.parentNode.attributes.getNamedItem("text").nodeValue==""||window.oSrcElement.parentNode.attributes.getNamedItem("text").nodeValue==null)
+    {
+        alert("当前条目尚无URL！请复制其他条目的URL并分享");
+        }
+    else{
+        alert("当前条目URL："+window.location.href.substring(0,window.location.href.indexOf("/webCourse/"))+"/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738&text="+window.oSrcElement.parentNode.attributes.getNamedItem("text").nodeValue);
+        }
+}
 /**传入homeworkAndTest,没实现,只好改为了全局变量window.TTSToggle
 window.fnGetTTSToggle;
 window.fnGetTTSToggle=parent.document.getElementById("sIframeTitle").contentWindow.document.getElementById("id_TTS").style.display;
