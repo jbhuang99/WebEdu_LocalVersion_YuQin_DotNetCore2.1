@@ -1,0 +1,20 @@
+# 允许所有爬虫访问整个网站
+User-agent: *
+Disallow:
+
+# 禁止所有爬虫访问整个网站
+User-agent: *
+Disallow: /
+
+# 禁止某个目录
+User-agent: *
+Disallow: /private/
+
+# 仅允许 Googlebot 访问
+User-agent: Googlebot
+Allow: /
+User-agent: *
+Disallow: /
+
+# 提供站点地图
+Sitemap: https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/wwwroot/sitemap.xml
