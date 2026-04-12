@@ -16,7 +16,10 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21.Controllers.Examples
         public ActionResult Index()
         {
             //int b = (int)'人'; // 显式转为字节（安全，因 'A' ∈ 0–127）
-           // string binary = Convert.ToString(b, 2).PadLeft(8, '0'); // → "01000001"
+            // string binary = Convert.ToString(b, 2).PadLeft(8, '0'); // → "01000001"
+            String a = "我上课的班级";
+            // 生成一个语句基于"我上课的班级"的"的"截成两段，并且返回浏览器端             
+
             return Content("我上课的班级"); // 返回字符串 "01000001"
             //return this.Content('A'.ToString());
             // return Content("Hello world");
