@@ -1,6 +1,6 @@
 ---
 name: create-agentsmd-ZH-CN
-description: '生成AGENTS.md文件'
+description: '基于当前的VS解决方案的代码库/存储库，生成一个AGENTS.md文件'
 ---
 
 # Create high‑quality AGENTS.md file
