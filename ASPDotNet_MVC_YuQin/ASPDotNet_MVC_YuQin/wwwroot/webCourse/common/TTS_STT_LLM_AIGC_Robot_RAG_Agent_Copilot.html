@@ -187,7 +187,7 @@
         </div>
         <div style="width: 90%">
             <button style="color:green;font-size:11px;" onclick='document.getElementById("sAccuracySimilarityForString").textContent=fnStringSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityForString" style="font-size: 11px">这里将显示上述两个字符序列的准确性相似度</span>
-            <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+            <br /><button style="color:green;font-size:12px" onclick='document.getElementById("sSemanticAccuracySimilarityForString").textContent=fnStringSemanticSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span style="font-size: 11px" id="sSemanticAccuracySimilarityForString">这里将显示上述两个字符序列的准确性相似度【注：付费调用云端大语言模型可以更加准确地实现！】</span>
             <br /><button><a href="../options/EmbeddingPython-sim_entropy.html" target="_blank">关于准确性相似度算法创新（而且尝试了多种平台语言的融合）（专利申请之中...）</a></button>
         </div>
     </div>
@@ -695,25 +695,25 @@
                         <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机Astron-Claw/云端Astron-Claw”讯飞星辰数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用" onclick='if(document.getElementById("Id_Cloud_Astron-Claw").style.display=="none"){document.getElementById("Id_Cloud_Astron-Claw").style.display="block";}else{document.getElementById("Id_Cloud_Astron-Claw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
                         <div id="Id_Cloud_Astron-Claw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
                             <iframe id="IframeExternalAstron-Claw" src="https://agent.xfyun.cn/home" style="width:100%;height:1080px"></iframe>
-                            <div style="text-align:center"><a href="https://agent.xfyun.cn/home" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                            <div style="text-align:center"><a href="https://agent.xfyun.cn/home" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
                             <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
                         </div>
                         <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机JVSClaw/云端JVSClaw”数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用" onclick='if(document.getElementById("Id_AgentJVSClaw").style.display=="none"){document.getElementById("Id_AgentJVSClaw").style.display="block";}else{document.getElementById("Id_AgentJVSClaw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
                         <div id="Id_AgentJVSClaw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
                             <iframe id="IframeExternalWebClaw" src="https://jvs.wuying.aliyun.com/login" style="width:100%;height:1080px"></iframe>
-                            <div style="text-align:center"><a href="https://jvs.wuying.aliyun.com" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                            <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                            <div style="text-align:center"><a href="https://jvs.wuying.aliyun.com" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                            <div style="text-align:center"><a href="jvsclawclient://" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
                         </div>
                         <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机GitHubCopilot/云端GitHubCopilot”数智协同智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用" onclick='if(document.getElementById("Id_AgentGitHubCopilot").style.display=="none"){document.getElementById("Id_AgentGitHubCopilot").style.display="block";}else{document.getElementById("Id_AgentGitHubCopilot").style.display="none";}fnToggleEventSoureElementColor();' /></li>
                         <div id="Id_AgentGitHubCopilot" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
                             <iframe id="IframeExternalGitHubCopilot" src="https://github.com/features/copilot" style="width:100%;height:1080px"></iframe>
-                            <div style="text-align:center"><a href="https://github.com/features/copilot" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                            <div style="text-align:center"><a href="https://github.com/features/copilot" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
                             <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
                         </div>
                         <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机SciClaw/云端SciClaw”科研数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用" onclick='if(document.getElementById("Id_Cloud_SciClaw").style.display=="none"){document.getElementById("Id_Cloud_SciClaw").style.display="block";}else{document.getElementById("Id_Cloud_SciClaw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
                         <div id="Id_Cloud_SciClaw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
                             <iframe id="IframeExternalSciClaw" src="https://sciclaw.cn/" style="width:100%;height:1080px"></iframe>
-                            <div style="text-align:center"><a href="https://sciclaw.cn/" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                            <div style="text-align:center"><a href="https://sciclaw.cn/" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
                             <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
                         </div>
                         <li>注：后续将依据发展状况，陆续接入更多合适的智能体Agent...</li>

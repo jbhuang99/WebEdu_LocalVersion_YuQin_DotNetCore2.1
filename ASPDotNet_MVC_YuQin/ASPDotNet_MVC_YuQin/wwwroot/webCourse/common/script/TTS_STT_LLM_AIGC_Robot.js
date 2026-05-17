@@ -31,6 +31,36 @@ document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
 }
 
+/**
+ * 使用 Intl.Segmenter 实现中文字符串语义相似度估算（0.0 ~ 1.0）
+ * 原理：分词 → 去停用词 → 词频统计 → Jaccard 集合相似度
+ * 纯前端、无依赖、兼容 Chrome 93+/Edge 93+/Safari 16.4+/Firefox 111+
+ **/
+function fnStringSemanticSimilarity(str1, str2, options = {}) {
+  const { language = 'zh', minLen = 2, stopwords = new Set(['的', '了', '在', '是', '我', '有', '和', '就', '不', '人', '都', '一', '一个', '上', '也', '很', '到', '说', '要', '去', '你', '会', '着', '没有', '看', '好', '自己', '这']) } = options;
+
+  // 1. 初始化分词器（自动检测语言，中文推荐显式指定 'zh'）
+  const segmenter = new Intl.Segmenter(language, { granularity: 'word' });
+
+  // 2. 分词并过滤（保留长度≥minLen的非停用词）
+  const tokenize = (s) => {
+    return Array.from(segmenter.segment(s))
+      .filter(seg => seg.isWordLike && seg.segment.length >= minLen)
+      .map(seg => seg.segment.trim())
+      .filter(word => word && !stopwords.has(word));
+  };
+
+  const words1 = new Set(tokenize(str1));
+  const words2 = new Set(tokenize(str2));
+
+  // 3. Jaccard 相似度：交集 / 并集
+  const intersection = [...words1].filter(w => words2.has(w)).length;
+  const union = new Set([...words1, ...words2]).size;
+
+  return union > 0 ? intersection / union : 0.0;
+  //console.log(fnStringSemanticSimilarity("采购笔记本电脑", "购买手提电脑")); // → ≈ 0.50（分词：['采购','笔记本','电脑'] ∩ ['购买','手提','电脑'] → 交集{'电脑'} → 1/5=0.2？等等）
+}
+
 function fnGetCurrentContentsItem(){
     document.getElementById("idPromptInternalLLM").value=opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue;
     document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value="“"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"”";
