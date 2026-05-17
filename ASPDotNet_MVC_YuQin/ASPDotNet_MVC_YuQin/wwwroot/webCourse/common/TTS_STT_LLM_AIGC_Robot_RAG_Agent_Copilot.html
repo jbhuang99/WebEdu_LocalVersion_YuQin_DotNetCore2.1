@@ -470,7 +470,7 @@
                 </div>
                 <div title="系统本机内部的融合数智思维的小语言模型SLM（可以安装于人形机器人），树体目录派生继承地AIGC生成融合数智思维的媒体资源，视媒主导（字符媒体主导/多媒体的图像辅助/多媒体的视频辅助/多媒体的2D辅助/多媒体的3D辅助）/多媒体的听媒辅助/多媒体的触媒辅助/多媒体的嗅媒辅助/多媒体的味媒辅助的）整体资源。" id="sIdLocalSLM_div" style="color: rgb(0, 0, 0); cursor: text;text-align:justify">
                     <span title="【虽然具有树体目录的知识库，但并不查找知识库中的关键词相关Prompt，不会更新用户Prompt】。“树体目录”即“（线性为本-树体主导-网状辅助）目录”"><input type="radio" name="raio_ContentsItemRange" id="id_SystemInternal_NonRAG" checked onclick='fnPromptForInternalAIGCOnBlur()' />显式“面向对象的封装继承多态的树体目录”的“无RAG”搜问“系统内部AIGC”</span><br />
-                    <span title="“【树根目录条目地查找知识库中的关键词相关Prompt，更新成为用户Prompt】。树体目录”即“（线性为本-树体主导-网状辅助）目录”">
+                    <span title="树根目录条目地查找知识库中的关键词相关Prompt，检索结果融入Prompt【注：当前仅仅字面确定性匹配地检索知识库的相关语句，尚未语义概率性匹配地检索知识库的相关语句，这是因为当前语义概率性匹配检索知识库的准确性尚不理想】。“树体目录”即“（线性为本-树体主导-网状辅助）目录”。">
                         <input type="radio" name="raio_ContentsItemRange" id="id_SystemInternal_RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForInternalAIGCOnBlur()' />显式“面向对象的封装继承多态的树体目录”的“RAG”搜问“系统内部AIGC”
                     </span>
@@ -591,7 +591,7 @@
         {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击可以标量字面搜索结果→对比→RAG矢量语义搜问结果）：</sapn>-->
                     <input type="text" value="教育技术" style="display:inline;white-space: normal;width:90%" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" /><br />
                     <span title="非RAG搜问，不会事先检索本机知识库。“树体目录”即“（线性为本-树体主导-网状辅助）目录”"><input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />隐式“面向对象的封装继承多态的树体目录”的“非RAG”搜问“系统外部AIGC”</span><br />
-                    <span title="RAG搜问，事先检索本机知识库，检索结果融入Prompt。“树体目录”即“（线性为本-树体主导-网状辅助）目录”【注：字符媒体RAG搜问已经基本实现，多媒体RAG搜问正在完善之中..】.">
+                    <span title="RAG搜问，事先检索本机知识库，检索结果融入Prompt【注：当前仅仅字面确定性匹配地检索知识库的相关语句，尚未语义概率性匹配地检索知识库的相关语句，这是因为当前语义概率性匹配检索知识库的准确性尚不理想】。“树体目录”即“（线性为本-树体主导-网状辅助）目录”【注：字符媒体RAG搜问已经基本实现，多媒体RAG搜问正在完善之中..】.">
                         <input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_RAG" value="RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />隐式“面向对象的封装继承多态的树体目录”的“RAG”搜问“系统外部AIGC”
                     </span>
@@ -687,7 +687,7 @@
             <td colspan="2" style="border:dashed">
                 <button id="ExternalWebClaw" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
     {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("FormExternalWebClaw").style.display=="none"){document.getElementById("FormExternalWebClaw").style.display="block";document.getElementById("TriAngleOfExternalWebClaw").textContent="▼";} else{document.getElementById("FormExternalWebClaw").style.display="none";document.getElementById("TriAngleOfExternalWebClaw").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;font-size:14px;text-align:justify" title="【注：本系统遵循业界的通用智能体Agent→领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发SKills，融合数智思维知识库，研发教育领域的教育数智思维的本机通用智能体Agent/云端通用智能体Agent】">
-                    <span id="TriAngleOfExternalWebClaw">▶</span><span style="font-weight:bold">如上，本系统AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的本机通用智能体/云端通用智能体，请单击这里切换显示，并且运行<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="单击可以下载本系统研发的所有Agent-Skills，以供各种通用Agent运行（当前技术阶段尚不支持Agent直接URL装载运行Agent-Skills）">本系统研发的所有Agent-Skills</a>（注意思辨运行结果的准确性）：</span>
+                    <span id="TriAngleOfExternalWebClaw">▶</span><span style="font-weight:bold">如上，本系统AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的本机通用智能体/云端通用智能体，请单击这里切换显示，并且运行<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="当前技术阶段尚不支持Agent直接URL装载运行Skills，单击本链接可以下载本系统研发的所有Skills，以供各种通用Agent部署运行【注：本系统研发的各个Skill文件夹之中有一个ReadMe文档用作部署运行参考，例如，agent-browser文件夹之下的ReadMe文档，说明了如何同时发布教与学资源进入知乎/小红书/LinkIn等等多个社区...】【注：各种Agent部署运行Skills可能稍有不同，本系统建议您选用VS内置的VS-GitHubCopilot部署运行Skills】">本系统研发的所有Agent-Skills</a>（注意思辨运行结果的准确性）：</span>
                 </button>
                 <div id="FormExternalWebClaw" style="display: none; border: dashed; border-color: goldenrod;text-align:justify" title="账号请按规则保存在本项目的appsettings.json文件之中，口令密码请按规则保存在本项目的Secrets.json文件之中！如果服务端拒绝连接，请单击下方的链接打开！">
 
