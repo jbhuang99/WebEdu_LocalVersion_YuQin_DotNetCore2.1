@@ -1,0 +1,10 @@
+﻿Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\myvs]
+@="URL:MyVisualStudioProtocol"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\myvs\shell]
+[HKEY_CLASSES_ROOT\myvs\shell\open]
+[HKEY_CLASSES_ROOT\myvs\shell\open\command]
+@="\"D:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\devenv.exe\" \"%1\""
