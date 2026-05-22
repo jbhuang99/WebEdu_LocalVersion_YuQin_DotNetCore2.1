@@ -1,5 +1,5 @@
 ---
-name: create-agentsmd-ZH-CN
+name: create-agentsmd-zh-cn
 description: '基于当前的VS解决方案的代码库/存储库，生成一个AGENTS.md文件'
 ---
 
