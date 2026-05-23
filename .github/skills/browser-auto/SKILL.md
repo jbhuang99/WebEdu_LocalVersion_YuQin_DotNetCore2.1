@@ -19,13 +19,13 @@ pwsh bin/Debug/net10.0/playwright.ps1 install
 1. **提取参数**：从用户的对话中提取需要处理的原始字符串。
 2. **执行脚本**：
    - **调用工具**：使用环境提供的 `Bash` 或 `Shell` 工具。
-   - **执行命令**：运行位于 `scripts-to-createSkillPlanNeededAdditionalTools/Agent-Browser/Agent-Browser/Agent-Browser.csproj` 的项目。
+   - **执行命令**：运行位于 `scripts-to-complementSkillPlanNeededTools/Agent-Browser/Agent-Browser/Agent-Browser.csproj` 的项目。
    - **命令示例**：
      ```bash
-     dotnet run --project scripts-to-createSkillPlanNeededAdditionalTools/Agent-Browser/Agent-Browser/Agent-Browser.csproj
+     dotnet run --project scripts-to-complementSkillPlanNeededTools/Agent-Browser/Agent-Browser/Agent-Browser.csproj
      ```
 3. **处理输出**：
    - 如果脚本报错（如未安装 .NET 环境），请完整反馈错误信息并引导用户检查环境。
 ## 注意事项
-- 确保在调用命令时，当前工作目录位于技能根目录下，以保证相对路径 `scripts-to-createSkillPlanNeededAdditionalTools/Agent-Browser/Agent-Browser/Agent-Browser.csproj` 能够正确识别。
+- 确保在调用命令时，当前工作目录位于技能根目录下，以保证相对路径 `scripts-to-complementSkillPlanNeededTools/Agent-Browser/Agent-Browser/Agent-Browser.csproj` 能够正确识别。
 - 如果用户输入的字符串包含特殊字符，请确保在 Shell 命令中用双引号包裹参数。

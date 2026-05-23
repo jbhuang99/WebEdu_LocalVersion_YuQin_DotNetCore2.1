@@ -13,10 +13,10 @@ compatibility: Requires .NET SDK (dotnet CLI)
 1. **提取参数**：从用户的对话中提取需要处理的原始字符串。
 2. **执行脚本**：
    - **调用工具**：使用环境提供的 `Bash` 或 `Shell` 工具。
-   - **执行命令**：运行位于 `scripts-to-createSkillPlanNeededAdditionalTools/ProcessString.cs` 的脚本。
+   - **执行命令**：运行位于 `scripts-to-complementSkillPlanNeededTools/ProcessString.cs` 的脚本。
    - **命令示例**：
      ```bash
-     dotnet run --file scripts-to-createSkillPlanNeededAdditionalTools/ProcessString.cs "用户提供的原始字符串"
+     dotnet run --file scripts-to-complementSkillPlanNeededTools/ProcessString.cs "用户提供的原始字符串"
      ```
 3. **处理输出**：
    - 读取脚本的标准输出（stdout）。
@@ -24,5 +24,5 @@ compatibility: Requires .NET SDK (dotnet CLI)
    - 如果脚本报错（如未安装 .NET 环境），请完整反馈错误信息并引导用户检查环境。
 
 ## 注意事项
-- 确保在调用命令时，当前工作目录位于技能根目录下，以保证相对路径 `scripts-to-createSkillPlanNeededAdditionalTools/ProcessString.cs` 能够正确识别。
+- 确保在调用命令时，当前工作目录位于技能根目录下，以保证相对路径 `scripts-to-complementSkillPlanNeededTools/ProcessString.cs` 能够正确识别。
 - 如果用户输入的字符串包含特殊字符，请确保在 Shell 命令中用双引号包裹参数。

@@ -59,7 +59,7 @@ function fnAOnMouseOn() {
     if (window.getComputedStyle(oObject).color.replace(/\s*/g, "") != window.sColorClicked) {//replace去除空格
         oObject.style.color = window.sColorMouseOver;
     }
-    event.srcElement.setAttribute("title", event.srcElement.childNodes.item(0).nodeValue+'【注：标题框架的“概览”可以查看当前条目是否具有“课文”、“作业测验”等等各种文档。它们可能进一步链接字符媒体/多媒体文档】');
+    event.srcElement.setAttribute("title", event.srcElement.childNodes.item(0).nodeValue+'\n【注：单击标题框架的“概览”可以查看当前条目是否具有“课文”、“作业测验”等等各种文档。它们可能进一步链接字符媒体/多媒体文档】\n【注：单击标题框架的“内容切换”可以切换内容框架中的“课文/作业测验”】');
 }
 function fnAOnMouseOut() {
     var oObject = event.srcElement;

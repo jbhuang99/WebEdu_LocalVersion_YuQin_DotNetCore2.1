@@ -16,18 +16,18 @@ license: MIT
 
 ## 使用方法
 
-使用 `scripts/split-pdf.cs` 脚本进行 PDF 拆分：
+使用 `scripts-to-complementSkillPlanNeededTools/split-pdf.cs` 脚本进行 PDF 拆分：
 
 ### 拆分页面
 # 拆分所有页面
-dotnet run --file scripts/split-pdf.cs input.pdf output-dir/
+dotnet run --file scripts-to-complementSkillPlanNeededTools/split-pdf.cs input.pdf output-dir/
    ```bash
-     dotnet run --file scripts/split-pdf.cs d://temp/Try.pdf d://temp/
+     dotnet run --file scripts-to-complementSkillPlanNeededTools/split-pdf.cs d://temp/Try.pdf d://temp/
    ```
 # 拆分第 1-5 页
-dotnet run --file scripts/split-pdf.cs input.pdf output-dir/ 1-5
+dotnet run --file scripts-to-complementSkillPlanNeededTools/split-pdf.cs input.pdf output-dir/ 1-5
    ```bash
-     dotnet run --file scripts/split-pdf.cs d://temp/Try.pdf d://temp/ 1-5
+     dotnet run --file scripts-to-complementSkillPlanNeededTools/split-pdf.cs d://temp/Try.pdf d://temp/ 1-5
    ```
 ## 输出格式
 
