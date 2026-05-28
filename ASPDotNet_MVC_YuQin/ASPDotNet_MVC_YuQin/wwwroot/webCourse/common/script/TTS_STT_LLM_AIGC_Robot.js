@@ -31,6 +31,35 @@ document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
 }
 
+function fnAjaxServerSideCallBCI(){
+    var xmlHttpRequest = new XMLHttpRequest();
+           xmlHttpRequest.open('GET', '/BCI', true);
+           xmlHttpRequest.send();
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行
+                        /** 
+                        var oTemp=JSON.parse(xmlHttpRequest.responseText);
+                         document.getElementById("idAttention").value=oTemp.output.text; 
+                          document.getElementById("idMeditation").value=oTemp.output.text;  
+                        document.getElementById("idRawSignal").value=oTemp.output.text;  
+                        **/
+                      // var oTemp=JSON.parse(xmlHttpRequest.responseText);
+                         document.getElementById("idAttention").value=xmlHttpRequest.responseText; 
+                          document.getElementById("idMeditation").value=xmlHttpRequest.responseText;  
+                        document.getElementById("idRawSignal").value=xmlHttpRequest.responseText;  
+                     }
+                    
+                    else {
+                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
+                        alert(sTempErr);                        
+                    }
+                }
+                }
+}
 /**
  * 使用 Intl.Segmenter 实现中文字符串语义相似度估算（0.0 ~ 1.0）
  * 原理：分词 → 去停用词 → 词频统计 → Jaccard 集合相似度
