@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>CSV文件读取与全能序列插入</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .option-group { margin-bottom: 15px; }
+        label { display: inline-block; width: 140px; }
+        .sub-option { display: none; margin-left: 140px; color: #555; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <h2>1. 选择本地的 CSV 文件</h2>
+    <input type="file" id="csvFileInput" accept=".csv">
+    
+    <h2>2. 配置插入选项</h2>
+    <div class="option-group">
+        <label>插入模式：</label>
+        <select id="insertMode" onchange="toggleOptions()">
+            <option value="string">插入固定字符串</option>
+            <option value="sequence">插入数字递增序列</option>
+            <option value="timestamp">插入当前时间戳序列</option>
+            <option value="date">插入日期序列 (YYYY-MM-DD)</option>
+            <option value="datetime">插入日期时间序列 (YYYY/MM/DD HH:mm:ss)</option>
+        </select>
+    </div>
+
+    <!-- 1. 固定字符串输入框 -->
+    <div class="option-group sub-option" id="stringOption">
+        <label>输入字符串：</label>
+        <input type="text" id="insertText" value="插入的字符串">
+    </div>
+
+    <!-- 2. 数字序列输入框 -->
+    <div class="option-group sub-option" id="sequenceOptions">
+        <label>序列设置：</label>
+        起始值: <input type="number" id="startNum" value="1" style="width: 60px;">
+        步长: <input type="number" id="stepNum" value="1" style="width: 60px;">
+    </div>
+
+    <!-- 3. 时间戳输入框 -->
+    <div class="option-group sub-option" id="timestampOptions">
+        <label>时间戳设置：</label>
+        起始基准: <input type="number" id="startTimestamp" placeholder="默认当前时间" style="width: 150px;">
+        <span style="font-size: 12px; color: #888;">(留空则使用当前毫秒时间戳)</span><br>
+        <label></label>递增步长(毫秒): <input type="number" id="timestampStep" value="1000" style="width: 80px;">
+    </div>
+
+    <!-- 4. 日期格式输入框 -->
+    <div class="option-group sub-option" id="dateOptions">
+        <label>日期设置：</label>
+        起始日期: <input type="date" id="startDate">
+        递增步长(天): <input type="number" id="dateStep" value="1" style="width: 60px;">
+    </div>
+
+    <!-- 5. 日期时间格式输入框 -->
+    <div class="option-group sub-option" id="datetimeOptions">
+        <label>日期时间设置：</label>
+        起始时间: <input type="datetime-local" id="startDateTime">
+        <br>
+        <label></label>递增步长(秒): <input type="number" id="datetimeStep" value="60" style="width: 60px;">
+        <span style="font-size: 12px; color: #888;">(每行增加多少秒)</span>
+    </div>
+    
+    <br>
+    <button onclick="processCSV()">处理并下载新CSV</button>
+
+    <script>
+        // 初始化默认起始日期为今天
+        document.getElementById('startDate').valueAsDate = new Date();
+        
+        // 初始化默认起始日期时间为当前时间 (处理时区偏移以获取本地时间)
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('startDateTime').value = now.toISOString().slice(0, 16);
+
+        // 切换显示不同的输入选项
+        function toggleOptions() {
+            const mode = document.getElementById('insertMode').value;
+            // 先隐藏所有子选项
+            document.querySelectorAll('.sub-option').forEach(el => el.style.display = 'none');
+            
+            // 根据选择显示对应的选项
+            if (mode === 'string') {
+                document.getElementById('stringOption').style.display = 'block';
+            } else if (mode === 'sequence') {
+                document.getElementById('sequenceOptions').style.display = 'block';
+            } else if (mode === 'timestamp') {
+                document.getElementById('timestampOptions').style.display = 'block';
+            } else if (mode === 'date') {
+                document.getElementById('dateOptions').style.display = 'block';
+            } else if (mode === 'datetime') {
+                document.getElementById('datetimeOptions').style.display = 'block';
+            }
+        }
+
+        function processCSV() {
+            const fileInput = document.getElementById('csvFileInput');
+            const mode = document.getElementById('insertMode').value;
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("请先选择一个CSV文件！");
+                return;
+            }
+
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const text = e.target.result;
+                const lines = text.split('\n');
+                let newCsvContent = [];
+                
+                // 准备各个模式所需的变量
+                let currentNum = parseFloat(document.getElementById('startNum').value) || 1;
+                const step = parseFloat(document.getElementById('stepNum').value) || 1;
+
+                let currentTimestamp = parseFloat(document.getElementById('startTimestamp').value) || Date.now();
+                const timestampStep = parseFloat(document.getElementById('timestampStep').value) || 0;
+
+                let currentDate = new Date(document.getElementById('startDate').value);
+                const dateStep = parseFloat(document.getElementById('dateStep').value) || 1;
+
+                let currentDateTime = new Date(document.getElementById('startDateTime').value);
+                const datetimeStep = parseFloat(document.getElementById('datetimeStep').value) || 0;
+
+                lines.forEach((line) => {
+                    if (line.trim() === '') return; // 跳过空行
+                    
+                    let columns = line.split(',');
+                    let insertValue = '';
+
+                    // 【核心逻辑】根据模式决定插入什么内容
+                    if (mode === 'string') {
+                        insertValue = document.getElementById('insertText').value;
+                    } else if (mode === 'sequence') {
+                        insertValue = currentNum;
+                        currentNum += step;
+                    } else if (mode === 'timestamp') {
+                        insertValue = Math.floor(currentTimestamp);
+                        currentTimestamp += timestampStep;
+                    } else if (mode === 'date') {
+                        const year = currentDate.getFullYear();
+                        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+                        const day = String(currentDate.getDate()).padStart(2, '0');
+                        insertValue = `${year}-${month}-${day}`;
+                        currentDate.setDate(currentDate.getDate() + dateStep);
+                    } else if (mode === 'datetime') {
+                        // 格式化日期时间为 YYYY/MM/DD HH:mm:ss
+                        const Y = currentDateTime.getFullYear();
+                        const M = String(currentDateTime.getMonth() + 1).padStart(2, '0');
+                        const D = String(currentDateTime.getDate()).padStart(2, '0');
+                        const h = String(currentDateTime.getHours()).padStart(2, '0');
+                        const m = String(currentDateTime.getMinutes()).padStart(2, '0');
+                        const s = String(currentDateTime.getSeconds()).padStart(2, '0');
+                        insertValue = `${Y}/${M}/${D} ${h}:${m}:${s}`;
+                        
+                        // 增加指定的秒数 (转换为毫秒进行计算)
+                        currentDateTime = new Date(currentDateTime.getTime() + datetimeStep * 1000);
+                    }
+                    
+                    // 在每行的最前面插入新列 (如果想插在最后一列，改为 columns.push(insertValue))
+                    columns.unshift(insertValue);
+                    
+                    newCsvContent.push(columns.join(','));
+                });
+
+                const finalCsvString = newCsvContent.join('\n');
+                downloadFile(finalCsvString, 'processed_with_datetime_sequence.csv');
+            };
+
+            reader.readAsText(file);
+        }
+
+        function downloadFile(content, fileName) {
+            // 加上 \uFEFF 防止 Excel 打开中文乱码 (BOM头)
+            const blob = new Blob(['\uFEFF' + content], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute("href", url);
+            link.setAttribute("download", fileName);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
