@@ -102,7 +102,7 @@
         </div>
         <div id="id_HardWare" style="display:none;border: dashed;border-color: goldenrod;font-size:13px;text-align:justify">
             <div>
-           <select><option>请选择COM-USB端口</option><option>COM1</option><option>COM2</option><option>COM3</option><option>COM4</option></select>&nbsp; &nbsp; <button style="display:inline;white-space: normal;margin:0;padding:0" onclick="fnAjaxServerSideCallBCI()">单击实时连接硬件</button>【注：如果硬件不支持Web服务端接入USB，<a href="https://www.alipan.com/s/6PR7tusHB42" target="_blank">就请单击下载运行APP客户端采集数据的.CSV文件</a>、<a href="TryBCI.csv" target="_blank">查看数据的.CSV文件实例</a>、<a href="CSVProcessorInBrowser.html" target="_blank">上传数据的.CSV文件进行预处理后交付SS实现五层MVC</a>】【注：<a href="https://www.zhihu.com/pin/2021366366880430037" target="_blank">“单击查看视频演示”</a>】
+           <select><option>请选择COM-USB端口</option><option>COM1</option><option>COM2</option><option>COM3</option><option>COM4</option></select>&nbsp; &nbsp; <button style="display:inline;white-space: normal;margin:0;padding:0" onclick="fnAjaxServerSideCallBCI()">单击实时连接硬件</button>【注：如果硬件不支持Web服务端接入USB，<a href="https://www.alipan.com/s/6PR7tusHB42" target="_blank">就请单击下载运行APP客户端采集数据的.CSV文件</a>、<a href="TryBCI.csv" target="_blank">查看数据的.CSV文件实例</a>、<a href="CSVProcessorInBrowser.html" target="_blank">上传数据的.CSV文件进行预处理后交付SQL-Server实现五层MVC</a>】【注：<a href="https://www.zhihu.com/pin/2021366366880430037" target="_blank">“单击查看视频演示”</a>】
                 <ol>
                <li>原始信号：<input type="text" value="000000" style="display:inline;white-space: normal" id="idRawSignal"/></li>
                <li>原始信号的数据：Attention(注意力)<input type="text" value="000000" style="display:inline;white-space: normal" id="idAttention" /></li>
@@ -521,7 +521,7 @@
                 <!--
                     <button id="InternalWebClaw" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
     {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("FormInternalWebClaw").style.display=="none"){document.getElementById("FormInternalWebClaw").style.display="block";document.getElementById("TriAngleOfInternalWebClaw").textContent="▼";} else{document.getElementById("FormInternalWebClaw").style.display="none";document.getElementById("TriAngleOfInternalWebClaw").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;font-size:14px;text-align:justify" title="【注：本系统遵循业界的本机通用智能体Agent→领域本机智能体Agent的思路，继承利用现有的“本机VS-GitHubCopilot”等等通用智能体Agent，创新研发SKills，融合数智思维知识库，研发教育领域的教育数智思维的本机智能体Agent】">
-                        <span id="TriAngleOfInternalWebClaw">▶</span><span style="font-weight:bold">如上，本系统内部AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的本机通用智能体，请单击这里切换显示，并且装载<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="单击可以下载本系统研发的所有Agent-Skills，以供各种通用Agent运行（当前技术阶段尚不支持Agent直接URL装载运行Agent-Skills）">本系统研发的所有Agent-Skills</a>（注意思辨运行结果的准确性）：</span>
+                        <span id="TriAngleOfInternalWebClaw">▶</span><span style="font-weight:bold">如上，本系统内部AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的本机通用智能体，请单击这里切换显示，并且装载<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="单击可以下载本系统“四层平台的五层MVC”思路研发的所有Agent-Skills，以供各种通用Agent运行（当前技术阶段尚不支持Agent直接URL装载运行Agent-Skills）">本系统“四层平台的五层MVC”思路研发的所有Agent-Skills</a>（注意思辨运行结果的准确性）：</span>
                     </button>
                     <div id="FormInternalWebClaw" style="display: none; border: dashed; border-color: goldenrod;text-align:justify" title="账号请按规则保存在本项目的appsettings.json文件之中，口令密码请按规则保存在本项目的Secrets.json文件之中！如果服务端拒绝连接，请单击下方的链接打开！">
 
@@ -645,7 +645,7 @@
                 <!--下面的两栏的Agent尝试合并为一栏-->
                 <!-- <button id="ExternalWebClaw" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
     {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("FormExternalWebClaw").style.display=="none"){document.getElementById("FormExternalWebClaw").style.display="block";document.getElementById("TriAngleOfExternalWebClaw").textContent="▼";} else{document.getElementById("FormExternalWebClaw").style.display="none";document.getElementById("TriAngleOfExternalWebClaw").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;font-size:14px;text-align:justify" title="【注：本系统遵循业界的云端通用智能体Agent→领域云端智能体Agent的思路，继承利用现有的“云端GitHubCopilot”等等通用智能体Agent，创新研发SKills，融合数智思维知识库，研发教育领域的教育数智思维的云端智能体Agent】">
-                        <span id="TriAngleOfExternalWebClaw">▶</span><span style="font-weight:bold">如上，本系统外部AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的云端通用智能体，请单击这里切换显示，并且上传运行<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="单击可以下载本系统研发的所有Agent-Skills，以供各种通用Agent运行（当前技术阶段尚不支持Agent直接URL装载运行Agent-Skills）">本系统研发的所有Agent-Skills</a>（注意思辨运行结果的准确性）：</span>
+                        <span id="TriAngleOfExternalWebClaw">▶</span><span style="font-weight:bold">如上，本系统外部AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的云端通用智能体，请单击这里切换显示，并且上传运行<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="单击可以下载本系统“四层平台的五层MVC”思路研发的所有Agent-Skills，以供各种通用Agent运行（当前技术阶段尚不支持Agent直接URL装载运行Agent-Skills）">本系统“四层平台的五层MVC”思路研发的所有Agent-Skills</a>（注意思辨运行结果的准确性）：</span>
                     </button>
                     <div id="FormExternalWebClaw" style="display: none; border: dashed; border-color: goldenrod;text-align:justify" title="账号请按规则保存在本项目的appsettings.json文件之中，口令密码请按规则保存在本项目的Secrets.json文件之中！如果服务端拒绝连接，请单击下方的链接打开！">
 
@@ -706,7 +706,7 @@
             <td colspan="2" style="border:dashed">
                 <button id="ExternalWebClaw" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
     {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("FormExternalWebClaw").style.display=="none"){document.getElementById("FormExternalWebClaw").style.display="block";document.getElementById("TriAngleOfExternalWebClaw").textContent="▼";} else{document.getElementById("FormExternalWebClaw").style.display="none";document.getElementById("TriAngleOfExternalWebClaw").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;font-size:14px;text-align:justify" title="【注：本系统遵循业界的通用智能体Agent→领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发SKills，融合数智思维知识库，研发教育领域的教育数智思维的本机通用智能体Agent/云端通用智能体Agent】">
-                    <span id="TriAngleOfExternalWebClaw">▶</span><span style="font-weight:bold">如上，本系统AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的本机通用智能体/云端通用智能体，请单击这里切换显示，并且运行<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="当前技术阶段尚不支持Agent直接URL装载运行Skills，单击本链接可以下载本系统研发的所有Skills，以供各种通用Agent部署运行【注：本系统研发的各个Skill文件夹之中有一个ReadMe文档用作部署运行参考，例如，agent-browser文件夹之下的ReadMe文档，说明了如何同时发布教与学资源进入知乎/小红书/LinkIn等等多个社区...】【注：各种Agent部署运行Skills可能稍有不同，本系统建议您选用VS内置的VS-GitHubCopilot部署运行Skills】">本系统研发的所有Agent-Skills</a>（注意思辨运行结果的准确性）：</span>
+                    <span id="TriAngleOfExternalWebClaw">▶</span><span style="font-weight:bold">如上，本系统AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的本机通用智能体/云端通用智能体，请单击这里切换显示，并且运行<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="当前技术阶段尚不支持Agent直接URL装载运行Skills，单击本链接可以下载本系统“四层平台的五层MVC”思路研发的所有Skills，以供各种通用Agent部署运行。&#10;【注：本系统“四层平台的五层MVC”思路研发的各个Skill文件夹之中有一个ReadMe文档用作部署运行参考，例如，agent-browser文件夹之下的ReadMe文档，说明了如何同时发布教与学资源进入知乎/小红书/LinkIn等等多个社区...】&#10;【注：各种Agent部署运行Skills可能稍有不同，本系统建议您选用VS内置的VS-GitHubCopilot部署运行Skills】">本系统“四层平台的五层MVC”思路研发的所有Agent-Skills</a>（注意思辨运行结果的准确性）：</span>
                 </button>
                 <div id="FormExternalWebClaw" style="display: none; border: dashed; border-color: goldenrod;text-align:justify" title="账号请按规则保存在本项目的appsettings.json文件之中，口令密码请按规则保存在本项目的Secrets.json文件之中！如果服务端拒绝连接，请单击下方的链接打开！">
 
@@ -740,71 +740,6 @@
                     </div>
             </td>
     </table>
-
-    <!--系统外部的调用AIGC的语音对话注意事项：API 密钥安全性 不要将密钥直接暴露在前端代码中，建议通过后端代理转发请求。兼容性处理 不同大模型（例如，ChatGPT、Qwen）的 API 参数可能略有不同，请参考官方文档调整。
-
-        <script>
-    const fetchData = async (prompt) => {
-    const response = await fetch('https://api.openai.com/v1/completions', {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer YOUR_API_KEY`
-    },
-    body: JSON.stringify({
-    model: 'gpt-4',
-    prompt: prompt,
-    max_tokens: 100,
-    temperature: 0.7
-    //stream: true // 如果启用流式响应
-    })
-    });
-
-    if (!response.ok) {
-    throw new Error('Network response was not ok');
-    }
-
-    const data = await response.json();
-    console.log(data.choices[0].text); // 输出生成的文本
-    };
-
-    fetchData("请为一家餐厅起一个名字");
-
-        </script>
-        <script>
-    const fetchStreamData = async (prompt) => {
-    const response = await fetch('https://api.openai.com/v1/completions', {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer YOUR_API_KEY`
-    },
-    body: JSON.stringify({
-    model: 'gpt-4',
-    prompt: prompt,
-    stream: true // 启用流式响应
-    })
-    });
-
-    if (!response.ok) {
-    throw new Error('Network response was not ok');
-    }
-
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder('utf-8');
-    let done = false;
-
-    while (!done) {
-    const { value, done: readerDone } = await reader.read();
-    done = readerDone;
-    const chunk = decoder.decode(value, { stream: true });
-    console.log(chunk); // 实时输出每块数据
-    }
-    };
-
-    fetchStreamData("请生成一段关于人工智能的介绍");
-        </script>
-          -->
 </body>
 
 </html>
