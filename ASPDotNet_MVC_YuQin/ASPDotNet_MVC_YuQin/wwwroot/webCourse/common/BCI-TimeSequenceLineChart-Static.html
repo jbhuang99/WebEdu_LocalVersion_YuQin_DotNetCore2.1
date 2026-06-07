@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时序数据折线图</title>
+    <!-- 引入 ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        body { margin: 0; padding: 20px; background-color: #f5f5f5; font-family: sans-serif; }
+        #chart-container { width: 100%; height: 600px; background: white; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div id="chart-container"></div>
+
+<script>
+// 1. 将CSV数据嵌入到JS变量中 (实际使用时可替换为fetch请求)。如果希望从外部加载 CSV 文件而非内嵌数据，只需将 csvData 变量替换为 fetch('your_file.csv').then(r => r.text()) 的异步调用即可。
+const csvData = `TimeSeqence	Att	Med	Delta	Theta	LowAlpha	HighAlpha	LowBeta	HighBeta	LowGamma	MiddleGamma
+2026/6/2 23:10	58	38	25	46	31	20	33	57	37	26
+2026/6/2 23:11	57	35	47	33	29	38	50	27	30	27
+2026/6/2 23:12	60	33	27	37	38	7	34	49	26	33
+2026/6/2 23:13	57	31	29	41	18	49	48	23	38	24
+2026/6/2 23:14	50	33	11	17	14	54	65	49	53	39
+2026/6/2 23:15	65	29	9	25	37	21	41	38	27	32
+2026/6/2 23:16	47	35	19	25	35	51	51	43	22	27
+2026/6/2 23:17	86	23	30	36	8	16	56	48	39	39
+2026/6/2 23:18	47	29	23	28	50	15	57	43	31	41
+2026/6/2 23:19	68	21	52	38	9	36	61	21	38	41
+2026/6/2 23:20	78	20	22	47	7	23	49	45	40	41
+2026/6/2 23:21	54	20	26	70	50	22	63	21	33	20
+2026/6/2 23:22	67	28	26	66	24	26	56	44	21	20
+2026/6/2 23:23	56	24	10	56	32	37	19	24	28	36
+2026/6/2 23:24	50	32	35	55	53	40	55	31	30	29
+2026/6/2 23:25	48	40	14	43	40	52	60	47	36	39
+2026/6/2 23:26	57	36	20	51	34	21	52	53	36	29
+2026/6/2 23:27	54	40	24	19	23	32	42	31	39	30
+2026/6/2 23:28	61	33	16	43	42	47	51	39	38	36
+2026/6/2 23:29	72	23	29	39	36	3	25	25	41	20
+2026/6/2 23:30	63	20	28	31	27	38	29	39	40	35
+2026/6/2 23:31	62	20	18	78	15	37	32	52	54	36
+2026/6/2 23:32	56	22	30	61	35	44	59	17	34	32
+2026/6/2 23:33	47	32	54	47	28	55	43	41	40	24
+2026/6/2 23:34	57	38	56	57	26	32	38	32	34	20
+2026/6/2 23:35	64	35	30	60	20	35	47	34	35	20
+2026/6/2 23:36	52	36	23	54	47	36	46	36	23	47
+2026/6/2 23:37	52	36	14	63	15	46	36	27	33	27
+2026/6/2 23:38	53	32	36	44	16	46	46	36	39	26
+2026/6/2 23:39	72	28	9	35	25	14	44	35	42	25
+2026/6/2 23:40	49	35	20	30	28	36	36	32	41	32
+2026/6/2 23:41	61	31	41	42	28	34	48	25	32	39
+2026/6/2 23:42	64	28	54	57	23	30	46	55	26	20
+2026/6/2 23:43	55	28	31	52	35	42	26	46	50	27
+2026/6/2 23:44	65	29	40	44	35	25	53	29	30	25
+2026/6/2 23:45	69	23	6	46	27	13	55	56	43	31
+2026/6/2 23:46	71	21	22	42	10	28	22	61	30	28
+2026/6/2 23:47	53	25	47	53	20	66	32	44	19	21
+2026/6/2 23:48	57	25	58	19	30	45	26	36	35	29
+2026/6/2 23:49	54	31	32	33	54	32	50	33	30	27
+2026/6/2 23:50	70	30	38	31	23	17	47	50	31	30
+2026/6/2 23:51	68	30	19	62	8	31	50	33	37	29
+2026/6/2 23:52	68	22	11	39	39	23	42	59	40	31
+2026/6/2 23:53	74	16	16	40	21	20	38	31	24	34
+2026/6/2 23:54	70	12	32	40	3	42	27	34	33	19
+2026/6/2 23:55	49	22	41	33	62	29	40	28	21	26
+2026/6/2 23:56	42	33	43	53	31	58	47	29	29	24
+2026/6/2 23:57	48	41	27	50	38	54	40	35	20	23
+2026/6/2 23:58	57	43	6	12	41	29	32	47	28	30
+2026/6/2 23:59	72	38	42	34	22	14	35	34	25	29
+2026/6/3 0:00	50	35	12	41	46	47	31	48	24	42
+2026/6/3 0:01	49	31	6	37	44	42	51	34	40	29
+2026/6/3 0:02	69	25	29	40	25	13	34	23	44	35
+2026/6/3 0:03	76	22	24	63	18	19	41	35	31	26
+2026/6/3 0:04	56	30	36	56	51	8	48	39	31	33
+2026/6/3 0:05	54	29	20	30	52	28	49	41	52	26
+2026/6/3 0:06	58	25	7	38	43	20	59	39	34	32
+2026/6/3 0:07	61	27	20	36	37	41	29	35	30	29
+2026/6/3 0:08	67	29	27	32	6	33	52	27	29	38
+2026/6/3 0:09	70	23	35	17	26	22	59	62	23	32
+2026/6/3 0:10	55	24	11	49	46	37	44	43	38	20
+2026/6/3 0:11	64	22	20	18	26	23	53	26	30	28
+2026/6/3 0:12	69	21	41	22	22	25	37	46	29	26
+2026/6/3 0:13	63	24	21	54	34	28	30	29	35	38
+2026/6/3 0:14	56	29	6	49	38	30	26	24	41	39
+2026/6/3 0:15	54	29	19	21	15	57	39	37	55	38
+2026/6/3 0:16	53	31	10	51	34	42	45	44	27	32
+2026/6/3 0:17	60	32	34	27	10	47	53	43	33	30
+2026/6/3 0:18	73	28	56	29	18	25	47	40	33	26
+2026/6/3 0:19	0	0	56	29	18	25	47	40	33	26
+2026/6/3 0:20	0	0	56	29	18	25	47	40	33	26
+2026/6/3 0:21	0	0	56	29	18	25	47	40	33	26`;
+
+// 2. 解析 CSV 数据
+function parseCSV(csvText) {
+    const lines = csvText.trim().split('\n');
+    const headers = lines[0].split('\t');
+    const timeIndex = headers.indexOf('TimeSeqence');
+    
+    const times = [];
+    const seriesData = {};
+    
+    // 初始化系列数据容器
+    headers.forEach((h, i) => {
+        if (i !== timeIndex) seriesData[h] = [];
+    });
+
+    for (let i = 1; i < lines.length; i++) {
+        const cols = lines[i].split('\t');
+        if (cols.length < headers.length) continue;
+        
+        times.push(cols[timeIndex]);
+        headers.forEach((h, idx) => {
+            if (idx !== timeIndex) {
+                seriesData[h].push(Number(cols[idx]));
+            }
+        });
+    }
+    return { times, headers: headers.filter(h => h !== 'TimeSeqence'), seriesData };
+}
+
+const parsed = parseCSV(csvData);
+
+// 3. 构建 ECharts 配置项
+const option = {
+    title: { text: '脑波时序数据分析', left: 'center' },
+    tooltip: { trigger: 'axis' },
+    legend: { 
+        data: parsed.headers, 
+        bottom: 0, 
+        type: 'scroll' 
+    },
+    grid: { left: '3%', right: '4%', bottom: '12%', containLabel: true },
+    toolbox: { feature: { saveAsImage: {} } },
+    xAxis: { 
+        type: 'category', 
+        boundaryGap: false, 
+        data: parsed.times,
+        axisLabel: { rotate: 30 }
+    },
+    yAxis: { type: 'value', name: '数值' },
+    dataZoom: [
+        { type: 'inside', start: 0, end: 100 },
+        { type: 'slider', start: 0, end: 100 }
+    ],
+    series: parsed.headers.map(name => ({
+        name: name,
+        type: 'line',
+        smooth: true,
+        symbol: 'none',
+        sampling: 'lttb',
+        data: parsed.seriesData[name]
+    }))
+};
+
+// 4. 初始化图表
+const chartDom = document.getElementById('chart-container');
+const myChart = echarts.init(chartDom);
+myChart.setOption(option);
+
+// 响应式调整
+window.addEventListener('resize', () => myChart.resize());
+</script>
+</body>
+</html>

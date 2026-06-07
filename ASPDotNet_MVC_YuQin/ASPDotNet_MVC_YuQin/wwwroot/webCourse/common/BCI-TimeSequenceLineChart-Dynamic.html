@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>脑波时序动态演示</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        body { margin: 0; padding: 20px; background: #1a1a2e; font-family: sans-serif; color: #eee; }
+        #chart-container { width: 100%; height: 600px; background: #16213e; border-radius: 8px; }
+        .controls { margin-bottom: 12px; display: flex; gap: 10px; align-items: center; }
+        button { padding: 8px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        .btn-start { background: #0f3460; color: #e94560; }
+        .btn-pause { background: #e94560; color: white; }
+        .btn-reset { background: #533483; color: white; }
+        .speed-label { font-size: 13px; color: #aaa; }
+        input[type=range] { vertical-align: middle; }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="btn-start" id="btnStart">▶ 开始</button>
+        <button class="btn-pause" id="btnPause">⏸ 暂停</button>
+        <button class="btn-reset" id="btnReset">⟲ 重置</button>
+        <span class="speed-label">速度：</span>
+        <input type="range" id="speedRange" min="50" max="1000" value="300" step="50">
+        <span id="speedVal" class="speed-label">300ms</span>
+    </div>
+    <div id="chart-container"></div>
+
+<script>
+// ============ 原始 CSV 数据 ============
+const csvData = `TimeSeqence	Att	Med	Delta	Theta	LowAlpha	HighAlpha	LowBeta	HighBeta	LowGamma	MiddleGamma
+2026/6/2 23:10	58	38	25	46	31	20	33	57	37	26
+2026/6/2 23:11	57	35	47	33	29	38	50	27	30	27
+2026/6/2 23:12	60	33	27	37	38	7	34	49	26	33
+2026/6/2 23:13	57	31	29	41	18	49	48	23	38	24
+2026/6/2 23:14	50	33	11	17	14	54	65	49	53	39
+2026/6/2 23:15	65	29	9	25	37	21	41	38	27	32
+2026/6/2 23:16	47	35	19	25	35	51	51	43	22	27
+2026/6/2 23:17	86	23	30	36	8	16	56	48	39	39
+2026/6/2 23:18	47	29	23	28	50	15	57	43	31	41
+2026/6/2 23:19	68	21	52	38	9	36	61	21	38	41
+2026/6/2 23:20	78	20	22	47	7	23	49	45	40	41
+2026/6/2 23:21	54	20	26	70	50	22	63	21	33	20
+2026/6/2 23:22	67	28	26	66	24	26	56	44	21	20
+2026/6/2 23:23	56	24	10	56	32	37	19	24	28	36
+2026/6/2 23:24	50	32	35	55	53	40	55	31	30	29
+2026/6/2 23:25	48	40	14	43	40	52	60	47	36	39
+2026/6/2 23:26	57	36	20	51	34	21	52	53	36	29
+2026/6/2 23:27	54	40	24	19	23	32	42	31	39	30
+2026/6/2 23:28	61	33	16	43	42	47	51	39	38	36
+2026/6/2 23:29	72	23	29	39	36	3	25	25	41	20
+2026/6/2 23:30	63	20	28	31	27	38	29	39	40	35
+2026/6/2 23:31	62	20	18	78	15	37	32	52	54	36
+2026/6/2 23:32	56	22	30	61	35	44	59	17	34	32
+2026/6/2 23:33	47	32	54	47	28	55	43	41	40	24
+2026/6/2 23:34	57	38	56	57	26	32	38	32	34	20
+2026/6/2 23:35	64	35	30	60	20	35	47	34	35	20
+2026/6/2 23:36	52	36	23	54	47	36	46	36	23	47
+2026/6/2 23:37	52	36	14	63	15	46	36	27	33	27
+2026/6/2 23:38	53	32	36	44	16	46	46	36	39	26
+2026/6/2 23:39	72	28	9	35	25	14	44	35	42	25
+2026/6/2 23:40	49	35	20	30	28	36	36	32	41	32
+2026/6/2 23:41	61	31	41	42	28	34	48	25	32	39
+2026/6/2 23:42	64	28	54	57	23	30	46	55	26	20
+2026/6/2 23:43	55	28	31	52	35	42	26	46	50	27
+2026/6/2 23:44	65	29	40	44	35	25	53	29	30	25
+2026/6/2 23:45	69	23	6	46	27	13	55	56	43	31
+2026/6/2 23:46	71	21	22	42	10	28	22	61	30	28
+2026/6/2 23:47	53	25	47	53	20	66	32	44	19	21
+2026/6/2 23:48	57	25	58	19	30	45	26	36	35	29
+2026/6/2 23:49	54	31	32	33	54	32	50	33	30	27
+2026/6/2 23:50	70	30	38	31	23	17	47	50	31	30
+2026/6/2 23:51	68	30	19	62	8	31	50	33	37	29
+2026/6/2 23:52	68	22	11	39	39	23	42	59	40	31
+2026/6/2 23:53	74	16	16	40	21	20	38	31	24	34
+2026/6/2 23:54	70	12	32	40	3	42	27	34	33	19
+2026/6/2 23:55	49	22	41	33	62	29	40	28	21	26
+2026/6/2 23:56	42	33	43	53	31	58	47	29	29	24
+2026/6/2 23:57	48	41	27	50	38	54	40	35	20	23
+2026/6/2 23:58	57	43	6	12	41	29	32	47	28	30
+2026/6/2 23:59	72	38	42	34	22	14	35	34	25	29
+2026/6/3 0:00	50	35	12	41	46	47	31	48	24	42
+2026/6/3 0:01	49	31	6	37	44	42	51	34	40	29
+2026/6/3 0:02	69	25	29	40	25	13	34	23	44	35
+2026/6/3 0:03	76	22	24	63	18	19	41	35	31	26
+2026/6/3 0:04	56	30	36	56	51	8	48	39	31	33
+2026/6/3 0:05	54	29	20	30	52	28	49	41	52	26
+2026/6/3 0:06	58	25	7	38	43	20	59	39	34	32
+2026/6/3 0:07	61	27	20	36	37	41	29	35	30	29
+2026/6/3 0:08	67	29	27	32	6	33	52	27	29	38
+2026/6/3 0:09	70	23	35	17	26	22	59	62	23	32
+2026/6/3 0:10	55	24	11	49	46	37	44	43	38	20
+2026/6/3 0:11	64	22	20	18	26	23	53	26	30	28
+2026/6/3 0:12	69	21	41	22	22	25	37	46	29	26
+2026/6/3 0:13	63	24	21	54	34	28	30	29	35	38
+2026/6/3 0:14	56	29	6	49	38	30	26	24	41	39
+2026/6/3 0:15	54	29	19	21	15	57	39	37	55	38
+2026/6/3 0:16	53	31	10	51	34	42	45	44	27	32
+2026/6/3 0:17	60	32	34	27	10	47	53	43	33	30
+2026/6/3 0:18	73	28	56	29	18	25	47	40	33	26
+2026/6/3 0:19	0	0	56	29	18	25	47	40	33	26
+2026/6/3 0:20	0	0	56	29	18	25	47	40	33	26
+2026/6/3 0:21	0	0	56	29	18	25	47	40	33	26`;
+
+// ============ CSV 解析 ============
+function parseCSV(text) {
+    const lines = text.trim().split('\n');
+    const headers = lines[0].split('\t');
+    const timeIdx = headers.indexOf('TimeSeqence');
+    const times = [];
+    const seriesMap = {};
+    headers.forEach((h, i) => { if (i !== timeIdx) seriesMap[h] = []; });
+
+    for (let i = 1; i < lines.length; i++) {
+        const cols = lines[i].split('\t');
+        if (cols.length < headers.length) continue;
+        times.push(cols[timeIdx]);
+        headers.forEach((h, idx) => {
+            if (idx !== timeIdx) seriesMap[h].push(Number(cols[idx]));
+        });
+    }
+    return { times, names: headers.filter(h => h !== 'TimeSeqence'), seriesMap };
+}
+
+const data = parseCSV(csvData);
+const WINDOW_SIZE = 30; // 可视窗口保留的数据点数
+
+// ============ ECharts 初始化 ============
+const chart = echarts.init(document.getElementById('chart-container'));
+
+const makeSeries = () => data.names.map(name => ({
+    name, type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
+    showSymbol: false, lineStyle: { width: 2 },
+    emphasis: { focus: 'series' },
+    data: []
+}));
+
+const option = {
+    backgroundColor: 'transparent',
+    title: { text: '🧠 脑波实时监测', left: 'center', textStyle: { color: '#e94560' } },
+    tooltip: { trigger: 'axis', backgroundColor: 'rgba(22,33,62,0.9)', borderColor: '#e94560', textStyle: { color: '#eee' } },
+    legend: { data: data.names, bottom: 0, textStyle: { color: '#aaa' }, type: 'scroll' },
+    grid: { left: '3%', right: '4%', bottom: '14%', top: '12%', containLabel: true },
+    xAxis: {
+        type: 'category', boundaryGap: false, data: [],
+        axisLine: { lineStyle: { color: '#444' } },
+        axisLabel: { color: '#aaa', rotate: 30 }
+    },
+    yAxis: {
+        type: 'value', splitLine: { lineStyle: { color: '#2a2a4a' } },
+        axisLabel: { color: '#aaa' }
+    },
+    series: makeSeries()
+};
+chart.setOption(option);
+window.addEventListener('resize', () => chart.resize());
+
+// ============ 动态播放引擎 ============
+let timer = null;
+let currentIndex = 0;
+let speed = 300;
+
+function pushPoint() {
+    if (currentIndex >= data.times.length) { stop(); return; }
+
+    const t = data.times[currentIndex];
+    const newSeriesData = data.names.map(name => data.seriesMap[name][currentIndex]);
+
+    // 获取当前图表中的已有数据
+    const curOpt = chart.getOption();
+    const xData = [...curOpt.xAxis[0].data, t];
+    const seriesArr = curOpt.series.map((s, i) => [...s.data, newSeriesData[i]]);
+
+    // 滑动窗口：超出时移除头部旧数据
+    if (xData.length > WINDOW_SIZE) {
+        xData.shift();
+        seriesArr.forEach(arr => arr.shift());
+    }
+
+    chart.setOption({
+        xAxis: { data: xData },
+        series: seriesArr.map((d, i) => ({ data: d }))
+    });
+
+    currentIndex++;
+}
+
+function start() {
+    if (timer) return;
+    timer = setInterval(pushPoint, speed);
+}
+function stop() {
+    clearInterval(timer);
+    timer = null;
+}
+function reset() {
+    stop();
+    currentIndex = 0;
+    chart.setOption({
+        xAxis: { data: [] },
+        series: data.names.map(() => ({ data: [] }))
+    });
+}
+
+// ============ 控件绑定 ============
+document.getElementById('btnStart').onclick = start;
+document.getElementById('btnStart').click();
+document.getElementById('btnPause').onclick = stop;
+document.getElementById('btnReset').onclick = reset;
+
+const speedRange = document.getElementById('speedRange');
+const speedVal = document.getElementById('speedVal');
+speedRange.oninput = function () {
+    // range值越小越快，反转映射使滑块右移=加速
+    speed = 1050 - Number(this.value);
+    speedVal.textContent = speed + 'ms';
+    if (timer) { stop(); start(); }
+};
+</script>
+</body>
+</html>
