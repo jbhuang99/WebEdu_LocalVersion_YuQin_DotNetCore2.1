@@ -200,8 +200,8 @@
             </div>
         </div>
         <div style="width: 90%">
-            <button style="color:green;font-size:11px;" onclick='document.getElementById("sAccuracySimilarityForString").textContent=fnStringSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityForString" style="font-size: 11px">这里将显示上述两个字符序列的准确性相似度</span>
-            <br /><button style="color:green;font-size:12px" onclick='document.getElementById("sSemanticAccuracySimilarityForString").textContent=fnStringSemanticSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span style="font-size: 11px" id="sSemanticAccuracySimilarityForString">这里将显示上述两个字符序列的准确性相似度【注：付费调用云端大语言模型可以更加准确地实现！】</span>
+            <button style="color:green;font-size:11px;" onclick='document.getElementById("sAccuracySimilarityForString").textContent=fnStringSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityForString" style="font-size: 11px">这里将显示上述两个字符序列的准确性相似度</span>
+            <br /><button style="color:green;font-size:12px" onclick='document.getElementById("sSemanticAccuracySimilarityForString").textContent=fnStringSemanticSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px" id="sSemanticAccuracySimilarityForString">这里将显示上述两个字符序列的准确性相似度【注：付费调用云端大语言模型可以更加准确地实现！】</span>
             <br /><button><a href="../options/EmbeddingPython-sim_entropy.html" target="_blank">关于准确性相似度算法创新（而且尝试了多种平台语言的融合）（专利申请之中...）</a></button>
         </div>
     </div>
@@ -223,8 +223,8 @@
             </div>
         </div>
         <div>
-            <button style="color:green;font-size:12px" onclick="fnPixelImageSimilarity();">（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityForPixelImage" style="font-size: 11px">这里将显示上述两个图像的准确性相似度</span>
-            <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+            <button style="color:green;font-size:12px" onclick="fnPixelImageSimilarity();">（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityForPixelImage" style="font-size: 11px">这里将显示上述两个图像的准确性相似度</span>
+            <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
         </div>
     </div>
     <div></div>
@@ -244,8 +244,8 @@
                 <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.mp4视频文件，可用作评判自己创作的.mp4视频文件的的标准' /><input type="submit" value="提交文件" /></div>
             </div>
         </div>
-        <div><button style="color:green;font-size:12px" onclick="fnCompareVideos();">（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityForPixelVideo" style="font-size: 11px">这里将显示上述两个视频的准确性相似度</span></div><canvas id="canvas" width="160" height="90" style="display:none"></canvas>
-        <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+        <div><button style="color:green;font-size:12px" onclick="fnCompareVideos();">（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityForPixelVideo" style="font-size: 11px">这里将显示上述两个视频的准确性相似度</span></div><canvas id="canvas" width="160" height="90" style="display:none"></canvas>
+        <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
     </div>
     <div></div>
     <div style="text-align:justify">
@@ -265,8 +265,8 @@
             </div>
         </div>
         <div>
-            <button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityFor2D();">（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityFor2D" style="font-size: 11px">这里将显示上述两个2D的准确性相似度</span>
-            <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+            <button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityFor2D();">（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityFor2D" style="font-size: 11px">这里将显示上述两个2D的准确性相似度</span>
+            <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
         </div>
     </div>
     <div></div>
@@ -382,8 +382,8 @@
             </div>
         </div>
         <div>
-            <button style="color:green;font-size:12px" onclick="document.getElementById('sAccuracySimilarityFor3D').textContent='（开发之中...)'//fnShowAccuraySimilarityFor3D();">（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityFor3D" style="font-size: 11px">这里将显示上述两个3D的准确性相似度</span>
-            <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+            <button style="color:green;font-size:12px" onclick="document.getElementById('sAccuracySimilarityFor3D').textContent='（开发之中...)'//fnShowAccuraySimilarityFor3D();">（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityFor3D" style="font-size: 11px">这里将显示上述两个3D的准确性相似度</span>
+            <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
         </div>
     </div>
     <div></div>
@@ -405,9 +405,9 @@
         </div>
 
         <div>
-            <button style="color:green;font-size:12px" onclick="fnCompareAudio();">（标量的Literal顺序匹配）准确性相似度：</button><span id="sAccuracySimilarityForAudio" style="font-size: 11px">这里将显示上述两个音频的准确性相似度</span>
+            <button style="color:green;font-size:12px" onclick="fnCompareAudio();">（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityForAudio" style="font-size: 11px">这里将显示上述两个音频的准确性相似度</span>
             <br />
-            <button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离）准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+            <button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
         </div>
     </div>
 
@@ -501,7 +501,7 @@
                             <div style="text-align: center"><textarea id="idTextAreaAjaxInternalSideCallAIGCAnswerCharactor" style="width:95%;height:95px">第3章 “教育数智思维语言的理想相对树根”</textarea></div>
                             <button id="" style="display:inline;white-space: normal" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部下拉框中的各种小语言模型SLM" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactorInternal("Proxy");'>
-                                确定【<span style="color:brown;font-weight:bold">“智能对话Chat_Ask客户←互动→数智时代融合教育数智思维知识库的教育小语言模型SLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“教材课文”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，显式调用内部SLM的矢量数据库）</span>
+                                确定【<span style="color:brown;font-weight:bold">“智能对话Chat_Ask客户←互动→数智时代融合教育数智思维知识库的教育小语言模型SLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨字面准确性/语义准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“教材课文”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，显式调用内部SLM的矢量数据库）</span>
                             </button>
                             <!-- <br /><button onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
                 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}alert("正在开发之中...")'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种小语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
@@ -511,7 +511,7 @@
                             <div style="text-align: center"><textarea id="idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 95px">第3章 “教育数智思维语言的理想相对树根”的一道四个选项的单选题，适合用于考试测验。</textarea></div>
                             <button id="" style="display:inline;white-space: normal" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部下拉框中的各种小语言模型SLM" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal("Proxy");'>
-                                确定【<span style="color:brown;font-weight:bold">“智能体对话Chat_Agent客户←互动→数智时代融合教育数智思维知识库的教育小语言模型SLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“作业测验”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，显式调用内部SLM的矢量数据库）</span>
+                                确定【<span style="color:brown;font-weight:bold">“智能体对话Chat_Agent客户←互动→数智时代融合教育数智思维知识库的教育小语言模型SLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨字面准确性/语义准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“作业测验”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，显式调用内部SLM的矢量数据库）</span>
                             </button>
                             <!-- <br /><button onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
                 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}alert("正在开发之中...");'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种小语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
@@ -625,7 +625,7 @@
                                 <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerCharactor" style="width:95%;height:100px"></textarea></div>
                                 <button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部下拉框中的各种大语言模型LLM、小语言模型SLM、网站" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor("Proxy");'>
-                                    确定【<span style="color:brown;font-weight:bold">“智能对话Chat_Ask客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“教材课文”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，隐式调用外部LLM的矢量数据库）</span>
+                                    确定【<span style="color:brown;font-weight:bold">“智能对话Chat_Ask客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨字面准确性/语义准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“教材课文”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，隐式调用外部LLM的矢量数据库）</span>
                                 </button>
                                 <!-- <br /><button onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
                     {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor("");'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种大语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
@@ -634,7 +634,7 @@
                                 <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 100px"></textarea></div>
                                 <button id="idButtonAjaxServerSideCallAIGCAnswerHomeworkAndTest" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部下拉框中的各种大语言模型LLM、小语言模型SLM、网站" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTest("Proxy");'>
-                                    确定【<span style="color:brown;font-weight:bold">“智能体对话Chat_Agent客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“作业测验”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，隐式调用外部LLM的矢量数据库）</span>
+                                    确定【<span style="color:brown;font-weight:bold">“智能体对话Chat_Agent客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨字面准确性/语义准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“作业测验”！）</span><span style="color:brown">（需要安装配置登录相关的标量数据库，隐式调用外部LLM的矢量数据库）</span>
                                 </button>
                                 <!-- <br /><button onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
                     {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTest("");'>确定（试验登录本系统的省心代理，就可无缝切换本页顶部下拉框中的各种大语言模型、网站）（本机体验时需要安装配置数据库！麻烦！）</button>-->
@@ -707,7 +707,7 @@
             <td colspan="2" style="border:dashed">
                 <button id="ExternalWebClaw" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
     {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("FormExternalWebClaw").style.display=="none"){document.getElementById("FormExternalWebClaw").style.display="block";document.getElementById("TriAngleOfExternalWebClaw").textContent="▼";} else{document.getElementById("FormExternalWebClaw").style.display="none";document.getElementById("TriAngleOfExternalWebClaw").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;margin:0;padding:0;font-size:14px;text-align:center" title="【注：本系统遵循业界的通用智能体Agent→领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发SKills，融合数智思维知识库，研发教育领域的教育数智思维的本机通用智能体Agent/云端通用智能体Agent】">
-                    <p style="font-weight:bold;font-size: 20px;"><span id="TriAngleOfExternalWebClaw">▶</span>“客户端Agent-Skills的面向白盒的系统←互动→服务端LLM的面向黑盒的系统”</p><span>【如上，本系统AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的本机通用智能体/云端通用智能体，请单击这里切换显示，并且运行<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="当前技术阶段尚不支持Agent直接URL装载运行Skills，单击本链接可以下载本系统“四层平台的五层MVC”思路研发的所有Skills，以供各种通用Agent部署运行。&#10;【注：本系统“四层平台的五层MVC”思路研发的各个Skill文件夹之中有一个ReadMe文档用作部署运行参考，例如，agent-browser文件夹之下的ReadMe文档，说明了如何同时发布教与学资源进入知乎/小红书/LinkIn等等多个社区...】&#10;【注：各种Agent部署运行Skills可能稍有不同，本系统建议您选用VS内置的VS-GitHubCopilot部署运行Skills】">本系统“四层平台的五层MVC”思路研发的所有Agent-Skills</a>（注意思辨运行结果的准确性）】【需要付费智能Token消耗】</span>
+                    <p style="font-weight:bold;font-size: 20px;"><span id="TriAngleOfExternalWebClaw">▶</span>“客户端Agent-Skills的面向白盒的系统←互动→服务端LLM的面向黑盒的系统”</p><span>【如上，本系统AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的本机通用智能体/云端通用智能体，请单击这里切换显示，并且运行<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="当前技术阶段尚不支持Agent直接URL装载运行Skills，单击本链接可以下载本系统“四层平台的五层MVC”思路研发的所有Skills，以供各种通用Agent部署运行。&#10;【注：本系统“四层平台的五层MVC”思路研发的各个Skill文件夹之中有一个ReadMe文档用作部署运行参考，例如，agent-browser文件夹之下的ReadMe文档，说明了如何同时发布教与学资源进入知乎/小红书/LinkIn等等多个社区...】&#10;【注：各种Agent部署运行Skills可能稍有不同，本系统建议您选用VS内置的VS-GitHubCopilot部署运行Skills】">本系统“四层平台的五层MVC”思路研发的所有Agent-Skills</a>（注意思辨运行结果的字面准确性/语义准确性）】【需要付费智能Token消耗】</span>
                 </button>
                 <div id="FormExternalWebClaw" style="display: none; border: dashed; border-color: goldenrod;text-align:justify" title="账号请按规则保存在本项目的appsettings.json文件之中，口令密码请按规则保存在本项目的Secrets.json文件之中！如果服务端拒绝连接，请单击下方的链接打开！">
 
