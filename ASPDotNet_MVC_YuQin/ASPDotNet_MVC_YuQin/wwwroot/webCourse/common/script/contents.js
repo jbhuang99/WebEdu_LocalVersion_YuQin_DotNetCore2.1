@@ -59,7 +59,7 @@ function fnAOnMouseOn() {
     if (window.getComputedStyle(oObject).color.replace(/\s*/g, "") != window.sColorClicked) {//replace去除空格
         oObject.style.color = window.sColorMouseOver;
     }
-    event.srcElement.setAttribute("title", event.srcElement.childNodes.item(0).nodeValue+'\n【注：单击标题框架的“概览”可以查看当前条目是否具有“课文”、“作业测验”等等各种文档。它们可能进一步链接字符媒体/多媒体文档】\n【注：单击标题框架的“内容切换”可以切换内容框架中的“课文/作业测验”】【“作业测验驱动的学生自主学习”融合“课文驱动的教师主导教学”】【作业测验基于视媒（字符-图像-视频-2D-3D）听媒触媒嗅媒味媒……课文基于视媒（字符-图像-视频-2D-3D）听媒触媒嗅媒味媒……】\n\n注：本系统的“标题”/“目录”/“内容”的框架：\n（1）遵循业界的知识导航事实标准【例如，外部网站所示：https://learn.microsoft.com/en-us/microsoft-edge/developer/】\n（2）但又追求“目录条目导航的作业测验”驱动“教材课文”的教与学，等等的创新【例如，本系统网站所示：https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/wwwroot/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738&text=1676365271966】');
+    event.srcElement.setAttribute("title", event.srcElement.childNodes.item(0).nodeValue+'\n【注：单击标题框架的“概览”可以查看当前条目是否具有“课文”、“作业测验”等等各种文档。它们可能进一步链接字符媒体/多媒体文档】\n【注：单击标题框架的“内容切换”可以切换内容框架中的“课文/作业测验”……当前数智视媒（字符-图像-视频-2D-3D）听媒触媒嗅媒味媒的时代，建议“课文→作业测验驱动的学生自主学习教师答疑教学”……】\n\n注：本系统的“标题”/“目录”/“内容”的框架：\n（1）遵循业界的知识导航事实标准【例如，外部网站所示：https://learn.microsoft.com/en-us/microsoft-edge/developer/】\n（2）但又追求“目录条目导航的作业测验”驱动“教材课文”的教与学，等等的创新【例如，本系统网站所示：https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/wwwroot/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738&text=1676365271966】');
 }
 function fnAOnMouseOut() {
     var oObject = event.srcElement;
