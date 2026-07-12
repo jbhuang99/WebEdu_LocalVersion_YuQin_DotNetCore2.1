@@ -31,6 +31,100 @@ document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
 }
 
+function fnRadioListableLocalLLM() {
+            alert("本系统支持的本机LLM较多，不过需要URL下载，然后才能单选使用。因为本机LLM容量通常达到数G以上，所以在此只是查看本系统支持下载使用的本机LLM的列表，但是并未提供下载本机LLM的功能，而是建议切换到操作系统OS的FoundryLocal的CLI命令下载本机LLM！");
+            }
+function fnRadioRunableLocalLLM() {
+    var oTemp=event.srcElement.nextElementSibling;
+            oTemp.textContent="正在运行LLM...";
+            var sURL = "/RunLocalLLM";
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+            xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行
+                        oTemp.textContent=xmlHttpRequest.responseText; 
+                    }
+                    else {
+                        alert('出错了,Err：' + xmlHttpRequest.status);
+                    }
+                }
+                }
+            }
+
+  function fnBlurRadioRunableLocalLLM(){
+      var oTemp=event.srcElement.nextElementSibling;
+            oTemp.textContent="请单选运行LLM...";
+            }
+
+ function fnAjaxListableLocalLLM() {
+           window.sReturnedListLocalLLM= "";
+           document.getElementById("idListableLocalLLM").innerHTML = "";
+            var sURL = "/ListableLocalLLM";
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+            xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行
+                        var sTemp = xmlHttpRequest.responseText;
+                        window.sReturnedListLocalLLM=sTemp;
+                         alert(window.sReturnedListLocalLLM);
+                        
+                        if (sTemp == "") {
+                            alert("未能列出本机LLM的相关内容！");
+                        }
+                        else {
+                            document.getElementById("idListableLocalLLM").innerHTML ="<ol><li>"+sTemp.slice(0, -"|||".length).replace(/(\|\|\|)+/g, '<input type="radio" name="raio_ListableLocalLLM" onclick="fnRadioListableLocalLLM()"/><span>请单选下载LLM...</span></li><li>')+'<input type="radio" name="raio_ListableLocalLLM" onclick="fnRadioListableLocalLLM()"/><span>请单选下载LLM...</span></li></ol>';//将约定的"|||"替换为HTML的换行标签
+                        }
+
+                    }
+                    else {
+                        alert('出错了,Err：' + xmlHttpRequest.status);
+                    }
+                }
+            }
+        }
+        
+         function fnAjaxRunableLocalLLM() {
+           window.sReturnedRunLocalLLM= "";
+           document.getElementById("idRunableLocalLLM").innerHTML = "";
+            var sURL = "/RunableLocalLLM";
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+            xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行
+                        var sTemp = xmlHttpRequest.responseText;
+                        window.sReturnedRunLocalLLM=sTemp;
+                         alert(window.sReturnedRunLocalLLM);
+                        
+                        if (sTemp == "") {
+                            alert("未能列出本机LLM的相关内容！");
+                        }
+                        else {
+                            document.getElementById("idRunableLocalLLM").innerHTML ="<ol><li>"+sTemp.slice(0, -"|||".length).replace(/(\|\|\|)+/g, '<input type="radio" name="raio_RunableLocalLLM" onclick="fnRadioRunableLocalLLM()" onblur="fnBlurRadioRunableLocalLLM()"/><span>请单选运行LLM...</span></li><li>')+'<input type="radio" name="raio_RunableLocalLLM" onclick="fnRadioRunableLocalLLM()" onblur="fnBlurRadioRunableLocalLLM()"/><span>请单选运行LLM...</span></li></ol>';//将约定的"|||"替换为HTML的换行标签
+                        }
+
+                    }
+                    else {
+                        alert('出错了,Err：' + xmlHttpRequest.status);
+                    }
+                }
+            }
+        }
+
 function fnAjaxServerSideCallBCI(){
     var xmlHttpRequest = new XMLHttpRequest();
            xmlHttpRequest.open('GET', '/BCI', true);
