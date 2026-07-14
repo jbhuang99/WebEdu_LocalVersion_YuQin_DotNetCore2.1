@@ -2,6 +2,7 @@
 using Azure;
 using DocumentFormat.OpenXml.Wordprocessing;
 using FoundryLocalDemo;
+using Microsoft.AI.Foundry.Local;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
@@ -46,7 +47,71 @@ namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
         }
         public async Task<string> Index()
         {
-            return "已成功运行当前本机LLM，等候客户端Prompt...";
+            String modelName = this.Request.Query["Model"];
+            //ExecutionLocalLLM.sRunningModelName = modelName;//已经不需要从浏览器端传入，保存在服务端ExecutionLocalLLM了。
+            ExecutionLocalLLM.sRunningModelName = modelName;
+            await ExecutionLocalLLM.StartServiceAsync();
+           // Console.WriteLine(ExecutionLocalLLM.sRUL + ";" + ExecutionLocalLLM.sEndPoint + ";" + ExecutionLocalLLM.sApiKey + ";" );
+            Console.WriteLine(ExecutionLocalLLM.sRUL +";"+ ExecutionLocalLLM.sEndPoint + ";" + ExecutionLocalLLM.sApiKey + ";" + ExecutionLocalLLM.sRunningModelName);
+            var cachedModels = await ExecutionLocalLLM.ListCachedModelsAsync();
+            var model = cachedModels.FirstOrDefault(m => m.ModelId == modelName);
+            //卸载cachedModels中的所有模型
+            foreach (var cachedModel in cachedModels)
+            {
+                if (cachedModel.ModelId != modelName)
+                {
+                    try
+                    {
+                        await ExecutionLocalLLM.UnloadModelAsync(cachedModel.ModelId);
+                        await Task.Delay(1000);
+                    }
+                    catch { }
+                }
+            }  
+            await LoadModelIntoMemory(model);
+            // return this.Request.Query["Model"] ;
+            return model.ModelId+"|||"+ExecutionLocalLLM.sRUL;
+
         }
-    }
+
+        /**
+        private async Task LoadModelIntoMemory(ModelViewModel model)
+        {
+            String SelectedModelName = this.Request.Query["Model"];
+            if (!model.IsDownloaded || model.IsLoading || model.IsLoaded)
+                return;
+
+            try
+            {
+                model.IsLoading = true;
+
+                if (SelectedModelName != null)
+                {
+                    try
+                    {
+                        await ExecutionLocalLLM.UnloadModelAsync(SelectedModelName);
+                        await Task.Delay(1000);
+                    }
+                    catch { }
+                }
+
+
+                await ExecutionLocalLLM.LoadModelAsync(model.Name);
+
+                model.IsLoaded = true;
+                model.IsLoading = false;
+                SelectedModelName = model.Name;
+            }
+            catch (Exception ex)
+            {
+                model.IsLoading = false;
+            }
+        }
+        **/
+        private async Task LoadModelIntoMemory(ModelInfo model)
+        {
+            await ExecutionLocalLLM.LoadModelAsync(model.ModelId);
+        }
+        }
+
 }

@@ -53,8 +53,8 @@ namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
         }
         public async Task<string> Index()
         {
-            var catalogModels = await ExecutionLogic.ListCatalogModelsAsync();
-            var cachedModels = await ExecutionLogic.ListCachedModelsAsync();
+            var catalogModels = await ExecutionLocalLLM.ListCatalogModelsAsync();
+            var cachedModels = await ExecutionLocalLLM.ListCachedModelsAsync();
             var cachedModelNames = cachedModels.Select(m => m.ModelId).ToHashSet();
             String TempString = "";
             try
