@@ -48,33 +48,70 @@ namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
         public async Task<string> Index()
         {
             String modelName = this.Request.Query["Model"];
-            //ExecutionLocalLLM.sRunningModelName = modelName;//已经不需要从浏览器端传入，保存在服务端ExecutionLocalLLM了。
-            ExecutionLocalLLM.sRunningModelName = modelName;
-
-            await ExecutionLocalLLM.StartServiceAsync();
-            // Console.WriteLine(ExecutionLocalLLM.sRUL + ";" + ExecutionLocalLLM.sEndPoint + ";" + ExecutionLocalLLM.sApiKey + ";" );
             Console.WriteLine(ExecutionLocalLLM.sRUL + ";" + ExecutionLocalLLM.sEndPoint + ";" + ExecutionLocalLLM.sApiKey + ";" + ExecutionLocalLLM.sRunningModelName);
             var CatalogModels = await ExecutionLocalLLM.ListCatalogModelsAsync();
             var model = CatalogModels.FirstOrDefault(m => m.ModelId == modelName);
-            //卸载cachedModels中的所有模型
-            /**
-            foreach (var cachedModel in cachedModels)
+            if (model != null)
             {
-                if (cachedModel.ModelId != modelName)
+                // Step 1: Download the model if not downloaded
+               // if (!model.IsDownloaded && !model.IsDownloading)
+               if(true)
                 {
                     try
                     {
-                        await ExecutionLocalLLM.UnloadModelAsync(cachedModel.ModelId);
-                        await Task.Delay(1000);
-                    }
-                    catch { }
-                }
-            }  
-            **/
-            // return this.Request.Query["Model"] ;
-            return model.ModelId + "|||" + ExecutionLocalLLM.sRUL;
+                       // model.IsDownloading = true;
+                        //model.DownloadProgress = 0;
+                      //  model.DownloadStatus = "Starting download...";
+                        Console.WriteLine($"Downloading model: {model.ModelId}...");
 
+                        await foreach (var progress in ExecutionLocalLLM.DownloadModelAsync(modelName))
+                        {
+                            var progressValue = progress.Percentage;
+                           // model.DownloadProgress = progressValue;
+                           // model.DownloadStatus = $"Downloading... {progressValue:F1}%";
+                            Console.WriteLine($"Downloading {model.ModelId}: {progressValue:F1}%");
+                        }
+
+                        //model.IsDownloaded = true;
+                       // model.IsDownloading = false;
+                        //model.DownloadProgress = 100;
+                       // model.DownloadStatus = "Download complete";
+                        Console.WriteLine($"Model downloaded: {model.ModelId}");
+                        await LoadModelIntoMemory(model);
+                        Console.WriteLine($"本机LLM已运行: {model.ModelId}");
+
+                    }
+                    catch (Exception ex)
+                    {
+                       // model.IsDownloading = false;
+                      //  model.DownloadProgress = 0;
+                       // model.DownloadStatus = "Download failed";
+                        Console.WriteLine($"Error downloading model: {ex.Message}");
+                       // return "";
+                    }
+                }
+                // Model is currently downloading or loading - show status
+                else
+                {
+                    /**
+                    if (model.IsDownloading)
+                    {
+                        Console.WriteLine($"Model is downloading: {model.ModelId} ({model.DownloadProgress:F1}%)");
+                    }
+                    else if (model.IsLoading)
+                    {
+                        Console.WriteLine($"Model is loading into memory: {model.ModelId}");
+                    }
+                    **/
+                }
+            }
+            return model.ModelId + "|||" + ExecutionLocalLLM.sRUL;
         }
-    }
+
+        private async Task LoadModelIntoMemory(ModelInfo model)
+        {
+            await ExecutionLocalLLM.LoadModelAsync(model.ModelId);
+        }
+}
 
 }

@@ -136,5 +136,11 @@ Overwrite the provider for ONNX models. Supports: "dml", "cuda", "qnn", "cpu", "
     {
         return foundryLocalManager.UnloadModelAsync(modelId);
     }
-
+    //删除模型文件,FoundryLocalManager目前无法实现？Model实现？
+    /**
+    public static Task DeleteModelAsync(string modelId)
+    {
+        return foundryLocalManager.DeleteModelAsync(modelId);
+    }
+    **/
 }

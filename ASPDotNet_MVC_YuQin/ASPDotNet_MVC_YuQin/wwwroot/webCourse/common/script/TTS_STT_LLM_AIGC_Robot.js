@@ -55,8 +55,9 @@ if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunn
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行 
                         window.DownloadedLocalLLMURL=xmlHttpRequest.responseText.split("|||")[1];
-                        oTemp.textContent="当前本机LLM是"+xmlHttpRequest.responseText.split("|||")[0]+"已下载，如果需要，可以删除..."; 
-                        window.DownloadedLocalLLMID = xmlHttpRequest.responseText.split("|||")[0];                    
+                        oTemp.textContent="当前本机LLM是"+xmlHttpRequest.responseText.split("|||")[0]+"已下载，如果不再使用，可以删除..."; 
+                        window.DownloadedLocalLLMID = xmlHttpRequest.responseText.split("|||")[0]; 
+                        fnAjaxRunableLocalLLM();
                     }
                     else {
                         alert('出错了,Err：' + xmlHttpRequest.status);

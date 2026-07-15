@@ -55,7 +55,7 @@ namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
             // Console.WriteLine(ExecutionLocalLLM.sRUL + ";" + ExecutionLocalLLM.sEndPoint + ";" + ExecutionLocalLLM.sApiKey + ";" );
             Console.WriteLine(ExecutionLocalLLM.sRUL + ";" + ExecutionLocalLLM.sEndPoint + ";" + ExecutionLocalLLM.sApiKey + ";" + ExecutionLocalLLM.sRunningModelName);
             var cachedModels = await ExecutionLocalLLM.ListCachedModelsAsync();
-            var model = cachedModels.FirstOrDefault(m => m.ModelId == modelName);
+            var model = cachedModels.FirstOrDefault(m => m.ModelId == modelName);           
             //卸载cachedModels中的所有模型
             /**
             foreach (var cachedModel in cachedModels)
