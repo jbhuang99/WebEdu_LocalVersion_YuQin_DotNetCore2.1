@@ -72,9 +72,10 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.LocalLLM
                         Prompt = queryString
                     }
                 };
-                return await CallQWen(queryString, _RequestUri);
+               // return await CallQWen(queryString, _RequestUri);
+                return """{ "output":{ "finish_reason":"stop","text":"教育技术的定义随着时间和研究的发展而有所变化，但通常它指的是利用各种技术和工具来提高教学和学习的效果。根据美国教育传播与技术协会（AECT, Association for Educational Communications and Technology）在2005年给出的一个广泛接受的定义，教育技术是“通过创建、使用和管理适当的技术过程和资源来促进学习，并提高绩效的研究与合乎伦理的实践”。\n\n这个定义强调了几个关键点：\n- **创造**：开发新的工具或方法以支持教育。\n- **使用**：有效地应用这些工具和技术于实际的教学过程中。\n- **管理**：确保技术被正确地整合到教育体系中，并且能够持续改进。\n- **促进学习**：最终目标是为了增强学生的学习体验和成果。\n- **提高绩效**：不仅限于学生的学业成绩，还包括教师的教学效率以及整个教育机构的运作效能。\n\n此外，教育技术还涵盖了从传统的教具（如黑板、书籍）到现代信息技术（如互联网、多媒体、虚拟现实等）的应用。随着科技的进步，这一领域也在不断地扩展和发展，比如人工智能、大数据分析等新兴技术正在被越来越多地应用于个性化学习路径设计等方面。"},"usage":{ "input_tokens":13,"output_tokens":248,"prompt_tokens_details":{ "cached_tokens":0},"total_tokens":261},"request_id":"126ff4b5-0493-93da-8898-40646334047b"}""";  
             }
-            ////return """{ "output":{ "finish_reason":"stop","text":"教育技术的定义随着时间和研究的发展而有所变化，但通常它指的是利用各种技术和工具来提高教学和学习的效果。根据美国教育传播与技术协会（AECT, Association for Educational Communications and Technology）在2005年给出的一个广泛接受的定义，教育技术是“通过创建、使用和管理适当的技术过程和资源来促进学习，并提高绩效的研究与合乎伦理的实践”。\n\n这个定义强调了几个关键点：\n- **创造**：开发新的工具或方法以支持教育。\n- **使用**：有效地应用这些工具和技术于实际的教学过程中。\n- **管理**：确保技术被正确地整合到教育体系中，并且能够持续改进。\n- **促进学习**：最终目标是为了增强学生的学习体验和成果。\n- **提高绩效**：不仅限于学生的学业成绩，还包括教师的教学效率以及整个教育机构的运作效能。\n\n此外，教育技术还涵盖了从传统的教具（如黑板、书籍）到现代信息技术（如互联网、多媒体、虚拟现实等）的应用。随着科技的进步，这一领域也在不断地扩展和发展，比如人工智能、大数据分析等新兴技术正在被越来越多地应用于个性化学习路径设计等方面。"},"usage":{ "input_tokens":13,"output_tokens":248,"prompt_tokens_details":{ "cached_tokens":0},"total_tokens":261},"request_id":"126ff4b5-0493-93da-8898-40646334047b"}""";  
+
         }
 
         private static async Task<String> CallQWen(String question,String _RequestUri)
