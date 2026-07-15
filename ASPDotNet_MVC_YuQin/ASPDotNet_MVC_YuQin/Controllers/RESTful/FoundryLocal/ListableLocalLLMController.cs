@@ -131,6 +131,7 @@ namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
                     AvailableForDownloadModels.Add(modelViewModel);
                 }
             }
+            Console.WriteLine(TempString);
             return TempString;
             
         }

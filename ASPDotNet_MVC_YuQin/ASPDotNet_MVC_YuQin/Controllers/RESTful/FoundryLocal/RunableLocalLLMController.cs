@@ -120,7 +120,8 @@ namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
                 };
                 TempString = TempString + modelViewModel.Name+ "（文件容量：" + modelViewModel.DownLoadSize + "M；开源许可：" + modelViewModel.License + "）" + "|||";
             }
-                return TempString;
+            Console.WriteLine(TempString);
+            return TempString;
         }
 
         public ObservableCollection<ModelViewModel> AvailableModels
