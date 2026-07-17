@@ -19,6 +19,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static IronPython.Modules._ast;
 
 namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
 {
@@ -110,8 +111,11 @@ namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
         **/
         private async Task LoadModelIntoMemory(ModelInfo model)
         {
-            await ExecutionLocalLLM.LoadModelAsync(model.ModelId);
+            await ExecutionLocalLLM.LoadModelAsync(model.ModelId); //可能是SDK版本的bug，未能真正装载本机LLM。后续语句装载。
+            Console.WriteLine(ExecutionLocalLLM.sRUL + "openai/load/" + model.ModelId);
+            //await ExecutionLocalLLM.httpClient.GetAsync(ExecutionLocalLLM.sRUL+"openai/unloadall");
+            // await ExecutionLocalLLM.httpClient.GetAsync(ExecutionLocalLLM.sRUL+"openai/load/" + model.ModelId); // GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml //失败，但在浏览器中访问http://localhost:5000/openai/load/Phi-4-mini-instruct-generic-cpu是成功的，只好转向浏览器端实现。
         }
-        }
+    }
 
 }
