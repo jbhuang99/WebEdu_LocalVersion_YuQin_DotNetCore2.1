@@ -112,6 +112,11 @@ namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
         {
             await ExecutionLocalLLM.LoadModelAsync(model.ModelId);
         }
-}
+        private async Task<ModelInfo> LoadModelIntoMemory_Failed(ModelInfo model)
+        {
+            await ExecutionLocalLLM.LoadModelAsync(model.ModelId);
+            return model;
+        }
+    }
 
 }

@@ -761,7 +761,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
 }
 
 function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
-        if(window.localLLMID==null || window.localLLMID=="") {
+        if(window.RunningLocalLLMID==null || window.RunningLocalLLMID=="") {
         alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
         return;
         }
@@ -779,11 +779,11 @@ function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
             if(isProxy=="Proxy"){
             const utteranceExternalPrompt2 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
              window.speechSynthesis.speak(utteranceExternalPrompt2); 
-           open("/ProxyLocalLLM/index?queryString=" + sPrompt,"LogInProxy");//+ "&localLLMID=" + window.localLLMID,"LogInProxy");
-           sURL = "/ProxyLocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.localLLMID;
+           open("/ProxyLocalLLM/index?queryString=" + sPrompt,"LogInProxy");//+ "&localLLMID=" + window.RunningLocalLLMID,"LogInProxy");
+           sURL = "/ProxyLocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.RunningLocalLLMID;
             }
             else{
-            sURL = "/LocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.localLLMID;
+            sURL = "/LocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.RunningLocalLLMID;
 }
  
             // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
@@ -1015,7 +1015,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
 }
 
 function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
-    if(window.localLLMID==null || window.localLLMID=="") {
+    if(window.RunningLocalLLMID==null || window.RunningLocalLLMID=="") {
         alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
         return;
         }
@@ -1034,11 +1034,11 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
             if(isProxy=="Proxy"){
             const utteranceExternalPrompt11 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
              window.speechSynthesis.speak(utteranceExternalPrompt11); 
-           open("/ProxyLocalLLM/index?queryString=" + sPrompt,"LogInProxy");//+ "&localLLMID=" + window.localLLMID,"LogInProxy");
-           sURL = "/ProxyLocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.localLLMID;
+           open("/ProxyLocalLLM/index?queryString=" + sPrompt,"LogInProxy");//+ "&localLLMID=" + window.RunningLocalLLMID,"LogInProxy");
+           sURL = "/ProxyLocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.RunningLocalLLMID;
             }
             else{
-            sURL = "/LocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.localLLMID;
+            sURL = "/LocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.RunningLocalLLMID;
 }
             // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
            // open(sURL, "ServerSideCallAIGCAnswerCharactor");

@@ -33,6 +33,7 @@ public static class ExecutionLocalLLM
     public static String sEndPoint = "";
     public static String sApiKey = "";
     public static String sRunningModelName = "";//无法从FoundryLocalManager获取，需要从模型运行时获取。
+    public static HttpClient? httpClient;
     /**
     public static String sRUL = foundryLocalManager.ServiceUri.ToString(); //目前无法自己指定，可能提示：Service URI is not set. Call StartServiceAsync() first.
     public static String sEndPoint = foundryLocalManager.Endpoint.ToString();// public Uri Endpoint => new Uri(ServiceUri, "/v1");
@@ -43,7 +44,11 @@ public static class ExecutionLocalLLM
     public static async Task StartServiceAsync()
     {
         await foundryLocalManager.StartServiceAsync();
-        sRUL = foundryLocalManager.ServiceUri.ToString(); /**【获取sURL后，例如http://127.0.0.1:64572/，可以Get/POST实现端点功能如下：
+        sRUL = foundryLocalManager.ServiceUri.ToString(); //例如，http://127.0.0.1:53808/
+        sEndPoint = foundryLocalManager.Endpoint.ToString(); //例如，http://127.0.0.1:53808/v1
+        sApiKey = foundryLocalManager.ApiKey;////本地运行通常不需要真实 ApiKey，但 SDK 会提供一个占位符.      
+
+        /**获取sURL后，例如http://127.0.0.1:64572/，可以Get/POST实现EndPoint端点功能如下【一个WebAPI Endpoint （强调“功能入口”，一个动态网站WebAPI由多个Endpoint组成，每个 Endpoint 对应不同的业务功能。Endpoint中一般包含版本号/v1/，避免更新影响现有应用。Endpoint一般使用 HTTPS、认证与授权机制），通常对应一个具体的Web URL（强调“资源位置”，可能是网页、图片等静态资源。一个静态网站Web由多个URL组成）】：
         GET /openai/status(例如http://127.0.0.1:64572/openai/status）、
         GET /foundry/list
         GET /openai/models
@@ -108,18 +113,18 @@ Overwrite the provider for ONNX models. Supports: "dml", "cuda", "qnn", "cpu", "
   }
 
             **/
-        sEndPoint = foundryLocalManager.Endpoint.ToString();
-        sApiKey = foundryLocalManager.ApiKey;////本地运行通常不需要真实 ApiKey，但 SDK 会提供一个占位符.          
     }
 
     public static Task<List<ModelInfo>> ListCatalogModelsAsync()
     {
         return foundryLocalManager.ListCatalogModelsAsync();
+        // await httpClient.GetAsync(foundryLocalManager.ServiceUri.ToString()+"/foundry/list"); //GET /foundry/list
     }
 
     public static Task<List<ModelInfo>> ListCachedModelsAsync()
     {
         return foundryLocalManager.ListCachedModelsAsync();
+        // await httpClient.GetAsync(foundryLocalManager.ServiceUri.ToString()"/openai/models"); //GET /openai/models
     }
 
     public static IAsyncEnumerable<ModelDownloadProgress> DownloadModelAsync(string modelId)
@@ -127,14 +132,34 @@ Overwrite the provider for ONNX models. Supports: "dml", "cuda", "qnn", "cpu", "
         return foundryLocalManager.DownloadModelWithProgressAsync(modelId);
     }
 
-    public static Task LoadModelAsync(string modelId)
+    public static async Task LoadModelAsync(string modelId)
     {
-        return foundryLocalManager.LoadModelAsync(modelId);
+       await foundryLocalManager.LoadModelAsync(modelId);//好像ASP.NET MVC中无法实现，或者，foundry 1.0等以上版本无法实现，尝试改写成为HttpClient。
+    }
+    public static async Task<ModelInfo> LoadModelAsync_Failed(string modelId)
+    {
+        await httpClient.GetAsync(foundryLocalManager.ServiceUri.ToString()+"/openai/load/" + modelId); // GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
+        return new ModelInfo();
     }
 
-    public static Task UnloadModelAsync(string modelId)
+    public static async Task UnloadModelAsync(string modelId)
     {
-        return foundryLocalManager.UnloadModelAsync(modelId);
+        await foundryLocalManager.UnloadModelAsync(modelId);//好像ASP.NET MVC中无法实现，或者，foundry 1.0等以上版本无法实现，尝试改写成为HttpClient。
+        
+       // await httpClient.GetAsync(foundryLocalManager.ServiceUri.ToString()+"/openai/unload/" + modelId + "?force=true"); //GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
+    }
+ 
+    public static async Task UnloadAllModelsAsync()
+    {
+        //return foundryLocalManager.UnloadAllModelsAsync();//好像ASP.NET MVC中无法实现，或者，foundry 1.0等以上版本无法实现，尝试改写成为HttpClient。
+
+        await httpClient.GetAsync(foundryLocalManager.ServiceUri.ToString()+"/openai/unloadall/"); 
+    }
+    public static async Task loadedmodelsAsync()
+    {
+        //return foundryLocalManager.UnloadAllModelsAsync();//好像ASP.NET MVC中无法实现，或者，foundry 1.0等以上版本无法实现，尝试改写成为HttpClient。
+
+        await httpClient.GetAsync(foundryLocalManager.ServiceUri.ToString()+"/openai/loadedmodels/");
     }
     //删除模型文件,FoundryLocalManager目前无法实现？Model实现？
     /**
