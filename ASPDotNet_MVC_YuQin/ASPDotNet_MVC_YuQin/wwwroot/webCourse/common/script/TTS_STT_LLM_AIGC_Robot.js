@@ -54,7 +54,8 @@ function fnStartFoundryLocal() {
                         //如果函数存在的话执行 
                       window.LocalLLMURLRoot=xmlHttpRequest.responseText;
 
-                     alert(window.LocalLLMURLRoot);
+                    // alert(window.LocalLLMURLRoot);
+                     document.getElementById("idIsStarted").textContent="已经启动";
                      //window.DeletedLocalLLMDirPath=JSON.parse(xmlHttpRequest.responseText).modelDirPathxml; 
                      //alert(indow.DeletedLocalLLMDirPath);
                     }
@@ -116,10 +117,48 @@ function fnLocalLLMDirPath() {
                         //如果函数存在的话执行 
                      window.LocalLLMDirPath=JSON.parse(xmlHttpRequest.responseText).modelDirPath; 
                      window.LocalLLMDirPathForDeleteTemp=window.LocalLLMDirPath;
-                     alert(window.LocalLLMDirPath+"|||"+window.LocalLLMDirPathForDeleteTemp);
+                     //alert(window.LocalLLMDirPath+"|||"+window.LocalLLMDirPathForDeleteTemp);
                     }
                     else {
                         alert('出错了,模型启动可能需要等候一定时间，请稍后再试单击本按钮！,Err：' + xmlHttpRequest.status);
+                    }
+                }
+                }
+    }
+function fnUnloadallLocalLLM() {
+    var sURL=window.LocalLLMURLRoot+"openai/unloadall";      
+       var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+            xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行 
+                     return;
+                    }
+                    else {
+                        alert('出错了,卸载其他正在运行的模型出错！,Err：' + xmlHttpRequest.status);
+                    }
+                }
+                }
+    }
+  function fnLoadLocalLLM(){
+      var sURL=window.RunningLocalLLMURL+ "openai/load/" + window.RunningLocalLLMID
+       var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+            xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行 
+                     return;
+                    }
+                    else {
+                        alert('出错了,装载模型“'+window.RunningLocalLLMID+'”出错！,Err：' + xmlHttpRequest.status);
                     }
                 }
                 }
@@ -175,8 +214,8 @@ function fnRadioRunLocalLLM() {
     var oTempRunningLocalLLM=document.getElementById("id_RunningLocalLLM");
     //var oTemp=event.srcElement.nextElementSibling;
     var oTempParentElement=event.srcElement.parentElement;
-           // oTemp.textContent="正在运行LLM...";
-             oTempRunningLocalLLM.textContent="正在运行LLM...";
+           // oTemp.textContent="正在启动运行LLM...";
+             oTempRunningLocalLLM.textContent="正在启动运行LLM...";
             var sURL = "/RunLocalLLM?Model="+oTempParentElement.innerHTML.substring(0, oTempParentElement.innerHTML.indexOf("（文件容量："));
             //var sURL = "/RunLocalLLM?Model=" + oTemppreviousElementSibling.textContent;           
             var xmlHttpRequest = new XMLHttpRequest();
@@ -192,8 +231,12 @@ function fnRadioRunLocalLLM() {
                        // oTemp.textContent="当前本机LLM是"+xmlHttpRequest.responseText.split("|||")[0]+"已运行，等候客户端的Prompt..."; 
                         oTempRunningLocalLLM.textContent="当前本机LLM是"+xmlHttpRequest.responseText.split("|||")[0]+"已运行，等候客户端的Prompt...";
                         window.RunningLocalLLMID = xmlHttpRequest.responseText.split("|||")[0]; 
-                        var oUnloadAllWin = window.open(window.RunningLocalLLMURL+ "openai/unloadall","TempWin");oUnloadAllWin.close();//服务端未能实现自动关闭本机LLM的网页界面，故此处使用window.open()方法打开本机LLM的网页界面，并立即关闭。
-                        var oLoadWin =window.open(window.RunningLocalLLMURL+ "openai/load/" + window.RunningLocalLLMID,"TempWin");oLoadWin.close();//服务端未能实现自动打开本机LLM的网页界面，故此处使用window.open()方法打开本机LLM的网页界面。
+                        //var oUnloadAllWin = window.open(window.RunningLocalLLMURL+ "openai/unloadall","TempWin");oUnloadAllWin.close();//服务端未能实现自动关闭本机LLM的网页界面，故此处使用window.open()方法打开本机LLM的网页界面，并立即关闭。
+                        fnUnloadallLocalLLM();
+                        //var oLoadWin =window.open(window.RunningLocalLLMURL+ "openai/load/" + window.RunningLocalLLMID,"TempWin");oLoadWin.close();//服务端未能实现自动打开本机LLM的网页界面，故此处使用window.open()方法打开本机LLM的网页界面。
+                         fnLoadLocalLLM();
+                        //window.winTTS_STT_LLM_AIGC_Robot_RAG_Agent_Copilot.focus();//当前窗口聚焦，但是没能实现
+                       // window.focus();
                     }
                     else {
                         alert('出错了,Err：' + xmlHttpRequest.status);
@@ -272,7 +315,7 @@ function fnRadioRunLocalLLM() {
                             document.getElementById("idRunableLocalLLM").innerHTML ="<ol><li>"+sTemp.slice(0, -"|||".length).replace(/(\|\|\|)+/g, '<input type="radio" name="raio_RunableLocalLLM" onclick="fnRadioRunLocalLLM()" onblur="fnBlurRadioRunLocalLLM()"/><span>请单选运行LLM...</span><input type="radio" name="raio_DeletableLocalLLM" onclick="fnRadioDeleteLocalLLM()" onblur="fnBlurRadioDeleteLocalLLM()"/><span>请单选删除LLM...</span></li><li>')+'<input type="radio" name="raio_RunableLocalLLM" onclick="fnRadioRunLocalLLM()" onblur="fnBlurRadioRunLocalLLM()"/><span>请单选运行LLM...</span><input type="radio" name="raio_DeletableLocalLLM" onclick="fnRadioDeleteLocalLLM()" onblur="fnBlurRadioDeleteLocalLLM()"/><span>请单选删除LLM...</span></li></ol>';//将约定的"|||"替换为HTML的换行标签
                               var TempString=xmlHttpRequest.responseText.split("|||")[0];
                             window.LocalLLMURLRoot=TempString.substring(TempString.indexOf("；URL根：")+"；URL根：".length, TempString.lastIndexOf("）"));
-                            oTempRunningLocalLLM.textContent="已查询到可供运行的本机LLM如下，请单选下载...";
+                            oTempRunningLocalLLM.textContent="已查询到可供运行的本机LLM如下，请单选运行...";
                         }
 
                     }
@@ -841,8 +884,75 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
                 }
         }
 }
-
 function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
+        if(window.RunningLocalLLMID==null || window.RunningLocalLLMID=="") {
+        alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
+        return;
+        }
+    fnToggleEventSoureElementColor();
+    window.isRecognizingSystemExternal = false;
+     window.speechSynthesis.cancel(); 
+            var sPrompt = document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value;
+             window.speechSynthesis.cancel();
+                     //TTS
+             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
+             window.speechSynthesis.speak(utteranceExternalPrompt); 
+            alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
+             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+            var sURL ="";           
+            if(isProxy=="Proxy"){
+            const utteranceExternalPrompt2 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
+             window.speechSynthesis.speak(utteranceExternalPrompt2); 
+          // sURL =  "/QWen/index?queryString="  + sPrompt;//无需登录的Qwen的URL;//曾经Get请求实现。
+          sURL= window.RunningLocalLLMURL+"v1/chat/completions";//无需登录的本机LLM的URL;必须是POST请求.
+            }
+            else{
+           open("/ProxyQWen/index?queryString=" + sPrompt,"LogInProxy");//暂时使用了强制登录Prompt提问云端LLM的功能，没有强制登录后Prompt提问本机LLM的功能，后续会增加该功能。
+           sURL = "/ProxyQWen/index?queryString=" + sPrompt;
+
+}
+ 
+           var xmlHttpRequest = new XMLHttpRequest();
+           const data = JSON.stringify({
+    "model": window.RunningLocalLLMID,
+    "messages": [
+      {
+        "role": "user",
+        "content": sPrompt
+      }
+    ]});
+    alert(data);
+
+           xmlHttpRequest.open('POST',sURL , true);
+           xmlHttpRequest.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');////如果是HTTP的Form元素的post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型
+           xmlHttpRequest.send(data); 
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行
+                        var oTemp=JSON.parse(xmlHttpRequest.responseText);
+                        document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.output.text;
+                      
+                        window.speechSynthesis.cancel();
+                   fnTTS_Play(0);
+                     }
+                    
+                    else {
+                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
+                        alert(sTempErr);
+                         window.speechSynthesis.cancel();
+                     //TTS
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
+                     window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
+                    }
+                }
+        }
+        alert();
+}
+
+function fnAjaxServerSideCallAIGCAnswerCharactorInternal_Old(isProxy) {
         if(window.RunningLocalLLMID==null || window.RunningLocalLLMID=="") {
         alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
         return;
@@ -937,30 +1047,6 @@ function fnHTMLEditorForAIGCHomeworkAndTest(){
      document.getElementById("id_ForHTMLEditor").contentEditable="true";
     }  
     }
-/**用于不Prompt/AIGC返回字符串直接生成题目的测试，以便节省付费。
-function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestOld(){
-    alert();
-    var sString='{"output":{"finish_reason":"stop","text":"当然，我可以帮助设计一道关于“教育技术定义”的高质量单选题。这样的题目不仅能够测试学生对于概念的理解，还能考察他们 将理论应用于实际情况的能力。这里提供一个示例：**题目：**根据AECT（美国教育传播与技术协会）1994年的定义，教育技术是指通过创建、使用和管理适当的技术过程 和资源来促进学习和提高绩效的研究与合乎道德的实践。基于这一定义，下列哪一项最能体现教育技术的核心目标？A. 提高学校的硬件设施水平B. 专注于开发新的教学 软件工具C. 通过有效利用技术和资源来支持教与学的过程D. 确保所有学生都能访问互联网**正确答案：** C**解析：**选项C直接反映了教育技术旨在通过合理地运用技术手段和资源来优化教学过程和支持学习活动的本质。而其他选项虽然也涉及到了技术或教育资源的一些方面，但它们并不完全符合AECT对教育技术核心目标的描述。 例如，选项A更多关注的是基础设施建设；选项B侧重于技术产品开发；选项D则强调了信息技术接入的问题，这些都是教育技术领域内的重要组成部分，但不是其最根本的目标。这道题目适合用于检验学生是否真正理解了教育技术的概念及其应用方向，同时也鼓励思考如何在实际情境中实施这些理念。"},"usage":{"input_tokens":24,"output_tokens":288,"prompt_tokens_details":{"cached_tokens":0},"total_tokens":312},"request_id":"cbcecae6-f07d-4a29-8b02-9d6a9114fb4d"}';
-       
-        var sString1=sString.replace("A.", '<p/><input type="radio" name="raio_Four"/>A.');
-        var sString2=sString1.replace("B.", '<p/><input type="radio" name="raio_Four"/>B.');
-        var sString3=sString2.replace("C.", '<p/><input type="radio" name="raio_Four"/>C.');
-        var sString4=sString3.replace("D.", '<p/><input type="radio" name="raio_Four"/>D.');
-       // var sStringMayBe5=sString4.replace("E.", '<p/><input type="radio" name="raio_Four"/>E.');
-        var sString5=sString4.substring(sString4.indexOf("**正确答案：**"), sString4.length);
-        var sString6=sString4.substring(0,sString4.indexOf("**正确答案：**"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest()">'+'**正确答案：**'+'</button>'+'<span id="id_Answer" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>'
-        ;
-        //var oTemp=JSON.parse(sString4);
-     alert(sString6);
-     document.getElementById("transcriptSystemExternal").innerHTML ='<div id="id_ForHTMLEditor" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest()">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTest" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTest" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能！，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest()">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';
-       //document.getElementById("transcriptSystemExternal").style.color="green";   
-       alert(document.getElementById("transcriptSystemExternal").style.color);
-                        window.speechSynthesis.cancel();
-                          
-                   // document.getElementById("id_TTS_Play").click();
-                   fnTTS_Play(0);
-}
-**/
 
 function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
     fnToggleEventSoureElementColor();
@@ -1110,24 +1196,36 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
              const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
             alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-             document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
            // var sURL = "/QWen/index?queryString=" + sPrompt;
            var sURL ="";           
             if(isProxy=="Proxy"){
             const utteranceExternalPrompt11 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
              window.speechSynthesis.speak(utteranceExternalPrompt11); 
-           open("/ProxyLocalLLM/index?queryString=" + sPrompt,"LogInProxy");//+ "&localLLMID=" + window.RunningLocalLLMID,"LogInProxy");
-           sURL = "/ProxyLocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.RunningLocalLLMID;
+          // sURL =  "/QWen/index?queryString="  + sPrompt;//无需登录的Qwen的URL;//曾经Get请求实现。
+          sURL= window.RunningLocalLLMURL+"v1/chat/completions";//无需登录的本机LLM的URL;必须是POST请求.
             }
             else{
-            sURL = "/LocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.RunningLocalLLMID;
+           open("/ProxyQWen/index?queryString=" + sPrompt,"LogInProxy");//暂时使用了强制登录Prompt提问云端LLM的功能，没有强制登录后Prompt提问本机LLM的功能，后续会增加该功能。
+           sURL = "/ProxyQWen/index?queryString=" + sPrompt;
+
 }
-            // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
-           // open(sURL, "ServerSideCallAIGCAnswerCharactor");
+ 
            var xmlHttpRequest = new XMLHttpRequest();
-            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
-           xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
-            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+           const data = JSON.stringify({
+    "model": window.RunningLocalLLMID,
+    "messages": [
+      {
+        "role": "user",
+        "content": sPrompt
+      }
+    ]});
+    alert(data);
+
+           xmlHttpRequest.open('POST',sURL , true);
+           xmlHttpRequest.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');////如果是HTTP的Form元素的post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型
+           xmlHttpRequest.send(data); 
+           xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
 
                 if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
 
@@ -1168,6 +1266,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
                     }
                 }
         }
+   alert();
 }
 
 function fnTTSOnEndSystemExternalAIGCAnswer(){
