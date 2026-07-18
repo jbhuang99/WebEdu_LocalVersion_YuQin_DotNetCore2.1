@@ -16,6 +16,10 @@ window.DeletedLocalLLMID="";
 window.DeletedLocalLLMURL="";
 window.DownloadedLocalLLMID=""; 
 window.DownloadedLocalLLMURL="";
+window.LocalLLMDirPath="";
+window.LocalLLMURLRoot=""; 
+window.LocalLLMDirPathForDeleteTemp="";
+
 
 document.getElementById('startBtnSystemInternal').addEventListener('click',fnStartBtnSystemInternalOnClick,false);          
 document.getElementById('stopBtnSystemInternal').addEventListener('click',fnStopBtnSystemInternalOnClick, false); 
@@ -37,14 +41,38 @@ document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
 }
 
+function fnStartFoundryLocal() {
+    var sURL="/StartServiceFoundryLocal";      
+       var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+            xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行 
+                      window.LocalLLMURLRoot=xmlHttpRequest.responseText;
+
+                     alert(window.LocalLLMURLRoot);
+                     //window.DeletedLocalLLMDirPath=JSON.parse(xmlHttpRequest.responseText).modelDirPathxml; 
+                     //alert(indow.DeletedLocalLLMDirPath);
+                    }
+                    else {
+                        alert('出错了,模型启动可能需要等候一定时间，请稍后再试单击本按钮！Err：' + xmlHttpRequest.status);
+                    }
+                }
+                }
+    }
 function fnRadioListDownloadLocalLLM() {
 if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("本机网站发布")>=0)
 {
      var oTempDownloadingLocalLLM=document.getElementById("id_DownloadingLocalLLM");
     //var oTemp=event.srcElement.nextElementSibling;
     var oTempParentElement=event.srcElement.parentElement;
+    if(document.getElementById("idRunableLocalLLM").innerHTML.indexOf(oTempParentElement.innerHTML.substring(0, oTempParentElement.innerHTML.indexOf("（文件容量：")))>=0) {alert("当前本机LLM已经下载，无需重复下载！");return;}//如果已经下载过了，就不再下载了。
             //oTemp.textContent="正在下载LLM，LLM文件容量较大，请耐心等待，可在服务端Console视图查看下载进度...";
-            oTempDownloadingLocalLLM.textContent="正在下载LLM，LLM文件容量较大，请耐心等待，可在服务端Console视图查看下载进度...";
+            oTempDownloadingLocalLLM.textContent="正在下载LLM，LLM文件容量较大，请耐心等待，可在服务端Console视图查看下载进度...请不要关闭服务端Console视图!!!";
             var sURL = "/ListDownloadLocalLLM?Model="+oTempParentElement.innerHTML.substring(0, oTempParentElement.innerHTML.indexOf("（文件容量："));
             //var sURL = "/RunLocalLLM?Model=" + oTemppreviousElementSibling.textContent;           
             var xmlHttpRequest = new XMLHttpRequest();
@@ -61,6 +89,7 @@ if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunn
                          oTempDownloadingLocalLLM.textContent="当前本机LLM是"+xmlHttpRequest.responseText.split("|||")[0]+"已下载，如果不再使用，可以删除..."; 
                         window.DownloadedLocalLLMID = xmlHttpRequest.responseText.split("|||")[0]; 
                         fnAjaxRunableLocalLLM();
+                        fnStartFoundryLocal();
                     }
                     else {
                         alert('出错了,Err：' + xmlHttpRequest.status);
@@ -73,13 +102,46 @@ alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnR
 return;
 }
 }
+
+function fnLocalLLMDirPath() {
+    var sURL=window.LocalLLMURLRoot+"openai/status";      
+       var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+            xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+
+                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+
+                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
+                        //如果函数存在的话执行 
+                     window.LocalLLMDirPath=JSON.parse(xmlHttpRequest.responseText).modelDirPath; 
+                     window.LocalLLMDirPathForDeleteTemp=window.LocalLLMDirPath;
+                     alert(window.LocalLLMDirPath+"|||"+window.LocalLLMDirPathForDeleteTemp);
+                    }
+                    else {
+                        alert('出错了,模型启动可能需要等候一定时间，请稍后再试单击本按钮！,Err：' + xmlHttpRequest.status);
+                    }
+                }
+                }
+    }
 function fnRadioDeleteLocalLLM() {
  if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("本机网站发布")>=0)
  {
+     //fnLocalLLMDirPath();
+     //window.LocalLLMDirPath="C:\\Users\\1\\.foundry\\cache\\models";
+     window.LocalLLMDirPath=window.LocalLLMDirPathForDeleteTemp.replace(/\\/g, "\\\\");
+     if(window.LocalLLMDirPathForDeleteTemp==null || window.LocalLLMDirPathForDeleteTemp==""){alert("请当击上方按钮，重新启动服务！");return;}
+     alert(window.LocalLLMDirPathForDeleteTemp+"|||"+window.LocalLLMDirPath);
+   //var oUnloadAllWin = window.open(window.RunningLocalLLMURL+ "openai/unloadall","TempWin");oUnloadAllWin.close();//服务端未能实现自动关闭本机LLM的网页界面，故此处使用window.open()方法打开本机LLM的网页界面，并立即关闭。
+   //prompt("当前本机LLM是"+oTempParentElement.innerHTML.substring(0, oTempParentElement.innerHTML.indexOf("（文件容量："))+"将删除，如果需要，请重新下载...");
+   if (confirm("请确认您的操作")) {
+// 用户点击了确定
     var oTemp=event.srcElement.nextElementSibling;
     var oTempParentElement=event.srcElement.parentElement;
             oTemp.textContent="正在删除LLM...";
-            var sURL = "/DeleteLocalLLM?Model="+oTempParentElement.innerHTML.substring(0, oTempParentElement.innerHTML.indexOf("（文件容量："));
+            var sURL = "/DeleteLocalLLM?Model="+oTempParentElement.innerHTML.substring(0, oTempParentElement.innerHTML.indexOf("（文件容量：")).replace(/:/g, "-")+"&localLLMDirPath="+window.LocalLLMDirPath;
+            //var sURL = "/DeleteLocalLLM?Model="+oTempParentElement.innerHTML.substring(0, oTempParentElement.innerHTML.indexOf("（文件容量："))+"&localLLMDirPath="+window.LocalLLMDirPath;
+            alert(sURL);
             //var sURL = "/RunLocalLLM?Model=" + oTemppreviousElementSibling.textContent;           
             var xmlHttpRequest = new XMLHttpRequest();
             xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
@@ -90,15 +152,19 @@ function fnRadioDeleteLocalLLM() {
 
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行 
-                        window.window.DeletedLocalLLMURL=xmlHttpRequest.responseText.split("|||")[1];
-                        oTemp.textContent="当前本机LLM是"+xmlHttpRequest.responseText.split("|||")[0]+"已删除，如果需要，请重新下载..."; 
-                        window.window.DeletedLocalLLMID = xmlHttpRequest.responseText.split("|||")[0];                    
+                        alert(xmlHttpRequest.responseText);
+                        oTemp.textContent="当前本机LLM是"+oTempParentElement.innerHTML.substring(0, oTempParentElement.innerHTML.indexOf("（文件容量："))+"已删除，如果需要，请重新下载..."; 
+                        fnAjaxRunableLocalLLM();
+                        fnStartFoundryLocal();
                     }
                     else {
                         alert('出错了,Err：' + xmlHttpRequest.status);
                     }
                 }
                 }
+                } else {
+event.srcElement.checked = false; // 取消选中状态
+}
 }
 else{
     alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom()+"此操作属于本机运行功能，已被禁止！！！请下载本软件的整体VS解决方案本机运行，实现本功能。");
@@ -204,6 +270,8 @@ function fnRadioRunLocalLLM() {
                         }
                         else {
                             document.getElementById("idRunableLocalLLM").innerHTML ="<ol><li>"+sTemp.slice(0, -"|||".length).replace(/(\|\|\|)+/g, '<input type="radio" name="raio_RunableLocalLLM" onclick="fnRadioRunLocalLLM()" onblur="fnBlurRadioRunLocalLLM()"/><span>请单选运行LLM...</span><input type="radio" name="raio_DeletableLocalLLM" onclick="fnRadioDeleteLocalLLM()" onblur="fnBlurRadioDeleteLocalLLM()"/><span>请单选删除LLM...</span></li><li>')+'<input type="radio" name="raio_RunableLocalLLM" onclick="fnRadioRunLocalLLM()" onblur="fnBlurRadioRunLocalLLM()"/><span>请单选运行LLM...</span><input type="radio" name="raio_DeletableLocalLLM" onclick="fnRadioDeleteLocalLLM()" onblur="fnBlurRadioDeleteLocalLLM()"/><span>请单选删除LLM...</span></li></ol>';//将约定的"|||"替换为HTML的换行标签
+                              var TempString=xmlHttpRequest.responseText.split("|||")[0];
+                            window.LocalLLMURLRoot=TempString.substring(TempString.indexOf("；URL根：")+"；URL根：".length, TempString.lastIndexOf("）"));
                             oTempRunningLocalLLM.textContent="已查询到可供运行的本机LLM如下，请单选下载...";
                         }
 

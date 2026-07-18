@@ -55,6 +55,7 @@ namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
         }
         public async Task<string> Index()
         {
+            await ExecutionLocalLLM.StartServiceAsync();
             var catalogModels = await ExecutionLocalLLM.ListCatalogModelsAsync();
             var cachedModels = await ExecutionLocalLLM.ListCachedModelsAsync();
             var cachedModelNames = cachedModels.Select(m => m.ModelId).ToHashSet();
@@ -118,9 +119,10 @@ namespace ASPDotNet_MVC_YuQin.Controllers.FoundryLocalDemo
                     DownLoadSize = catalogModel.FileSizeMb,
                     License = catalogModel.License
                 };
-                TempString = TempString + modelViewModel.Name+ "（文件容量：" + modelViewModel.DownLoadSize + "M；开源许可：" + modelViewModel.License + "）" + "|||";
+                TempString = TempString + modelViewModel.Name+ "（文件容量：" + modelViewModel.DownLoadSize + "M；开源许可：" + modelViewModel.License + "；URL根：" + ExecutionLocalLLM.sRUL + "）" + "|||";
             }
             Console.WriteLine(TempString);
+            Console.WriteLine(ExecutionLocalLLM.sRUL);
             return TempString;
         }
 
