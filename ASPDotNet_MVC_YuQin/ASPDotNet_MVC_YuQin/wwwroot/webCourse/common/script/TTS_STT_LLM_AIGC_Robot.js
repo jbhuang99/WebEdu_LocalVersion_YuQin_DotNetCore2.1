@@ -921,10 +921,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
         "content": sPrompt
       }
     ]});
-    alert(sURL);
-    alert(data);
-
-           xmlHttpRequest.open('POST',sURL , true);
+           xmlHttpRequest.open('POST',sURL, true);
            xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');////如果是HTTP的Form元素的post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型
            xmlHttpRequest.send(data); 
             xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
@@ -933,83 +930,10 @@ function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
 
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行
-                       // var oTemp=JSON.parse(fnDecodeUnicodeEscape(xmlHttpRequest.responseText));//JSON.parse自动将Unicode转为中文，故不需要再使用fnDecodeUnicodeEscape函数。但是失败，没办法临时使用fnDecodeUnicodeEscape函数，后续再研究。
-                        var oTemp=fnDecodeUnicodeEscape(xmlHttpRequest.responseText);
-                      // document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.output.text;//oTemp.output.text失败，后续修改
-                       document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp;
+                       var oTemp=JSON.parse(xmlHttpRequest.responseText);
+                       document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.choices[0].message.content;
                         window.speechSynthesis.cancel();
-                   fnTTS_Play(0);
-                     }
-                    
-                    else {
-                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
-                        alert(sTempErr);
-                         window.speechSynthesis.cancel();
-                     //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
-                     window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
-                    }
-                }
-        }
-        alert();
-}
-function fnDecodeUnicodeEscape(str) {
-  // 匹配 \uXXXX 格式（不区分大小写）
-  return str.replace(/\\u([0-9a-fA-F]{4})/g, (match, hex) => {
-    // 将十六进制字符串转为十进制码点，再转换为字符
-    return String.fromCodePoint(parseInt(hex, 16));
-  });
-}
-function fnAjaxServerSideCallAIGCAnswerCharactorInternal_Old(isProxy) {
-        if(window.RunningLocalLLMID==null || window.RunningLocalLLMID=="") {
-        alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
-        return;
-        }
-    fnToggleEventSoureElementColor();
-    window.isRecognizingSystemExternal = false;
-     window.speechSynthesis.cancel(); 
-            var sPrompt = document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value;
-             window.speechSynthesis.cancel();
-                     //TTS
-             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
-             window.speechSynthesis.speak(utteranceExternalPrompt); 
-            alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
-            var sURL ="";           
-            if(isProxy=="Proxy"){
-            const utteranceExternalPrompt2 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
-             window.speechSynthesis.speak(utteranceExternalPrompt2); 
-           open("/ProxyLocalLLM/index?queryString=" + sPrompt,"LogInProxy");//+ "&localLLMID=" + window.RunningLocalLLMID,"LogInProxy");
-           sURL = "/ProxyLocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.RunningLocalLLMID;
-            }
-            else{
-            sURL = "/LocalLLM/index?queryString=" + sPrompt;//+ "&localLLMID=" + window.RunningLocalLLMID;
-}
- 
-            // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
-           // open(sURL, "ServerSideCallAIGCAnswerCharactor");
-           var xmlHttpRequest = new XMLHttpRequest();
-            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
-           xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
-            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
-
-                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
-
-                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
-                        //如果函数存在的话执行
-                        var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                        document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.output.text;
-                      
-                        window.speechSynthesis.cancel();
-                          /**
-                     //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+oTemp.output.text); 
-                     if(document.getElementById("id_TTS").disabled==false){
-                     window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
-                     utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
-                     **/
-                   // document.getElementById("id_TTS_Play").click();
-                   fnTTS_Play(0);
+                   fnTTS_PlayInternal(0);
                      }
                     
                     else {
@@ -1229,7 +1153,6 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
         "content": sPrompt
       }
     ]});
-    alert(data);
 
            xmlHttpRequest.open('POST',sURL , true);
            //xmlHttpRequest.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');////如果是HTTP的Form元素的post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型
@@ -1240,14 +1163,8 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
                 if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
 
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
-                        //如果函数存在的话执行
-                       // var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                        // var oTemp=JSON.parse(fnDecodeUnicodeEscape(xmlHttpRequest.responseText));//JSON.parse自动将Unicode转为中文，故不需要再使用fnDecodeUnicodeEscape函数。但是失败，没办法临时使用fnDecodeUnicodeEscape函数，后续再研究。
-                        var oTemp=fnDecodeUnicodeEscape(xmlHttpRequest.responseText);
-                        
-                      // document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.output.text;//oTemp.output.text失败，后续修改\
-                      // var sString=oTemp.output.text;失败，后续修改
-                      var sString=oTemp;
+                         var oTemp=JSON.parse(xmlHttpRequest.responseText);                      
+                         var sString=oTemp.choices[0].message.content;                     
      
         var sString1=sString.replace("A.", '<p/><input type="radio" name="raio_Four"/>A.');
         var sString2=sString1.replace("B.", '<p/><input type="radio" name="raio_Four"/>B.');
@@ -1268,7 +1185,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
                      **/
                    // document.getElementById("id_TTS_Play").click();
-                   fnTTS_Play(0);
+                   fnTTS_PlayInternal(0);
                      }
                     
                     else {
@@ -1281,7 +1198,6 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
                     }
                 }
         }
-   alert();
 }
 
 function fnTTSOnEndSystemExternalAIGCAnswer(){
@@ -1325,7 +1241,39 @@ function fnTTS_Play(intCharBeginningNumber) {
             }
              window.speechSynthesis.speak(utterance);
              //utterance.onend=fnTTSOnEnd;// 语音朗读结束时的回调;
-             utterance.onend=fnTTSOnEndSystemExternalAIGCAnswer;
+             //暂时取消了，以免错误语音识别utterance.onend=fnTTSOnEndSystemExternalAIGCAnswer;
+           // }
+    
+}
+
+function fnTTS_PlayInternal(intCharBeginningNumber) {
+    //document.getElementById("transcriptSystemExternal").style.color="green";
+    document.getElementById('stopBtnSystemExternal').click(); 
+    document.getElementById("id_RadioSystemExternal").checked=true;
+  //  if(document.getElementById("id_RadioSystemExternal").checked == true) {
+        
+    document.getElementById("id_TTS_GoToText").value=intCharBeginningNumber;
+    
+   var sTemp="当前AIGC回答Answer朗读已结束，请继续Prompt提问AIGC！";
+    if(!("speechSynthesis" in window)) {
+		throw alert("对不起，您的浏览器不支持");
+		}
+        window.speechSynthesis.cancel();
+       //var sTextContent = JSON.stringify(document.getElementById("transcriptSystemExternal").textContent);
+       var sTextContent = document.getElementById("transcriptSystemInternal").textContent;
+       document.getElementById("id_CharNumber").textContent=sTextContent.length;
+       
+              var utterance="";              
+             if(sTextContent==null||sTextContent==""){
+            utterance ="您好，当前AIGC回答Answer，没有字符自动朗诵！"+sTemp;            
+                 }
+            else{
+            sTextContentBeginningNumber =sTextContent.substring(intCharBeginningNumber,sTextContent.length);
+             utterance = new SpeechSynthesisUtterance(sTextContentBeginningNumber+sTemp);
+            }
+             window.speechSynthesis.speak(utterance);
+             //utterance.onend=fnTTSOnEnd;// 语音朗读结束时的回调;
+             //暂时取消了，以免错误语音识别utterance.onend=fnTTSOnEndSystemInternalAIGCAnswer;
            // }
     
 }
@@ -1486,208 +1434,3 @@ window.speechSynthesis.cancel();
            open("/QWenSkillsLearningCommunity/index?queryString=sChecedName");
             }
 }
-/**AIGC官方声明：因为API Key容易泄露等等安全问题，所以当前不支持JS访问千问AIGC。
- *
- function fnidQwenAPIKeyConfirmOnClickSystemExternal(){
-    window.QwenAPIKey=document.getElementById('idQwenAPIKeyInput').value;
-    //document.getElementById('idQwenAPIKeyInput').value="";
-    document.getElementById('idQwenAPIKeyInput').placeholder="您已键入Qwen千问的API Key";
-    //alert(window.QwenAPIKey);
-    alert(document.getElementById('idQwenAPIKeyInput').placeholder+"："+window.QwenAPIKey);
-}
-
-  function fnAjaxClientBrowserSideCallAIGCAnswerCharactor() {
-     if(window.QwenAPIKey==null||window.QwenAPIKey==""){
-        alert("您可能还没输入并确认您的Qwen千问APIKey！");
-    }
-    else{
-    fnToggleEventSoureElementColor();
-    var sPrompt = document.getElementById("idPromptForClientBrowserSide").value;
-     window.speechSynthesis.cancel();
-                     //TTS
-    const utteranceInternalPrompt = new SpeechSynthesisUtterance("您的Prompt是"+sPrompt+"对吗？"); 
-     window.speechSynthesis.speak(utteranceInternalPrompt); 
-     alert("您的Prompt是：" + sPrompt);
-    fnCallAIGCQwen(sPrompt);
-    }
-    }
-   
- async function fnCallAIGCQwen(sPrompt) {
-  const apiKey = window.QwenAPIKey; // 替换为你的实际 API Key
-  const url = 'https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation';
-    //alert(apiKey+sPrompt);
-    alert(JSON.stringify({
-        model: 'qwen-max', // 或 qwen-plus, qwen-turbo 等
-        input: {
-          prompt: sPrompt
-        },
-        parameters: {
-          result_format: 'text'
-        }
-      }));
-      alert(JSON.stringify({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}` 
-      }));
-    try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-       // 'Authorization': `Bearer ${apiKey}`
-       'Authorization': 'Bearer ${apiKey}'
-       //  'Authorization': `Bearer apiKey`
-      // 'Authorization': `Bearer sk-************`
-     // max_tokens: 100,
-   // temperature: 0.7,
-    //stream: true // 如果启用流式响应
-      },
-      body: JSON.stringify({
-        model: 'qwen-max', // 或 qwen-plus, qwen-turbo 等
-        input: {
-          prompt: sPrompt
-        },
-        parameters: {
-          result_format: 'text'
-        }
-      })
-    });
-    alert(apiKey+"?????????????"+sPrompt);
-    const data = await response.json();
-    if (data.output &&data.output.text) {
-      alert('千问回复:', data.output.text);
-      return data.output.text;
-    } 
-    else {
-      alert('API 错误:', data);
-      return '抱歉，调用失败。';
-    }
-    }
-    catch (error) {    
-    if (error.name === 'AbortError') {
-      alert('请求超时：'+error.name+error.message);
-      return { success: false, error: '请求超时', message: 'Request timed out' };
-    }
-
-    if (!navigator.onLine) {
-        alert(error.name+error.message);
-      return { success: false, error: '网络不可用', message: 'Network is offline' };
-    }
-
-    alert('请求失败：'+'\r'+'error.name是：'+error.name+'\r'+'error.message：'+error.message);
-    return { success: false, error: error.message };
-  }
-}
- **/
-/**
- XMLHttpRequest 与 Fetch 的异同(Promise 在其中的作用)
-•设计年代：XMLHttpRequest（XHR）是1999年引入的旧式API，而Fetch API是2015年随着ES6标准引入的现代API⁠⁣ ⁠⁣5 。
-•异步处理机制：XHR基于事件和回调函数来处理异步请求，容易导致“回调地狱”问题；Fetch API则基于Promise，使用Promise对象来处理异步请求，使得代码更具可读性和可维护性⁠⁣ 。这使得Fetch在处理多个异步操作时更加简洁、直观，并且支持链式调用和async/await语法⁠⁣。
-•语法简洁度：相较于XHR，Fetch API的语法更加简单明了，通常只需要几行代码就能完成一个请求⁠⁣  。此外，Fetch采用模块化设计，其API分散在多个对象上如Response, Request, Headers等，相比之下，XHR的API设计并不是很好，输入、输出及状态都在同一个接口管理⁠⁣。
-•跨域请求：虽然两者都支持跨域请求，但Fetch默认不发送cookies，需要通过设置credentials: 'include'来允许携带cookie进行跨域请求；而XHR则默认会发送cookies⁠⁣。
-•其他特性：Fetch API还提供了对流的支持，可以更高效地处理大文件或实时数据流；并且它可以在Service Worker中使用，这是XHR所不具备的功能⁠⁣ ⁠ 。
-Promise 在其中的作用
-•Promise是一种用于处理异步操作的对象，它代表了一个异步操作的最终完成（或失败）及其结果值⁠⁣  。
-•Fetch API完全基于Promise实现，这意味着每次发起请求后返回的是一个Promise对象，开发者可以通过.then()方法链式调用来处理响应数据，或者使用async/await关键字以同步方式编写异步代码⁠⁣ 。
-•XMLHttpRequest本身并不直接支持Promise，但是可以通过封装将其转换为Promise形式，从而利用Promise的优势简化回调逻辑⁠⁣ 。
-综上所述，尽管XMLHttpRequest和Fetch都可以用来发起网络请求，但后者凭借其现代化的设计理念，在易用性、功能丰富度等方面展现出了明显优势。同时，Promise作为一种强大的异步编程工具，在Fetch API中得到了广泛应用，极大地提升了开发效率与代码质量。
- */
-/** 
- * 封装一个通用的 fetch 请求函数可以提高代码的复用性、可维护性和健壮性。以下是一个完整的通用 fetch 封装示例，包含请求拦截、响应处理、错误处理和常用配置.封装要点说明：
- 1. 默认配置：设置通用的 headers、method 和 credentials。
-2. JSON 自动序列化：对对象类型的 body 自动调用 JSON.stringify。
-3. 超时控制：使用 AbortController 模拟 timeout 功能。
-4. 响应格式判断：根据 Content-Type 决定是 .json() 还是 .text()。
-5. 错误分类处理：区分网络错误、HTTP 错误、超时、离线等场景。
-6. 统一返回格式：便于调用方统一处理成功与失败。
-可选增强功能：
-•添加请求/响应拦截器（类似 Axios）
-•自动重试机制
-•请求缓存
-•日志记录
-•Token 自动刷新与注入
- **/
-/**
- // 通用 fetch 请求封装函数.你可以将此函数封装成一个独立模块，在项目中全局使用，极大提升开发效率。
-async function request(url, options = {}) {
-  // 默认配置
-  const defaultOptions = {
-    method: 'GET', // 默认请求方法
-    headers: {
-      'Content-Type': 'application/json', // 默认内容类型
-    },
-    credentials: 'include', // 允许携带 cookies（用于跨域会话）
-    timeout: 10000, // 自定义超时时间（fetch 原生不支持 timeout，需手动实现）
-  };
-
-  // 合并用户传入的 options
-  const config = { ...defaultOptions, ...options };
-
-  // 如果是 POST/PUT/PATCH 请求，自动将 body 转为 JSON 字符串
-  if (['POST', 'PUT', 'PATCH'].includes(config.method) &&typeof config.body === 'object') {
-    config.body = JSON.stringify(config.body);
-  }
-
-  // 使用 AbortController 实现超时控制
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), config.timeout);
-
-  try {
-    const response = await fetch(url, {
-      ...config,
-      signal: controller.signal, // 绑定中断信号
-    });
-
-    clearTimeout(timeoutId); // 清除超时定时器
-
-    if (!response.ok) {
-      throw new Error(`HTTP Error! status: ${response.status}`);
-    }
-
-    // 尝试解析 JSON，失败则返回文本
-    let data;
-    const contentType = response.headers.get('content-type');
-    if (contentType &&contentType.includes('application/json')) {
-      data = await response.json();
-    } else {
-      data = await response.text();
-    }
-
-    return {
-      success: true,
-      data,
-      status: response.status,
-      headers: response.headers,
-    };
-  } catch (error) {
-    clearTimeout(timeoutId);
-
-    // 区分不同类型的错误
-    if (error.name === 'AbortError') {
-      console.error('请求超时');
-      return { success: false, error: '请求超时', message: 'Request timed out' };
-    }
-
-    if (!navigator.onLine) {
-      return { success: false, error: '网络不可用', message: 'Network is offline' };
-    }
-
-    console.error('请求失败:', error.message);
-    return { success: false, error: error.message };
-  }
-}
-
-// 使用示例
-request('/api/user', {
-  method: 'POST',
-  body: { name: 'Alice', age: 25 },
-})
-  .then((res) => {
-    if (res.success) {
-      console.log('数据:', res.data);
-    } else {
-      console.error('错误:', res.error);
-    }
-  });
-
- */
