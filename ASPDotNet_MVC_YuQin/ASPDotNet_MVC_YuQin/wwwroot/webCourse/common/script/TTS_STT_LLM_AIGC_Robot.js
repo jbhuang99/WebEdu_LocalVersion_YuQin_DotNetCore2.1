@@ -835,7 +835,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
              const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
             alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-             document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+             document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的LLM："+document.getElementById("idSelectedExternalLLM").value+"，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
             var sURL ="";           
             if(isProxy=="Proxy"){
             const utteranceExternalPrompt2 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
@@ -898,7 +898,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
              const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
             alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问内部的LLM："+window.RunningLocalLLMID+"，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
             var sURL ="";           
             if(isProxy=="Proxy"){
             const utteranceExternalPrompt2 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
@@ -921,6 +921,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
         "content": sPrompt
       }
     ]});
+    alert(sURL);
     alert(data);
 
            xmlHttpRequest.open('POST',sURL , true);
@@ -1058,7 +1059,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
              const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
             alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-             document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+            document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的LLM："+document.getElementById("idSelectedExternalLLM").value+"，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
            // var sURL = "/QWen/index?queryString=" + sPrompt;
            var sURL ="";           
             if(isProxy=="Proxy"){
@@ -1196,7 +1197,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
              const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
             alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问内部的LLM："+window.RunningLocalLLMID+"，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
            // var sURL = "/QWen/index?queryString=" + sPrompt;
            var sURL ="";           
             if(isProxy=="Proxy"){
@@ -1213,6 +1214,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
  
            var xmlHttpRequest = new XMLHttpRequest();
            const data = JSON.stringify({
+   //  "model": window.RunningLocalLLMID.substring(0, window.RunningLocalLLMID.lastIndexOf(":")),
     "model": window.RunningLocalLLMID,
     "messages": [
       {
@@ -1223,7 +1225,8 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
     alert(data);
 
            xmlHttpRequest.open('POST',sURL , true);
-           xmlHttpRequest.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');////如果是HTTP的Form元素的post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型
+           //xmlHttpRequest.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');////如果是HTTP的Form元素的post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型
+            xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');////如果是HTTP的Form元素的post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型
            xmlHttpRequest.send(data); 
            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
 
