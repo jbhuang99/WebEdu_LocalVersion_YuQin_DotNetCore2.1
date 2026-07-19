@@ -925,7 +925,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
     alert(data);
 
            xmlHttpRequest.open('POST',sURL , true);
-           xmlHttpRequest.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');////如果是HTTP的Form元素的post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型
+           xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');////如果是HTTP的Form元素的post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型
            xmlHttpRequest.send(data); 
             xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
 
@@ -933,9 +933,10 @@ function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
 
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行
-                        var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                        document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.output.text;
-                      
+                       // var oTemp=JSON.parse(fnDecodeUnicodeEscape(xmlHttpRequest.responseText));//JSON.parse自动将Unicode转为中文，故不需要再使用fnDecodeUnicodeEscape函数。但是失败，没办法临时使用fnDecodeUnicodeEscape函数，后续再研究。
+                        var oTemp=fnDecodeUnicodeEscape(xmlHttpRequest.responseText);
+                      // document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.output.text;//oTemp.output.text失败，后续修改
+                       document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp;
                         window.speechSynthesis.cancel();
                    fnTTS_Play(0);
                      }
@@ -952,7 +953,13 @@ function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
         }
         alert();
 }
-
+function fnDecodeUnicodeEscape(str) {
+  // 匹配 \uXXXX 格式（不区分大小写）
+  return str.replace(/\\u([0-9a-fA-F]{4})/g, (match, hex) => {
+    // 将十六进制字符串转为十进制码点，再转换为字符
+    return String.fromCodePoint(parseInt(hex, 16));
+  });
+}
 function fnAjaxServerSideCallAIGCAnswerCharactorInternal_Old(isProxy) {
         if(window.RunningLocalLLMID==null || window.RunningLocalLLMID=="") {
         alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
@@ -1234,8 +1241,13 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
 
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行
-                        var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                         var sString=oTemp.output.text;
+                       // var oTemp=JSON.parse(xmlHttpRequest.responseText);
+                        // var oTemp=JSON.parse(fnDecodeUnicodeEscape(xmlHttpRequest.responseText));//JSON.parse自动将Unicode转为中文，故不需要再使用fnDecodeUnicodeEscape函数。但是失败，没办法临时使用fnDecodeUnicodeEscape函数，后续再研究。
+                        var oTemp=fnDecodeUnicodeEscape(xmlHttpRequest.responseText);
+                        
+                      // document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.output.text;//oTemp.output.text失败，后续修改\
+                      // var sString=oTemp.output.text;失败，后续修改
+                      var sString=oTemp;
      
         var sString1=sString.replace("A.", '<p/><input type="radio" name="raio_Four"/>A.');
         var sString2=sString1.replace("B.", '<p/><input type="radio" name="raio_Four"/>B.');

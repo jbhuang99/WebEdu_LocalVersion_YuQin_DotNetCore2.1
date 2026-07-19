@@ -1,0 +1,47 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+##########
+@hostname=localhost
+@port=44320
+@host={{hostname}}:{{port}}
+@HostNameFoundryLocalGET=http://127.0.0.1:60330/
+@HostNameFoundryLocalPOST={{HostNameFoundryLocalGET}}
+@APIKey=OPENAI_API_KEY
+##########GET https://{{host}}/api/search/tool
+##########
+
+##########GET http://{{HostNameFoundryLocalGET}}openai/status
+######3
+GET http://127.0.0.1:60888/openai/status
+###############
+POST http://127.0.0.1:60888/v1/chat/completions
+Content-Type: application/json;charset=UTF-8
+{"model":"qwen2.5-coder-0.5b-instruct-generic-cpu:4","messages":[{"role":"user","content":"“教育技术”的一道四个选项的单选题，适合用于考试测验。"}]}
+#########
+POST http://127.0.0.1:60888/v1/chat/completions
+Content-Type: application/json;charset=UTF-8
+{
+  "model":"qwen2.5-coder-0.5b-instruct-generic-cpu:4",
+  "messages":[
+  {
+    "role":"user",
+    "content":"“教育技术定义”的一道四个选项的单选题，适合用于考试测验。"
+  }
+]
+}
+#########
+GET https://www.baidu.com
+#########
+GET https://jbhuang99.github.io/WebEdu_LocalVersion_YuQin_DotNetCore2.1/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/wwwroot/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738
+###########
+GET https://localhost:7220/weatherforecast
+###
+GET https://localhost:7220/weatherforecast?date=2023-05-11&location=98006
+###
+GET https://localhost:7220/weatherforecast HTTP/3
+######
+GET https://localhost:7220/weatherforecast
+Date: Wed, 27 Apr 2023 07:28:00 GMT
+###
+GET https://localhost:7220/weatherforecast
+Cache-Control: max-age=604800
+Age: 100
