@@ -859,18 +859,18 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行
                         var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                        document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.output.text;
+                        document.getElementById("transcriptSystemExternal").innerHTML ="外部语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.output.text;
                       
                         window.speechSynthesis.cancel();
                           /**
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+oTemp.output.text); 
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("外部语音对话机器人的回答Answer如下（请注意思辨准确性）"+oTemp.output.text); 
                      if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
                      **/
                    // document.getElementById("id_TTS_Play").click();
-                   fnTTS_Play(0);
+                   fnTTS_Play(0, "transcriptSystemExternal");
                      }
                     
                     else {
@@ -878,13 +878,14 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("外部语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }
         }
 }
-function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
+
+async function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
         if(window.RunningLocalLLMID==null || window.RunningLocalLLMID=="") {
         alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
         return;
@@ -911,8 +912,6 @@ function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
            sURL = "/ProxyQWen/index?queryString=" + sPrompt;
 
 }
- 
-           var xmlHttpRequest = new XMLHttpRequest();
            const data = JSON.stringify({
     "model": window.RunningLocalLLMID,
     "messages": [
@@ -920,63 +919,146 @@ function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
         "role": "user",
         "content": sPrompt
       }
-    ]});
-           xmlHttpRequest.open('POST',sURL, true);
-           xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');////如果是HTTP的Form元素的post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型
-           xmlHttpRequest.send(data); 
-            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+    ],
+    "stream": true
+    });
+                 fnStreamChat(sURL, data, 'transcriptSystemInternal');                 
+}
 
-                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+// Stream helper: 从支持 SSE / chunked JSON 的 LLM 接口读取并增量渲染到指定元素
+async function fnStreamChat(url, postData, targetElementId = 'transcriptSystemInternal') {
+  const target = document.getElementById(targetElementId);
+  if (!target) return;
 
-                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
-                        //如果函数存在的话执行
-                       var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                       document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+oTemp.choices[0].message.content;
-                        window.speechSynthesis.cancel();
-                   fnTTS_PlayInternal(0);
-                     }
-                    
-                    else {
-                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
-                        alert(sTempErr);
-                         window.speechSynthesis.cancel();
-                     //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
-                     window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
-                    }
-                }
+  // 初始化显示
+  target.innerHTML = '';
+  let currentText = "内部语音对话机器人的回答Answer如下（请注意思辨准确性）：";
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: postData
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    target.innerHTML = '请求出错: ' + res.status + ' ' + err;
+    return;
+  }
+
+  // 流式读取响应体
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+
+    // 以行分割，适配 SSE(data: ...) 或逐行 JSON
+    const lines = buffer.split('\n');
+    buffer = lines.pop(); // 保留最后可能不完整的一行
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line) continue;
+
+      // SSE 格式：以 "data: " 开头
+      if (line.startsWith('data:')) {
+        const payload = line.slice(5).trim();
+        if (payload === '[DONE]') {
+          // 流结束标志（OpenAI 风格）
+          reader.cancel();
+          break;
         }
+        try {
+          const parsed = JSON.parse(payload);
+          // 尝试取常见位置的 token
+          const token =
+            parsed.choices?.[0]?.delta?.content ||
+            parsed.choices?.[0]?.text ||
+            parsed.choices?.[0]?.message?.content ||
+            '';
+          if (token) {
+            currentText += token;
+            target.innerHTML = currentText;
+            target.scrollTop = target.scrollHeight;
+          }
+        } catch (e) {
+          // 不是 JSON，直接追加文本
+          currentText += payload;
+          target.innerHTML = currentText;
+          target.scrollTop = target.scrollHeight;
+        }
+      } else {
+        // 非 SSE：有些实现直接按行返回 JSON 或纯文本
+        try {
+          const parsed = JSON.parse(line);
+          const token =
+            parsed.choices?.[0]?.delta?.content ||
+            parsed.choices?.[0]?.text ||
+            parsed.choices?.[0]?.message?.content ||
+            parsed;
+          currentText += typeof token === 'string' ? token : JSON.stringify(token);
+        } catch (e) {
+          currentText += line + '\n';
+        }
+        target.innerHTML = currentText;
+        target.scrollTop = target.scrollHeight;
+      }
+    }
+  }
+
+  // 处理缓冲区中剩余内容（若有）
+  if (buffer.trim()) {
+    try {
+      const parsed = JSON.parse(buffer);
+      const token =
+        parsed.choices?.[0]?.delta?.content ||
+        parsed.choices?.[0]?.text ||
+        parsed.choices?.[0]?.message?.content ||
+        '';
+      currentText += token || buffer;
+    } catch {
+      currentText += buffer;
+    }
+    target.innerHTML = currentText;
+    target.scrollTop = target.scrollHeight;
+  }
+   window.speechSynthesis.cancel();
+   fnTTS_Play(0,targetElementId); 
 }
 
-function fnToggleDisplayOfAIGCAnswerHomeworkAndTest(){
-    if(document.getElementById("id_Answer").style.display=="none"){
-        document.getElementById("id_Answer").style.display="block";
+function fnToggleDisplayOfAIGCAnswerHomeworkAndTest(targetElementId){
+    if(document.getElementById("id_Answer" + targetElementId).style.display=="none"){
+        document.getElementById("id_Answer" + targetElementId).style.display="block";
     }
     else{
-    document.getElementById("id_Answer").style.display="none";
+    document.getElementById("id_Answer" + targetElementId).style.display="none";
     }
 }
 
-function fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(){
-    if(document.getElementById("id_FiveLayMVCFromAIGCAnswerHomeworkAndTest").style.display=="none"){
-        document.getElementById("id_FiveLayMVCFromAIGCAnswerHomeworkAndTest").style.display="block";
+function fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(targetElementId){
+    if(document.getElementById("id_FiveLayMVCFromAIGCAnswerHomeworkAndTest" + targetElementId).style.display=="none"){
+        document.getElementById("id_FiveLayMVCFromAIGCAnswerHomeworkAndTest" + targetElementId).style.display="block";
     }
     else{
-    document.getElementById("id_FiveLayMVCFromAIGCAnswerHomeworkAndTest").style.display="none";
+    document.getElementById("id_FiveLayMVCFromAIGCAnswerHomeworkAndTest" + targetElementId).style.display="none";
     }
 }
 
-function fnHTMLEditorForAIGCHomeworkAndTest(){
+function fnHTMLEditorForAIGCHomeworkAndTest(targetElementId){
     var sTemp="(HTML源码编辑)";
-    if(document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest").textContent.indexOf(sTemp)>=0){
-        document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest").textContent=document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest").textContent.replace(sTemp,"");
-         document.getElementById("id_ForHTMLEditor").innerHTML=document.getElementById("id_ForHTMLEditor").textContent;
-         document.getElementById("id_ForHTMLEditor").contentEditable="false";
+    if(document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest"+targetElementId).textContent.indexOf(sTemp)>=0){
+        document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest"+targetElementId).textContent=document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest"+targetElementId).textContent.replace(sTemp,"");
+         document.getElementById("id_ForHTMLEditor"+targetElementId).innerHTML=document.getElementById("id_ForHTMLEditor"+targetElementId).textContent;
+         document.getElementById("id_ForHTMLEditor"+targetElementId).contentEditable="false";
     }
     else{
-    document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest").textContent=document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest").textContent+sTemp;
-     document.getElementById("id_ForHTMLEditor").textContent=document.getElementById("id_ForHTMLEditor").innerHTML;
-     document.getElementById("id_ForHTMLEditor").contentEditable="true";
+    document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest"+targetElementId).textContent=document.getElementById("id_HTMLEditorForAIGCHomeworkAndTest"+targetElementId). textContent+sTemp;
+     document.getElementById("id_ForHTMLEditor"+targetElementId).textContent=document.getElementById("id_ForHTMLEditor"+targetElementId).innerHTML;
+     document.getElementById("id_ForHTMLEditor"+targetElementId).contentEditable="true";
     }  
     }
 
@@ -1022,20 +1104,20 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
         var sString4=sString3.replace("D.", '<p/><input type="radio" name="raio_Four"/>D.');
         // var sStringMayBe5=sString4.replace("E.", '<p/><input type="radio" name="raio_Four"/>E.');
         var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
-        var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest()">'+'**正确答案：**'+'</button>'+'<span id="id_Answer" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>';
+        var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest(\'transcriptSystemExternal\')">'+'**正确答案：**'+'</button>'+'<span id="id_AnswertranscriptSystemExternal" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>';
         
-        document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+"<p/>"+'<div id="id_ForHTMLEditor" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest()">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTest" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTest" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest()">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
+        document.getElementById("transcriptSystemExternal").innerHTML ="外部语音对话机器人的回答Answer如下（请注意思辨准确性）："+"<p/>"+'<div id="id_ForHTMLEditortranscriptSystemExternal" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(\'transcriptSystemExternal\')">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTesttranscriptSystemExternal" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTesttranscriptSystemExternal" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest(\'transcriptSystemExternal\')">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
         //document.getElementById("transcriptSystemExternal").style.color="";              
         window.speechSynthesis.cancel();
                           /**
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+oTemp.output.text); 
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("外部语音对话机器人的回答Answer如下（请注意思辨准确性）"+oTemp.output.text); 
                      if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
                      **/
                    // document.getElementById("id_TTS_Play").click();
-                   fnTTS_Play(0);
+                   fnTTS_Play(0, "transcriptSystemExternal");
                      }
                     
                     else {
@@ -1043,75 +1125,11 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("外部语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }
         }
-    /**
-    fnToggleEventSoureElementColor();
-    window.isRecognizingSystemExternal = false;
-     window.speechSynthesis.cancel(); 
-            var sPrompt = document.getElementById("idPrompt").value;
-             window.speechSynthesis.cancel();
-                     //TTS
-             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是“"+sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
-             window.speechSynthesis.speak(utteranceExternalPrompt); 
-            alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-             document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
-            var sURL = "/QWen/index?queryString=" + sPrompt;
-            // var sURL = "https://localhost:5001/QWen/index?queryString=" + sSearchedKeywords;
-           // open(sURL, "ServerSideCallAIGCAnswerCharactor");
-           //以下作为测试无法实现调用外部AIGC的案例呈现而已。
-    var oIframe = document.createElement('iframe');
-    oIframe.src = "../options/NotFindHomeworkAndTest.htm";
-    oIframe.frameBorder = '0';
-    oIframe.allowFullscreen = true;    
-    oIframe.style.width = '100%';
-    oIframe.style.height = '100%';
-    oIframe.style.display = 'block';
-    oIframe.style.border = '0';
-    document.getElementById("transcriptSystemExternal").appendChild(oIframe);  
-           var xmlHttpRequest = new XMLHttpRequest();
-            xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
-           xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
-            xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
-
-                if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
-
-                    if (xmlHttpRequest.status == 200) { //如果是200说明成功
-                        //如果函数存在的话执行
-                        var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                        document.getElementById("transcriptSystemExternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）：";
-                      
-                        window.speechSynthesis.cancel();
-                         
-                   fnTTS_Play(0);
-                   // open("../options/NotFindHomeworkAndTest.htm","_blank");
-                   //以下作为测试可以实现调用外部AIGC的案例呈现而已。
-    var oIframe = document.createElement('iframe');
-    oIframe.src = "../options/NotFindHomeworkAndTest.htm";
-    oIframe.frameBorder = '0';
-    oIframe.allowFullscreen = true;    
-    oIframe.style.width = '100%';
-    oIframe.style.height = '100%';
-    oIframe.style.display = 'block';
-    oIframe.style.border = '0';
-    document.getElementById("transcriptSystemExternal").appendChild(oIframe);  
-    
-                     }
-                    
-                    else {
-                        var sTempErr ='出错了,错误编号是：'+xmlHttpRequest.status+xmlHttpRequest.responseText;
-                        alert(sTempErr);
-                         window.speechSynthesis.cancel();
-                     //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
-                     window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
-                    }
-                }
-        }
-        **/
 }
 
 function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
@@ -1172,20 +1190,20 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
         var sString4=sString3.replace("D.", '<p/><input type="radio" name="raio_Four"/>D.');
         // var sStringMayBe5=sString4.replace("E.", '<p/><input type="radio" name="raio_Four"/>E.');
         var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
-        var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest()">'+'**正确答案：**'+'</button>'+'<span id="id_Answer" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>';
+        var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest(\'transcriptSystemInternal\')">'+'**正确答案：**'+'</button>'+'<span id="id_AnswertranscriptSystemInternal" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>';
         
-        document.getElementById("transcriptSystemInternal").innerHTML ="语音对话机器人的回答Answer如下（请注意思辨准确性）："+"<p/>"+'<div id="id_ForHTMLEditor" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest()">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTest" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTest" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest()">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
+        document.getElementById("transcriptSystemInternal").innerHTML ="内部语音对话机器人的回答Answer如下（请注意思辨准确性）："+"<p/>"+'<div id="id_ForHTMLEditortranscriptSystemInternal" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(\'transcriptSystemInternal\')">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTesttranscriptSystemInternal" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTesttranscriptSystemInternal" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest(\'transcriptSystemInternal\')">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
         //document.getElementById("transcriptSystemExternal").style.color="";              
         window.speechSynthesis.cancel();
                           /**
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+oTemp.output.text); 
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("内部语音对话机器人的回答Answer如下（请注意思辨准确性）"+oTemp.output.text); 
                      if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
                      **/
                    // document.getElementById("id_TTS_Play").click();
-                   fnTTS_PlayInternal(0);
+                   fnTTS_Play(0, "transcriptSystemInternal");
                      }
                     
                     else {
@@ -1193,7 +1211,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("内部语音对话机器人的回答Answer如下（请注意思辨准确性）"+sTempErr); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }
@@ -1214,7 +1232,7 @@ function fnTTSOnEndSystemExternalUtteranceTTSOnEndSystemExternalAIGCAnswer(){
             //window.speechSynthesis.cancel();
         }
 
-function fnTTS_Play(intCharBeginningNumber) {
+function fnTTS_Play(intCharBeginningNumber,targetElementId) {
     //document.getElementById("transcriptSystemExternal").style.color="green";
     document.getElementById('stopBtnSystemExternal').click(); 
     document.getElementById("id_RadioSystemExternal").checked=true;
@@ -1228,7 +1246,7 @@ function fnTTS_Play(intCharBeginningNumber) {
 		}
         window.speechSynthesis.cancel();
        //var sTextContent = JSON.stringify(document.getElementById("transcriptSystemExternal").textContent);
-       var sTextContent = document.getElementById("transcriptSystemExternal").textContent;
+       var sTextContent = document.getElementById(targetElementId).textContent;
        document.getElementById("id_CharNumber").textContent=sTextContent.length;
        
               var utterance="";              
@@ -1246,37 +1264,6 @@ function fnTTS_Play(intCharBeginningNumber) {
     
 }
 
-function fnTTS_PlayInternal(intCharBeginningNumber) {
-    //document.getElementById("transcriptSystemExternal").style.color="green";
-    document.getElementById('stopBtnSystemExternal').click(); 
-    document.getElementById("id_RadioSystemExternal").checked=true;
-  //  if(document.getElementById("id_RadioSystemExternal").checked == true) {
-        
-    document.getElementById("id_TTS_GoToText").value=intCharBeginningNumber;
-    
-   var sTemp="当前AIGC回答Answer朗读已结束，请继续Prompt提问AIGC！";
-    if(!("speechSynthesis" in window)) {
-		throw alert("对不起，您的浏览器不支持");
-		}
-        window.speechSynthesis.cancel();
-       //var sTextContent = JSON.stringify(document.getElementById("transcriptSystemExternal").textContent);
-       var sTextContent = document.getElementById("transcriptSystemInternal").textContent;
-       document.getElementById("id_CharNumber").textContent=sTextContent.length;
-       
-              var utterance="";              
-             if(sTextContent==null||sTextContent==""){
-            utterance ="您好，当前AIGC回答Answer，没有字符自动朗诵！"+sTemp;            
-                 }
-            else{
-            sTextContentBeginningNumber =sTextContent.substring(intCharBeginningNumber,sTextContent.length);
-             utterance = new SpeechSynthesisUtterance(sTextContentBeginningNumber+sTemp);
-            }
-             window.speechSynthesis.speak(utterance);
-             //utterance.onend=fnTTSOnEnd;// 语音朗读结束时的回调;
-             //暂时取消了，以免错误语音识别utterance.onend=fnTTSOnEndSystemInternalAIGCAnswer;
-           // }
-    
-}
 
 function fnTTS_Pause() {
     window.speechSynthesis.pause();
@@ -1292,7 +1279,7 @@ function fnTTS_Cancel() {
 
 function fnTTS_GoTo() {
     window.speechSynthesis.cancel();
-    fnTTS_Play(document.getElementById("id_TTS_GoToText").value);
+    fnTTS_Play(document.getElementById("id_TTS_GoToText").value, "transcriptSystemExternal");
 }
 
 function fnTTSOnEnd(){
