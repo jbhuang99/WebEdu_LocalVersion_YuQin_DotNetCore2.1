@@ -106,14 +106,15 @@
         <td style="border:0;text-align:center">
         <div>
             <button style="font-size:16px;margin:0;padding:0;" title="本系统自创方研发的数智思维知识库+他创方研发的大语言模型+您的选用，降本增效地实现“人←隐喻→人形机器人”的数智思维训练与评测。&#10;不过，他创方研发的众多大语言模型日新月异，不断自我进化，在此只需单点登录我们仅仅一个代理，就可以比较选用下拉框中的当前最优的任一大语言模型/智能体/网站，而且省时省力省钱省心，欢迎您我他三方合作共赢，快来试试哟！&#10;【注：数智思维教育均衡发展支持人员，则可自由使用】"><a href="/HomeIdentity_YuQin" target="LogInProxy" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}'>登录省心代理</a></button>||<button style="font-size:16px;margin:0;padding:0;" title="支付宝/微信充值本系统代理访问各种大语言模型/网站，就可免去您自己一个个注册充值这些大语言模型/网站的烦恼，省钱省力省心！&#10;本系统的客户端浏览器直接访问大语言模型LLM不被允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理访问大语言模型LLM，而且节省70%费用！"><a href="AliPay.html" target="Pay" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}'>充值</a></button>    
-            <img title="单击停止本系统外部的AIGC的回答Answer的字符朗读声音，同时，停止任何其他字符朗读声音【注：本系统外部的AIGC的回答Answer，默认是需要付费的自动字符朗读的，所以没有刻意提供本系统内部那样的是否自动字符朗读的功能切换（无需自动字符朗读的，无需选用本系统的AIGC功能，建议选用其他系统的AIGC功能）】" id="id_ToggleTTS" src="Sound_32.png" onclick='fnTTS_Cancel(); //if(document.getElementById("id_TTS").disabled==false){document.getElementById("id_TTS").disabled=true} else {document.getElementById("id_TTS").disabled=false;} ' />
+            <img title="单击停止本系统外部的AIGC的回答Answer的字符朗读声音，同时，停止任何其他字符朗读声音【注：本系统外部的AIGC的回答Answer，默认是需要付费的自动字符朗读的，所以没有刻意提供本系统内部那样的是否自动字符朗读的功能切换（无需自动字符朗读的，无需选用本系统的AIGC功能，建议选用其他系统的AIGC功能）】" id="id_ToggleTTS" src="Sound_32.png" onclick='fnTTS_Cancel(); if(document.getElementById("id_TTS").disabled==false){document.getElementById("id_TTS").disabled=true} else {document.getElementById("id_TTS").disabled=false;} ' />
             <!--<form style="display:inline;font-size:12px">-->
-            <fieldset style="display: inline; border: none;font-size:10px" id="id_TTS"><button id="id_TTS_Play" title="本系统外部的字符朗读功能，只能朗读AIGC的回答Answer。最好选用Edge浏览器内置的可以朗读所有框架的字符朗读功能！！！&#10;Edge中本系统框架的边沿鼠标右击，Edge内置右键菜单中的“扩展”可以下载安装“Translator for Microsoft Edge”，从而可以实现中英（Prompt）互译。进一步可以右击菜单内置的朗读功能，可以实现中英（Prompt）朗读！！！&#10;（字符朗读的准确性/手机触屏便于笔画书写/键盘便于拼音码字/录音转字便于发音吐字/字转声音便于听音识字，还请参见本系统第一个条目的内容框架中的字典链接中的中英字典！）"  onclick="fnTTS_Play(0,'transcriptSystemExternal')">中英朗读</button> &nbsp;<button id="id_TTS_Pause" onclick="fnTTS_Pause()"> &nbsp;暂停&nbsp;</button> &nbsp;<button onclick="fnTTS_Resume()" id="id_TTS_Resume" >&nbsp;继续&nbsp;</button> &nbsp;<button onclick="fnTTS_Cancel()" id="id_TTS_Cancel" >&nbsp;取消&nbsp;</button><span title="将显示当前条目内容框架的字符总数"><span>字符总数：</span><span id="id_CharNumber">No.</span></span></fieldset>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo" style="font-size:10px">字符起点：</span><input id="id_TTS_GoToText" type="text" size="3" value="0" onblur="fnTTS_GoTo(0)"  /></span>
+            <fieldset style="display: inline; border: none;font-size:10px" id="id_TTS"><button id="id_TTS_Play" title="本系统外部的字符朗读功能，只能朗读AIGC的回答Answer。最好选用Edge浏览器内置的可以朗读所有框架的字符朗读功能！！！&#10;Edge中本系统框架的边沿鼠标右击，Edge内置右键菜单中的“扩展”可以下载安装“Translator for Microsoft Edge”，从而可以实现中英（Prompt）互译。进一步可以右击菜单内置的朗读功能，可以实现中英（Prompt）朗读！！！&#10;（字符朗读的准确性/手机触屏便于笔画书写/键盘便于拼音码字/录音转字便于发音吐字/字转声音便于听音识字，还请参见本系统第一个条目的内容框架中的字典链接中的中英字典！）"  onclick="if(document.getElementById('id_RadioSystemInternal').checked) fnTTS_Play(0,'transcriptSystemInternal');else if(document.getElementById('id_RadioSystemExternal').checked) fnTTS_Play(0,'transcriptSystemExternal');else{alert('目前只支持：朗读本机LLM生成内容，或者，朗读云端LLM生成内容。请单击激活相应的两个网页部分，然后单击本按钮实现朗读！')}">中英朗读</button> &nbsp;<button id="id_TTS_Pause" onclick="fnTTS_Pause()"> &nbsp;暂停&nbsp;</button> &nbsp;<button onclick="fnTTS_Resume()" id="id_TTS_Resume" >&nbsp;继续&nbsp;</button> &nbsp;<button onclick="fnTTS_Cancel()" id="id_TTS_Cancel" >&nbsp;取消&nbsp;</button><span title="将显示当前条目内容框架的字符总数"><span>字符总数：</span><span id="id_CharNumber">No.</span></span></fieldset>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo" style="font-size:10px">字符起点：</span><input id="id_TTS_GoToText" type="text" size="3" value="0" onblur="fnTTS_GoTo(0)"  /></span>
             <!--</form>-->
         
            
         <span title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" style="color:brown">
-            <input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemInternal" value="SystemInternal" disabled />当前朗读源：主视图<input type="radio" name="raio_SystemInternal_SystemExternal" id="id_RadioSystemExternal" value="SystemExternal" disabled />当前朗读源：本视图
+            <input type="radio" name="radio_LLMContent" id="id_RadioSystemInternal" value="transcriptSystemInternal" disabled/>朗读本机LLM生成内容
+            <input type="radio" name="radio_LLMContent" id="id_RadioSystemExternal" value="transcriptSystemExternal" disabled/>朗读云端LLM生成内容
         </span>
             <button id="recordBtn" title="单击将切换显示语音识别按钮" onclick='if(document.getElementById("id_RecordDiv").style.display=="none"){document.getElementById("id_RecordDiv").style.display="block";document.getElementById("idRightTriangleOfRecord").textContent="▼";} else{document.getElementById("id_RecordDiv").style.display="none";document.getElementById("idRightTriangleOfRecord").textContent="▶"; }fnToggleEventSoureElementColor();'><span id="idRightTriangleOfRecord">▶</span>语音识别</button>
             </div>
@@ -538,23 +539,21 @@
                     </span>
                     <span id="idRadioRAGClickedForWaitingInternal" style="font-size:x-small"></span>
                 </div>
-                <table>
+                <table style="width:100%">
                     <tr>
                         <td>
                             <!-- <div style="text-align: center"><textarea id="" style="width:95%;height:50px"></textarea></div>-->
                             <div style="text-align: center"><textarea id="idTextAreaAjaxInternalSideCallAIGCAnswerCharactor" style="width:95%;height:95px">第3章 “教育数智思维语言的理想相对树根”</textarea></div>
                             <button id="" style="display:inline;white-space: normal" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部单选的各种本机LLM" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactorInternal("Proxy");'>
-                                确定【<span style="color:brown;font-weight:bold">“智能对话Chat_Ask客户←互动→数智时代融合教育数智思维知识库的教育小语言模型SLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨字面准确性/语义准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“教材课文”！）</span>
-                            </button>
+                                生成</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemInternal')">融入“目录条目”的“教材课文”</button>
                         </td>
                         <td>
                             <!--<div style="text-align: center"><textarea id="" style="width: 95%; height: 50px"></textarea></div>-->
                             <div style="text-align: center"><textarea id="idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 95px">第3章 “教育数智思维语言的理想相对树根”的一道四个选项的单选题，适合用于考试测验。</textarea></div>
                             <button id="" style="display:inline;white-space: normal" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部单选的各种本机LLM" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal("Proxy");'>
-                                确定【<span style="color:brown;font-weight:bold">“智能体对话Chat_Agent客户←互动→数智时代融合教育数智思维知识库的教育小语言模型SLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨字面准确性/语义准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“作业测验”！）</span>
-                            </button>                            
+                                生成</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemInternal')">融入“目录条目”的“作业测验”</button>                                                        
                         </td>
                     </tr>
                 </table>
@@ -592,9 +591,9 @@
 
                     </div>
                     -->
-                    <div id="transcriptSystemInternal" style="color: green; width:95%" title="请单击“了解录音Prompt指令”，查看录音说明...">
+                    <div id="transcriptSystemInternal" style="color: green; width:95%" title="请单击“了解录音Prompt指令”，查看录音说明..." onclick="document.getElementById('id_RadioSystemInternal').checked = true;" onblur="document.getElementById('id_RadioSystemInternal').checked = false;">
                         {
-                        "段落": [这里将显示相关提示...]
+                        "段落": [这里查看本机LLM生成内容...]
                         }
                     </div>
                 </td>
@@ -642,21 +641,19 @@
         {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} alert("本功能尚在开发之中...");document.getElementById("idRadioRAGClickedForWaiting").textContent ="(正在开发多媒体检索知识库...)"'>隐式派生继承的多媒体RAG搜问</span>-->
                     <span id="idRadioRAGClickedForWaiting" style="font-size:x-small"></span>
 
-                    <table>
+                    <table style="width:100%">
                         <tr>
                             <td>
                                 <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerCharactor" style="width:95%;height:100px"></textarea></div>
                                 <button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="display:inline;white-space: normal" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部下拉框中的各种云端LLM、网站" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor("Proxy");'>
-                                    确定【<span style="color:brown;font-weight:bold">“智能对话Chat_Ask客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨字面准确性/语义准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“教材课文”！）</span>
-                                </button>                                
+                                       生成</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemExternal')">融入“目录条目”的“教材课文”</button>                                
                             </td>
                             <td>
                                 <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 100px"></textarea></div>
                                 <button id="idButtonAjaxServerSideCallAIGCAnswerHomeworkAndTest" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部下拉框中的各种云端LLM、网站" style="display:inline;white-space: normal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTest("Proxy");'>
-                                    确定【<span style="color:brown;font-weight:bold">“智能体对话Chat_Agent客户←互动→数智时代融合教育数智思维知识库的教育大语言模型LLM服务”的AIGC案例</span>】<br /><span style="color:green">（注意思辨字面准确性/语义准确性！然后可以修改成为系统内部“教育数智思维知识库”的某个“目录条目”的“作业测验”！）</span>
-                                </button>                                
+                                     生成</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemExternal')">融入“目录条目”的“作业测验”</button>                              
                             </td>
                         </tr>
                     </table>
@@ -695,9 +692,9 @@
 
                     </div>
                     -->
-                <div id="transcriptSystemExternal" style="color:green;width:95%" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...请单击“了解录音Prompt指令”，查看录音说明...）">
+                <div id="transcriptSystemExternal" style="color:green;width:95%" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...请单击“了解录音Prompt指令”，查看录音说明...）" onclick="document.getElementById('id_RadioSystemExternal').checked = true;" onblur="document.getElementById('id_RadioSystemExternal').checked = false;">
                     {
-                    "段落": [这里将显示相关提示...]
+                    "段落": [这里查看云端LLM生成内容...]
                     }
                 </div>
             </td>
