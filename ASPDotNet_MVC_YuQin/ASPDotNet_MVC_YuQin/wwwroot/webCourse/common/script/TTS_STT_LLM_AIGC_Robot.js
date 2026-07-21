@@ -42,18 +42,17 @@ document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest")
 }
 
 function fnIntoCourseText(targetElementId){
-     alert(opener.parent.document.getElementById("sIframeContents").contentWindow.document.innerHTML);
     var bConfirm = confirm("当前“目录条目”是（主视图“目录框架”可以单击选择当前“目录条目”）：\n"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"LLM生成的如下内容添加到主视图当前“目录条目”的“课文”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" + "\n"+document.getElementById(targetElementId).innerHTML);
     if (bConfirm) {
-        //
+        opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML('afterbegin', document.getElementById(targetElementId).innerHTML);
+        alert("内容已添加到主视图当前“目录条目”的“课文”部分！请单击“标题框架”的“内容切换”切换查看“课文”/“作业测验”。“课文”右击菜单提供编辑切换、保存等等功能");
     }
 }
 function fnIntoHomeworkAndTest(targetElementId){
-     alert(opener.parent.document.getElementById("sIframeContents").contentWindow.document.innerHTML);
-    opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue;
     var bConfirm = confirm("当前“目录条目”是（主视图“目录框架”可以单击选择当前“目录条目”）：\n"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"LLM生成的内容将被添加到主视图当前“目录条目”的“作业测验”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" +"\n"+ document.getElementById(targetElementId).innerHTML);
     if (bConfirm) {
-         //alert(opener.parent.document.getElementById("sIframeContents").contentWindow.document.content);
+         opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.body.insertAdjacentHTML('afterbegin', document.getElementById(targetElementId).innerHTML);
+        alert("内容已添加到主视图当前“目录条目”的“作业测验”部分！请单击“标题框架”的“内容切换”切换查看“课文”/“作业测验”。“作业测验”视图提供编辑切换功能、保存等等功能");
     }
 }
 function fnStartFoundryLocal() {
@@ -401,9 +400,12 @@ function fnStringSemanticSimilarity(str1, str2, options = {}) {
 }
 
 function fnGetCurrentContentsItem(){
-    document.getElementById("idPromptInternalLLM").value=opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue;
-    document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value="“"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"”";
-     document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"”的一道四个选项的单选题，适合用于考试测验。";
+   // document.getElementById("idPromptInternalLLM").value=opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue;
+   document.getElementById("idPromptInternalLLM").value=opener.oSrcElement.childNodes.item(0).nodeValue;
+    //document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value="“"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"”";
+    document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value="“"+opener.oSrcElement.childNodes.item(0).nodeValue+"”";
+     //document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"”的一道四个选项的单选题，适合用于考试测验。";
+     document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+opener.oSrcElement.childNodes.item(0).nodeValue+"”的一道四个选项的单选题，适合用于考试测验。";
     }
 
 function fnOpenLocalhostDingTalkAIGC(){
