@@ -11,6 +11,13 @@
             font-family: Arial, sans-serif;
            /**margin: 40px;**/
             text-align: center;
+            border-collapse: collapse;
+        }
+        tr{
+            border-collapse: collapse;
+        }
+        td{
+            border-collapse: collapse;
         }
         /**div实现一行两列的网格布局**/
         .row-2col {
@@ -18,10 +25,13 @@
             width: 100%; /* 可根据需要调整 */
             gap: 10px; /* 列间距，可选 */
         }
+        div{
+            border-collapse: collapse;
+        }
 
         .col {
             flex: 1; /* 两列等宽 */
-            border: 1px solid #ccc;
+            border: 0px solid #ccc;
             padding: 16px;
             background: #f9f9f9;
             text-align: center;
@@ -101,9 +111,9 @@
 </head>
 
 <body title="【注：本系统响应教育应用软件新范式：“客户端的教育领域智能体Agent”即“客户端的融合教育领域Skill的通用Agent”←互动→“服务端的教育领域大语言模型LLM”即“服务端的融合教育领域数智思维知识库RAG的通用LLM”】&#10;&#10;【注：本系统遵循业界的通用智能体Agent→领域智能体Agent的思路，继承利用现有的“云端JVSClaw”“本机VS-GitHubCopilot”等等通用智能体Agent，创新研发SKills，融合数智思维知识库，研发教育领域的教育数智思维智能体Agent】&#10;【注：本系统遵循业界的通用大语言模型LLM→领域大语言模型LLM的思路，继承利用现有的“QWen”“ChatGPT”等等通用大语言模型LLM，创新研发教育大语言模型LLM，融合数智思维知识库的RAG，研发教育领域的教育数智思维大语言模型LLM】" onload="fnOnLoad()">
-    <table style="width:100%">
+    <table style="width:100%;border:0;border-collapse: collapse">
         <tr>
-        <td style="border:0;text-align:center">
+        <td style="text-align:center">
         <div>
             <button style="font-size:16px;margin:0;padding:0;" title="本系统自创方研发的数智思维知识库+他创方研发的大语言模型+您的选用，降本增效地实现“人←隐喻→人形机器人”的数智思维训练与评测。&#10;不过，他创方研发的众多大语言模型日新月异，不断自我进化，在此只需单点登录我们仅仅一个代理，就可以比较选用下拉框中的当前最优的任一大语言模型/智能体/网站，而且省时省力省钱省心，欢迎您我他三方合作共赢，快来试试哟！&#10;【注：数智思维教育均衡发展支持人员，则可自由使用】"><a href="/HomeIdentity_YuQin" target="LogInProxy" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}'>登录省心代理</a></button>||<button style="font-size:16px;margin:0;padding:0;" title="支付宝/微信充值本系统代理访问各种大语言模型/网站，就可免去您自己一个个注册充值这些大语言模型/网站的烦恼，省钱省力省心！&#10;本系统的客户端浏览器直接访问大语言模型LLM不被允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理访问大语言模型LLM，而且节省70%费用！"><a href="AliPay.html" target="Pay" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}'>充值</a></button>    
             <img title="单击停止本系统外部的AIGC的回答Answer的字符朗读声音，同时，停止任何其他字符朗读声音【注：本系统外部的AIGC的回答Answer，默认是需要付费的自动字符朗读的，所以没有刻意提供本系统内部那样的是否自动字符朗读的功能切换（无需自动字符朗读的，无需选用本系统的AIGC功能，建议选用其他系统的AIGC功能）】" id="id_ToggleTTS" src="Sound_32.png" onclick='fnTTS_Cancel(); if(document.getElementById("id_TTS").disabled==false){document.getElementById("id_TTS").disabled=true} else {document.getElementById("id_TTS").disabled=false;} ' />
@@ -179,7 +189,7 @@
         </div>
         <div id="id_HardWare" style="display:none;border: dashed;border-color: goldenrod;font-size:13px;text-align:justify">
             <div>
-           <select><option>【注：“软件思维语言”←硬件软件统一→“硬件思维语言”，本系统辅助思考“硬件思维语言（脑机接口-树莓派-3D打印-机器人硬件为例）”】请选择COM-USB端口</option><option>COM1</option><option>COM2</option><option>COM3</option><option>COM4</option></select>&nbsp; &nbsp; <button style="display:inline;white-space: normal;margin:0;padding:0" onclick="fnAjaxServerSideCallBCI()">单击实时连接硬件</button>【注：如果硬件不支持Web服务端接入USB，<a href="https://www.alipan.com/s/6PR7tusHB42" target="_blank">就请单击下载运行APP客户端采集数据的.CSV文件</a>、<a href="TryBCI.csv" target="_blank">查看数据的.CSV文件实例</a>、<a href="CSVProcessorInBrowser.html" target="_blank">上传数据的.CSV文件进行预处理后交付SQL-Server实现五层MVC</a>】【注：<a href="https://www.zhihu.com/pin/2021366366880430037" target="_blank">“单击查看真人实训演示视频”</a>】
+           <select style="display:inline;white-space: normal"><option>【注：“软件思维语言”←硬件软件统一→“硬件思维语言”，本系统辅助思考“硬件思维语言（脑机接口-树莓派-3D打印-机器人硬件为例）”】请选择COM-USB端口</option><option>COM1</option><option>COM2</option><option>COM3</option><option>COM4</option></select>&nbsp; &nbsp; <button onclick="fnAjaxServerSideCallBCI()">单击实时连接硬件</button>【注：如果硬件不支持Web服务端接入USB，<a href="https://www.alipan.com/s/6PR7tusHB42" target="_blank">就请单击下载运行APP客户端采集数据的.CSV文件</a>、<a href="TryBCI.csv" target="_blank">查看数据的.CSV文件实例</a>、<a href="CSVProcessorInBrowser.html" target="_blank">上传数据的.CSV文件进行预处理后交付SQL-Server实现五层MVC</a>】【注：<a href="https://www.zhihu.com/pin/2021366366880430037" target="_blank">“单击查看真人实训演示视频”</a>】
                 <ol>
                <li>原始信号：<input type="text" value="000000" style="display:inline;white-space: normal" id="idRawSignal"/></li>
                <li>原始信号的数据：Attention(注意力)<input type="text" value="000000" style="display:inline;white-space: normal" id="idAttention" /></li>
@@ -502,7 +512,7 @@
     </div>
     </br>
     </div>
-    <table style="width:100%; border:dashed">
+    <table style="width:100%; border:0">
         <tr title="双击表格的本行的单元格，可以切换本行两个单元格的全屏显示">
             <td id="tdSystemInternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleInternalWidth()">
                 <div style="font-size: 16px; font-weight: bolder; color: goldenrod; text-align:justify-all" id="btnSystemInternal">
@@ -511,8 +521,8 @@
                                      <hr style="width:80%" />
                                      <a href="https://github.com/SciSharp/LlamaSharp" target="_blank">单击可以打开一个C#.Net、C#.ML.Net作为主导研发的LLM开源项目，可供学习参考。在此作为教育领域软件，并不建议聚焦复杂的LLM研发，而是继承利用现有的成熟的LLM，创新研发教育相关融合数智思维知识库的RAG...</a>
                                  </span>
-                    </span><!--<span style="font-size: 16px; font-weight: bold;color:green">【语音对话内部的数智时代显式数智思维的“教育小语言模型SLM、人形机器人小语言模型SLM”,<span style="color:brown;font-weight:bold">面向某个领域学科专业的众从的创新研发</span>】</span>--></span><button id="id_LocalLLMSelection"  style="font-weight: bolder;white-space: normal;margin:0;padding:0;font-size:14px;text-align:center" title="系统内部的无需微调/已经微调的本机LLM（Qwen的计算机LLM/机器人LLM、Phi的计算机LLM/机器人LLM等等）的任选一个，可以用作服务端LLM←等候互动→客户端Prompt" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_LocalLLMSelectionDiv").style.display=="none"){document.getElementById("id_LocalLLMSelectionDiv").style.display="block";document.getElementById("idTriangleOfLocalLLM").textContent="▼";} else{document.getElementById("id_LocalLLMSelectionDiv").style.display="none";document.getElementById("idTriangleOfLocalLLM").textContent="▶"; }fnStartFoundryLocal();fnLocalLLMDirPath();fnToggleEventSoureElementColor();'>单击切换显式：（本系统内部）LLM、（本系统内部）LLM微调安装“机器人物硬件”<span id="idTriangleOfLocalLLM">▶</span></button><div id="id_LocalLLMSelectionDiv" style="display:none;font-size: 11px; font-weight: normal;color:black"><div style="text-align:left"><button style="font-size:10.5px" onclick='fnStartFoundryLocal();fnLocalLLMDirPath();' >单击启动本机LLM服务宿主：</button><span id="idIsStarted" style="color:green;font-weight:bold">&nbsp;尚未启动</span><br /><button style="font-size:10.5px" onclick='fnAjaxRunableLocalLLM();' title="可以单选一个本机LLM作为服务端LLM←等候互动→客户端Prompt，可能稍有延迟！本系统支持的本机LLM较多，不过需要URL下载，然后才能单选使用。&#10;如果未能查看到，则是本系统尚无已经下载可以单选运行的本机LLM，请下方按钮所示下载。">单击查看本系统已经下载可以单选运行的本机LLM：</button><span id="id_LocalLLMFineTuning" title="如果希望微调一个本机LLM，然后接入本系统，请参见在此的LoRA微调案例及其帮助文档的URL，微调历时可能几个小时~几天！微调后重新单击“系统内部本机LLM选用”，刷新选用当前微调后的本机LLM。"><a href="https://github.com/microsoft/lora_lab" target="_blank">【关于本机LLM微调的解决方案-项目-条目的案例</a>、<a href="https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica-lora?tabs=csharp0" target="_blank">微调说明</a>】</span><span id="id_RunningLocalLLM" style="color:green;font-weight:bold">这里呈现运行着的一个本机LLM名称...</span><div id="idRunableLocalLLM" title="单选开始运行当前本机LLM成为服务端LLM←等候互动→客户端Prompt"></div><button style="font-size:10.5px" onclick='fnAjaxListableLocalLLM();' title="本系统支持的本机LLM较多，不过需要URL下载，然后才能单选使用。因为本机LLM容量通常达到数G以上，所以在此只是查看本系统支持下载使用的本机LLM的列表，但是并未提供下载本机LLM的功能，而是建议切换到操作系统OS的FoundryLocal的CLI命令下载本机LLM！">单击查看本系统支持下载以供单选运行的本机LLM：</button><span title="单击打开操作系统OS的CLI命令管理本机LLM的URL，可以更加强大功能的FoundryLocal工具管理本机LLM，然后在此浏览器Browser中辅助管理、选用一个本机LLM。" >【<a href="https://learn.microsoft.com/en-us/azure/foundry-local/reference/reference-cli" target="_blank">关于本机LLM管理软件FoundryLocal的安装与CLI</a>、<a href="https://learn.microsoft.com/en-us/azure/foundry-local/reference/reference-rest" target="_blank">REST API</a>】</span><span id="id_DownloadingLocalLLM" style="color:green;font-weight:bold">这里呈现正在下载的一个本机LLM名称...</span><div id="idListableLocalLLM" title="单选开始下载当前本机LLM，下载完成后，才可以单选运行"></div></div></div><!--<select title="注：试验本系统内部的自创方LoRA微调研发的本机的小语言模型SLM（可以安装于人形机器人），不过，当前有效选项仅是“（内部）Qwen千问-小语言模型”，其他选项正在完善之中......&#10;注：在此继承利用VS中的ML.Net/LoRA.Net微调他创方的大语言模型LLM→发展成为→自创方/他创方共有的教育数智思维的大语言模型LLM......&#10;注：虽然可以选用VS中的ML.Net自创方研发大语言模型LLM，但不一定是明智的......" style="font-size:16px;font-weight:bold">
+                    </span><!--<span style="font-size: 16px; font-weight: bold;color:green">【语音对话内部的数智时代显式数智思维的“教育小语言模型SLM、人形机器人小语言模型SLM”,<span style="color:brown;font-weight:bold">面向某个领域学科专业的众从的创新研发</span>】</span>--></span><button id="id_LocalLLMSelection"  style="font-weight: bolder;white-space:nowrap;font-size:14px;text-align:center" title="系统内部的无需微调/已经微调的本机LLM（Qwen的计算机LLM/机器人LLM、Phi的计算机LLM/机器人LLM等等）的任选一个，可以用作服务端LLM←等候互动→客户端Prompt" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_LocalLLMSelectionDiv").style.display=="none"){document.getElementById("id_LocalLLMSelectionDiv").style.display="block";document.getElementById("idTriangleOfLocalLLM").textContent="▼";} else{document.getElementById("id_LocalLLMSelectionDiv").style.display="none";document.getElementById("idTriangleOfLocalLLM").textContent="▶"; }fnStartFoundryLocal();fnLocalLLMDirPath();fnToggleEventSoureElementColor();'>单击切换显示：（本系统内部）LLM、（本系统内部）LLM微调安装“机器人物硬件”<span id="idTriangleOfLocalLLM">▶</span></button><div id="id_LocalLLMSelectionDiv" style="display:none;font-size: 11px; font-weight: normal;color:black"><div style="text-align:left"><button style="font-size:10.5px" onclick='fnStartFoundryLocal();fnLocalLLMDirPath();' >单击启动本机LLM服务宿主：</button><span id="idIsStarted" style="color:green;font-weight:bold">&nbsp;尚未启动</span><br /><button style="font-size:10.5px" onclick='fnAjaxRunableLocalLLM();' title="可以单选一个本机LLM作为服务端LLM←等候互动→客户端Prompt，可能稍有延迟！本系统支持的本机LLM较多，不过需要URL下载，然后才能单选使用。&#10;如果未能查看到，则是本系统尚无已经下载可以单选运行的本机LLM，请下方按钮所示下载。">单击查看本系统已经下载可以单选运行的本机LLM：</button><span id="id_LocalLLMFineTuning" title="如果希望微调一个本机LLM，然后接入本系统，请参见在此的LoRA微调案例及其帮助文档的URL，微调历时可能几个小时~几天！微调后重新单击“系统内部本机LLM选用”，刷新选用当前微调后的本机LLM。"><a href="https://github.com/microsoft/lora_lab" target="_blank">【关于本机LLM微调的解决方案-项目-条目的案例</a>、<a href="https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica-lora?tabs=csharp0" target="_blank">微调说明</a>】</span><span id="id_RunningLocalLLM" style="color:green;font-weight:bold">这里呈现运行着的一个本机LLM名称...</span><div id="idRunableLocalLLM" title="单选开始运行当前本机LLM成为服务端LLM←等候互动→客户端Prompt"></div><button style="font-size:10.5px" onclick='fnAjaxListableLocalLLM();' title="本系统支持的本机LLM较多，不过需要URL下载，然后才能单选使用。因为本机LLM容量通常达到数G以上，所以在此只是查看本系统支持下载使用的本机LLM的列表，但是并未提供下载本机LLM的功能，而是建议切换到操作系统OS的FoundryLocal的CLI命令下载本机LLM！">单击查看本系统支持下载以供单选运行的本机LLM：</button><span title="单击打开操作系统OS的CLI命令管理本机LLM的URL，可以更加强大功能的FoundryLocal工具管理本机LLM，然后在此浏览器Browser中辅助管理、选用一个本机LLM。" >【<a href="https://learn.microsoft.com/en-us/azure/foundry-local/reference/reference-cli" target="_blank">关于本机LLM管理软件FoundryLocal的安装与CLI</a>、<a href="https://learn.microsoft.com/en-us/azure/foundry-local/reference/reference-rest" target="_blank">REST API</a>】</span><span id="id_DownloadingLocalLLM" style="color:green;font-weight:bold">这里呈现正在下载的一个本机LLM名称...</span><div id="idListableLocalLLM" title="单选开始下载当前本机LLM，下载完成后，才可以单选运行"></div></div></div><!--<select title="注：试验本系统内部的自创方LoRA微调研发的本机的小语言模型SLM（可以安装于人形机器人），不过，当前有效选项仅是“（内部）Qwen千问-小语言模型”，其他选项正在完善之中......&#10;注：在此继承利用VS中的ML.Net/LoRA.Net微调他创方的大语言模型LLM→发展成为→自创方/他创方共有的教育数智思维的大语言模型LLM......&#10;注：虽然可以选用VS中的ML.Net自创方研发大语言模型LLM，但不一定是明智的......" style="font-size:16px;font-weight:bold">
                         <option value="LocalHumanoidRobot-SLM" title="可以安装在人形机器人的物理硬件的融合数智思维的免费SLM软件→融合数智思维的具身人形机器人">（本系统内部）显式数智思维的人形机器人-小语言模型SLM</option>
                         <option value="InternalXF-Spark-LLM" title="安装在本机的收费XFSpark讯飞星火-LLM">（本系统内部微调的）显式数智思维的XF-Spark讯飞星火-小语言模型</option>
                         <option value="InternalQwen-LLM" title="安装在本机的收费Qwen千问-LLM">（本系统内部微调的）显式数智思维的Qwen千问-小语言模型</option>
@@ -591,12 +601,12 @@
 
                     </div>
                     -->
-                    <div id="transcriptSystemInternal" style="color: green; width:95%" title="请单击“了解录音Prompt指令”，查看录音说明..." onclick="document.getElementById('id_RadioSystemInternal').checked = true;" onblur="document.getElementById('id_RadioSystemInternal').checked = false;">
+                    <div id="transcriptSystemInternal" contentEditable="false" style="color: green; width:95%" title="请单击“了解录音Prompt指令”，查看录音说明..." onclick="document.getElementById('id_RadioSystemInternal').checked = true;" onblur="document.getElementById('id_RadioSystemInternal').checked = false;">
                         {
                         "段落": [这里查看本机LLM生成内容...]
                         }
                     </div>
-                 <button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemInternal')">上述生成内容融入“目录条目”的“教材课文”</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemInternal')">上述生成内容融入“目录条目”的“作业测验”</button>
+                 上述生成的内容：<button onclick="fnEditContent('transcriptSystemInternal')" title="可以按此按钮切换编辑模式。编辑模式时，可以同时按下Ctrl+Z键撤销编辑">编辑切换</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemInternal')">融入当前“目录条目”的“课文”</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemInternal')">融入当前“目录条目”的“作业测验”</button>
                 </td>
                 <td id="tdSystemExternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleExternalWidth()">
                     <div style="font-size: 16px; font-weight: bolder; color: goldenrod;text-align:justify-all" id="btnSystemExternal">
@@ -664,12 +674,12 @@
                     </table>
                     <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
                 </div>
-                <div id="transcriptSystemExternal" style="color:green;width:95%" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...请单击“了解录音Prompt指令”，查看录音说明...）" onclick="document.getElementById('id_RadioSystemExternal').checked = true;" onblur="document.getElementById('id_RadioSystemExternal').checked = false;">
+                <div id="transcriptSystemExternal" contentEditable="false" style="color:green;width:95%" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...请单击“了解录音Prompt指令”，查看录音说明...）" onclick="document.getElementById('id_RadioSystemExternal').checked = true;" onblur="document.getElementById('id_RadioSystemExternal').checked = false;">
                     {
                     "段落": [这里查看云端LLM生成内容...]
                     }
                 </div>
-               <button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemExternal')">上述生成内容融入“目录条目”的“教材课文”</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemExternal')">上述生成内容融入“目录条目”的“作业测验”</button>
+                上述生成的内容：<button onclick="fnEditContent('transcriptSystemExternal')" title="可以按此按钮切换编辑模式。编辑模式时，可以同时按下Ctrl+Z键撤销编辑">编辑切换</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemExternal')">融入当前“目录条目”的“课文”</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemExternal')">融入当前“目录条目”的“作业测验”</button>
             </td>
 
             </tr>

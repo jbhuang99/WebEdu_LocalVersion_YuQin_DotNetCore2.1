@@ -41,18 +41,22 @@ document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
 }
 
+function fnEditContent(targetElementId){
+    if(document.getElementById(targetElementId).contentEditable==true) { document.getElementById(targetElementId).contentEditable = false; }
+    else { document.getElementById(targetElementId).contentEditable = true;}
+}
 function fnIntoCourseText(targetElementId){
-    var bConfirm = confirm("当前“目录条目”是（主视图“目录框架”可以单击选择当前“目录条目”）：\n"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"LLM生成的如下内容添加到主视图当前“目录条目”的“课文”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" + "\n"+document.getElementById(targetElementId).innerHTML);
+    var bConfirm = confirm("（1）当前“目录条目”是："+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的如下内容添加到主视图当前“目录条目”的“课文”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" + "\n\n"+document.getElementById(targetElementId).innerHTML);
     if (bConfirm) {
         opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML('afterbegin', document.getElementById(targetElementId).innerHTML);
-        alert("内容已添加到主视图当前“目录条目”的“课文”部分！请单击“标题框架”的“内容切换”切换查看“课文”/“作业测验”。“课文”右击菜单提供编辑切换、保存等等功能");
+        alert("内容已添加到当前“目录条目”的“课文”的开始部分！（1）请单击“标题框架”的“内容切换”切换查看“课文”/“作业测验”。（2）“课文”的右击菜单提供编辑切换、保存等等功能。");
     }
 }
 function fnIntoHomeworkAndTest(targetElementId){
-    var bConfirm = confirm("当前“目录条目”是（主视图“目录框架”可以单击选择当前“目录条目”）：\n"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"LLM生成的内容将被添加到主视图当前“目录条目”的“作业测验”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" +"\n"+ document.getElementById(targetElementId).innerHTML);
+    var bConfirm = confirm("（1）当前“目录条目”是："+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的内容将被添加到主视图当前“目录条目”的“作业测验”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" +"\n\n"+ document.getElementById(targetElementId).innerHTML);
     if (bConfirm) {
          opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.body.insertAdjacentHTML('afterbegin', document.getElementById(targetElementId).innerHTML);
-        alert("内容已添加到主视图当前“目录条目”的“作业测验”部分！请单击“标题框架”的“内容切换”切换查看“课文”/“作业测验”。“作业测验”视图提供编辑切换功能、保存等等功能");
+        alert("内容已添加到当前“目录条目”的“作业测验”的开始部分！（1）请单击“标题框架”的“内容切换”切换查看“课文”/“作业测验”。（2）“作业测验”的视图提供编辑切换功能、保存等等功能。");
     }
 }
 function fnStartFoundryLocal() {

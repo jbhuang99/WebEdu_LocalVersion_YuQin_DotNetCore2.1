@@ -9,8 +9,11 @@
         window.event.target.style.color="";
     }
 }
+function fnContentEditableAlert() {
+	alert("本系统的“目录”/“课文”/“作业测验”三种文档之中，“课文”/“作业测验”两种属于复杂的视媒（字符-图像-视频-2D-3D）/听媒/触媒/嗅媒/味媒文档。所以还是建议Word软件打开当前“作业测验”（URL：" + document.location.href + "）（当前“作业测验”是.docx文档无损另存成为的.htm文档），进行离线编辑，编辑完成后重新上传即可！\n\n当前“作业测验”提供的在线编辑功能仅限于快捷的查增改删这些简单编辑！");
+}
 function fnToggleContentEditable(i) {
-    
+    fnContentEditableAlert();
     var oTable = document.getElementsByTagName("table").item(0);
     var cTr = Array.from(oTable.rows);
 

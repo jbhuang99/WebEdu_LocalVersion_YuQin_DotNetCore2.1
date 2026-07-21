@@ -299,6 +299,7 @@ function fnContentsPopupOld() {
     }
 
 function fnContentPopup() {
+    fnContentEditableAlert();
     oSrcElement = event.srcElement;
     event.returnValue = false;
     oDiv.style.backgroundColor = "lightyellow";
