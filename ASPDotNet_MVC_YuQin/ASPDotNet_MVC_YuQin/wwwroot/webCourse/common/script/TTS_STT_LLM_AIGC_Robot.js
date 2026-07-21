@@ -42,15 +42,18 @@ document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest")
 }
 
 function fnIntoCourseText(targetElementId){
-    var bConfirm = confirm("确定要将LLM生成的内容融入教材课文吗？这些内容将被添加到当前“目录条目”的课文的最前面部分，内容字符如下（可能含有非字符引用）：" + document.getElementById(targetElementId).innerHTML);
+     alert(opener.parent.document.getElementById("sIframeContents").contentWindow.document.innerHTML);
+    var bConfirm = confirm("当前“目录条目”是（主视图“目录框架”可以单击选择当前“目录条目”）：\n"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"LLM生成的如下内容添加到主视图当前“目录条目”的“课文”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" + "\n"+document.getElementById(targetElementId).innerHTML);
     if (bConfirm) {
-        // 处理融入教材课文的逻辑
+        //
     }
 }
 function fnIntoHomeworkAndTest(targetElementId){
-    var bConfirm = confirm("确定要将LLM生成的内容融入作业测验吗？这些内容将被添加到当前“目录条目”的作业测验的最前面部分，内容字符如下（可能含有非字符引用）：" + document.getElementById(targetElementId).innerHTML);
+     alert(opener.parent.document.getElementById("sIframeContents").contentWindow.document.innerHTML);
+    opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue;
+    var bConfirm = confirm("当前“目录条目”是（主视图“目录框架”可以单击选择当前“目录条目”）：\n"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"LLM生成的内容将被添加到主视图当前“目录条目”的“作业测验”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" +"\n"+ document.getElementById(targetElementId).innerHTML);
     if (bConfirm) {
-        // 处理融入作业测验的逻辑
+         //alert(opener.parent.document.getElementById("sIframeContents").contentWindow.document.content);
     }
 }
 function fnStartFoundryLocal() {
