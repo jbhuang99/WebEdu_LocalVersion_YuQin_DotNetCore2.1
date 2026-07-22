@@ -81,7 +81,8 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.QWenSkillsLearningCommunity
 );
 #pragma warning restore MAAI001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
             Console.WriteLine("已从skills文件夹加载Skills");
-            Console.WriteLine();
+            Console.WriteLine(Directory.GetCurrentDirectory());
+            Console.WriteLine(Path.Combine(Directory.GetCurrentDirectory()));
 
             // Step2 创建 Agent — 注入 SkillsProvider
             AIAgent agent = chatClient.AsAIAgent(new ChatClientAgentOptions

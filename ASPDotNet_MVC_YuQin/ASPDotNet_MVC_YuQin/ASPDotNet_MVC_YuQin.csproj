@@ -430,6 +430,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Include="wwwroot\renshichu\lunwensongshen.docx" />
     <None Include="wwwroot\service-worker.js" />
     <None Include="wwwroot\service-worker.published.js" />
+    <None Include="wwwroot\skills\bci-csv-chart\SKILL.md" />
     <None Include="wwwroot\sxyt\sxyt_files\themedata.thmx" />
     <None Include="wwwroot\TeachingEngineers.mht" />
     <None Include="wwwroot\TheEssenceOfEducationIsToConstructHumanBrain.pdf" />
