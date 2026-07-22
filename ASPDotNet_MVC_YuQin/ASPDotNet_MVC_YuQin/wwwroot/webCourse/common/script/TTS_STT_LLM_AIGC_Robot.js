@@ -42,8 +42,8 @@ document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest")
 }
 
 function fnEditContent(targetElementId){
-    if(document.getElementById(targetElementId).contentEditable==true) { document.getElementById(targetElementId).contentEditable = false; }
-    else { document.getElementById(targetElementId).contentEditable = true;}
+    if(!document.getElementById(targetElementId).isContentEditable) { document.getElementById(targetElementId).contentEditable = true; }
+    else { document.getElementById(targetElementId).contentEditable = false;}
 }
 function fnIntoCourseText(targetElementId){
     var bConfirm = confirm("（1）当前“目录条目”是："+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的如下内容添加到主视图当前“目录条目”的“课文”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" + "\n\n"+document.getElementById(targetElementId).innerHTML);

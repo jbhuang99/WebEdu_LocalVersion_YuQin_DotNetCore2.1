@@ -606,7 +606,7 @@
                         "段落": [这里查看本机LLM生成内容...]
                         }
                     </div>
-                 上述生成的内容：<button onclick="fnEditContent('transcriptSystemInternal')" title="可以按此按钮切换编辑模式。编辑模式时，可以同时按下Ctrl+Z键撤销编辑">编辑切换</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemInternal')">融入当前“目录条目”的“课文”</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemInternal')">融入当前“目录条目”的“作业测验”</button>
+                 上述生成的内容：<button onclick="fnEditContent('transcriptSystemInternal');fnToggleEventSoureElementColor()" title="可以按此按钮切换编辑模式。编辑模式时，可以同时按下Ctrl+Z键撤销编辑">编辑切换</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemInternal')">融入当前“目录条目”的“课文”</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemInternal')">融入当前“目录条目”的“作业测验”</button>
                 </td>
                 <td id="tdSystemExternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleExternalWidth()">
                     <div style="font-size: 16px; font-weight: bolder; color: goldenrod;text-align:justify-all" id="btnSystemExternal">
@@ -624,6 +624,12 @@
                             <option value="DeepSeek-LLM" title="安装在云端的收费DeepSeek深度求索-LLM">（本系统外部API的）隐式数智思维的DeepSeek-大语言模型</option>
                             <option value="GLM-LLM" title="安装在云端的收费GLM智谱-LLM">（本系统外部API的）隐式数智思维的GLM智谱-大语言模型</option>
                             <option value="AIThinkingMeasurement-Website" title="安装在服务端的当前数智时代的“人←隐喻→人形机器人”需求的人机统一的数智思维量化评测的收费网站，本系统的服务端...">（本系统外部API的）数智思维训练与评测系统-网站服务</option>
+                            <option value="Charactor-LLM" title="安装在服务端的当前数智时代的“字符大语言模型”...">（本系统外部API的）视媒（字符/图像/视频/2D/3D）听媒的字符-LLM</option>
+                            <option value="BitMap-LLM" title="安装在服务端的当前数智时代的“图像大语言模型”...">（本系统外部API的）视媒（字符/图像/视频/2D/3D）听媒的图像-LLM</option>
+                            <option value="Video-LLM" title="安装在服务端的当前数智时代的“视频大语言模型”...">（本系统外部API的）视媒（字符/图像/视频/2D/3D）听媒的视频-LLM</option>
+                            <option value="2D-LLM" title="安装在服务端的当前数智时代的“2D大语言模型”...">（本系统外部API的）视媒（字符/图像/视频/2D/3D）听媒的2D-LLM</option>
+                            <option value="3D-LLM" title="安装在服务端的当前数智时代的“3D大语言模型”...">（本系统外部API的）视媒（字符/图像/视频/2D/3D）听媒的3D-LLM</option>
+                            <option value="Audio-LLM" title="安装在服务端的当前数智时代的“音频大语言模型”...">（本系统外部API的）视媒（字符/图像/视频/2D/3D）听媒的音频-LLM</option>
                         </select>
                     </div>
 
@@ -679,7 +685,7 @@
                     "段落": [这里查看云端LLM生成内容...]
                     }
                 </div>
-                上述生成的内容：<button onclick="fnEditContent('transcriptSystemExternal')" title="可以按此按钮切换编辑模式。编辑模式时，可以同时按下Ctrl+Z键撤销编辑">编辑切换</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemExternal')">融入当前“目录条目”的“课文”</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemExternal')">融入当前“目录条目”的“作业测验”</button>
+                上述生成的内容：<button onclick="fnEditContent('transcriptSystemExternal');fnToggleEventSoureElementColor()" title="可以按此按钮切换编辑模式。编辑模式时，可以同时按下Ctrl+Z键撤销编辑">编辑切换</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemExternal')">融入当前“目录条目”的“课文”</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemExternal')">融入当前“目录条目”的“作业测验”</button>
             </td>
 
             </tr>

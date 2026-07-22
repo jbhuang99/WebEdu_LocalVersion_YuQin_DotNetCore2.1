@@ -53,10 +53,10 @@ else{
     //alert(parent.document.getElementById("sIframeTitle").src);
     //document.body.unselectable="on";//通过取消双击事件的默认行为行吗？
     //downLoad.startDownload(parent.sHTTPHeader+"common/popupContent.asp",fnOnDownLoad);
-  window.addEventListener("focus", fnContentsGetFocus, false); //目录框架的模式窗口相关。   
+  window.addEventListener("focus", fnContentsGetFocus, false); //目录框架的模式窗口相关。
   window.addEventListener("focus", fnWindowOnFocus, false); //右键菜单映射到标题框架相关。
   window.addEventListener("click", fnContentsGetFocus, false); //目录框架的模式窗口相关。
-    window.addEventListener("click", fnWindowOnClick, false); //右键菜单映射到标题框架相关。取消右击菜单自动弹出相关
+  window.addEventListener("click", fnWindowOnClick, false); //右键菜单映射到标题框架相关。取消右击菜单自动弹出相关
    // window.onfocus = fnWindowOnFocus;
     window.oDiv = document.getElementById("popupDiv");//为右键菜单作准备。    
    // document.body.oncontextmenu = fnContentPopup;   
@@ -131,6 +131,12 @@ else{
 }
     }
 	
+}
+
+function fnEditContent(){
+	alert();
+    if(!document.body.isContentEditable) { document.body.contentEditable = true; }
+    else { document.body.contentEditable = false;}
 }
 
 function fnContentEditableAlert() {
@@ -1002,9 +1008,7 @@ function fnWindowOnFocus() {
 
 
 function fnContentsGetFocus() {
-    parent.document.getElementById("sIframeContents").contentWindow.fnGetFocus();
-    //parent.document.getElementById("sIframeTitle").contentWindow.fnGetFocus();
-
+    //parent.document.getElementById("sIframeContents").contentWindow.fnGetFocus();////因为机器人语音对话窗口总是聚焦，内容框架的内容即使切换了编辑也无法编辑（必须关闭机器人语音对话窗口才能编辑），所以暂时尝试取消该函数！！！也即内容框架聚焦时，语音对话机器人窗口不会自动聚焦了。
 }
 
 function fnHighLight() {
