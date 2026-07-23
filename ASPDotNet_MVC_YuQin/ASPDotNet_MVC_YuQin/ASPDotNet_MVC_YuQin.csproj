@@ -60,7 +60,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Compile Remove="Views\Shared-old\**" />
     <Compile Remove="Views\备份-待删除\**" />
     <Compile Remove="wwwroot\AgentSkills\**" />
-    <Compile Remove="wwwroot\skills\**" />
     <Compile Remove="wwwroot\TryPWA\**" />
     <Compile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <Compile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
@@ -90,7 +89,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="Views\Shared-old\**" />
     <Content Remove="Views\备份-待删除\**" />
     <Content Remove="wwwroot\AgentSkills\**" />
-    <Content Remove="wwwroot\skills\**" />
     <Content Remove="wwwroot\TryPWA\**" />
     <Content Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <Content Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
@@ -120,7 +118,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <EmbeddedResource Remove="Views\Shared-old\**" />
     <EmbeddedResource Remove="Views\备份-待删除\**" />
     <EmbeddedResource Remove="wwwroot\AgentSkills\**" />
-    <EmbeddedResource Remove="wwwroot\skills\**" />
     <EmbeddedResource Remove="wwwroot\TryPWA\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <EmbeddedResource Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
@@ -150,7 +147,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <None Remove="Views\Shared-old\**" />
     <None Remove="Views\备份-待删除\**" />
     <None Remove="wwwroot\AgentSkills\**" />
-    <None Remove="wwwroot\skills\**" />
     <None Remove="wwwroot\TryPWA\**" />
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <None Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
@@ -171,7 +167,6 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <TypeScriptCompile Remove="Views\Shared-old\**" />
     <TypeScriptCompile Remove="Views\备份-待删除\**" />
     <TypeScriptCompile Remove="wwwroot\AgentSkills\**" />
-    <TypeScriptCompile Remove="wwwroot\skills\**" />
     <TypeScriptCompile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679411946833\**" />
     <TypeScriptCompile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413375897\**" />
     <TypeScriptCompile Remove="wwwroot\webCourse\lessons\content\TeachingPlan\1679413409185\**" />
@@ -309,6 +304,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Folder Include="Areas\" />
     <Folder Include="Data-ODM-ORM-DataBaseInitializer\" />
     <Folder Include="Data-ODM-ORM-DataBaseContext\" />
+    <Folder Include="wwwroot\skills\" />
     <Folder Include="wwwroot\webCourse\lessons\content\Teaching3D\" />
   </ItemGroup>
 

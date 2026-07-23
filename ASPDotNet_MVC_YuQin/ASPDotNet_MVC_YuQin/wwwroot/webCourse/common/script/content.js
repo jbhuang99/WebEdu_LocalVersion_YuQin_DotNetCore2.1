@@ -133,6 +133,118 @@ else{
 	
 }
 
+///////////////////////////////////////////////////在线粘贴本机图像
+// ========== 缓存鼠标位置（paste 事件不含坐标） ==========
+let lastMousePos = { clientX: 0, clientY: 0 };
+document.addEventListener('mousemove', (e) => {
+    lastMousePos = { clientX: e.clientX, clientY: e.clientY };
+}, { passive: true });
+function fnGetCaretRangeFromMouseEvent(e) {
+    // Chrome / Edge / Safari
+    if (document.caretRangeFromPoint) {
+        return document.caretRangeFromPoint(e.clientX, e.clientY);
+    }
+    // Firefox
+    if (document.caretPositionFromPoint) {
+        const pos = document.caretPositionFromPoint(e.clientX, e.clientY);
+        if (!pos) return null;
+        const range = document.createRange();
+        range.setStart(pos.offsetNode, pos.offset);
+        range.collapse(true);
+        return range;
+    }
+    return null;
+}
+
+/**
+ * 模拟图片上传（替换为真实接口）
+ */
+async function fnUploadImage(file) {
+    if (!file.type.startsWith('image/')) throw new Error('仅支持图片文件');
+    if (file.size > 10 * 1024 * 1024) throw new Error('图片不能超过 10MB');
+    
+    // TODO: 替换为真实的 fetch 上传逻辑
+    // const formData = new FormData();
+    // formData.append('file', file);
+    // const res = await fetch('/api/upload', { method: 'POST', body: formData });
+    // const { url } = await res.json();
+    // return url;
+    
+    return URL.createObjectURL(file); // 演示用 Blob URL
+}
+
+
+// ========== 核心：全局 paste 监听 ==========
+document.addEventListener('paste', async (e) => {    
+    if(eventSourceElement.isEditable){
+    // 1. 提取剪贴板中的图片
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    const imageItem = Array.from(items).find(i => i.type.startsWith('image/'));
+    if (!imageItem) return; // 非图片粘贴，交给浏览器默认处理
+
+    e.preventDefault();
+    const file = imageItem.getAsFile();
+
+    try {
+        const url = await fnUploadImage(file);
+
+        // 2. 优先使用当前选区；若无选区，则通过鼠标坐标定位
+        const sel = window.getSelection();
+        let range = null;
+
+        if (sel && sel.rangeCount > 0 && !sel.isCollapsed) {
+            // 用户有主动选中内容，使用现有选区
+            range = sel.getRangeAt(0);
+        } else {
+            // 无选区或未聚焦：通过最近一次鼠标位置计算光标
+            // 注意：paste 事件本身没有 clientX/Y，需缓存 mousemove 坐标
+            range = fnGetCaretRangeFromMouseEvent(lastMousePos);
+        }
+
+        // 3. 校验 range 是否在可编辑区域内
+       //const editor = document.getElementById('global-editor');  //HTML中的可编辑元素ID
+	    const editor = document.body;  //HTML中的可编辑元素ID
+        if (!range || !editor.contains(range.startContainer)) {
+            // 兜底：追加到编辑器末尾
+            range = document.createRange();
+            range.selectNodeContents(editor);
+            range.collapse(false);
+        }
+
+        // 4. 插入图片节点
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = file.name || 'pasted-image';
+		img.style.resize = 'both';
+		img.style.zoom=0.5;
+        img.style.width = '50%';
+		img.style.height = '50%';
+        img.style.maxWidth = '50%';
+        img.style.borderRadius = '6px';
+        img.style.margin = '10px 0';
+        img.style.display = 'block';
+        img.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+
+        range.deleteContents();
+        range.insertNode(img);
+
+        // 5. 将光标移至图片后方并换行
+        range.setStartAfter(img);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+
+        alert('✅ 图片已插入');
+    } catch (err) {
+        alert(`❌ ${err.message}`, 'error');
+    }
+}    
+    else{
+    alert("当前元素不可编辑，所以无法插入图像！");    
+    }
+});
+//////////////////////////////////////////////////
 function fnEditContent(){
 	fnContentEditableAlert();
     if(!document.body.isContentEditable) { document.body.contentEditable = true; }

@@ -53,10 +53,16 @@ function fnIntoCourseText(targetElementId){
     }
 }
 function fnIntoHomeworkAndTest(targetElementId){
-    var bConfirm = confirm("（1）当前“目录条目”是："+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的内容将被添加到主视图当前“目录条目”的“作业测验”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" +"\n\n"+ document.getElementById(targetElementId).innerHTML);
+    var bConfirm = confirm("（1）当前“目录条目”是："+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的内容将被添加到主视图当前“目录条目”的“作业测验”的第一个表格的表行的单元格的最后部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" +"\n\n"+ document.getElementById(targetElementId).innerHTML);
     if (bConfirm) {
-         opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.body.insertAdjacentHTML('afterbegin', document.getElementById(targetElementId).innerHTML);
-        alert("内容已添加到当前“目录条目”的“作业测验”的开始部分！（1）请单击“标题框架”的“内容切换”切换查看“课文”/“作业测验”。（2）“作业测验”的视图提供编辑切换功能、保存等等功能。");
+        // opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.body.insertAdjacentHTML('afterbegin', document.getElementById(targetElementId).innerHTML);
+    var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
+    //var cTr = Array.from(oTable.rows);
+    //cTr[0].insertAdjacentHTML('afterend', document.getElementById(targetElementId).innerHTML);
+    //alert("当前“目录条目”的“作业测验”表格的第一行是："+cTr[0].innerHTML);
+    //cTr[0].insertAdjacentHTML('afterend', document.getElementById(targetElementId).innerHTML);
+    oCell.appendChild(document.getElementById(targetElementId));
+    alert("内容已添加到当前“目录条目”的“作业测验”的第一个表格的表行的单元格的最后部分！（1）请单击“标题框架”的“内容切换”切换查看“课文”/“作业测验”。（2）“作业测验”的视图提供编辑切换功能、保存等等功能。");
     }
 }
 function fnStartFoundryLocal() {
