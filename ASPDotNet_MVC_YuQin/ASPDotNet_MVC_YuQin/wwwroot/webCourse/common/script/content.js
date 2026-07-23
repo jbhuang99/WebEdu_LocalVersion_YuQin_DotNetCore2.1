@@ -134,7 +134,7 @@ else{
 }
 
 function fnEditContent(){
-	alert();
+	fnContentEditableAlert();
     if(!document.body.isContentEditable) { document.body.contentEditable = true; }
     else { document.body.contentEditable = false;}
 }

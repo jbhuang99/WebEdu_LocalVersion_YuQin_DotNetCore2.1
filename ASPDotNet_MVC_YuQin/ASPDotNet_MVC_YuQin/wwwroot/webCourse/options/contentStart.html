@@ -29,8 +29,7 @@
         <div style="position: relative;" onmouseover="fnPopupMouseOver();" onmouseout="fnPopupMouseOut();">
             <div title='刷新标题面板' onclick="location.reload();">刷新</div>
                         <div title='在是否全屏显示内容之间切换' onclick='parent.fnToggleScreen();'>课文全屏切换</div>
-            <div title='在内容是否可以编辑之间切换' onclick='if(!document.body.isContentEditable) { document.body.contentEditable = true; }
-else { document.body.contentEditable = false;}//parent.fnEditContent();'>课文编辑切换</div>
+            <div title='在内容是否可以编辑之间切换' onclick='fnEditContent();'>课文编辑切换</div>
             <div title='保存当前课文' onclick='alert("当前课文属于自动生成的临时文档，目前尚不支持保存功能！后续将支持此功能！");'>保存</div>
             <div title='转到服务版' onclick='parent.document.getElementById("sIFrameTitle").contentWindow.document.getElementById("sGoServer").click();'>服务版</div>
             <div title='单击将内容框架和目录框架的放缩还原为默认' onclick="parent.parent.frames.item('sIFrameTitle').document.getElementById('sDefaultZoom').click();">默认放缩</div>
