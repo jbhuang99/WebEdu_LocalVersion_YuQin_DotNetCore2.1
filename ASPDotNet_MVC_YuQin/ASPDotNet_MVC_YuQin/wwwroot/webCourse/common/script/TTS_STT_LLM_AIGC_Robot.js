@@ -99,7 +99,7 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
 
 function fnHomeworkAndTestInsertedElementForAIGC(elementId){
     var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
-    var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的作业测验添加到当前“目录条目”的“作业测验”的“题目1”的题干部分（自动删除上一次LLM生成的作业测验），然后可以修改完善保存！") ;
+    var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的作业测验添加到当前“目录条目”的“作业测验”的“题目1”的开始部分（自动删除上一次LLM生成的作业测验），然后可以修改完善保存！") ;
     if(bConfirm) {
      if(opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId)){
     //如果已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
@@ -112,7 +112,8 @@ function fnHomeworkAndTestInsertedElementForAIGC(elementId){
     //alert("当前“目录条目”的“作业测验”表格的第一行是："+cTr[0].innerHTML);
     //cTr[0].insertAdjacentHTML('afterend', document.getElementById(targetElementId).innerHTML);
     //oCell.appendChild(document.getElementById(targetElementId));
-    oCell.insertAdjacentHTML("beforeend","<div id="+"\""+elementId+"\""+" style=\"color:green;text-align:justify\">本机LLM正在生成作业测验，请耐心等候...</div>");
+    //oCell.insertAdjacentHTML("beforeend","<div id="+"\""+elementId+"\""+" style=\"color:green;text-align:justify\">本机LLM正在生成作业测验，请耐心等候...</div>");
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"color:green;text-align:justify\">本机LLM正在生成作业测验，请耐心等候...</div>");
     alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
     //opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).innerHTML="<div style=\"color:green\">本机LLM正在生成作业测验，请耐心等候...</div>";
    // alert(opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
@@ -974,7 +975,7 @@ function fnAjaxServerSideCallCloudLLMExternal(isProxy){
         var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
         var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>';
         opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById("idHomeworkAndTestInsertedElementForAIGC").innerHTML=sString4;
-    alert("LLM生成的作业测验已添加到当前“目录条目”的“作业测验”的“题目1”的题干部分！请修改完善保存！");
+    alert("LLM生成的作业测验已添加到当前“目录条目”的“作业测验”的“题目1”的开始部分！请修改完善保存！");
 
   //TTS
    opener.parent.document.getElementById('sIFrameTitle').contentWindow.document.getElementById("id_TTS_Play").click();
@@ -1102,7 +1103,7 @@ async function fnAjaxServerSideCallLocalLLMInternal(isProxy){
         var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
         var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>';
         opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById("idHomeworkAndTestInsertedElementForAIGC").innerHTML=sString4;
-    alert("LLM生成的作业测验已添加到当前“目录条目”的“作业测验”的“题目1”的题干部分！请修改完善保存！");
+    alert("LLM生成的作业测验已添加到当前“目录条目”的“作业测验”的“题目1”的开始部分！请修改完善保存！");
 
   //TTS
    opener.parent.document.getElementById('sIFrameTitle').contentWindow.document.getElementById("id_TTS_Play").click();

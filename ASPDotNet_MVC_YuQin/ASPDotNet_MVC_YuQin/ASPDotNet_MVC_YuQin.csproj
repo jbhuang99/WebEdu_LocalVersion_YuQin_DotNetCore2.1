@@ -204,6 +204,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy (3).js" />
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy.js" />
     <Content Remove="wwwroot\webCourse\common\script\HomeworkAndTest - Copy %282%29.js" />
+    <Content Remove="wwwroot\webCourse\common\script\HomeworkAndTest - Copy (3).js" />
     <Content Remove="wwwroot\webCourse\common\script\HomeworkAndTest - Copy.js" />
     <Content Remove="wwwroot\webCourse\common\script\HomeworkAndTest - error.js" />
     <Content Remove="wwwroot\webCourse\common\script\Popup - Copy.js" />

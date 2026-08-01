@@ -1,13 +1,4 @@
-﻿function fnHomeworkAndTestSave(){
-    if(parent.document.getElementById('sIframeContents').contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(parent.document.getElementById('sIframeContents').contentWindow.fnRunningFrom());} 
-    if(document.URL==parent.sHTTPHeader+parent.sOptionsPath+parent.sHomeworkAndTestStartName||document.URL==parent.sHTTPHeader+parent.sHomeworkAndTestPath+parent.sHomeworkAndTestName){
-	alert("该内容框架的内容是初始内容或在目录中直接链接的非.htm文件，不允许保存！");
-}
-    else{
-    alert("当前只是临时应急排版错误，但是无法保存编辑结果，必须重新上传当前条目的作业测验的.doc/.docx文档（作业测验的模板建议单击“标题框架”的“关于条目资源模板”下载）。后续将开发保存编辑结果的功能！");
-    }
-}
-///////////////////////////////////////////////////在线粘贴本机图像
+﻿///////////////////////////////////////////////////在线粘贴本机图像
 // ========== 缓存鼠标位置（paste 事件不含坐标） ==========
 let lastMousePos = { clientX: 0, clientY: 0 };
 document.addEventListener('mousemove', (e) => {
@@ -259,7 +250,7 @@ function fnHomeworkAndTest() {
    
     for (i = 0; i < iTrLenth; i++) {
         //for (j = 0; j < 6; j=i*j) {
-        if ((i + 9) % 9 === 0) { cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span style=\"display:inline-block; padding-top: 12px;padding-bottom: 12px;color:red\">题目" + ((i + 9) / 9) + "：<input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击标题栏的“内容切换”可以切换课文的显示\" title='【“作业测验”驱动“目录导航的课文↔面向一对一的学生课前自主学习↔面向一对多的教师课堂答疑教学”（“目录导航的课文”主选“作业测验”采集数据、“面向一对一的学生课前自主学习”主选“作业测验”实施学习、“面向一对多的教师课堂答疑教学”主选“作业测验”的“答案解释”链接实施教学的字符文档/图像PPT/视频/2D/3D的视媒/听媒/触媒/嗅媒/味媒）……“本翻转课堂模式”兼容“传统课堂模式”……】' /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击切换本题显示\" title='以便聚焦显示的题目，以便排除其他题目干扰！' onclick=\"fnToggleItemDisplay("+i+")\" /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击切换本题在线编辑\" title='当前只是临时应急排版错误，但是无法保存编辑结果，必须重新上传当前条目的作业测验的.doc/.docx文档（作业测验的模板建议单击“标题框架”的“关于条目资源模板”下载）。后续将开发保存编辑结果的功能！' onclick=\"fnToggleContentEditable("+i+")\" /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击保存所有题目\" onclick=\"fnHomeworkAndTestSave()\" /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击登录服务端的作业测验的“四层平台”的思维语言生成的“五层MVC”作为数智思维核心的统计分析（正在迁移开发之中...）\" onclick=\"fnHomeworkAndTestFiveLayerMVC()\" /></span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML; }
+        if ((i + 9) % 9 === 0) { cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span style=\"display:inline-block; padding-top: 12px;padding-bottom: 12px;color:red\">题目" + ((i + 9) / 9) + "：<input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击标题栏的“内容切换”可以切换课文的显示\" title='【“作业测验”驱动“目录导航的课文↔面向一对一的学生课前自主学习↔面向一对多的教师课堂答疑教学”（“目录导航的课文”主选“作业测验”采集数据、“面向一对一的学生课前自主学习”主选“作业测验”实施学习、“面向一对多的教师课堂答疑教学”主选“作业测验”的“答案解释”链接实施教学的字符文档/图像PPT/视频/2D/3D的视媒/听媒/触媒/嗅媒/味媒）……“本翻转课堂模式”兼容“传统课堂模式”……】' /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击切换本题显示\" title='以便聚焦显示的题目，以便排除其他题目干扰！' onclick=\"fnToggleItemDisplay("+i+")\" /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击切换本题在线编辑\" title='当前只是临时应急排版错误，但是无法保存编辑结果，必须重新上传当前条目的作业测验的.doc/.docx文档（作业测验的模板建议单击“标题框架”的“关于条目资源模板”下载）。后续将开发保存编辑结果的功能！' onclick=\"fnToggleContentEditable("+i+")\" /><input type=\"button\" style=\"white-space: normal; text-align: justify\" value=\"单击登录服务端的作业测验的“四层平台”的思维语言生成的“五层MVC”作为数智思维核心的统计分析（正在迁移开发之中...）\" onclick=\"fnHomeworkAndTestFiveLayerMVC()\" /></span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML; }
 
         if ((i + 9) % 9 === 1) {cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span><span style=\"color:red\"><input type=\"radio\" name=\"options" + sTimeStamp + Math.floor(((i + 9) / 9)) + "\" />(A)</span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML + "</span>"; }
         if ((i + 9) % 9 === 2) {cTr[i].getElementsByTagName("td").item(0).innerHTML = "<span><span style=\"color:red\"><input type=\"radio\" name=\"options" + sTimeStamp + Math.floor(((i + 9) / 9)) + "\" />(B)</span>" + cTr[i].getElementsByTagName("td").item(0).innerHTML + "</span>"; }
