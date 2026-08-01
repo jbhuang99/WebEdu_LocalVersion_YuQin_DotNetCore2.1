@@ -5,6 +5,7 @@ window.sBackgroundColorForsContentEditable = "rgb(0,255,0)";
 window.oSrcElement = new Object();
 window.oDiv = new Object();
 window.sURLHeader;
+window.paramsTemp = new URLSearchParams(parent.parent.location.search);
 //window.sHTMLTextFromHomeworkAndTestForTTS;
 
 //////////////////
@@ -170,7 +171,10 @@ window.document.body.scroll="no";
     document.body.onmousewheel = fnMouseWheel;//通过滚动条不显示实现
     window.onmousewheel = fnMouseWheel;
     fnShowTime();
+    if(!window.paramsTemp.has('openRobot')) //视媒听媒机器人中无需重复提醒
+    {
     fnNotification('欢迎合作：', '使用帮助，请咨询：QQ：43930878；如果正使用手机浏览，请设置横屏！', '/favicon.ico');
+    }
 
 }
 
@@ -953,6 +957,7 @@ function fnTTS_Play(intCharBeginningNumber) {
          switch (true) {              
       case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="0%,*":     
             {
+              var sTTSPrompt="当前目录条目是"+parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"朗读框架是作业测验，朗读起始字符是"+intCharBeginningNumber;
               var sTextContent = parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.body.textContent;
               document.getElementById("id_CharNumber").textContent=sTextContent.length;
               var utterance="";
@@ -962,7 +967,7 @@ function fnTTS_Play(intCharBeginningNumber) {
                  }
             else{
             sTextContentBeginningNumber =sTextContent.substring(intCharBeginningNumber,sTextContent.length);
-             utterance = new SpeechSynthesisUtterance(sTextContentBeginningNumber+sTemp);
+             utterance = new SpeechSynthesisUtterance(sTTSPrompt+sTextContentBeginningNumber+sTemp);
             }
              window.speechSynthesis.speak(utterance);
              utterance.onend=fnTTSOnEnd;// 语音朗读结束时的回调;
@@ -970,6 +975,7 @@ function fnTTS_Play(intCharBeginningNumber) {
             break;
       case parent.document.getElementById("sFramesetContentAndHomeworkAndTest").rows=="100%,*":
             {
+               var sTTSPrompt="当前目录条目是"+parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"朗读框架是课文，朗读起始字符是"+intCharBeginningNumber;
                 var sTextContent = parent.document.getElementById("sIframeContent").contentWindow.document.body.textContent;
                 document.getElementById("id_CharNumber").textContent=sTextContent.length;
                 var utterance="";
@@ -979,7 +985,7 @@ function fnTTS_Play(intCharBeginningNumber) {
                 }
             else{
                 sTextContentBeginningNumber =sTextContent.substring(intCharBeginningNumber,sTextContent.length);
-                utterance = new SpeechSynthesisUtterance(sTextContentBeginningNumber+sTemp);
+                utterance = new SpeechSynthesisUtterance(sTTSPrompt+sTextContentBeginningNumber+sTemp);
             }
             window.speechSynthesis.speak(utterance);
              utterance.onend=fnTTSOnEnd;
@@ -987,10 +993,12 @@ function fnTTS_Play(intCharBeginningNumber) {
             break;
       default: 
       {
-          var sTextContent = '您好，请单击“标题框架”的“内容切换”，设置作业测验或课文，占满内容框架，朗读相应的内容框架！';
+           var sTTSPrompt="当前目录条目是"+parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"朗读框架是课文和作业测验，朗读起始字符是"+intCharBeginningNumber;
+          //var sTextContent = '您好，必须确定朗读框架是课文还是作业测验，才能正确朗读！所以，请单击“标题框架”的“内容切换”，设置作业测验或课文，占满内容框架，朗读相应的内容框架！';
+          var sTextContent = parent.document.getElementById("sIframeContent").contentWindow.document.body.textContent+'课文朗读已经结束！随后是作业测验朗读！'+parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.body.textContent+'作业测验朗读已经结束！';
           document.getElementById("id_CharNumber").textContent=sTextContent.length;
           sTextContentBeginningNumber =sTextContent.substring(intCharBeginningNumber,sTextContent.length);
-         var utterance = new SpeechSynthesisUtterance(sTextContentBeginningNumber+sTemp);
+         var utterance = new SpeechSynthesisUtterance(sTTSPrompt+sTextContentBeginningNumber+sTemp);
           window.speechSynthesis.speak(utterance);
            utterance.onend=fnTTSOnEnd;
              }

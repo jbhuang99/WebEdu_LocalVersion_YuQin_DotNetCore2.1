@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="https://www.x3dom.org/x3dom/release/x3dom.css">
     <script type="text/javascript" src="https://www.x3dom.org/x3dom/release/x3dom.js"></script>
     <meta charset="UTF-8">
-    <title>语音对话机器人AIGC(LLM、LLM-Based-BCI、LLM-Based-AgentSkills、LLM-Based-Copilot、LLM-Based-HumanoidRobot、LLM-Based-RAG搜问、LLM-Based-AIGC，AIGC用作统称)(AIGC数智时代-数字人工智能时代，基于通用大语言模型LLM，融合领域知识库KnowledgeBase，然后检索增强生成RAG驱动人形机器人HumanoidRobot硬件，是人类工具范式的骤变……)</title>
+    <title>视媒听媒机器人AIGC(LLM、LLM-Based-BCI、LLM-Based-AgentSkills、LLM-Based-Copilot、LLM-Based-HumanoidRobot、LLM-Based-RAG搜问、LLM-Based-AIGC，AIGC用作统称)(AIGC数智时代-数字人工智能时代，基于通用大语言模型LLM，融合领域知识库KnowledgeBase，然后检索增强生成RAG驱动人形机器人HumanoidRobot硬件，是人类工具范式的骤变……)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -115,18 +115,8 @@
         <tr>
         <td style="text-align:center">
         <div>
-            <button style="font-size:16px;margin:0;padding:0;" title="本系统自创方研发的数智思维知识库+他创方研发的大语言模型+您的选用，降本增效地实现“人←隐喻→人形机器人”的数智思维训练与评测。&#10;不过，他创方研发的众多大语言模型日新月异，不断自我进化，在此只需单点登录我们仅仅一个代理，就可以比较选用下拉框中的当前最优的任一大语言模型/智能体/网站，而且省时省力省钱省心，欢迎您我他三方合作共赢，快来试试哟！&#10;【注：数智思维教育均衡发展支持人员，则可自由使用】"><a href="/HomeIdentity_YuQin" target="LogInProxy" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}'>登录省心代理</a></button>||<button style="font-size:16px;margin:0;padding:0;" title="支付宝/微信充值本系统代理访问各种大语言模型/网站，就可免去您自己一个个注册充值这些大语言模型/网站的烦恼，省钱省力省心！&#10;本系统的客户端浏览器直接访问大语言模型LLM不被允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理访问大语言模型LLM，而且节省70%费用！"><a href="AliPay.html" target="Pay" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}'>充值</a></button>    
-            <img title="单击停止本系统外部的AIGC的回答Answer的字符朗读声音，同时，停止任何其他字符朗读声音【注：本系统外部的AIGC的回答Answer，默认是需要付费的自动字符朗读的，所以没有刻意提供本系统内部那样的是否自动字符朗读的功能切换（无需自动字符朗读的，无需选用本系统的AIGC功能，建议选用其他系统的AIGC功能）】" id="id_ToggleTTS" src="Sound_32.png" onclick='fnTTS_Cancel(); if(document.getElementById("id_TTS").disabled==false){document.getElementById("id_TTS").disabled=true} else {document.getElementById("id_TTS").disabled=false;} ' />
-            <!--<form style="display:inline;font-size:12px">-->
-            <fieldset style="display: inline; border: none;font-size:10px" id="id_TTS"><button id="id_TTS_Play" title="本系统外部的字符朗读功能，只能朗读AIGC的回答Answer。最好选用Edge浏览器内置的可以朗读所有框架的字符朗读功能！！！&#10;Edge中本系统框架的边沿鼠标右击，Edge内置右键菜单中的“扩展”可以下载安装“Translator for Microsoft Edge”，从而可以实现中英（Prompt）互译。进一步可以右击菜单内置的朗读功能，可以实现中英（Prompt）朗读！！！&#10;（字符朗读的准确性/手机触屏便于笔画书写/键盘便于拼音码字/录音转字便于发音吐字/字转声音便于听音识字，还请参见本系统第一个条目的内容框架中的字典链接中的中英字典！）"  onclick="if(document.getElementById('id_RadioSystemInternal').checked) fnTTS_Play(0,'transcriptSystemInternal');else if(document.getElementById('id_RadioSystemExternal').checked) fnTTS_Play(0,'transcriptSystemExternal');else{alert('目前只支持：朗读本机LLM生成内容，或者，朗读云端LLM生成内容。请单击激活相应的两个网页部分，然后单击本按钮实现朗读！')}">中英朗读</button> &nbsp;<button id="id_TTS_Pause" onclick="fnTTS_Pause()"> &nbsp;暂停&nbsp;</button> &nbsp;<button onclick="fnTTS_Resume()" id="id_TTS_Resume" >&nbsp;继续&nbsp;</button> &nbsp;<button onclick="fnTTS_Cancel()" id="id_TTS_Cancel" >&nbsp;取消&nbsp;</button><span title="将显示当前条目内容框架的字符总数"><span>字符总数：</span><span id="id_CharNumber">No.</span></span></fieldset>|<span title="键入您需要跳转到的字符序号，单击“起点”将从字符序号开始朗读（注：只能键入整数，而且必需介于0~字符总数之间，否则可能报错，或者，都是从第0个字符朗读）"><span id="id_TTS_GoTo" style="font-size:10px">字符起点：</span><input id="id_TTS_GoToText" type="text" size="3" value="0" onblur="fnTTS_GoTo(0)"  /></span>
-            <!--</form>-->
-        
-           
-        <span title="系统内部主界面标题框架中的语音朗读视图，拟移动至此！" style="color:brown">
-            <input type="radio" name="radio_LLMContent" id="id_RadioSystemInternal" value="transcriptSystemInternal" disabled/>朗读本机LLM生成内容
-            <input type="radio" name="radio_LLMContent" id="id_RadioSystemExternal" value="transcriptSystemExternal" disabled/>朗读云端LLM生成内容
-        </span>
-            <button id="recordBtn" title="单击将切换显示语音识别按钮" onclick='if(document.getElementById("id_RecordDiv").style.display=="none"){document.getElementById("id_RecordDiv").style.display="block";document.getElementById("idRightTriangleOfRecord").textContent="▼";} else{document.getElementById("id_RecordDiv").style.display="none";document.getElementById("idRightTriangleOfRecord").textContent="▶"; }fnToggleEventSoureElementColor();'><span id="idRightTriangleOfRecord">▶</span>语音识别</button>
+            <button style="font-size:16px;margin:0;padding:0;" title="本系统自创方研发的数智思维知识库+他创方研发的大语言模型+您的选用，降本增效地实现“人←隐喻→人形机器人”的数智思维训练与评测。&#10;不过，他创方研发的众多大语言模型日新月异，不断自我进化，在此只需单点登录我们仅仅一个代理，就可以比较选用下拉框中的当前最优的任一大语言模型/智能体/网站，而且省时省力省钱省心，欢迎您我他三方合作共赢，快来试试哟！&#10;【注：数智思维教育均衡发展支持人员，则可自由使用】"><a href="/HomeIdentity_YuQin" target="LogInProxy" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}'>登录省心代理</a></button>||<button style="font-size:16px;margin:0;padding:0;" title="支付宝/微信充值本系统代理访问各种大语言模型/网站，就可免去您自己一个个注册充值这些大语言模型/网站的烦恼，省钱省力省心！&#10;本系统的客户端浏览器直接访问大语言模型LLM不被允许，因为API Key容易泄露等等安全性考虑。所以请登录本系统代理访问大语言模型LLM，而且节省70%费用！"><a href="AliPay.html" target="Pay" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}'>充值</a></button>            
+            <button id="recordBtn" title="单击将切换显示语音识别按钮" onclick='if(document.getElementById("id_RecordDiv").style.display=="none"){document.getElementById("id_RecordDiv").style.display="block";document.getElementById("idRightTriangleOfRecord").textContent="▼";} else{document.getElementById("id_RecordDiv").style.display="none";document.getElementById("idRightTriangleOfRecord").textContent="▶"; }fnToggleEventSoureElementColor();'><span id="idRightTriangleOfRecord">▶</span>语音识别（准确性有待提高）</button>
             </div>
             
         <div id="id_RecordDiv" style="text-align:justify;border: dashed; border-color: goldenrod; display: none" >
@@ -137,7 +127,7 @@
                     <span title="请尽量选用本系统的语音对话听媒Command。不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒Command。" style="text-align:center">也可随后文本框键入您的视媒Prompt←指令互动→主视图的WebSite：<input type="text" value="向下" style="display:inline;white-space: normal" id="idPromptDirective" /><button id="idButtonClientSideBrowserSTT" style="display: inline; white-space: normal; margin: 0; padding: 0;" onclick='window.systemInternalRecognizingResultFlag=document.getElementById("idPromptDirective").value;fnTTSOnEndSystemInternal();'>
                         确定
                     </button></span>
-                    <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
+                    <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现视媒听媒机器人的回答Answer并且TTS朗读：</p>：-->
                 </span>
                             <div id="kernelDialogueSystemInternal" style="border: dashed; border-color: goldenrod; display: none">
                     <ol style="text-align:justify">
@@ -181,11 +171,11 @@
 </tr>
     </table>
     <div style="font-size:22px;font-weight:bolder" title="">
-        <img src="Human_32.png" title="语音对话的人（戴着耳机麦克风）" /><span title="（面向会说不会写的幼儿用户←Prompt互动→系统内部或者系统外部AIGC）或者（面向成人用户房屋空间漫游←Prompt互动→系统内部或者系统外部AIGC）&#10;（注：用户最好佩戴蓝牙耳机之类，因为当前的系统朗读声音，也会混入成为用户的声音指令，导致声音指令的语音识别异常！目前只有浏览器右击菜单“刷新”重新开始语音Prompt，寻求解决方案之中...！）&#10;【注：面向视觉的屏幕键盘鼠标互动系统外部AIGC，例如“钉钉AIGC助理可以免费连接AIGC生成内容”，自开发反而需要付费，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂未考虑其他功能开发】">“人(客户端或服务端)”←互动(视媒/听媒/触媒/嗅媒/味媒联网)(<a href="D-AIThinkingCommunity.html" target="_blank" title="单击打开多个学科协作相关的URL">多学科协作”</a>)→“人形机器人(服务端或客户端)”</span><img src="Robot_32.png" title="语音对话的人形机器人（隐式耳机麦克风）" /></div>
+        <img src="Human_32.png" title="语音对话的人（戴着耳机麦克风）" /><span title="（面向会说不会写的幼儿用户←Prompt互动→系统内部或者系统外部AIGC）或者（面向成人用户房屋空间漫游←Prompt互动→系统内部或者系统外部AIGC）&#10;（注：用户最好佩戴蓝牙耳机之类，因为当前的系统朗读声音，也会混入成为用户的声音指令，导致声音指令的语音识别异常！目前只有浏览器右击菜单“刷新”重新开始语音Prompt，寻求解决方案之中...！）&#10;【注：面向视觉的屏幕键盘鼠标互动系统外部AIGC，例如“钉钉AIGC助理可以免费连接AIGC生成内容”，自开发反而需要付费，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂未考虑其他功能开发】">“人(客户端或服务端)”←互动(视媒/听媒/触媒/嗅媒/味媒)(<a href="D-AIThinkingCommunity.html" target="_blank" title="单击打开多个学科协作相关的URL">多学科协作</a>)→“人形机器人(服务端或客户端)”</span><img src="Robot_32.png" title="语音对话的人形机器人（隐式耳机麦克风）" /></div>
         <br />
         <div style="font-size:14px"><button style="white-space: normal;margin:0;padding:0;font-size:13px;text-align:justify" title="单击切换显示“数智思维的四层平台的五层MVC这一核心”的原理展示" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
 {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_FourPlatformFiveMVC").style.display=="none"){document.getElementById("id_FourPlatformFiveMVC").style.display="block";document.getElementById("id_FourPlatformFiveMVCArrow").textContent="▼";} else{document.getElementById("id_FourPlatformFiveMVC").style.display="none";document.getElementById("id_FourPlatformFiveMVCArrow").textContent="▶"; }fnToggleEventSoureElementColor();'>单击切换显示“四层平台的五层MVC”数智思维核心<span id="id_FourPlatformFiveMVCArrow">▶</span></button>&nbsp;&nbsp;<button style="white-space: normal;margin:0;padding:0;font-size:13px;text-align:justify" title="单击切换显示“脑机接口-树莓派-3D打印硬件”接入的动态演示。如果静态请刷新浏览器呈现动态！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_HardWare").style.display=="none"){document.getElementById("id_HardWare").style.display="block";document.getElementById("id_HardWareArrow").textContent="▼";} else{document.getElementById("id_HardWare").style.display="none";document.getElementById("id_HardWareArrow").textContent="▶"; }fnToggleEventSoureElementColor();'>单击切换显示“脑机接口”等等硬件融合<span id="id_HardWareArrow">▶</span></button>
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_HardWare").style.display=="none"){document.getElementById("id_HardWare").style.display="block";document.getElementById("id_HardWareArrow").textContent="▼";} else{document.getElementById("id_HardWare").style.display="none";document.getElementById("id_HardWareArrow").textContent="▶"; }fnToggleEventSoureElementColor();'>单击切换显示“脑机接口”等等硬件融合<span id="id_HardWareArrow">▶</span></button>&nbsp;&nbsp;<button id="ExternalWebClaw" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("FormExternalWebClaw").style.display=="none"){document.getElementById("FormExternalWebClaw").style.display="block";document.getElementById("TriAngleOfExternalWebClaw").textContent="▼";} else{document.getElementById("FormExternalWebClaw").style.display="none";document.getElementById("TriAngleOfExternalWebClaw").textContent="▶"; }fnAgentIFrameSrc();fnToggleEventSoureElementColor();' title="【注：本系统遵循业界的通用智能体Agent→教育领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发教育SKills→教育领域智能体Agent】">单击切换显示“通用AgentSkills”融合<span id="TriAngleOfExternalWebClaw">▶</span></button>
         </div>
         <div id="id_HardWare" style="display:none;border: dashed;border-color: goldenrod;font-size:13px;text-align:justify">
             <div>
@@ -281,7 +271,7 @@
     <div id="AIGCCharactor" style="display: none; border: dashed;border-color: goldenrod; text-align: justify ">
         <div class="row-2col">
             <div class="col">
-                <label title="请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><textarea id="sAIGCString" title="请在这里粘贴免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" style="width: 100%; resize: vertical; overflow:auto">这里粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）...</textarea>
+                <label title="请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><textarea id="sAIGCString" title="请在这里粘贴免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" style="width: 100%; resize: vertical; overflow:auto">这里粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）...</textarea>
             </div>
             <div class="col">
                 <label title="请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）： </label><textarea id="sKnowledgebaseString" title="请单击打开标准知识库搜索想要的字符序列。然后，请粘贴在这里！" style="width: 100%; resize: vertical; overflow: auto">这里粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）...</textarea>
@@ -300,7 +290,7 @@
     <div id="AIGCPixelImage" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
         <div class="row-2col">
             <div class="col">
-                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sPixelImageFromAIGC" value="" />
+                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sPixelImageFromAIGC" value="" />
                 <div style="text-align:center"><img id="sShowPixelImageFromAIGC" style="width:100%;height:100%" src="" /></div>
                 <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”Prompt钉钉AIGC生成的图像，或者，上传自己书写的字符图像可用来评判自己书写的工整性' /> <input type="submit" value="提交文件" /></div>
             </div>
@@ -322,7 +312,7 @@
     <div id="AIGCVideo" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
         <div class="row-2col">
             <div class="col">
-                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.mp4视频文件(或者文本框中键入.mp4视频文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sVideoFromAIGC" value="" />
+                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.mp4视频文件(或者文本框中键入.mp4视频文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sVideoFromAIGC" value="" />
                 <div style="text-align:center"><video id="sShowVideoFromAIGC" style="width: 100%; height: 100% " src="" controls autoplay crossorigin="anonymous" /></div>
                 <div style="text-align:justify"><input type="file" title='例如，上传Prompt钉钉AIGC生成的.mp4视频文件，或者，上传自己创作的.mp4视频文件' /> <input type="submit" value="提交文件" /></div>
             </div>
@@ -342,7 +332,7 @@
     <div id="AIGC2D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
         <div class="row-2col">
             <div class="col">
-                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.svg二维2D文件(或者文本框中键入.svg二维2D的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="s2DFromAIGC" value="" />
+                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.svg二维2D文件(或者文本框中键入.svg二维2D的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="s2DFromAIGC" value="" />
                 <div style="text-align:center"><img id="sShow2DFromAIGC" style="width: 100%; height: 100% " src="" controls /></div>
                 <div style="text-align:justify"><input type="file" title='例如，上传Prompt钉钉AIGC生成的.svg二维2D文件，或者，上传自己创作的.svg二维2D文件' /><input type="submit" value="提交文件" /></div>
             </div>
@@ -364,7 +354,7 @@
     <div id="AIGC3D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
         <div class="row-2col">
             <div class="col">
-                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.x3dv三维3D文件(或者文本框中键入.x3dv三维3D的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="s3DFromAIGC" value="" />
+                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.x3dv三维3D文件(或者文本框中键入.x3dv三维3D的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="s3DFromAIGC" value="" />
                 <div style="text-align:center">
                     <!-- <img id="sShow3DFromAIGC" style="width: 100%; height: 100%" src="" controls />-->
                     <object type="model/x3d+xml" id="sShow3DFromAIGC" data="../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv" width="120" height="80">
@@ -481,7 +471,7 @@
     <div id="AIGCAudio" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
         <div class="row-2col">
             <div class="col">
-                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的语音对话机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.mp3音频文件(或者文本框中键入.mp3音频文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sAudioFromAIGC" value="" />
+                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.mp3音频文件(或者文本框中键入.mp3音频文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sAudioFromAIGC" value="" />
                 <div style="text-align:center"><audio id="sShowAudioFromAIGC" style="width:100px; height:100px " src="" controls /></div>
                 <div style="text-align:justify"><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的音频，或者，上传自己朗读的“普通话等级”的音频' /><input type="submit" value="提交文件" /></div>
             </div>
@@ -512,17 +502,50 @@
     </div>
     </br>
     </div>
+    <div>
+            <div id="FormExternalWebClaw" style="display: none; border: dashed; border-color: goldenrod;text-align:justify" title="账号请按规则保存在本项目的appsettings.json文件之中，口令密码请按规则保存在本项目的Secrets.json文件之中！如果服务端拒绝连接，请单击下方的链接打开！">
+                <span>【本系统主要聚焦“作业测验”驱动“目录导航的课文↔面向一对一的学生课前自主学习↔面向一对多的教师课堂答疑教学”的AIGC辅助生成，请单击这里切换显示通用Agent案例，并且运行<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="当前技术阶段尚不支持Agent直接URL装载运行Skills，单击本链接可以下载本系统“四层平台的五层MVC”思路研发的所有Skills，以供各种通用Agent部署运行。&#10;【注：本系统“四层平台的五层MVC”思路研发的各个Skill文件夹之中有一个ReadMe文档用作部署运行参考，例如，agent-browser文件夹之下的ReadMe文档，说明了如何同时发布教与学资源进入知乎/小红书/LinkIn等等多个社区...】&#10;【注：各种Agent部署运行Skills可能稍有不同，本系统建议您选用VS内置的VS-GitHubCopilot部署运行Skills】">本系统“四层平台的五层MVC”思路研发的所有教育AgentSkills案例</a>（注意思辨运行结果的字面准确性/语义准确性）】【需要付费智能Token消耗】</span>
+                <ol>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机GitHubCopilot/云端GitHubCopilot”数智协同智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用【本系统主导选用】" onclick='if(document.getElementById("Id_AgentGitHubCopilot").style.display=="none"){document.getElementById("Id_AgentGitHubCopilot").style.display="block";}else{document.getElementById("Id_AgentGitHubCopilot").style.display="none";}fnToggleEventSoureElementColor();' /></li>
+                    <div id="Id_AgentGitHubCopilot" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
+                        <iframe id="IframeExternalGitHubCopilot" style="width:100%;height:1080px"></iframe>
+                        <div style="text-align:center"><a href="https://github.com/features/copilot" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                        <div style="text-align:center"><a href="myvs://D:/MyProjects/MySolution.slnx" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a>......<a href="../options/URLLocalVS.txt" target="_blank">【注：如果未能打开，请单击这里下载了解Windows注册表配置文件咨询我们，进行配置】</a></div>
+                    </div>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机Astron-Claw/云端Astron-Claw”讯飞星辰数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用【本系统辅助选用】" onclick='if(document.getElementById("Id_Cloud_Astron-Claw").style.display=="none"){document.getElementById("Id_Cloud_Astron-Claw").style.display="block";}else{document.getElementById("Id_Cloud_Astron-Claw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
+                    <div id="Id_Cloud_Astron-Claw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
+                        <iframe id="IframeExternalAstron-Claw" style="width:100%;height:1080px"></iframe>
+                        <div style="text-align:center"><a href="https://agent.xfyun.cn/home" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                        <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                    </div>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机JVSClaw/云端JVSClaw”数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用【本系统辅助选用】" onclick='if(document.getElementById("Id_AgentJVSClaw").style.display=="none"){document.getElementById("Id_AgentJVSClaw").style.display="block";}else{document.getElementById("Id_AgentJVSClaw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
+                    <div id="Id_AgentJVSClaw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
+                        <iframe id="IframeExternalWebClaw" style="width:100%;height:1080px"></iframe>
+                        <div style="text-align:center"><a href="https://jvs.wuying.aliyun.com" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                        <div style="text-align:center"><a href="jvsclawclient://" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                    </div>
+                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机SciClaw/云端SciClaw”科研数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用【本系统辅助选用】" onclick='if(document.getElementById("Id_Cloud_SciClaw").style.display=="none"){document.getElementById("Id_Cloud_SciClaw").style.display="block";}else{document.getElementById("Id_Cloud_SciClaw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
+                    <div id="Id_Cloud_SciClaw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
+                        <iframe id="IframeExternalSciClaw" style="width:100%;height:1080px"></iframe>
+                        <div style="text-align:center"><a href="https://sciclaw.cn/" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                        <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
+                    </div>
+                    <li><a href="https://github.com/clawdotnet/openclaw.net" target="_blank" title="单击可以打开一个100%C#.Net、C#.MAF.Net作为主导研发的智能体Agent开源项目，可供学习参考。&#10;在此作为教育领域软件，并不建议聚焦复杂的智能体Agent研发，而是继承利用现有的VS-GitHubCopilot等等成熟的智能体Agent，创新研发教育相关的AgentSkills！">注：后续将依据发展状况，陆续接入更多合适的智能体Agent...</a></li>
+                </ol>
+                </div>
+    </div>
+
     <table style="width:100%; border:0">
         <tr title="双击表格的本行的单元格，可以切换本行两个单元格的全屏显示">
             <td id="tdSystemInternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleInternalWidth()">
                 <div style="font-size: 16px; font-weight: bolder; color: goldenrod; text-align:justify-all" id="btnSystemInternal">
-                    <span title="单击可以切换说明的显示" onclick="fnToggleSystemInternalExplainSystemExternalExplain()"><span id="idRightTriangleOfSystemInternal">▶</span>“客户端的本系统内部的面向白盒的浏览器HTML语音对话案例”←互动→“服务端的本系统内部的面向黑盒的本机LLM案例”<span id="idSystemInternalExplain" style="display:none">
+                    <span title="单击可以切换说明的显示" onclick="fnToggleSystemInternalExplainSystemExternalExplain()"><span id="idRightTriangleOfSystemInternal">▶</span>“客户端的本系统内部的面向白盒的浏览器中英Prompt触发AgentSkills案例”←语音互动→“服务端的本系统内部的面向黑盒的本机LLM案例”<span id="idSystemInternalExplain" style="display:none">
                                  <span style="font-size: 11px; font-weight: normal;color:black">
                                      <hr style="width:80%" />
                                      <a href="https://github.com/SciSharp/LlamaSharp" target="_blank">单击可以打开一个C#.Net、C#.ML.Net作为主导研发的LLM开源项目，可供学习参考。在此作为教育领域软件，并不建议聚焦复杂的LLM研发，而是继承利用现有的成熟的LLM，创新研发教育相关融合数智思维知识库的RAG...</a>
                                  </span>
                     </span><!--<span style="font-size: 16px; font-weight: bold;color:green">【语音对话内部的数智时代显式数智思维的“教育小语言模型SLM、人形机器人小语言模型SLM”,<span style="color:brown;font-weight:bold">面向某个领域学科专业的众从的创新研发</span>】</span>--></span><button id="id_LocalLLMSelection"  style="font-weight: bolder;white-space:nowrap;font-size:14px;text-align:center" title="系统内部的无需微调/已经微调的本机LLM（Qwen的计算机LLM/机器人LLM、Phi的计算机LLM/机器人LLM等等）的任选一个，可以用作服务端LLM←等候互动→客户端Prompt" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_LocalLLMSelectionDiv").style.display=="none"){document.getElementById("id_LocalLLMSelectionDiv").style.display="block";document.getElementById("idTriangleOfLocalLLM").textContent="▼";} else{document.getElementById("id_LocalLLMSelectionDiv").style.display="none";document.getElementById("idTriangleOfLocalLLM").textContent="▶"; }fnStartFoundryLocal();fnLocalLLMDirPath();fnToggleEventSoureElementColor();'>单击切换显示：（本系统内部）LLM、（本系统内部）LLM微调安装“机器人物硬件”<span id="idTriangleOfLocalLLM">▶</span></button><div id="id_LocalLLMSelectionDiv" style="display:none;font-size: 11px; font-weight: normal;color:black"><div style="text-align:left"><button style="font-size:10.5px" onclick='fnStartFoundryLocal();fnLocalLLMDirPath();' >单击启动本机LLM服务宿主：</button><span id="idIsStarted" style="color:green;font-weight:bold">&nbsp;尚未启动</span><br /><button style="font-size:10.5px" onclick='fnAjaxRunableLocalLLM();' title="可以单选一个本机LLM作为服务端LLM←等候互动→客户端Prompt，可能稍有延迟！本系统支持的本机LLM较多，不过需要URL下载，然后才能单选使用。&#10;如果未能查看到，则是本系统尚无已经下载可以单选运行的本机LLM，请下方按钮所示下载。">单击查看本系统已经下载可以单选运行的本机LLM：</button><span id="id_LocalLLMFineTuning" title="如果希望微调一个本机LLM，然后接入本系统，请参见在此的LoRA微调案例及其帮助文档的URL，微调历时可能几个小时~几天！微调后重新单击“系统内部本机LLM选用”，刷新选用当前微调后的本机LLM。"><a href="https://github.com/microsoft/lora_lab" target="_blank">【关于本机LLM微调的解决方案-项目-条目的案例</a>、<a href="https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica-lora?tabs=csharp0" target="_blank">微调说明</a>】</span><span id="id_RunningLocalLLM" style="color:green;font-weight:bold">这里呈现运行着的一个本机LLM名称...</span><div id="idRunableLocalLLM" title="单选开始运行当前本机LLM成为服务端LLM←等候互动→客户端Prompt"></div><button style="font-size:10.5px" onclick='fnAjaxListableLocalLLM();' title="本系统支持的本机LLM较多，不过需要URL下载，然后才能单选使用。因为本机LLM容量通常达到数G以上，所以在此只是查看本系统支持下载使用的本机LLM的列表，但是并未提供下载本机LLM的功能，而是建议切换到操作系统OS的FoundryLocal的CLI命令下载本机LLM！">单击查看本系统支持下载以供单选运行的本机LLM：</button><span title="单击打开操作系统OS的CLI命令管理本机LLM的URL，可以更加强大功能的FoundryLocal工具管理本机LLM，然后在此浏览器Browser中辅助管理、选用一个本机LLM。" >【<a href="https://learn.microsoft.com/en-us/azure/foundry-local/reference/reference-cli" target="_blank">关于本机LLM管理软件FoundryLocal的安装与CLI</a>、<a href="https://learn.microsoft.com/en-us/azure/foundry-local/reference/reference-rest" target="_blank">REST API</a>】</span><span id="id_DownloadingLocalLLM" style="color:green;font-weight:bold">这里呈现正在下载的一个本机LLM名称...</span><div id="idListableLocalLLM" title="单选开始下载当前本机LLM，下载完成后，才可以单选运行"></div></div></div><!--<select title="注：试验本系统内部的自创方LoRA微调研发的本机的小语言模型SLM（可以安装于人形机器人），不过，当前有效选项仅是“（内部）Qwen千问-小语言模型”，其他选项正在完善之中......&#10;注：在此继承利用VS中的ML.Net/LoRA.Net微调他创方的大语言模型LLM→发展成为→自创方/他创方共有的教育数智思维的大语言模型LLM......&#10;注：虽然可以选用VS中的ML.Net自创方研发大语言模型LLM，但不一定是明智的......" style="font-size:16px;font-weight:bold">
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("id_LocalLLMSelectionDiv").style.display=="none"){document.getElementById("id_LocalLLMSelectionDiv").style.display="block";document.getElementById("idTriangleOfLocalLLM").textContent="▼";} else{document.getElementById("id_LocalLLMSelectionDiv").style.display="none";document.getElementById("idTriangleOfLocalLLM").textContent="▶"; }fnStartFoundryLocal();fnLocalLLMDirPath();fnToggleEventSoureElementColor();'>单击切换显示：（本系统内部）LLM、（本系统内部）LLM微调安装“机器人物硬件”<span id="idTriangleOfLocalLLM">▶</span></button><div id="id_LocalLLMSelectionDiv" style="display:none;font-size: 11px; font-weight: normal;color:black;border: dashed; border-color: goldenrod"><div style="text-align:left"><button style="font-size:10.5px" onclick='fnStartFoundryLocal();fnLocalLLMDirPath();' >单击启动本机LLM服务宿主：</button><span id="idIsStarted" style="color:green;font-weight:bold">&nbsp;尚未启动</span><br /><button style="font-size:10.5px" onclick='fnAjaxRunableLocalLLM();' title="可以单选一个本机LLM作为服务端LLM←等候互动→客户端Prompt，可能稍有延迟！本系统支持的本机LLM较多，不过需要URL下载，然后才能单选使用。&#10;如果未能查看到，则是本系统尚无已经下载可以单选运行的本机LLM，请下方按钮所示下载。">单击查看本系统已经下载可以单选运行的本机LLM：</button><span id="id_LocalLLMFineTuning" title="如果希望微调一个本机LLM，然后接入本系统，请参见在此的LoRA微调案例及其帮助文档的URL，微调历时可能几个小时~几天！微调后重新单击“系统内部本机LLM选用”，刷新选用当前微调后的本机LLM。"><a href="https://github.com/microsoft/lora_lab" target="_blank">【关于本机LLM微调的解决方案-项目-条目的案例</a>、<a href="https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica-lora?tabs=csharp0" target="_blank">微调说明</a>】</span><span id="id_RunningLocalLLM" style="color:green;font-weight:bold">这里呈现运行着的一个本机LLM名称...</span><div id="idRunableLocalLLM" title="单选开始运行当前本机LLM成为服务端LLM←等候互动→客户端Prompt"></div><button style="font-size:10.5px" onclick='fnAjaxListableLocalLLM();' title="本系统支持的本机LLM较多，不过需要URL下载，然后才能单选使用。因为本机LLM容量通常达到数G以上，所以在此只是查看本系统支持下载使用的本机LLM的列表，但是并未提供下载本机LLM的功能，而是建议切换到操作系统OS的FoundryLocal的CLI命令下载本机LLM！">单击查看本系统支持下载以供单选运行的本机LLM：</button><span title="单击打开操作系统OS的CLI命令管理本机LLM的URL，可以更加强大功能的FoundryLocal工具管理本机LLM，然后在此浏览器Browser中辅助管理、选用一个本机LLM。" >【<a href="https://learn.microsoft.com/en-us/azure/foundry-local/reference/reference-cli" target="_blank">关于本机LLM管理软件FoundryLocal的安装与CLI</a>、<a href="https://learn.microsoft.com/en-us/azure/foundry-local/reference/reference-rest" target="_blank">REST API</a>】</span><span id="id_DownloadingLocalLLM" style="color:green;font-weight:bold">这里呈现正在下载的一个本机LLM名称...</span><div id="idListableLocalLLM" title="单选开始下载当前本机LLM，下载完成后，才可以单选运行"></div></div></div><!--<select title="注：试验本系统内部的自创方LoRA微调研发的本机的小语言模型SLM（可以安装于人形机器人），不过，当前有效选项仅是“（内部）Qwen千问-小语言模型”，其他选项正在完善之中......&#10;注：在此继承利用VS中的ML.Net/LoRA.Net微调他创方的大语言模型LLM→发展成为→自创方/他创方共有的教育数智思维的大语言模型LLM......&#10;注：虽然可以选用VS中的ML.Net自创方研发大语言模型LLM，但不一定是明智的......" style="font-size:16px;font-weight:bold">
                         <option value="LocalHumanoidRobot-SLM" title="可以安装在人形机器人的物理硬件的融合数智思维的免费SLM软件→融合数智思维的具身人形机器人">（本系统内部）显式数智思维的人形机器人-小语言模型SLM</option>
                         <option value="InternalXF-Spark-LLM" title="安装在本机的收费XFSpark讯飞星火-LLM">（本系统内部微调的）显式数智思维的XF-Spark讯飞星火-小语言模型</option>
                         <option value="InternalQwen-LLM" title="安装在本机的收费Qwen千问-LLM">（本系统内部微调的）显式数智思维的Qwen千问-小语言模型</option>
@@ -539,13 +562,13 @@
     </div>
     -->              
                 <div title="" style="text-align:justify"><br />
-                 <div style="text-align:center"><button id="idButtonRefreshContentsItem" style="display:inline;white-space: normal;margin:0;padding:0" title="单击在本界面刷新显示主界面中的当前树体目录的条目作为Prompt。&#10;【注：因为LoRA微调的“数智时代融合数智思维的本机小语言模型SLM”，数智思维语言的理想相对树根的树体目录作为导航，四层平台的五层MVC作为核心】&#10;【注：请尽量选用本系统的语音对话听媒Prompt！不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒Prompt】" onclick='fnGetCurrentContentsItem()'>请单击刷新当前目录条目作为您的视媒Prompt←互动→系统内部本机LLM：</button></div><input type="text" value="当前目录条目作为您的视媒Prompt。然后可以修改此Prompt。" style="display:inline;white-space: normal;width:90%" id="idPromptInternalLLM" onblur="fnPromptForInternalAIGCOnBlur()" /><br />
+                 <div style="text-align:center"><button id="idButtonRefreshContentsItem" style="display:inline;white-space: normal;margin:0;padding:0" title="单击在本界面刷新显示主界面中的当前树体目录的条目作为Prompt。&#10;【注：因为LoRA微调的“数智时代融合数智思维的本机小语言模型SLM”，数智思维语言的理想相对树根的树体目录作为导航，四层平台的五层MVC作为核心】&#10;【注：请尽量选用本系统的语音对话听媒Prompt！不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒Prompt】" onclick='fnGetCurrentContentsItem()'>语音识别或者单击刷新当前目录条目作为您的视媒Prompt←互动→系统内部本机LLM：</button></div><input type="text" value="第3章 “教育数智思维语言的理想相对树根”" style="display:inline;white-space: normal;width:90%;background-color:lavender" id="idPromptInternalLLM" onblur="fnPromptForInternalAIGCOnBlur()" /><br />
                 </div>
                 <div title="系统本机内部的融合数智思维的小语言模型SLM（可以安装于人形机器人），树体目录派生继承地AIGC生成融合数智思维的媒体资源，视媒主导（字符媒体主导/多媒体的图像辅助/多媒体的视频辅助/多媒体的2D辅助/多媒体的3D辅助）/多媒体的听媒辅助/多媒体的触媒辅助/多媒体的嗅媒辅助/多媒体的味媒辅助的）整体资源。" id="sIdLocalSLM_div" style="color: rgb(0, 0, 0); cursor: text;text-align:justify">
-                    <span title="【虽然具有树体目录的知识库，但并不查找知识库中的关键词相关Prompt，不会更新用户Prompt】。&#10;“树体目录”即“（线性为本-树体主导-网状辅助）目录”。"><input type="radio" name="raio_ContentsItemRange" id="id_SystemInternal_NonRAG" checked onclick='fnPromptForInternalAIGCOnBlur()' />显式“面向对象的封装继承多态的树体目录”的“非RAG”搜问“系统内部LLM”</span><br />
+                    <span title="【虽然具有树体目录的知识库，但并不查找知识库中的关键词相关Prompt，不会更新用户Prompt】。&#10;“树体目录”即“（线性为本-树体主导-网状辅助）目录”。"><input type="radio" name="raio_ContentsItemRange" id="id_SystemInternal_NonRAG" checked onclick='fnPromptForInternalAIGCOnBlur()' />显式“面向对象的封装继承多态的树体目录”的“非RAG”搜问“系统内部本机LLM”</span><br />
                     <span title="树根目录条目地查找知识库中的关键词相关Prompt，检索结果融入Prompt。&#10;【注：当前仅仅字面确定性匹配地检索知识库的相关语句，尚未语义概率性匹配地检索知识库的相关语句，这是因为当前语义概率性匹配检索知识库的准确性尚不理想】。“树体目录”即“（线性为本-树体主导-网状辅助）目录”。">
                         <input type="radio" name="raio_ContentsItemRange" id="id_SystemInternal_RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForInternalAIGCOnBlur()' />显式“面向对象的封装继承多态的树体目录”的“RAG”搜问“系统内部LLM”
+{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForInternalAIGCOnBlur()' />显式“面向对象的封装继承多态的树体目录”的“RAG”搜问“系统内部本机LLM”
                     </span>
                     <span id="idRadioRAGClickedForWaitingInternal" style="font-size:x-small"></span>
                 </div>
@@ -553,65 +576,24 @@
                     <tr>
                         <td>
                             <!-- <div style="text-align: center"><textarea id="" style="width:95%;height:50px"></textarea></div>-->
-                            <div style="text-align: center"><textarea id="idTextAreaAjaxInternalSideCallAIGCAnswerCharactor" style="width:95%;height:95px">第3章 “教育数智思维语言的理想相对树根”</textarea></div>
-                            <button id="" style="color:brown;font-weight:bold" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部单选的各种本机LLM" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactorInternal("Proxy");'>
-                                浏览器Prompt忽略AgentSkills←互动→本机LLM</button>
+                            <div style="text-align: center"><textarea id="idTextAreaAjaxInternalSideCallAIGCAnswerCharactor" style="width:95%;height:95px">第3章 “教育数智思维语言的理想相对树根”</textarea></div>                            
                         </td>
                         <td>
                             <!--<div style="text-align: center"><textarea id="" style="width: 95%; height: 50px"></textarea></div>-->
-                            <div style="text-align: center"><textarea id="idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 95px">第3章 “教育数智思维语言的理想相对树根”的一道四个选项的单选题，适合用于考试测验。</textarea></div>
-                            <button id="" style="color:brown;font-weight:bold" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部单选的各种本机LLM" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal("Proxy");'>
-                                浏览器器Prompt触发AgentSkills←互动→本机LLM</button>                                                        
+                            <div style="text-align: center"><textarea id="idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 95px">第3章 “教育数智思维语言的理想相对树根”的一道ABCD编号的四个选项的单选题，适合用于考试测验。</textarea></div>                            
                         </td>
                     </tr>
+                   <tr>
+                            <td colspan="2">
+                                <!--已废弃--><!--<button onclick='if(document.getElementById("idAIGCDiv").style.display=="none"){document.getElementById("idAIGCDiv").style.display="block";document.getElementById("TriAngleOfAIGCPrwviewInternal").textContent="▼";} else{document.getElementById("idAIGCDiv").style.display="none";document.getElementById("TriAngleOfAIGCPrwviewInternal").textContent="▶"; }fnAIGCIFrameSrc();fnToggleEventSoureElementColor()'>单击切换显示“生成预览的窗口”<span id="TriAngleOfAIGCPrwviewInternal">▶</span></button>&nbsp;&nbsp;-->
+                                <button id="AIGCPrwviewInternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnAjaxServerSideCallLocalLLMInternal("Proxy");fnToggleEventSoureElementColor();//fnAIGC("idPromptInternalLLM","idTextAreaAjaxInternalSideCallAIGCAnswerCharactor","idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest","iframeForAIGC");'>“本机LLM”生成“目录条目/课文/作业测验”融入主视图，主视图便于降本增效地修改完善</button></td>
+                        </tr>
                 </table>
-                <!--下面的两栏的Agent尝试合并为一栏-->
-                <!--
-                    <button id="InternalWebClaw" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-    {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("FormInternalWebClaw").style.display=="none"){document.getElementById("FormInternalWebClaw").style.display="block";document.getElementById("TriAngleOfInternalWebClaw").textContent="▼";} else{document.getElementById("FormInternalWebClaw").style.display="none";document.getElementById("TriAngleOfInternalWebClaw").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;font-size:14px;text-align:justify" title="【注：本系统遵循业界的本机通用智能体Agent→领域本机智能体Agent的思路，继承利用现有的“本机VS-GitHubCopilot”等等通用智能体Agent，创新研发SKills，融合数智思维知识库，研发教育领域的教育数智思维的本机智能体Agent】">
-                        <span id="TriAngleOfInternalWebClaw">▶</span><span style="font-weight:bold">如上，本系统内部AIGC主要聚焦"目录条目"的“教材课文/作业测验”的AIGC辅助生成，同时遵循业界的通常扩展思路，接入了如下的本机通用智能体，请单击这里切换显示，并且装载<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="单击可以下载本系统“四层平台的五层MVC”思路研发的所有AgentSkills，以供各种通用Agent运行（当前技术阶段尚不支持Agent直接URL装载运行AgentSkills）">本系统“四层平台的五层MVC”思路研发的所有AgentSkills</a>（注意思辨运行结果的准确性）：</span>
-                    </button>
-                    <div id="FormInternalWebClaw" style="display: none; border: dashed; border-color: goldenrod;text-align:justify" title="账号请按规则保存在本项目的appsettings.json文件之中，口令密码请按规则保存在本项目的Secrets.json文件之中！如果服务端拒绝连接，请单击下方的链接打开！">
-
-                        <ol>
-                            <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机JVSClaw”数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用（对应“云端JVSClaw”）" onclick='if(document.getElementById("Id_AgentCopilot").style.display=="none"){document.getElementById("Id_AgentCopilot").style.display="block";}else{document.getElementById("Id_AgentCopilot").style.display="none";}fnToggleEventSoureElementColor();' /></li>
-                            <div id="Id_AgentCopilot" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
-                                <iframe id="IframeInternalLocalCopilot" src="https://github.com/features/copilot" style="width:100%;height:1080px"></iframe>
-                                <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="当前打开的是本机的VSCode-GitHubCopilot。正在研发打开本机的VS-GitHubCopilot...">单击这里也可直接付费连接上述智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                            </div>
-                            <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机VS-GitHubCopilot”数智协同智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用（对应“云端GitHubCopilot”）" onclick='if(document.getElementById("Id_VS-GitHubCopilot").style.display=="none"){document.getElementById("Id_VS-GitHubCopilot").style.display="block";}else{document.getElementById("Id_VS-GitHubCopilot").style.display="none";}fnToggleEventSoureElementColor();' /></li>
-                            <div id="Id_VS-GitHubCopilot" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
-                                <iframe id="IframeInternalLocal_VS-GitHubCopilot" src="https://github.com/features/copilot" style="width:100%;height:1080px"></iframe>
-                                <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="当前打开的是本机的VSCode-GitHubCopilot。正在研发打开本机的VS-GitHubCopilot...">单击这里也可直接付费连接上述智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                            </div>
-                            <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机SciClaw”科研数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用（对应“云端SciClaw”）" onclick='if(document.getElementById("Id_SciClaw").style.display=="none"){document.getElementById("Id_SciClaw").style.display="block";}else{document.getElementById("Id_SciClaw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
-                            <div id="Id_SciClaw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
-                                <iframe id="IframeInternalLocal_SciClaw" src="https://sciclaw.cn/" style="width:100%;height:1080px"></iframe>
-                                <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="当前打开的是本机的VSCode-GitHubCopilot。正在研发打开本机的SciClaw...">单击这里也可直接付费连接上述智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                            </div>
-                            <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机Astron-Claw”讯飞星辰数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用（对应“云端Astron-Claw”）" onclick='if(document.getElementById("Id_Astron-Claw").style.display=="none"){document.getElementById("Id_Astron-Claw").style.display="block";}else{document.getElementById("Id_Astron-Claw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
-                            <div id="Id_Astron-Claw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
-                                <iframe id="IframeInternalLocal_Astron-Claw" src="https://agent.xfyun.cn/home" style="width:100%;height:1080px"></iframe>
-                                <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="当前打开的是本机的VSCode-GitHubCopilot。正在研发打开本机的Astron-Claw...">单击这里也可直接付费连接上述智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                            </div>
-                            <li>注：后续将依据本机智能体Agent的发展状况，陆续接入更多合适的本机智能体Agent...</li>
-                        </ol>
-
-                    </div>
-                    -->
-                    <div id="transcriptSystemInternal" contentEditable="false" style="color: green; width:95%" title="请单击“了解录音Prompt指令”，查看录音说明..." onclick="document.getElementById('id_RadioSystemInternal').checked = true;" onblur="document.getElementById('id_RadioSystemInternal').checked = false;">
-                        {
-                        "段落": [这里查看本机LLM生成内容...]
-                        }
-                    </div>
-                 上述生成的内容：<button onclick="fnEditContent('transcriptSystemInternal');fnToggleEventSoureElementColor()" title="可以按此按钮切换编辑模式。编辑模式时，可以同时按下Ctrl+Z键撤销编辑">编辑切换</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemInternal')">融入当前“目录条目”的“课文”</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemInternal')">融入当前“目录条目”的“作业测验”</button>
                 </td>
                 <td id="tdSystemExternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleExternalWidth()">
                     <div style="font-size: 16px; font-weight: bolder; color: goldenrod;text-align:justify-all" id="btnSystemExternal">
                         <span title="单击可以切换说明的显示" onclick="fnToggleSystemInternalExplainSystemExternalExplain()">
-                            <span id="idRightTriangleOfSystemExternal">▶</span>“客户端的本系统内部的面向白盒的浏览器HTML语音对话案例”←互动→“服务端的本系统外部的面向黑盒的云端LLM案例”<span id="idSystemExternalExplain" style="display:none">
+                            <span id="idRightTriangleOfSystemExternal">▶</span>“客户端的本系统内部的面向白盒的浏览器中英Prompt触发AgentSkills案例”←语音互动→“服务端的本系统外部的面向黑盒的云端LLM案例”<span id="idSystemExternalExplain" style="display:none">
                                      <span style="font-size: 11px; font-weight: normal;color:black">
                                          <hr style="width:80%" />                                        
                                          <a href="https://github.com/SciSharp/LlamaSharp" target="_blank">单击可以打开一个C#.Net、C#.ML.Net作为主导研发的LLM开源项目，可供学习参考。在此作为教育领域软件，并不建议聚焦复杂的LLM研发，而是继承利用现有的成熟的LLM，创新研发教育相关融合数智思维知识库的RAG...</a>
@@ -637,98 +619,45 @@
 
                     <!--
         <div style="text-align:justify">
-            <label title="付费API Key可以尝试客户端浏览器中密码口令方式输入，相对于保存在服务端secrets.json/appsettings.json之中更为风险。本系统唯一的付费API Key，不会用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的的费用就是自己注册付费API Key的100%）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，尚未实现（https://help.aliyun.com/zh/model-studio/first-api-call-to-qwen未见JS的具体代码案例）。例如，文本框中键入字符文本作为Prompt，然后单击这里，默认无需登录本系统，也是可以试验调用AIGC生成Answer内容...）">二、本系统的客户端浏览器访问他创方的AIGC（阿里Qwen为例)。</label><input id="idQwenAPIKeyInput" type="password" placeholder="必须在这里键入登录AIGC的API Key，然后单击确定按钮" title="必须在这里键入登录AIGC的API Key，然后单击确定按钮" /><button id="idQwenAPIKeyConfirm" title="必须在密码框中键入登录AIGC的API Key，然后单击本按钮" style="display: inline; white-space: normal; color: green; font-size: 12px">确定【Qwen千问的付费API Key】</button>后续将修改成为下方的语音识别您的Prompt，当前还请试验键入您的Prompt： <input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPromptForClientBrowserSide" /><button style="display:inline;white-space: normal" onclick='fnAjaxClientBrowserSideCallAIGCAnswerCharactor();'>
-                确定（不登录本系统代理使用语音机器人。节省0%、API Key原生风险）(AIGG提供者官方声明暂不支持)
+            <label title="付费API Key可以尝试客户端浏览器中密码口令方式输入，相对于保存在服务端secrets.json/appsettings.json之中更为风险。本系统唯一的付费API Key，不会用作所有登录本系统用户的代理，本系统用户使用视媒听媒机器人的的费用就是自己注册付费API Key的100%）（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，尚未实现（https://help.aliyun.com/zh/model-studio/first-api-call-to-qwen未见JS的具体代码案例）。例如，文本框中键入字符文本作为Prompt，然后单击这里，默认无需登录本系统，也是可以试验调用AIGC生成Answer内容...）">二、本系统的客户端浏览器访问他创方的AIGC（阿里Qwen为例)。</label><input id="idQwenAPIKeyInput" type="password" placeholder="必须在这里键入登录AIGC的API Key，然后单击确定按钮" title="必须在这里键入登录AIGC的API Key，然后单击确定按钮" /><button id="idQwenAPIKeyConfirm" title="必须在密码框中键入登录AIGC的API Key，然后单击本按钮" style="display: inline; white-space: normal; color: green; font-size: 12px">确定【Qwen千问的付费API Key】</button>后续将修改成为下方的语音识别您的Prompt，当前还请试验键入您的Prompt： <input type="text" value="教育技术" style="display:inline;white-space: normal" id="idPromptForClientBrowserSide" /><button style="display:inline;white-space: normal" onclick='fnAjaxClientBrowserSideCallAIGCAnswerCharactor();'>
+                确定（不登录本系统代理使用视媒听媒机器人。节省0%、API Key原生风险）(AIGG提供者官方声明暂不支持)
             </button>
-            <p id="idShowClientBrowserSidePromptAnswer" style="color:green;border:dashed">这里将呈现本系统的客户端浏览器访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>
+            <p id="idShowClientBrowserSidePromptAnswer" style="color:green;border:dashed">这里将呈现本系统的客户端浏览器访问他创方的AIGC，实现视媒听媒机器人的回答Answer并且TTS朗读：</p>
         </div>
             -->
 
-                <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。&#10;本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用语音对话机器人的费用一般只需自己注册付费API Key的30%左右。&#10;（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现）" style="text-align:justify"><br />
-                   <div style="text-align:center" title="请尽量选用本系统的语音对话听媒Prompt！不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒Prompt。">请键入您的视媒Prompt←互动→系统外部云端LLM：</div>
+                <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。&#10;本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用视媒听媒机器人的费用一般只需自己注册付费API Key的30%左右。&#10;（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现）" style="text-align:justify"><br />
+                   <div style="text-align:center" title="请尽量选用本系统的语音对话听媒Prompt！不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒Prompt。">语音识别或者键入您的视媒Prompt←互动→系统外部云端LLM：</div>
                     <!--<sapn title="单击打开自创方的知识库案例，可以用来对比AIGC生成内容的相似度准确性！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
         {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击可以标量字面搜索结果→对比→RAG矢量语义搜问结果）：</sapn>-->
-                    <input type="text" value="教育技术" style="display:inline;white-space: normal;width:90%" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" /><br />
-                    <span title="非RAG搜问，不会事先检索本机知识库。&#10;“树体目录”即“（线性为本-树体主导-网状辅助）目录”。"><input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />隐式“面向对象的封装继承多态的树体目录”的“非RAG”搜问“系统外部LLM”</span><br />
+                    <input type="text" value="教育技术" style="display:inline;white-space: normal;width:90%;background-color:lavender" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" /><br />
+                    <span title="非RAG搜问，不会事先检索本机知识库。&#10;“树体目录”即“（线性为本-树体主导-网状辅助）目录”。"><input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />隐式“面向对象的封装继承多态的树体目录”的“非RAG”搜问“系统外部云端LLM”</span><br />
                     <span title="RAG搜问，事先检索本机知识库，检索结果融入Prompt。&#10;【注：当前仅仅字面确定性匹配地检索知识库的相关语句，尚未语义概率性匹配地检索知识库的相关语句，这是因为当前语义概率性匹配检索知识库的准确性尚不理想】。&#10;“树体目录”即“（线性为本-树体主导-网状辅助）目录”。&#10;【注：字符媒体RAG搜问已经基本实现，多媒体RAG搜问正在完善之中...】">
-                        <input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_RAG" value="RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />隐式“面向对象的封装继承多态的树体目录”的“RAG”搜问“系统外部LLM”
+                        <input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_RAG" value="RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />隐式“面向对象的封装继承多态的树体目录”的“RAG”搜问“系统外部云端LLM”
                     </span>
                     <!--<input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_MultiMediaRAG" value="MultiMediaRAG" disabled /><span onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
         {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} alert("本功能尚在开发之中...");document.getElementById("idRadioRAGClickedForWaiting").textContent ="(正在开发多媒体检索知识库...)"'>隐式派生继承的多媒体RAG搜问</span>-->
-                    <span id="idRadioRAGClickedForWaiting" style="font-size:x-small"></span>
+                    <span id="idRadioRAGClickedForWaiting" style="font-size:x-small"></span></div>
 
                     <table style="width:100%">
                         <tr>
                             <td>
-                                <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerCharactor" style="width:95%;height:100px"></textarea></div>
-                                 <div style="text-align: center">
-                                <button id="idButtonAjaxServerSideCallAIGCAnswerCharactor" style="color:brown;font-weight:bold" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部下拉框中的各种云端LLM、网站" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerCharactor("Proxy");'>
-                                       浏览器Prompt忽略AgentSkills←互动→云端LLM</button>
-                                     </div>
+                                <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerCharactor" style="width:95%;height:100px">“教育技术定义”</textarea></div>
                             </td>
                             <td>
-                                <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 100px"></textarea></div>
-                                 <div style="text-align: center">
-                                <button id="idButtonAjaxServerSideCallAIGCAnswerHomeworkAndTest" title="试验登录本系统的省心代理，就可无缝切换本单元格顶部下拉框中的各种云端LLM、网站" style="color:brown;font-weight:bold" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}fnAjaxServerSideCallAIGCAnswerHomeworkAndTest("Proxy");'>
-                                     浏览器Prompt触发AgentSkills←互动→云端LLM</button> 
-                                     </div>
+                                <div style="text-align: center"><textarea id="idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest" style="width: 95%; height: 100px">“教育技术定义”的一道ABCD编号的四个选项的单选题，适合用于考试测验。</textarea></div>
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <!--已废弃--><!--<button onclick='if(document.getElementById("idAIGCDiv").style.display=="none"){document.getElementById("idAIGCDiv").style.display="block";document.getElementById("TriAngleOfAIGCPrwviewExternal").textContent="▼";} else{document.getElementById("idAIGCDiv").style.display="none";document.getElementById("TriAngleOfAIGCPrwviewExternal").textContent="▶"; }fnAIGCIFrameSrc();fnToggleEventSoureElementColor()'>单击切换显示“生成预览的窗口”<span id="TriAngleOfAIGCPrwviewExternal">▶</span></button>&nbsp;&nbsp;-->
+                               <button id="AIGCPrwviewExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnAjaxServerSideCallCloudLLMExternal("Proxy");fnToggleEventSoureElementColor();//fnAIGC("idPrompt","idTextAreaAjaxServerSideCallAIGCAnswerCharactor","idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest","iframeForAIGC");'>“云端LLM”生成“目录条目/课文/作业测验”融入主视图，主视图便于降本增效地修改完善</button></td>
+                        </tr>
                     </table>
-                    <!--<p id="idShowServerSidePromptAnswer" style="color: green; border: dashed">这里将呈现本系统的服务端访问他创方的AIGC，实现语音对话机器人的回答Answer并且TTS朗读：</p>：-->
-                </div>
-                <div id="transcriptSystemExternal" contentEditable="false" style="color:green;width:95%" title="如果正在朗读，单击（或者语音“暂停”）可以暂停朗读，双击（或者语音“继续”）可以继续朗读，正在开发之中...请单击“了解录音Prompt指令”，查看录音说明...）" onclick="document.getElementById('id_RadioSystemExternal').checked = true;" onblur="document.getElementById('id_RadioSystemExternal').checked = false;">
-                    {
-                    "段落": [这里查看云端LLM生成内容...]
-                    }
-                </div>
-                上述生成的内容：<button onclick="fnEditContent('transcriptSystemExternal');fnToggleEventSoureElementColor()" title="可以按此按钮切换编辑模式。编辑模式时，可以同时按下Ctrl+Z键撤销编辑">编辑切换</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoCourseText('transcriptSystemExternal')">融入当前“目录条目”的“课文”</button>&nbsp;&nbsp;<button style="color:brown;font-weight:bold" onclick="fnIntoHomeworkAndTest('transcriptSystemExternal')">融入当前“目录条目”的“作业测验”</button>
             </td>
-
             </tr>
-                    <tr>
-        <td colspan="2" style="border:dashed">
-            <button id="ExternalWebClaw" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
-{alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} if(document.getElementById("FormExternalWebClaw").style.display=="none"){document.getElementById("FormExternalWebClaw").style.display="block";document.getElementById("TriAngleOfExternalWebClaw").textContent="▼";} else{document.getElementById("FormExternalWebClaw").style.display="none";document.getElementById("TriAngleOfExternalWebClaw").textContent="▶"; }fnToggleEventSoureElementColor();' style="white-space: normal;margin:0;padding:0;font-size:14px;text-align:center" title="【注：本系统遵循业界的通用智能体Agent→教育领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发教育SKills→教育领域智能体Agent】">
-                <p style="font-weight:bold;font-size: 15px;"><span id="TriAngleOfExternalWebClaw">▶</span>“客户端的本系统外部的面向白盒的中英Prompt触发的本机AgentSkills案例（云端AgentSkills案例）”←互动→“服务端的本系统外部的面向黑盒的本机LLM案例（云端LLM案例）”</p><span>【本系统主要聚焦“作业测验”驱动“目录导航的课文↔面向一对一的学生课前自主学习↔面向一对多的教师课堂答疑教学”的AIGC辅助生成，请单击这里切换显示通用Agent案例，并且运行<a href="https://github.com/jbhuang99/WebEdu_LocalVersion_YuQin_DotNetCore2.1/tree/master/.github/skills" target="_blank" title="当前技术阶段尚不支持Agent直接URL装载运行Skills，单击本链接可以下载本系统“四层平台的五层MVC”思路研发的所有Skills，以供各种通用Agent部署运行。&#10;【注：本系统“四层平台的五层MVC”思路研发的各个Skill文件夹之中有一个ReadMe文档用作部署运行参考，例如，agent-browser文件夹之下的ReadMe文档，说明了如何同时发布教与学资源进入知乎/小红书/LinkIn等等多个社区...】&#10;【注：各种Agent部署运行Skills可能稍有不同，本系统建议您选用VS内置的VS-GitHubCopilot部署运行Skills】">本系统“四层平台的五层MVC”思路研发的所有教育AgentSkills案例</a>（注意思辨运行结果的字面准确性/语义准确性）】【需要付费智能Token消耗】</span>
-            </button>
-            <div id="FormExternalWebClaw" style="display: none; border: dashed; border-color: goldenrod;text-align:justify" title="账号请按规则保存在本项目的appsettings.json文件之中，口令密码请按规则保存在本项目的Secrets.json文件之中！如果服务端拒绝连接，请单击下方的链接打开！">
-
-                <ol>
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机GitHubCopilot/云端GitHubCopilot”数智协同智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用【本系统主导选用】" onclick='if(document.getElementById("Id_AgentGitHubCopilot").style.display=="none"){document.getElementById("Id_AgentGitHubCopilot").style.display="block";}else{document.getElementById("Id_AgentGitHubCopilot").style.display="none";}fnToggleEventSoureElementColor();' /></li>
-                    <div id="Id_AgentGitHubCopilot" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
-                        <iframe id="IframeExternalGitHubCopilot" src="https://github.com/features/copilot" style="width:100%;height:1080px"></iframe>
-                        <div style="text-align:center"><a href="https://github.com/features/copilot" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                        <div style="text-align:center"><a href="myvs://D:/MyProjects/MySolution.slnx" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a>......<a href="../options/URLLocalVS.txt" target="_blank">【注：如果未能打开，请单击这里下载了解Windows注册表配置文件咨询我们，进行配置】</a></div>
-                    </div>
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机Astron-Claw/云端Astron-Claw”讯飞星辰数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用【本系统辅助选用】" onclick='if(document.getElementById("Id_Cloud_Astron-Claw").style.display=="none"){document.getElementById("Id_Cloud_Astron-Claw").style.display="block";}else{document.getElementById("Id_Cloud_Astron-Claw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
-                    <div id="Id_Cloud_Astron-Claw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
-                        <iframe id="IframeExternalAstron-Claw" src="https://agent.xfyun.cn/home" style="width:100%;height:1080px"></iframe>
-                        <div style="text-align:center"><a href="https://agent.xfyun.cn/home" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                        <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                    </div>
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机JVSClaw/云端JVSClaw”数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用【本系统辅助选用】" onclick='if(document.getElementById("Id_AgentJVSClaw").style.display=="none"){document.getElementById("Id_AgentJVSClaw").style.display="block";}else{document.getElementById("Id_AgentJVSClaw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
-                    <div id="Id_AgentJVSClaw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
-                        <iframe id="IframeExternalWebClaw" src="https://jvs.wuying.aliyun.com/login" style="width:100%;height:1080px"></iframe>
-                        <div style="text-align:center"><a href="https://jvs.wuying.aliyun.com" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                        <div style="text-align:center"><a href="jvsclawclient://" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                    </div>
-                    <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：“本机SciClaw/云端SciClaw”科研数智龙虾智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用【本系统辅助选用】" onclick='if(document.getElementById("Id_Cloud_SciClaw").style.display=="none"){document.getElementById("Id_Cloud_SciClaw").style.display="block";}else{document.getElementById("Id_Cloud_SciClaw").style.display="none";}fnToggleEventSoureElementColor();' /></li>
-                    <div id="Id_Cloud_SciClaw" style="display: none; border: dashed; border-color: goldenrod; text-align: center">
-                        <iframe id="IframeExternalSciClaw" src="https://sciclaw.cn/" style="width:100%;height:1080px"></iframe>
-                        <div style="text-align:center"><a href="https://sciclaw.cn/" target="_blank" title="单击打开云端智能体">单击这里也可直接付费连接上述云端智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                        <div style="text-align:center"><a href="vscode://file/D:/Temp/index.html" target="_blank" title="单击打开本机智能体">单击这里也可直接付费连接上述本机智能体Agent(Skills)的MD-YAML-Prompt-C#的人机统一的思维语言代码的协同研发/继承利用</a></div>
-                    </div>
-                    <li><a href="https://github.com/clawdotnet/openclaw.net" target="_blank" title="单击可以打开一个100%C#.Net、C#.MAF.Net作为主导研发的智能体Agent开源项目，可供学习参考。&#10;在此作为教育领域软件，并不建议聚焦复杂的智能体Agent研发，而是继承利用现有的VS-GitHubCopilot等等成熟的智能体Agent，创新研发教育相关的AgentSkills！">注：后续将依据发展状况，陆续接入更多合适的智能体Agent...</a></li>
-                </ol>
-                </div>
-        </td>
-        </tr>
-       
-    </table>
+    </table><!--已废弃：document.getElementById("iframeForAIGC").contentWindow.document.getElementById('sIframeBook').contentWindow.document.getElementById('sIframeContents').contentWindow可以进行操作（需要同域）--><!--
+      <div id="idAIGCDiv" style="display:none;text-align:center;border: dashed; border-color: goldenrod"><button onclick="fnToggleEventSoureElementColor()" title="生成内容的预览结果融入主视图的目录条目之二、课文、作业测验">生成预览的“目录条目/课文/作业测验”→融入→主视图的“目录条目/课文/作业测验”</button><iframe id="iframeForAIGC" style="border:0;width:100%;height:738px"></iframe></div>-->
 </body>
 
 </html>

@@ -1120,7 +1120,7 @@ function fnWindowOnFocus() {
 
 
 function fnContentsGetFocus() {
-    //parent.document.getElementById("sIframeContents").contentWindow.fnGetFocus();////因为机器人语音对话窗口总是聚焦，内容框架的内容即使切换了编辑也无法编辑（必须关闭机器人语音对话窗口才能编辑），所以暂时尝试取消该函数！！！也即内容框架聚焦时，语音对话机器人窗口不会自动聚焦了。
+    //parent.document.getElementById("sIframeContents").contentWindow.fnGetFocus();////因为机器人语音对话窗口总是聚焦，内容框架的内容即使切换了编辑也无法编辑（必须关闭机器人语音对话窗口才能编辑），所以暂时尝试取消该函数！！！也即内容框架聚焦时，视媒听媒机器人窗口不会自动聚焦了。
 }
 
 function fnHighLight() {

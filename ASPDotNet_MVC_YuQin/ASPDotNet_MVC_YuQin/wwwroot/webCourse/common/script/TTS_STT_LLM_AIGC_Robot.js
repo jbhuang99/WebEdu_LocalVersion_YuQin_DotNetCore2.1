@@ -38,33 +38,87 @@ var sTextContent = document.getElementById("transcriptSystemInternal").textConte
 document.getElementById("id_CharNumber").textContent=sTextContent.length;
 }
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
-document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
+document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道ABCD编号的四个选项的单选题，适合用于考试测验。";
+}
+function fnAgentIFrameSrc(){
+    document.getElementById("IframeExternalGitHubCopilot").src="https://github.com/features/copilot" ;
+    document.getElementById("IframeExternalAstron-Claw").src="https://agent.xfyun.cn/home" ;
+    document.getElementById("IframeExternalWebClaw").src="https://jvs.wuying.aliyun.com/login"  ;
+    document.getElementById("IframeExternalSciClaw").src="https://sciclaw.cn/" ;
+}
+function fnAIGCIFrameSrc(){ //已废弃
+    var sHref=window.location.href.substring(0,window.location.href.indexOf("/webCourse/"))+"/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738&openRobot=no";
+    document.getElementById("iframeForAIGC").src=sHref;
 }
 
+function fnAIGC(targetElementId1,targetElementId2,targetElementId3,targetElementId4){
+    //document.getElementById(targetElementId).src='https://localhost:5001/webCourse/common/iframeInitial.html?iWidth=1024&iHeight=738&openRobot=no';
+   // alert(document.getElementById('iframeSystemInternal').contentWindow.document.getElementById('sIframeBook').contentWindow.document.getElementById('sIframeContents').contentWindow.document.body.innerHTML);
+     alert(document.getElementById(targetElementId1).value+document.getElementById(targetElementId2).value+document.getElementById(targetElementId3).value);   
+   var oWindowContents=document.getElementById(targetElementId4).contentWindow.document.getElementById('sIframeBook').contentWindow.document.getElementById('sIframeContents').contentWindow;
+   oWindowContents.oSrcElement.childNodes.item(0).nodeValue=document.getElementById(targetElementId1).value+oWindowContents.oSrcElement.childNodes.item(0).nodeValue;
+   var oWindowTitle=document.getElementById(targetElementId4).contentWindow.document.getElementById('sIframeBook').contentWindow.document.getElementById('sIFrameTitle').contentWindow;
+   oWindowTitle.document.getElementById("id_TTS_Play").click();
+
+   
+    alert(document.getElementById(targetElementId2).value);
+   
+
+    var oWindowContent=document.getElementById(targetElementId1).contentWindow.document.getElementById('sIframeBook').contentWindow.document.getElementById('sIframeContent').contentWindow;
+    alert(document.getElementById(targetElementId3).innerHTML);
+   oWindowContent.document.body.insertAdjacentHTML('afterbegin', document.getElementById(targetElementId3).innerHTML);
+
+    var oWindowHomeworkAndTest=document.getElementById(targetElementId1).contentWindow.document.getElementById('sIframeBook').contentWindow.document.getElementById('sIframeHomeworkAndTest').contentWindow;
+    alert(document.getElementById(targetElementId4).innerHTML);
+    var oCell = oWindowHomeworkAndTest.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
+    //var cTr = Array.from(oTable.rows);
+    //cTr[0].insertAdjacentHTML('afterend', document.getElementById(targetElementId).innerHTML);
+    //alert("当前“目录条目”的“作业测验”表格的第一行是："+cTr[0].innerHTML);
+    //cTr[0].insertAdjacentHTML('afterend', document.getElementById(targetElementId).innerHTML);
+    oCell.appendChild(document.getElementById(targetElementId4));
+    }
 function fnEditContent(targetElementId){
     if(!document.getElementById(targetElementId).isContentEditable) { document.getElementById(targetElementId).contentEditable = true; }
     else { document.getElementById(targetElementId).contentEditable = false;}
 }
-function fnIntoCourseText(targetElementId){
-    var bConfirm = confirm("（1）当前“目录条目”是："+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的如下内容添加到主视图当前“目录条目”的“课文”的最前面部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" + "\n\n"+document.getElementById(targetElementId).innerHTML);
-    if (bConfirm) {
-        opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML('afterbegin', document.getElementById(targetElementId).innerHTML);
-        alert("内容已添加到当前“目录条目”的“课文”的开始部分！（1）请单击“标题框架”的“内容切换”切换查看“课文”/“作业测验”。（2）“课文”的右击菜单提供编辑切换、保存等等功能。");
+function fnCourseTextInsertedElementForAIGC(elementId){
+    var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
+    var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的课文添加到当前“目录条目”的“课文”的最前面部分（自动删除上一次LLM生成的课文），然后可以修改完善保存！") ;
+    if(bConfirm) {
+          if(opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId)){
+//如果已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
+opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).remove();
+  }
+    opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"color:green\">本机LLM正在生成课文，请耐心等候...</div>");
+    alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
+    //opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).innerHTML="<div style=\"color:green\">本机LLM正在生成课文，请耐心等候...</div>";
+    //alert(opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
     }
-}
-function fnIntoHomeworkAndTest(targetElementId){
-    var bConfirm = confirm("（1）当前“目录条目”是："+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的内容将被添加到主视图当前“目录条目”的“作业测验”的第一个表格的表行的单元格的最后部分，然后可以修改完善保存！LLM生成的内容字符如下（可能含有非字符引用）：" +"\n\n"+ document.getElementById(targetElementId).innerHTML);
-    if (bConfirm) {
-        // opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.body.insertAdjacentHTML('afterbegin', document.getElementById(targetElementId).innerHTML);
+ }
+
+
+function fnHomeworkAndTestInsertedElementForAIGC(elementId){
+    var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
+    var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的作业测验添加到当前“目录条目”的“作业测验”的“题目1”的题干部分（自动删除上一次LLM生成的作业测验），然后可以修改完善保存！") ;
+    if(bConfirm) {
+     if(opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId)){
+    //如果已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
+    opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
+  }
+    //opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+"></div>");
     var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
     //var cTr = Array.from(oTable.rows);
     //cTr[0].insertAdjacentHTML('afterend', document.getElementById(targetElementId).innerHTML);
     //alert("当前“目录条目”的“作业测验”表格的第一行是："+cTr[0].innerHTML);
     //cTr[0].insertAdjacentHTML('afterend', document.getElementById(targetElementId).innerHTML);
-    oCell.appendChild(document.getElementById(targetElementId));
-    alert("内容已添加到当前“目录条目”的“作业测验”的第一个表格的表行的单元格的最后部分！（1）请单击“标题框架”的“内容切换”切换查看“课文”/“作业测验”。（2）“作业测验”的视图提供编辑切换功能、保存等等功能。");
+    //oCell.appendChild(document.getElementById(targetElementId));
+    oCell.insertAdjacentHTML("beforeend","<div id="+"\""+elementId+"\""+" style=\"color:green\">本机LLM正在生成作业测验，请耐心等候...</div>");
+    alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
+    //opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).innerHTML="<div style=\"color:green\">本机LLM正在生成作业测验，请耐心等候...</div>";
+   // alert(opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
     }
 }
+
 function fnStartFoundryLocal() {
     var sURL="/StartServiceFoundryLocal";      
        var xmlHttpRequest = new XMLHttpRequest();
@@ -414,8 +468,8 @@ function fnGetCurrentContentsItem(){
    document.getElementById("idPromptInternalLLM").value=opener.oSrcElement.childNodes.item(0).nodeValue;
     //document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value="“"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"”";
     document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value="“"+opener.oSrcElement.childNodes.item(0).nodeValue+"”";
-     //document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"”的一道四个选项的单选题，适合用于考试测验。";
-     document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+opener.oSrcElement.childNodes.item(0).nodeValue+"”的一道四个选项的单选题，适合用于考试测验。";
+     //document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+opener.parent.document.getElementById("sIframeContents").contentWindow.oSrcElement.childNodes.item(0).nodeValue+"”的一道ABCD编号的四个选项的单选题，适合用于考试测验。";
+     document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+opener.oSrcElement.childNodes.item(0).nodeValue+"”的一道ABCD编号的四个选项的单选题，适合用于考试测验。";
     }
 
 function fnOpenLocalhostDingTalkAIGC(){
@@ -851,7 +905,83 @@ document.getElementById('transcriptSystemInternal').textContent = JSON.stringify
 function fnUpdateTranscriptSystemExternal() {
 document.getElementById('transcriptSystemExternal').textContent = JSON.stringify(speechContentParagraphsSystemExternal, null, 2); // 将speechContentParagraphsSystemExternal对象格式化为JSON字符串，并显示在页面上
             }
+function fnAjaxServerSideCallCloudLLMExternal(isProxy){
+    if(!opener.parent){alert("生成的“目录条目/课文/作业测验”需要融入“主视图”，但是“主视图”可能已经关闭，请重新打开，重新尝试本操作！");return;}
+    var winParent=opener.parent;
+    window.isRecognizingSystemExternal = false;
+     window.speechSynthesis.cancel(); 
+     var sPromptForContentsItem=document.getElementById("idPrompt").value;  
+     var sPromptForCourseText=document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value;
+     var sPromptForHomeworkAndTest=document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value;
+     var sURL ="";
+     var sURLForHomeworkAndTest ="";
+     let currentText = "内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）：";
+     var endingAIGCedText = "（内部视媒听媒机器人的回答Answer已结束！）";
+     if(!isProxy=="Proxy"){
+           open("/ProxyQWen/index?queryString=" + sPromptForCourseText,"LogInProxy");
+           sURL = "/ProxyQWen/index?queryString=" + sPromptForCourseText;
+           sURLForHomeworkAndTest = "/ProxyQWen/index?queryString=" + sPromptForHomeworkAndTest;
+            }
+     else{
+            sURL = "/QWen/index?queryString=" + sPromptForCourseText;
+            sURLForHomeworkAndTest = "/QWen/index?queryString=" + sPromptForHomeworkAndTest;
+            }
+     //生成目录条目字符
+  var oWindowContents=winParent.document.getElementById("sIframeContents").contentWindow;
+  alert(oWindowContents.oSrcElement.childNodes.item(0).nodeValue);
+  var bConfirmContentsItem = confirm("（1）当前“目录条目”字符是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的“目录条目”字符添加到当前“目录条目”字符的最前面部分，请修改完善保存！");
+  if(bConfirmContentsItem) {
+   oWindowContents.oSrcElement.childNodes.item(0).nodeValue=sPromptForContentsItem+oWindowContents.oSrcElement.childNodes.item(0).nodeValue;
+   }
+   else{
+   alert("您取消了LLM生成的“目录条目”字符添加到当前“目录条目”字符的最前面部分！");
+   }
+   //生成课文
+    fnCourseTextInsertedElementForAIGC("idCourseTextInsertedElementForAIGC");
+    var xmlHttpRequest = new XMLHttpRequest();
+      xmlHttpRequest.open('GET', sURL, true);//如果是post：xmlHttpRequest.open('POST',sURL , true);
+      xmlHttpRequest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+      xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+      if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+         if (xmlHttpRequest.status == 200) { //如果是200说明成功
+         //如果函数存在的话执行
+         var oTemp=JSON.parse(xmlHttpRequest.responseText);
+         //document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+oTemp.output.text;   
+         opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById("idCourseTextInsertedElementForAIGC").innerHTML= '<div style="color:green">'+currentText+oTemp.output.text+endingAIGCedText+'</div>';
+       window.speechSynthesis.cancel();     
+      alert("LLM生成的课文已添加到当前“目录条目”的“课文”的开始部分！请修改完善保存！");
+      }
+      }
+      }
+  //生成作业测验
+    fnHomeworkAndTestInsertedElementForAIGC("idHomeworkAndTestInsertedElementForAIGC");    
+    var xmlHttpRequestForHomeworkAndTest = new XMLHttpRequest();
+      xmlHttpRequestForHomeworkAndTest.open('GET', sURLForHomeworkAndTest, true);//如果是post：xmlHttpRequest.open('POST',sURLForHomeworkAndTest , true);
+      xmlHttpRequestForHomeworkAndTest.send();////如果是post：xmlHttpRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');  //设置请求头说明文档类型   xhr.send(data);  //send里传递数据
+      xmlHttpRequestForHomeworkAndTest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+      if (xmlHttpRequestForHomeworkAndTest.readyState == 4) {  //ajax为4说明执行完了
+         if (xmlHttpRequestForHomeworkAndTest.status == 200) { //如果是200说明成功
+         //如果函数存在的话执行
+         var oTempForHomeworkAndTest=JSON.parse(xmlHttpRequestForHomeworkAndTest.responseText);
+         //document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+oTemp.output.text;   
+         opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById("idHomeworkAndTestInsertedElementForAIGC").innerHTML = '<div style="color:green">'+currentText+oTempForHomeworkAndTest.output.text+endingAIGCedText+'</div>';
+       window.speechSynthesis.cancel();     ;
+   var sString=opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById("idHomeworkAndTestInsertedElementForAIGC").innerHTML;
+        var sString1=sString.replace("A.", '<p/><input type="radio" name="raio_Four"/>A.');
+        var sString2=sString1.replace("B.", '<p/><input type="radio" name="raio_Four"/>B.');
+        var sString3=sString2.replace("C.", '<p/><input type="radio" name="raio_Four"/>C.');
+        var sString4=sString3.replace("D.", '<p/><input type="radio" name="raio_Four"/>D.');
+        var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
+        var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>';
+        opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById("idHomeworkAndTestInsertedElementForAIGC").innerHTML=sString4;
+    alert("LLM生成的作业测验已添加到当前“目录条目”的“作业测验”的“题目1”的题干部分！请修改完善保存！");
 
+  //TTS
+   opener.parent.document.getElementById('sIFrameTitle').contentWindow.document.getElementById("id_TTS_Play").click();
+   }
+   }
+   }
+}
 function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
     fnToggleEventSoureElementColor();
     window.isRecognizingSystemExternal = false;
@@ -859,10 +989,10 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
             var sPrompt = document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value;
              window.speechSynthesis.cancel();
                      //TTS
-             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
+             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？视媒听媒机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
-            alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-             document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的LLM："+document.getElementById("idSelectedExternalLLM").value+"，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+            alert("您的Prompt提问是：“" + sPrompt+"”对吗？视媒听媒机器人正在思考回答Answer，请耐心等候...");
+             document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的LLM："+document.getElementById("idSelectedExternalLLM").value+"，实现视媒听媒机器人的回答Answer并且TTS朗读。视媒听媒机器人正在思考回答Answer，请耐心等候...";
             var sURL ="";           
             if(isProxy=="Proxy"){
             const utteranceExternalPrompt2 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
@@ -886,12 +1016,12 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行
                         var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                        document.getElementById("transcriptSystemExternal").innerHTML ="外部语音对话机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+oTemp.output.text;
+                        document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+oTemp.output.text;
                       
                         window.speechSynthesis.cancel();
                           /**
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("外部语音对话机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+oTemp.output.text); 
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+oTemp.output.text); 
                      if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
@@ -905,13 +1035,79 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("外部语音对话机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+sTempErr); 
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+sTempErr); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }
         }
 }
+async function fnAjaxServerSideCallLocalLLMInternal(isProxy){
+    if(!opener.parent){alert("生成的“目录条目/课文/作业测验”需要融入“主视图”，但是“主视图”可能已经关闭，请重新打开，重新尝试本操作！");return;}
+    if(window.RunningLocalLLMID==null || window.RunningLocalLLMID=="") {
+        alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
+        return;
+        }
+     window.isRecognizingSystemExternal = false;
+     window.speechSynthesis.cancel(); 
+     var sPromptForContentsItem=document.getElementById("idPromptInternalLLM").value;    
+     var sPromptForCourseText=document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value;
+     var sPromptForHomeworkAndTest=document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value;    
+     var sURL ="";           
+     if(isProxy=="Proxy"){
+          // sURL =  "/QWen/index?queryString="  + sPrompt;//无需登录的Qwen的URL;//曾经Get请求实现。
+          sURL= window.RunningLocalLLMURL+"v1/chat/completions";//无需登录的本机LLM的URL;必须是POST请求.
+            }
+     else{
+           open("/ProxyQWen/index?queryString=" + sPromptForCourseText,"LogInProxy");//暂时使用了强制登录Prompt提问云端LLM的功能，没有强制登录后Prompt提问本机LLM的功能，后续会增加该功能。
+           sURL = "/ProxyQWen/index?queryString=" + sPromptForCourseText;
+           }
+      const dataOfAIGCedCourseText = JSON.stringify({
+        "model": window.RunningLocalLLMID,
+        "messages": [
+      {
+        "role": "user",
+        "content": sPromptForCourseText
+      }
+                    ],
+        "stream": true
+        });
+      const dataOfAIGCedHomeworkAndTest = JSON.stringify({
+        "model": window.RunningLocalLLMID,
+        "messages": [
+      {
+        "role": "user",
+        "content": sPromptForHomeworkAndTest
+      }
+                    ],
+        "stream": false
+        });              
+  //生成目录条目字符
+  var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;
+  var bConfirmContentsItem = confirm("（1）当前“目录条目”字符是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的“目录条目”字符添加到当前“目录条目”字符的最前面部分，请修改完善保存！") ;
+  if(bConfirmContentsItem) {
+   oWindowContents.oSrcElement.childNodes.item(0).nodeValue=document.getElementById("idPromptInternalLLM").value+oWindowContents.oSrcElement.childNodes.item(0).nodeValue;
+   }
+  //生成课文
+    fnCourseTextInsertedElementForAIGC("idCourseTextInsertedElementForAIGC");
+    await fnStreamChat(sURL, dataOfAIGCedCourseText,'sIframeContent','idCourseTextInsertedElementForAIGC');
+    alert("LLM生成的课文已添加到当前“目录条目”的“课文”的开始部分！请修改完善保存！");
+  //生成作业测验
+    fnHomeworkAndTestInsertedElementForAIGC("idHomeworkAndTestInsertedElementForAIGC");    
+   await fnStreamChat(sURL, dataOfAIGCedHomeworkAndTest,'sIframeHomeworkAndTest','idHomeworkAndTestInsertedElementForAIGC');
+   var sString=opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById("idHomeworkAndTestInsertedElementForAIGC").innerHTML;
+        var sString1=sString.replace("A.", '<p/><input type="radio" name="raio_Four"/>A.');
+        var sString2=sString1.replace("B.", '<p/><input type="radio" name="raio_Four"/>B.');
+        var sString3=sString2.replace("C.", '<p/><input type="radio" name="raio_Four"/>C.');
+        var sString4=sString3.replace("D.", '<p/><input type="radio" name="raio_Four"/>D.');
+        var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
+        var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>';
+        opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById("idHomeworkAndTestInsertedElementForAIGC").innerHTML=sString4;
+    alert("LLM生成的作业测验已添加到当前“目录条目”的“作业测验”的“题目1”的题干部分！请修改完善保存！");
 
+  //TTS
+   opener.parent.document.getElementById('sIFrameTitle').contentWindow.document.getElementById("id_TTS_Play").click();
+}
+/**
 async function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
         if(window.RunningLocalLLMID==null || window.RunningLocalLLMID=="") {
         alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
@@ -923,10 +1119,10 @@ async function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
             var sPrompt = document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value;
              window.speechSynthesis.cancel();
                      //TTS
-             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
+             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？视媒听媒机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
-            alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问内部的LLM："+window.RunningLocalLLMID+"，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+            alert("您的Prompt提问是：“" + sPrompt+"”对吗？视媒听媒机器人正在思考回答Answer，请耐心等候...");
+             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问内部的LLM："+window.RunningLocalLLMID+"，实现视媒听媒机器人的回答Answer并且TTS朗读。视媒听媒机器人正在思考回答Answer，请耐心等候...";
             var sURL ="";           
             if(isProxy=="Proxy"){
             const utteranceExternalPrompt2 = new SpeechSynthesisUtterance("请注意：您当前选择的是登录后Prompt提问，请在打开的页面中登录，否则无法Prompt提问！如果已经登录，无需重复登录！"); 
@@ -939,7 +1135,8 @@ async function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
            sURL = "/ProxyQWen/index?queryString=" + sPrompt;
 
 }
-           const data = JSON.stringify({
+
+    const data = JSON.stringify({
     "model": window.RunningLocalLLMID,
     "messages": [
       {
@@ -949,17 +1146,19 @@ async function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
     ],
     "stream": true
     });
-                 fnStreamChat(sURL, data, 'transcriptSystemInternal');                 
+    fnStreamChat(sURL, data, 'transcriptSystemInternal');                 
 }
+**/
 
 // Stream helper: 从支持 SSE / chunked JSON 的 LLM 接口读取并增量渲染到指定元素
-async function fnStreamChat(url, postData, targetElementId = 'transcriptSystemInternal') {
-  const target = document.getElementById(targetElementId);
+async function fnStreamChat(url,postData,targetIFrameId,targetElementId) {
+  const target = opener.parent.document.getElementById(targetIFrameId).contentWindow.document.getElementById(targetElementId);
   if (!target) return;
 
   // 初始化显示
   target.innerHTML = '';
-  let currentText = "内部语音对话机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）：";
+  let currentText = "内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）：";
+  var endingAIGCedText = "（内部视媒听媒机器人的回答Answer已结束！）";
 
   const res = await fetch(url, {
     method: 'POST',
@@ -1009,13 +1208,13 @@ async function fnStreamChat(url, postData, targetElementId = 'transcriptSystemIn
             '';
           if (token) {
             currentText += token;
-            target.innerHTML = currentText;
+            target.innerHTML = '<div style="color:green">'+currentText+endingAIGCedText+'</div>';
             target.scrollTop = target.scrollHeight;
           }
         } catch (e) {
           // 不是 JSON，直接追加文本
           currentText += payload;
-          target.innerHTML = currentText;
+          target.innerHTML = '<div style="color:green">'+currentText+endingAIGCedText+'</div>';
           target.scrollTop = target.scrollHeight;
         }
       } else {
@@ -1031,7 +1230,7 @@ async function fnStreamChat(url, postData, targetElementId = 'transcriptSystemIn
         } catch (e) {
           currentText += line + '\n';
         }
-        target.innerHTML = currentText;
+        target.innerHTML = '<div style="color:green">'+currentText+endingAIGCedText+'</div>';
         target.scrollTop = target.scrollHeight;
       }
     }
@@ -1050,11 +1249,10 @@ async function fnStreamChat(url, postData, targetElementId = 'transcriptSystemIn
     } catch {
       currentText += buffer;
     }
-    target.innerHTML = currentText;
+    target.innerHTML = '<div style="color:green">'+currentText+endingAIGCedText+'</div>';
     target.scrollTop = target.scrollHeight;
   }
-   window.speechSynthesis.cancel();
-   fnTTS_Play(0,targetElementId); 
+   window.speechSynthesis.cancel(); 
 }
 
 function fnToggleDisplayOfAIGCAnswerHomeworkAndTest(targetElementId){
@@ -1096,10 +1294,10 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
             var sPrompt = document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value;
              window.speechSynthesis.cancel();
                      //TTS
-             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
+             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？视媒听媒机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
-            alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-            document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的LLM："+document.getElementById("idSelectedExternalLLM").value+"，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+            alert("您的Prompt提问是：“" + sPrompt+"”对吗？视媒听媒机器人正在思考回答Answer，请耐心等候...");
+            document.getElementById("transcriptSystemExternal").innerHTML ="这里将呈现本系统的服务端访问外部的他创方的LLM："+document.getElementById("idSelectedExternalLLM").value+"，实现视媒听媒机器人的回答Answer并且TTS朗读。视媒听媒机器人正在思考回答Answer，请耐心等候...";
            // var sURL = "/QWen/index?queryString=" + sPrompt;
            var sURL ="";           
             if(isProxy=="Proxy"){
@@ -1133,12 +1331,12 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
         var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
         var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest(\'transcriptSystemExternal\')">'+'**正确答案：**'+'</button>'+'<span id="id_AnswertranscriptSystemExternal" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>';
         
-        document.getElementById("transcriptSystemExternal").innerHTML ="外部语音对话机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+"<p/>"+'<div id="id_ForHTMLEditortranscriptSystemExternal" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(\'transcriptSystemExternal\')">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTesttranscriptSystemExternal" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTesttranscriptSystemExternal" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest(\'transcriptSystemExternal\')">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
+        document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+"<p/>"+'<div id="id_ForHTMLEditortranscriptSystemExternal" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(\'transcriptSystemExternal\')">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTesttranscriptSystemExternal" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTesttranscriptSystemExternal" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest(\'transcriptSystemExternal\')">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
         //document.getElementById("transcriptSystemExternal").style.color="";              
         window.speechSynthesis.cancel();
                           /**
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("外部语音对话机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+oTemp.output.text); 
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+oTemp.output.text); 
                      if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
@@ -1152,7 +1350,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("外部语音对话机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+sTempErr); 
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+sTempErr); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }
@@ -1170,10 +1368,10 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
             var sPrompt = document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value;
              window.speechSynthesis.cancel();
                      //TTS
-             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？语音对话机器人正在思考回答Answer，请耐心等候..."); 
+             const utteranceExternalPrompt = new SpeechSynthesisUtterance("您的Prompt提问是"+sPrompt+"对吗？视媒听媒机器人正在思考回答Answer，请耐心等候..."); 
              window.speechSynthesis.speak(utteranceExternalPrompt); 
-            alert("您的Prompt提问是：“" + sPrompt+"”对吗？语音对话机器人正在思考回答Answer，请耐心等候...");
-             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问内部的LLM："+window.RunningLocalLLMID+"，实现语音对话机器人的回答Answer并且TTS朗读。语音对话机器人正在思考回答Answer，请耐心等候...";
+            alert("您的Prompt提问是：“" + sPrompt+"”对吗？视媒听媒机器人正在思考回答Answer，请耐心等候...");
+             document.getElementById("transcriptSystemInternal").innerHTML ="这里将呈现本系统的服务端访问内部的LLM："+window.RunningLocalLLMID+"，实现视媒听媒机器人的回答Answer并且TTS朗读。视媒听媒机器人正在思考回答Answer，请耐心等候...";
            // var sURL = "/QWen/index?queryString=" + sPrompt;
            var sURL ="";           
             if(isProxy=="Proxy"){
@@ -1219,12 +1417,12 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
         var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
         var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest(\'transcriptSystemInternal\')">'+'**正确答案：**'+'</button>'+'<span id="id_AnswertranscriptSystemInternal" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>';
         
-        document.getElementById("transcriptSystemInternal").innerHTML ="内部语音对话机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+"<p/>"+'<div id="id_ForHTMLEditortranscriptSystemInternal" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(\'transcriptSystemInternal\')">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTesttranscriptSystemInternal" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTesttranscriptSystemInternal" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest(\'transcriptSystemInternal\')">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
+        document.getElementById("transcriptSystemInternal").innerHTML ="内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+"<p/>"+'<div id="id_ForHTMLEditortranscriptSystemInternal" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(\'transcriptSystemInternal\')">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTesttranscriptSystemInternal" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTesttranscriptSystemInternal" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest(\'transcriptSystemInternal\')">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
         //document.getElementById("transcriptSystemExternal").style.color="";              
         window.speechSynthesis.cancel();
                           /**
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("内部语音对话机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+oTemp.output.text); 
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+oTemp.output.text); 
                      if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
@@ -1238,7 +1436,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("内部语音对话机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+sTempErr); 
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+sTempErr); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }
@@ -1246,9 +1444,9 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
 }
 
 function fnTTSOnEndSystemExternalAIGCAnswer(){
-            //alert("语音对话机器人的回答Answer已经结束朗读，请您继续对话！");
+            //alert("视媒听媒机器人的回答Answer已经结束朗读，请您继续对话！");
             window.speechSynthesis.cancel();
-            const utteranceTTSOnEndSystemExternalAIGCAnswer = new SpeechSynthesisUtterance("语音对话机器人的回答Answer已经结束朗读，请您继续对话！"); 
+            const utteranceTTSOnEndSystemExternalAIGCAnswer = new SpeechSynthesisUtterance("视媒听媒机器人的回答Answer已经结束朗读，请您继续对话！"); 
             window.speechSynthesis.speak(utteranceTTSOnEndSystemExternalAIGCAnswer); 
             utteranceTTSOnEndSystemExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalUtteranceTTSOnEndSystemExternalAIGCAnswer;
             //window.speechSynthesis.cancel();
@@ -1344,7 +1542,7 @@ window.speechSynthesis.cancel();
  function  fnPromptForAIGCOnBlur(){
      if(document.getElementById("id_SystemExternal_NonRAG").checked){
      document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
-     document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
+     document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道ABCD编号的四个选项的单选题，适合用于考试测验。";
      document.getElementById("idRadioRAGClickedForWaiting").textContent ="";
      }
      else{
@@ -1370,7 +1568,7 @@ window.speechSynthesis.cancel();
                         document.getElementById("idRadioRAGClickedForWaiting").textContent ="";
                         if(document.getElementById("id_SystemExternal_NonRAG").checked){
      document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
-     document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
+     document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道ABCD编号的四个选项的单选题，适合用于考试测验。";
      document.getElementById("idRadioRAGClickedForWaiting").textContent ="";
 
                         }
@@ -1387,7 +1585,7 @@ window.speechSynthesis.cancel();
    function  fnPromptForInternalAIGCOnBlur(){
      if(document.getElementById("id_SystemInternal_NonRAG").checked){
      document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPromptInternalLLM").value+"”";
-     document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPromptInternalLLM").value+"”的一道四个选项的单选题，适合用于考试测验。";
+     document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPromptInternalLLM").value+"”的一道ABCD编号的四个选项的单选题，适合用于考试测验。";
      document.getElementById("idRadioRAGClickedForWaitingInternal").textContent ="";
      }
      else{
@@ -1413,7 +1611,7 @@ window.speechSynthesis.cancel();
                         document.getElementById("idRadioRAGClickedForWaitingInternal").textContent ="";
                         if(document.getElementById("id_SystemInternal_NonRAG").checked){
      document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPromptInternalLLM").value+"定义”";
-     document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPromptInternalLLM").value+"定义”的一道四个选项的单选题，适合用于考试测验。";
+     document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPromptInternalLLM").value+"定义”的一道ABCD编号的四个选项的单选题，适合用于考试测验。";
      document.getElementById("idRadioRAGClickedForWaitingInternal").textContent ="";
 
                         }

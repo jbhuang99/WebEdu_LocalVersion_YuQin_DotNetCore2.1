@@ -29,6 +29,8 @@ window.sTempForCopy = "";//用来保存复制操作数据的变量，以便启�
 window.sTempForUndo = "";//用来保存撤消前一次操作数据的变量，以便进行撤消操作和启用或不启用撤消等右击菜单项，目前只支持撤消一次。
 window.sTempForRedo = ""//用来保存重做前一次操作数据的变量
 window.homeworkAndTestPathPart = "";
+window.paramsTemp = new URLSearchParams(parent.parent.location.search);
+
 ////////////////////
 
 ////////////////
@@ -275,11 +277,17 @@ function fnOnLoad() {
     document.getElementById("sDiv").style.left = -30;
     document.body.scroll = "no";
     fnInitailContents();//初始化目录
+    if(!window.paramsTemp.has('openRobot'))//视媒听媒机器人中无需重复提醒
+    {
     if (window.confirm('请选择“确定”还是“取消”目录不自动编号！也可后续在标题面板中单击“目录编号”进行切换！单击“内容切换”进行切换\n单击目录条目的书本图标可以伸缩目录！\n单击目录条目的文字可以查看课文！\n双击目录可以切换目录是否全宽！\n右击目录菜单中，可以在线编辑目录、上传课文、作业测验，然后查看！课文、作业测验可以进一步链接字符媒体/多媒体')) {
         fnToggleContentsAutoNumber();
     }
     else {
         ;
+    }
+    }
+    else{
+        fnToggleContentsAutoNumber();
     }
 }
 ////////////
@@ -533,18 +541,28 @@ function fnInitailContents() {
 
          else
         {
+       if(!window.paramsTemp.has('openRobot'))  //打开视媒听媒机器人时不需要重复提示    
+       {
             alert("您URL中没有指定&text=的搜索条目！将自动定位到开始条目，即，将自动定位到整个目录的第一个条目！"+"\r"+"\r"+'【注：标题框架的“内容切换”可以切换显示】'+"\r"+"\r"+'【注：标题框架的“概览”可以查看当前条目是否具有“课文”、“作业测验”等等各种文档】');
             cLi[0].getElementsByTagName("SPAN").item(1).click();
             cLi[0].scrollIntoView();
-            } 
-       alert("手机操作系统的时候不合适用户操作多个页面，所以，本系统运行于非手机操作系统的时候，才会默认自动打开“语音对话机器人”页面，，但是默认可能被浏览器拦截！请设置浏览器允许当前网站的弹出窗口！（不过本系统难以判断出所有手机操作系统，所以万一手机操作系统还是打开了“语音对话机器人”页面，请按手机主屏的返回键一次，就可显示本系统的主界面！）"+"\r"+"\r"+'【或者：直接单击标题框架的“语音机器人图标”打开页面！】'+"\n"+"\n"+"【注：“语音机器人”尝试您语音指令，例如，您对着页面大声朗读指令：“渔琴”,或者：“渔樵耕读 琴棋书画”，或者：“立春立夏”，或者：“机器人”，停顿一下，尝试机器人是否开始正确与您互动！】"+"\n"+"\n"+"【注：单击“标题框架”的“内容切换”可以切换显示条目课文/条目作业测验】"+"\n"+"\n"+"【互助咨询：QQ：43930878；EMail：43930878@qq.com】");
-       
-       if(!parent.document.getElementById("sIFrameTitle").contentWindow.fnIsMobile())
+            }
+            else{
+            cLi[0].getElementsByTagName("SPAN").item(1).click();
+            cLi[0].scrollIntoView();
+            }
+            }
+       if(!window.paramsTemp.has('openRobot'))  //打开视媒听媒机器人时不需要重复提示    
+       {   
+       alert("手机操作系统的时候不合适用户操作多个页面，所以，本系统运行于非手机操作系统的时候，才会默认自动打开“视媒听媒机器人”页面，，但是默认可能被浏览器拦截！请设置浏览器允许当前网站的弹出窗口！（不过本系统难以判断出所有手机操作系统，所以万一手机操作系统还是打开了“视媒听媒机器人”页面，请按手机主屏的返回键一次，就可显示本系统的主界面！）"+"\r"+"\r"+'【或者：直接单击标题框架的“视媒听媒机器人图标”打开页面！】'+"\n"+"\n"+"【注：“视媒听媒机器人”尝试您语音指令，例如，您对着页面大声朗读指令：“渔琴”,或者：“渔樵耕读 琴棋书画”，或者：“立春立夏”，或者：“机器人”，停顿一下，尝试机器人是否开始正确与您互动！】"+"\n"+"\n"+"【注：单击“标题框架”的“内容切换”可以切换显示条目课文/条目作业测验】"+"\n"+"\n"+"【互助咨询：QQ：43930878；EMail：43930878@qq.com】");
+       }
+       //if(!parent.document.getElementById("sIFrameTitle").contentWindow.fnIsMobile())
+       if(!parent.document.getElementById("sIFrameTitle").contentWindow.fnIsMobile()&&(!window.paramsTemp.has('openRobot')))
        {
        fnOpenRobot();
        }
        else{
-           ;//手机版Edge打开多个窗口不方便用户，所以不运行该函数。
+           ;//手机版Edge打开多个窗口不方便用户，所以不运行该函数。URL中包含了查询字符串openRobot也不打开视媒听媒机器人窗口
            }
 }
 
