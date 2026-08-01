@@ -89,7 +89,7 @@ function fnCourseTextInsertedElementForAIGC(elementId){
 //如果已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
 opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).remove();
   }
-    opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"color:green\">本机LLM正在生成课文，请耐心等候...</div>");
+    opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"color:green;text-align:justify\">本机LLM正在生成课文，请耐心等候...</div>");
     alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
     //opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).innerHTML="<div style=\"color:green\">本机LLM正在生成课文，请耐心等候...</div>";
     //alert(opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
@@ -112,7 +112,7 @@ function fnHomeworkAndTestInsertedElementForAIGC(elementId){
     //alert("当前“目录条目”的“作业测验”表格的第一行是："+cTr[0].innerHTML);
     //cTr[0].insertAdjacentHTML('afterend', document.getElementById(targetElementId).innerHTML);
     //oCell.appendChild(document.getElementById(targetElementId));
-    oCell.insertAdjacentHTML("beforeend","<div id="+"\""+elementId+"\""+" style=\"color:green\">本机LLM正在生成作业测验，请耐心等候...</div>");
+    oCell.insertAdjacentHTML("beforeend","<div id="+"\""+elementId+"\""+" style=\"color:green;text-align:justify\">本机LLM正在生成作业测验，请耐心等候...</div>");
     alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
     //opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).innerHTML="<div style=\"color:green\">本机LLM正在生成作业测验，请耐心等候...</div>";
    // alert(opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
@@ -917,7 +917,7 @@ function fnAjaxServerSideCallCloudLLMExternal(isProxy){
      var sURLForHomeworkAndTest ="";
      let currentText = "内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）：";
      var endingAIGCedText = "（内部视媒听媒机器人的回答Answer已结束！）";
-     if(!isProxy=="Proxy"){
+     if(!isProxy=="Proxy"){//isProxy=="Proxy无法触发主视图了，必须解决！
            open("/ProxyQWen/index?queryString=" + sPromptForCourseText,"LogInProxy");
            sURL = "/ProxyQWen/index?queryString=" + sPromptForCourseText;
            sURLForHomeworkAndTest = "/ProxyQWen/index?queryString=" + sPromptForHomeworkAndTest;
