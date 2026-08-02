@@ -273,6 +273,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <PackageReference Include="Essensoft.Paylinks.WeChatPay.Client" Version="5.0.4" />
     <PackageReference Include="Essensoft.Paylinks.WeChatPay.Mvc" Version="5.0.4" />
     <PackageReference Include="Essensoft.Paylinks.WeChatPay.Payments" Version="5.0.4" />
+    <PackageReference Include="GitHub.Copilot.SDK" Version="1.0.8" />
     <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
     <PackageReference Include="IronPython" Version="3.4.2" />
     <PackageReference Include="MediatR" Version="14.0.0" />
