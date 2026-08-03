@@ -262,10 +262,30 @@ applicationBuilder.UseSignalR(routes =>
 }
 **/
 /////////////////////////////////////////////////////////////////
-
+/**
+using Alipay.EasySDK.Factory;
+using Alipay.EasySDK.Kernel;
+using Alipay.EasySDK.Payment.Common;
+using Alipay.EasySDK.Payment.Common.Models;
+using Alipay.EasySDK.Payment.FaceToFace;
+using Alipay.EasySDK.Payment.Page;
+using Alipay.EasySDK.Payment.Wap;
+**/
+using Aop.Api;
+using Aop.Api.Request;
+using Aop.Api.Response;
+//using AlipayDemo.Models;
+using AlipayIntegrationDemo.Options;
 using BlazorWebAssemblyExampleApi.Model;
+using CatalogDb_YuQin.DB.Data;
 using CurriculumSelectionDW.Data;
 using DocumentFormat.OpenXml.InkML;
+using Essensoft.Paylinks.Alipay.Client;
+using Essensoft.Paylinks.Alipay.Client.Extensions;
+using Essensoft.Paylinks.Razor.Pages.Samples.Web;
+using Essensoft.Paylinks.Razor.Pages.Samples.Web.Services;
+using Essensoft.Paylinks.WeChatPay.Client.Extensions;
+using Identity_YuQin.Data;
 using IronPython.Runtime;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -278,11 +298,28 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.Office.Interop.PowerPoint;
 using System;
 using System.IO;
-using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
+using System.Text.RegularExpressions;
+//using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
 using static IronPython.Modules._ast;
+/**
+using Ardalis.ListStartupServices;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.eShopWeb.ApplicationCore.Interfaces;
+using Microsoft.eShopWeb.Infrastructure.Identity;
+using Microsoft.eShopWeb.Web;
+//using Microsoft.eShopWeb.Web.Areas.Identity.Helpers;
+using Microsoft.eShopWeb.Web.Configuration;
+using Microsoft.eShopWeb.Web.Extensions;
+using NimblePros.Metronome;
+using Microsoft.eShopWeb.Infrastructure.Data;
+using Microsoft.eShopWeb.Web.Services;
+using Microsoft.eShopWeb.ApplicationCore.Services;
+**/
 
 namespace WebEdu_LocalVersion_YuQin_DotNetCore21
 {
@@ -307,18 +344,54 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             //webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。
             webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。可以设置在appsettings.json中，使用JIT编译的方式获取（在此选用）。也可以在代码中硬编码设置。也可以在命令行中指定参数。
             Console.WriteLine(webApplicationBuilder.Environment.WebRootPath);
+          // /**
+            // ✅ 加载 Alipay 配置（自动解密/环境变量支持）
+            
+            if (webApplicationBuilder.Environment.IsDevelopment())
+            {
+                webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")); //从开发时的本项目的“Secret Manager”的secrets.json文件获取Alipay。
+                // Console.Write(webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")));
+            }
+            else
+            {
+                webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")); //从交付时的软件的appsettings.json文件获取ApiKey。
+               //  Console.Write(webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")));
+            }
 
+            // ✅ 注册 Alipay 客户端（单例，线程安全）
+            webApplicationBuilder.Services.AddSingleton<IAopClient>(sp =>
+            {
+                var options = sp.GetRequiredService<IOptions<AlipayOptions>>().Value;
+                return new DefaultAopClient(
+                    options.GatewayUrl,
+                    options.AppId,
+                    options.PrivateKey,
+                    options.Format,
+                    options.Version,                    
+                    options.SignType,
+                    options.AlipayPublicKey,
+                    options.Charset);
+            });
+            //**/
+          
+            /** 
+            webApplicationBuilder.Services.AddDatabaseContexts(webApplicationBuilder.Environment, webApplicationBuilder.Configuration); //错误，只好暂时注释了： Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1] An unhandled exception has occurred while executing the request. System.InvalidOperationException: Unable to resolve service for type 'Microsoft.eShopWeb.Web.Services.ICatalogViewModelService' while attempting to activate 'Microsoft.eShopWeb.Web.Pages.IndexModel'.
+           **/
             // Add services to the container.
-            String connectionString = webApplicationBuilder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            //for Identity所需的SQL数据库
+            String connectionString = webApplicationBuilder.Configuration.GetConnectionString("IdentityConnection") ?? throw new InvalidOperationException("Connection string 'IdentityConnection' not found.");
+           //webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options =>             options.UseSqlServer(connectionString)).AddSingleton<ApplicationDbContext>();//不允许使用AddSingleton<ApplicationDbContext>()，因为DbContext是一个轻量级的对象，设计为每个请求创建一个实例，并且不应该在多个线程之间共享。使用AddSingleton会导致线程安全问题和数据不一致的问题。正确的做法是使用AddScoped<ApplicationDbContext>()，这样每个请求都会获得一个新的DbContext实例，并且在请求结束时会自动释放资源。
+            webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+
             webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             webApplicationBuilder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            // String connectionString = webApplicationBuilder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            // webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
+            //for Catalog_YuQin所需的SQL数据库
+            String connectionStringCatalog = webApplicationBuilder.Configuration.GetConnectionString("CatalogConnection") ?? throw new InvalidOperationException("Connection string 'CatalogConnection' not found.");
+            webApplicationBuilder.Services.AddDbContext<CatalogDb_YuQin.DB.Data.CatalogDb_YuQinDbContext>(options => options.UseSqlServer(connectionStringCatalog));
+            //for CurriculumSelection所需的SQL数据库
 
             String connectionStringPseudoDataCreationForFiveLayerMVC_TPH = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataCreationForFiveLayerMVC_TPH") ?? throw new InvalidOperationException("Connection string 'PseudoDataCreationForFiveLayerMVC_TPH' not found.");
             webApplicationBuilder.Services.AddDbContext< CurriculumSelection.Data.CurriculumSelectionDbContext >(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPH));
@@ -329,41 +402,14 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             String connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper") ?? throw new InvalidOperationException("Connection string 'PseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper' not found.");
             webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDWContext>(options => options.UseSqlServer(connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper));
             //
-            webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-            webApplicationBuilder.Services.AddDefaultIdentity<IdentityUser>(options =>
-           {
-               options.SignIn.RequireConfirmedAccount = true;
-               // Password settings.
-               /**
-               options.Password.RequireDigit = true;
-               options.Password.RequireLowercase = true;
-               options.Password.RequireNonAlphanumeric = true;
-               options.Password.RequireUppercase = true;
-               options.Password.RequiredLength = 6;
-               options.Password.RequiredUniqueChars = 1;
-               **/
-               // Lockout settings.
-               /**
-               options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-               options.Lockout.MaxFailedAccessAttempts = 5;
-               options.Lockout.AllowedForNewUsers = true;
-               **/
-               // User settings.
-               /**
-               options.User.AllowedUserNameCharacters =
-               "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-               options.User.RequireUniqueEmail = false;
-               **/
-           }
-            ).AddEntityFrameworkStores<ApplicationDbContext>();
+            webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();          
 
             webApplicationBuilder.Services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
                 //options.Cookie.HttpOnly = true;
                 // options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-                options.LoginPath = "/Identity/Account/Login"; //如果用户没有登录，并尝试访问被[Authorize]属性保护的资源，他们将会被重定向到你在AddCookie中指定的LoginPath
+                options.LoginPath = "/HomeIdentity_YuQin"; //如果用户没有登录，并尝试访问被[Authorize]属性保护的资源，他们将会被重定向到你在AddCookie中指定的LoginPath
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 //options.SlidingExpiration = true;
             });
@@ -375,6 +421,36 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             webApplicationBuilder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
             WebApplication webApplication = webApplicationBuilder.Build();
+
+            // 因为.cshtml文件中迁移时出错，不得已在此迁移。Apply pending EF Core migrations at startup (including CreateIdentitySchema).
+            // This attempts to resolve either Identity_YuQin.Data.ApplicationDbContext or
+            // WebEdu_LocalVersion_YuQin_DotNetCore21.Data.ApplicationDbContext if registered,
+            // and calls Database.Migrate().
+            using (IServiceScope scope = webApplication.Services.CreateScope())
+            {
+                IServiceProvider services = scope.ServiceProvider;
+                try
+                {
+                    // attempt to migrate Identity DbContext (namespace Identity_YuQin.Data)
+                    var identityContext = services.GetService(typeof(Identity_YuQin.Data.ApplicationDbContext)) as DbContext;
+                    if (identityContext != null)
+                    {
+                        identityContext.Database.Migrate();
+                    }
+
+                    // attempt to migrate alternate named ApplicationDbContext (if present)
+                    var webEduContext = services.GetService(typeof(ApplicationDbContext)) as DbContext;
+                    if (webEduContext != null)
+                    {
+                        webEduContext.Database.Migrate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while applying migrations at startup.");
+                }
+            }
 
             // Configure the HTTP request pipeline.
             if (webApplication.Environment.IsDevelopment())
@@ -407,8 +483,8 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             webApplication.MapRazorPages();
 
-            ///**新增，为了触发创建数据库，初始化数据库数据。//移动成为控制器Controller中的代码。
-           // Program.CreateDbIfNotExists(webApplication);
+            ///**新增，为了触发创建数据库，初始化数据库数据。//也可移动成为控制器Controller中的代码。
+           Program.CreateDbIfNotExists(webApplication);
             // **/
 
             webApplication.Run();
@@ -421,18 +497,18 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 IServiceProvider iServiceProvider = iServiceScope.ServiceProvider;
                 try
                 {
-                    CurriculumSelection.Data.CurriculumSelectionDbContext curriculumSelectionDbContext = iServiceProvider.GetRequiredService<CurriculumSelection.Data.CurriculumSelectionDbContext>();
-                    curriculumSelectionDbContext.Database.EnsureCreated();
-                    CurriculumSelection.Data.DbInitializer.Initialize(curriculumSelectionDbContext);
+                    CatalogDb_YuQin.DB.Data.CatalogDb_YuQinDbContext catalogDb_YuQinDbContext = iServiceProvider.GetRequiredService<CatalogDb_YuQin.DB.Data.CatalogDb_YuQinDbContext>();
+                    catalogDb_YuQinDbContext.Database.EnsureCreated();
+                   // CurriculumSelection.Data.DbInitializer.Initialize(curriculumSelectionDbContext);
                 }
                 catch (Exception exception)
                 {
                     ILogger iLogger = iServiceProvider.GetRequiredService<ILogger<Program>>();
-                    iLogger.LogError(exception, "An error occurred creating the DB.");
+                    iLogger.LogError(exception, "An error occurred creating the CatalogDb_YuQin.");
                 }
-            }
-            //////
+            }     
         }
+        //////
     }
 }
 

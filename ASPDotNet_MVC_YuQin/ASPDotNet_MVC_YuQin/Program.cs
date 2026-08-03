@@ -305,6 +305,14 @@ using System.IO;
 using System.Text.RegularExpressions;
 //using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
 using static IronPython.Modules._ast;
+using AgentSkillDemo.Infrastructure;
+using Microsoft.Agents.AI;
+//using Microsoft.Agents.AI.DevUI;//Nuget了Microsoft.Agents.AI.DevUI就出错，尚未解决。因为Microsoft.Agents.AI.DevUI依赖于Microsoft.Agents.AI.Hosting，而Microsoft.Agents.AI.Hosting依赖于Microsoft.Extensions.Hosting.WindowsServices，而Microsoft.Extensions.Hosting.WindowsServices依赖于Microsoft.Extensions.Hosting.WindowsServices.dll，而Microsoft.Extensions.Hosting.WindowsServices
+//using Microsoft.Agents.AI.Hosting;
+//using Microsoft.Agents.AI.Workflows;
+using Microsoft.Extensions.AI;
+using OpenAI;
+using System.ClientModel;
 /**
 using Ardalis.ListStartupServices;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -350,6 +358,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             if (webApplicationBuilder.Environment.IsDevelopment())
             {
                 webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")); //从开发时的本项目的“Secret Manager”的secrets.json文件获取Alipay。
+
                 // Console.Write(webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")));
             }
             else
@@ -506,9 +515,10 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                     ILogger iLogger = iServiceProvider.GetRequiredService<ILogger<Program>>();
                     iLogger.LogError(exception, "An error occurred creating the CatalogDb_YuQin.");
                 }
-            }     
+            }
         }
         //////
+
     }
 }
 

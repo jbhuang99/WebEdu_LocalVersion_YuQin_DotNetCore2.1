@@ -1,13 +1,12 @@
 ﻿using Azure;
 //using AgentSkillDemo.Infrastructure;
-using Microsoft.Agents.AI;
+using Microsoft.Agents.AI;//nuget这个升级后出错了
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.AI;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using OpenAI;
@@ -76,7 +75,7 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.QWenSkillsLearningCommunity
 
             // Step1 创建 SkillsProvider — 从文件夹加载 Skills
 #pragma warning disable MAAI001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.//FileAgentSkillsProvider，MSA 1.0.0-rc4时无错，MSA 1.0.0时出错。
-            FileAgentSkillsProvider skillsProvider = new FileAgentSkillsProvider(
+            AgentSkillsProvider skillsProvider = new AgentSkillsProvider(
     skillPath: Path.Combine(Directory.GetCurrentDirectory(), "skills")
 );
 #pragma warning restore MAAI001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.

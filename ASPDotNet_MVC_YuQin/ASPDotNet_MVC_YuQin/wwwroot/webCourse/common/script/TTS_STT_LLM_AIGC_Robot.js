@@ -1641,6 +1641,25 @@ window.speechSynthesis.cancel();
           }
   }
 
+   function fnToggleSystemInternalChatSystemExternalChat(){
+      if(document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display=="none"){
+            document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display="block";
+            document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").style.display="block";
+            document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMInternal").textContent="▼";
+            document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMExternal").textContent="▼";
+           document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").src = "https://localhost:8443/devui/?entity_id=Assistant";
+           document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").src = "https://localhost:8443/devui/?entity_id=Assistant";
+           fnToggleEventSoureElementColor();
+            }
+      else{
+            document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display="none";
+            document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").style.display="none";
+            document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMInternal").textContent="▶";
+            document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMExternal").textContent="▶";
+            fnToggleEventSoureElementColor();
+          }
+  }
+
   function fnAjaxServerSideCallAIGCLearningCommunity(isProxy) {
     fnToggleEventSoureElementColor();
     if(isProxy=="Proxy"){           
