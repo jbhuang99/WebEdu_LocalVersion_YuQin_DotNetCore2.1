@@ -1641,12 +1641,12 @@ window.speechSynthesis.cancel();
           }
   }
 
-   function fnToggleSystemInternalChatSystemExternalChat(){
+   function fnToggleSystemInternalChatSystemExternalChat(){ //因为Nuget包Microsoft.Agents.AI.DevUI当前与其他Nuget包有冲突，所以暂时不使用Microsoft.Agents.AI.DevUI的Nuget包，而是使用iframe嵌入的方式实现WebGeneralAgentSkillChatLLMInternal和WebGeneralAgentSkillChatLLMExternal（万不得已多出了一个DevUIServer项目，今后必须将DevUIServer项目合并进入ASPDotNet_MVC_YuQin项目）。
       if(document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display=="none"){
             document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display="block";
             document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").style.display="block";
-            document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMInternal").textContent="▼";
-            document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMExternal").textContent="▼";
+            document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMInternal").textContent="▲";
+            document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMExternal").textContent="▲";
            document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").src = "https://localhost:8443/devui/?entity_id=Assistant";
            document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").src = "https://localhost:8443/devui/?entity_id=Assistant";
            fnToggleEventSoureElementColor();

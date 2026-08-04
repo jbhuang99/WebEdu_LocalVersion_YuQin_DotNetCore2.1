@@ -562,7 +562,7 @@
     </div>
     -->              
                 <div title="" style="text-align:justify"><br />
-                 <div style="text-align:center"><button id="idButtonRefreshContentsItem" style="display:inline;white-space: normal;margin:0;padding:0" title="单击在本界面刷新显示主界面中的当前树体目录的条目作为Prompt。&#10;【注：因为LoRA微调的“数智时代融合数智思维的本机小语言模型SLM”，数智思维语言的理想相对树根的树体目录作为导航，四层平台的五层MVC作为核心】&#10;【注：请尽量选用本系统的语音对话听媒Prompt！不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒Prompt】" onclick='fnGetCurrentContentsItem()'>语音识别或者单击刷新当前目录条目作为您的视媒Prompt←互动→系统内部本机LLM：</button></div><input type="text" value="第3章 “教育数智思维语言的理想相对树根”" style="display:inline;white-space: normal;width:90%;background-color:lavender" id="idPromptInternalLLM" onblur="fnPromptForInternalAIGCOnBlur()" /><br />
+                 <div style="text-align:center"><button id="idButtonRefreshContentsItem" style="display:inline;white-space: normal;margin:0;padding:0" title="单击在本界面刷新显示主界面中的当前树体目录的条目作为Prompt。&#10;【注：因为LoRA微调的“数智时代融合数智思维的本机小语言模型SLM”，数智思维语言的理想相对树根的树体目录作为导航，四层平台的五层MVC作为核心】&#10;【注：请尽量选用本系统的语音对话听媒Prompt！不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒Prompt】" onclick='fnGetCurrentContentsItem()'>语音识别或者单击本按钮读取当前目录条目作为您的视媒Prompt←互动→系统内部本机LLM：</button></div><input type="text" value="第3章 “教育数智思维语言的理想相对树根”" style="display:inline;white-space: normal;width:98%;background-color:lavender" id="idPromptInternalLLM" onblur="fnPromptForInternalAIGCOnBlur()" /><br />
                 </div>
                 <div title="系统本机内部的融合数智思维的小语言模型SLM（可以安装于人形机器人），树体目录派生继承地AIGC生成融合数智思维的媒体资源，视媒主导（字符媒体主导/多媒体的图像辅助/多媒体的视频辅助/多媒体的2D辅助/多媒体的3D辅助）/多媒体的听媒辅助/多媒体的触媒辅助/多媒体的嗅媒辅助/多媒体的味媒辅助的）整体资源。" id="sIdLocalSLM_div" style="color: rgb(0, 0, 0); cursor: text;text-align:justify">
                     <span title="【虽然具有树体目录的知识库，但并不查找知识库中的关键词相关Prompt，不会更新用户Prompt】。&#10;“树体目录”即“（线性为本-树体主导-网状辅助）目录”。"><input type="radio" name="raio_ContentsItemRange" id="id_SystemInternal_NonRAG" checked onclick='fnPromptForInternalAIGCOnBlur()' />显式“面向对象的封装继承多态的树体目录”的“非RAG”搜问“系统内部本机LLM”</span><br />
@@ -584,15 +584,20 @@
                         </td>
                     </tr>
                    <tr>
-                            <td colspan="2">
+                        <td colspan="2" style="text-align:center">
                                 <!--已废弃--><!--<button onclick='if(document.getElementById("idAIGCDiv").style.display=="none"){document.getElementById("idAIGCDiv").style.display="block";document.getElementById("TriAngleOfAIGCPrwviewInternal").textContent="▼";} else{document.getElementById("idAIGCDiv").style.display="none";document.getElementById("TriAngleOfAIGCPrwviewInternal").textContent="▶"; }fnAIGCIFrameSrc();fnToggleEventSoureElementColor()'>单击切换显示“生成预览的窗口”<span id="TriAngleOfAIGCPrwviewInternal">▶</span></button>&nbsp;&nbsp;-->
-                                <button id="AIGCPrwviewInternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnAjaxServerSideCallLocalLLMInternal("Proxy");fnToggleEventSoureElementColor();//fnAIGC("idPromptInternalLLM","idTextAreaAjaxInternalSideCallAIGCAnswerCharactor","idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest","iframeForAIGC");'>“本机LLM”生成“目录条目/课文/作业测验”融入主视图，循环朗读，并可降本增效地修改完善保存</button><br/><br/>
+                                <button id="AIGCPrwviewInternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnAjaxServerSideCallLocalLLMInternal("Proxy");fnToggleEventSoureElementColor();//fnAIGC("idPromptInternalLLM","idTextAreaAjaxInternalSideCallAIGCAnswerCharactor","idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest","iframeForAIGC");'>“本机LLM”生成“目录条目/课文/作业测验”融入主视图，循环朗读，并可降本增效地修改完善保存</button>
+                            <hr width="100%"/>
+                          </td>
+                       </tr>
+                    <tr>
+                         <td colspan="2" style="text-align:center">
                                 <div>
+                               <iframe id="iframeForWebGeneralAgentSkillChatLLMInternal" style="display:none;width: 100%; height: 718px"></iframe>
                                 <button id="btnForWebGeneralAgentSkillChatLLMInternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnToggleSystemInternalChatSystemExternalChat();' title="【注：本系统遵循业界的通用智能体Agent→教育领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发教育SKills→教育领域智能体Agent】">“本机LLM”生成“通用内容”不融入主视图，不朗读，降本增效地拓展教育领域之外的通用互动<span id="TriAngleOfWebGeneralAgentSkillChatLLMInternal">▶</span></button>
-                                <iframe id="iframeForWebGeneralAgentSkillChatLLMInternal" style="display:none;width: 100%; height: 718px"></iframe>
-                                    </div>
+                                </div>
                             </td>
-                        </tr>
+                        </tr>                    
                 </table>
                 </td>
                 <td id="tdSystemExternal" style="width: 50%; border: dashed;vertical-align:top" ondblclick="fnToggleExternalWidth()">
@@ -632,10 +637,10 @@
             -->
 
                 <div title="付费API Key保存进入开发运行时的项目机密文件secrets.json之中、交付运行时的应用设置文件appsettings.json之中，相对于客户端浏览器中输入更为安全。&#10;本系统唯一的付费API Key，用作所有登录本系统用户的代理，本系统用户使用视媒听媒机器人的费用一般只需自己注册付费API Key的30%左右。&#10;（语音识别成为字符文本调用AIGC生成Answer内容，尚未实现！直接键入字符文本调用AIGC生成Answer内容，已经基本实现）" style="text-align:justify"><br />
-                   <div style="text-align:center" title="请尽量选用本系统的语音对话听媒Prompt！不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒Prompt。">语音识别或者键入您的视媒Prompt←互动→系统外部云端LLM：</div>
+                  <div style="text-align:center"><button title="请尽量选用本系统的语音对话听媒Prompt！不过，因为当前语音识别还是具有一定局限性，所以暂时同时提供了视媒Prompt。" onclick="alert('请语音识别或者如下文本框键入您的中英Prompt，而不是单击本按钮！')">语音识别或者如下文本框键入您的视媒Prompt←互动→系统外部云端LLM：</button></div>
                     <!--<sapn title="单击打开自创方的知识库案例，可以用来对比AIGC生成内容的相似度准确性！" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0)
         {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());}opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>（单击可以标量字面搜索结果→对比→RAG矢量语义搜问结果）：</sapn>-->
-                    <input type="text" value="教育技术" style="display:inline;white-space: normal;width:90%;background-color:lavender" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" /><br />
+                    <input type="text" value="教育技术" style="display:inline;white-space: normal;width:98%;background-color:lavender" id="idPrompt" onblur="fnPromptForAIGCOnBlur()" /><br />
                     <span title="非RAG搜问，不会事先检索本机知识库。&#10;“树体目录”即“（线性为本-树体主导-网状辅助）目录”。"><input type="radio" name="raio_RAG-NonRAG" id="id_SystemExternal_NonRAG" value="NonRAG" checked onclick="fnPromptForAIGCOnBlur()" />隐式“面向对象的封装继承多态的树体目录”的“非RAG”搜问“系统外部云端LLM”</span><br />
                     <span title="RAG搜问，事先检索本机知识库，检索结果融入Prompt。&#10;【注：当前仅仅字面确定性匹配地检索知识库的相关语句，尚未语义概率性匹配地检索知识库的相关语句，这是因为当前语义概率性匹配检索知识库的准确性尚不理想】。&#10;“树体目录”即“（线性为本-树体主导-网状辅助）目录”。&#10;【注：字符媒体RAG搜问已经基本实现，多媒体RAG搜问正在完善之中...】">
                         <input type="radio" name="raio_RAG-NonRAG" id="id_raio_SystemExternal_RAG" value="RAG" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnPromptForAIGCOnBlur()' />隐式“面向对象的封装继承多态的树体目录”的“RAG”搜问“系统外部云端LLM”
@@ -656,13 +661,18 @@
                         <tr>
                             <td colspan="2" style="text-align:center">
                                 <!--已废弃--><!--<button onclick='if(document.getElementById("idAIGCDiv").style.display=="none"){document.getElementById("idAIGCDiv").style.display="block";document.getElementById("TriAngleOfAIGCPrwviewExternal").textContent="▼";} else{document.getElementById("idAIGCDiv").style.display="none";document.getElementById("TriAngleOfAIGCPrwviewExternal").textContent="▶"; }fnAIGCIFrameSrc();fnToggleEventSoureElementColor()'>单击切换显示“生成预览的窗口”<span id="TriAngleOfAIGCPrwviewExternal">▶</span></button>&nbsp;&nbsp;-->
-                               <button id="AIGCPrwviewExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnAjaxServerSideCallCloudLLMExternal("Proxy");fnToggleEventSoureElementColor();//fnAIGC("idPrompt","idTextAreaAjaxServerSideCallAIGCAnswerCharactor","idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest","iframeForAIGC");'>“云端LLM”生成“目录条目/课文/作业测验”融入主视图，循环朗读，并可降本增效地修改完善保存</button><br/><br/>
-                                <div>
-                                <button id="btnForWebGeneralAgentSkillChatLLMExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnToggleSystemInternalChatSystemExternalChat();' title="【注：本系统遵循业界的通用智能体Agent→教育领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发教育SKills→教育领域智能体Agent】">“云端LLM”生成“通用内容”不融入主视图，不朗读，降本增效地拓展教育领域之外的通用互动<span id="TriAngleOfWebGeneralAgentSkillChatLLMExternal">▶</span></button>
-                                <iframe id="iframeForWebGeneralAgentSkillChatLLMExternal" style="display:none;width: 100%; height: 718px"></iframe>
-                                    </div>
+                               <button id="AIGCPrwviewExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnAjaxServerSideCallCloudLLMExternal("Proxy");fnToggleEventSoureElementColor();//fnAIGC("idPrompt","idTextAreaAjaxServerSideCallAIGCAnswerCharactor","idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest","iframeForAIGC");'>“云端LLM”生成“目录条目/课文/作业测验”融入主视图，循环朗读，并可降本增效地修改完善保存</button>
+                              <hr width="100%"/>    
                             </td>
-                        </tr>
+                            </tr>
+                        <tr>
+                           <td colspan="2" style="text-align:center">
+                                <div>
+                                <iframe id="iframeForWebGeneralAgentSkillChatLLMExternal" style="display:none;width: 100%; height: 718px"></iframe>
+                                <button id="btnForWebGeneralAgentSkillChatLLMExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnToggleSystemInternalChatSystemExternalChat();' title="【注：本系统遵循业界的通用智能体Agent→教育领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发教育SKills→教育领域智能体Agent】">“云端LLM”生成“通用内容”不融入主视图，不朗读，降本增效地拓展教育领域之外的通用互动<span id="TriAngleOfWebGeneralAgentSkillChatLLMExternal">▶</span></button>                               
+                                 </div>
+                            </td>
+                        </tr>                       
                     </table>
             </td>
             </tr>
