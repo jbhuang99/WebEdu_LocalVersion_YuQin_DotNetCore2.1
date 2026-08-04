@@ -11,28 +11,30 @@ WebApplicationBuilder webApplicationBuilder = WebApplication.CreateBuilder(args)
 String _ApiKey = "sk-****79316d7b4f3b85014154de41a962"; //敏感数据（在此*号化了，禁止硬编码在C#源码之中）。开发时必须选用“Secret Manager”的secrets.json文件配置。交付时必须选用软件的appsettings.json文件配置。
 if (webApplicationBuilder.Environment.IsDevelopment())
 {
-    _ApiKey = webApplicationBuilder.Configuration.GetSection("ApiKey-SiliconFlow").Value; //从开发时的本项目的“Secret Manager”的secrets.json文件获取ApiKey。
-    //_ApiKey = webApplicationBuilder.Configuration.GetSection("ApiKey").Value; //从开发时的本项目的“Secret Manager”的secrets.json文件获取ApiKey。
+    //_ApiKey = webApplicationBuilder.Configuration.GetSection("ApiKey-SiliconFlow").Value; //从开发时的本项目的“Secret Manager”的secrets.json文件获取ApiKey。
+    _ApiKey = webApplicationBuilder.Configuration.GetSection("ApiKey").Value; //从开发时的本项目的“Secret Manager”的secrets.json文件获取ApiKey。
 }
 else
 {
-    _ApiKey = webApplicationBuilder.Configuration.GetSection("ApiKey-SiliconFlow").Value; //从交付时的软件的appsettings.json文件获取ApiKey。
-    //_ApiKey = webApplicationBuilder.Configuration.GetSection("ApiKey").Value; //从交付时的软件的appsettings.json文件获取ApiKey。
+    //_ApiKey = webApplicationBuilder.Configuration.GetSection("ApiKey-SiliconFlow").Value; //从交付时的软件的appsettings.json文件获取ApiKey。
+    _ApiKey = webApplicationBuilder.Configuration.GetSection("ApiKey").Value; //从交付时的软件的appsettings.json文件获取ApiKey。
 }
 // Step0. Load Configuration
 var config = new ConfigurationBuilder()
     .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true, reloadOnChange: true)
     .Build();
-var openAIProvider = config.GetSection("OpenAI").Get<OpenAIProvider>();
-
+//var openAIProvider = config.GetSection("OpenAISiliconFlow").Get<OpenAIProvider>();
+var openAIProvider = config.GetSection("OpenAIAliyuncs").Get<OpenAIProvider>();
 // Step1. Register one ChatClient
 var chatClient = new OpenAIClient(
         //new ApiKeyCredential(openAIProvider.ApiKey),
         new ApiKeyCredential(_ApiKey),
         new OpenAIClientOptions { Endpoint = new Uri(openAIProvider.Endpoint) })
+        //new OpenAIClientOptions { BASE_URL = new Uri(openAIProvider.Endpoint) })
     .GetChatClient(openAIProvider.ModelId)
     .AsIChatClient();
+Console.WriteLine(_ApiKey + openAIProvider.Endpoint + openAIProvider.ModelId);
 webApplicationBuilder.Services.AddChatClient(chatClient);
 
 // Step2. Register some Agents

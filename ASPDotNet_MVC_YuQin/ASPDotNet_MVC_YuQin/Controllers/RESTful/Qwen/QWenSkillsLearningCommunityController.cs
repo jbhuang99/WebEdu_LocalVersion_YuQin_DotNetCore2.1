@@ -48,8 +48,9 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.QWenSkillsLearningCommunity
             _iConfiguration = iConfiguration;
             if (iWebHostEnvironment.EnvironmentName == "Development")
             {
-                //_ApiKey = ConfigurationManager.AppSettings["ApiKey"];
-                _ApiKey = _iConfiguration["ApiKey-SiliconFlow"]; //从开发时的本项目的“Secret Manager”的secrets.json文件获取ApiKey。
+
+                // _ApiKey = _iConfiguration["ApiKey-SiliconFlow"]; //从开发时的本项目的“Secret Manager”的secrets.json文件获取ApiKey。
+                _ApiKey = _iConfiguration["ApiKey"];
                 //Console.WriteLine(iWebHostEnvironment.EnvironmentName+ _ApiKey);
             }
             else
@@ -66,11 +67,15 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.QWenSkillsLearningCommunity
                 .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
                 //.AddJsonFile($"appsettings.Secrets.json", optional: true, reloadOnChange: true)
                 .Build();
-            var openAIProvider = config.GetSection("OpenAI").Get<OpenAIProvider>();
+            // var openAIProvider = config.GetSection("OpenAI").Get<OpenAIProvider>();
+            var openAIProvider = config.GetSection("OpenAIAliyuncs").Get<OpenAIProvider>();
             var chatClient = new OpenAIClient(
                     //new ApiKeyCredential(openAIProvider.ApiKey),
-                    new ApiKeyCredential(new OpenAIProvider().ApiKey),
+                    //new ApiKeyCredential(new OpenAIProvider().ApiKey),
+                    //new OpenAIClientOptions { Endpoint = new Uri(openAIProvider.Endpoint) })
+                     new ApiKeyCredential(_ApiKey),
                     new OpenAIClientOptions { Endpoint = new Uri(openAIProvider.Endpoint) })
+
                 .GetChatClient(openAIProvider.ModelId);
 
             // Step1 创建 SkillsProvider — 从文件夹加载 Skills
