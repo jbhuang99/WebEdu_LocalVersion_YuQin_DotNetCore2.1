@@ -916,7 +916,7 @@ function fnAjaxServerSideCallCloudLLMExternal(isProxy){
      var sPromptForHomeworkAndTest=document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value;
      var sURL ="";
      var sURLForHomeworkAndTest ="";
-     let currentText = "内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）：";
+     let currentText = "内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）：";
      var endingAIGCedText = "（内部视媒听媒机器人的回答Answer已结束！）";
      if(!isProxy=="Proxy"){//isProxy=="Proxy无法触发主视图了，必须解决！
            open("/ProxyQWen/index?queryString=" + sPromptForCourseText,"LogInProxy");
@@ -947,7 +947,7 @@ function fnAjaxServerSideCallCloudLLMExternal(isProxy){
          if (xmlHttpRequest.status == 200) { //如果是200说明成功
          //如果函数存在的话执行
          var oTemp=JSON.parse(xmlHttpRequest.responseText);
-         //document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+oTemp.output.text;   
+         //document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）："+oTemp.output.text;   
          opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById("idCourseTextInsertedElementForAIGC").innerHTML= '<div style="color:green">'+currentText+oTemp.output.text+endingAIGCedText+'</div>';
        window.speechSynthesis.cancel();     
       alert("LLM生成的课文已添加到当前“目录条目”的“课文”的开始部分！请修改完善保存！");
@@ -964,7 +964,7 @@ function fnAjaxServerSideCallCloudLLMExternal(isProxy){
          if (xmlHttpRequestForHomeworkAndTest.status == 200) { //如果是200说明成功
          //如果函数存在的话执行
          var oTempForHomeworkAndTest=JSON.parse(xmlHttpRequestForHomeworkAndTest.responseText);
-         //document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+oTemp.output.text;   
+         //document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）："+oTemp.output.text;   
          opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById("idHomeworkAndTestInsertedElementForAIGC").innerHTML = '<div style="color:green">'+currentText+oTempForHomeworkAndTest.output.text+endingAIGCedText+'</div>';
        window.speechSynthesis.cancel();     ;
    var sString=opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById("idHomeworkAndTestInsertedElementForAIGC").innerHTML;
@@ -1017,12 +1017,12 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
                     if (xmlHttpRequest.status == 200) { //如果是200说明成功
                         //如果函数存在的话执行
                         var oTemp=JSON.parse(xmlHttpRequest.responseText);
-                        document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+oTemp.output.text;
+                        document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）："+oTemp.output.text;
                       
                         window.speechSynthesis.cancel();
                           /**
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+oTemp.output.text); 
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）"+oTemp.output.text); 
                      if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
@@ -1036,7 +1036,7 @@ function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+sTempErr); 
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）"+sTempErr); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }
@@ -1158,7 +1158,7 @@ async function fnStreamChat(url,postData,targetIFrameId,targetElementId) {
 
   // 初始化显示
   target.innerHTML = '';
-  let currentText = "内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）：";
+  let currentText = "内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）：";
   var endingAIGCedText = "（内部视媒听媒机器人的回答Answer已结束！）";
 
   const res = await fetch(url, {
@@ -1332,12 +1332,12 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
         var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
         var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest(\'transcriptSystemExternal\')">'+'**正确答案：**'+'</button>'+'<span id="id_AnswertranscriptSystemExternal" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>';
         
-        document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+"<p/>"+'<div id="id_ForHTMLEditortranscriptSystemExternal" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(\'transcriptSystemExternal\')">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTesttranscriptSystemExternal" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTesttranscriptSystemExternal" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest(\'transcriptSystemExternal\')">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
+        document.getElementById("transcriptSystemExternal").innerHTML ="外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）："+"<p/>"+'<div id="id_ForHTMLEditortranscriptSystemExternal" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(\'transcriptSystemExternal\')">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTesttranscriptSystemExternal" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTesttranscriptSystemExternal" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest(\'transcriptSystemExternal\')">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
         //document.getElementById("transcriptSystemExternal").style.color="";              
         window.speechSynthesis.cancel();
                           /**
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+oTemp.output.text); 
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）"+oTemp.output.text); 
                      if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
@@ -1351,7 +1351,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+sTempErr); 
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("外部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）"+sTempErr); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }
@@ -1418,12 +1418,12 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
         var sString5=sString4.substring(sString4.indexOf("正确答案"), sString4.length);
         var sString6=sString4.substring(0,sString4.indexOf("正确答案"))+'<p/>'+'<button title="单击可以切换答案显示" onclick="fnToggleDisplayOfAIGCAnswerHomeworkAndTest(\'transcriptSystemInternal\')">'+'**正确答案：**'+'</button>'+'<span id="id_AnswertranscriptSystemInternal" style="display:none">'+sString5.substring(sString5.indexOf("**正确答案：**")+"**正确答案：**".length,sString5.length)+'</span>';
         
-        document.getElementById("transcriptSystemInternal").innerHTML ="内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）："+"<p/>"+'<div id="id_ForHTMLEditortranscriptSystemInternal" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(\'transcriptSystemInternal\')">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTesttranscriptSystemInternal" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTesttranscriptSystemInternal" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest(\'transcriptSystemInternal\')">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
+        document.getElementById("transcriptSystemInternal").innerHTML ="内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）："+"<p/>"+'<div id="id_ForHTMLEditortranscriptSystemInternal" contenteditable="false" >'+sString6+'<div><button id="id_FiveLayerMVC" title="因为AIGC生成作业测验的灵活度很大，所以本功能暂时不太稳定！）" onclick="fnToggleDisplayOfFiveLayMVCFromAIGCAnswerHomeworkAndTest(\'transcriptSystemInternal\')">本题选用的“四层平台”的思维语言生成的“五层MVC”面向的主要层次【注：A、实践-数据读写封装（例如：人物对象的内容方法←映射→数据库数据仓库）；B、技术-信息提取运用（例如：数据确定性描述统计。典型案例：数据总计平均等等多维分析）；C、科学-规律预测探究（例如：数据概率性推断统计。典型案例：数据挖掘）；D、人文-情感交流共鸣（例如：数据概率性人文推断统计。典型案例：数据人文挖掘）；E、哲学-智能建构生成（例如：数据概率性AIGC推断统计。典型案例：神经元多层网络的已经训练学习的概率性推断统计）】</button><div id="id_FiveLayMVCFromAIGCAnswerHomeworkAndTesttranscriptSystemInternal" style="display:none">A/B/C/D/E之一（当前AIGC回答尚不稳定）</div></div>'+"</div>"+'<div><button id="id_HTMLEditorForAIGCHomeworkAndTesttranscriptSystemInternal" title="单击可以切换HTML源码编辑。因为AIGC生成作业测验的灵活度很大，所以特意提供本功能，以便用户即时在线修改AIGC生成的作业测验（注意必须遵守法律修改AIGC生成的内容！！！）" style="width:100%" onclick="fnHTMLEditorForAIGCHomeworkAndTest(\'transcriptSystemInternal\')">“作业测验”的HTML帮助器（单击可以切换HTML源码编辑）</button></div>';//oTemp.output.text;
         //document.getElementById("transcriptSystemExternal").style.color="";              
         window.speechSynthesis.cancel();
                           /**
                      //TTS
-                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+oTemp.output.text); 
+                     const utteranceExternalAIGCAnswer = new SpeechSynthesisUtterance("内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）"+oTemp.output.text); 
                      if(document.getElementById("id_TTS").disabled==false){
                      window.speechSynthesis.speak(utteranceExternalAIGCAnswer);
                      utteranceExternalAIGCAnswer.onend=fnTTSOnEndSystemExternalAIGCAnswer;
@@ -1437,7 +1437,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
                         alert(sTempErr);
                          window.speechSynthesis.cancel();
                      //TTS
-                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）"+sTempErr); 
+                     const utteranceInternalAIGCAnswerOnError = new SpeechSynthesisUtterance("内部视媒听媒机器人的回答Answer如下（请注意思辨字面准确性和语义准确性）（如果同时需要图像，建议千问免费生成图像后，在此切换成为编辑状态，然后可以复制粘贴在此）"+sTempErr); 
                      window.speechSynthesis.speak(utteranceInternalAIGCAnswerOnError); 
                     }
                 }

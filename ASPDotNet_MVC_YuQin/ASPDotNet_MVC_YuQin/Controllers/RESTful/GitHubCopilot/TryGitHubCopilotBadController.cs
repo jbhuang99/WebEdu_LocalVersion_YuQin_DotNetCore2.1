@@ -1,51 +1,19 @@
-using ASPDotNet_MVC_YuQin.Controllers.RESTful.QwenSkillsTry;
 using GitHub.Copilot;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 namespace GitHubCopilot.Controllers.RESTful
 {
    
-    public class TryGitHubCopilotController : ControllerBase
+    public class TryGitHubCopilotBadController : ControllerBase
     {
-
-        private readonly IWebHostEnvironment _iWebHostEnvironment;
-        private readonly IConfiguration _iConfiguration;
-       internal static String _ApiKey = "sk-*********************lnweddntqyrvpfvspcqtlzpfxfg"; //敏感数据（在此*号化了，禁止硬编码在C#源码之中）。开发时必须选用“Secret Manager”的secrets.json文件配置。交付时必须选用软件的appsettings.json文件配置。
-
-        public TryGitHubCopilotController(IWebHostEnvironment iWebHostEnvironment, IConfiguration iConfiguration)
+        
+        //[HttpGet(Name = "GetWeatherForecast")]
+        [HttpGet]
+        public async Task<String> Index()
         {
-            _iWebHostEnvironment = iWebHostEnvironment;
-            _iConfiguration = iConfiguration;
-            if (iWebHostEnvironment.EnvironmentName == "Development")
-            {
-
-                //_ApiKey = _iConfiguration["ApiKey-SiliconFlow"]; //从开发时的本项目的“Secret Manager”的secrets.json文件获取ApiKey。
-                _ApiKey = _iConfiguration["ApiKey"];
-                //Console.WriteLine(iWebHostEnvironment.EnvironmentName+ _ApiKey);
-            }
-            else
-            {
-                //_ApiKey = ConfigurationManager.AppSettings["ApiKey"];
-                _ApiKey = _iConfiguration["???????"]; //从交付时的软件的appsettings.json文件获取ApiKey。
-                //Console.WriteLine(iWebHostEnvironment.EnvironmentName + _ApiKey);
-            }
-        }
-        public async Task<String> Index(String queryString)
-       // public async Task<String> Index()
-        {
-            // Step0 — 创建 ChatClient
-            var config = new ConfigurationBuilder()
-                .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
-                //.AddJsonFile($"appsettings.Secrets.json", optional: true, reloadOnChange: true)
-                .Build();
-            // var openAIProvider = config.GetSection("OpenAI").Get<OpenAIProvider>();
-            var openAIProvider = config.GetSection("OpenAILocalLLM").Get<OpenAIProvider>();
-
             // Create and start the Copilot client
             CopilotClient copilotClient = new CopilotClient(
             //When using BYOK, the CLI server may not know which models your provider supports. You can supply a custom onListModels handler at the client level so that client.listModels() returns your provider's models in the standard ModelInfo format. This lets downstream consumers discover available models without querying the CLI.
@@ -55,8 +23,8 @@ namespace GitHubCopilot.Controllers.RESTful
     {
         new()
         {
-            Id = openAIProvider.ModelId,
-            Name = openAIProvider.ModelId,
+            Id = "my-custom-model",
+            Name = "My Custom Model",
             Capabilities = new ModelCapabilities
             {
                 Supports = new ModelSupports { Vision = false, ReasoningEffort = false },
@@ -91,7 +59,7 @@ foundry service status
                 Provider = new ProviderConfig
                 {
                     Type = "openai",
-                    BaseUrl = openAIProvider.Endpoint,
+                    BaseUrl = "http://127.0.0.1:52412/v1",
                     // No apiKey needed for local Foundry Local
                 },
             });
@@ -103,7 +71,7 @@ foundry service status
                 new MessageOptions
                 {
                     //Prompt = "Generate a C# method to reverse a string.",
-                    Prompt = "教育技术定义",
+                    //Prompt = "教育技术定义",
                 }
               );
 
@@ -111,11 +79,4 @@ foundry service status
             return response;
         }
     }
-    public sealed class OpenAIProvider
-    {
-        public string ApiKey { get; init; } = QWenSkillsTryController._ApiKey;
-        public string ModelId { get; init; } = string.Empty;
-        public string Endpoint { get; init; } = string.Empty;
-    }
-
 }
