@@ -570,23 +570,26 @@
                         </td>
                     </tr>
                    <tr>
-                        <td colspan="2" style="text-align:center">
+                        <td colspan="2" style="text-align:justify">
                                 <!--已废弃--><!--<button onclick='if(document.getElementById("idAIGCDiv").style.display=="none"){document.getElementById("idAIGCDiv").style.display="block";document.getElementById("TriAngleOfAIGCPrwviewInternal").textContent="▼";} else{document.getElementById("idAIGCDiv").style.display="none";document.getElementById("TriAngleOfAIGCPrwviewInternal").textContent="▶"; }fnAIGCIFrameSrc();fnToggleEventSoureElementColor()'>单击切换显示“生成预览的窗口”<span id="TriAngleOfAIGCPrwviewInternal">▶</span></button>&nbsp;&nbsp;-->
-                                <button id="AIGCPrwviewInternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnAjaxServerSideCallLocalLLMInternal("Proxy");fnToggleEventSoureElementColor();//fnAIGC("idPromptInternalLLM","idTextAreaAjaxInternalSideCallAIGCAnswerCharactor","idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest","iframeForAIGC");'>“本机LLM”生成“目录条目/课文/作业测验”融入主视图，循环朗读，并可修改完善保存</button><input type="checkbox" title="目前尚无生成图像的较好本机LLM，所以暂时云端LLM代替本机LLM生成图像。本项目正在研究开发基于FoundryLocal/Olive的本机图像LLM的模型转换/继承利用..." disabled onlick="alert()"/>含一幅图像
+                                <button id="AIGCPrwviewInternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnAjaxServerSideCallLocalLLMInternal("Proxy");fnToggleEventSoureElementColor();//fnAIGC("idPromptInternalLLM","idTextAreaAjaxInternalSideCallAIGCAnswerCharactor","idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest","iframeForAIGC");'>“本机LLM”生成“目录条目/课文/作业测验”，融入主视图，循环朗读，并可修改完善保存</button><input type="checkbox" title="目前尚无生成图像的较好本机LLM，所以暂时云端LLM代替本机LLM生成图像。本项目正在研究开发基于FoundryLocal/Olive的本机图像LLM的模型转换/继承利用..." disabled onlick="alert()"/>含一幅图像
                             <hr width="100%"/>
                           </td>
                        </tr>
                     <tr>
-                        <td colspan="2" style="text-align:center">
-                              <button><a href="https://learn.microsoft.com/zh-cn/shows/make-azure-ai-real/finetuning-and-customizing-your-generative-ai-apps#time=16m29s" target="_blank" title="（支持字面准确性和语义准确性提醒）（支持中英Prompt双语字幕切换、字幕搜索线性导航视频）当前只是一个需求示例，后续重要开发任务之一...">“本机LLM”生成当前“目录条目/课文/作业测验”的视频不融入主视图，循环播放，以便自主学习</a></button>
-                              <hr width="100%"/>
+                        <td colspan="2" style="text-align:justify">
+                            <a id="AForPPTVideoInternal" href="https://learn.microsoft.com/zh-cn/shows/make-azure-ai-real/finetuning-and-customizing-your-generative-ai-apps#time=16m29s" target="_blank" style="display:none">如果拒绝连接，请单击这里打开案例1...</a><br />
+                             <a id="A2ForPPTVideoInternal" href="EducationalPPTVideo/JustForSimpleSample.html" target="_blank" style="display:none">如果拒绝连接，请单击这里打开案例2...</a>
+                            <iframe id="iframeForPPTVideoInternal" style="display:none;width: 100%; height: 718px"></iframe>
+                            <button id="btnForPPTVideoInternal" onclick='fnToggleSystemInternalPPTVideoSystemExternalPPTVideo();' title="（支持字面准确性和语义准确性提醒）（支持中英Prompt双语字幕切换、字幕搜索线性导航、兼容PPT的视频）当前只是一个需求示例，后续重要开发任务之一...">“云端LLM”基于当前“目录条目/课文/作业测验”，生成教育PPT视频，不融入主视图，循环播放不保存<span id="TriAngleOfPPTVideoInternal">▶</span></button>                            
+                            <hr width="100%"/>
                         </td>                      
                     </tr>
                     <tr>
-                         <td colspan="2" style="text-align:center">
+                         <td colspan="2" style="text-align:justify">
                                 <div>
                                <iframe id="iframeForWebGeneralAgentSkillChatLLMInternal" style="display:none;width: 100%; height: 718px"></iframe>
-                                <button id="btnForWebGeneralAgentSkillChatLLMInternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnToggleSystemInternalChatSystemExternalChat();' title="【注：本系统遵循业界的通用智能体Agent→教育领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发教育SKills→教育领域智能体Agent】">“本机LLM”生成“通用内容”不融入主视图，不朗读，降本增效地拓展教育领域之外的通用互动<span id="TriAngleOfWebGeneralAgentSkillChatLLMInternal">▶</span></button>
+                                <button id="btnForWebGeneralAgentSkillChatLLMInternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnToggleSystemInternalChatSystemExternalChat();' title="【注：本系统遵循业界的通用智能体Agent→教育领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发教育SKills→教育领域智能体Agent】">“本机LLM”忽略当前“目录条目/课文/作业测验”，生成“通用内容”，不融入主视图，仅视媒无听媒不保存<span id="TriAngleOfWebGeneralAgentSkillChatLLMInternal">▶</span></button>
                                 </div>
                             </td>
                         </tr>                    
@@ -651,23 +654,26 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="text-align:center">
+                            <td colspan="2" style="text-align:justify">
                                 <!--已废弃--><!--<button onclick='if(document.getElementById("idAIGCDiv").style.display=="none"){document.getElementById("idAIGCDiv").style.display="block";document.getElementById("TriAngleOfAIGCPrwviewExternal").textContent="▼";} else{document.getElementById("idAIGCDiv").style.display="none";document.getElementById("TriAngleOfAIGCPrwviewExternal").textContent="▶"; }fnAIGCIFrameSrc();fnToggleEventSoureElementColor()'>单击切换显示“生成预览的窗口”<span id="TriAngleOfAIGCPrwviewExternal">▶</span></button>&nbsp;&nbsp;-->
-                               <button id="AIGCPrwviewExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnAjaxServerSideCallCloudLLMExternal("Proxy");fnToggleEventSoureElementColor();//fnAIGC("idPrompt","idTextAreaAjaxServerSideCallAIGCAnswerCharactor","idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest","iframeForAIGC");'>“云端LLM”生成“目录条目/课文/作业测验”融入主视图，循环朗读，并可修改完善保存</button><input type="checkbox" checked/>含一幅图像
+                               <button id="AIGCPrwviewExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0){alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnAjaxServerSideCallCloudLLMExternal("Proxy");fnToggleEventSoureElementColor();//fnAIGC("idPrompt","idTextAreaAjaxServerSideCallAIGCAnswerCharactor","idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest","iframeForAIGC");'>“云端LLM”生成“目录条目/课文/作业测验”，融入主视图，循环朗读，并可修改完善保存</button><input type="checkbox" checked/>含一幅图像
                               <hr width="100%"/>    
                             </td>
                             </tr>
                       <tr>
-                        <td colspan="2" style="text-align:center">
-                              <button><a href="https://learn.microsoft.com/zh-cn/shows/make-azure-ai-real/finetuning-and-customizing-your-generative-ai-apps#time=16m29s" target="_blank" title="（支持字面准确性和语义准确性提醒）（支持中英Prompt双语字幕切换、字幕搜索线性导航视频）当前只是一个需求示例，后续重要开发任务之一...">“云端LLM”生成当前“目录条目/课文/作业测验”的视频不融入主视图，循环播放，以便自主学习</a></button>
-                              <hr width="100%"/>
+                        <td colspan="2" style="text-align:justify">
+                            <a id="AForPPTVideoExternal" href="https://learn.microsoft.com/zh-cn/shows/make-azure-ai-real/finetuning-and-customizing-your-generative-ai-apps#time=16m29s" target="_blank" style="display:none">如果拒绝连接，请单击这里打开案例1...</a><br />
+                             <a id="A2ForPPTVideoExternal" href="EducationalPPTVideo/JustForSimpleSample.html" target="_blank" style="display:none">如果拒绝连接，请单击这里打开案例2...</a>
+                            <iframe id="iframeForPPTVideoExternal" style="display:none;width: 100%; height: 718px"></iframe>
+                            <button id="btnForPPTVideoExternal" onclick='fnToggleSystemInternalPPTVideoSystemExternalPPTVideo();' title="（支持字面准确性和语义准确性提醒）（支持中英Prompt双语字幕切换、字幕搜索线性导航、兼容PPT的视频）当前只是一个需求示例，后续重要开发任务之一...">“云端LLM”基于当前“目录条目/课文/作业测验”，生成教育PPT视频，不融入主视图，循环播放不保存<span id="TriAngleOfPPTVideoExternal">▶</span></button>
+                            <hr width="100%"/>
                         </td>                      
                     </tr>
                         <tr>
-                           <td colspan="2" style="text-align:center">
+                           <td colspan="2" style="text-align:justify">
                                 <div>
                                 <iframe id="iframeForWebGeneralAgentSkillChatLLMExternal" style="display:none;width: 100%; height: 718px"></iframe>
-                                <button id="btnForWebGeneralAgentSkillChatLLMExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnToggleSystemInternalChatSystemExternalChat();' title="【注：本系统遵循业界的通用智能体Agent→教育领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发教育SKills→教育领域智能体Agent】">“云端LLM”生成“通用内容”不融入主视图，不朗读，降本增效地拓展教育领域之外的通用互动<span id="TriAngleOfWebGeneralAgentSkillChatLLMExternal">▶</span></button>                               
+                                <button id="btnForWebGeneralAgentSkillChatLLMExternal" onclick='if(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom().indexOf("免费")>=0) {alert(opener.parent.document.getElementById("sIframeContents").contentWindow.fnRunningFrom());} fnToggleSystemInternalChatSystemExternalChat();' title="【注：本系统遵循业界的通用智能体Agent→教育领域智能体Agent的思路，继承利用现有的本机通用智能体Agent/云端通用智能体Agent，创新研发教育SKills→教育领域智能体Agent】">“云端LLM”忽略当前“目录条目/课文/作业测验”，生成“通用内容”，不融入主视图，仅视媒无听媒不保存<span id="TriAngleOfWebGeneralAgentSkillChatLLMExternal">▶</span></button>                               
                                  </div>
                             </td>
                         </tr>                       

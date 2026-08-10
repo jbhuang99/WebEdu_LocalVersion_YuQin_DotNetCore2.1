@@ -1641,6 +1641,32 @@ window.speechSynthesis.cancel();
           }
   }
 
+  function fnToggleSystemInternalPPTVideoSystemExternalPPTVideo(){ //后续将基于JustForSimpleSample.html完善自创方开发）。
+      if(document.getElementById("iframeForPPTVideoInternal").style.display=="none"){
+            document.getElementById("iframeForPPTVideoInternal").style.display="block";
+            document.getElementById("iframeForPPTVideoExternal").style.display="block";
+            document.getElementById("AForPPTVideoInternal").style.display="block";
+            document.getElementById("AForPPTVideoExternal").style.display="block";
+            document.getElementById("A2ForPPTVideoInternal").style.display="block";
+            document.getElementById("A2ForPPTVideoExternal").style.display="block";
+            document.getElementById("TriAngleOfPPTVideoInternal").textContent="▲";
+            document.getElementById("TriAngleOfPPTVideoExternal").textContent="▲";
+           document.getElementById("iframeForPPTVideoInternal").src = "https://learn.microsoft.com/zh-cn/shows/make-azure-ai-real/finetuning-and-customizing-your-generative-ai-apps#time=16m29s";
+           document.getElementById("iframeForPPTVideoExternal").src = "https://learn.microsoft.com/zh-cn/shows/make-azure-ai-real/finetuning-and-customizing-your-generative-ai-apps#time=16m29s";
+           fnToggleEventSoureElementColor();
+            }
+      else{
+            document.getElementById("iframeForPPTVideoInternal").style.display="none";
+            document.getElementById("iframeForPPTVideoExternal").style.display="none";
+            document.getElementById("AForPPTVideoInternal").style.display="none";
+            document.getElementById("AForPPTVideoExternal").style.display="none";
+            document.getElementById("A2ForPPTVideoInternal").style.display="none";
+            document.getElementById("A2ForPPTVideoExternal").style.display="none";
+            document.getElementById("TriAngleOfPPTVideoInternal").textContent="▶";
+            document.getElementById("TriAngleOfPPTVideoExternal").textContent="▶";
+            fnToggleEventSoureElementColor();
+          }
+  }
    function fnToggleSystemInternalChatSystemExternalChat(){ //因为Nuget包Microsoft.Agents.AI.DevUI当前与其他Nuget包有冲突，所以暂时不使用Microsoft.Agents.AI.DevUI的Nuget包，而是使用iframe嵌入的方式实现WebGeneralAgentSkillChatLLMInternal和WebGeneralAgentSkillChatLLMExternal（万不得已多出了一个DevUIServer项目，今后必须将DevUIServer项目合并进入ASPDotNet_MVC_YuQin项目）。
       if(document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display=="none"){
             document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display="block";

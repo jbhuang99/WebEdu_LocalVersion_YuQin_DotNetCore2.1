@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Shaka Player HLS演示</title>
+  <!-- 引入国内CDN资源 -->
+  <!--<script src="https://cdn.jsdelivr.net/npm/shaka-player@4.7.10/dist/shaka-player.compiled.js"></script>-->
+  <!--<script src="https://cdn.bootcdn.net/ajax/libs/shaka-player/4.7.10/shaka-player.compiled.js"></script>-->
+  <script src="shaka-player.compiled.js"></script>
+  <style>
+    video { width: 100%; max-width: 800px; }
+  </style>
+</head>
+<body style="text-align:center">
+  <video id="video" controls autoplay></video>
+ 
+  <script>
+    // 初始化播放器
+    async function initPlayer() {
+      // 安装必要的polyfill
+      shaka.polyfill.installAll();
+      
+      // 检查浏览器支持
+      if (!shaka.Player.isBrowserSupported()) {
+        alert('当前浏览器不支持Shaka Player！');
+        return;
+      }
+ 
+      // 获取video元素并创建Player实例
+      const video = document.getElementById('video');
+      const player = new shaka.Player();
+      
+      try {
+        await player.attach(video);
+        console.log('播放器初始化成功');
+        
+        // 配置HLS特定参数
+        player.configure({
+          manifest: {
+            hls: {
+              // 处理无CODECS标签的HLS流
+              defaultAudioCodec: 'mp4a.40.2',
+              defaultVideoCodec: 'avc1.42E01E'
+            }
+          }
+        });
+ 
+        // 加载HLS流（替换为你的HLS地址）
+      // const hlsUrl = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+      // const hlsUrl = 'https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4';
+  //    const hlsUrl = 'https://v-cdn.zjol.com.cn/276982.mp4';
+//const hlsUrl = 'https://v-cdn.zjol.com.cn/276984.mp4';
+//const hlsUrl = 'https://v-cdn.zjol.com.cn/276985.mp4';
+//const hlsUrl = 'https://media.w3.org/2010/05/sintel/trailer.mp4';
+//const hlsUrl = 'https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4';
+//const hlsUrl = 'http://www.w3school.com.cn/i/movie.mp4';
+const hlsUrl = '../../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.mp4';
+
+        await player.load(hlsUrl);
+        console.log('HLS流加载成功');
+      } catch (e) {
+        console.error('错误代码:', e.code, '错误信息:', e.message);
+      }
+    }
+ 
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', initPlayer);
+  </script>
+</body>
+</html>
