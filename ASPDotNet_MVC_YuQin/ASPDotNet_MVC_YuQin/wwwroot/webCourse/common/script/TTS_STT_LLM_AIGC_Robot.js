@@ -1647,12 +1647,10 @@ window.speechSynthesis.cancel();
             document.getElementById("iframeForPPTVideoExternal").style.display="block";
             document.getElementById("AForPPTVideoInternal").style.display="block";
             document.getElementById("AForPPTVideoExternal").style.display="block";
-            document.getElementById("A2ForPPTVideoInternal").style.display="block";
-            document.getElementById("A2ForPPTVideoExternal").style.display="block";
             document.getElementById("TriAngleOfPPTVideoInternal").textContent="▲";
             document.getElementById("TriAngleOfPPTVideoExternal").textContent="▲";
-           document.getElementById("iframeForPPTVideoInternal").src = "https://learn.microsoft.com/zh-cn/shows/make-azure-ai-real/finetuning-and-customizing-your-generative-ai-apps#time=16m29s";
-           document.getElementById("iframeForPPTVideoExternal").src = "https://learn.microsoft.com/zh-cn/shows/make-azure-ai-real/finetuning-and-customizing-your-generative-ai-apps#time=16m29s";
+           document.getElementById("iframeForPPTVideoInternal").src = "EducationalPPTVideo/JustForSimpleSample.html";
+           document.getElementById("iframeForPPTVideoExternal").src = "EducationalPPTVideo/JustForSimpleSample.html";
            fnToggleEventSoureElementColor();
             }
       else{
@@ -1660,8 +1658,6 @@ window.speechSynthesis.cancel();
             document.getElementById("iframeForPPTVideoExternal").style.display="none";
             document.getElementById("AForPPTVideoInternal").style.display="none";
             document.getElementById("AForPPTVideoExternal").style.display="none";
-            document.getElementById("A2ForPPTVideoInternal").style.display="none";
-            document.getElementById("A2ForPPTVideoExternal").style.display="none";
             document.getElementById("TriAngleOfPPTVideoInternal").textContent="▶";
             document.getElementById("TriAngleOfPPTVideoExternal").textContent="▶";
             fnToggleEventSoureElementColor();
