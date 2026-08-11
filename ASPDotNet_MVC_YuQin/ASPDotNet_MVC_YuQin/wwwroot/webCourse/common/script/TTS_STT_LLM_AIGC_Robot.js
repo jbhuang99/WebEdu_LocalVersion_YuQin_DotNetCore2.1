@@ -1641,7 +1641,7 @@ window.speechSynthesis.cancel();
           }
   }
 
-  function fnToggleSystemInternalPPTVideoSystemExternalPPTVideo(){ //后续将基于JustForSimpleSample.html完善自创方开发）。
+  function fnToggleSystemInternalPPTVideoSystemExternalPPTVideo(){ //后续将基于JustForSimpleSample.html完善自创方开发）。//对于生产环境，建议优先将字幕封装进 DASH/HLS Manifest 中（DASH .mpd 或 HLS .m3u8），这样 CDN 分发更稳定，且能更好地支持多码率自适应和 DRM 场景。外挂字幕更适合开发调试或用户自定义上传的场景(WebVTT,MIME Type是text/vtt,兼容性最好)。如果选用 shaka-player-ui，添加的轨道会自动出现在CC按钮菜单中；如果使用原生 <video> 控件，则需要自行实现字幕切换 UI。
       if(document.getElementById("iframeForPPTVideoInternal").style.display=="none"){
             document.getElementById("iframeForPPTVideoInternal").style.display="block";
             document.getElementById("iframeForPPTVideoExternal").style.display="block";
