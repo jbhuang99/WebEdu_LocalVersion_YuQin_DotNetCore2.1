@@ -486,15 +486,24 @@ finally{
 }    
 }
 
-function fnToggleEventSoureElementColor(){
-   var eventSoureElementColor=window.event.target.style.color;
-    
-    if(eventSoureElementColor==""||eventSoureElementColor==null){
-        window.event.target.style.color="brown";
+function fnToggleEventSoureElementColor(sSettedColor){
+  if(sSettedColor==""){
+      if(window.event.srcElement.style.color=="brown"){
+        window.event.srcElement.style.color=null;
     }
-    else{
-        window.event.target.style.color="";
+   else{
+        window.event.srcElement.style.color="brown";
     }
+  }
+  else{
+
+    if(window.event.srcElement.style.color=="brown"){
+        window.event.srcElement.style.color=sSettedColor;
+    }
+   else{
+        window.event.srcElement.style.color="brown";
+    }
+  }
 }
 
 /**
@@ -728,7 +737,7 @@ alert(`系统内部语音对话时候的语音识别错误: ${event.error}`);
  window.isRecognizingSystemInternal = false;
        }
 function fnUnderstandKernelDialogueBtnSystemInternal() {
-   fnToggleEventSoureElementColor();
+   fnToggleEventSoureElementColor("");
     if(document.getElementById("kernelDialogueSystemInternal").style.display=="none"){
     document.getElementById("kernelDialogueSystemInternal").style.display="block";
     document.getElementById("idRightTriangleOfUnderstandKernelDialogueSystemInternal").textContent="▼";
@@ -739,7 +748,7 @@ else{
     }
 }
 function fnUnderstandKernelDialogueBtnSystemExternal() {
-   fnToggleEventSoureElementColor();
+   fnToggleEventSoureElementColor("");
     if(document.getElementById("kernelDialogueSystemExternal").style.display=="none"){
     document.getElementById("kernelDialogueSystemExternal").style.display="block";
     document.getElementById("idRightTriangleOfUnderstandKernelDialogueSystemExternal").textContent="▼";
@@ -984,7 +993,7 @@ function fnAjaxServerSideCallCloudLLMExternal(isProxy){
    }
 }
 function fnAjaxServerSideCallAIGCAnswerCharactor(isProxy) {
-    fnToggleEventSoureElementColor();
+    fnToggleEventSoureElementColor("");
     window.isRecognizingSystemExternal = false;
      window.speechSynthesis.cancel(); 
             var sPrompt = document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value;
@@ -1114,7 +1123,7 @@ async function fnAjaxServerSideCallAIGCAnswerCharactorInternal(isProxy) {
         alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
         return;
         }
-    fnToggleEventSoureElementColor();
+    fnToggleEventSoureElementColor("");
     window.isRecognizingSystemExternal = false;
      window.speechSynthesis.cancel(); 
             var sPrompt = document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerCharactor").value;
@@ -1289,7 +1298,7 @@ function fnHTMLEditorForAIGCHomeworkAndTest(targetElementId){
     }
 
 function fnAjaxServerSideCallAIGCAnswerHomeworkAndTest(isProxy) {
-    fnToggleEventSoureElementColor();
+    fnToggleEventSoureElementColor("");
     window.isRecognizingSystemExternal = false;
      window.speechSynthesis.cancel(); 
             var sPrompt = document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value;
@@ -1363,7 +1372,7 @@ function fnAjaxServerSideCallAIGCAnswerHomeworkAndTestInternal(isProxy) {
         alert("请先选择本地LLM模型，否则Prompt提问可能出错！");
         return;
         }
-    fnToggleEventSoureElementColor();
+    fnToggleEventSoureElementColor("");
     window.isRecognizingSystemExternal = false;
      window.speechSynthesis.cancel(); 
             var sPrompt = document.getElementById("idTextAreaAjaxInternalSideCallAIGCAnswerHomeworkAndTest").value;
@@ -1626,6 +1635,7 @@ window.speechSynthesis.cancel();
         }
      }
   }
+  /**
   function fnToggleSystemInternalExplainSystemExternalExplain(){
       if(document.getElementById("idSystemInternalExplain").style.display=="none"){
             document.getElementById("idSystemInternalExplain").style.display="block";
@@ -1640,6 +1650,7 @@ window.speechSynthesis.cancel();
             document.getElementById("idRightTriangleOfSystemExternal").textContent="▶";
           }
   }
+  **/
 
   function fnToggleSystemInternalPPTVideoSystemExternalPPTVideo(){ //后续将基于JustForSimpleSample.html完善自创方开发）。//对于生产环境，建议优先将字幕封装进 DASH/HLS Manifest 中（DASH .mpd 或 HLS .m3u8），这样 CDN 分发更稳定，且能更好地支持多码率自适应和 DRM 场景。外挂字幕更适合开发调试或用户自定义上传的场景(WebVTT,MIME Type是text/vtt,兼容性最好)。如果选用 shaka-player-ui，添加的轨道会自动出现在CC按钮菜单中；如果使用原生 <video> 控件，则需要自行实现字幕切换 UI。
       if(document.getElementById("iframeForPPTVideoInternal").style.display=="none"){
@@ -1651,7 +1662,6 @@ window.speechSynthesis.cancel();
             document.getElementById("TriAngleOfPPTVideoExternal").textContent="▲";
            document.getElementById("iframeForPPTVideoInternal").src = "EducationalPPTVideo/JustForSimpleSample.html";
            document.getElementById("iframeForPPTVideoExternal").src = "EducationalPPTVideo/JustForSimpleSample.html";
-           fnToggleEventSoureElementColor();
             }
       else{
             document.getElementById("iframeForPPTVideoInternal").style.display="none";
@@ -1660,7 +1670,6 @@ window.speechSynthesis.cancel();
             document.getElementById("AForPPTVideoExternal").style.display="none";
             document.getElementById("TriAngleOfPPTVideoInternal").textContent="▶";
             document.getElementById("TriAngleOfPPTVideoExternal").textContent="▶";
-            fnToggleEventSoureElementColor();
           }
   }
    function fnToggleSystemInternalChatSystemExternalChat(){ //因为Nuget包Microsoft.Agents.AI.DevUI当前与其他Nuget包有冲突，所以暂时不使用Microsoft.Agents.AI.DevUI的Nuget包，而是使用iframe嵌入的方式实现WebGeneralAgentSkillChatLLMInternal和WebGeneralAgentSkillChatLLMExternal（万不得已多出了一个DevUIServer项目，今后必须将DevUIServer项目合并进入ASPDotNet_MVC_YuQin项目）。
@@ -1671,19 +1680,17 @@ window.speechSynthesis.cancel();
             document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMExternal").textContent="▲";
            document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").src = "https://localhost:8443/devui/?entity_id=Assistant";
            document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").src = "https://localhost:8443/devui/?entity_id=Assistant";
-           fnToggleEventSoureElementColor();
             }
       else{
             document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display="none";
             document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").style.display="none";
             document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMInternal").textContent="▶";
             document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMExternal").textContent="▶";
-            fnToggleEventSoureElementColor();
           }
   }
 
   function fnAjaxServerSideCallAIGCLearningCommunity(isProxy) {
-    fnToggleEventSoureElementColor();
+    fnToggleEventSoureElementColor("");
     if(isProxy=="Proxy"){           
            open("/QWenSkillsLearningCommunity/index?queryString=sChecedName");
             }
