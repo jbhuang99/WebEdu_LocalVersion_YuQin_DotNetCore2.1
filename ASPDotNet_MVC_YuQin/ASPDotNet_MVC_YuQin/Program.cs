@@ -315,6 +315,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 //using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
 using static IronPython.Modules._ast;
+using Asp.Versioning;
+//using Asp.Versioning.Mvc.ApiExplorer;
 /**
 using Ardalis.ListStartupServices;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -350,14 +352,26 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             **/
 
             WebApplicationBuilder webApplicationBuilder = WebApplication.CreateBuilder(args);
-
+            webApplicationBuilder.Services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true; // 如果请求没有声明就使用控制C的默认版本，例如，TryVersions/v1、TryVersions/v2等等的版本控制。
+                options.DefaultApiVersion = new ApiVersion(1, 0); // 默认版本
+                options.ReportApiVersions = true; // 在 header 返回支持的版本 (尤其用于 deprecated 弃用的 API)
+            }).AddMvc();
             //webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。
             webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。可以设置在appsettings.json中，使用JIT编译的方式获取（在此选用）。也可以在代码中硬编码设置。也可以在命令行中指定参数。
             Console.WriteLine(webApplicationBuilder.Environment.WebRootPath);
             // /**
             // ✅ 加载 Alipay 配置（自动解密/环境变量支持）
-            webApplicationBuilder.Services.AddOpenApi();//WebAPI文档生成相关的服务。
-
+            //webApplicationBuilder.Services.AddOpenApi();//WebAPI文档生成相关的服务。
+            webApplicationBuilder.Services.AddOpenApi("v1");
+            webApplicationBuilder.Services.AddOpenApi("v2");
+            webApplicationBuilder.Services.AddApiVersioning()
+.AddApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV";
+});
+            //webApplicationBuilder.Services.AddApiVersioning().AddApiExplorer(options => { options.GroupNameFormat = "'v'VVV"}).AddMvc().AddOpenApi();
             if (webApplicationBuilder.Environment.IsDevelopment())
             {
                 webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")); //从开发时的本项目的“Secret Manager”的secrets.json文件获取Alipay。
@@ -425,6 +439,12 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 //options.SlidingExpiration = true;
             });
+            webApplicationBuilder.Services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true; // 如果请求没有声明就使用默认版本
+                options.DefaultApiVersion = new ApiVersion(1, 0); // 默认版本
+                options.ReportApiVersions = true; // 在 header 返回支持的版本 (尤其用于 deprecated 弃用的 API)
+            }).AddMvc();//一个控制C中增加[ApiVersion("1.0")]、一个控制C中增加[ApiVersion("2.0")]，既可控制控制C的版本。 还可进一步实现类似api/users?api-version=1.0、api/users?api-version=2.0等等的版本控制。
             webApplicationBuilder.Services.AddControllersWithViews().AddJsonOptions(delegate (JsonOptions jsonOptions)
             {
                 jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
@@ -435,7 +455,8 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             WebApplication webApplication = webApplicationBuilder.Build();
             if (webApplication.Environment.IsDevelopment())
             {
-                webApplication.MapOpenApi(); // 运行后访问https://localhost:xxxx/openapi/v1.json 即可获取本系统所有WebAPI的文档（如果需要实现V1/V2等等多个版本的WebAPI文档，需要增加代码）。安装 Microsoft.Extensions.ApiDescription.Server 包后，可在构建时自动生成 OpenAPI JSON 文件，适合 CI/CD 流水线和契约测试场景。
+                //webApplication.MapOpenApi().WithDocumentPerVersion();
+                webApplication.MapOpenApi(); // 运行后访问https://localhost:xxxx/openapi/v1.json、https://localhost:xxxx/openapi/v2.json即可获取本系统所有WebAPI的文档（如果需要实现V1/V2等等多个版本的WebAPI文档，需要增加代码）。安装 Microsoft.Extensions.ApiDescription.Server 包后，可在构建时自动生成 OpenAPI JSON 文件，适合 CI/CD 流水线和契约测试场景。
             }
 
             // 因为.cshtml文件中迁移时出错，不得已在此迁移。Apply pending EF Core migrations at startup (including CreateIdentitySchema).
