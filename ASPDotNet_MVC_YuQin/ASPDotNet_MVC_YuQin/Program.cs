@@ -271,11 +271,12 @@ using Alipay.EasySDK.Payment.FaceToFace;
 using Alipay.EasySDK.Payment.Page;
 using Alipay.EasySDK.Payment.Wap;
 **/
+using AgentSkillDemo.Infrastructure;
+//using AlipayDemo.Models;
+using AlipayIntegrationDemo.Options;
 using Aop.Api;
 using Aop.Api.Request;
 using Aop.Api.Response;
-//using AlipayDemo.Models;
-using AlipayIntegrationDemo.Options;
 using BlazorWebAssemblyExampleApi.Model;
 using CatalogDb_YuQin.DB.Data;
 using CurriculumSelectionDW.Data;
@@ -285,34 +286,35 @@ using Essensoft.Paylinks.Alipay.Client.Extensions;
 using Essensoft.Paylinks.Razor.Pages.Samples.Web;
 using Essensoft.Paylinks.Razor.Pages.Samples.Web.Services;
 using Essensoft.Paylinks.WeChatPay.Client.Extensions;
+using Google.Protobuf.WellKnownTypes;
 using Identity_YuQin.Data;
 using IronPython.Runtime;
+using Microsoft.Agents.AI;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OpenApi;
 using Microsoft.EntityFrameworkCore;
+//using Microsoft.Agents.AI.DevUI;//Nuget了Microsoft.Agents.AI.DevUI就出错，尚未解决。因为Microsoft.Agents.AI.DevUI依赖于Microsoft.Agents.AI.Hosting，而Microsoft.Agents.AI.Hosting依赖于Microsoft.Extensions.Hosting.WindowsServices，而Microsoft.Extensions.Hosting.WindowsServices依赖于Microsoft.Extensions.Hosting.WindowsServices.dll，而Microsoft.Extensions.Hosting.WindowsServices
+//using Microsoft.Agents.AI.Hosting;
+//using Microsoft.Agents.AI.Workflows;
+using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Office.Interop.PowerPoint;
+using OpenAI;
 using System;
+using System.ClientModel;
 using System.IO;
 using System.Text.RegularExpressions;
 //using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
 using static IronPython.Modules._ast;
-using AgentSkillDemo.Infrastructure;
-using Microsoft.Agents.AI;
-//using Microsoft.Agents.AI.DevUI;//Nuget了Microsoft.Agents.AI.DevUI就出错，尚未解决。因为Microsoft.Agents.AI.DevUI依赖于Microsoft.Agents.AI.Hosting，而Microsoft.Agents.AI.Hosting依赖于Microsoft.Extensions.Hosting.WindowsServices，而Microsoft.Extensions.Hosting.WindowsServices依赖于Microsoft.Extensions.Hosting.WindowsServices.dll，而Microsoft.Extensions.Hosting.WindowsServices
-//using Microsoft.Agents.AI.Hosting;
-//using Microsoft.Agents.AI.Workflows;
-using Microsoft.Extensions.AI;
-using OpenAI;
-using System.ClientModel;
 /**
 using Ardalis.ListStartupServices;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -352,9 +354,10 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             //webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。
             webApplicationBuilder.WebHost.UseUrls("http://localhost:5000;https://localhost:5001;http://*:5000;https://*:5001");//指定Kestrel将侦听的URL。可以设置在appsettings.json中，使用JIT编译的方式获取（在此选用）。也可以在代码中硬编码设置。也可以在命令行中指定参数。
             Console.WriteLine(webApplicationBuilder.Environment.WebRootPath);
-          // /**
+            // /**
             // ✅ 加载 Alipay 配置（自动解密/环境变量支持）
-            
+            webApplicationBuilder.Services.AddOpenApi();//WebAPI文档生成相关的服务。
+
             if (webApplicationBuilder.Environment.IsDevelopment())
             {
                 webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")); //从开发时的本项目的“Secret Manager”的secrets.json文件获取Alipay。
@@ -430,6 +433,10 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             webApplicationBuilder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
             WebApplication webApplication = webApplicationBuilder.Build();
+            if (webApplication.Environment.IsDevelopment())
+            {
+                webApplication.MapOpenApi(); // 运行后访问https://localhost:xxxx/openapi/v1.json 即可获取本系统所有WebAPI的文档（如果需要实现V1/V2等等多个版本的WebAPI文档，需要增加代码）。安装 Microsoft.Extensions.ApiDescription.Server 包后，可在构建时自动生成 OpenAPI JSON 文件，适合 CI/CD 流水线和契约测试场景。
+            }
 
             // 因为.cshtml文件中迁移时出错，不得已在此迁移。Apply pending EF Core migrations at startup (including CreateIdentitySchema).
             // This attempts to resolve either Identity_YuQin.Data.ApplicationDbContext or
