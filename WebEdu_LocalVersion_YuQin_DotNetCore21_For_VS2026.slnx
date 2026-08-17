@@ -41,7 +41,7 @@
     <Project Path="ASPDotNet_MVC_YuQin/DevUISample/DevUIServer.csproj">
       <BuildType Solution="Development|*" Project="Release" />
     </Project>
-    <Project Path="ASPDotNet_MVC_YuQin/LoRaSample/LoRaSample.csproj">
+    <Project Path="ASPDotNet_MVC_YuQin/LoRaSample/LoRaSample.csproj" DisplayName="LoRASample">
       <BuildType Solution="Development|*" Project="Release" />
       <Platform Project="x64" />
       <Deploy />
