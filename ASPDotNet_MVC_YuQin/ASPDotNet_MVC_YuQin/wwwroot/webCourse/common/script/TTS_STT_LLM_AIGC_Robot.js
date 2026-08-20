@@ -43,7 +43,7 @@ document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest")
 function fnAgentIFrameSrc(){
     document.getElementById("IframeExternalGitHubCopilot").src="https://github.com/features/copilot" ;
     document.getElementById("IframeExternalAstron-Claw").src="https://agent.xfyun.cn/home" ;
-    document.getElementById("IframeExternalWebClaw").src="https://jvs.wuying.aliyun.com/login"  ;
+    document.getElementById("IframeExternalWebClaw").src="https://www.qianwen.com/" ;
     document.getElementById("IframeExternalSciClaw").src="https://sciclaw.cn/" ;
 }
 function fnAIGCIFrameSrc(){ //已废弃
