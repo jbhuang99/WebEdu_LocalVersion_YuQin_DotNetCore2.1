@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>dotllm</ToolCommandName>
+    <Description>Command-line tool for dotLLM — run, chat, serve, and manage GGUF models. Install with: dotnet tool install -g DotLLM.Cli</Description>
+    <PackageTags>llm;inference;cli;dotnet-tool;llama;mistral;phi;qwen;gguf;cuda</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotLLM.Core\DotLLM.Core.csproj" />
+    <ProjectReference Include="..\DotLLM.Models\DotLLM.Models.csproj" />
+    <ProjectReference Include="..\DotLLM.Cpu\DotLLM.Cpu.csproj" />
+    <ProjectReference Include="..\DotLLM.Cuda\DotLLM.Cuda.csproj" />
+    <ProjectReference Include="..\DotLLM.Engine\DotLLM.Engine.csproj" />
+    <ProjectReference Include="..\DotLLM.Tokenizers\DotLLM.Tokenizers.csproj" />
+    <ProjectReference Include="..\DotLLM.Server\DotLLM.Server.csproj" />
+    <ProjectReference Include="..\DotLLM.HuggingFace\DotLLM.HuggingFace.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" />
+    <PackageReference Include="Spectre.Console.Cli" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DotLLM.Tests.Unit" />
+  </ItemGroup>
+
+  <!-- Rename the exe to `dotllm` for both Native AOT and self-contained single-file publish.
+       Opt-in via `dotnet publish -p:PublishAot=true -r <rid>` or
+       `dotnet publish -p:PublishSingleFile=true -p:SelfContained=true -r <rid>`. -->
+  <PropertyGroup Condition="'$(PublishAot)' == 'true' or '$(PublishSingleFile)' == 'true'">
+    <AssemblyName>dotllm</AssemblyName>
+  </PropertyGroup>
+
+  <!-- Native AOT-only settings -->
+  <PropertyGroup Condition="'$(PublishAot)' == 'true'">
+    <StripSymbols>true</StripSymbols>
+    <DebugType>none</DebugType>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <!-- Spectre.Console 0.49.1 is not yet fully AOT-annotated — suppress its trim/AOT warnings.
+         Our own code is clean; types are preserved via TrimmerRoots.xml. -->
+    <NoWarn>$(NoWarn);IL2104;IL3053;IL3000;IL3002</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(PublishAot)' == 'true'">
+    <TrimmerRootDescriptor Include="TrimmerRoots.xml" />
+  </ItemGroup>
+
+  <!-- Publish cleanup: remove dependency PDBs, XML docs, and IIS assets that aren't needed
+       in the release binary output. Fires for both AOT and self-contained single-file publish.
+       Leaves only the single dotllm[.exe] + ptx/ -->
+  <Target Name="CleanPublishOutput" AfterTargets="Publish" Condition="'$(PublishAot)' == 'true' or '$(PublishSingleFile)' == 'true'">
+    <ItemGroup>
+      <_FilesToRemove Include="$(PublishDir)*.pdb" />
+      <_FilesToRemove Include="$(PublishDir)*.xml" />
+      <_FilesToRemove Include="$(PublishDir)*.runtimeconfig.json" />
+      <_FilesToRemove Include="$(PublishDir)aspnetcorev2_inprocess.dll" />
+    </ItemGroup>
+    <Delete Files="@(_FilesToRemove)" />
+  </Target>
+
+</Project>

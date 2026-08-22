@@ -1,0 +1,16 @@
+<Project>
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IsTrimmable>true</IsTrimmable>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--//调用MinVer这一Nuget包自动生成.exe/.dll的版本号。但是需要调用已经安装的独立的Git客户端（VS内置的Git组件是否可用尚未试验），在系统环境变量中配置git.exe的路径，否则MinVer无法自动生成版本号。
+    <PackageReference Include="MinVer" PrivateAssets="all" />
+-->
+  </ItemGroup>
+</Project>

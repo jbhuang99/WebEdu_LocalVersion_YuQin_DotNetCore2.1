@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "DotLLM.Sample.Server": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      //"applicationUrl": "https://localhost:50419;http://localhost:50420"
+      "applicationUrl": "http://localhost:1234/"
+    }
+  }
+}

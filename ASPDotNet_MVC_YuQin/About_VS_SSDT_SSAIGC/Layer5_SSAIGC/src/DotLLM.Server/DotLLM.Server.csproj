@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <!-- Library, not Exe. DotLLM.Server is consumed in-process by DotLLM.Cli's serve
+         command and by any consumer app that wants to host the OpenAI-compatible API
+         inside its own ASP.NET Core process. The Microsoft.NET.Sdk.Web SDK is kept
+         for the WebApplication / endpoint types. -->
+    <OutputType>Library</OutputType>
+    <!-- Microsoft.NET.Sdk.Web defaults IsPackable=false regardless of OutputType.
+         Force it on so consumers can reference this library from their own ASP.NET hosts. -->
+    <IsPackable>true</IsPackable>
+    <Description>OpenAI-compatible HTTP API server for dotLLM — /v1/chat/completions, /v1/completions, streaming, tool calling, and a built-in chat UI. Reference this package to host the API inside your own ASP.NET Core app.</Description>
+    <!-- DTOs are self-documenting via [JsonPropertyName] attributes -->
+    <!-- IL2026: MapGet/MapPost use reflection at build time but Request Delegate Generator
+         handles them at publish time when PublishAot=true -->
+    <NoWarn>CS1591;IL2026</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DotLLM.Tests.Unit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\index.html" />
+    <EmbeddedResource Include="wwwroot\app.js" />
+    <EmbeddedResource Include="wwwroot\app.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotLLM.Core\DotLLM.Core.csproj" />
+    <ProjectReference Include="..\DotLLM.Engine\DotLLM.Engine.csproj" />
+    <ProjectReference Include="..\DotLLM.Models\DotLLM.Models.csproj" />
+    <ProjectReference Include="..\DotLLM.Tokenizers\DotLLM.Tokenizers.csproj" />
+    <ProjectReference Include="..\DotLLM.Cpu\DotLLM.Cpu.csproj" />
+    <ProjectReference Include="..\DotLLM.Cuda\DotLLM.Cuda.csproj" />
+    <ProjectReference Include="..\DotLLM.HuggingFace\DotLLM.HuggingFace.csproj" />
+    <ProjectReference Include="..\DotLLM.Telemetry\DotLLM.Telemetry.csproj" />
+  </ItemGroup>
+
+
+</Project>

@@ -41,7 +41,7 @@
     <Project Path="ASPDotNet_MVC_YuQin/DevUISample/DevUIServer.csproj">
       <BuildType Solution="Development|*" Project="Release" />
     </Project>
-    <Project Path="ASPDotNet_MVC_YuQin/LoRaSample/LoRaSample.csproj" DisplayName="LoRASample">
+    <Project Path="ASPDotNet_MVC_YuQin/LoRaSample/LoRaSample.csproj">
       <BuildType Solution="Development|*" Project="Release" />
       <Platform Project="x64" />
       <Deploy />
@@ -105,6 +105,45 @@
     </Project>
   </Folder>
   <Folder Name="/ASPDotNet_MVC_YuQin/VS-SSDT_SS/Layer5_SSAIGC/" />
+  <Folder Name="/ASPDotNet_MVC_YuQin/VS_SSDT_SSAIGC/" />
+  <Folder Name="/ASPDotNet_MVC_YuQin/VS_SSDT_SSAIGC/Layer5_SSAIGC/">
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/samples/DotLLM.Sample.Server/DotLLM.Sample.Server.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.Cli/DotLLM.Cli.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.Core/DotLLM.Core.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.Cpu/DotLLM.Cpu.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.Cuda/DotLLM.Cuda.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.Diagnostics/DotLLM.Diagnostics.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.Engine/DotLLM.Engine.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.HuggingFace/DotLLM.HuggingFace.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.Models/DotLLM.Models.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.Server/DotLLM.Server.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.Telemetry/DotLLM.Telemetry.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/About_VS_SSDT_SSAIGC/Layer5_SSAIGC/src/DotLLM.Tokenizers/DotLLM.Tokenizers.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
+  </Folder>
   <Folder Name="/ReadMe-DevelopingTimeRunningThisSolution-开发时运行这个解决方案的说明-请用Word读写该HTML文件/">
     <File Path="OpenClaw-Skills-文档.md" />
     <File Path="ReadMe-DevelopingTimeRunningThisSolution.htm" />
