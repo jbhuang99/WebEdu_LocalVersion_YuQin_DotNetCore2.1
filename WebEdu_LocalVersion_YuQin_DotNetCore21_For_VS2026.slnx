@@ -35,12 +35,6 @@
     <Project Path="ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin.csproj">
       <BuildType Solution="Development|*" Project="Release" />
     </Project>
-    <Project Path="ASPDotNet_MVC_YuQin/DevUILocalLLMSample/DevUILocalLLMServer.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
-    <Project Path="ASPDotNet_MVC_YuQin/DevUISample/DevUIServer.csproj">
-      <BuildType Solution="Development|*" Project="Release" />
-    </Project>
     <Project Path="ASPDotNet_MVC_YuQin/LoRaSample/LoRaSample.csproj">
       <BuildType Solution="Development|*" Project="Release" />
       <Platform Project="x64" />
