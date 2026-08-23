@@ -19,7 +19,7 @@ for (int i = 1; i < args.Length - 1; i++)
 **/
 String modelPath = "C:\\Users\\1\\.dotllm\\models\\Qwen2.5-1.5B-Instruct-Q8_0.gguf"; // Path to a GGUF model file
 Int32 port = 1234; // Port to listen on
-var options = new ServerOptions
+ServerOptions serverOptions = new ServerOptions
 {
     Model = modelPath,
     Port = port,
@@ -27,17 +27,16 @@ var options = new ServerOptions
 };
 
 Console.WriteLine($"Loading model: {modelPath}");
-var resolvedPath = ServerStartup.ResolveModelPath(options.Model, options.Quant)
-    ?? modelPath;
-
-var state = ServerStartup.LoadModel(resolvedPath, options);
-var app = ServerStartup.BuildApp(state, args, serveUi: true);
-
-var url = $"http://{options.Host}:{options.Port}";
-Console.WriteLine($"Model: {state.Config!.Architecture}, {state.Config.NumLayers} layers");
+//var resolvedPath = ServerStartup.ResolveModelPath(serverOptions.Model, serverOptions.Quant) ?? modelPath;
+String? resolvedPath = ServerStartup.ResolveModelPath(serverOptions.Model, serverOptions.Quant) ?? modelPath;
+ServerState? serverState = ServerStartup.LoadModel(resolvedPath, serverOptions);
+WebApplication? webApplication = ServerStartup.BuildApp(serverState, args, serveUi: true);
+String? url = $"http://{serverOptions.Host}:{serverOptions.Port}";
+//String? url = $"http://{serverOptions.Host}:{serverOptions.Port}/WebServerFormedYuQinLocalLLMEntry";
+Console.WriteLine($"Model: {serverState.Config!.Architecture}, {serverState.Config.NumLayers} layers");
 Console.WriteLine($"Server listening on {url}");
 Console.WriteLine("Endpoints: /v1/chat/completions, /v1/completions, /v1/models");
 
-app.Run(url);
-state.Dispose();
+webApplication.Run(url);
+serverState.Dispose();
 return 0;

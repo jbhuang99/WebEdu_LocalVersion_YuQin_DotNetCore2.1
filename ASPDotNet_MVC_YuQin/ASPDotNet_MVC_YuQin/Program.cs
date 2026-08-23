@@ -316,6 +316,8 @@ using System.Text.RegularExpressions;
 //using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
 using static IronPython.Modules._ast;
 using Asp.Versioning;
+//using DotLLM.Engine;
+//using DotLLM.Server;
 //using Asp.Versioning.Mvc.ApiExplorer;
 /**
 using Ardalis.ListStartupServices;
@@ -351,6 +353,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             WebApplicationBuilder webApplicationBuilder = WebApplication.CreateBuilder(webApplicationOptions);
             **/
 
+
             WebApplicationBuilder webApplicationBuilder = WebApplication.CreateBuilder(args);
             webApplicationBuilder.Services.AddApiVersioning(options =>
             {
@@ -381,7 +384,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             else
             {
                 webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")); //从交付时的软件的appsettings.json文件获取ApiKey。
-               //  Console.Write(webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")));
+                                                                                                                                   //  Console.Write(webApplicationBuilder.Services.Configure<AlipayOptions>(webApplicationBuilder.Configuration.GetSection("Alipay")));
             }
 
             // ✅ 注册 Alipay 客户端（单例，线程安全）
@@ -393,20 +396,20 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                     options.AppId,
                     options.PrivateKey,
                     options.Format,
-                    options.Version,                    
+                    options.Version,
                     options.SignType,
                     options.AlipayPublicKey,
                     options.Charset);
             });
             //**/
-          
+
             /** 
             webApplicationBuilder.Services.AddDatabaseContexts(webApplicationBuilder.Environment, webApplicationBuilder.Configuration); //错误，只好暂时注释了： Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1] An unhandled exception has occurred while executing the request. System.InvalidOperationException: Unable to resolve service for type 'Microsoft.eShopWeb.Web.Services.ICatalogViewModelService' while attempting to activate 'Microsoft.eShopWeb.Web.Pages.IndexModel'.
            **/
             // Add services to the container.
             //for Identity所需的SQL数据库
             String connectionString = webApplicationBuilder.Configuration.GetConnectionString("IdentityConnection") ?? throw new InvalidOperationException("Connection string 'IdentityConnection' not found.");
-           //webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options =>             options.UseSqlServer(connectionString)).AddSingleton<ApplicationDbContext>();//不允许使用AddSingleton<ApplicationDbContext>()，因为DbContext是一个轻量级的对象，设计为每个请求创建一个实例，并且不应该在多个线程之间共享。使用AddSingleton会导致线程安全问题和数据不一致的问题。正确的做法是使用AddScoped<ApplicationDbContext>()，这样每个请求都会获得一个新的DbContext实例，并且在请求结束时会自动释放资源。
+            //webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options =>             options.UseSqlServer(connectionString)).AddSingleton<ApplicationDbContext>();//不允许使用AddSingleton<ApplicationDbContext>()，因为DbContext是一个轻量级的对象，设计为每个请求创建一个实例，并且不应该在多个线程之间共享。使用AddSingleton会导致线程安全问题和数据不一致的问题。正确的做法是使用AddScoped<ApplicationDbContext>()，这样每个请求都会获得一个新的DbContext实例，并且在请求结束时会自动释放资源。
             webApplicationBuilder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
             webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -420,15 +423,15 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             //for CurriculumSelection所需的SQL数据库
 
             String connectionStringPseudoDataCreationForFiveLayerMVC_TPH = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataCreationForFiveLayerMVC_TPH") ?? throw new InvalidOperationException("Connection string 'PseudoDataCreationForFiveLayerMVC_TPH' not found.");
-            webApplicationBuilder.Services.AddDbContext< CurriculumSelection.Data.CurriculumSelectionDbContext >(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPH));
+            webApplicationBuilder.Services.AddDbContext<CurriculumSelection.Data.CurriculumSelectionDbContext>(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPH));
 
             String connectionStringPseudoDataCreationForFiveLayerMVC_TPT = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataCreationForFiveLayerMVC_TPT") ?? throw new InvalidOperationException("Connection string 'PseudoDataCreationForFiveLayerMVC_TPT' not found.");
-            webApplicationBuilder.Services.AddDbContext< CurriculumSelection.DB.Data.CurriculumSelectionDbContext >(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPT));
+            webApplicationBuilder.Services.AddDbContext<CurriculumSelection.DB.Data.CurriculumSelectionDbContext>(options => options.UseSqlServer(connectionStringPseudoDataCreationForFiveLayerMVC_TPT));
 
             String connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper = webApplicationBuilder.Configuration.GetConnectionString("PseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper") ?? throw new InvalidOperationException("Connection string 'PseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper' not found.");
             webApplicationBuilder.Services.AddDbContext<CurriculumSelectionDWContext>(options => options.UseSqlServer(connectionStringPseudoDataWarehouseCreationForFiveLayerMVC_TPH_TPTImproper));
             //
-            webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();          
+            webApplicationBuilder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             webApplicationBuilder.Services.ConfigureApplicationCookie(options =>
             {
@@ -521,7 +524,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             webApplication.MapRazorPages();
 
             ///**新增，为了触发创建数据库，初始化数据库数据。//也可移动成为控制器Controller中的代码。
-           Program.CreateDbIfNotExists(webApplication);
+            Program.CreateDbIfNotExists(webApplication);
             // **/
 
             webApplication.Run();
@@ -536,7 +539,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 {
                     CatalogDb_YuQin.DB.Data.CatalogDb_YuQinDbContext catalogDb_YuQinDbContext = iServiceProvider.GetRequiredService<CatalogDb_YuQin.DB.Data.CatalogDb_YuQinDbContext>();
                     catalogDb_YuQinDbContext.Database.EnsureCreated();
-                   // CurriculumSelection.Data.DbInitializer.Initialize(curriculumSelectionDbContext);
+                    // CurriculumSelection.Data.DbInitializer.Initialize(curriculumSelectionDbContext);
                 }
                 catch (Exception exception)
                 {
@@ -545,9 +548,30 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 }
             }
         }
-        //////
-
+        /**DotLLM的v1/chat/completions等等Endpoints与Foundry的v1/chat/completions等等Endpoints冲突，有待解决。
+        private static void CongigureLLMServer(WebApplicationBuilder webApplicationBuilder)
+        {
+            String modelPath = "C:\\Users\\1\\.dotllm\\models\\Qwen2.5-1.5B-Instruct-Q8_0.gguf"; // Path to a GGUF model file
+            Int32 port = 1234; // Port to listen on
+            ServerOptions serverOptions = new ServerOptions
+            {
+                Model = modelPath,
+                Port = port,
+                Warmup = WarmupOptions.Disabled,
+            };
+            Console.WriteLine($"Loading model: {modelPath}");
+            String? resolvedPath = ServerStartup.ResolveModelPath(serverOptions.Model, serverOptions.Quant) ?? modelPath;
+            ServerState? serverState = ServerStartup.LoadModel(resolvedPath, serverOptions);
+            WebApplication? webApplication = ServerStartup.BuildApp(serverState, webApplicationBuilder.Args, serveUi: true);
+            //String? url = $"http://{serverOptions.Host}:{serverOptions.Port}";
+            Console.WriteLine($"Model: {serverState.Config!.Architecture}, {serverState.Config.NumLayers} layers");
+            // Console.WriteLine($"Server listening on {url}");
+            Console.WriteLine("Endpoints: /v1/chat/completions, /v1/completions, /v1/models");
+            serverState.Dispose();
+        }
+        **/
     }
-}
+        
+    }
 
 
