@@ -19,6 +19,7 @@
   <ItemGroup>
     <Content Remove="wwwroot\app.css" />
     <Content Remove="wwwroot\app.js" />
+    <Content Remove="wwwroot\index-origin.html" />
     <Content Remove="wwwroot\index.html" />
   </ItemGroup>
 
@@ -29,6 +30,7 @@
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\app.css" />
     <EmbeddedResource Include="wwwroot\app.js" />
+    <EmbeddedResource Include="wwwroot\index-origin.html" />
     <EmbeddedResource Include="wwwroot\index.html" />
   </ItemGroup>
 

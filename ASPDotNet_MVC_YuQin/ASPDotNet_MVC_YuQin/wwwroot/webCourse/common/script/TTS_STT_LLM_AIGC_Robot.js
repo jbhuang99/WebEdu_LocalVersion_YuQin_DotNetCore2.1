@@ -1678,10 +1678,10 @@ window.speechSynthesis.cancel();
             document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").style.display="block";
             document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMInternal").textContent="▲";
             document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMExternal").textContent="▲";
+           //document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").src = "http://localhost:1234/"; 
+            document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").src = "http://localhost:1234/";
            //document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").src = "https://localhost:8443/devui/?entity_id=Assistant";
-           //document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").src = "https://localhost:8443/devui/?entity_id=Assistant";
-            document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").src = "http://localhost:1234/"; 
-            document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").src = "http://localhost:1234/";
+           document.getElementById("iframeForWebGeneralAgentSkillChatLLMExternal").src = "https://localhost:8443/devui/?entity_id=Assistant";
             }
       else{
             document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display="none";

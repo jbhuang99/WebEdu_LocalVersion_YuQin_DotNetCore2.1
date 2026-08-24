@@ -4,7 +4,8 @@
     "maf-devui-server": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
+      // "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "devui",
       "applicationUrl": "https://localhost:8443;http://localhost:8080",
       "environmentVariables": {

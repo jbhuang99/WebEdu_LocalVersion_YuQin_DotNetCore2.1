@@ -548,7 +548,7 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
                 }
             }
         }
-        /**DotLLM的v1/chat/completions等等Endpoints与Foundry的v1/chat/completions等等Endpoints冲突，有待解决。
+        /**
         private static void CongigureLLMServer(WebApplicationBuilder webApplicationBuilder)
         {
             String modelPath = "C:\\Users\\1\\.dotllm\\models\\Qwen2.5-1.5B-Instruct-Q8_0.gguf"; // Path to a GGUF model file
@@ -570,8 +570,9 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
             serverState.Dispose();
         }
         **/
+
     }
-        
-    }
+
+}
 
 

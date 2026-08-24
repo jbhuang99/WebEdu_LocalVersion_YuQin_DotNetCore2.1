@@ -2,7 +2,8 @@
   "profiles": {
     "DotLLM.Sample.Server": {
       "commandName": "Project",
-      "launchBrowser": true,
+      // "launchBrowser": true,
+      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
