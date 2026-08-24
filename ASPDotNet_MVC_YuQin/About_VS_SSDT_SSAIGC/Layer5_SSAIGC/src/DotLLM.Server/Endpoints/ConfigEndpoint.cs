@@ -4,15 +4,15 @@ using DotLLM.Server.Models;
 namespace DotLLM.Server.Endpoints;
 
 /// <summary>
-/// GET/POST /v1/config — read or update mutable sampling defaults.
+/// GET/POST /DotLLM/v1/config — read or update mutable sampling defaults.
 /// </summary>
 public static class ConfigEndpoint
 {
     public static void Map(WebApplication app)
     {
-        app.MapGet("/v1/config", (ServerState state) => PropsEndpoint.ToDto(state.SamplingDefaults));
+        app.MapGet("/DotLLM/v1/config", (ServerState state) => PropsEndpoint.ToDto(state.SamplingDefaults));
 
-        app.MapPost("/v1/config", async (HttpContext httpContext, ServerState state) =>
+        app.MapPost("/DotLLM/v1/config", async (HttpContext httpContext, ServerState state) =>
         {
             // Partial update: only fields present in the JSON body are applied.
             using var doc = await JsonDocument.ParseAsync(httpContext.Request.Body, cancellationToken: httpContext.RequestAborted);
@@ -33,7 +33,7 @@ public static class ConfigEndpoint
             return Results.Ok(PropsEndpoint.ToDto(state.SamplingDefaults));
         });
 
-        app.MapPost("/v1/cache/clear", (ServerState state) =>
+        app.MapPost("/DotLLM/v1/cache/clear", (ServerState state) =>
         {
             state.PrefixCache?.Clear();
             return Results.Ok(new StatusResponse { Status = "cleared" });

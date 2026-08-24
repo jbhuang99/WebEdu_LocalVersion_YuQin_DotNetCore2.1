@@ -4,12 +4,12 @@ using DotLLM.Server.Models;
 namespace DotLLM.Server.Endpoints;
 
 /// <summary>
-/// GET /props — server configuration, model info, and sampling defaults.
+/// GET /DotLLM/props — server configuration, model info, and sampling defaults.
 /// </summary>
 public static class PropsEndpoint
 {
     public static void Map(WebApplication app) =>
-        app.MapGet("/props", (ServerState state) =>
+        app.MapGet("/DotLLM/props", (ServerState state) =>
         {
             var threading = new ThreadingConfig(state.Options.Threads, state.Options.DecodeThreads);
             return new PropsResponse

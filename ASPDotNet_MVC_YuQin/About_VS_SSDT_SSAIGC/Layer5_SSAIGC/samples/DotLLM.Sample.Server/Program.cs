@@ -35,7 +35,7 @@ String? url = $"http://{serverOptions.Host}:{serverOptions.Port}";
 //String? url = $"http://{serverOptions.Host}:{serverOptions.Port}/WebServerFormedYuQinLocalLLMEntry";
 Console.WriteLine($"Model: {serverState.Config!.Architecture}, {serverState.Config.NumLayers} layers");
 Console.WriteLine($"Server listening on {url}");
-Console.WriteLine("Endpoints: /v1/chat/completions, /v1/completions, /v1/models");
+Console.WriteLine("Endpoints: /DotLLM/v1/chat/completions, /DotLLM/v1/completions, /DotLLM/v1/models");
 
 webApplication.Run(url);
 serverState.Dispose();

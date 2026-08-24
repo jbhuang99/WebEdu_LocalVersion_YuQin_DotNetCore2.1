@@ -6,7 +6,7 @@
 
 const state = {
     messages: [],       // {role, content, stats?, rawPrompt?, rawResponse?}
-    config: null,       // from /props
+    config: null,       // from /DotLLM/props
     isGenerating: false,
     verbose: true,
     showLogprobs: false,
@@ -136,17 +136,17 @@ const modalSpeculativeKVal = $('#modal-speculative-k-val');
 // ── API LAYER ──
 
 async function fetchProps() {
-    const res = await fetch('/props');
+    const res = await fetch('/DotLLM/props');
     return res.json();
 }
 
 async function fetchAvailableModels() {
-    const res = await fetch('/v1/models/available');
+    const res = await fetch('/DotLLM/v1/models/available');
     return res.json();
 }
 
 async function inspectModel(fullPath) {
-    const res = await fetch(`/v1/models/inspect?path=${encodeURIComponent(fullPath)}`);
+    const res = await fetch(`/DotLLM/v1/models/inspect?path=${encodeURIComponent(fullPath)}`);
     return res.ok ? res.json() : null;
 }
 
@@ -161,7 +161,7 @@ async function loadModel(model, quant, opts) {
     if (opts?.decodeThreads) body.decode_threads = opts.decodeThreads;
     if (opts?.speculativeModel) body.speculative_model = opts.speculativeModel;
     if (opts?.speculativeK) body.speculative_k = opts.speculativeK;
-    const res = await fetch('/v1/models/load', {
+    const res = await fetch('/DotLLM/v1/models/load', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -170,7 +170,7 @@ async function loadModel(model, quant, opts) {
 }
 
 async function updateConfig(params) {
-    const res = await fetch('/v1/config', {
+    const res = await fetch('/DotLLM/v1/config', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(params),
@@ -205,7 +205,7 @@ async function* streamChat(messages, params) {
         body.top_logprobs = params.top_logprobs || 5;
     }
 
-    const response = await fetch('/v1/chat/completions', {
+    const response = await fetch('/DotLLM/v1/chat/completions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -866,7 +866,7 @@ function resetToolsJson() {
 // ── MODEL LOAD MODAL ──
 
 // Modal-local state
-let modalModels = [];      // flat list from /v1/models/available
+let modalModels = [];      // flat list from /DotLLM/v1/models/available
 let modalInspect = null;   // inspect result for selected model
 let modalSelectedFullPath = null;
 
@@ -1465,7 +1465,7 @@ function handleClear() {
     welcomeEl.classList.remove('hidden');
     saveConversation();
     // Clear server-side prompt cache so stale KV-cache state isn't reused
-    fetch('/v1/cache/clear', { method: 'POST' }).catch(() => {});
+    fetch('/DotLLM/v1/cache/clear', { method: 'POST' }).catch(() => {});
 }
 
 // ── EXPORT ──

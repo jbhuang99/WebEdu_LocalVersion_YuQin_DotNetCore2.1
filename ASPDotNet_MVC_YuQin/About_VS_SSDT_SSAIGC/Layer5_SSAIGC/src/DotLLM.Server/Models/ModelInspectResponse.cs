@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace DotLLM.Server.Models;
 
 /// <summary>
-/// Response for <c>GET /v1/models/inspect</c> — lightweight GGUF metadata.
+/// Response for <c>GET /DotLLM/v1/models/inspect</c> — lightweight GGUF metadata.
 /// </summary>
 public sealed record ModelInspectResponse
 {

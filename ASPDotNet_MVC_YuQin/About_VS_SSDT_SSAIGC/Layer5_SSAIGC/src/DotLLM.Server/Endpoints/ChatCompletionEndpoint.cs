@@ -7,7 +7,7 @@ using DotLLM.Tokenizers;
 namespace DotLLM.Server.Endpoints;
 
 /// <summary>
-/// POST /v1/chat/completions — OpenAI-compatible chat completion endpoint.
+/// POST /DotLLM/v1/chat/completions — OpenAI-compatible chat completion endpoint.
 /// Supports both non-streaming (JSON response) and streaming (SSE).
 /// </summary>
 public static class ChatCompletionEndpoint
@@ -16,7 +16,7 @@ public static class ChatCompletionEndpoint
         ["<|im_end|>", "<|eot_id|>", "<|eom_id|>", "<|end|>", "</s>", "</tool_call>"];
 
     public static void Map(WebApplication app) =>
-        app.MapPost("/v1/chat/completions", HandleAsync);
+        app.MapPost("/DotLLM/v1/chat/completions", HandleAsync);
 
     private static async Task HandleAsync(
         ChatCompletionRequest request,

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace DotLLM.Server.Models;
 
 /// <summary>
-/// Response for <c>GET /props</c> — server configuration and model info.
+/// Response for <c>GET /DotLLM/props</c> — server configuration and model info.
 /// </summary>
 public sealed record PropsResponse
 {
@@ -53,7 +53,7 @@ public sealed record PropsResponse
 }
 
 /// <summary>
-/// Sampling parameter defaults (used in both <c>/props</c> and <c>/v1/config</c>).
+/// Sampling parameter defaults (used in both <c>/DotLLM/props</c> and <c>/DotLLM/v1/config</c>).
 /// </summary>
 public sealed record SamplingDefaultsDto
 {

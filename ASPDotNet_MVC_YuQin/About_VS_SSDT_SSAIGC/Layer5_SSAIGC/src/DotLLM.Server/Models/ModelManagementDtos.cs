@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace DotLLM.Server.Models;
 
 /// <summary>
-/// Response for <c>GET /v1/models/available</c> — locally downloaded models.
+/// Response for <c>GET /DotLLM/v1/models/available</c> — locally downloaded models.
 /// </summary>
 public sealed record AvailableModelsResponse
 {
@@ -30,7 +30,7 @@ public sealed record AvailableModelDto
 }
 
 /// <summary>
-/// Request for <c>POST /v1/models/load</c> — load/swap a model.
+/// Request for <c>POST /DotLLM/v1/models/load</c> — load/swap a model.
 /// </summary>
 public sealed record ModelLoadRequest
 {
@@ -79,7 +79,7 @@ public sealed record ModelLoadRequest
 }
 
 /// <summary>
-/// Response for <c>POST /v1/models/load</c>.
+/// Response for <c>POST /DotLLM/v1/models/load</c>.
 /// </summary>
 public sealed record ModelLoadResponse
 {

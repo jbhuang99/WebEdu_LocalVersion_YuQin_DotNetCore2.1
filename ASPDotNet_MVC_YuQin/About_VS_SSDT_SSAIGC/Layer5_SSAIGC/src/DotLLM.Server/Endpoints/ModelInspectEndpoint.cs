@@ -5,14 +5,14 @@ using DotLLM.Server.Models;
 namespace DotLLM.Server.Endpoints;
 
 /// <summary>
-/// GET /v1/models/inspect?path=... — read GGUF metadata without loading the model.
+/// GET /DotLLM/v1/models/inspect?path=... — read GGUF metadata without loading the model.
 /// Returns layer count, architecture, and file size for UI configuration.
 /// Path is restricted to the configured model directory to prevent path traversal.
 /// </summary>
 public static class ModelInspectEndpoint
 {
     public static void Map(WebApplication app) =>
-        app.MapGet("/v1/models/inspect", (string path, ServerState state) =>
+        app.MapGet("/DotLLM/v1/models/inspect", (string path, ServerState state) =>
         {
             if (string.IsNullOrEmpty(path))
                 return Results.BadRequest(new ErrorResponse { Error = "Path is required" });

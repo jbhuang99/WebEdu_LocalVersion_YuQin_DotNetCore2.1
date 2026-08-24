@@ -6,13 +6,13 @@ using DotLLM.Server.Models;
 namespace DotLLM.Server.Endpoints;
 
 /// <summary>
-/// POST /v1/completions — OpenAI-compatible raw completion endpoint (no chat template).
+/// POST /DotLLM/v1/completions — OpenAI-compatible raw completion endpoint (no chat template).
 /// </summary>
 public static class CompletionEndpoint
 {
 
     public static void Map(WebApplication app) =>
-        app.MapPost("/v1/completions", HandleAsync);
+        app.MapPost("/DotLLM/v1/completions", HandleAsync);
 
     private static async Task HandleAsync(
         CompletionRequest request,

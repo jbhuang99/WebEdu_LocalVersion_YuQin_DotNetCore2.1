@@ -3,13 +3,13 @@ using DotLLM.Server.Models;
 namespace DotLLM.Server.Endpoints;
 
 /// <summary>
-/// POST /v1/tokenize and /v1/detokenize — extension endpoints for token inspection.
+/// POST /DotLLM/v1/tokenize and /DotLLM/v1/detokenize — extension endpoints for token inspection.
 /// </summary>
 public static class TokenizeEndpoint
 {
     public static void Map(WebApplication app)
     {
-        app.MapPost("/v1/tokenize", (TokenizeRequest request, ServerState state) =>
+        app.MapPost("/DotLLM/v1/tokenize", (TokenizeRequest request, ServerState state) =>
         {
             if (state.Tokenizer is not { } tokenizer)
                 return Results.StatusCode(503);
@@ -24,7 +24,7 @@ public static class TokenizeEndpoint
             });
         });
 
-        app.MapPost("/v1/detokenize", (DetokenizeRequest request, ServerState state) =>
+        app.MapPost("/DotLLM/v1/detokenize", (DetokenizeRequest request, ServerState state) =>
         {
             if (state.Tokenizer is not { } tokenizer)
                 return Results.StatusCode(503);

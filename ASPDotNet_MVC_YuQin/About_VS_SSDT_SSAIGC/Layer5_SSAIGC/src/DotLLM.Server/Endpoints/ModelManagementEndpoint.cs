@@ -4,14 +4,14 @@ using DotLLM.Server.Models;
 namespace DotLLM.Server.Endpoints;
 
 /// <summary>
-/// GET /v1/models/available — list locally downloaded models.
-/// POST /v1/models/load — hot-swap the loaded model.
+/// GET /DotLLM/v1/models/available — list locally downloaded models.
+/// POST /DotLLM/v1/models/load — hot-swap the loaded model.
 /// </summary>
 public static class ModelManagementEndpoint
 {
     public static void Map(WebApplication app)
     {
-        app.MapGet("/v1/models/available", () =>
+        app.MapGet("/DotLLM/v1/models/available", () =>
         {
             var models = HuggingFaceDownloader.ListLocalModels();
             return new AvailableModelsResponse
@@ -26,7 +26,7 @@ public static class ModelManagementEndpoint
             };
         });
 
-        app.MapPost("/v1/models/load", async (ModelLoadRequest request, ServerState state, CancellationToken ct) =>
+        app.MapPost("/DotLLM/v1/models/load", async (ModelLoadRequest request, ServerState state, CancellationToken ct) =>
         {
             var resolvedPath = ServerStartup.ResolveModelPath(request.Model, request.Quant);
             if (resolvedPath is null)

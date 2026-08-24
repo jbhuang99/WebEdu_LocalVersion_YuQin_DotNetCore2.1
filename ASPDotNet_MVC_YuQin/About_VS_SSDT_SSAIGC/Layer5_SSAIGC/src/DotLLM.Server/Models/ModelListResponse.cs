@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace DotLLM.Server.Models;
 
 /// <summary>
-/// OpenAI-compatible model list response for GET /v1/models.
+/// OpenAI-compatible model list response for GET /DotLLM/v1/models.
 /// </summary>
 public sealed record ModelListResponse
 {

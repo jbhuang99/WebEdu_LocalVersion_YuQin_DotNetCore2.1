@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace DotLLM.Server.Models;
 
 /// <summary>
-/// Request for the /v1/tokenize extension endpoint.
+/// Request for the /DotLLM/v1/tokenize extension endpoint.
 /// </summary>
 public sealed record TokenizeRequest
 {
@@ -15,7 +15,7 @@ public sealed record TokenizeRequest
 }
 
 /// <summary>
-/// Response for the /v1/tokenize extension endpoint.
+/// Response for the /DotLLM/v1/tokenize extension endpoint.
 /// </summary>
 public sealed record TokenizeResponse
 {
@@ -30,7 +30,7 @@ public sealed record TokenizeResponse
 }
 
 /// <summary>
-/// Request for the /v1/detokenize extension endpoint.
+/// Request for the /DotLLM/v1/detokenize extension endpoint.
 /// </summary>
 public sealed record DetokenizeRequest
 {
@@ -42,7 +42,7 @@ public sealed record DetokenizeRequest
 }
 
 /// <summary>
-/// Response for the /v1/detokenize extension endpoint.
+/// Response for the /DotLLM/v1/detokenize extension endpoint.
 /// </summary>
 public sealed record DetokenizeResponse
 {

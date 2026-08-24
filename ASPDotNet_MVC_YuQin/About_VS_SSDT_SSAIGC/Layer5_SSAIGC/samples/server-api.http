@@ -10,26 +10,26 @@
 ### ──────────────────────────────────────────────────
 
 ### Health check
-GET {{baseUrl}}/health
+GET {{baseUrl}}/DotLLM/health
 
 ###
 
 ### Readiness check (200 = model loaded, 503 = still loading)
-GET {{baseUrl}}/ready
+GET {{baseUrl}}/DotLLM/ready
 
 ### ──────────────────────────────────────────────────
 ### Models
 ### ──────────────────────────────────────────────────
 
 ### List loaded models
-GET {{baseUrl}}/v1/models
+GET {{baseUrl}}/DotLLM/v1/models
 
 ### ──────────────────────────────────────────────────
 ### Tokenize / Detokenize
 ### ──────────────────────────────────────────────────
 
 ### Tokenize text → token IDs
-POST {{baseUrl}}/v1/tokenize
+POST {{baseUrl}}/DotLLM/v1/tokenize
 Content-Type: application/json
 
 {
@@ -39,7 +39,7 @@ Content-Type: application/json
 ###
 
 ### Detokenize token IDs → text
-POST {{baseUrl}}/v1/detokenize
+POST {{baseUrl}}/DotLLM/v1/detokenize
 Content-Type: application/json
 
 {
@@ -51,7 +51,7 @@ Content-Type: application/json
 ### ──────────────────────────────────────────────────
 
 ### Simple chat (non-streaming)
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -65,7 +65,7 @@ Content-Type: application/json
 ###
 
 ### Chat with system prompt
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -80,7 +80,7 @@ Content-Type: application/json
 ###
 
 ### Multi-turn conversation
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -98,7 +98,7 @@ Content-Type: application/json
 ### ──────────────────────────────────────────────────
 
 ### Streaming chat (Server-Sent Events)
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -115,7 +115,7 @@ Content-Type: application/json
 ### ──────────────────────────────────────────────────
 
 ### Creative sampling (high temperature + top-p)
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -131,7 +131,7 @@ Content-Type: application/json
 ###
 
 ### With stop sequences
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -148,7 +148,7 @@ Content-Type: application/json
 ### ──────────────────────────────────────────────────
 
 ### JSON mode — guaranteed valid JSON output
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -163,7 +163,7 @@ Content-Type: application/json
 ###
 
 ### JSON Schema — output conforms to specific schema
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -194,7 +194,7 @@ Content-Type: application/json
 ### ──────────────────────────────────────────────────
 
 ### Tool calling (auto — model decides)
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -239,7 +239,7 @@ Content-Type: application/json
 ###
 
 ### Multi-turn with tool results
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -285,7 +285,7 @@ Content-Type: application/json
 ### ──────────────────────────────────────────────────
 
 ### Raw text completion
-POST {{baseUrl}}/v1/completions
+POST {{baseUrl}}/DotLLM/v1/completions
 Content-Type: application/json
 
 {
@@ -297,7 +297,7 @@ Content-Type: application/json
 ###
 
 ### Raw completion — streaming
-POST {{baseUrl}}/v1/completions
+POST {{baseUrl}}/DotLLM/v1/completions
 Content-Type: application/json
 
 {
@@ -312,7 +312,7 @@ Content-Type: application/json
 ### ──────────────────────────────────────────────────
 
 ### Chat with logprobs (non-streaming) — per-token log-probabilities + top-5 alternatives
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -328,7 +328,7 @@ Content-Type: application/json
 ###
 
 ### Chat with logprobs (streaming) — each SSE chunk includes logprobs.content
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -345,7 +345,7 @@ Content-Type: application/json
 ###
 
 ### Logprobs with sampling — chosen token may differ from argmax (sampling effect)
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
@@ -363,7 +363,7 @@ Content-Type: application/json
 ###
 
 ### Raw completion with logprobs
-POST {{baseUrl}}/v1/completions
+POST {{baseUrl}}/DotLLM/v1/completions
 Content-Type: application/json
 
 {
@@ -377,7 +377,7 @@ Content-Type: application/json
 ###
 
 ### Logprobs without top alternatives (just per-token logprob)
-POST {{baseUrl}}/v1/chat/completions
+POST {{baseUrl}}/DotLLM/v1/chat/completions
 Content-Type: application/json
 
 {
