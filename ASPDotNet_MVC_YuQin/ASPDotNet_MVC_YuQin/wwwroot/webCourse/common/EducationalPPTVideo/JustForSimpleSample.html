@@ -54,8 +54,9 @@
 //const hlsUrl = 'https://media.w3.org/2010/05/sintel/trailer.mp4';
 //const hlsUrl = 'https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4';
 //const hlsUrl = 'http://www.w3school.com.cn/i/movie.mp4';
-const hlsUrl = '../../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.mp4';
-
+//const hlsUrl =baseUrl + '../../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.mp4';
+const baseUrl = window.location.href.substring(0,window.location.href.indexOf("/webCourse/"));//交付部署github.io时，使用相对路径加载视频资源.
+const hlsUrl =baseUrl + '/webCourse/options/Accuracy-Similarity/EducationalTechnologyFromAIGC.mp4';
         await player.load(hlsUrl);
         console.log('HLS流加载成功');
       } catch (e) {

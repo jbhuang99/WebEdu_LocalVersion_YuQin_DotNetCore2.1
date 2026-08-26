@@ -1717,7 +1717,6 @@ window.speechSynthesis.cancel();
   }
   function fnPPTImageInsertedElementForAIGC(elementId,imageId){
     var imageSrc = document.getElementById(imageId).src;
-    alert(imageSrc);
     var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
     var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT图像添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT图像），然后可以保存（并可PS编辑修改PPT图像）！") ;
     if(bConfirm) {
@@ -1731,12 +1730,14 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
     }
    
-    opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><img src=\""+imageSrc+"\" style=\"width:400px;height:300px;\" /></div>");
-    alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
+   // opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><img src=\""+imageSrc+"\" style=\"width:400px;height:300px;\" /></div>");
+   opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><img src=\""+imageSrc+"\" style=\"width:400px;height:300px;\" /></div>");
+    //alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
       
     var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
-    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><img src=\""+imageSrc+"\" style=\"width:400px;height:300px;\" /></div>");
-    alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
+    //oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><img src=\""+imageSrc+"\" style=\"width:400px;height:300px;\" /></div>");
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><img src=\""+imageSrc+"\" style=\"width:400px;height:300px;\" /></div>");
+    //alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
     }
   }
    
@@ -1756,12 +1757,14 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
     }
 
-    opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
-    alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
+    //opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
+     opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
+   // alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
       
     var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
-    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
-    alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
+    //oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
+   // alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
     }
   }
   function fnAjaxServerSideCallAIGCLearningCommunity(isProxy) {
