@@ -1661,7 +1661,7 @@ window.speechSynthesis.cancel();
             document.getElementById("TriAngleOfPPTImageInternal").textContent="▼";
             document.getElementById("TriAngleOfPPTImageExternal").textContent="▼";
             document.getElementById("iframeForPPTImageInternal").src = "../options/Accuracy-Similarity/Cone-of-Experience-FromKnowledgebase-willTransformToFiveLayeredMVC.jpg";
-             document.getElementById("iframeForPPTImageExternal").src = "../options/Accuracy-Similarity/Cone-of-Experience-FromKnowledgebase-willTransformToFiveLayeredMVC.jpg";
+             document.getElementById("iframeForPPTImageExternal").src = "../options/Accuracy-Similarity/Cone-of-Experience-FromAIGC-willTransformToFiveLayeredMVC.jpg";
             }
       else{
             document.getElementById("iframeForPPTImageInternal").style.display="none";
@@ -1711,7 +1711,13 @@ window.speechSynthesis.cancel();
             document.getElementById("TriAngleOfWebGeneralAgentSkillChatLLMExternal").textContent="▶";
           }
   }
-  function fnPPTImageInsertedElementForAIGC(elementId){
+
+  function fnAIGCPPTImage(){
+      alert("正在开发之中......");
+  }
+  function fnPPTImageInsertedElementForAIGC(elementId,imageId){
+    var imageSrc = document.getElementById(imageId).src;
+    alert(imageSrc);
     var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
     var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT图像添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT图像），然后可以保存（并可PS编辑修改PPT图像）！") ;
     if(bConfirm) {
@@ -1725,16 +1731,19 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
     }
    
-    opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"color:green;text-align:justify\">LLM正在生成课文的PPT图像，请耐心等候...</div>");
+    opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><img src=\""+imageSrc+"\" style=\"width:400px;height:300px;\" /></div>");
     alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
       
     var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
-    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"color:green;text-align:justify\">LLM正在生成作业测验的PPT图像，请耐心等候...</div>");
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><img src=\""+imageSrc+"\" style=\"width:400px;height:300px;\" /></div>");
     alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
     }
   }
    
-  function fnPPTVideoInsertedElementForAIGC(elementId){
+  function fnAIGCPPTVideo(){
+      alert("正在开发之中......");
+  }
+  function fnPPTVideoInsertedElementForAIGC(elementId,videoId){
     var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
     var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT视频添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT视频），然后可以保存（并可PR编辑修改PPT视频）！") ;
     if(bConfirm) {
@@ -1747,11 +1756,11 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
     }
 
-    opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"color:green;text-align:justify\">LLM正在生成课文的PPT视频，请耐心等候...</div>");
+    opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
     alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
       
     var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
-    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"color:green;text-align:justify\">LLM正在生成作业测验的PPT视频，请耐心等候...</div>");
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
     alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
     }
   }
