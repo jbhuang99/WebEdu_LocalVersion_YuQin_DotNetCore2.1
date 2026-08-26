@@ -272,11 +272,14 @@ using Alipay.EasySDK.Payment.Page;
 using Alipay.EasySDK.Payment.Wap;
 **/
 using AgentSkillDemo.Infrastructure;
+using AliImageGen.Services;
 //using AlipayDemo.Models;
 using AlipayIntegrationDemo.Options;
 using Aop.Api;
 using Aop.Api.Request;
 using Aop.Api.Response;
+using Asp.Versioning;
+using ASPDotNet_MVC_YuQin.Controllers.RESTful.Qwen;
 using BlazorWebAssemblyExampleApi.Model;
 using CatalogDb_YuQin.DB.Data;
 using CurriculumSelectionDW.Data;
@@ -315,7 +318,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 //using WebEdu_LocalVersion_YuQin_DotNetCore21.Data;
 using static IronPython.Modules._ast;
-using Asp.Versioning;
 //using DotLLM.Engine;
 //using DotLLM.Server;
 //using Asp.Versioning.Mvc.ApiExplorer;
@@ -355,6 +357,9 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
 
 
             WebApplicationBuilder webApplicationBuilder = WebApplication.CreateBuilder(args);
+            webApplicationBuilder.Services.AddHttpClient<IAliImageGenerationService, AliImageGenerationService>();//阿里千问文本AIGC图像的服务封装。
+            webApplicationBuilder.Services.Configure<DashScopeOptions>(webApplicationBuilder.Configuration.GetSection("DashScope"));//阿里千问文本AIGC视频的服务封装。
+            webApplicationBuilder.Services.AddHttpClient<WanVideoService>(c => c.Timeout = TimeSpan.FromMinutes(2));//阿里千问文本AIGC视频的服务封装。
             webApplicationBuilder.Services.AddApiVersioning(options =>
             {
                 options.AssumeDefaultVersionWhenUnspecified = true; // 如果请求没有声明就使用控制C的默认版本，例如，TryVersions/v1、TryVersions/v2等等的版本控制。
