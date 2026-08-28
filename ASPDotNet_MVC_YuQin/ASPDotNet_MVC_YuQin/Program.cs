@@ -357,9 +357,9 @@ namespace WebEdu_LocalVersion_YuQin_DotNetCore21
 
 
             WebApplicationBuilder webApplicationBuilder = WebApplication.CreateBuilder(args);
-            webApplicationBuilder.Services.AddHttpClient<IAliImageGenerationService, AliImageGenerationService>();//阿里千问文本AIGC图像的服务封装。
-            webApplicationBuilder.Services.Configure<DashScopeOptions>(webApplicationBuilder.Configuration.GetSection("DashScope"));//阿里千问文本AIGC视频的服务封装。
-            webApplicationBuilder.Services.AddHttpClient<WanVideoService>(c => c.Timeout = TimeSpan.FromMinutes(2));//阿里千问文本AIGC视频的服务封装。
+            //webApplicationBuilder.Services.AddHttpClient<IAliImageGenerationService, AliImageGenerationService>();//阿里千问文本AIGC图像的服务封装。
+            //webApplicationBuilder.Services.Configure<DashScopeOptions>(webApplicationBuilder.Configuration.GetSection("DashScope"));//阿里千问文本AIGC视频的服务封装。
+            //webApplicationBuilder.Services.AddHttpClient<WanVideoService>(c => c.Timeout = TimeSpan.FromMinutes(2));//阿里千问文本AIGC视频的服务封装。
             webApplicationBuilder.Services.AddApiVersioning(options =>
             {
                 options.AssumeDefaultVersionWhenUnspecified = true; // 如果请求没有声明就使用控制C的默认版本，例如，TryVersions/v1、TryVersions/v2等等的版本控制。

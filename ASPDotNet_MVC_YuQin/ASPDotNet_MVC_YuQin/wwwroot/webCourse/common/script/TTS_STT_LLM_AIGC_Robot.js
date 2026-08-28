@@ -1712,8 +1712,35 @@ window.speechSynthesis.cancel();
           }
   }
 
-  function fnAIGCPPTImage(){
-      alert("正在开发之中......");
+  function fnAIGCPPTImage(isProxy){
+      var sPromptForAIGCImage = document.getElementById("idPrompt").value;
+      var sURL = "";
+     if(!isProxy=="Proxy"){
+           sURL ="/ProxyQWenTextToImage/index?queryString=" +sPromptForAIGCImage+"LogInProxy";
+            }
+     else{
+            sURL = "/QWenTextToImage/index?queryString=" + sPromptForAIGCImage;
+            }
+     var bConfirmContentsItem = confirm("当前“生成图像的Prompt”是：" +sPromptForAIGCImage+"\n"+"单击“取消”放弃生成图像，单击“确定”生成图像。生成图像需要一定时间，请耐心等待！");
+  if(bConfirmContentsItem) {
+    //生成图像
+    var xmlHttpRequest = new XMLHttpRequest();
+      xmlHttpRequest.open('GET', sURL, true);
+      xmlHttpRequest.send();
+      xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+      if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+         if (xmlHttpRequest.status == 200) { //如果是200说明成功
+         //如果函数存在的话执行
+      alert("LLM生成的图像已完成，可以手动融入主视图排版保存！"+xmlHttpRequest.responseText);
+      alert(xmlHttpRequest.responseText?.output?.choices?.[0]?.message?.content?.[0]?.image);//对于复杂特殊符合的字符串，对比好像没下述面向对象的稳定！！！
+      var oTemp=JSON.parse(xmlHttpRequest.responseText);                      
+      sURL=oTemp.output.choices[0].message.content[0].image; 
+      alert(sURL)
+      document.getElementById("iframeForPPTImageExternal").src=sURL;
+      }
+      }
+      }
+      }
   }
   function fnPPTImageInsertedElementForAIGC(elementId,imageId){
     var imageSrc = document.getElementById(imageId).src;
@@ -1741,8 +1768,31 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     }
   }
    
-  function fnAIGCPPTVideo(){
-      alert("正在开发之中......");
+  function fnAIGCPPTVideo(isProxy){
+      var sPromptForAIGCVedio = document.getElementById("idPrompt").value;
+      var sURL = "";
+     if(!isProxy=="Proxy"){
+           sURL ="/ProxyQWenTextToVideo/index?queryString=" +sPromptForAIGCVedio+"LogInProxy";
+            }
+     else{
+            sURL = "/QWenTextToVideo/index?queryString=" + sPromptForAIGCVedio;
+            }
+     var bConfirmContentsItem = confirm("当前“生成视频的Prompt”是：" +sPromptForAIGCVedio+"\n"+"单击“取消”放弃生成视频，单击“确定”生成视频。生成视频需要一定时间，请耐心等待！");
+  if(bConfirmContentsItem) {
+    //生成视频
+    var xmlHttpRequest = new XMLHttpRequest();
+      xmlHttpRequest.open('GET', sURL, true);
+      xmlHttpRequest.send();
+      xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+      if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+         if (xmlHttpRequest.status == 200) { //如果是200说明成功
+         //如果函数存在的话执行
+      alert("LLM生成的视频已完成，可以手动融入主视图排版保存！"+xmlHttpRequest.responseText);
+      document.getElementById("idVideo").src=xmlHttpRequest.response?.output?.choices?.[0]?.message?.content?.[0]?.image;
+      }
+      }
+      }
+      }
   }
   function fnPPTVideoInsertedElementForAIGC(elementId,videoId){
     var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   

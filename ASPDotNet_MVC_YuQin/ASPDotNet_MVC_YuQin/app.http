@@ -45,3 +45,101 @@ Date: Wed, 27 Apr 2023 07:28:00 GMT
 GET https://localhost:7220/weatherforecast
 Cache-Control: max-age=604800
 Age: 100
+## "model":"wan2.6-t2i"字符文本生成图像如下：
+##https://llm-*****.cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation可能只用于测试URL？实际URL不一定相同？测试时生成图像花费Token了吗（返回 "total_tokens": 0，难道是试用期间？）？"wan2.6-t2i"是文本到图像的模型。
+##生成的图像URL，可能一天后自动删除。https://dashscope-a717.oss-accelerate.aliyuncs.com/1d/fc/20260827/b2c23dbd/86653009-pWOHE2I5_9e62e700a668.png?Expires=1787917466&OSSAccessKeyId=LTAI5tPxpiCM2hjmWrFXrym1&Signature=BNTV1%2F518%2FT7Rkc1pspTOSuoK%2F4%3D
+########### "negative_prompt"（可选）反向提示词，长度不超过500个字符，用于描述不希望在图像中出现的内容，对画面进行限制。支持中英文,超出部分将自动截断。
+## "size": "1280*1280" ##必须大于此分辨率
+## prompt_extend bool （可选）是否开启提示词智能改写。开启后，将使用大模型优化正向提示词，对较短的提示词有明显提升效果，但增加3-4秒耗时。
+## n 默认是4,浪费4倍Token
+#######sk-***********************切记删除！！！！！！！
+##POST 这个不是对应本人中国北京的API-Key。https://llm-123456.ap-southeast-1.maas.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis
+POST https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation
+Authorization: Bearer sk-********************************
+Content-Type: application/json;charset=UTF-8
+X-DashScope-Async: enable
+{
+  "model":"wan2.6-t2i",
+  "input": {
+  "messages":[
+  {
+    "role":"user", 
+    "content": [
+                    {
+                        "text": "一间有着精致窗户的花店，漂亮的木质门，摆放着花朵"
+                    }
+     ]
+  }
+]
+  },
+  "parameters": {
+        "prompt_extend": false,
+        "watermark": true,
+        "n": 1,
+        "negative_prompt": "低分辨率，低画质，肢体畸形，手指畸形，画面过饱和，蜡像感，人脸无细节，过度光滑，画面具有AI感。构图混乱。文字模糊，扭曲。Low resolution, low image quality, distorted limbs, deformed fingers, oversaturated colors, waxy look, faces lacking detail, overly smooth, AI-like appearance. Chaotic composition. Blurry, distorted text.", 
+        "size": "1280*1280" 
+    }
+}
+#########任务ID查看结果
+GET https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/tasks/515b1db2-5a24-407d-b4a2-794a9c5a4fdb
+Authorization: Bearer sk-***************
+###############
+#########
+## "model":"wan3.0-video"字符文本生成视频如下（"wan3.0-video-prime"则更快更贵）（它们是全能参考视频生成模型（All-in-One），统一支持 文生视频 、 图生视频 （首帧/首尾帧）和 参考生视频 等多种用法。最长可生成30秒视频，输出帧率为30fps）：
+##https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation可能只用于测试URL？实际URL不一定相同？测试时生成图像花费Token了吗（返回 "total_tokens": 0，难道是试用期间？）？"wan2.6-t2i"是文本到图像的模型。
+##生成的图像URL，可能一天后自动删除。https://dashscope-a717.oss-accelerate.aliyuncs.com/1d/fc/20260827/b2c23dbd/86653009-pWOHE2I5_9e62e700a668.png?Expires=1787917466&OSSAccessKeyId=LTAI5tPxpiCM2hjmWrFXrym1&Signature=BNTV1%2F518%2FT7Rkc1pspTOSuoK%2F4%3D
+########### "negative_prompt"（可选）反向提示词，长度不超过500个字符，用于描述不希望在图像中出现的内容，对画面进行限制。支持中英文,超出部分将自动截断。
+## prompt_extend bool （可选）是否开启提示词智能改写。开启后，将使用大模型优化正向提示词，对较短的提示词有明显提升效果，但增加3-4秒耗时。
+## duration持续时间默认是30秒。在此默认返回"task_status": "PENDING"，排队中，无法查看结果。需要编程轮询查询结果，直到返回"task_status": "SUCCEEDED"。此时返回的"result"中包含视频下载地址。
+##X-DashScope-Async: enable，必须添加此请求头，才能异步返回结果。否则会返回"task_status": "FAILED"，无法查看结果。可以通过 "task_id": "***-*****-****-****-*******"查看任务结果：curl -X GET https://{WorkspaceId}.ap-southeast-1.maas.aliyuncs.com/api/v1/tasks/{task_id} \--header "Authorization: Bearer $DASHSCOPE_API_KEY"
+#######sk-***********************切记删除！！！！！！！
+POST https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis
+Authorization: Bearer sk-*************************
+Content-Type: application/json;charset=UTF-8
+X-DashScope-Async: enable
+{
+    "model": "wan3.0-video",
+    "input": {
+        "prompt": "一支高端智能眼镜产品广告，整体风格极简、未来感、时尚高级，光影克制，画面以黑色、银灰色、冰蓝色为主色调，局部点缀柔和白光与参数UI图形。开场在纯黑背景中，一副智能眼镜从黑暗中缓缓浮现，镜腿边缘掠过精致高光，镜框轮廓在冷冽边缘光下被勾勒出来，镜头超近距离掠过镜片、鼻托、转轴、镜腿与材质细节，展现金属与高性能复合材料的细腻质感，表面处理高级克制，线条轻薄流畅。随后产品在空中缓慢旋转，画面以极简动态图形同步展示核心参数信息。随后镜头快速收拢，所有零件精准回归组装成完整产品，切换到年轻模特佩戴展示，模特五官立体、气质自信，穿着简洁高级的都市时尚服装，在极简空间和城市光影环境中自然转头、抬手、行走、微笑，镜头从正面、侧面、斜后方展示眼镜佩戴状态，突出轻薄贴合、时尚轮廓与日常百搭属性。结尾在纯色背景中，产品悬浮定格，镜头缓慢推进到品牌logo和核心slogan，整体音乐极简电子氛围配合精准鼓点，节奏干净有力，画面质感高级、克制、纯粹，具有强烈品牌记忆点和国际化科技审美。",
+        "media": [
+            {
+                "type": "file",
+                "url": "https://help-static-aliyun-doc.aliyuncs.com/file-manage-files/zh-CN/20260806/ebapmr/glass.pptx"
+            }
+        ]
+    },
+    "parameters": {
+        "resolution": "480P",
+        "ratio": "adaptive",
+        "duration": 10,
+        "prompt_extend": true
+    }
+}
+#########
+## "model":"wan2.7-t2v-2026-06-12"字符文本生成视频如下(最长可生成30秒视频，输出帧率为30fps）：
+##https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation可能只用于测试URL？实际URL不一定相同？测试时生成图像花费Token了吗（返回 "total_tokens": 0，难道是试用期间？）？"wan2.6-t2i"是文本到图像的模型。
+##生成的图像URL，可能一天后自动删除。https://dashscope-a717.oss-accelerate.aliyuncs.com/1d/fc/20260827/b2c23dbd/86653009-pWOHE2I5_9e62e700a668.png?Expires=1787917466&OSSAccessKeyId=LTAI5tPxpiCM2hjmWrFXrym1&Signature=BNTV1%2F518%2FT7Rkc1pspTOSuoK%2F4%3D
+## prompt_extend bool （可选）是否开启提示词智能改写。开启后，将使用大模型优化正向提示词，对较短的提示词有明显提升效果，但增加3-4秒耗时。
+## duration持续时间默认是30秒。
+#######sk-***********************切记删除！！！！！！！
+POST https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis
+Authorization: Bearer sk-*************************
+Content-Type: application/json;charset=UTF-8
+X-DashScope-Async: enable
+ {
+    "model": "wan2.7-t2v-2026-06-12",
+    "input": {
+        "prompt": "一段紧张刺激的侦探追查故事，展现电影级叙事能力。第1个镜头[0-3秒] 全景：雨夜的纽约街头，霓虹灯闪烁，一位身穿黑色风衣的侦探快步行走。 第2个镜头[3-6秒] 中景：侦探进入一栋老旧建筑，雨水打湿了他的外套，门在他身后缓缓关闭。 第3个镜头[6-9秒] 特写：侦探的眼神坚毅专注，远处传来警笛声，他微微皱眉思考。 第4个镜头[9-12秒] 中景：侦探在昏暗走廊中小心前行，手电筒照亮前方。 第5个镜头[12-15秒] 特写：侦探发现关键线索，脸上露出恍然大悟的表情。"
+    },
+    "parameters": {
+        "resolution": "720P",
+        "ratio": "16:9",
+        "prompt_extend": false,
+        "watermark": true,
+        "duration": 5
+    }
+}
+#########任务ID查看结果
+GET https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/tasks/515b1db2-5a24-407d-b4a2-794a9c5a4fdb
+Authorization: Bearer sk-***************
+###############

@@ -1,223 +1,137 @@
-﻿using AliImageGen.Models;
-using AliImageGen.Services;
-using Azure;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading;
 using System.Threading.Tasks;
+using System;
+using Microsoft.AspNetCore.DataProtection;
+using System.Net.Http.Headers;
+using Azure;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
-namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.Qwen
+namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.QwenTextToVideo
 {
-    public class DashScopeOptions
+    public class QWenTextToVideoController : ControllerBase
     {
-        public string ApiKey { get; set; } = "";
-        public string BaseUrl { get; set; } = "https://dashscope.aliyuncs.com";
-        public string Text2VideoModel { get; set; } = "wan2.6-t2v";
-        public string Image2VideoModel { get; set; } = "wan2.6-i2v";
-    }
-public class SubmitTaskResponse
-    {
-        [JsonPropertyName("request_id")] public string RequestId { get; set; }
-        [JsonPropertyName("output")] public SubmitOutput Output { get; set; }
-        [JsonPropertyName("code")] public string Code { get; set; }
-        [JsonPropertyName("message")] public string Message { get; set; }
-    }
-    public class SubmitOutput
-    {
-        [JsonPropertyName("task_id")] public string TaskId { get; set; }
-        [JsonPropertyName("task_status")] public string TaskStatus { get; set; }
-    }
+        //通过API使用通义千问 https://help.aliyun.com/zh/dashscope/developer-reference/use-qwen-by-api?spm=a2c4g.11186623.0.0.33b0f97eu68Rxm
+        //开通DashScope 模型服务灵积 https://dashscope.console.aliyun.com/overview
+        //前往模型广场，选择模型 https://bailian.console.aliyun.com/#/model-market.
 
-    public class TaskQueryResponse
-    {
-        [JsonPropertyName("request_id")] public string RequestId { get; set; }
-        [JsonPropertyName("output")] public TaskOutput Output { get; set; }
-    }
-    public class TaskOutput
-    {
-        [JsonPropertyName("task_id")] public string TaskId { get; set; }
-        [JsonPropertyName("task_status")] public string TaskStatus { get; set; }
-        [JsonPropertyName("video_url")] public string VideoUrl { get; set; }
-        [JsonPropertyName("code")] public string Code { get; set; }
-        [JsonPropertyName("message")] public string Message { get; set; }
-    }
+        //DashScope中，前往模型广场，选择模型 https://help.aliyun.com/zh/dashscope/developer-reference/model-square/?disableWebsiteRedirect=true //在此选择如下模型为例：通义千问→大语言模型（面向字符生成）。通义千问→通义万相则是面向图像生成。通义千问→通义千问Audio则是面向音频生成。
+        private readonly IWebHostEnvironment _iWebHostEnvironment;
+        private readonly IConfiguration _iConfiguration;
+        private readonly static String _RequestUri = "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation"; //通过DashScope的HTTP方式进行调用，需要配置的完整访问endpoint。POST https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation
 
-public class WanVideoService
-    {
-        private readonly HttpClient _http;
-        private readonly DashScopeOptions _opt;
 
-        public WanVideoService(HttpClient http, IOptions<DashScopeOptions> opt)
+        private readonly static String _Model = "qwen-max";
+
+        //DashScope中，生成API-KEY. https://dashscope.console.aliyun.com/apiKey //在此如下apikey为例。请替换为您的阿里云密钥信息。https://account.aliyun.com/login/login.htm登录申请。https://help.aliyun.com/zh/dashscope/developer-reference/acquisition-and-configuration-of-api-key?spm=a2c4g.11186623.0.0.4df8694e30GuAN申请。
+
+        private static String _ApiKey = "sk-****79316d7b4f3b85014154de41a962"; //敏感数据（在此*号化了，禁止硬编码在C#源码之中）。开发时必须选用“Secret Manager”的secrets.json文件配置。交付时必须选用软件的appsettings.json文件配置。
+        private static String _WorkspaceId = "llm-******************";
+        public QWenTextToVideoController(IWebHostEnvironment iWebHostEnvironment, IConfiguration iConfiguration)
         {
-            _http = http;
-            _opt = opt.Value;
-        }
-
-        /// <summary>1. 提交文生视频任务，返回 taskId</summary>
-        public Task<string> SubmitTextToVideoAsync(
-            string prompt, string resolution = "1080P", int duration = 5,
-            bool promptExtend = true, CancellationToken ct = default)
-        {
-            var body = new
+            _iWebHostEnvironment = iWebHostEnvironment;
+            _iConfiguration = iConfiguration;
+            if (iWebHostEnvironment.EnvironmentName == "Development")
             {
-                model = _opt.Text2VideoModel,
-                input = new { prompt },
-                parameters = new
-                {
-                    resolution,          // 480P / 720P / 1080P
-                    duration,            // 秒数，按模型支持范围
-                    prompt_extend = promptExtend, // 智能改写提示词
-                    watermark = false
-                }
-            };
-            return SubmitAsync(body, ct);
-        }
-
-        /// <summary>2. 提交图生视频任务（首帧），返回 taskId</summary>
-        public Task<string> SubmitImageToVideoAsync(
-            string prompt, string imgUrl, string resolution = "1080P",
-            int duration = 5, CancellationToken ct = default)
-        {
-            var body = new
-            {
-                model = _opt.Image2VideoModel,
-                input = new { prompt, img_url = imgUrl },
-                parameters = new { resolution, duration }
-            };
-            return SubmitAsync(body, ct);
-        }
-
-        private async Task<string> SubmitAsync(object body, CancellationToken ct)
-        {
-            using var req = new HttpRequestMessage(HttpMethod.Post,
-                $"{_opt.BaseUrl}/api/v1/services/aigc/video-generation/video-synthesis");
-            req.Headers.Add("Authorization", $"Bearer {_opt.ApiKey}");
-            req.Headers.Add("X-DashScope-Async", "enable");   // 必须！否则报同步调用错误
-            req.Content = JsonContent.Create(body);
-
-            var resp = await _http.SendAsync(req, ct);
-            var json = await resp.Content.ReadAsStringAsync(ct);
-
-            if (!resp.IsSuccessStatusCode)
-                throw new InvalidOperationException($"提交任务失败 [{(int)resp.StatusCode}]: {json}");
-
-            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<SubmitTaskResponse>(json);
-            if (string.IsNullOrEmpty(result?.Output?.TaskId))
-                throw new InvalidOperationException($"未返回 task_id: {json}");
-            return result.Output.TaskId;
-        }
-
-        /// <summary>3. 查询任务状态</summary>
-        public async Task<TaskOutput> QueryTaskAsync(string taskId, CancellationToken ct = default)
-        {
-            using var req = new HttpRequestMessage(HttpMethod.Get, $"{_opt.BaseUrl}/api/v1/tasks/{taskId}");
-            req.Headers.Add("Authorization", $"Bearer {_opt.ApiKey}");
-
-            var resp = await _http.SendAsync(req, ct);
-            var json = await resp.Content.ReadAsStringAsync(ct);
-
-            if (!resp.IsSuccessStatusCode)
-                throw new InvalidOperationException($"查询任务失败 [{(int)resp.StatusCode}]: {json}");
-
-            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskQueryResponse>(json);
-            return result!.Output;
-        }
-
-        /// <summary>4. 阻塞轮询直到完成（服务端同步场景用）</summary>
-        public async Task<TaskOutput> WaitForCompletionAsync(
-            string taskId, TimeSpan? timeout = null, CancellationToken ct = default)
-        {
-            var deadline = DateTime.UtcNow + (timeout ?? TimeSpan.FromMinutes(10));
-            while (DateTime.UtcNow < deadline)
-            {
-                ct.ThrowIfCancellationRequested();
-                var output = await QueryTaskAsync(taskId, ct);
-                if (output.TaskStatus is "SUCCEEDED" or "FAILED" or "CANCELED" or "UNKNOWN")
-                    return output;
-                await Task.Delay(TimeSpan.FromSeconds(10), ct); // 生成通常要几十秒到几分钟
+                //_ApiKey = ConfigurationManager.AppSettings["ApiKey"];
+                _ApiKey = _iConfiguration["ApiKey"]; //从开发时的本项目的“Secret Manager”的secrets.json文件获取ApiKey。
+                                                     // Console.Write(iWebHostEnvironment.EnvironmentName+ _ApiKey);
+                _WorkspaceId= _iConfiguration["WorkspaceId"]; //从开发时的本项目的“Secret Manager”的secrets.json文件获取WorkspaceId。
+                                                              // Console.Write(iWebHostEnvironment.EnvironmentName+ _WorkspaceId);
             }
-            throw new TimeoutException("视频生成等待超时");
-        }
-
-        /// <summary>5. 下载视频（URL 24小时过期）</summary>
-        public Task<byte[]> DownloadVideoAsync(string videoUrl, CancellationToken ct = default)
-            => _http.GetByteArrayAsync(videoUrl, ct);
-    }
-
-    [ApiController]
-    [Route("[controller]")]
-    [AllowAnonymous]
-    public class QWenTextToVideoController : ControllerBase
-    {
-
-        //[HttpGet(Name = "GetWeatherForecast")]
-        [HttpGet]
-        public String Get()
-        {
-            return "Try HomeAPIAPIAPI";
-        }
-    }
-    /**
-
-    [ApiController]
-    [Route("api/[controller]")]
-    
-    public class QWenTextToVideoController : ControllerBase
-    {
-        private readonly WanVideoService _svc;
-        public QWenTextToVideoController(WanVideoService svc) => _svc = svc;
-
-        public record GenRequest(string Prompt, string Resolution = "1080P", int Duration = 5);
-
-        // ① 提交任务
-        [HttpPost("submit")]
-        public async Task<IActionResult> Submit([FromBody] GenRequest r, CancellationToken ct)
-        {
-            var taskId = await _svc.SubmitTextToVideoAsync(r.Prompt, r.Resolution, r.Duration, ct: ct);
-            return Ok(new { taskId });
-        }
-
-        // ② 查询状态（前端每 10 秒轮询一次）
-        [HttpGet("status/{taskId}")]
-        public async Task<IActionResult> Status(string taskId, CancellationToken ct)
-        {
-            var o = await _svc.QueryTaskAsync(taskId, ct);
-            return Ok(new
+            else
             {
-                status = o.TaskStatus,
-                videoUrl = o.TaskStatus == "SUCCEEDED" ? o.VideoUrl : null,
-                error = o.Message
-            });
+                //_ApiKey = ConfigurationManager.AppSettings["ApiKey"];
+                _ApiKey = _iConfiguration["ApiKey"]; //从交付时的软件的appsettings.json文件获取ApiKey。
+                                                     //  Console.Write(iWebHostEnvironment.EnvironmentName + _ApiKey);
+                _WorkspaceId = _iConfiguration["WorkspaceId"]; //从开发时的本项目的“Secret Manager”的secrets.json文件获取WorkspaceId。
+                                                               // Console.Write(iWebHostEnvironment.EnvironmentName+ _WorkspaceId);
+            }
         }
-
-        // ③ 一站式同步接口（内部等待，注意网关/反代的超时设置）
-        [HttpPost("generate")]
-        public async Task<IActionResult> Generate([FromBody] GenRequest r, CancellationToken ct)
+        public async Task<String> Index(String queryString)
         {
-            var taskId = await _svc.SubmitTextToVideoAsync(r.Prompt, r.Resolution, r.Duration, ct: ct);
-            var o = await _svc.WaitForCompletionAsync(taskId, TimeSpan.FromMinutes(10), ct);
-
-            if (o.TaskStatus != "SUCCEEDED")
-                return StatusCode(500, new { status = o.TaskStatus, o.Message });
-
-            return Ok(new { videoUrl = o.VideoUrl });
+            using (HttpClient httpClient = new HttpClient())
+            {
+                // 创建模型类
+                QianWenRequest qWenRequest = new QianWenRequest
+                {
+                    Model = _Model,
+                    Input = new Input
+                    {
+                        Prompt = queryString
+                    }
+                };
+                // return await CallQWen(queryString);
+                String _baseUrl = "https://" + _WorkspaceId + ".cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis";
+                return _ApiKey + _WorkspaceId + queryString + _baseUrl + "TaskId"+"Status";
+            }
         }
+
+        private static async Task<String> CallQWen(String question)
+        {
+            using (var client = new HttpClient())
+            {
+                // 创建模型类
+                var requestObj = new QianWenRequest
+                {
+                    Model = _Model,
+                    Input = new Input
+                    {
+                        Prompt = question
+                    }
+                };
+
+                var settings = new JsonSerializerSettings
+                {
+                    Formatting = Newtonsoft.Json.Formatting.Indented,
+                    StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
+                };
+
+                // 将对象序列化为JSON字符串
+                string requestJson = JsonConvert.SerializeObject(requestObj, settings);
+                Console.WriteLine(requestJson);
+
+                var request = new HttpRequestMessage(HttpMethod.Post, _RequestUri);
+                //定义Body
+                var content = new StringContent(requestJson.ToLower(), Encoding.UTF8, "application/json");
+                request.Content = content;
+
+                //定义header
+                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", $"{_ApiKey}");
+
+                var response = await client.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseBody = await response.Content.ReadAsStringAsync();
+
+                    Console.WriteLine("通义千问的回答：");
+                    Console.WriteLine(responseBody);
+                    return responseBody;
+                }
+                else
+                {
+                    Console.WriteLine($"请求失败，状态码：{response.StatusCode}");
+                    return response.StatusCode.ToString();
+                }
+            }
+        }
+
     }
-    **/
+    public class QianWenRequest
+    {
+        public String Model { get; set; }
+        public Input Input { get; set; }
+    }
+
+    public class Input
+    {
+        public string Prompt { get; set; }
+    }
 }
