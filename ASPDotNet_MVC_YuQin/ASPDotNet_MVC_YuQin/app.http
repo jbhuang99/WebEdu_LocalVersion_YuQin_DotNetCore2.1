@@ -55,7 +55,7 @@ Age: 100
 #######sk-***********************切记删除！！！！！！！
 ##POST 这个不是对应本人中国北京的API-Key。https://llm-123456.ap-southeast-1.maas.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis
 POST https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation
-Authorization: Bearer sk-********************************
+Authorization: Bearer sk-*******************
 Content-Type: application/json;charset=UTF-8
 X-DashScope-Async: enable
 {
@@ -123,7 +123,7 @@ X-DashScope-Async: enable
 ## duration持续时间默认是30秒。
 #######sk-***********************切记删除！！！！！！！
 POST https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis
-Authorization: Bearer sk-*************************
+Authorization: Bearer sk-ca6379316d7b4f3b85014154de41a962
 Content-Type: application/json;charset=UTF-8
 X-DashScope-Async: enable
  {
@@ -136,10 +136,10 @@ X-DashScope-Async: enable
         "ratio": "16:9",
         "prompt_extend": false,
         "watermark": true,
-        "duration": 5
+        "duration": 15
     }
 }
 #########任务ID查看结果
-GET https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/tasks/515b1db2-5a24-407d-b4a2-794a9c5a4fdb
-Authorization: Bearer sk-***************
+GET https://llm-123456.cn-beijing.maas.aliyuncs.com/api/v1/tasks/b5603857-eeb2-40da-931c-fb75c1271387
+Authorization: Bearer sk-ca6379316d7b4f3b85014154de41a962
 ###############

@@ -19,7 +19,8 @@ window.DownloadedLocalLLMURL="";
 window.LocalLLMDirPath="";
 window.LocalLLMURLRoot=""; 
 window.LocalLLMDirPathForDeleteTemp="";
-
+window.task_id="";
+window.task_status="";
 
 document.getElementById('startBtnSystemInternal').addEventListener('click',fnStartBtnSystemInternalOnClick,false);          
 document.getElementById('stopBtnSystemInternal').addEventListener('click',fnStopBtnSystemInternalOnClick, false); 
@@ -39,6 +40,8 @@ document.getElementById("id_CharNumber").textContent=sTextContent.length;
 }
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerCharactor").value="“"+document.getElementById("idPrompt").value+"定义”";
 document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest").value="“"+document.getElementById("idPrompt").value+"定义”的一道ABCD编号的四个选项的单选题，适合用于考试测验。";
+// 暂时未选用，而是选用了用户自己手动单击一个按钮时提醒继续等待：监听页面可见性变化：当用户从后台切回前台时，立即触发一次轮询
+//document.addEventListener('visibilitychange', () => {if (!document.hidden) smartPoll('3cd3fa4e-53ee-4136-9cab-xxxxxx');});
 }
 function fnAgentIFrameSrc(){
     document.getElementById("IframeExternalGitHubCopilot").src="https://github.com/features/copilot" ;
@@ -1713,6 +1716,7 @@ window.speechSynthesis.cancel();
   }
 
   function fnAIGCPPTImage(isProxy){
+      window.event.srcElement.textContent ="重新生成";
       var sPromptForAIGCImage = document.getElementById("idPrompt").value;
       var sURL = "";
      if(!isProxy=="Proxy"){
@@ -1732,10 +1736,10 @@ window.speechSynthesis.cancel();
          if (xmlHttpRequest.status == 200) { //如果是200说明成功
          //如果函数存在的话执行
       alert("LLM生成的图像已完成，可以手动融入主视图排版保存！"+xmlHttpRequest.responseText);
-      alert(xmlHttpRequest.responseText?.output?.choices?.[0]?.message?.content?.[0]?.image);//对于复杂特殊符合的字符串，对比好像没下述面向对象的稳定！！！
+      //alert(xmlHttpRequest.responseText?.output?.choices?.[0]?.message?.content?.[0]?.image);//对于复杂特殊符合的字符串，对比好像没下述面向对象的稳定！！！
       var oTemp=JSON.parse(xmlHttpRequest.responseText);                      
       sURL=oTemp.output.choices[0].message.content[0].image; 
-      alert(sURL)
+      //alert(sURL)
       document.getElementById("iframeForPPTImageExternal").src=sURL;
       }
       }
@@ -1767,17 +1771,53 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     //alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
     }
   }
-   
+
+/**
+let errorCount = 0;
+const BASE_INTERVAL = 2000; // 基础间隔 2秒
+const MAX_INTERVAL = 60000; // 最大间隔 60秒
+
+function fnSmartPoll(taskId) {
+    //智能轮询（带指数退避与页面可见性优化）在实际生产环境中，为了防止服务器宕机时客户端疯狂请求，或者用户切走标签页后浪费资源，通常会加入指数退避（Exponential Backoff）和 Page Visibility API。
+    // 如果页面不可见（用户切到了其他标签），使用更长的间隔（如30秒）
+    const interval = document.hidden ? 30000 : Math.min(BASE_INTERVAL * Math.pow(2, errorCount), MAX_INTERVAL);
+    
+    fetch(`/api/task/${taskId}`)
+        .then(res => {
+            if (!res.ok) throw new Error('服务器响应异常');
+            return res.json();
+        })
+        .then(data => {
+            errorCount = 0; // 请求成功，重置错误计数
+            console.log('状态:', data.output.task_status);
+            
+            if (!data.output.finished) {
+                setTimeout(() => smartPoll(taskId), interval);
+            } else {
+                console.log('任务成功完成！');
+            }
+        })
+        .catch(error => {
+            errorCount++; // 请求失败，增加错误计数，下次轮询时间翻倍
+            console.error(`请求失败(第${errorCount}次)，将在 ${interval / 1000}秒 后重试`);
+            setTimeout(() => smartPoll(taskId), interval);
+        });
+}
+ **/
   function fnAIGCPPTVideo(isProxy){
+     window.event.srcElement.textContent ="重新生成";
+      if(window.task_id==""){
+    alert("本系统尚无生成视频的任务，将新建任务！");
       var sPromptForAIGCVedio = document.getElementById("idPrompt").value;
+      var duration = document.getElementById("counterT2VExternal").value;
       var sURL = "";
      if(!isProxy=="Proxy"){
-           sURL ="/ProxyQWenTextToVideo/index?queryString=" +sPromptForAIGCVedio+"LogInProxy";
+           sURL ="/ProxyQWenTextToVideo/index?queryString=" +sPromptForAIGCVedio+"&duration="+duration+"LogInProxy";
             }
      else{
-            sURL = "/QWenTextToVideo/index?queryString=" + sPromptForAIGCVedio;
+            sURL = "/QWenTextToVideo/index?queryString=" + sPromptForAIGCVedio+"&duration="+duration;
             }
-     var bConfirmContentsItem = confirm("当前“生成视频的Prompt”是：" +sPromptForAIGCVedio+"\n"+"单击“取消”放弃生成视频，单击“确定”生成视频。生成视频需要一定时间，请耐心等待！");
+     var bConfirmContentsItem = confirm("当前“生成视频的Prompt”是：" +sPromptForAIGCVedio+"\n"+"当前“生成视频的时长”是：："+duration+"秒"+"\n"+"单击“取消”放弃生成视频，单击“确定”生成视频。生成视频需要一定时间，请耐心等待！");
   if(bConfirmContentsItem) {
     //生成视频
     var xmlHttpRequest = new XMLHttpRequest();
@@ -1786,14 +1826,72 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
       xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
       if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
          if (xmlHttpRequest.status == 200) { //如果是200说明成功
-         //如果函数存在的话执行
-      alert("LLM生成的视频已完成，可以手动融入主视图排版保存！"+xmlHttpRequest.responseText);
-      document.getElementById("idVideo").src=xmlHttpRequest.response?.output?.choices?.[0]?.message?.content?.[0]?.image;
+    // 启动智能轮询
+     // fnSmartPoll('3cd3fa4e-53ee-4136-9cab-xxxxxx');
+      var oTemp=JSON.parse(xmlHttpRequest.responseText);
+      window.task_id = oTemp.output.task_id;
+      //window.task_status = oTemp.output.task_status;
+      //alert(window.task_id+";"+oTemp.output.task_status+";"+sURL+";"+xmlHttpRequest.responseText)
+      switch(oTemp.output.task_status) {
+         case 'SUCCEEDED':{
+      var sURLofVideo=oTemp.output.video_url;
+    document.getElementById("iframeForPPTVideoExternal").contentWindow.document.getElementById("video").src=sURLofVideo;
+      window.task_id="";
+      window.task_status="";
+      alert("LLM" + window.task_id + "生成视频已完成！若要新建生成任务Id，请刷新本页面！");
+      break;
       }
+         case 'PENDING':{alert("LLM" + window.task_id + "任务正在排队生成视频，请耐心等候！若要新建生成任务Id，请刷新本页面！"); break;}
+         case 'FAILED':{ alert("LLM" + window.task_id + "生成视频失败！若要新建生成任务Id，请刷新本页面！");break; }
+         case 'CANCELED':{alert("LLM" + window.task_id + "生成视频已取消！若要新建生成任务Id，请刷新本页面！");break; }
+         case 'RUNNING':{alert("LLM" + window.task_id + "正在生成视频，请耐心等候！若要新建生成任务Id，请刷新本页面！"); break;}
+         case 'UNKNOWN':{alert("LLM" + window.task_id + "生成视频状态未知，请稍后再试！若要新建生成任务Id，请刷新本页面！"); break;}
+         default:{alert("LLM" + window.task_id + "生成视频状态未知，请刷新本页面再试！若要新建生成任务Id，请刷新本页面！"); break;}
+      }            
+      }
+      }
+      }
+      }
+      }
+      else
+      {
+      alert("本系统尚有生成视频的任务！"+window.task_id+"如果想要保持当前任务Id，请不要刷新本网页！否则将浪费本次任务的Token费用！");
+      fnAIGCPPTVideoShowForNonPoll(window.task_id);    
+      }
+  }
+  
+  function fnAIGCPPTVideoShowForNonPoll(currentTask_Id){
+      var xmlHttpRequest = new XMLHttpRequest();
+      xmlHttpRequest.open('GET', '/QWenTextToVideoShow/index?queryString=' + currentTask_Id , true);
+      xmlHttpRequest.send();
+      xmlHttpRequest.onreadystatechange = function () {  //如果readyState发生变化的时候执行的函数
+      if (xmlHttpRequest.readyState == 4) {  //ajax为4说明执行完了
+         if (xmlHttpRequest.status == 200) { //如果是200说明成功
+      var oTemp=JSON.parse(xmlHttpRequest.responseText);
+      alert(oTemp.output.task_status);
+     // window.task_status = oTemp.output.task_status;
+      switch(oTemp.output.task_status) {
+         case 'SUCCEEDED':{
+      var sURLofVideo=oTemp.output.video_url;
+      //document.getElementById("iframeForPPTVideoExternal").src=sURLofVideo;
+      document.getElementById("iframeForPPTVideoExternal").contentWindow.document.getElementById("video").src=sURLofVideo;
+      window.task_id="";
+      window.task_status="";
+      alert("LLM" + currentTask_Id + "生成视频已完成！若要新建生成任务Id，请刷新本页面！");
+      break;
+      }
+         case 'PENDING':{alert("LLM" + currentTask_Id + "正在排队生成视频，请耐心等候！若要新建生成任务Id，请刷新本页面！");break; }
+         case 'FAILED':{ alert("LLM" + currentTask_Id + "生成视频失败！若要新建生成任务Id，请刷新本页面！");break; }
+         case 'CANCELED':{alert("LLM" + currentTask_Id + "生成视频已取！！若要新建生成任务Id，请刷新本页面！");break; }
+         case 'RUNNING':{alert("LLM" + currentTask_Id + "正在生成视频，请耐心等候！若要新建生成任务Id，请刷新本页面！"); break;}
+         case 'UNKNOWN':{alert("LLM" + currentTask_Id + "生成视频状态未知，请稍后再试！若要新建生成任务Id，请刷新本页面！"); break;}
+         default:{alert("LLM" + currentTask_Id + "生成视频状态未知，请刷新本页面再试！若要新建生成任务Id，请刷新本页面！"); break;}
+         }            
       }
       }
       }
   }
+  
   function fnPPTVideoInsertedElementForAIGC(elementId,videoId){
     var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
     var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT视频添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT视频），然后可以保存（并可PR编辑修改PPT视频）！") ;

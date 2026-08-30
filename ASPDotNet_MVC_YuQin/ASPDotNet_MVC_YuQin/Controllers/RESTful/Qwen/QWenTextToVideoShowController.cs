@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.Qwen
 {
-    public class QWenTextToVideoController : ControllerBase
+    public class QWenTextToVideoShowController : ControllerBase
     {
         //通过API使用通义千问 https://help.aliyun.com/zh/dashscope/developer-reference/use-qwen-by-api?spm=a2c4g.11186623.0.0.33b0f97eu68Rxm
         //开通DashScope 模型服务灵积 https://dashscope.console.aliyun.com/overview
@@ -26,7 +26,7 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.Qwen
         private readonly IConfiguration _iConfiguration;
         private static String _ApiKey = "sk-************962"; //敏感数据（在此*号化了，禁止硬编码在C#源码之中）。开发时必须选用“Secret Manager”的secrets.json文件配置。交付时必须选用软件的appsettings.json文件配置。
         private static String _WorkspaceId = "llm-******************";
-        public QWenTextToVideoController(IWebHostEnvironment iWebHostEnvironment, IConfiguration iConfiguration)
+        public QWenTextToVideoShowController(IWebHostEnvironment iWebHostEnvironment, IConfiguration iConfiguration)
         {
             _iWebHostEnvironment = iWebHostEnvironment;
             _iConfiguration = iConfiguration;
@@ -47,54 +47,22 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.Qwen
                                                                // Console.Write(iWebHostEnvironment.EnvironmentName+ _WorkspaceId);
             }
         }
-        public async Task<String> Index(String queryString,Int32 duration)
+        public async Task<String> Index(String queryString)
         {
-            return await CallQWen(queryString, duration);
+            return await CallQWen(queryString);
         }
 
-        private static async Task<String> CallQWen(String prompt, Int32 duration)
+        private static async Task<String> CallQWen(String taskId)
         {
-            var postJSON1 = """
-            {
-              "model": "wan2.7-t2v-2026-06-12",
-            "input": {
-                "prompt": 
-            """;
-
-            var postJSON2 = """
-            },
-            "parameters": {
-                "resolution": "720P",
-                "ratio": "16:9",
-                "prompt_extend": false,
-                "watermark": true,
-                "duration": 
-            """;
-
-            var postJSON3 = """           
-            }
-            }
-            """;
-
-            var postJSON = postJSON1 + "\"" + prompt + "\"" + postJSON2+ duration.ToString()+postJSON3;
-            Console.WriteLine(postJSON);
             using (var client = new HttpClient())
             {
-                String llmUrl = "https://" + _WorkspaceId + ".cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis";
-                Console.WriteLine(llmUrl);
-                var request = new HttpRequestMessage(HttpMethod.Post, llmUrl);
-                //定义Body
-                //  var content = new StringContent(postJSON.ToLower(), Encoding.UTF8, "application/json");
-                var content = new StringContent(postJSON, Encoding.UTF8, "application/json");
-                request.Content = content;
-                Console.WriteLine(content);
-                Console.WriteLine("");
-                Console.WriteLine(request.Content);
-                Console.WriteLine("");
+                String taskUrl = "https://" + _WorkspaceId + ".cn-beijing.maas.aliyuncs.com/api/v1/tasks/" + taskId;
+                Console.WriteLine(taskUrl);
+                var request = new HttpRequestMessage(HttpMethod.Get, taskUrl);
+                //Get方法不需要定义Body？
                 //定义header
-                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                //request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _ApiKey);
-                request.Headers.Add("X-DashScope-Async", "enable");   // 字符文本生成视频必须！要求LLM异步生成，否则LLM同步生成报错。
 
                 var response = await client.SendAsync(request);
 
