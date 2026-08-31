@@ -198,6 +198,7 @@ xcopy  /S /E /C /Y "D:\YuQinWebEdu\WebEdu_LocalVersion_YuQin\\RBAC\Scripts" "\Ar
     <Content Remove="web.config" />
     <Content Remove="wwwroot\favicon.ico" />
     <Content Remove="wwwroot\ts\try\file2.ts" />
+    <Content Remove="wwwroot\webCourse\common\image\中学生-48.png" />
     <Content Remove="wwwroot\webCourse\common\script\content - Copy (2).js" />
     <Content Remove="wwwroot\webCourse\common\script\content - Copy.js" />
     <Content Remove="wwwroot\webCourse\common\script\contents - Copy %282%29.js" />
