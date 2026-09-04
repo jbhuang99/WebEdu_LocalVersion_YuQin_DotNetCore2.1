@@ -14,6 +14,7 @@
     <!-- IL2026: MapGet/MapPost use reflection at build time but Request Delegate Generator
          handles them at publish time when PublishAot=true -->
     <NoWarn>CS1591;IL2026</NoWarn>
+    <UserSecretsId>21f5e671-712a-4c3d-9382-6a9de6ca9386</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -57,7 +57,7 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.Qwen
             using (var client = new HttpClient())
             {
                 String taskUrl = "https://" + _WorkspaceId + ".cn-beijing.maas.aliyuncs.com/api/v1/tasks/" + taskId;
-                Console.WriteLine(taskUrl);
+                //Console.WriteLine(taskUrl);
                 var request = new HttpRequestMessage(HttpMethod.Get, taskUrl);
                 //Get方法不需要定义Body？
                 //定义header

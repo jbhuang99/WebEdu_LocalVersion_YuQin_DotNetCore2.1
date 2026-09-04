@@ -86,7 +86,7 @@ namespace ASPDotNet_MVC_YuQin.Controllers.RESTful.QwenTextToImage
             using (var client = new HttpClient())
             {
                 String llmUrl = "https://" + _WorkspaceId + ".cn-beijing.maas.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation";
-                Console.WriteLine(llmUrl);
+                //Console.WriteLine(llmUrl);
                 var request = new HttpRequestMessage(HttpMethod.Post, llmUrl);
                 //定义Body
                 var content = new StringContent(postJSON.ToLower(), Encoding.UTF8, "application/json");
