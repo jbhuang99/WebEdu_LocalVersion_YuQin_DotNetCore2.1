@@ -1696,6 +1696,66 @@ window.speechSynthesis.cancel();
             document.getElementById("TriAngleOfPPTVideoExternal").textContent="▶";
           }
   }
+    function fnToggleSystemInternalPPT2DSystemExternalPPT2D(){
+      if(document.getElementById("iframeForPPT2DInternal").style.display=="none"){
+            document.getElementById("iframeForPPT2DInternal").style.display="block";
+            document.getElementById("iframeForPPT2DExternal").style.display="block";
+            document.getElementById("PPT2DInternalIntoMainView").style.display="block";
+            document.getElementById("PPT2DExternalIntoMainView").style.display="block";
+            document.getElementById("TriAngleOfPPT2DInternal").textContent="▼";
+            document.getElementById("TriAngleOfPPT2DExternal").textContent="▼";
+           document.getElementById("iframeForPPT2DInternal").src = "EducationalPPT2D/JustForSimpleSample.html";
+           document.getElementById("iframeForPPT2DExternal").src = "EducationalPPT2D/JustForSimpleSample.html";
+            }
+      else{
+            document.getElementById("iframeForPPT2DInternal").style.display="none";
+            document.getElementById("iframeForPPT2DExternal").style.display="none";
+            document.getElementById("PPT2DInternalIntoMainView").style.display="none";
+            document.getElementById("PPT2DExternalIntoMainView").style.display="none";
+            document.getElementById("TriAngleOfPPT2DInternal").textContent="▶";
+            document.getElementById("TriAngleOfPPT2DExternal").textContent="▶";
+          }
+  }
+      function fnToggleSystemInternalPPT3DSystemExternalPPT3D(){
+      if(document.getElementById("iframeForPPT3DInternal").style.display=="none"){
+            document.getElementById("iframeForPPT3DInternal").style.display="block";
+            document.getElementById("iframeForPPT3DExternal").style.display="block";
+            document.getElementById("PPT3DInternalIntoMainView").style.display="block";
+            document.getElementById("PPT3DExternalIntoMainView").style.display="block";
+            document.getElementById("TriAngleOfPPT3DInternal").textContent="▼";
+            document.getElementById("TriAngleOfPPT3DExternal").textContent="▼";
+           document.getElementById("iframeForPPT3DInternal").src = "EducationalPPT3D/JustForSimpleSample.html";
+           document.getElementById("iframeForPPT3DExternal").src = "EducationalPPT3D/JustForSimpleSample.html";
+            }
+      else{
+            document.getElementById("iframeForPPT3DInternal").style.display="none";
+            document.getElementById("iframeForPPT3DExternal").style.display="none";
+            document.getElementById("PPT3DInternalIntoMainView").style.display="none";
+            document.getElementById("PPT3DExternalIntoMainView").style.display="none";
+            document.getElementById("TriAngleOfPPT3DInternal").textContent="▶";
+            document.getElementById("TriAngleOfPPT3DExternal").textContent="▶";
+          }
+  }
+    function fnToggleSystemInternalPPTAudioSystemExternalPPTAudio(){
+      if(document.getElementById("iframeForPPTAudioInternal").style.display=="none"){
+            document.getElementById("iframeForPPTAudioInternal").style.display="block";
+            document.getElementById("iframeForPPTAudioExternal").style.display="block";
+            document.getElementById("PPTAudioInternalIntoMainView").style.display="block";
+            document.getElementById("PPTAudioExternalIntoMainView").style.display="block";
+            document.getElementById("TriAngleOfPPTAudioInternal").textContent="▼";
+            document.getElementById("TriAngleOfPPTAudioExternal").textContent="▼";
+           document.getElementById("iframeForPPTAudioInternal").src = "EducationalPPTAudio/JustForSimpleSample.html";
+           document.getElementById("iframeForPPTAudioExternal").src = "EducationalPPTAudio/JustForSimpleSample.html";
+            }
+      else{
+            document.getElementById("iframeForPPTAudioInternal").style.display="none";
+            document.getElementById("iframeForPPTAudioExternal").style.display="none";
+            document.getElementById("PPTAudioInternalIntoMainView").style.display="none";
+            document.getElementById("PPTAudioExternalIntoMainView").style.display="none";
+            document.getElementById("TriAngleOfPPTAudioInternal").textContent="▶";
+            document.getElementById("TriAngleOfPPTAudioExternal").textContent="▶";
+          }
+  }
    function fnToggleSystemInternalChatSystemExternalChat(){ //因为Nuget包Microsoft.Agents.AI.DevUI当前与其他Nuget包有冲突，所以暂时不使用Microsoft.Agents.AI.DevUI的Nuget包，而是使用iframe嵌入的方式实现WebGeneralAgentSkillChatLLMInternal和WebGeneralAgentSkillChatLLMExternal（万不得已多出了一个DevUIServer项目，今后必须将DevUIServer项目合并进入ASPDotNet_MVC_YuQin项目）。
       if(document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display=="none"){
             document.getElementById("iframeForWebGeneralAgentSkillChatLLMInternal").style.display="block";
@@ -1913,6 +1973,58 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     //oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
     oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
    // alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
+    }
+  }
+   function fnPPT2DInsertedElementForAIGC(elementId,videoId){
+    var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
+    var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT 2D添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT 2D），然后可以保存（并可VS编辑修改PPT 2D）！") ;
+    if(bConfirm) {
+          if(opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId)){
+//如果课文已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
+opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).remove();
+  }
+       if(opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId)){
+    //如果作业测验已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
+    opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
+    }
+   opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPT2D/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");     
+    var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPT2D/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
+    }
+  }
+
+      function fnPPT3DInsertedElementForAIGC(elementId,videoId){
+    var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
+    var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT 3D添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT 3D），然后可以保存（并可VS编辑修改PPT 3D）！") ;
+    if(bConfirm) {
+          if(opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId)){
+//如果课文已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
+opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).remove();
+  }
+       if(opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId)){
+    //如果作业测验已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
+    opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
+    }
+   opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPT3D/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");     
+    var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPT3D/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
+    }
+  }
+   function fnPPTAudioInsertedElementForAIGC(elementId,videoId){
+    var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
+    var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT 音频添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT 音频），然后可以保存（并可VS编辑修改PPT 音频）！") ;
+    if(bConfirm) {
+          if(opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId)){
+//如果课文已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
+opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).remove();
+  }
+       if(opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId)){
+    //如果作业测验已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
+    opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
+    }
+   opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTAudio/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 50px;\" /></div>");     
+    var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTAudio/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 50px;\" /></div>");
     }
   }
   function fnAjaxServerSideCallAIGCLearningCommunity(isProxy) {
