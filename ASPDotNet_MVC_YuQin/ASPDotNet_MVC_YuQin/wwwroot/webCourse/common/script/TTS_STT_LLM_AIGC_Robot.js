@@ -1953,6 +1953,7 @@ function fnSmartPoll(taskId) {
   }
   
   function fnPPTVideoInsertedElementForAIGC(elementId,videoId){
+    var pptVideoIFrameSrc = document.getElementById(videoId).src;
     var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
     var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT视频添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT视频），然后可以保存（并可PR编辑修改PPT视频）！") ;
     if(bConfirm) {
@@ -1964,18 +1965,15 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     //如果作业测验已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
     opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
     }
-
-    //opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
-     opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
-   // alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);
-      
+     opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\""+pptVideoIFrameSrc+"\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
+   // alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeContent").contentWindow.document.getElementById(elementId).outerHTML);      
     var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
-    //oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div id="+"\""+elementId+"\""+" style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
-    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTVideo/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\""+pptVideoIFrameSrc+"\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
    // alert("已插入元素的innerHTML是："+ opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).outerHTML);
     }
   }
-   function fnPPT2DInsertedElementForAIGC(elementId,videoId){
+   function fnPPT2DInsertedElementForAIGC(elementId,twoDId){
+    var ppt2DIFrameSrc = document.getElementById(twoDId).src;
     var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
     var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT 2D添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT 2D），然后可以保存（并可VS编辑修改PPT 2D）！") ;
     if(bConfirm) {
@@ -1987,13 +1985,14 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     //如果作业测验已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
     opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
     }
-   opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPT2D/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");     
+   opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\""+ppt2DIFrameSrc+"\" style=\"border:0;width: 100%; height: 718px;\" /></div>");     
     var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
-    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPT2D/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\""+ppt2DIFrameSrc+"\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
     }
   }
 
-      function fnPPT3DInsertedElementForAIGC(elementId,videoId){
+      function fnPPT3DInsertedElementForAIGC(elementId,ThreeDId){
+    var ppt3DIFrameSrc = document.getElementById(ThreeDId).src;
     var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
     var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT 3D添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT 3D），然后可以保存（并可VS编辑修改PPT 3D）！") ;
     if(bConfirm) {
@@ -2005,12 +2004,13 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     //如果作业测验已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
     opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
     }
-   opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPT3D/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");     
+   opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\""+ppt3DIFrameSrc+"\" style=\"border:0;width: 100%; height: 718px;\" /></div>");     
     var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
-    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPT3D/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\""+ppt3DIFrameSrc+"\" style=\"border:0;width: 100%; height: 718px;\" /></div>");
     }
   }
-   function fnPPTAudioInsertedElementForAIGC(elementId,videoId){
+   function fnPPTAudioInsertedElementForAIGC(elementId,audioId){
+    var pptAudioIFrameSrc = document.getElementById(audioId).src;
     var oWindowContents=opener.parent.document.getElementById("sIframeContents").contentWindow;   
     var bConfirm = confirm("（1）当前“目录条目”是："+oWindowContents.oSrcElement.childNodes.item(0).nodeValue+"\n\n"+"（2）LLM生成的PPT 音频添加到当前“目录条目”的“课文”“作业测验”的最前面部分（自动删除上一次LLM生成的PPT 音频），然后可以保存（并可VS编辑修改PPT 音频）！") ;
     if(bConfirm) {
@@ -2022,9 +2022,9 @@ opener.parent.document.getElementById("sIframeContent").contentWindow.document.g
     //如果作业测验已经存在AIGC生成相关的elementId的<div>元素，首先必须删除该元素再重新生成
     opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementById(elementId).remove();
     }
-   opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTAudio/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 50px;\" /></div>");     
+   opener.parent.document.getElementById("sIframeContent").contentWindow.document.body.insertAdjacentHTML("afterbegin","<div style=\"text-align:center\"><iframe src=\""+pptAudioIFrameSrc+"\" style=\"border:0;width: 100%; height: 50px;\" /></div>");     
     var oCell = opener.parent.document.getElementById("sIframeHomeworkAndTest").contentWindow.document.getElementsByTagName("table").item(0).rows[0].cells[0];
-    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\"https://localhost:5001/webCourse/common/EducationalPPTAudio/JustForSimpleSample.html\" style=\"border:0;width: 100%; height: 50px;\" /></div>");
+    oCell.getElementsByTagName("span").item(0).insertAdjacentHTML("afterend","<div style=\"text-align:center\"><iframe src=\""+pptAudioIFrameSrc+"\" style=\"border:0;width: 100%; height: 50px;\" /></div>");
     }
   }
   function fnAjaxServerSideCallAIGCLearningCommunity(isProxy) {
