@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Web3D 模型导出 STL</title>
+    <!--为什么选 Three.js？ 原生 Canvas/WebGL 没有网格数据结构的概念（只有顶点缓冲区），无法直接提取三角面片数据。Three.js 的 BufferGeometry 天然存储了三角面拓扑，配合官方 STLExporter 即可一行代码完成导出二进制或者ASCII字符格式的.STL文件并自动下载。-->
+    <!--
+        STL 不包含颜色/材质/纹理信息，仅保存纯几何三角面片
+        导出前确保几何体已调用 .computeVertexNormals()（Three.js 内置几何体默认已计算）
+        高细分模型（如64段球体 ≈ 8192面）导出文件约400KB；若用于3D打印，建议面数控制在10万以内
+        STLExporter 也支持 ASCII 格式：{ binary: false } 返回字符串，但文件体积约为二进制的5倍。Windows操作系统内置的Paint 3D软件可直接渲染打开.stl文件【期望Paint 3D软件能够直接连接3D打印机打印实物模型！！！！！！！】。
+     -->
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { overflow: hidden; background: #1a1a2e; font-family: 'Segoe UI', sans-serif; }
+
+    /* ===== 顶部工具栏 ===== */
+    #toolbar {
+        position: absolute; top: 0; left: 0; right: 0;
+        padding: 16px 24px;
+        display: flex; align-items: center; gap: 16px;
+        background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+        z-index: 10; pointer-events: none; /* 让鼠标事件穿透到canvas */
+    }
+    #toolbar > * { pointer-events: auto; }
+
+    h1 { color: #fff; font-size: 18px; font-weight: 600; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+
+    .btn {
+        padding: 10px 24px; border: none; border-radius: 8px;
+        font-size: 14px; font-weight: 600; cursor: pointer;
+        transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;
+    }
+    .btn-primary {
+        background: #4f8cff; color: #fff;
+        box-shadow: 0 2px 12px rgba(79,140,255,0.4);
+    }
+    .btn-primary:hover { background: #3a7aff; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(79,140,255,0.6); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+        background: rgba(255,255,255,0.12); color: #ccc; backdrop-filter: blur(8px);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.2); color: #fff; }
+
+    select {
+        padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.1); color: #fff; font-size: 14px;
+        backdrop-filter: blur(8px); outline: none; cursor: pointer;
+    }
+    select option { background: #2a2a4a; color: #fff; }
+
+    /* ===== 状态提示 ===== */
+    #status {
+        position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+        padding: 10px 24px; border-radius: 20px;
+        background: rgba(0,0,0,0.7); color: #4f8cff; font-size: 13px;
+        backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s;
+        pointer-events: none; z-index: 10;
+    }
+    #status.show { opacity: 1; }
+
+    /* ===== 信息面板 ===== */
+    #info {
+        position: absolute; bottom: 20px; right: 20px;
+        padding: 12px 18px; border-radius: 10px;
+        background: rgba(0,0,0,0.5); color: #aaa; font-size: 12px;
+        backdrop-filter: blur(8px); line-height: 1.6;
+        pointer-events: none; z-index: 10;
+    }
+</style>
+
+<!-- Three.js + STLExporter (ES Module CDN) -->
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+}
+</script>
+</head>
+<body>
+
+<!-- 工具栏 -->
+<div id="toolbar">
+    <h1>🧊 Web3D → STL 导出器</h1>
+    <select id="modelSelect">
+        <option value="torusKnot">圆环结 TorusKnot</option>
+        <option value="sphere">球体 Sphere</option>
+        <option value="cube">立方体 Cube</option>
+        <option value="cylinder">圆柱 Cylinder</option>
+        <option value="cone">圆锥 Cone</option>
+        <option value="icosahedron">二十面体 Icosahedron</option>
+    </select>
+    <button class="btn btn-secondary" id="btnSwitch">切换模型</button>
+    <button class="btn btn-primary" id="btnExport">💾 导出 STL</button>
+</div>
+
+<!-- 状态提示 -->
+<div id="status"></div>
+
+<!-- 信息面板 -->
+<div id="info">
+    🖱️ 左键旋转 · 右键平移 · 滚轮缩放<br>
+    STL 格式：二进制 · 兼容所有3D打印切片软件
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { STLExporter } from 'three/addons/exporters/STLExporter.js';
+
+// ============================================================
+//  1. 场景初始化（三大件 + 控制器 + 光照）
+// ============================================================
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x1a1a2e);
+
+const camera = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.1, 100);
+camera.position.set(4, 3, 5);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(devicePixelRatio);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+
+// 光照
+scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+const dirLight = new THREE.DirectionalLight(0xffeedd, 2.5);
+dirLight.position.set(5, 8, 4);
+dirLight.castShadow = true;
+dirLight.shadow.mapSize.set(1024, 1024);
+scene.add(dirLight);
+
+const rimLight = new THREE.DirectionalLight(0x4488ff, 1);
+rimLight.position.set(-3, 2, -5);
+scene.add(rimLight);
+
+// 地面 + 网格
+const ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(20, 20),
+    new THREE.MeshStandardMaterial({ color: 0x222233, roughness: 0.9 })
+);
+ground.rotation.x = -Math.PI / 2;
+ground.receiveShadow = true;
+scene.add(ground);
+scene.add(new THREE.GridHelper(20, 20, 0x334455, 0x1a2233));
+
+// ============================================================
+//  2. 模型工厂：根据名称创建几何体
+// ============================================================
+const material = new THREE.MeshStandardMaterial({
+    color: 0x4f8cff, metalness: 0.3, roughness: 0.4
+});
+
+const geometryFactories = {
+    torusKnot:  () => new THREE.TorusKnotGeometry(1, 0.35, 128, 32),
+    sphere:     () => new THREE.SphereGeometry(1.3, 64, 64),
+    cube:       () => new THREE.BoxGeometry(2, 2, 2),
+    cylinder:   () => new THREE.CylinderGeometry(1, 1, 2.5, 64),
+    cone:       () => new THREE.ConeGeometry(1.2, 2.5, 64),
+    icosahedron:() => new THREE.IcosahedronGeometry(1.4, 0),
+};
+
+let currentMesh = null;
+let currentModelName = 'torusKnot';
+
+function setModel(name) {
+    // 移除旧模型
+    if (currentMesh) {
+        scene.remove(currentMesh);
+        currentMesh.geometry.dispose();
+    }
+    // 创建新模型
+    const geo = geometryFactories[name]();
+    currentMesh = new THREE.Mesh(geo, material);
+    currentMesh.position.y = name === 'sphere' ? 1.3 : 
+                             name === 'cylinder' ? 1.25 :
+                             name === 'cone' ? 1.25 : 1;
+    currentMesh.castShadow = true;
+    scene.add(currentMesh);
+    currentModelName = name;
+    showStatus(`✅ 已切换为: ${name}`);
+}
+
+// 初始模型
+setModel('torusKnot');
+
+// ============================================================
+//  3. ⭐ 核心功能：导出 STL 并触发浏览器下载
+// ============================================================
+const exporter = new STLExporter();
+
+function exportSTL() {
+    if (!currentMesh) {
+        showStatus('❌ 没有可导出的模型', true);
+        return;
+    }
+
+    // STLExporter.parse() 返回 ArrayBuffer（二进制STL）
+    //const result = exporter.parse(currentMesh, { binary: true });
+     const result = exporter.parse(currentMesh, { binary: false });
+    // 创建 Blob → 生成临时 URL → 触发 <a> 点击下载
+    const blob = new Blob([result], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${currentModelName}_${Date.now()}.stl`;
+    document.body.appendChild(link);
+    link.click();
+
+    // 清理临时资源
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    // 计算文件大小
+    const sizeKB = (blob.size / 1024).toFixed(1);
+    showStatus(`💾 导出成功! ${currentModelName}.stl (${sizeKB} KB)`);
+}
+
+// ============================================================
+//  4. UI 事件绑定
+// ============================================================
+document.getElementById('btnExport').addEventListener('click', exportSTL);
+
+document.getElementById('btnSwitch').addEventListener('click', () => {
+    const select = document.getElementById('modelSelect');
+    setModel(select.value);
+});
+
+document.getElementById('modelSelect').addEventListener('change', (e) => {
+    setModel(e.target.value);
+});
+
+// 状态提示工具函数
+function showStatus(msg, isError = false) {
+    const el = document.getElementById('status');
+    el.textContent = msg;
+    el.style.color = isError ? '#ff4466' : '#4f8cff';
+    el.classList.add('show');
+    clearTimeout(el._timer);
+    el._timer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ============================================================
+//  5. 渲染循环 + 窗口自适应
+// ============================================================
+const clock = new THREE.Clock();
+
+function animate() {
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+    if (currentMesh) {
+        currentMesh.rotation.y = t * 0.3;
+    }
+    controls.update();
+    renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>
