@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://www.x3dom.org/x3dom/release/x3dom.css">
+    <script type="text/javascript" src="https://www.x3dom.org/x3dom/release/x3dom.js"></script>
+    <meta charset="UTF-8">
+    <title>即时调用的准确性工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+           /**margin: 40px;**/
+            text-align: center;
+            border-collapse: collapse;
+        }
+        tr{
+            border-collapse: collapse;
+        }
+        td{
+            border-collapse: collapse;
+        }
+        /**div实现一行两列的网格布局**/
+        .row-2col {
+            display: flex;
+            width: 100%; /* 可根据需要调整 */
+            gap: 10px; /* 列间距，可选 */
+        }
+        div{
+            border-collapse: collapse;
+        }
+
+        .col {
+            flex: 1; /* 两列等宽 */
+            border: 0px solid #ccc;
+            padding: 16px;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        /** **/
+        /**div实现两行两列的网格布局**/
+        .grid-container {
+            display: grid;
+            // grid-template-columns: 1fr 1fr; /* 两列等宽 */
+            //grid-template-rows: 1fr 1fr; /* 两行等高 */
+            grid-template-rows: 1f; /* 一行等高 */
+            gap: 10px; /* 可选：格子间距 */
+            width: 90%;
+            //max-width: 400px; /* 可选：最大宽度 */
+            margin: 0 auto; /* 可选：居中 */
+        }
+
+        .grid-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            background: #f9f9f9;
+        }
+        /** **/
+        #transcriptSystemInternal {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            min-height: 100px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            white-space: pre-wrap;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+            vertical-align: top;
+        }
+
+        #transcriptSystemExternal {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            min-height: 100px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            white-space: pre-wrap;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+            vertical-align: top;
+        }
+        /**
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        **/
+        button {
+    white-space: normal;
+    padding: 0px 0px;
+    font-size: 13px;
+    margin: 0px;
+    cursor: pointer;
+}
+        button:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+            }
+
+    </style>
+    <script>
+        window.sHref=window.location.href.substring(0,window.location.href.indexOf("/webCourse/"));
+    </script>
+    <script src="script/TTS_STT_LLM_AIGC_Robot.js"></script>
+    <script src="script/Accuracy-Similarity.js"></script>
+</head>
+<body>
+        <div id="sVisionAIGC_RAG_Agent" style="border:dashed;border-color: goldenrod;">
+
+        <p></p>
+        <ol>
+            <div style="text-align:justify">
+            <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(视觉字符)←对比→标准知识库检索匹配(视觉字符)" onclick='if(document.getElementById("AIGCCharactor").style.display=="none"){document.getElementById("AIGCCharactor").style.display="block"} else{document.getElementById("AIGCCharactor").style.display="none"};fnToggleEventSoureElementColor("");' /></li>
+    </div>
+    <div id="AIGCCharactor" style="display: none; border: dashed;border-color: goldenrod; text-align: justify ">
+        <div class="row-2col">
+            <div class="col">
+                <label title="请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><textarea id="sAIGCString" title="请在这里粘贴免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" style="width: 100%; resize: vertical; overflow:auto">这里粘贴免费AIGC生成的字符序列（单击打开他创方的免费AIGC案例，自开发反而需要付费）...</textarea>
+            </div>
+            <div class="col">
+                <label title="请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）： </label><textarea id="sKnowledgebaseString" title="请单击打开标准知识库搜索想要的字符序列。然后，请粘贴在这里！" style="width: 100%; resize: vertical; overflow: auto">这里粘贴标准知识库搜索匹配的对比字符序列（单击打开自创方的知识库案例，自开发开源案例）...</textarea>
+            </div>
+        </div>
+        <div style="width: 90%">
+            <button style="color:green;font-size:11px;" onclick='document.getElementById("sAccuracySimilarityForString").textContent=fnStringSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityForString" style="font-size: 11px">这里将显示上述两个字符序列的准确性相似度</span>
+            <br /><button style="color:green;font-size:12px" onclick='document.getElementById("sSemanticAccuracySimilarityForString").textContent=fnStringSemanticSimilarity(document.getElementById("sAIGCString").value,document.getElementById("sKnowledgebaseString").value);'>（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px" id="sSemanticAccuracySimilarityForString">这里将显示上述两个字符序列的准确性相似度【注：付费调用云端大语言模型可以更加准确地实现！】</span>
+            <br /><button><a href="../options/EmbeddingPython-sim_entropy.html" target="_blank">关于准确性相似度算法创新（而且尝试了多种平台语言的融合）（专利申请之中...）</a></button>
+        </div>
+    </div>
+    <div></div>
+    <div style="text-align:justify">
+        <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(视觉图像)(.jpeg或.png文件为例)←对比→标准知识库检索匹配(视觉图像)(.jpeg或.png文件为例)" onclick='fnAccuracySimilarityForPixelImage()' /></li>
+    </div>
+    <div id="AIGCPixelImage" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+        <div class="row-2col">
+            <div class="col">
+                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sPixelImageFromAIGC" value="" />
+                <div style="text-align:center"><img id="sShowPixelImageFromAIGC" style="width:100%;height:100%" src="" /></div>
+                <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”Prompt钉钉AIGC生成的图像，或者，上传自己书写的字符图像可用来评判自己书写的工整性' /> <input type="submit" value="提交文件" /></div>
+            </div>
+            <div class="col">
+                <label title="请单击打开标准知识库搜索想要的图像。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的.jpeg或.png图像文件(或者文本框中键入.jpeg或.png图像文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sPixelImageFromKnowledgebase" value="" />
+                <div style="text-align:center"><img id="sShowPixelImageFromKnowledgebase" style="width: 100%; height: 100% " src="" /></div>
+                <div style="text-align:justify"><input type="file" title='例如，上传“经验之塔”关键词搜索匹配本系统标准知识库检索的图像，或者，上传印刷体的字符图像可用来对比自己书写的工整性' /><input type="submit" value="提交文件" /></div>
+            </div>
+        </div>
+        <div>
+            <button style="color:green;font-size:12px" onclick="fnPixelImageSimilarity();">（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityForPixelImage" style="font-size: 11px">这里将显示上述两个图像的准确性相似度</span>
+            <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+        </div>
+    </div>
+    <div></div>
+    <div style="text-align:justify">
+        <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(视觉视频)(.mp4文件为例)←对比→标准知识库检索匹配(视觉视频)(.mp4文件为例)" onclick='fnAccuracySimilarityForVideo()' /></li>
+    </div>
+    <div id="AIGCVideo" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+        <div class="row-2col">
+            <div class="col">
+                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.mp4视频文件(或者文本框中键入.mp4视频文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sVideoFromAIGC" value="" />
+                <div style="text-align:center"><video id="sShowVideoFromAIGC" style="width: 100%; height: 100% " src="" controls autoplay crossorigin="anonymous" /></div>
+                <div style="text-align:justify"><input type="file" title='例如，上传Prompt钉钉AIGC生成的.mp4视频文件，或者，上传自己创作的.mp4视频文件' /> <input type="submit" value="提交文件" /></div>
+            </div>
+            <div class="col">
+                <label title="请单击打开标准知识库搜索想要的视频。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.mp4视频文件(或者文本框中键入.mp4视频文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sVideoFromKnowledgebase" value="" />
+                <div style="text-align:center"><video id="sShowVideoFromKnowledgebase" style="width: 100%; height: 100% " src="" controls autoplay crossorigin="anonymous" /></div>
+                <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.mp4视频文件，可用作评判自己创作的.mp4视频文件的的标准' /><input type="submit" value="提交文件" /></div>
+            </div>
+        </div>
+        <div><button style="color:green;font-size:12px" onclick="fnCompareVideos();">（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityForPixelVideo" style="font-size: 11px">这里将显示上述两个视频的准确性相似度</span></div><canvas id="canvas" width="160" height="90" style="display:none"></canvas>
+        <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+    </div>
+    <div></div>
+    <div style="text-align:justify">
+        <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(视觉2D)(.svg文件为例)←对比→标准知识库检索匹配(视觉2D)(.svg文件为例)" onclick='fnAccuracySimilarityFor2D()' /></li>
+    </div>
+    <div id="AIGC2D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+        <div class="row-2col">
+            <div class="col">
+                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.svg二维2D文件(或者文本框中键入.svg二维2D的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="s2DFromAIGC" value="" />
+                <div style="text-align:center"><img id="sShow2DFromAIGC" style="width: 100%; height: 100% " src="" controls /></div>
+                <div style="text-align:justify"><input type="file" title='例如，上传Prompt钉钉AIGC生成的.svg二维2D文件，或者，上传自己创作的.svg二维2D文件' /><input type="submit" value="提交文件" /></div>
+            </div>
+            <div class="col">
+                <label title="请单击打开标准知识库搜索想要的2D。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.svg二维2D文件(或者文本框中键入.svg二维2D文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="s2DFromKnowledgebase" value="" />
+                <div style="text-align:center"><img id="sShow2DFromKnowledgebase" style="width: 100%; height:100% " src="" controls /></div>
+                <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.svg二维2D文件，可用作评判自己创作的.svg二维2D文件的的标准' /><input type="submit" value="提交文件" /></div>
+            </div>
+        </div>
+        <div>
+            <button style="color:green;font-size:12px" onclick="fnShowAccuraySimilarityFor2D();">（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityFor2D" style="font-size: 11px">这里将显示上述两个2D的准确性相似度</span>
+            <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+        </div>
+    </div>
+    <div></div>
+    <div style="text-align:justify">
+        <li>  <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(视觉3D)(.vx3d文件为例)←对比→标准知识库检索匹配(视觉3D)(.vx3d文件为例)（开发之中...）" onclick='fnAccuracySimilarityFor3D()' /></li>
+    </div>
+    <div id="AIGC3D" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+        <div class="row-2col">
+            <div class="col">
+                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.x3dv三维3D文件(或者文本框中键入.x3dv三维3D的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="s3DFromAIGC" value="" />
+                <div style="text-align:center">
+                    <!-- <img id="sShow3DFromAIGC" style="width: 100%; height: 100%" src="" controls />-->
+                    <object type="model/x3d+xml" id="sShow3DFromAIGC" data="../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv" width="120" height="80">
+                        <param name="autoStart" value="true" />
+                        <!-- 备用内容（如浏览器不支持） -->
+                        <p style="text-align:center">
+                            <a href='../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.x3dv' target="_blank">您的浏览器不支持.x3d/.x3dv文件！请在线搜索下载安装BS Contact软件。然后，单击本链接下载本.x3d/.x3dv文件浏览。</a>浏览结果截图如下2D截图所示（但实际X3D可以虚拟现实VRML地漫游3D世界）：
+                            <div><img src="../options/Accuracy-Similarity/EducationalTechnologyFromAIGC.jpg" style="width:120px;height:80px" /></div>
+                            <div style="text-align:center">
+                                <p>请用鼠标拖动如下体验简易的X3D：</p>
+                                <x3d width="100%" height="80px">
+                                    <scene>
+                                        <!-- 定义旋转的锥体 -->
+                                        <transform DEF="ConeTransform">
+                                            <shape>
+                                                <!-- 锥体几何体（高度 2，底面半径 1） -->
+                                                <cone bottomRadius="3" height="6"></cone>
+                                                <!-- 材质设置（绿色表面） -->
+                                                <appearance>
+                                                    <material diffuseColor="0 0.8 0"></material>
+                                                </appearance>
+                                            </shape>
+                                        </transform>
+
+                                        <!-- 使用 Script 节点控制旋转动画 -->
+                                        <script DEF="RotateScript" type="JS">
+                                            // 获取 Transform 节点
+                                            const coneTransform = x3dom.nodeFactory.getNodeByName('ConeTransform')[0];
+                                            let angle = 0;
+
+                                            // 定义每帧更新的旋转角度
+                                            function rotate() {
+                                                angle += 0.02; // 调整速度（越大转得越快）
+                                                // 设置旋转（绕 Y 轴旋转）
+                                                coneTransform.rotation = [0, 1, 0, angle];
+                                                x3dom.field_SFVec3f.setSFVec3f(coneTransform, 'rotation', [0, 1, 0, angle]);
+                                                requestAnimationFrame(rotate); // 循环调用
+                                            }
+
+                                            // 启动动画
+                                            rotate();
+                                        </script>
+                                    </scene>
+                                </x3d>
+                            </div>
+                        </p>
+                    </object>
+                </div>
+                <div style="text-align:justify"><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的.x3dv三维3D文件，或者，上传自己创作的.x3dv三维3D文件' /><input type="submit" value="提交文件" /></div>
+            </div>
+            <div class="col">
+                <label title="请单击打开标准知识库搜索想要的3D。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.x3dv三维3D文件(或者文本框中键入.x3dv三维3D文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="s3DFromKnowledgebase" value="" />
+                <div style="text-align:center">
+                    <!--<img id="sShow3DFromKnowledgebase" style="width:100%; height:100%" src="" controls />-->
+                    <object type="model/x3d+xml" id="sShow3DFromKnowledgebase" data="../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.x3dv" width="120" height="80">
+                        <param name="autoStart" value="true" />
+                        <!-- 备用内容（如浏览器不支持） -->
+                        <p style="text-align:center">
+                            <a href='../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.x3dv' target="_blank">您的浏览器不支持.x3d/.x3dv文件！请在线搜索下载安装BS Contact软件。然后，单击本链接下载本.x3d/.x3dv文件浏览。</a>浏览结果截图如下2D截图所示（但实际X3D可以虚拟现实VRML地漫游3D世界）：
+                            <div><img src="../options/Accuracy-Similarity/EducationalTechnologyFromKnowledgebase.jpg" style="width:120px;height:80px" /></div>
+                            <div style="text-align:center">
+                                <p>请用鼠标拖动如下体验简易的X3D：</p>
+                                <x3d width="100%" height="80px">
+                                    <scene>
+                                        <!-- 定义旋转的锥体 -->
+                                        <transform DEF="ConeTransform">
+                                            <shape>
+                                                <!-- 锥体几何体（高度 2，底面半径 1） -->
+                                                <cone bottomRadius="3" height="6"></cone>
+                                                <!-- 材质设置（绿色表面） -->
+                                                <appearance>
+                                                    <material diffuseColor="0 0.8 0"></material>
+                                                </appearance>
+                                            </shape>
+                                        </transform>
+
+                                        <!-- 使用 Script 节点控制旋转动画 -->
+                                        <script DEF="RotateScript" type="JS">
+                                            // 获取 Transform 节点
+                                            const coneTransform = x3dom.nodeFactory.getNodeByName('ConeTransform')[0];
+                                            let angle = 0;
+
+                                            // 定义每帧更新的旋转角度
+                                            function rotate() {
+                                                angle += 0.02; // 调整速度（越大转得越快）
+                                                // 设置旋转（绕 Y 轴旋转）
+                                                coneTransform.rotation = [0, 1, 0, angle];
+                                                x3dom.field_SFVec3f.setSFVec3f(coneTransform, 'rotation', [0, 1, 0, angle]);
+                                                requestAnimationFrame(rotate); // 循环调用
+                                            }
+
+                                            // 启动动画
+                                            rotate();
+                                        </script>
+                                    </scene>
+                                </x3d>
+                            </div>
+                        </p>
+                    </object>
+
+                </div>
+                <div style="text-align:justify"><input type="file" title='例如，上传字典中的的.x3dv三维3D文件，可用作评判自己创作的.x3dv三维3D文件的的标准' /><input type="submit" value="提交文件" /></div>
+            </div>
+        </div>
+        <div>
+            <button style="color:green;font-size:12px" onclick="document.getElementById('sAccuracySimilarityFor3D').textContent='（开发之中...)'//fnShowAccuraySimilarityFor3D();">（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityFor3D" style="font-size: 11px">这里将显示上述两个3D的准确性相似度</span>
+            <br /><button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+        </div>
+    </div>
+    <div></div>
+    <div style="text-align:justify">
+        <li> <input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(听觉音频)(.mp3或.midi文件为例)←对比→标准知识库检索匹配(听觉音频)(.mp3或.midi文件为例)" onclick='fnAccuracySimilarityForAudio()' /></li>
+    </div>
+    <div id="AIGCAudio" style="display: none;border:dashed;border-color:goldenrod;text-align:justify">
+        <div class="row-2col">
+            <div class="col">
+                <label title="请在下方上传免费AIGC（例如，钉钉内置的钉钉AIGC助理）免费链接AIGC服务生成的内容，本系统只需对比标准知识库，思考它们生成内容的准确性，所以，除了在此的必须付费连接AIGC API-Key的视媒听媒机器人之外，暂不考虑其他AIGC的功能开发！" onclick='fnOpenLocalhostDingTalkAIGC();'>请在下方上传免费AIGC生成的.mp3音频文件(或者文本框中键入.mp3音频文件的URL)（单击打开他创方的免费AIGC案例，自开发反而需要付费）： </label><input type="text" id="sAudioFromAIGC" value="" />
+                <div style="text-align:center"><audio id="sShowAudioFromAIGC" style="width:100px; height:100px " src="" controls /></div>
+                <div style="text-align:justify"><input type="file" title='例如，上传“普通话等级”Prompt钉钉AIGC生成的音频，或者，上传自己朗读的“普通话等级”的音频' /><input type="submit" value="提交文件" /></div>
+            </div>
+            <div class="col">
+                <label title="请单击打开标准知识库搜索想要的音频。然后，请在下方上传！" onclick='opener.parent.document.getElementById("sIframeContents").contentWindow.fnSearch();'>请在下方上传标准知识库搜索匹配的对比.mp3音频文件(或者文本框中键入.mp3音频文件的URL)（单击打开自创方的知识库案例，自开发开源案例）： </label><input type="text" id="sAudioFromKnowledgebase" value="" />
+                <div style="text-align:center"><audio id="sShowAudioFromKnowledgebase" style="width: 100px; height:100px" src="" controls /></div>
+                <div style="text-align:justify"><input type="file" title='例如，上传字典的“普通话等级”发音音频，可用作评判自己朗读“普通话等级”的标准' /><input type="submit" value="提交文件" /></div>
+            </div>
+        </div>
+
+        <div>
+            <button style="color:green;font-size:12px" onclick="fnCompareAudio();">（标量的Literal顺序匹配的）字面准确性相似度：</button><span id="sAccuracySimilarityForAudio" style="font-size: 11px">这里将显示上述两个音频的准确性相似度</span>
+            <br />
+            <button style="color:green;font-size:12px" onclick=";">（向量/矩阵/张量的Token语义距离的）语义准确性相似度：</button><span style="font-size: 11px">还是付费选用云端大语言模型实现为好。正在开发之中...</span>
+        </div>
+    </div>
+
+    <div style="text-align:justify">
+        <li><div><input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(触觉)←对比→标准知识库检索匹配(触觉)（目前尚无法实现...）" /></div></li>
+    </div>
+    <div style="text-align:justify">
+        <li><div><input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(嗅觉)←对比→标准知识库检索匹配(嗅觉)（目前尚无法实现...）" /></div></li>
+    </div>
+    <div style="text-align:justify">
+        <li> <div><input type="button" style="white-space: normal; text-align: justify" value="单击切换显示：Prompt提问/AIGC生成回答(味觉)←对比→标准知识库检索匹配(味觉)（目前尚无法实现...）" /></div></li>
+    </div>
+    </ol>
+    </div>
+</body>
+</html>

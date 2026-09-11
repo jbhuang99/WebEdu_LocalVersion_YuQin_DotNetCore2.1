@@ -43,6 +43,29 @@ document.getElementById("idTextAreaAjaxServerSideCallAIGCAnswerHomeworkAndTest")
 // 暂时未选用，而是选用了用户自己手动单击一个按钮时提醒继续等待：监听页面可见性变化：当用户从后台切回前台时，立即触发一次轮询
 //document.addEventListener('visibilitychange', () => {if (!document.hidden) smartPoll('3cd3fa4e-53ee-4136-9cab-xxxxxx');});
 }
+function fnAccuracy(elementidInternal, elementidExternal){
+if(document.getElementById(elementidInternal).querySelectorAll('iframe').length > 0){
+    document.getElementById(elementidInternal).querySelectorAll('iframe').item(0).remove();
+    document.getElementById(elementidExternal).querySelectorAll('iframe').item(0).remove();
+}
+else{
+var tempForAccurayIFrameInternal= document.createElement('iframe');
+tempForAccurayIFrameInternal.src = 'TempForAccuracy.html';
+tempForAccurayIFrameInternal.style.width = '95%';
+tempForAccurayIFrameInternal.style.height = '400px';
+tempForAccurayIFrameInternal.style.border = '0px';
+document.getElementById(elementidInternal).append(tempForAccurayIFrameInternal);
+//tempForAccurayIFrameInternal.contentWindow.document.body.innerHTML = document.getElementById('sVisionAIGC_RAG_Agent').innerHTML;
+
+var tempForAccurayIFrameExternal= document.createElement('iframe');
+tempForAccurayIFrameExternal.src = 'TempForAccuracy.html';
+tempForAccurayIFrameExternal.style.width = '95%';
+tempForAccurayIFrameExternal.style.height = '400px';
+tempForAccurayIFrameExternal.style.border = '0px';
+document.getElementById(elementidExternal).append(tempForAccurayIFrameExternal);
+//tempForAccurayIFrameExternal.contentWindow.document.body.innerHTML = document.getElementById('sVisionAIGC_RAG_Agent').innerHTML;
+}
+}
 function fnAgentIFrameSrc(){
     document.getElementById("IframeExternalGitHubCopilot").src="https://github.com/features/copilot" ;
     document.getElementById("IframeExternalAstron-Claw").src="https://agent.xfyun.cn/home" ;
@@ -1654,6 +1677,24 @@ window.speechSynthesis.cancel();
           }
   }
   **/
+   function fnToggleSystemInternalCharSystemExternalChar(){ 
+      if(document.getElementById("iframeForCharactorInternal").style.display=="none"){
+            document.getElementById("iframeForCharactorInternal").style.display="block";
+            document.getElementById("iframeForCharactorExternal").style.display="block";
+            document.getElementById("CharactorInternalIntoMainView").style.display="block";
+            document.getElementById("CharactorExternalIntoMainView").style.display="block";
+            document.getElementById("TriAngleOfCharactorInternal").textContent="▼";
+            document.getElementById("TriAngleOfCharactorExternal").textContent="▼";
+            }
+      else{
+            document.getElementById("iframeForCharactorInternal").style.display="none";
+            document.getElementById("iframeForCharactorExternal").style.display="none";
+            document.getElementById("CharactorInternalIntoMainView").style.display="none";
+            document.getElementById("CharactorExternalIntoMainView").style.display="none";
+            document.getElementById("TriAngleOfCharactorInternal").textContent="▶";
+            document.getElementById("TriAngleOfCharactorExternal").textContent="▶";
+          }
+  }
 
   function fnToggleSystemInternalPPTImageSystemExternalPPTImage(){ 
       if(document.getElementById("iframeForPPTImageInternal").style.display=="none"){
