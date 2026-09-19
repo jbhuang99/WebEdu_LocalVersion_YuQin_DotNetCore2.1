@@ -38,6 +38,10 @@
     <Project Path="ASPDotNet_MVC_YuQin/DevUIForCloudLLM/DevUIForCloudLLM.csproj">
       <BuildType Solution="Development|*" Project="Release" />
     </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/DotNFApp1/DotNFApp1.nfproj" Type="11a8dd76-328b-46df-9f39-f559912d0360" Id="d53f02c1-14bb-43b4-9e66-bd6faaed0109">
+      <BuildType Solution="Development|*" Project="Release" />
+      <Deploy />
+    </Project>
     <Project Path="ASPDotNet_MVC_YuQin/LoRaSample/LoRaSample.csproj">
       <BuildType Solution="Development|*" Project="Release" />
       <Platform Project="x64" />
