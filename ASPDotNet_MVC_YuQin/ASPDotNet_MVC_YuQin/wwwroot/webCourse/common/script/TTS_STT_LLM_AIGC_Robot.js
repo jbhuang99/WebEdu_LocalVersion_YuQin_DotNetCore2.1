@@ -67,8 +67,8 @@ document.getElementById(elementidExternal).append(tempForAccurayIFrameExternal);
 }
 }
 function fnAgentIFrameSrc(){
-    document.getElementById("IframeExternalGitHubCopilot").src="https://github.com/features/copilot" ;
-    document.getElementById("IframeExternalAstron-Claw").src="https://agent.xfyun.cn/home" ;
+    document.getElementById("IframeExternalGitHubCopilot").src="https://github.com/copilot/" ;
+    document.getElementById("IframeExternalAstron-Claw").src="https://agent.xfyun.cn/" ;
     document.getElementById("IframeExternalWebClaw").src="https://www.qianwen.com/" ;
     document.getElementById("IframeExternalSciClaw").src="https://sciclaw.cn/" ;
 }
