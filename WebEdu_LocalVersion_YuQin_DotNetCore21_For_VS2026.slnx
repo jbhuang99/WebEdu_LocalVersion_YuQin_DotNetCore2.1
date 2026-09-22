@@ -35,6 +35,9 @@
     <Project Path="ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin/ASPDotNet_MVC_YuQin.csproj">
       <BuildType Solution="Development|*" Project="Release" />
     </Project>
+    <Project Path="ASPDotNet_MVC_YuQin/BCI-EEGWeb/BCI-EEGWeb.csproj">
+      <BuildType Solution="Development|*" Project="Release" />
+    </Project>
     <Project Path="ASPDotNet_MVC_YuQin/DevUIForCloudLLM/DevUIForCloudLLM.csproj">
       <BuildType Solution="Development|*" Project="Release" />
     </Project>
